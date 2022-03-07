@@ -1,0 +1,11 @@
+<AlibreDesignAddOn specificationVersion="2" friendlyName="Utilities for Alibre">
+<Author name="David Bolsover" link="https://github.com/bolsover/DataBrowserForAlibre"/>
+   <Copyright>Copyright (c) 2022. David Bolsover</Copyright>
+   <DLL type="Managed" loadedWhen="Startup" location="UtilitiesForAlibre.dll"/>
+   <Icon location="nexus.ico"/> 
+   <Menu text="Utilities for Alibre"/>
+   <Description>Utilities for Alibre</Description> 
+   <Workspace type="Part"/>
+   <Property name="Identifier" value="{305297BD-DE8D-4F36-86A4-AA5E69538A69}"/>
+</AlibreDesignAddOn>
+

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{305297BD-DE8D-4F36-86A4-AA5E69538A69}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Bolsover</RootNamespace>
+        <AssemblyName>UtilitiesForAlibre</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>9</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>x64</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="AlibreAddOn">
+            <HintPath>C:\Program Files\Alibre Design\Program\AlibreAddOn.dll</HintPath>
+        </Reference>
+        <Reference Include="AlibreX">
+            <HintPath>C:\Program Files\Alibre Design\Program\AlibreX.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.CSharp"/>
+        <Reference Include="ObjectListView">
+            <HintPath>..\..\..\..\..\ObjectListViewFull-2.9.1\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
+        </Reference>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Drawing"/>
+        <Reference Include="System.Windows"/>
+        <Reference Include="System.Windows.Forms"/>
+        <Reference Include="System.Xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="AlibreAddOn.cs"/>
+        <Compile Include="AlibreConnector.cs"/>
+        <Compile Include="AlibreFileSystem.cs"/>
+        <Compile Include="CycliodalGearParametersForm.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="CycliodalGearParametersForm.Designer.cs">
+            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CycloidalGearBuilder.cs"/>
+        <Compile Include="CycloidalGearProperties.cs"/>
+        <Compile Include="DataBrowser.cs"/>
+        <Compile Include="DataBrowser.Designer.cs"/>
+        <Compile Include="MaterialNode.cs"/>
+        <Compile Include="MaterialPicker.cs"/>
+        <Compile Include="MaterialPicker.Designer.cs"/>
+        <Compile Include="PartNoConfig.cs"/>
+        <Compile Include="PartNoConfig.Designer.cs"/>
+        <Compile Include="ShellUtilities.cs"/>
+        <Compile Include="UtilitiesForAlibre.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="Copyright and License.txt"/>
+        <Content Include="nexus.ico">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="UtilitiesForAlibre.adc">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="CycliodalGearParametersForm.resx">
+            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="DataBrowser.resx"/>
+        <EmbeddedResource Include="MaterialPicker.resx"/>
+        <EmbeddedResource Include="PartNoConfig.resx"/>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
