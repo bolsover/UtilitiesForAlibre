@@ -7,11 +7,11 @@ namespace Bolsover
     public class AlibreConnector
     {
         private static IADRoot root;
-        private static AlibreConnector instance = null;
+       // private static AlibreConnector instance = null;
 
 
         /// <summary>
-        /// Static constructor; initialises the AutomationHook and IADRoot.
+        /// Static constructor; initialises the IADRoot.
         /// </summary>
         static AlibreConnector()
         {

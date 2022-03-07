@@ -13,6 +13,30 @@ The project is generally written using the Jetbrains Rider IDE but it should wor
 # Alibre Add-On
 
 # Known Issues
+DataBrowser. A previous, stand alone version of the data browser could obtain IADSession connections to Alibre, interrogate the Part, Sheet Metal, Assembly and Drawing properties and report these in the application window.
+Running the same code within the context of an AddOn requires connecting to the Alibre IADRoot object, obtaining an IADSession, querying the design properties and closing the session.
+Closing a session is fine - UNLESS the Part, Assembly etc. is actually already open in Alibre. If the design is open in Alibre, closing the session will cause the design window to close - without saving any changes that may have been made. NOT good!
+As a partial fix for this problem, the code now checks if a file is open before opening an Alibre IADSession. If the file is not in use, it is OK to proceed getting the design properties. If the file is already open, the IADRoot.Sessions are searched to find the relevant design and the data retrieved without closing the session.
+This fix works for Part, Sheet Metal and Assembly designs but NOT for Drawings. So the present code just ignores any open drawings and does not retrieve the design data. 
+
+DataBrowser can not edit any Alibre file already open elsewhere (assumed to be Alibre). This is intentional and probably can't be fixed anyway. The user is warned if an attempt to edit an open file is made.
+
+
+# Compile code.
+As noted above, AlibreX.dll, AlibreAddOn.dll and  ObjectListView.dll (version 2.9.1) are not included with this code. If you don't have Alibre V24 - well not much I can do about that. ObjectListView can be downloaded here : http://objectlistview.sourceforge.net/cs/index.html
+
+# Installation with Alibre
+Installing the AddOn is a simple matter of copying the output of the compiled code to a new folder in the Alibre Addons folder. This folder is normally C:\Program Files\Alibre Design\Program\Addons\UtilitiesForAlibre
+The files required to be copied are:
+AlibreAddOn.dll
+AlibreX.dll
+nexus.ico
+ObjectListView.dll
+ObjectListView.pdb
+ObjectListView.xml
+UtilitiesForAlibre.adc
+UtilitiesForAlibre.dll
+UtilitiesForAlibre.pdb
 
 
 
