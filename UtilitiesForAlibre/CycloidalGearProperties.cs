@@ -8,11 +8,11 @@ namespace Bolsover
         #region Initial Parameters
 
         private IADDesignPlane plane;
-        private double module = 0.0D;
-        private int wheelCount = 10;
-        private int pinionCount = 5;
-        private double wheelCentreHole = 0.0D;
-        private double pinionCentreHole = 0.0D;
+        private double module = 4.0D;
+        private int wheelCount = 30;
+        private int pinionCount = 8;
+        private double wheelCentreHole = 6.0D;
+        private double pinionCentreHole = 3.0D;
         private double customSlop = 0.0D;
         private bool customSlopEnabled = false;
         private bool drawWheel = true;

@@ -3,7 +3,7 @@
    <Copyright>Copyright (c) 2022. David Bolsover</Copyright>
    <DLL type="Managed" loadedWhen="Startup" location="UtilitiesForAlibre.dll"/>
    <Icon location="nexus.ico"/> 
-   <Menu text="Utilities for Alibre"/>
+   <Menu text="Utilities"/>
    <Description>Utilities for Alibre</Description> 
    <Workspace type="Part"/>
    <Property name="Identifier" value="{305297BD-DE8D-4F36-86A4-AA5E69538A69}"/>

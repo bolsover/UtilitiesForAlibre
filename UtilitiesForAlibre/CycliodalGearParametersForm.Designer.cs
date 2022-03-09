@@ -32,6 +32,7 @@ namespace Bolsover
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CycliodalGearParametersForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,6 +53,7 @@ namespace Bolsover
             this.pinionCenterHoleUpDown = new System.Windows.Forms.NumericUpDown();
             this.customSlopUpDown = new System.Windows.Forms.NumericUpDown();
             this.planesComboBox = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.moduleNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.wheelToothCountUpDwn)).BeginInit();
@@ -59,6 +61,7 @@ namespace Bolsover
             ((System.ComponentModel.ISupportInitialize) (this.wheelCenterHoleUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.pinionCenterHoleUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.customSlopUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -305,13 +308,24 @@ namespace Bolsover
             this.planesComboBox.TabIndex = 19;
             this.planesComboBox.SelectedIndexChanged += new System.EventHandler(this.planesComboBox_SelectedIndexChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(342, 195);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // CycliodalGearParametersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 630);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "CycliodalGearParametersForm";
             this.Text = "Cycliodal Gear Parameters";
             this.TopMost = true;
@@ -322,9 +336,12 @@ namespace Bolsover
             ((System.ComponentModel.ISupportInitialize) (this.wheelCenterHoleUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.pinionCenterHoleUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.customSlopUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox pictureBox1;
 
         private System.Windows.Forms.ComboBox planesComboBox;
 

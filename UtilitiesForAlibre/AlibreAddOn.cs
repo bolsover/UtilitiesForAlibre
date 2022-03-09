@@ -16,7 +16,7 @@ namespace AlibreAddOnAssembly
         {
             alibreRoot = (IADRoot) pAutomationHook.Root;
             parentWinHandle = hwnd;
-            _utilitiesForAlibre = new UtilitiesForAlibre(alibreRoot);
+            _utilitiesForAlibre = new UtilitiesForAlibre(alibreRoot, parentWinHandle);
         }
 
         public static IADRoot GetRoot()

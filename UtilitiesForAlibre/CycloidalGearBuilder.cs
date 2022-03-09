@@ -147,8 +147,11 @@ namespace Bolsover
                 sketch.Figures.AddCircle(wheelCentreX, wheelCentreY, GearProperties.WheelPitchDiameter / 20);
             wheelPitchDiameter.IsReference = true;
 
-            var wheelCenterHole =
-                sketch.Figures.AddCircle(wheelCentreX, wheelCentreY, GearProperties.WheelCentreHole / 20);
+            if (GearProperties.WheelCentreHole > 0)
+            {
+                var wheelCenterHole =
+                    sketch.Figures.AddCircle(wheelCentreX, wheelCentreY, GearProperties.WheelCentreHole / 20);
+            }
         }
 
         private void drawPinion(IADSketch sketch)
@@ -202,9 +205,12 @@ namespace Bolsover
                     point_3_y / 10, point_6_x / 10, point_6_y / 10);
             }
 
-            var circlecentre =
-                sketch.Figures.AddCircle(pinion_centre_x / 10, pinion_centre_y / 10,
-                    GearProperties.PinionCentreHole / 10);
+            if (GearProperties.PinionCentreHole > 0)
+            {
+                var circlecentre =
+                    sketch.Figures.AddCircle(pinion_centre_x / 10, pinion_centre_y / 10,
+                        GearProperties.PinionCentreHole / 20);
+            }
         }
 
         private Point computeAddedumRadiusCenter(double radius, Point a, Point b, Point center)

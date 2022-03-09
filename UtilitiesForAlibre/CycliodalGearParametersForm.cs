@@ -15,6 +15,20 @@ namespace Bolsover
             this.session = (IADDesignSession) session;
             InitializeComponent();
             ListPlanes();
+            initParameters();
+        }
+
+        private void initParameters()
+        {
+        this.moduleNumericUpDown.Value = (decimal)4.0;
+        this.wheelToothCountUpDwn.Value = 30;
+        this.pinionToothCountUpDown.Value = 8;
+        this.wheelCenterHoleUpDown.Value = (decimal)6.0;
+        this.pinionCenterHoleUpDown.Value = (decimal)3.0;
+        this.customSlopUpDown.Value = (decimal)0.0;
+        this.customSlopCheckBox.Checked = false;
+        this.drawWheelCheckBox.Checked = true;
+        this.drawPinionCheckBox.Checked = true;
         }
 
         #region ChangeListeners
