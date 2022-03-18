@@ -33,6 +33,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="alibre-api">
+          <HintPath>C:\Program Files\Alibre Design\Program\alibre-api.dll</HintPath>
+        </Reference>
         <Reference Include="AlibreAddOn">
             <HintPath>C:\Program Files\Alibre Design\Program\AlibreAddOn.dll</HintPath>
         </Reference>
@@ -53,13 +56,20 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="AboutForm.cs">
-          <SubType>Form</SubType>
+            <SubType>Form</SubType>
         </Compile>
         <Compile Include="AboutForm.Designer.cs">
-          <DependentUpon>AboutForm.cs</DependentUpon>
+            <DependentUpon>AboutForm.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreAddOn.cs" />
         <Compile Include="AlibreConnector.cs" />
+        <Compile Include="AlibreData.cs" />
+        <Compile Include="AlibreDataViewer.cs">
+          <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Include="AlibreDataViewer.Designer.cs">
+          <DependentUpon>AlibreDataViewer.cs</DependentUpon>
+        </Compile>
         <Compile Include="AlibreFileSystem.cs" />
         <Compile Include="CycliodalGearParametersForm.cs">
             <SubType>Form</SubType>
@@ -76,57 +86,66 @@
         <Compile Include="MaterialPicker.Designer.cs" />
         <Compile Include="PartNoConfig.cs" />
         <Compile Include="PartNoConfig.Designer.cs" />
+        <Compile Include="PlaneFinderForm.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="PlaneFinderForm.Designer.cs">
+            <DependentUpon>PlaneFinderForm.cs</DependentUpon>
+        </Compile>
         <Compile Include="ShellUtilities.cs" />
+        <Compile Include="test\TestAddOnCommand.cs" />
+        <Compile Include="test\TestAddOnCommandSite.cs" />
         <Compile Include="UtilitiesForAlibre.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="UtilitiesForAlibreAddOnCommand.cs" />
+        <Compile Include="UtilitiesForAlibreAddOnCommandSite.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="Copyright and License.txt" />
         <Content Include="icons\add-circle.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\bulb.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\cog-double.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\CycloidalGear.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\design-pen.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\design-tool.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\design-tool2.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\fibonacci.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\file-code-add.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\file-code-question.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\file-code-star.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\file-settings.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\monitor-settings.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\search.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="icons\userquestion.ico">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="nexus.ico">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -137,17 +156,23 @@
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="AboutForm.resx">
-          <DependentUpon>AboutForm.cs</DependentUpon>
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <DependentUpon>AboutForm.cs</DependentUpon>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="AlibreDataViewer.resx">
+          <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="CycliodalGearParametersForm.resx">
             <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="DataBrowser.resx">
-          <DependentUpon>DataBrowser.cs</DependentUpon>
+            <DependentUpon>DataBrowser.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="MaterialPicker.resx" />
         <EmbeddedResource Include="PartNoConfig.resx" />
+        <EmbeddedResource Include="PlaneFinderForm.resx">
+            <DependentUpon>PlaneFinderForm.cs</DependentUpon>
+        </EmbeddedResource>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

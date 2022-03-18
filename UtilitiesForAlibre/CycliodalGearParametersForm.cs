@@ -18,17 +18,22 @@ namespace Bolsover
             initParameters();
         }
 
+        public IntPtr getHandle()
+        {
+            return Handle;
+        }
+
         private void initParameters()
         {
-        this.moduleNumericUpDown.Value = (decimal)4.0;
-        this.wheelToothCountUpDwn.Value = 30;
-        this.pinionToothCountUpDown.Value = 8;
-        this.wheelCenterHoleUpDown.Value = (decimal)6.0;
-        this.pinionCenterHoleUpDown.Value = (decimal)3.0;
-        this.customSlopUpDown.Value = (decimal)0.0;
-        this.customSlopCheckBox.Checked = false;
-        this.drawWheelCheckBox.Checked = true;
-        this.drawPinionCheckBox.Checked = true;
+            moduleNumericUpDown.Value = (decimal) 4.0;
+            wheelToothCountUpDwn.Value = 30;
+            pinionToothCountUpDown.Value = 8;
+            wheelCenterHoleUpDown.Value = (decimal) 6.0;
+            pinionCenterHoleUpDown.Value = (decimal) 3.0;
+            customSlopUpDown.Value = (decimal) 0.0;
+            customSlopCheckBox.Checked = false;
+            drawWheelCheckBox.Checked = true;
+            drawPinionCheckBox.Checked = true;
         }
 
         #region ChangeListeners

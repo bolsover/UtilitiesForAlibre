@@ -9,14 +9,17 @@ namespace Bolsover
         public AboutForm()
         {
             InitializeComponent();
-            this.label1.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            object[] customAttributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof (AssemblyCopyrightAttribute), false);
-            this.label2.Text = customAttributes.Length == 0 ? "" : ((AssemblyCopyrightAttribute) customAttributes[0]).Copyright;
+            label1.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var customAttributes = Assembly.GetExecutingAssembly()
+                .GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+            label2.Text = customAttributes.Length == 0
+                ? ""
+                : ((AssemblyCopyrightAttribute) customAttributes[0]).Copyright;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            Dispose();
         }
     }
 }

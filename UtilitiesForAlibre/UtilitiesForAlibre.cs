@@ -3,6 +3,7 @@ using System.Diagnostics;
 using AlibreAddOn;
 using AlibreX;
 using System.Windows.Forms;
+using Bolsover.test;
 
 namespace Bolsover
 {
@@ -16,10 +17,11 @@ namespace Bolsover
         private const int SUBMENU_ID_DATA_BROWSER = 505;
         private const int MENU_ID_UTILS = 601;
         private const int SUBMENU_ID_UTILS_CYCLOIDAL_GEAR = 602;
+        private const int SUBMENU_ID_UTILS_PLANE_FINDER = 603;
+        private const int SUBMENU_ID_UTILS_TEST = 604;
         private const int MENU_ID_HELP = 701;
         private const int SUBMENU_ID_HELP_ABOUT = 702;
-        
-        
+
 
         private readonly int[] MENU_IDS_FILE;
         private readonly int[] MENU_IDS_UTILS;
@@ -27,7 +29,7 @@ namespace Bolsover
         private readonly int[] MENU_IDS_HELP;
 
         private IADRoot alibreRoot;
-         private IntPtr parentWinHandle;
+        private IntPtr parentWinHandle;
 
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
@@ -37,9 +39,10 @@ namespace Bolsover
             {
                 SUBMENU_ID_FILE_OPEN, SUBMENU_ID_FILE_CLOSE, SUBMENU_ID_FILE_EXIT
             };
-            MENU_IDS_UTILS = new int[2]
+            MENU_IDS_UTILS = new int[4]
             {
-                SUBMENU_ID_DATA_BROWSER, SUBMENU_ID_UTILS_CYCLOIDAL_GEAR
+                SUBMENU_ID_DATA_BROWSER, SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, SUBMENU_ID_UTILS_PLANE_FINDER,
+                SUBMENU_ID_UTILS_TEST
             };
             MENU_IDS_ROOT = new int[3]
             {
@@ -106,6 +109,8 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_EXIT: return "Save All, Exit";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
                 case SUBMENU_ID_HELP_ABOUT: return "About";
+                case SUBMENU_ID_UTILS_PLANE_FINDER: return "Plane Finder";
+                case SUBMENU_ID_UTILS_TEST: return "Test";
             }
 
             return "";
@@ -121,26 +126,84 @@ namespace Bolsover
             return false;
         }
 
-       /// <summary>
-       /// Returns property bits providing information about the state of a menu item
-       /// ADDON_MENU_ENABLED = 1,
-       /// ADDON_MENU_GRAYED = 2,
-       /// ADDON_MENU_CHECKED = 3,
-       /// ADDON_MENU_UNCHECKED = 4,
-       /// </summary>
-       /// <param name="menuID"></param>
-       /// <param name="sessionIdentifier"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Returns property bits providing information about the state of a menu item
+        /// ADDON_MENU_ENABLED = 1,
+        /// ADDON_MENU_GRAYED = 2,
+        /// ADDON_MENU_CHECKED = 3,
+        /// ADDON_MENU_UNCHECKED = 4,
+        /// </summary>
+        /// <param name="menuID"></param>
+        /// <param name="sessionIdentifier"></param>
+        /// <returns></returns>
         public ADDONMenuStates MenuItemState(int menuID, string sessionIdentifier)
         {
+            var session = alibreRoot.Sessions.Item(sessionIdentifier);
+
+            switch (session)
+            {
+                case IADDrawingSession:
+                    switch (menuID)
+                    {
+                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_TEST: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                    }
+
+                    break;
+
+                case IADAssemblySession:
+                    switch (menuID)
+                    {
+                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_TEST: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                    }
+
+                    break;
+                case IADPartSession:
+                    switch (menuID)
+                    {
+                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_TEST: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                    }
+
+                    break;
+            }
+
             return ADDONMenuStates.ADDON_MENU_ENABLED;
         }
 
-       /// <summary>
-       /// Returns a tool tip string if input menu ID is that of a 'leaf' menu item
-       /// </summary>
-       /// <param name="menuID"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Returns a tool tip string if input menu ID is that of a 'leaf' menu item
+        /// </summary>
+        /// <param name="menuID"></param>
+        /// <returns></returns>
         public string MenuItemToolTip(int menuID)
         {
             switch (menuID)
@@ -153,28 +216,30 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_CLOSE: return "Saves and closes the current file";
                 case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
+                case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
+                case SUBMENU_ID_UTILS_TEST: return "Test menu item";
                 case SUBMENU_ID_HELP_ABOUT: return "About Utilities for Alibre";
             }
 
             return "";
         }
 
-       /// <summary>
-       /// Returns True if AddOn has updated Persistent Data
-       /// </summary>
-       /// <param name="sessionIdentifier"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Returns True if AddOn has updated Persistent Data
+        /// </summary>
+        /// <param name="sessionIdentifier"></param>
+        /// <returns></returns>
         public bool HasPersistentDataToSave(string sessionIdentifier)
         {
             return false;
         }
 
-       /// <summary>
-       /// Invokes the add-on command identified by menu ID; returning the add-on command interface is optional
-       /// </summary>
-       /// <param name="menuID"></param>
-       /// <param name="sessionIdentifier"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Invokes the add-on command identified by menu ID; returning the add-on command interface is optional
+        /// </summary>
+        /// <param name="menuID"></param>
+        /// <param name="sessionIdentifier"></param>
+        /// <returns></returns>
         public IAlibreAddOnCommand InvokeCommand(int menuID, string sessionIdentifier)
         {
             var session = alibreRoot.Sessions.Item(sessionIdentifier);
@@ -201,6 +266,14 @@ namespace Bolsover
                 {
                     return DoCycloidalGear(session);
                 }
+                case SUBMENU_ID_UTILS_PLANE_FINDER:
+                {
+                    return DoPlaneFinder(session);
+                }
+                case SUBMENU_ID_UTILS_TEST:
+                {
+                    return DoTest(session);
+                }
                 case SUBMENU_ID_HELP_ABOUT:
                 {
                     return DoHelpAbout(session);
@@ -210,18 +283,32 @@ namespace Bolsover
             return null;
         }
 
-       private IAlibreAddOnCommand DoHelpAbout(IADSession session)
-       {
-           AboutForm aboutForm = new AboutForm();
-           aboutForm.Visible = true;
-           return null;
-       }
+        private IAlibreAddOnCommand DoTest(IADSession session)
+        {
+            var command = new TestAddOnCommand(session);
 
-       /// <summary>
-       /// Opens the Cycloidal Gear generator dialog.
-       /// </summary>
-       /// <param name="session"></param>
-       /// <returns></returns>
+            return command;
+        }
+
+        private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
+        {
+            var planeFinderForm = new PlaneFinderForm((IADPartSession) session);
+            planeFinderForm.Visible = true;
+            return null;
+        }
+
+        private IAlibreAddOnCommand DoHelpAbout(IADSession session)
+        {
+            var aboutForm = new AboutForm();
+            aboutForm.Visible = true;
+            return null;
+        }
+
+        /// <summary>
+        /// Opens the Cycloidal Gear generator dialog.
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         private IAlibreAddOnCommand DoCycloidalGear(IADSession session)
         {
             var cycliodalGearParametersForm = new CycliodalGearParametersForm(session);
@@ -229,12 +316,12 @@ namespace Bolsover
             return null;
         }
 
-       /// <summary>
-       /// Opens the DataBrowser.
-       /// Note that the DataBrowser returned is a static instance.
-       /// Any files already indexed by the DataBrowser will not show updated data if subsequently saved via Alibre. 
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// Opens the DataBrowser.
+        /// Note that the DataBrowser returned is a static instance.
+        /// Any files already indexed by the DataBrowser will not show updated data if subsequently saved via Alibre. 
+        /// </summary>
+        /// <returns></returns>
         private static IAlibreAddOnCommand DoDataBrowser()
         {
             var browserForm = DataBrowserForm.Instance();
@@ -324,13 +411,16 @@ namespace Bolsover
         {
             switch (menuID)
             {
-               case SUBMENU_ID_HELP_ABOUT: return "icons/userquestion.ico";
-               case SUBMENU_ID_DATA_BROWSER: return "icons/search.ico";
-               case SUBMENU_ID_FILE_OPEN: return "icons/file-code-add.ico";
-               case SUBMENU_ID_FILE_CLOSE: return "icons/file-code-star.ico";
-               case SUBMENU_ID_FILE_EXIT: return "icons/file-code-question.ico";
-               case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "icons/cog-double.ico";
+                case SUBMENU_ID_HELP_ABOUT: return "icons/userquestion.ico";
+                case SUBMENU_ID_DATA_BROWSER: return "icons/search.ico";
+                case SUBMENU_ID_FILE_OPEN: return "icons/file-code-add.ico";
+                case SUBMENU_ID_FILE_CLOSE: return "icons/file-code-star.ico";
+                case SUBMENU_ID_FILE_EXIT: return "icons/file-code-question.ico";
+                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "icons/cog-double.ico";
+                case SUBMENU_ID_UTILS_PLANE_FINDER: return "";
+                case SUBMENU_ID_UTILS_TEST: return "";
             }
+
             return string.Empty;
         }
 
@@ -340,7 +430,7 @@ namespace Bolsover
         /// <returns></returns>
         public bool UseDedicatedRibbonTab()
         {
-            return true;
+            return false;
         }
 
         /// <summary>

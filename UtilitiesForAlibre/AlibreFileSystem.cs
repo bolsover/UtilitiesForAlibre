@@ -149,12 +149,12 @@ namespace Bolsover
                 }
                 else // else routine reads data from open sessions
                 {
-                    for (int i = 0; i < AlibreConnector.GetRoot().Sessions.Count; i++)
+                    for (var i = 0; i < AlibreConnector.GetRoot().Sessions.Count; i++)
                     {
-                        IADSession currentSession = AlibreConnector.GetRoot().Sessions.Item(i);
-                        if (currentSession.FilePath.ToUpper().Replace("/", "\\").Equals(this.Info.FullName.ToUpper()))
+                        var currentSession = AlibreConnector.GetRoot().Sessions.Item(i);
+                        if (currentSession.FilePath.ToUpper().Replace("/", "\\").Equals(Info.FullName.ToUpper()))
                         {
-                            var designProperties = ((IADDesignSession)currentSession).DesignProperties;
+                            var designProperties = ((IADDesignSession) currentSession).DesignProperties;
 
                             ReadDesignProperties(designProperties);
                         }

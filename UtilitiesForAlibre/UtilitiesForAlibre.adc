@@ -5,7 +5,7 @@
    <Icon location="nexus.ico"/> 
    <Menu text="Utilities"/>
    <Description>Utilities for Alibre</Description> 
-   <Workspace type="Part"/>
+   <Workspace type="Always"/>
    <Property name="Identifier" value="{305297BD-DE8D-4F36-86A4-AA5E69538A69}"/>
 </AlibreDesignAddOn>
 
