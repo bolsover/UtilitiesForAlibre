@@ -34,7 +34,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="alibre-api">
-          <HintPath>C:\Program Files\Alibre Design\Program\alibre-api.dll</HintPath>
+            <HintPath>C:\Program Files\Alibre Design\Program\alibre-api.dll</HintPath>
         </Reference>
         <Reference Include="AlibreAddOn">
             <HintPath>C:\Program Files\Alibre Design\Program\AlibreAddOn.dll</HintPath>
@@ -64,12 +64,13 @@
         <Compile Include="AlibreAddOn.cs" />
         <Compile Include="AlibreConnector.cs" />
         <Compile Include="AlibreData.cs" />
-        <Compile Include="AlibreDataViewer.cs">
+        <Compile Include="alibreDataViewer\AlibreDataViewer.cs">
           <SubType>UserControl</SubType>
         </Compile>
-        <Compile Include="AlibreDataViewer.Designer.cs">
+        <Compile Include="alibreDataViewer\AlibreDataViewer.Designer.cs">
           <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </Compile>
+        <Compile Include="alibreDataViewer\AlibreDataViewerEventArgs.cs" />
         <Compile Include="AlibreFileSystem.cs" />
         <Compile Include="CycliodalGearParametersForm.cs">
             <SubType>Form</SubType>
@@ -93,8 +94,7 @@
             <DependentUpon>PlaneFinderForm.cs</DependentUpon>
         </Compile>
         <Compile Include="ShellUtilities.cs" />
-        <Compile Include="test\TestAddOnCommand.cs" />
-        <Compile Include="test\TestAddOnCommandSite.cs" />
+        <Compile Include="alibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
         <Compile Include="UtilitiesForAlibre.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="UtilitiesForAlibreAddOnCommand.cs" />
@@ -159,7 +159,7 @@
             <DependentUpon>AboutForm.cs</DependentUpon>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
-        <EmbeddedResource Include="AlibreDataViewer.resx">
+        <EmbeddedResource Include="alibreDataViewer\AlibreDataViewer.resx">
           <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="CycliodalGearParametersForm.resx">

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Bolsover
+namespace Bolsover.alibreDataViewer
 {
     partial class AlibreDataViewer
     {
@@ -36,7 +36,7 @@ namespace Bolsover
             this.olvColumnProperty = new BrightIdeasSoftware.OLVColumn();
             this.olvColumnType = new BrightIdeasSoftware.OLVColumn();
             this.olvColumnValue = new BrightIdeasSoftware.OLVColumn();
-            this.buttonClose = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize) (this.treeListView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,53 +48,59 @@ namespace Bolsover
             this.treeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {this.olvColumnProperty, this.olvColumnType, this.olvColumnValue});
             this.treeListView.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeListView.GridLines = true;
-            this.treeListView.Location = new System.Drawing.Point(12, 12);
+            this.treeListView.Location = new System.Drawing.Point(3, -1);
             this.treeListView.Name = "treeListView";
             this.treeListView.ShowGroups = false;
-            this.treeListView.Size = new System.Drawing.Size(651, 519);
+            this.treeListView.Size = new System.Drawing.Size(377, 555);
             this.treeListView.TabIndex = 1;
             this.treeListView.UseCompatibleStateImageBehavior = false;
+            this.treeListView.UseFiltering = true;
             this.treeListView.View = System.Windows.Forms.View.Details;
             this.treeListView.VirtualMode = true;
             // 
             // olvColumnProperty
             // 
-            this.olvColumnProperty.Text = "Type";
-            this.olvColumnProperty.Width = 300;
+            this.olvColumnProperty.Text = "Property";
+            this.olvColumnProperty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumnProperty.Width = 88;
             // 
             // olvColumnType
             // 
             this.olvColumnType.Text = "Type";
-            this.olvColumnType.Width = 131;
+            this.olvColumnType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumnType.Width = 110;
             // 
             // olvColumnValue
             // 
             this.olvColumnValue.Text = "Value";
-            this.olvColumnValue.Width = 300;
+            this.olvColumnValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumnValue.Width = 150;
             // 
-            // buttonClose
+            // closeButton
             // 
-            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClose.Location = new System.Drawing.Point(588, 544);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 2;
-            this.buttonClose.Text = "Close";
-            this.buttonClose.UseVisualStyleBackColor = true;
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.Location = new System.Drawing.Point(296, 571);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 2;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // AlibreDataViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 579);
-            this.Controls.Add(this.buttonClose);
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.treeListView);
             this.Name = "AlibreDataViewer";
+            this.Size = new System.Drawing.Size(383, 610);
             ((System.ComponentModel.ISupportInitialize) (this.treeListView)).EndInit();
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.Button buttonClose;
+        private System.Windows.Forms.Button closeButton;
 
         private BrightIdeasSoftware.TreeListView treeListView;
         private BrightIdeasSoftware.OLVColumn olvColumnProperty;

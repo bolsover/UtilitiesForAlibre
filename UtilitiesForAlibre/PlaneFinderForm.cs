@@ -45,7 +45,6 @@ namespace Bolsover
             sketchesComboBox.ValueMember = "Key";
             if (sketchesComboBox.Items.Count >= 1)
                 sketchesComboBox.SelectedIndex = 0;
-            
         }
 
         private void sketchesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,16 +53,17 @@ namespace Bolsover
             IADTargetProxy targetProxy = null;
             try
             {
-               
-                KeyValuePair<IADSketch, string> y = (KeyValuePair<IADSketch, string>) ((ComboBox) sender).SelectedItem;
+                var y = (KeyValuePair<IADSketch, string>) ((ComboBox) sender).SelectedItem;
                 sketch = y.Key;
                 targetProxy = sketch.SketchPlane;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show("Error finding plane for sketch " + sketch != null ? sketch.Name : "?" + "\n" + ex.ToString(), "Error", buttons);
+                var buttons = MessageBoxButtons.OK;
+                MessageBox.Show(
+                    "Error finding plane for sketch " + sketch != null ? sketch.Name : "?" + "\n" + ex.ToString(),
+                    "Error", buttons);
             }
 
             if (targetProxy != null)
@@ -73,7 +73,7 @@ namespace Bolsover
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            Dispose();
         }
     }
 }

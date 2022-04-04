@@ -3,7 +3,7 @@ using System.Diagnostics;
 using AlibreAddOn;
 using AlibreX;
 using System.Windows.Forms;
-using Bolsover.test;
+using Bolsover.alibreDataViewer;
 
 namespace Bolsover
 {
@@ -18,7 +18,7 @@ namespace Bolsover
         private const int MENU_ID_UTILS = 601;
         private const int SUBMENU_ID_UTILS_CYCLOIDAL_GEAR = 602;
         private const int SUBMENU_ID_UTILS_PLANE_FINDER = 603;
-        private const int SUBMENU_ID_UTILS_TEST = 604;
+        private const int SUBMENU_ID_UTILS_DATA_VIEWER = 604;
         private const int MENU_ID_HELP = 701;
         private const int SUBMENU_ID_HELP_ABOUT = 702;
 
@@ -31,6 +31,7 @@ namespace Bolsover
         private IADRoot alibreRoot;
         private IntPtr parentWinHandle;
 
+
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
             this.alibreRoot = alibreRoot;
@@ -42,7 +43,7 @@ namespace Bolsover
             MENU_IDS_UTILS = new int[4]
             {
                 SUBMENU_ID_DATA_BROWSER, SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, SUBMENU_ID_UTILS_PLANE_FINDER,
-                SUBMENU_ID_UTILS_TEST
+                SUBMENU_ID_UTILS_DATA_VIEWER
             };
             MENU_IDS_ROOT = new int[3]
             {
@@ -110,7 +111,7 @@ namespace Bolsover
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
                 case SUBMENU_ID_HELP_ABOUT: return "About";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Plane Finder";
-                case SUBMENU_ID_UTILS_TEST: return "Test";
+                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Data Viewer";
             }
 
             return "";
@@ -154,7 +155,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_TEST: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -172,7 +173,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_TEST: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -189,7 +190,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_TEST: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -217,7 +218,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
-                case SUBMENU_ID_UTILS_TEST: return "Test menu item";
+                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens Property Data View";
                 case SUBMENU_ID_HELP_ABOUT: return "About Utilities for Alibre";
             }
 
@@ -270,9 +271,9 @@ namespace Bolsover
                 {
                     return DoPlaneFinder(session);
                 }
-                case SUBMENU_ID_UTILS_TEST:
+                case SUBMENU_ID_UTILS_DATA_VIEWER:
                 {
-                    return DoTest(session);
+                    return DoAlibreDataViewer(session);
                 }
                 case SUBMENU_ID_HELP_ABOUT:
                 {
@@ -283,14 +284,15 @@ namespace Bolsover
             return null;
         }
 
-        private IAlibreAddOnCommand DoTest(IADSession session)
+        private IAlibreAddOnCommand DoAlibreDataViewer(IADSession session)
         {
-            var command = new TestAddOnCommand(session);
-
-            return command;
+            var alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session);
+            alibreDataViewerAddOnCommand.alibreDataViewer.Visible = true;
+            return alibreDataViewerAddOnCommand;
         }
 
-        private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
+
+       private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
         {
             var planeFinderForm = new PlaneFinderForm((IADPartSession) session);
             planeFinderForm.Visible = true;
@@ -409,17 +411,18 @@ namespace Bolsover
         /// <returns></returns>
         public string MenuIcon(int menuID)
         {
-            switch (menuID)
-            {
-                case SUBMENU_ID_HELP_ABOUT: return "icons/userquestion.ico";
-                case SUBMENU_ID_DATA_BROWSER: return "icons/search.ico";
-                case SUBMENU_ID_FILE_OPEN: return "icons/file-code-add.ico";
-                case SUBMENU_ID_FILE_CLOSE: return "icons/file-code-star.ico";
-                case SUBMENU_ID_FILE_EXIT: return "icons/file-code-question.ico";
-                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "icons/cog-double.ico";
-                case SUBMENU_ID_UTILS_PLANE_FINDER: return "";
-                case SUBMENU_ID_UTILS_TEST: return "";
-            }
+            // if you want icons, reference then here...
+            // switch (menuID)
+            // {
+            //     case SUBMENU_ID_HELP_ABOUT: return "icons/userquestion.ico";
+            //     case SUBMENU_ID_DATA_BROWSER: return "icons/search.ico";
+            //     case SUBMENU_ID_FILE_OPEN: return "icons/file-code-add.ico";
+            //     case SUBMENU_ID_FILE_CLOSE: return "icons/file-code-star.ico";
+            //     case SUBMENU_ID_FILE_EXIT: return "icons/file-code-question.ico";
+            //     case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "icons/cog-double.ico";
+            //     case SUBMENU_ID_UTILS_PLANE_FINDER: return "";
+            //     case SUBMENU_ID_UTILS_DATA_VIEWER: return "";
+            // }
 
             return string.Empty;
         }

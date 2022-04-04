@@ -9,7 +9,7 @@ using com.alibre.automation;
 namespace Bolsover
 {
     public class AlibreData
-    
+
     {
         private string classType;
         private ArrayList children = new();
@@ -29,86 +29,88 @@ namespace Bolsover
             {
                 if (parent is EnumVariant)
                 {
-                    int i = 0;
-                    while (((EnumVariant)parent).HasMoreElements())
+                    var i = 0;
+                    while (((EnumVariant) parent).HasMoreElements())
                     {
-                        Object entry = ((EnumVariant) parent).NextElement();
-                            
-                        AlibreData child = new AlibreData(parent);
-                        child.PropertyName = "Entry " + i++;
-                        child.ClassType = entry.GetType().Name;
-                        child.PropertyValue = IsPrimitiveType(entry) ? entry : "";
+                        var o = ((EnumVariant) parent).NextElement();
 
-                        child.Value = entry;
-                        children.Add(child);
+                        CreateChild(parent, ref i, o);
                     }
-                    
                 }
-                
+
                 else if (parent is ArrayList)
                 {
-                    int i = 0;
-                    foreach (var o in (ArrayList)parent)
-                    {
-                        AlibreData child = new AlibreData(parent);
-                        child.PropertyName = "Entry " + i++;
-                        child.ClassType = 0.GetType().Name;
-                        child.Value = o;
-                        child.PropertyValue = IsPrimitiveType(o) ? o : "";
-                        children.Add(child);
-                    }
+                    var i = 0;
+                    foreach (var o in (ArrayList) parent)
+                        CreateChild(parent, ref i, o);
+                    // AlibreData child = new AlibreData(parent);
+                    // child.PropertyName = "Entry " + i++;
+                    // child.ClassType = 0.GetType().Name;
+                    // child.Value = o;
+                    // child.PropertyValue = IsPrimitiveType(o) ? o : "";
+                    // children.Add(child);
                 }
                 else if (parent is IEnumerable)
                 {
-                    int i = 0;
-                    foreach (var o in (IEnumerable)parent)
+                    var i = 0;
+                    foreach (var o in (IEnumerable) parent)
+                        CreateChild(parent, ref i, o);
+                    // AlibreData child = new AlibreData(parent);
+                    // child.PropertyName = "Entry " + i++;
+                    // child.ClassType = o.GetType().Name;
+                    // child.Value = o;
+                    // child.PropertyValue = IsPrimitiveType(o) ? o : "";
+                    // children.Add(child);
+                }
+                else
+                {
+                    var infos = parent.GetType().GetProperties();
+                    for (var i = 0; i < infos.Length; i++)
                     {
-                        AlibreData child = new AlibreData(parent);
-                        child.PropertyName = "Entry " + i++;
-                        child.ClassType = o.GetType().Name;
-                        child.Value = o;
-                        child.PropertyValue = IsPrimitiveType(o) ? o : "";
+                        var child = new AlibreData(parent);
+                        var info = infos[i];
+                        child.PropertyName = info.Name;
+                        child.ClassType = info.PropertyType.Name;
+                        child.Value = GetPropertyValue(parent, info.Name);
+                        child.PropertyValue = IsPrimitiveType(GetPropertyValue(parent, info.Name))
+                            ? GetPropertyValue(parent, info.Name)
+                            : "";
                         children.Add(child);
                     }
-                } else {
-                
-                
-                var infos = parent.GetType().GetProperties();
-                for (int i = 0; i < infos.Length; i++)
-                {
-                    AlibreData child = new AlibreData(parent);
-                    PropertyInfo info = infos[i];
-                    child.PropertyName = info.Name;
-                    child.ClassType = info.PropertyType.Name;
-                    child.Value = GetPropertyValue(parent, info.Name);
-                    child.PropertyValue = IsPrimitiveType(GetPropertyValue(parent, info.Name)) ? GetPropertyValue(parent, info.Name) : "";
-                    children.Add(child);
-                }
                 }
             }
             catch (Exception ex)
             {
-               Debug.WriteLine(parent);
+                Debug.WriteLine(parent);
             }
+
             return children;
+        }
+
+        private void CreateChild(object parent, ref int i, object o)
+        {
+            var child = new AlibreData(parent);
+            child.PropertyName = "Entry " + i++;
+            child.ClassType = o.GetType().Name;
+            child.Value = o;
+            child.PropertyValue = IsPrimitiveType(o) ? o : "";
+            children.Add(child);
         }
 
         public static bool IsPrimitiveType(object o)
         {
-            if (o is bool | o is byte | o is sbyte | o is char | o is decimal 
+            if (o is bool | o is byte | o is sbyte | o is char | o is decimal
                 | o is double | o is float | o is int | o is uint | o is nint
                 | o is nuint | o is long | o is ulong | o is short | o is ushort
-                | o is ushort | o is string | o is Enum )
+                | o is ushort | o is string | o is Enum)
                 return true;
             return false;
         }
-        
-       
-        
+
+
         public object GetPropertyValue(object obj, string propName)
         {
-
-            Object o = null;
+            object o = null;
             try
             {
                 o = obj.GetType().GetProperty(propName).GetValue(obj, null);
@@ -122,7 +124,7 @@ namespace Bolsover
         }
 
 
-        public String ClassType
+        public string ClassType
         {
             get => classType;
             set => classType = value;
@@ -142,8 +144,8 @@ namespace Bolsover
 
         public object PropertyValue
         {
-            get =>  propertyValue;
-            set => this. propertyValue = value;
+            get => propertyValue;
+            set => propertyValue = value;
         }
 
         public object Parent
@@ -162,8 +164,5 @@ namespace Bolsover
         {
             return children.Count > 0;
         }
-       
-
-
     }
 }

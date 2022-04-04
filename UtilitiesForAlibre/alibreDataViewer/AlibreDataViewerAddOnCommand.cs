@@ -1,20 +1,63 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
-using System.Text;
+using System.Windows.Forms;
 using AlibreAddOn;
 using AlibreX;
 
 
-namespace Bolsover.test
+namespace Bolsover.alibreDataViewer
 {
-    public class TestAddOnCommand : IAlibreAddOnCommand
+    public class AlibreDataViewerAddOnCommand : IAlibreAddOnCommand
     {
         private IADSession session;
+        private long PanelHandle { get; set; }
+        public int PanelPosition { get; set; }
 
-        public TestAddOnCommand(IADSession session)
+        public AlibreDataViewer alibreDataViewer;
+        
+
+        public AlibreDataViewerAddOnCommand(IADSession session)
         {
             this.session = session;
+            PanelPosition = (int) ADDockStyle.AD_RIGHT;
+            alibreDataViewer = new AlibreDataViewer(session);
+            alibreDataViewer.UserClickedClose += this.UserRequestedClose; // adds listener for close request events
+        }
+
+        /// <summary>
+        /// Actions to take when user has clicked the AlibreDataViewer Close button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void UserRequestedClose(object? sender, AlibreDataViewerEventArgs e)
+        {
+           this.CommandSite.RemoveDockedPanel(DockedPanelHandle);
+           this.DockedPanelHandle = (long) IntPtr.Zero;
+           this.CommandSite = null;
+           this.session = null;
+        }
+
+
+        public virtual long DockedPanelHandle
+        {
+            get => PanelHandle;
+            set
+            {
+                Debug.WriteLine(value);
+                if (value != (long) IntPtr.Zero)
+                {
+                    var control = Control.FromHandle((IntPtr) value);
+                    if (control != null)
+                    {
+                        alibreDataViewer.Parent = control;
+                        alibreDataViewer.Dock = DockStyle.Fill;
+                        alibreDataViewer.AutoSize = true;
+                        alibreDataViewer.Show();
+                        control.Show();
+                        PanelHandle = value;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -128,43 +171,18 @@ namespace Bolsover.test
         /// </summary>
         public void OnSelectionChange()
         {
-          
             if (session.SelectedObjects.Count == 1)
             {
                 var proxy = (IADTargetProxy) session.SelectedObjects.Item(0);
-                showMessageBoxData(proxy.Target);
-
-            }
-
-        }
-
-        private void showMessageBoxData(object o)
-        {
-            StringBuilder sb = new StringBuilder();
-            PropertyInfo[] infos = o.GetType().GetProperties();
-            for (int i = 0; i < infos.Length; i++)
-            {
-                PropertyInfo info = infos[i];
                 try
                 {
-                    sb.Append(info.Name + ": " + GetPropertyValue(o, info.Name) + "\n");
+                    alibreDataViewer.SetRootObject(proxy.Target);
                 }
                 catch (Exception e)
                 {
-                    sb.Append(info.Name + ": returned an exception \n");
+                    Debug.WriteLine(e);
                 }
-                
             }
-
-         //   MessageBox.Show(sb.ToString(), o.GetType().Name, MessageBoxButtons.OK);
-            AlibreDataViewer alibreDataViewer = new AlibreDataViewer(o);
-            alibreDataViewer.Show();
-            alibreDataViewer.TopMost = true;
-        }
-
-        public static string GetPropertyValue(object obj, string propName)
-        {
-            return obj.GetType().GetProperty(propName).GetValue(obj, null).ToString();
         }
 
         /// <summary>
@@ -173,14 +191,29 @@ namespace Bolsover.test
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
+            CommandSite = (IADAddOnCommandSite) null;
+            session = (IADSession) null;
         }
 
+      
+        
         /// <summary>
         /// Called when Alibre has successfully initiated this command; gives it a chance to perform any initializations
         /// </summary>
         public void OnComplete()
         {
-            Debug.WriteLine("OnComplete");
+            Debug.WriteLine("OnComplete Starting");
+            try
+            {
+                DockedPanelHandle = CommandSite.AddDockedPanel(PanelPosition, "Property Viewer");
+            }
+            catch (Exception ex)
+            {
+                var num = (int) MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                throw ex;
+            }
+            Debug.WriteLine("OnComplete Done");
         }
 
         /// <summary>
