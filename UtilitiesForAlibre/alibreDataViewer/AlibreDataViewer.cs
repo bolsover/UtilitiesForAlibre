@@ -10,7 +10,7 @@ namespace Bolsover.alibreDataViewer
         public object rootObject { get; set; }
         private IADSession session;
 
- 
+
         public AlibreDataViewer(IADSession session)
         {
             this.session = session;
@@ -18,7 +18,7 @@ namespace Bolsover.alibreDataViewer
             setupColumns();
             setupTree();
         }
-   
+
 
         public void SetRootObject(object rootObject)
         {
@@ -40,7 +40,6 @@ namespace Bolsover.alibreDataViewer
             }
 
             treeListView.SetObjects(roots);
-          
         }
 
 
@@ -60,14 +59,6 @@ namespace Bolsover.alibreDataViewer
                 rowObject => ((AlibreData) rowObject).ClassType;
             olvColumnValue.AspectGetter =
                 rowObject => ((AlibreData) rowObject).PropertyValue;
-        }
-
-        public event EventHandler<AlibreDataViewerEventArgs> UserClickedClose;
-
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            UserClickedClose.Invoke(this, new AlibreDataViewerEventArgs(session) );
-            this.Dispose();
         }
     }
 }

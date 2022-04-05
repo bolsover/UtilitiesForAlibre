@@ -9,32 +9,31 @@ namespace Bolsover.alibreDataViewer
 {
     public class AlibreDataViewerAddOnCommand : IAlibreAddOnCommand
     {
-        private IADSession session;
+        public IADSession session { get; }
         private long PanelHandle { get; set; }
         public int PanelPosition { get; set; }
 
         public AlibreDataViewer alibreDataViewer;
-        
+
 
         public AlibreDataViewerAddOnCommand(IADSession session)
         {
             this.session = session;
             PanelPosition = (int) ADDockStyle.AD_RIGHT;
             alibreDataViewer = new AlibreDataViewer(session);
-            alibreDataViewer.UserClickedClose += this.UserRequestedClose; // adds listener for close request events
         }
 
         /// <summary>
-        /// Actions to take when user has clicked the AlibreDataViewer Close button
+        /// Actions to take when closing
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void UserRequestedClose(object? sender, AlibreDataViewerEventArgs e)
+        public void UserRequestedClose()
         {
-           this.CommandSite.RemoveDockedPanel(DockedPanelHandle);
-           this.DockedPanelHandle = (long) IntPtr.Zero;
-           this.CommandSite = null;
-           this.session = null;
+            alibreDataViewer.Dispose();
+            CommandSite.RemoveDockedPanel(DockedPanelHandle);
+            DockedPanelHandle = (long) IntPtr.Zero;
+            CommandSite = null;
         }
 
 
@@ -185,18 +184,27 @@ namespace Bolsover.alibreDataViewer
             }
         }
 
+        public event EventHandler<AlibreDataViewerAddOnCommandTerminateEventArgs> Terminate; 
+
         /// <summary>
         /// Called when Alibre terminates the add-on command; add-on should make sure to release all references to its CommandSite
         /// </summary>
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            CommandSite = (IADAddOnCommandSite) null;
-            session = (IADSession) null;
+            if (alibreDataViewer != null) alibreDataViewer.Dispose();
+            if (CommandSite != null)
+            {
+                CommandSite.RemoveDockedPanel(DockedPanelHandle);
+                DockedPanelHandle = (long) IntPtr.Zero;
+                CommandSite = null;
+            }
+
+            AlibreDataViewerAddOnCommandTerminateEventArgs args = new AlibreDataViewerAddOnCommandTerminateEventArgs(this);
+            Terminate.Invoke(this, args);
         }
 
-      
-        
+
         /// <summary>
         /// Called when Alibre has successfully initiated this command; gives it a chance to perform any initializations
         /// </summary>
@@ -213,6 +221,7 @@ namespace Bolsover.alibreDataViewer
                     MessageBoxIcon.Exclamation);
                 throw ex;
             }
+
             Debug.WriteLine("OnComplete Done");
         }
 

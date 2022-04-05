@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using AlibreAddOn;
 using AlibreX;
@@ -111,7 +112,7 @@ namespace Bolsover
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
                 case SUBMENU_ID_HELP_ABOUT: return "About";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Plane Finder";
-                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Data Viewer";
+                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Property Viewer Open/Close";
             }
 
             return "";
@@ -173,7 +174,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -218,7 +219,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
-                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens Property Data View";
+                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens/Closes Property Viewer";
                 case SUBMENU_ID_HELP_ABOUT: return "About Utilities for Alibre";
             }
 
@@ -284,15 +285,51 @@ namespace Bolsover
             return null;
         }
 
+        /// <summary>
+        /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
+        /// </summary>
+        private Dictionary<string, AlibreDataViewerAddOnCommand> dataViewerAddOnCommands = new();
+
+
+        /// <summary>
+        /// Toggles the viewer on/off
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         private IAlibreAddOnCommand DoAlibreDataViewer(IADSession session)
         {
-            var alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session);
-            alibreDataViewerAddOnCommand.alibreDataViewer.Visible = true;
+            AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
+            if (!dataViewerAddOnCommands.ContainsKey(session.Identifier))
+            {
+                alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session);
+                alibreDataViewerAddOnCommand.alibreDataViewer.Visible = true;
+                alibreDataViewerAddOnCommand.Terminate+= AlibreDataViewerAddOnCommandOnTerminate;
+                dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
+            }
+            else
+            {
+                if (dataViewerAddOnCommands.TryGetValue(session.Identifier, out alibreDataViewerAddOnCommand))
+                {
+                    alibreDataViewerAddOnCommand.UserRequestedClose();
+                    dataViewerAddOnCommands.Remove(session.Identifier);
+                    return null;
+                }
+            }
+
             return alibreDataViewerAddOnCommand;
         }
 
+        private void AlibreDataViewerAddOnCommandOnTerminate(object sender, AlibreDataViewerAddOnCommandTerminateEventArgs e)
+        {
+            AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
+            if (dataViewerAddOnCommands.TryGetValue(e.alibreDataViewerAddOnCommand.session.Identifier, out alibreDataViewerAddOnCommand))
+            {
+                dataViewerAddOnCommands.Remove(e.alibreDataViewerAddOnCommand.session.Identifier); 
+            }
+        }
 
-       private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
+
+        private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
         {
             var planeFinderForm = new PlaneFinderForm((IADPartSession) session);
             planeFinderForm.Visible = true;

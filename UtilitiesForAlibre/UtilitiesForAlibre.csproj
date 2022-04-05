@@ -65,12 +65,12 @@
         <Compile Include="AlibreConnector.cs" />
         <Compile Include="AlibreData.cs" />
         <Compile Include="alibreDataViewer\AlibreDataViewer.cs">
-          <SubType>UserControl</SubType>
+            <SubType>UserControl</SubType>
         </Compile>
         <Compile Include="alibreDataViewer\AlibreDataViewer.Designer.cs">
-          <DependentUpon>AlibreDataViewer.cs</DependentUpon>
+            <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </Compile>
-        <Compile Include="alibreDataViewer\AlibreDataViewerEventArgs.cs" />
+        <Compile Include="alibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs" />
         <Compile Include="AlibreFileSystem.cs" />
         <Compile Include="CycliodalGearParametersForm.cs">
             <SubType>Form</SubType>
@@ -160,7 +160,7 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
         <EmbeddedResource Include="alibreDataViewer\AlibreDataViewer.resx">
-          <DependentUpon>AlibreDataViewer.cs</DependentUpon>
+            <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="CycliodalGearParametersForm.resx">
             <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
