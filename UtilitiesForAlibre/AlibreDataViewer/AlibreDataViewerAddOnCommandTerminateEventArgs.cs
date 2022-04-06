@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bolsover.alibreDataViewer
+namespace Bolsover.AlibreDataViewer
 {
     public class AlibreDataViewerAddOnCommandTerminateEventArgs :EventArgs
     {

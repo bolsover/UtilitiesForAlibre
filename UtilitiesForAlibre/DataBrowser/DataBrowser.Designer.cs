@@ -1,9 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using BrightIdeasSoftware;
+﻿using System.ComponentModel;
 
-namespace Bolsover{
+namespace Bolsover.DataBrowser{
     partial class DataBrowserForm
     {
         /// <summary>

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Diagnostics;
-using System.Reflection;
-using AlibreX;
 using com.alibre.automation;
 
-
-namespace Bolsover
+namespace Bolsover.DataBrowser
 {
     public class AlibreData
 
@@ -43,24 +40,14 @@ namespace Bolsover
                     var i = 0;
                     foreach (var o in (ArrayList) parent)
                         CreateChild(parent, ref i, o);
-                    // AlibreData child = new AlibreData(parent);
-                    // child.PropertyName = "Entry " + i++;
-                    // child.ClassType = 0.GetType().Name;
-                    // child.Value = o;
-                    // child.PropertyValue = IsPrimitiveType(o) ? o : "";
-                    // children.Add(child);
+                    
                 }
                 else if (parent is IEnumerable)
                 {
                     var i = 0;
                     foreach (var o in (IEnumerable) parent)
                         CreateChild(parent, ref i, o);
-                    // AlibreData child = new AlibreData(parent);
-                    // child.PropertyName = "Entry " + i++;
-                    // child.ClassType = o.GetType().Name;
-                    // child.Value = o;
-                    // child.PropertyValue = IsPrimitiveType(o) ? o : "";
-                    // children.Add(child);
+                    
                 }
                 else
                 {
@@ -102,7 +89,7 @@ namespace Bolsover
             if (o is bool | o is byte | o is sbyte | o is char | o is decimal
                 | o is double | o is float | o is int | o is uint | o is nint
                 | o is nuint | o is long | o is ulong | o is short | o is ushort
-                | o is ushort | o is string | o is Enum)
+                | o is ushort | o is string | o is Enum | o is String)
                 return true;
             return false;
         }

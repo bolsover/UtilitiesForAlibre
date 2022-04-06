@@ -1,27 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using AlibreX;
 
-namespace Bolsover
+namespace Bolsover.CycloidalGear
 {
-    public partial class CycliodalGearParametersForm : Form
+    public partial class CycliodalGearParametersForm : UserControl
     {
         private IADDesignSession session;
         private CycloidalGearProperties GearProperties = new();
+        private IADDesignPlane designPlane;
+       
 
         public CycliodalGearParametersForm(IADSession session)
         {
             this.session = (IADDesignSession) session;
             InitializeComponent();
-            ListPlanes();
             initParameters();
         }
 
-        public IntPtr getHandle()
+        public IADDesignPlane DesignPlane
         {
-            return Handle;
+            get => designPlane;
+            
+            set{
+                designPlane = value;
+                GearProperties.Plane = DesignPlane;
+                planeTextBox.Text = designPlane.Name;
+            }
+            
         }
+
+  
 
         private void initParameters()
         {
@@ -83,47 +92,23 @@ namespace Bolsover
             GearProperties.DrawPinion = ((CheckBox) sender).Checked;
         }
 
-        private void planesComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GearProperties.Plane = ((KeyValuePair<IADDesignPlane, string>) ((ComboBox) sender).SelectedItem).Key;
-        }
-
+     
         private void buttonApply_Click(object sender, EventArgs e)
         {
             if (GearProperties.Plane == null)
-                GearProperties.Plane = ((KeyValuePair<IADDesignPlane, string>) planesComboBox.Items[0]).Key;
-
+            {
+                MessageBox.Show("Please select a Plane for the gear sketch.", "Error", MessageBoxButtons.OK); 
+                return;
+            }
+            
             var builder = new CycloidalGearBuilder(GearProperties, session);
             MessageBox.Show(GearProperties.ToString(), "Gear Properties", MessageBoxButtons.OK);
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
+      
 
         #endregion
 
-        /// <summary>
-        /// Returns the IADDesignPlanes collection from the current session.
-        /// </summary>
-        /// <returns></returns>
-        private IADDesignPlanes DesignPanes()
-        {
-            return session.DesignPlanes;
-        }
-
-        /// <summary>
-        /// Creates a dictionary of design planes existing in the current session and adds these to the planesComboBox.
-        /// </summary>
-        private void ListPlanes()
-        {
-            var comboSource = new Dictionary<IADDesignPlane, string>();
-            foreach (IADDesignPlane designPlane in DesignPanes()) comboSource.Add(designPlane, designPlane.Name);
-
-            planesComboBox.DataSource = new BindingSource(comboSource, null);
-            planesComboBox.DisplayMember = "Value";
-            planesComboBox.ValueMember = "Key";
-        }
+       
     }
 }

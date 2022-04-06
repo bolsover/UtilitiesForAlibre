@@ -3,24 +3,24 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using AlibreAddOn;
 using AlibreX;
+using com.alibre.automation;
 
-
-namespace Bolsover.alibreDataViewer
+namespace Bolsover.PlaneFinder
 {
-    public class AlibreDataViewerAddOnCommand : IAlibreAddOnCommand
+    public class PlaneFinderAddOnCommand : IAlibreAddOnCommand
     {
         public IADSession session { get; }
         private long PanelHandle { get; set; }
-        public int PanelPosition { get; set; }
+        private int PanelPosition { get; }
 
-        public AlibreDataViewer alibreDataViewer;
+        public PlaneFinder PlaneFinder;
 
 
-        public AlibreDataViewerAddOnCommand(IADSession session)
+        public PlaneFinderAddOnCommand(IADSession session)
         {
             this.session = session;
             PanelPosition = (int) ADDockStyle.AD_RIGHT;
-            alibreDataViewer = new AlibreDataViewer(session);
+            PlaneFinder = new PlaneFinder(session);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Bolsover.alibreDataViewer
         /// <param name="e"></param>
         public void UserRequestedClose()
         {
-            alibreDataViewer.Dispose();
+            PlaneFinder.Dispose();
             CommandSite.RemoveDockedPanel(DockedPanelHandle);
             DockedPanelHandle = (long) IntPtr.Zero;
             CommandSite = null;
@@ -48,10 +48,10 @@ namespace Bolsover.alibreDataViewer
                     var control = Control.FromHandle((IntPtr) value);
                     if (control != null)
                     {
-                        alibreDataViewer.Parent = control;
-                        alibreDataViewer.Dock = DockStyle.Fill;
-                        alibreDataViewer.AutoSize = true;
-                        alibreDataViewer.Show();
+                        PlaneFinder.Parent = control;
+                        PlaneFinder.Dock = DockStyle.Fill;
+                        PlaneFinder.AutoSize = true;
+                        PlaneFinder.Show();
                         control.Show();
                         PanelHandle = value;
                     }
@@ -175,7 +175,11 @@ namespace Bolsover.alibreDataViewer
                 var proxy = (IADTargetProxy) session.SelectedObjects.Item(0);
                 try
                 {
-                    alibreDataViewer.SetRootObject(proxy.Target);
+                    if (proxy.Target.GetType() == typeof(AlibreSketch))
+                    {
+                        PlaneFinder.Sketch = proxy.Target as IADSketch;
+                    }
+                   
                 }
                 catch (Exception e)
                 {
@@ -184,7 +188,7 @@ namespace Bolsover.alibreDataViewer
             }
         }
 
-        public event EventHandler<AlibreDataViewerAddOnCommandTerminateEventArgs> Terminate; 
+        public event EventHandler<PlaneFinderAddOnCommandTerminateEventArgs> Terminate;
 
         /// <summary>
         /// Called when Alibre terminates the add-on command; add-on should make sure to release all references to its CommandSite
@@ -192,7 +196,7 @@ namespace Bolsover.alibreDataViewer
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (alibreDataViewer != null) alibreDataViewer.Dispose();
+            if (PlaneFinder != null) PlaneFinder.Dispose();
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);
@@ -200,7 +204,7 @@ namespace Bolsover.alibreDataViewer
                 CommandSite = null;
             }
 
-            AlibreDataViewerAddOnCommandTerminateEventArgs args = new AlibreDataViewerAddOnCommandTerminateEventArgs(this);
+            PlaneFinderAddOnCommandTerminateEventArgs args = new PlaneFinderAddOnCommandTerminateEventArgs(this);
             Terminate.Invoke(this, args);
         }
 
@@ -213,7 +217,7 @@ namespace Bolsover.alibreDataViewer
             Debug.WriteLine("OnComplete Starting");
             try
             {
-                DockedPanelHandle = CommandSite.AddDockedPanel(PanelPosition, "Property Viewer");
+                DockedPanelHandle = CommandSite.AddDockedPanel(PanelPosition, "Sketch Plane Finder");
             }
             catch (Exception ex)
             {

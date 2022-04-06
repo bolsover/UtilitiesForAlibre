@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using AlibreX;
 
-namespace Bolsover
+namespace Bolsover.DataBrowser
 {
     public class AlibreFileSystem : IEquatable<AlibreFileSystem>, INotifyPropertyChanged
     {

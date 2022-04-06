@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using BrightIdeasSoftware;
 
-namespace Bolsover
+namespace Bolsover.DataBrowser
 {
     /// <summary>
     ///     This helper class allows listviews and tree views to use image from the system image list.

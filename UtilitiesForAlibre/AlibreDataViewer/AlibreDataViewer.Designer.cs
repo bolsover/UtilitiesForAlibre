@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Bolsover.alibreDataViewer
+namespace Bolsover.AlibreDataViewer
 {
     partial class AlibreDataViewer
     {

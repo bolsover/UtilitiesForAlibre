@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 
-
-namespace Bolsover
+namespace Bolsover.DataBrowser.Materials
 {
     partial class MaterialPicker
     {

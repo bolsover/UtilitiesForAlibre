@@ -4,7 +4,10 @@ using System.Diagnostics;
 using AlibreAddOn;
 using AlibreX;
 using System.Windows.Forms;
-using Bolsover.alibreDataViewer;
+using Bolsover.AlibreDataViewer;
+using Bolsover.CycloidalGear;
+using Bolsover.DataBrowser;
+using Bolsover.PlaneFinder;
 
 namespace Bolsover
 {
@@ -109,9 +112,9 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_OPEN: return "Open";
                 case SUBMENU_ID_FILE_CLOSE: return "Save & Close";
                 case SUBMENU_ID_FILE_EXIT: return "Save All, Exit";
-                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
+                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator Open/Close";
                 case SUBMENU_ID_HELP_ABOUT: return "About";
-                case SUBMENU_ID_UTILS_PLANE_FINDER: return "Plane Finder";
+                case SUBMENU_ID_UTILS_PLANE_FINDER: return "Sketch Plane Finder Open/Close";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Property Viewer Open/Close";
             }
 
@@ -217,7 +220,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_OPEN: return "Opens files from file explorer";
                 case SUBMENU_ID_FILE_CLOSE: return "Saves and closes the current file";
                 case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
-                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator";
+                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Opens/Closes Cycloidal Gear Generator";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens/Closes Property Viewer";
                 case SUBMENU_ID_HELP_ABOUT: return "About Utilities for Alibre";
@@ -288,7 +291,7 @@ namespace Bolsover
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
-        private Dictionary<string, AlibreDataViewerAddOnCommand> dataViewerAddOnCommands = new();
+        private readonly Dictionary<string, AlibreDataViewerAddOnCommand> dataViewerAddOnCommands = new();
 
 
         /// <summary>
@@ -327,14 +330,44 @@ namespace Bolsover
                 dataViewerAddOnCommands.Remove(e.alibreDataViewerAddOnCommand.session.Identifier); 
             }
         }
-
+        
+        /// <summary>
+        /// A dictionary to keep track of currently open PlaneFinderAddOnCommand object.
+        /// </summary>
+        private readonly Dictionary<string, PlaneFinderAddOnCommand> planeFinderAddOnCommands = new();
 
         private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
         {
-            var planeFinderForm = new PlaneFinderForm((IADPartSession) session);
-            planeFinderForm.Visible = true;
-            return null;
+            PlaneFinderAddOnCommand planeFinderAddOnCommand;
+            if (!planeFinderAddOnCommands.ContainsKey(session.Identifier))
+            {
+                planeFinderAddOnCommand = new PlaneFinderAddOnCommand(session);
+                planeFinderAddOnCommand.PlaneFinder.Visible = true;
+                planeFinderAddOnCommand.Terminate+= PlaneFinderAddOnCommandOnTerminate;
+                planeFinderAddOnCommands.Add(session.Identifier, planeFinderAddOnCommand);
+            }
+            else
+            {
+                if (planeFinderAddOnCommands.TryGetValue(session.Identifier, out planeFinderAddOnCommand))
+                {
+                    planeFinderAddOnCommand.UserRequestedClose();
+                    planeFinderAddOnCommands.Remove(session.Identifier);
+                    return null;
+                }
+            }
+
+            return planeFinderAddOnCommand;
         }
+        
+        private void PlaneFinderAddOnCommandOnTerminate(object sender, PlaneFinderAddOnCommandTerminateEventArgs e)
+        {
+            PlaneFinderAddOnCommand planeFinderAddOnCommand;
+            if (planeFinderAddOnCommands.TryGetValue(e.planeFinderAddOnCommand.session.Identifier, out planeFinderAddOnCommand))
+            {
+                planeFinderAddOnCommands.Remove(e.planeFinderAddOnCommand.session.Identifier); 
+            }
+        }
+        
 
         private IAlibreAddOnCommand DoHelpAbout(IADSession session)
         {
@@ -342,6 +375,11 @@ namespace Bolsover
             aboutForm.Visible = true;
             return null;
         }
+        
+        /// <summary>
+        /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
+        /// </summary>
+        private Dictionary<string, CycloidalGearAddOnCommand> cycloidalGearAddOnCommands = new();
 
         /// <summary>
         /// Opens the Cycloidal Gear generator dialog.
@@ -350,9 +388,34 @@ namespace Bolsover
         /// <returns></returns>
         private IAlibreAddOnCommand DoCycloidalGear(IADSession session)
         {
-            var cycliodalGearParametersForm = new CycliodalGearParametersForm(session);
-            cycliodalGearParametersForm.Visible = true;
-            return null;
+            CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
+            if (!cycloidalGearAddOnCommands.ContainsKey(session.Identifier))
+            {
+                cycloidalGearAddOnCommand = new CycloidalGearAddOnCommand(session);
+                cycloidalGearAddOnCommand.CycliodalGearParametersForm.Visible = true;
+                cycloidalGearAddOnCommand.Terminate+= CycloidalGearAddOnCommandOnTerminate;
+                cycloidalGearAddOnCommands.Add(session.Identifier, cycloidalGearAddOnCommand);
+            }
+            else
+            {
+                if (cycloidalGearAddOnCommands.TryGetValue(session.Identifier, out cycloidalGearAddOnCommand))
+                {
+                    cycloidalGearAddOnCommand.UserRequestedClose();
+                    cycloidalGearAddOnCommands.Remove(session.Identifier);
+                    return null;
+                }
+            }
+
+            return cycloidalGearAddOnCommand;
+        }
+        
+        private void CycloidalGearAddOnCommandOnTerminate(object sender, CycloidalGearAddOnCommandTerminateEventArgs e)
+        {
+            CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
+            if (cycloidalGearAddOnCommands.TryGetValue(e.cycloidalGearAddOnCommand.session.Identifier, out cycloidalGearAddOnCommand))
+            {
+                cycloidalGearAddOnCommands.Remove(e.cycloidalGearAddOnCommand.session.Identifier); 
+            }
         }
 
         /// <summary>

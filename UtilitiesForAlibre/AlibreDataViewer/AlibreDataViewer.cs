@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Windows.Forms;
 using AlibreX;
+using Bolsover.DataBrowser;
 
-namespace Bolsover.alibreDataViewer
+namespace Bolsover.AlibreDataViewer
 {
     public partial class AlibreDataViewer : UserControl
     {

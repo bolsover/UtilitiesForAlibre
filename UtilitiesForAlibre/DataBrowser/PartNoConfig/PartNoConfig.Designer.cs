@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 
-
-namespace Bolsover
+namespace Bolsover.DataBrowser.PartNoConfig
 {
     partial class PartNoConfig
     {

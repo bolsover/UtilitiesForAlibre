@@ -36,11 +36,23 @@
         <Reference Include="alibre-api">
             <HintPath>C:\Program Files\Alibre Design\Program\alibre-api.dll</HintPath>
         </Reference>
+        <Reference Include="alibre-core">
+          <HintPath>C:\Program Files\Alibre Design\Program\alibre-core.dll</HintPath>
+        </Reference>
+        <Reference Include="alibre-dom">
+          <HintPath>C:\Program Files\Alibre Design\Program\alibre-dom.dll</HintPath>
+        </Reference>
+        <Reference Include="alibre-server">
+          <HintPath>C:\Program Files\Alibre Design\Program\alibre-server.dll</HintPath>
+        </Reference>
         <Reference Include="AlibreAddOn">
             <HintPath>C:\Program Files\Alibre Design\Program\AlibreAddOn.dll</HintPath>
         </Reference>
         <Reference Include="AlibreX">
             <HintPath>C:\Program Files\Alibre Design\Program\AlibreX.dll</HintPath>
+        </Reference>
+        <Reference Include="generics_NET">
+          <HintPath>C:\Program Files\Alibre Design\Program\generics_NET.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.CSharp" />
         <Reference Include="ObjectListView">
@@ -62,39 +74,43 @@
             <DependentUpon>AboutForm.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreAddOn.cs" />
-        <Compile Include="AlibreConnector.cs" />
-        <Compile Include="AlibreData.cs" />
-        <Compile Include="alibreDataViewer\AlibreDataViewer.cs">
+        <Compile Include="AlibreDataViewer\AlibreDataViewer.cs">
             <SubType>UserControl</SubType>
         </Compile>
-        <Compile Include="alibreDataViewer\AlibreDataViewer.Designer.cs">
+        <Compile Include="AlibreDataViewer\AlibreDataViewer.Designer.cs">
             <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </Compile>
-        <Compile Include="alibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs" />
-        <Compile Include="AlibreFileSystem.cs" />
-        <Compile Include="CycliodalGearParametersForm.cs">
-            <SubType>Form</SubType>
+        <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs" />
+        <Compile Include="CycloidalGear\CycliodalGearParametersForm.cs">
+          <SubType>Form</SubType>
         </Compile>
-        <Compile Include="CycliodalGearParametersForm.Designer.cs">
-            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+        <Compile Include="CycloidalGear\CycliodalGearParametersForm.Designer.cs">
+          <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
         </Compile>
-        <Compile Include="CycloidalGearBuilder.cs" />
-        <Compile Include="CycloidalGearProperties.cs" />
-        <Compile Include="DataBrowser.cs" />
-        <Compile Include="DataBrowser.Designer.cs" />
-        <Compile Include="MaterialNode.cs" />
-        <Compile Include="MaterialPicker.cs" />
-        <Compile Include="MaterialPicker.Designer.cs" />
-        <Compile Include="PartNoConfig.cs" />
-        <Compile Include="PartNoConfig.Designer.cs" />
-        <Compile Include="PlaneFinderForm.cs">
-            <SubType>Form</SubType>
+        <Compile Include="CycloidalGear\CycloidalGearAddOnCommand.cs" />
+        <Compile Include="CycloidalGear\CycloidalGearAddOnCommandTerminateEventArgs.cs" />
+        <Compile Include="CycloidalGear\CycloidalGearBuilder.cs" />
+        <Compile Include="CycloidalGear\CycloidalGearProperties.cs" />
+        <Compile Include="DataBrowser\AlibreConnector.cs" />
+        <Compile Include="DataBrowser\AlibreData.cs" />
+        <Compile Include="DataBrowser\AlibreFileSystem.cs" />
+        <Compile Include="DataBrowser\DataBrowser.cs" />
+        <Compile Include="DataBrowser\DataBrowser.Designer.cs" />
+        <Compile Include="DataBrowser\Materials\MaterialNode.cs" />
+        <Compile Include="DataBrowser\Materials\MaterialPicker.cs" />
+        <Compile Include="DataBrowser\Materials\MaterialPicker.Designer.cs" />
+        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.cs" />
+        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
+        <Compile Include="DataBrowser\ShellUtilities.cs" />
+        <Compile Include="PlaneFinder\PlaneFinderAddOnCommand.cs" />
+        <Compile Include="PlaneFinder\PlaneFinderAddOnCommandTerminateEventArgs.cs" />
+        <Compile Include="PlaneFinder\PlaneFinder.cs">
+          <SubType>Form</SubType>
         </Compile>
-        <Compile Include="PlaneFinderForm.Designer.cs">
-            <DependentUpon>PlaneFinderForm.cs</DependentUpon>
+        <Compile Include="PlaneFinder\PlaneFinder.Designer.cs">
+          <DependentUpon>PlaneFinder.cs</DependentUpon>
         </Compile>
-        <Compile Include="ShellUtilities.cs" />
-        <Compile Include="alibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
+        <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
         <Compile Include="UtilitiesForAlibre.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="UtilitiesForAlibreAddOnCommand.cs" />
@@ -159,19 +175,19 @@
             <DependentUpon>AboutForm.cs</DependentUpon>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
-        <EmbeddedResource Include="alibreDataViewer\AlibreDataViewer.resx">
+        <EmbeddedResource Include="AlibreDataViewer\AlibreDataViewer.resx">
             <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="CycliodalGearParametersForm.resx">
-            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+        <EmbeddedResource Include="CycloidalGear\CycliodalGearParametersForm.resx">
+          <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="DataBrowser.resx">
-            <DependentUpon>DataBrowser.cs</DependentUpon>
+        <EmbeddedResource Include="DataBrowser\DataBrowser.resx">
+          <DependentUpon>DataBrowser.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="MaterialPicker.resx" />
-        <EmbeddedResource Include="PartNoConfig.resx" />
-        <EmbeddedResource Include="PlaneFinderForm.resx">
-            <DependentUpon>PlaneFinderForm.cs</DependentUpon>
+        <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx" />
+        <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx" />
+        <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
+          <DependentUpon>PlaneFinder.cs</DependentUpon>
         </EmbeddedResource>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

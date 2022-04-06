@@ -1,8 +1,7 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using AlibreX;
 
-namespace Bolsover
+namespace Bolsover.DataBrowser
 {
     public class AlibreConnector
     {

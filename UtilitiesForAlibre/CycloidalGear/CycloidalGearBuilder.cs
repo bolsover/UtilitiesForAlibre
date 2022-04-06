@@ -1,7 +1,7 @@
 ﻿using System;
 using AlibreX;
 
-namespace Bolsover
+namespace Bolsover.CycloidalGear
 {
     public class CycloidalGearBuilder
     {

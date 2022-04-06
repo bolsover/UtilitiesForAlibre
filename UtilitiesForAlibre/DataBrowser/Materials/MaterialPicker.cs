@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 using AlibreX;
 using BrightIdeasSoftware;
 
-namespace Bolsover
+namespace Bolsover.DataBrowser.Materials
 {
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]

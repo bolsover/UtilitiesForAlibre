@@ -6,9 +6,10 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AlibreX;
+using Bolsover.DataBrowser.Materials;
 using BrightIdeasSoftware;
 
-namespace Bolsover
+namespace Bolsover.DataBrowser
 {
     public partial class DataBrowserForm : Form
     {
@@ -22,7 +23,7 @@ namespace Bolsover
         private readonly ToolTip restoreStateTooltip = new();
         private readonly ToolTip partNoTooltip = new();
         private byte[] treeListViewViewState;
-        private readonly PartNoConfig partNoConfig = new();
+        private readonly PartNoConfig.PartNoConfig partNoConfig = new();
         private Point MouseDownLocation; //Reference point for moving part no control
         private static DataBrowserForm instance;
 
@@ -639,11 +640,11 @@ namespace Bolsover
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void McOnItemHasBeenSelected(object sender, MaterialPicker.SelectedItemEventArgs e)
+        private void McOnItemHasBeenSelected(object sender, MaterialPicker.SelectedItemEventArgs selectedItemEventArgs)
         {
             try
             {
-                var materialNode = e.SelectedChoice;
+                var materialNode = selectedItemEventArgs.SelectedChoice;
                 olvColumnAlibreMaterial.AspectPutter.Invoke(editingRow, materialNode);
             }
             catch (Exception exception)

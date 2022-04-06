@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 
-
-namespace Bolsover
+namespace Bolsover.CycloidalGear
 {
     partial class CycliodalGearParametersForm
     {
@@ -44,7 +43,6 @@ namespace Bolsover
             this.drawWheelCheckBox = new System.Windows.Forms.CheckBox();
             this.drawPinionCheckBox = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonApply = new System.Windows.Forms.Button();
             this.moduleNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.wheelToothCountUpDwn = new System.Windows.Forms.NumericUpDown();
@@ -52,7 +50,7 @@ namespace Bolsover
             this.wheelCenterHoleUpDown = new System.Windows.Forms.NumericUpDown();
             this.pinionCenterHoleUpDown = new System.Windows.Forms.NumericUpDown();
             this.customSlopUpDown = new System.Windows.Forms.NumericUpDown();
-            this.planesComboBox = new System.Windows.Forms.ComboBox();
+            this.planeTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.moduleNumericUpDown)).BeginInit();
@@ -98,7 +96,6 @@ namespace Bolsover
             this.tableLayoutPanel1.Controls.Add(this.drawWheelCheckBox, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.drawPinionCheckBox, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.buttonApply, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.moduleNumericUpDown, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.wheelToothCountUpDwn, 1, 1);
@@ -107,7 +104,7 @@ namespace Bolsover
             this.tableLayoutPanel1.Controls.Add(this.pinionCenterHoleUpDown, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.customSlopUpDown, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.planesComboBox, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.planeTextBox, 1, 9);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 213);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
@@ -207,17 +204,6 @@ namespace Bolsover
             this.label7.TabIndex = 10;
             this.label7.Text = "Plane:";
             // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.Location = new System.Drawing.Point(95, 379);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 11;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
             // buttonApply
             // 
             this.buttonApply.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -298,15 +284,12 @@ namespace Bolsover
             this.customSlopUpDown.TabIndex = 18;
             this.customSlopUpDown.ValueChanged += new System.EventHandler(this.customSlopUpDown_ValueChanged);
             // 
-            // planesComboBox
+            // planeTextBox
             // 
-            this.planesComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.planesComboBox.FormattingEnabled = true;
-            this.planesComboBox.Location = new System.Drawing.Point(176, 331);
-            this.planesComboBox.Name = "planesComboBox";
-            this.planesComboBox.Size = new System.Drawing.Size(120, 21);
-            this.planesComboBox.TabIndex = 19;
-            this.planesComboBox.SelectedIndexChanged += new System.EventHandler(this.planesComboBox_SelectedIndexChanged);
+            this.planeTextBox.Location = new System.Drawing.Point(176, 327);
+            this.planeTextBox.Name = "planeTextBox";
+            this.planeTextBox.Size = new System.Drawing.Size(120, 20);
+            this.planeTextBox.TabIndex = 19;
             // 
             // pictureBox1
             // 
@@ -321,15 +304,12 @@ namespace Bolsover
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 630);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "CycliodalGearParametersForm";
-            this.Text = "Cycliodal Gear Parameters";
-            this.TopMost = true;
+            this.Size = new System.Drawing.Size(366, 630);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize) (this.moduleNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.wheelToothCountUpDwn)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.pinionToothCountUpDown)).EndInit();
@@ -341,9 +321,9 @@ namespace Bolsover
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox planeTextBox;
 
-        private System.Windows.Forms.ComboBox planesComboBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
         private System.Windows.Forms.NumericUpDown moduleNumericUpDown;
         private System.Windows.Forms.NumericUpDown wheelToothCountUpDwn;
@@ -352,7 +332,6 @@ namespace Bolsover
         private System.Windows.Forms.NumericUpDown pinionCenterHoleUpDown;
         private System.Windows.Forms.NumericUpDown customSlopUpDown;
 
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonApply;
 
         private System.Windows.Forms.CheckBox drawWheelCheckBox;

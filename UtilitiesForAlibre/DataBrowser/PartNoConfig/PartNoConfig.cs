@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Bolsover
+namespace Bolsover.DataBrowser.PartNoConfig
 {
     public partial class PartNoConfig : UserControl
     {
