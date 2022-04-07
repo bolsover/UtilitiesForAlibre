@@ -30,7 +30,7 @@ namespace Bolsover.PlaneFinder
             }
             catch (Exception ex)
             {
-                planeTextBox.Text = "Error: PlanenNot found";
+                planeTextBox.Text = "Error: Plane Not found";
                 Debug.WriteLine(ex.ToString());
             }
         }
@@ -47,6 +47,5 @@ namespace Bolsover.PlaneFinder
             }
         }
 
-   
     }
 }

@@ -102,6 +102,14 @@
         <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.cs" />
         <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
         <Compile Include="DataBrowser\ShellUtilities.cs" />
+        <Compile Include="EmptyShell\EmptyAddOnCommand.cs" />
+        <Compile Include="EmptyShell\EmptyAddonCommandTerminateEventArgs.cs" />
+        <Compile Include="EmptyShell\EmptyUserControl.cs">
+          <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Include="EmptyShell\EmptyUserControl.Designer.cs">
+          <DependentUpon>EmptyUserControl.cs</DependentUpon>
+        </Compile>
         <Compile Include="PlaneFinder\PlaneFinderAddOnCommand.cs" />
         <Compile Include="PlaneFinder\PlaneFinderAddOnCommandTerminateEventArgs.cs" />
         <Compile Include="PlaneFinder\PlaneFinder.cs">
@@ -186,6 +194,9 @@
         </EmbeddedResource>
         <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx" />
         <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx" />
+        <EmbeddedResource Include="EmptyShell\EmptyUserControl.resx">
+          <DependentUpon>EmptyUserControl.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
           <DependentUpon>PlaneFinder.cs</DependentUpon>
         </EmbeddedResource>
