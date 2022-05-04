@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace Bolsover.EmptyShell
+namespace Bolsover.Sample
 {
-    partial class EmptyUserControl
+    partial class SampleUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -50,7 +50,7 @@ namespace Bolsover.EmptyShell
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.textBox);
-            this.Name = "EmptyUserControl";
+            this.Name = "SampleUserControl";
             this.Size = new System.Drawing.Size(285, 334);
             this.ResumeLayout(false);
             this.PerformLayout();

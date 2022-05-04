@@ -175,11 +175,7 @@ namespace Bolsover.PlaneFinder
                 var proxy = (IADTargetProxy) session.SelectedObjects.Item(0);
                 try
                 {
-                    if (proxy.Target.GetType() == typeof(AlibreSketch))
-                    {
-                        PlaneFinder.Sketch = proxy.Target as IADSketch;
-                    }
-                   
+                    if (proxy.Target.GetType() == typeof(AlibreSketch)) PlaneFinder.Sketch = proxy.Target as IADSketch;
                 }
                 catch (Exception e)
                 {
@@ -204,7 +200,7 @@ namespace Bolsover.PlaneFinder
                 CommandSite = null;
             }
 
-            PlaneFinderAddOnCommandTerminateEventArgs args = new PlaneFinderAddOnCommandTerminateEventArgs(this);
+            var args = new PlaneFinderAddOnCommandTerminateEventArgs(this);
             Terminate.Invoke(this, args);
         }
 

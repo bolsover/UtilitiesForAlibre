@@ -4,35 +4,34 @@ using System.Windows.Forms;
 using AlibreAddOn;
 using AlibreX;
 
-namespace Bolsover.EmptyShell
+
+namespace Bolsover.Sample
 {
-    public class EmptyAddOnCommand : IAlibreAddOnCommand
+    public class SampleAddOnCommand : IAlibreAddOnCommand
     {
-        
         public IADSession session { get; }
         private long PanelHandle { get; set; }
         private int PanelPosition { get; }
 
-        public EmptyUserControl EmptyUserControl;
-        
-        
-        public EmptyAddOnCommand(IADSession session)
+        public SampleUserControl SampleUserControl;
+
+
+        public SampleAddOnCommand(IADSession session)
         {
             this.session = session; // a reference to the current design session
             PanelPosition = (int) ADDockStyle.AD_RIGHT; // where do you want the docked panel
-            EmptyUserControl = new EmptyUserControl(session);  // finally get to create your user control
+            SampleUserControl = new SampleUserControl(session); // finally get to create your user control
         }
 
         private void WriteToUserControl(string text)
         {
             try
             {
-                EmptyUserControl?.AppendText(text);
+                SampleUserControl?.AppendText(text);
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-               
             }
         }
 
@@ -43,7 +42,7 @@ namespace Bolsover.EmptyShell
         /// <param name="e"></param>
         public void UserRequestedClose()
         {
-            EmptyUserControl.Dispose();
+            SampleUserControl.Dispose();
             CommandSite.RemoveDockedPanel(DockedPanelHandle);
             DockedPanelHandle = (long) IntPtr.Zero;
             CommandSite = null;
@@ -65,23 +64,18 @@ namespace Bolsover.EmptyShell
                     var control = Control.FromHandle((IntPtr) value);
                     if (control != null)
                     {
-                        EmptyUserControl.Parent = control;
-                        EmptyUserControl.Dock = DockStyle.Fill;
-                        EmptyUserControl.AutoSize = true;
-                        EmptyUserControl.Show();
+                        SampleUserControl.Parent = control;
+                        SampleUserControl.Dock = DockStyle.Fill;
+                        SampleUserControl.AutoSize = true;
+                        SampleUserControl.Show();
                         control.Show();
                         PanelHandle = value;
                     }
                 }
             }
         }
-        
-        
-        
-        
-        
-        
-        
+
+
         /// <summary>
         /// Called to find out if this add-on command is a two-way toggle command
         /// </summary>
@@ -131,7 +125,7 @@ namespace Bolsover.EmptyShell
             Debug.WriteLine("OnRender hDC: " + hDC + ", clipRectX: " + clipRectX + ", clipRectY: " + clipRectY
                             + ", clipRectWidth: " + clipRectWidth + ", clipRectHeight: " + clipRectHeight);
             WriteToUserControl("OnRender hDC: " + hDC + ", clipRectX: " + clipRectX + ", clipRectY: " + clipRectY
-                                        + ", clipRectWidth: " + clipRectWidth + ", clipRectHeight: " + clipRectHeight);
+                               + ", clipRectWidth: " + clipRectWidth + ", clipRectHeight: " + clipRectHeight);
         }
 
 
@@ -224,7 +218,6 @@ namespace Bolsover.EmptyShell
                 {
                     Debug.WriteLine(proxy.DisplayName);
                     WriteToUserControl("OnSelectionChange " + proxy.DisplayName);
-                   
                 }
                 catch (Exception e)
                 {
@@ -232,8 +225,8 @@ namespace Bolsover.EmptyShell
                 }
             }
         }
-        
-        public event EventHandler<EmptyAddonCommandTerminateEventArgs> Terminate;
+
+        public event EventHandler<SampleAddonCommandTerminateEventArgs> Terminate;
 
         /// <summary>
         /// Called when Alibre terminates the add-on command; add-on should make sure to release all references to its CommandSite
@@ -243,7 +236,7 @@ namespace Bolsover.EmptyShell
         {
             Debug.WriteLine("OnTerminate");
             WriteToUserControl("OnTerminate");
-            if (EmptyUserControl != null) EmptyUserControl.Dispose();
+            if (SampleUserControl != null) SampleUserControl.Dispose();
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);
@@ -251,7 +244,7 @@ namespace Bolsover.EmptyShell
                 CommandSite = null;
             }
 
-            EmptyAddonCommandTerminateEventArgs args = new EmptyAddonCommandTerminateEventArgs(this);
+            var args = new SampleAddonCommandTerminateEventArgs(this);
             Terminate.Invoke(this, args);
         }
 
@@ -273,6 +266,7 @@ namespace Bolsover.EmptyShell
                     MessageBoxIcon.Exclamation);
                 throw ex;
             }
+
             Debug.WriteLine("OnComplete Done");
             WriteToUserControl("OnComplete Done");
         }

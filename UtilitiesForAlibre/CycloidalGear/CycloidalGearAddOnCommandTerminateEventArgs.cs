@@ -3,7 +3,7 @@ using Bolsover.AlibreDataViewer;
 
 namespace Bolsover.CycloidalGear
 {
-    public class CycloidalGearAddOnCommandTerminateEventArgs: EventArgs
+    public class CycloidalGearAddOnCommandTerminateEventArgs : EventArgs
     {
         public CycloidalGearAddOnCommandTerminateEventArgs(CycloidalGearAddOnCommand cycloidalGearAddOnCommand)
         {

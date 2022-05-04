@@ -184,7 +184,7 @@ namespace Bolsover.AlibreDataViewer
             }
         }
 
-        public event EventHandler<AlibreDataViewerAddOnCommandTerminateEventArgs> Terminate; 
+        public event EventHandler<AlibreDataViewerAddOnCommandTerminateEventArgs> Terminate;
 
         /// <summary>
         /// Called when Alibre terminates the add-on command; add-on should make sure to release all references to its CommandSite
@@ -200,7 +200,7 @@ namespace Bolsover.AlibreDataViewer
                 CommandSite = null;
             }
 
-            AlibreDataViewerAddOnCommandTerminateEventArgs args = new AlibreDataViewerAddOnCommandTerminateEventArgs(this);
+            var args = new AlibreDataViewerAddOnCommandTerminateEventArgs(this);
             Terminate.Invoke(this, args);
         }
 

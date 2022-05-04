@@ -1,11 +1,86 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 using AlibreAddOn;
+using AlibreX;
+using Bolsover.Sample;
 
-namespace Bolsover
+namespace Bolsover.ThreeDLine
 {
-    //Interface to be implemented by an Alibre Design: Add-on command
-    public class UtilitiesForAlibreAddOnCommand : IAlibreAddOnCommand
+    public class ThreeDLineAddOnCommand : IAlibreAddOnCommand
     {
+        public IADSession session { get; }
+        private long PanelHandle { get; set; }
+        private int PanelPosition { get; }
+
+        public ThreeDLineUserControl ThreeDLineUserControl;
+
+        // private IAD3DSketch ad3DSketch;
+
+
+        public ThreeDLineAddOnCommand(IADSession session)
+        {
+            this.session = session; // a reference to the current design session
+            PanelPosition = (int) ADDockStyle.AD_RIGHT; // where do you want the docked panel
+            ThreeDLineUserControl = new ThreeDLineUserControl(session); // finally get to create your user control
+            
+        }
+
+        private IAD3DSketch get3DSketch()
+        {
+            IAD3DSketch myAd3DSketch = null;
+            if (session.SessionType == ADObjectSubType.AD_PART)
+            {
+                myAd3DSketch = ((IADPartSession) session).Sketches3D.Add3DSketch("My3DSketch");
+              
+            }
+
+            return myAd3DSketch;
+        }
+   
+
+        /// <summary>
+        /// Actions to take when closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void UserRequestedClose()
+        {
+            ThreeDLineUserControl.Dispose();
+            CommandSite.RemoveDockedPanel(DockedPanelHandle);
+            DockedPanelHandle = (long) IntPtr.Zero;
+            CommandSite = null;
+        }
+
+
+        /// <summary>
+        /// Get/Set the PanelHandle
+        /// set adds the User control to the Parent, docks and autosizes.
+        /// </summary>
+        public virtual long DockedPanelHandle
+        {
+            get => PanelHandle;
+            set
+            {
+                Debug.WriteLine(value);
+                
+                if (value != (long) IntPtr.Zero)
+                {
+                    var control = Control.FromHandle((IntPtr) value);
+                    if (control != null)
+                    {
+                        ThreeDLineUserControl.Parent = control;
+                        ThreeDLineUserControl.Dock = DockStyle.Fill;
+                        ThreeDLineUserControl.AutoSize = true;
+                        ThreeDLineUserControl.Show();
+                        control.Show();
+                        PanelHandle = value;
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// Called to find out if this add-on command is a two-way toggle command
         /// </summary>
@@ -13,7 +88,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool IsTwoWayToggle()
         {
-            throw new NotImplementedException();
+           
+            return false;
         }
 
         /// <summary>
@@ -23,7 +99,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool AddTab()
         {
-            throw new NotImplementedException();
+        
+            return false;
         }
 
         /// <summary>
@@ -33,7 +110,7 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public void OnShowUI(long hWnd)
         {
-            throw new NotImplementedException();
+          
         }
 
         /// <summary>
@@ -47,7 +124,7 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public void OnRender(int hDC, int clipRectX, int clipRectY, int clipRectWidth, int clipRectHeight)
         {
-            throw new NotImplementedException();
+         
         }
 
 
@@ -61,7 +138,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnClick(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-            throw new NotImplementedException();
+         
+            return false;
         }
 
         /// <summary>
@@ -73,7 +151,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnDoubleClick(int screenX, int screenY)
         {
-            throw new NotImplementedException();
+        
+            return false;
         }
 
         /// <summary>
@@ -86,7 +165,9 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseDown(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-            throw new NotImplementedException();
+         
+
+            return false;
         }
 
         /// <summary>
@@ -99,7 +180,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseMove(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-            throw new NotImplementedException();
+       
+            return false;
         }
 
         /// <summary>
@@ -112,7 +194,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseUp(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-            throw new NotImplementedException();
+         
+            return false;
         }
 
         /// <summary>
@@ -121,8 +204,23 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public void OnSelectionChange()
         {
-            throw new NotImplementedException();
+            Debug.WriteLine("OnSelectionChange");
+            if (session.SelectedObjects.Count == 1)
+            {
+                var proxy = (IADTargetProxy) session.SelectedObjects.Item(0);
+                try
+                {
+                    Debug.WriteLine(proxy.DisplayName);
+                   
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
+            }
         }
+
+        public event EventHandler<ThreeDLineAddOnCommandTerminateEventArgs> Terminate;
 
         /// <summary>
         /// Called when Alibre terminates the add-on command; add-on should make sure to release all references to its CommandSite
@@ -130,7 +228,17 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public void OnTerminate()
         {
-            throw new NotImplementedException();
+         
+            if (ThreeDLineUserControl != null) ThreeDLineUserControl.Dispose();
+            if (CommandSite != null)
+            {
+                CommandSite.RemoveDockedPanel(DockedPanelHandle);
+                DockedPanelHandle = (long) IntPtr.Zero;
+                CommandSite = null;
+            }
+
+            var args = new ThreeDLineAddOnCommandTerminateEventArgs(this);
+            Terminate.Invoke(this, args);
         }
 
         /// <summary>
@@ -139,7 +247,19 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public void OnComplete()
         {
-            throw new NotImplementedException();
+          
+            try
+            {
+                DockedPanelHandle = CommandSite.AddDockedPanel(PanelPosition, "3D Line Add On");
+            }
+            catch (Exception ex)
+            {
+                var num = (int) MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                throw ex;
+            }
+
+          
         }
 
         /// <summary>
@@ -150,7 +270,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnKeyDown(int keycode)
         {
-            throw new NotImplementedException();
+          
+            return false;
         }
 
         /// <summary>
@@ -161,7 +282,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnKeyUp(int keycode)
         {
-            throw new NotImplementedException();
+         
+            return false;
         }
 
         /// <summary>
@@ -171,7 +293,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnEscape()
         {
-            throw new NotImplementedException();
+         
+            return false;
         }
 
         /// <summary>
@@ -182,7 +305,8 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseWheel(double delta)
         {
-            throw new NotImplementedException();
+          
+            return false;
         }
 
         /// <summary>
@@ -191,7 +315,7 @@ namespace Bolsover
         /// <exception cref="NotImplementedException"></exception>
         public void On3DRender()
         {
-            throw new NotImplementedException();
+          
         }
 
         /// <summary>

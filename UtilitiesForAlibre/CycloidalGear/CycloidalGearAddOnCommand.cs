@@ -10,20 +10,19 @@ namespace Bolsover.CycloidalGear
 {
     public class CycloidalGearAddOnCommand : IAlibreAddOnCommand
     {
-        
         public IADSession session { get; }
         private long PanelHandle { get; set; }
         public int PanelPosition { get; set; }
 
         public CycliodalGearParametersForm CycliodalGearParametersForm;
-        
+
         public CycloidalGearAddOnCommand(IADSession session)
         {
             this.session = session;
             PanelPosition = (int) ADDockStyle.AD_RIGHT;
             CycliodalGearParametersForm = new CycliodalGearParametersForm(session);
         }
-        
+
         /// <summary>
         /// Actions to take when closing
         /// </summary>
@@ -187,10 +186,7 @@ namespace Bolsover.CycloidalGear
                 try
                 {
                     if (proxy.Target.GetType() == typeof(AlibreDesignPlane))
-                    {
                         CycliodalGearParametersForm.DesignPlane = proxy.Target as IADDesignPlane;
-                    }
-                   
                 }
                 catch (Exception e)
                 {
@@ -198,8 +194,8 @@ namespace Bolsover.CycloidalGear
                 }
             }
         }
-        
-        public event EventHandler<CycloidalGearAddOnCommandTerminateEventArgs> Terminate; 
+
+        public event EventHandler<CycloidalGearAddOnCommandTerminateEventArgs> Terminate;
 
         /// <summary>
         /// Called when Alibre terminates the add-on command; add-on should make sure to release all references to its CommandSite
@@ -216,7 +212,7 @@ namespace Bolsover.CycloidalGear
                 CommandSite = null;
             }
 
-            CycloidalGearAddOnCommandTerminateEventArgs args = new CycloidalGearAddOnCommandTerminateEventArgs(this);
+            var args = new CycloidalGearAddOnCommandTerminateEventArgs(this);
             Terminate.Invoke(this, args);
 
             Debug.WriteLine("OnTerminate Done");

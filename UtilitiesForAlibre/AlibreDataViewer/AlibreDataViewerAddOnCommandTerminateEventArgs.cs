@@ -2,7 +2,7 @@
 
 namespace Bolsover.AlibreDataViewer
 {
-    public class AlibreDataViewerAddOnCommandTerminateEventArgs :EventArgs
+    public class AlibreDataViewerAddOnCommandTerminateEventArgs : EventArgs
     {
         public AlibreDataViewerAddOnCommandTerminateEventArgs(AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand)
         {

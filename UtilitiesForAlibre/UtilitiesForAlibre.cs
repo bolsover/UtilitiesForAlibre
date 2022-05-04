@@ -7,8 +7,10 @@ using System.Windows.Forms;
 using Bolsover.AlibreDataViewer;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
-using Bolsover.EmptyShell;
 using Bolsover.PlaneFinder;
+using Bolsover.Sample;
+using Bolsover.ThreeDLine;
+using com.alibre.automation;
 
 namespace Bolsover
 {
@@ -24,32 +26,45 @@ namespace Bolsover
         private const int SUBMENU_ID_UTILS_CYCLOIDAL_GEAR = 602;
         private const int SUBMENU_ID_UTILS_PLANE_FINDER = 603;
         private const int SUBMENU_ID_UTILS_DATA_VIEWER = 604;
-        private const int SUBMENU_ID_UTILS_EMPTY_SHELL = 605;
+        private const int SUBMENU_ID_UTILS_3DLINE = 605;
+        private const int SUBMENU_ID_UTILS_SAMPLE = 606;
         private const int MENU_ID_HELP = 701;
         private const int SUBMENU_ID_HELP_ABOUT = 702;
-
-
-        private readonly int[] MENU_IDS_FILE;
-        private readonly int[] MENU_IDS_UTILS;
-        private readonly int[] MENU_IDS_ROOT;
-        private readonly int[] MENU_IDS_HELP;
+        private int[] MENU_IDS_FILE;
+        private int[] MENU_IDS_UTILS;
+        private int[] MENU_IDS_ROOT;
+        private int[] MENU_IDS_HELP;
 
         private IADRoot alibreRoot;
         private IntPtr parentWinHandle;
-
 
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
             this.alibreRoot = alibreRoot;
             this.parentWinHandle = parentWinHandle;
+            BuildMenuTree();
+        }
+
+        #region Menus
+
+        /// <summary>
+        /// Returns the menu ID of the add-on's root menu item
+        /// </summary>
+        public int RootMenuItem => MENU_ID_ROOT;
+        
+        /// <summary>
+        /// Builds the menu tree
+        /// </summary>
+        private void BuildMenuTree()
+        {
             MENU_IDS_FILE = new int[3]
             {
                 SUBMENU_ID_FILE_OPEN, SUBMENU_ID_FILE_CLOSE, SUBMENU_ID_FILE_EXIT
             };
-            MENU_IDS_UTILS = new int[5]
+            MENU_IDS_UTILS = new int[6]
             {
                 SUBMENU_ID_DATA_BROWSER, SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, SUBMENU_ID_UTILS_PLANE_FINDER,
-                SUBMENU_ID_UTILS_DATA_VIEWER, SUBMENU_ID_UTILS_EMPTY_SHELL
+                SUBMENU_ID_UTILS_DATA_VIEWER, SUBMENU_ID_UTILS_3DLINE, SUBMENU_ID_UTILS_SAMPLE
             };
             MENU_IDS_ROOT = new int[3]
             {
@@ -118,7 +133,8 @@ namespace Bolsover
                 case SUBMENU_ID_HELP_ABOUT: return "About";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Sketch Plane Finder Open/Close";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Property Viewer Open/Close";
-                case SUBMENU_ID_UTILS_EMPTY_SHELL: return "Empty Shell Open/Close";
+                case SUBMENU_ID_UTILS_3DLINE: return "3DLine Open/Close";
+                case SUBMENU_ID_UTILS_SAMPLE: return "Sample Open/Close";
             }
 
             return "";
@@ -153,19 +169,19 @@ namespace Bolsover
                 case IADDrawingSession:
                     switch (menuID)
                     {
-                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_EMPTY_SHELL: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_SAMPLE: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        
                     }
 
                     break;
@@ -183,7 +199,8 @@ namespace Bolsover
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_EMPTY_SHELL: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_SAMPLE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -201,7 +218,8 @@ namespace Bolsover
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_EMPTY_SHELL: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_SAMPLE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -230,11 +248,35 @@ namespace Bolsover
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Opens/Closes Cycloidal Gear Generator";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens/Closes Property Viewer";
-                case SUBMENU_ID_UTILS_EMPTY_SHELL: return "Opens/Closes Demo Utility";
+                case SUBMENU_ID_UTILS_3DLINE: return "Opens/Closes 3DLine Generator";
+                case SUBMENU_ID_UTILS_SAMPLE: return "Opens/Closes Sample";
                 case SUBMENU_ID_HELP_ABOUT: return "About Utilities for Alibre";
             }
 
             return "";
+        }
+
+        /// <summary>
+        /// Returns the icon name (with extension) for a menu item; the icon will be searched under the folder where the add-on's .adc file is present
+        /// </summary>
+        /// <param name="menuID"></param>
+        /// <returns></returns>
+        public string MenuIcon(int menuID)
+        {
+            // if you want icons, reference them here...
+            // switch (menuID)
+            // {
+            //     case SUBMENU_ID_HELP_ABOUT: return "icons/userquestion.ico";
+            //     case SUBMENU_ID_DATA_BROWSER: return "icons/search.ico";
+            //     case SUBMENU_ID_FILE_OPEN: return "icons/file-code-add.ico";
+            //     case SUBMENU_ID_FILE_CLOSE: return "icons/file-code-star.ico";
+            //     case SUBMENU_ID_FILE_EXIT: return "icons/file-code-question.ico";
+            //     case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "icons/cog-double.ico";
+            //     case SUBMENU_ID_UTILS_PLANE_FINDER: return "";
+            //     case SUBMENU_ID_UTILS_DATA_VIEWER: return "";
+            // }
+
+            return string.Empty;
         }
 
         /// <summary>
@@ -287,9 +329,13 @@ namespace Bolsover
                 {
                     return DoAlibreDataViewer(session);
                 }
-                case SUBMENU_ID_UTILS_EMPTY_SHELL:
+                case SUBMENU_ID_UTILS_3DLINE:
                 {
-                    return DoEmptyShell(session);
+                    return Do3DLine(session);
+                }
+                case SUBMENU_ID_UTILS_SAMPLE:
+                {
+                    return DoSample(session);
                 }
                 case SUBMENU_ID_HELP_ABOUT:
                 {
@@ -299,43 +345,87 @@ namespace Bolsover
 
             return null;
         }
-        
-        /// <summary>
-        /// A dictionary to keep track of currently open EmptyAddOnCommand object.
-        /// </summary>
-        private readonly Dictionary<string, EmptyAddOnCommand> emptyAddOnCommands = new();
 
-        private IAlibreAddOnCommand DoEmptyShell(IADSession session)
+        #endregion
+
+        #region ThreeDLine
+
+        private readonly Dictionary<string, ThreeDLineAddOnCommand> threeDLineAddOnCommands = new();
+
+        private IAlibreAddOnCommand Do3DLine(IADSession session)
         {
-            EmptyAddOnCommand emptyViewerAddOnCommand;
-            if (!emptyAddOnCommands.ContainsKey(session.Identifier))
+            ThreeDLineAddOnCommand threeDLineAddOnCommand;
+            if (!threeDLineAddOnCommands.ContainsKey(session.Identifier))
             {
-                emptyViewerAddOnCommand = new EmptyAddOnCommand(session);
-                emptyViewerAddOnCommand.EmptyUserControl.Visible = true;
-                emptyViewerAddOnCommand.Terminate+= EmptyAddOnCommandOnTerminate;
-                emptyAddOnCommands.Add(session.Identifier, emptyViewerAddOnCommand);
+                threeDLineAddOnCommand = new ThreeDLineAddOnCommand(session);
+                threeDLineAddOnCommand.ThreeDLineUserControl.Visible = true;
+                threeDLineAddOnCommand.Terminate += (sender, e) => ThreeDLineAddOnCommandOnTerminate(sender, e);
+                threeDLineAddOnCommands.Add(session.Identifier, threeDLineAddOnCommand);
+              
             }
             else
             {
-                if (emptyAddOnCommands.TryGetValue(session.Identifier, out emptyViewerAddOnCommand))
+                if (threeDLineAddOnCommands.TryGetValue(session.Identifier, out threeDLineAddOnCommand))
                 {
-                    emptyViewerAddOnCommand.UserRequestedClose();
-                    emptyAddOnCommands.Remove(session.Identifier);
+                    threeDLineAddOnCommand.UserRequestedClose();
+                    threeDLineAddOnCommands.Remove(session.Identifier);
                     return null;
                 }
             }
 
-            return emptyViewerAddOnCommand;
+            return threeDLineAddOnCommand;
         }
-        
-        private void EmptyAddOnCommandOnTerminate(object sender, EmptyAddonCommandTerminateEventArgs e)
+
+        private void ThreeDLineAddOnCommandOnTerminate(object sender, ThreeDLineAddOnCommandTerminateEventArgs e)
         {
-            EmptyAddOnCommand emptyAddOnCommand;
-            if (emptyAddOnCommands.TryGetValue(e.emptyAddOnCommand.session.Identifier, out emptyAddOnCommand))
-            {
-                emptyAddOnCommands.Remove(e.emptyAddOnCommand.session.Identifier); 
-            }
+            ThreeDLineAddOnCommand threeDLineAddOnCommand;
+            if (threeDLineAddOnCommands.TryGetValue(e.ThreeDLineAddOnCommand.session.Identifier,
+                    out threeDLineAddOnCommand))
+                threeDLineAddOnCommands.Remove(e.ThreeDLineAddOnCommand.session.Identifier);
         }
+
+        #endregion
+
+        #region Sample
+
+        /// <summary>
+        /// A dictionary to keep track of currently open EmptyAddOnCommand object.
+        /// </summary>
+        private readonly Dictionary<string, SampleAddOnCommand> sampleAddOnCommands = new();
+
+        private IAlibreAddOnCommand DoSample(IADSession session)
+        {
+            SampleAddOnCommand sampleViewerAddOnCommand;
+            if (!sampleAddOnCommands.ContainsKey(session.Identifier))
+            {
+                sampleViewerAddOnCommand = new SampleAddOnCommand(session);
+                sampleViewerAddOnCommand.SampleUserControl.Visible = true;
+                sampleViewerAddOnCommand.Terminate += SampleAddOnCommandOnTerminate;
+                sampleAddOnCommands.Add(session.Identifier, sampleViewerAddOnCommand);
+            }
+            else
+            {
+                if (sampleAddOnCommands.TryGetValue(session.Identifier, out sampleViewerAddOnCommand))
+                {
+                    sampleViewerAddOnCommand.UserRequestedClose();
+                    sampleAddOnCommands.Remove(session.Identifier);
+                    return null;
+                }
+            }
+
+            return sampleViewerAddOnCommand;
+        }
+
+        private void SampleAddOnCommandOnTerminate(object sender, SampleAddonCommandTerminateEventArgs e)
+        {
+            SampleAddOnCommand sampleAddOnCommand;
+            if (sampleAddOnCommands.TryGetValue(e.SampleAddOnCommand.session.Identifier, out sampleAddOnCommand))
+                sampleAddOnCommands.Remove(e.SampleAddOnCommand.session.Identifier);
+        }
+
+        #endregion
+
+        #region DataViewer
 
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
@@ -355,7 +445,7 @@ namespace Bolsover
             {
                 alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session);
                 alibreDataViewerAddOnCommand.alibreDataViewer.Visible = true;
-                alibreDataViewerAddOnCommand.Terminate+= AlibreDataViewerAddOnCommandOnTerminate;
+                alibreDataViewerAddOnCommand.Terminate += AlibreDataViewerAddOnCommandOnTerminate;
                 dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
             }
             else
@@ -371,15 +461,19 @@ namespace Bolsover
             return alibreDataViewerAddOnCommand;
         }
 
-        private void AlibreDataViewerAddOnCommandOnTerminate(object sender, AlibreDataViewerAddOnCommandTerminateEventArgs e)
+        private void AlibreDataViewerAddOnCommandOnTerminate(object sender,
+            AlibreDataViewerAddOnCommandTerminateEventArgs e)
         {
             AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
-            if (dataViewerAddOnCommands.TryGetValue(e.alibreDataViewerAddOnCommand.session.Identifier, out alibreDataViewerAddOnCommand))
-            {
-                dataViewerAddOnCommands.Remove(e.alibreDataViewerAddOnCommand.session.Identifier); 
-            }
+            if (dataViewerAddOnCommands.TryGetValue(e.alibreDataViewerAddOnCommand.session.Identifier,
+                    out alibreDataViewerAddOnCommand))
+                dataViewerAddOnCommands.Remove(e.alibreDataViewerAddOnCommand.session.Identifier);
         }
-        
+
+        #endregion
+
+        #region PlaneFinder
+
         /// <summary>
         /// A dictionary to keep track of currently open PlaneFinderAddOnCommand object.
         /// </summary>
@@ -392,7 +486,7 @@ namespace Bolsover
             {
                 planeFinderAddOnCommand = new PlaneFinderAddOnCommand(session);
                 planeFinderAddOnCommand.PlaneFinder.Visible = true;
-                planeFinderAddOnCommand.Terminate+= PlaneFinderAddOnCommandOnTerminate;
+                planeFinderAddOnCommand.Terminate += PlaneFinderAddOnCommandOnTerminate;
                 planeFinderAddOnCommands.Add(session.Identifier, planeFinderAddOnCommand);
             }
             else
@@ -407,24 +501,19 @@ namespace Bolsover
 
             return planeFinderAddOnCommand;
         }
-        
+
         private void PlaneFinderAddOnCommandOnTerminate(object sender, PlaneFinderAddOnCommandTerminateEventArgs e)
         {
             PlaneFinderAddOnCommand planeFinderAddOnCommand;
-            if (planeFinderAddOnCommands.TryGetValue(e.planeFinderAddOnCommand.session.Identifier, out planeFinderAddOnCommand))
-            {
-                planeFinderAddOnCommands.Remove(e.planeFinderAddOnCommand.session.Identifier); 
-            }
+            if (planeFinderAddOnCommands.TryGetValue(e.planeFinderAddOnCommand.session.Identifier,
+                    out planeFinderAddOnCommand))
+                planeFinderAddOnCommands.Remove(e.planeFinderAddOnCommand.session.Identifier);
         }
-        
 
-        private IAlibreAddOnCommand DoHelpAbout(IADSession session)
-        {
-            var aboutForm = new AboutForm();
-            aboutForm.Visible = true;
-            return null;
-        }
-        
+        #endregion
+
+        #region CycloidalGear
+
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
@@ -442,7 +531,7 @@ namespace Bolsover
             {
                 cycloidalGearAddOnCommand = new CycloidalGearAddOnCommand(session);
                 cycloidalGearAddOnCommand.CycliodalGearParametersForm.Visible = true;
-                cycloidalGearAddOnCommand.Terminate+= CycloidalGearAddOnCommandOnTerminate;
+                cycloidalGearAddOnCommand.Terminate += CycloidalGearAddOnCommandOnTerminate;
                 cycloidalGearAddOnCommands.Add(session.Identifier, cycloidalGearAddOnCommand);
             }
             else
@@ -457,15 +546,29 @@ namespace Bolsover
 
             return cycloidalGearAddOnCommand;
         }
-        
+
         private void CycloidalGearAddOnCommandOnTerminate(object sender, CycloidalGearAddOnCommandTerminateEventArgs e)
         {
             CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
-            if (cycloidalGearAddOnCommands.TryGetValue(e.cycloidalGearAddOnCommand.session.Identifier, out cycloidalGearAddOnCommand))
-            {
-                cycloidalGearAddOnCommands.Remove(e.cycloidalGearAddOnCommand.session.Identifier); 
-            }
+            if (cycloidalGearAddOnCommands.TryGetValue(e.cycloidalGearAddOnCommand.session.Identifier,
+                    out cycloidalGearAddOnCommand))
+                cycloidalGearAddOnCommands.Remove(e.cycloidalGearAddOnCommand.session.Identifier);
         }
+
+        #endregion
+
+        #region HelpAbout
+
+        private IAlibreAddOnCommand DoHelpAbout(IADSession session)
+        {
+            var aboutForm = new AboutForm();
+            aboutForm.Visible = true;
+            return null;
+        }
+
+        #endregion
+
+        #region DataBrowser
 
         /// <summary>
         /// Opens the DataBrowser.
@@ -479,6 +582,10 @@ namespace Bolsover
             browserForm.Visible = true;
             return null;
         }
+
+        #endregion
+
+        #region FileOpen
 
         /// <summary>
         /// Opens a standard file dialog, opens the selected file or returns null if the user closes the dialog without selecting a file.
@@ -506,6 +613,22 @@ namespace Bolsover
         }
 
         /// <summary>
+        /// Helper method to open files with default program
+        /// </summary>
+        /// <param name="path"></param>
+        public static void OpenWithDefaultProgram(string path)
+        {
+            using var fileopener = new Process();
+            fileopener.StartInfo.FileName = "explorer";
+            fileopener.StartInfo.Arguments = "\"" + path + "\"";
+            fileopener.Start();
+        }
+
+        #endregion
+
+        #region FileClose
+
+        /// <summary>
         /// Closes the current session, saving the file if required
         /// </summary>
         /// <param name="currentSession"></param>
@@ -515,6 +638,10 @@ namespace Bolsover
             currentSession.Close(true);
             return null;
         }
+
+        #endregion
+
+        #region FileExit
 
         /// <summary>
         /// Saves and closes all open files, terminates the application
@@ -526,6 +653,8 @@ namespace Bolsover
             alibreRoot.Terminate();
             return null;
         }
+
+        #endregion
 
         /// <summary>
         /// Loads Data from AddOn
@@ -554,52 +683,12 @@ namespace Bolsover
         }
 
         /// <summary>
-        /// Returns the icon name (with extension) for a menu item; the icon will be searched under the folder where the add-on's .adc file is present
-        /// </summary>
-        /// <param name="menuID"></param>
-        /// <returns></returns>
-        public string MenuIcon(int menuID)
-        {
-            // if you want icons, reference then here...
-            // switch (menuID)
-            // {
-            //     case SUBMENU_ID_HELP_ABOUT: return "icons/userquestion.ico";
-            //     case SUBMENU_ID_DATA_BROWSER: return "icons/search.ico";
-            //     case SUBMENU_ID_FILE_OPEN: return "icons/file-code-add.ico";
-            //     case SUBMENU_ID_FILE_CLOSE: return "icons/file-code-star.ico";
-            //     case SUBMENU_ID_FILE_EXIT: return "icons/file-code-question.ico";
-            //     case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "icons/cog-double.ico";
-            //     case SUBMENU_ID_UTILS_PLANE_FINDER: return "";
-            //     case SUBMENU_ID_UTILS_DATA_VIEWER: return "";
-            // }
-
-            return string.Empty;
-        }
-
-        /// <summary>
         /// Returns True if the AddOn needs to use a Dedicated Ribbon Tab
         /// </summary>
         /// <returns></returns>
         public bool UseDedicatedRibbonTab()
         {
             return false;
-        }
-
-        /// <summary>
-        /// Returns the menu ID of the add-on's root menu item
-        /// </summary>
-        public int RootMenuItem => MENU_ID_ROOT;
-
-        /// <summary>
-        /// Helper method to open files with default program
-        /// </summary>
-        /// <param name="path"></param>
-        public static void OpenWithDefaultProgram(string path)
-        {
-            using var fileopener = new Process();
-            fileopener.StartInfo.FileName = "explorer";
-            fileopener.StartInfo.Arguments = "\"" + path + "\"";
-            fileopener.Start();
         }
     }
 }

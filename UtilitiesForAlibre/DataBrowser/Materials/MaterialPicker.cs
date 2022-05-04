@@ -40,14 +40,7 @@ namespace Bolsover.DataBrowser.Materials
         }
 
 
-        // public MaterialNode Value()
-        // {
-        //     return value;
-        // }
-
-        public event EventHandler<SelectedItemEventArgs> CellClickedEventHandler;
-
-        /*
+       /*
          * Event handler used when a material item has been selected
          */
         public event EventHandler<SelectedItemEventArgs> ItemHasBeenSelected;

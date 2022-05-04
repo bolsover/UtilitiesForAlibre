@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Diagnostics;
 using System.Windows.Forms;
 using AlibreX;
@@ -24,7 +23,6 @@ namespace Bolsover.PlaneFinder
             IADTargetProxy targetProxy = null;
             try
             {
-               
                 targetProxy = sketch.SketchPlane;
                 planeTextBox.Text = targetProxy.DisplayName;
             }
@@ -35,7 +33,7 @@ namespace Bolsover.PlaneFinder
             }
         }
 
-      public IADSketch Sketch
+        public IADSketch Sketch
         {
             get => sketch;
             set
@@ -43,9 +41,7 @@ namespace Bolsover.PlaneFinder
                 sketch = value;
                 sketchTextBox.Text = sketch.Name;
                 getPlaneForSketch(sketch);
-
             }
         }
-
     }
 }

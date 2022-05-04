@@ -9,7 +9,7 @@ namespace Bolsover.CycloidalGear
         private IADDesignSession session;
         private CycloidalGearProperties GearProperties = new();
         private IADDesignPlane designPlane;
-       
+
 
         public CycliodalGearParametersForm(IADSession session)
         {
@@ -21,16 +21,15 @@ namespace Bolsover.CycloidalGear
         public IADDesignPlane DesignPlane
         {
             get => designPlane;
-            
-            set{
+
+            set
+            {
                 designPlane = value;
                 GearProperties.Plane = DesignPlane;
                 planeTextBox.Text = designPlane.Name;
             }
-            
         }
 
-  
 
         private void initParameters()
         {
@@ -92,23 +91,19 @@ namespace Bolsover.CycloidalGear
             GearProperties.DrawPinion = ((CheckBox) sender).Checked;
         }
 
-     
+
         private void buttonApply_Click(object sender, EventArgs e)
         {
             if (GearProperties.Plane == null)
             {
-                MessageBox.Show("Please select a Plane for the gear sketch.", "Error", MessageBoxButtons.OK); 
+                MessageBox.Show("Please select a Plane for the gear sketch.", "Error", MessageBoxButtons.OK);
                 return;
             }
-            
+
             var builder = new CycloidalGearBuilder(GearProperties, session);
             MessageBox.Show(GearProperties.ToString(), "Gear Properties", MessageBoxButtons.OK);
         }
 
-      
-
         #endregion
-
-       
     }
 }
