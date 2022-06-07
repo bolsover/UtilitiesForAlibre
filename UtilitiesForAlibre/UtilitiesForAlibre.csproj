@@ -59,7 +59,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="ObjectListView">
-      <HintPath>..\..\..\..\..\ObjectListViewFull-2.9.1\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
+      <HintPath>D:\ObjectListViewFull-2.9.1\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -111,6 +111,13 @@
     </Compile>
     <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
     <Compile Include="DataBrowser\ShellUtilities.cs" />
+    <Compile Include="Involute\Involute.cs" />
+    <Compile Include="Involute\InvoluteGear.cs" />
+    <Compile Include="Involute\InvoluteGear.Designer.cs" />
+    <Compile Include="Involute\InvoluteGearAddOnCommand.cs" />
+    <Compile Include="Involute\InvoluteGearAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="Involute\InvoluteProperties.cs" />
+    <Compile Include="Involute\Point.cs" />
     <Compile Include="Sample\SampleAddOnCommand.cs" />
     <Compile Include="Sample\SampleAddonCommandTerminateEventArgs.cs" />
     <Compile Include="Sample\SampleUserControl.cs">
@@ -209,6 +216,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx" />
     <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx" />
+    <EmbeddedResource Include="Involute\InvoluteGear.resx" />
     <EmbeddedResource Include="Sample\SampleUserControl.resx">
       <DependentUpon>SampleUserControl.cs</DependentUpon>
     </EmbeddedResource>

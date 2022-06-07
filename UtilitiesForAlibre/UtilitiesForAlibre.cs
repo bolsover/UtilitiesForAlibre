@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Bolsover.AlibreDataViewer;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
+using Bolsover.Involute;
 using Bolsover.PlaneFinder;
 using Bolsover.Sample;
 using Bolsover.ThreeDLine;
@@ -27,6 +28,7 @@ namespace Bolsover
         private const int SUBMENU_ID_UTILS_PLANE_FINDER = 603;
         private const int SUBMENU_ID_UTILS_DATA_VIEWER = 604;
         private const int SUBMENU_ID_UTILS_3DLINE = 605;
+        private const int SUBMENU_ID_UTILS_INVOLUTE_GEAR = 607;
         private const int SUBMENU_ID_UTILS_SAMPLE = 606;
         private const int MENU_ID_HELP = 701;
         private const int SUBMENU_ID_HELP_ABOUT = 702;
@@ -51,7 +53,7 @@ namespace Bolsover
         /// Returns the menu ID of the add-on's root menu item
         /// </summary>
         public int RootMenuItem => MENU_ID_ROOT;
-        
+
         /// <summary>
         /// Builds the menu tree
         /// </summary>
@@ -61,10 +63,11 @@ namespace Bolsover
             {
                 SUBMENU_ID_FILE_OPEN, SUBMENU_ID_FILE_CLOSE, SUBMENU_ID_FILE_EXIT
             };
-            MENU_IDS_UTILS = new int[6]
+            MENU_IDS_UTILS = new int[7]
             {
                 SUBMENU_ID_DATA_BROWSER, SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, SUBMENU_ID_UTILS_PLANE_FINDER,
-                SUBMENU_ID_UTILS_DATA_VIEWER, SUBMENU_ID_UTILS_3DLINE, SUBMENU_ID_UTILS_SAMPLE
+                SUBMENU_ID_UTILS_DATA_VIEWER, SUBMENU_ID_UTILS_3DLINE, SUBMENU_ID_UTILS_INVOLUTE_GEAR,
+                SUBMENU_ID_UTILS_SAMPLE
             };
             MENU_IDS_ROOT = new int[3]
             {
@@ -130,6 +133,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_CLOSE: return "Save & Close";
                 case SUBMENU_ID_FILE_EXIT: return "Save All, Exit";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator Open/Close";
+                case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return "Involute Gear Generator (Experimental) Open/Close";
                 case SUBMENU_ID_HELP_ABOUT: return "About";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Sketch Plane Finder Open/Close";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Property Viewer Open/Close";
@@ -177,6 +181,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
@@ -197,6 +202,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
@@ -216,6 +222,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -246,6 +253,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_CLOSE: return "Saves and closes the current file";
                 case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Opens/Closes Cycloidal Gear Generator";
+                case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return "Opens/Closes Experimental Involute Gear Generator";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens/Closes Property Viewer";
                 case SUBMENU_ID_UTILS_3DLINE: return "Opens/Closes 3DLine Generator";
@@ -321,6 +329,11 @@ namespace Bolsover
                 {
                     return DoCycloidalGear(session);
                 }
+
+                case SUBMENU_ID_UTILS_INVOLUTE_GEAR:
+                {
+                    return DoInvoluteGear(session);
+                }
                 case SUBMENU_ID_UTILS_PLANE_FINDER:
                 {
                     return DoPlaneFinder(session);
@@ -361,7 +374,6 @@ namespace Bolsover
                 threeDLineAddOnCommand.ThreeDLineUserControl.Visible = true;
                 threeDLineAddOnCommand.Terminate += (sender, e) => ThreeDLineAddOnCommandOnTerminate(sender, e);
                 threeDLineAddOnCommands.Add(session.Identifier, threeDLineAddOnCommand);
-              
             }
             else
             {
@@ -508,6 +520,51 @@ namespace Bolsover
             if (planeFinderAddOnCommands.TryGetValue(e.planeFinderAddOnCommand.session.Identifier,
                     out planeFinderAddOnCommand))
                 planeFinderAddOnCommands.Remove(e.planeFinderAddOnCommand.session.Identifier);
+        }
+
+        #endregion
+
+        #region InvoluteGear
+
+        /// <summary>
+        /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
+        /// </summary>
+        private Dictionary<string, InvoluteGearAddOnCommand> involuteGearAddOnCommands = new();
+
+        /// <summary>
+        /// Opens the Involute Gear generator dialog.
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
+        private IAlibreAddOnCommand DoInvoluteGear(IADSession session)
+        {
+            InvoluteGearAddOnCommand involuteGearAddOnCommand;
+            if (!involuteGearAddOnCommands.ContainsKey(session.Identifier))
+            {
+                involuteGearAddOnCommand = new InvoluteGearAddOnCommand(session);
+                involuteGearAddOnCommand.InvoluteGear.Visible = true;
+                involuteGearAddOnCommand.Terminate += InvoluteGearAddOnCommandOnTerminate;
+                involuteGearAddOnCommands.Add(session.Identifier, involuteGearAddOnCommand);
+            }
+            else
+            {
+                if (involuteGearAddOnCommands.TryGetValue(session.Identifier, out involuteGearAddOnCommand))
+                {
+                    involuteGearAddOnCommand.UserRequestedClose();
+                    involuteGearAddOnCommands.Remove(session.Identifier);
+                    return null;
+                }
+            }
+
+            return involuteGearAddOnCommand;
+        }
+
+        private void InvoluteGearAddOnCommandOnTerminate(object sender, InvoluteGearAddOnCommandTerminateEventArgs e)
+        {
+            InvoluteGearAddOnCommand involuteGearAddOnCommand;
+            if (involuteGearAddOnCommands.TryGetValue(e.involuteGearAddOnCommand.session.Identifier,
+                    out involuteGearAddOnCommand))
+                involuteGearAddOnCommands.Remove(e.involuteGearAddOnCommand.session.Identifier);
         }
 
         #endregion
