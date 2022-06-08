@@ -511,6 +511,8 @@ namespace Bolsover.Involute
             this.textBoxClearance.Name = "textBoxClearance";
             this.textBoxClearance.Size = new System.Drawing.Size(142, 20);
             this.textBoxClearance.TabIndex = 42;
+            this.textBoxClearance.TextChanged += new System.EventHandler(this.textBoxClearance_TextChanged);
+            this.textBoxClearance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxClearance_KeyPress);
             // 
             // label28
             // 

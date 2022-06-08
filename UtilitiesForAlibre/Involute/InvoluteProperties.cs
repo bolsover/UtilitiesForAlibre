@@ -264,7 +264,11 @@ namespace Bolsover.Involute
         public double Clearance
         {
             get => clearance;
-            set => clearance = value;
+            set
+            {
+                clearance = value;
+                recalculate();
+            }
         }
 
         protected virtual void OnUpdated()

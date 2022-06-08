@@ -38,21 +38,27 @@
   <ItemGroup>
     <Reference Include="alibre-api">
       <HintPath>C:\Program Files\Alibre Design\Program\alibre-api.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="alibre-core">
       <HintPath>C:\Program Files\Alibre Design\Program\alibre-core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="alibre-dom">
       <HintPath>C:\Program Files\Alibre Design\Program\alibre-dom.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="alibre-server">
       <HintPath>C:\Program Files\Alibre Design\Program\alibre-server.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AlibreAddOn">
       <HintPath>C:\Program Files\Alibre Design\Program\AlibreAddOn.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AlibreX">
       <HintPath>C:\Program Files\Alibre Design\Program\AlibreX.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="generics_NET">
       <HintPath>C:\Program Files\Alibre Design\Program\generics_NET.dll</HintPath>
@@ -112,7 +118,9 @@
     <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
     <Compile Include="DataBrowser\ShellUtilities.cs" />
     <Compile Include="Involute\Involute.cs" />
-    <Compile Include="Involute\InvoluteGear.cs" />
+    <Compile Include="Involute\InvoluteGear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Involute\InvoluteGear.Designer.cs" />
     <Compile Include="Involute\InvoluteGearAddOnCommand.cs" />
     <Compile Include="Involute\InvoluteGearAddOnCommandTerminateEventArgs.cs" />
@@ -147,7 +155,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Copyright and License.txt" />
+    <Content Include="Copyright and License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\add-circle.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

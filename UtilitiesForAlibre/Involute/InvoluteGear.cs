@@ -11,6 +11,8 @@ namespace Bolsover.Involute
         private IADDesignPlane designPlane;
         private IADDesignSession session;
 
+        
+
         public InvoluteGear(IADSession session)
         {
             this.session = (IADDesignSession) session;
@@ -58,7 +60,6 @@ namespace Bolsover.Involute
             textBoxPitch.Text = properties.Pitch.ToString();
             textBoxPCD.Text = properties.PitchCircleDiameter.ToString();
             textBoxAddendum.Text = properties.AddendumCircleDiameter.ToString();
-            textBoxClearance.Text = properties.Clearance.ToString();
             textBoxDedendum.Text = properties.DedendumCircleDiameter.ToString();
             textBoxBaseCircle.Text = properties.BaseCircleDiameter.ToString();
             textBoxAlpha.Text = properties.Alpha.ToString();
@@ -72,6 +73,8 @@ namespace Bolsover.Involute
             textBoxCentreX.Text = properties.WheelCentreX.ToString();
             textBoxCentreY.Text = properties.WheelCentreY.ToString();
             textBoxPressureAngle.Text = properties.PressureAngle.ToString();
+            textBoxClearance.Text = properties.Clearance.ToString();
+
         }
 
 
@@ -163,6 +166,18 @@ namespace Bolsover.Involute
         private void comboBoxModule_MouseClick(object sender, MouseEventArgs e)
         {
             properties.Module = (double) ((ComboBox) sender).SelectedValue;
+        }
+
+
+        private void textBoxClearance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            EnforceNumeric(sender, e);
+           
+        }
+
+        private void textBoxClearance_TextChanged(object sender, EventArgs e)
+        {
+            properties.Clearance = double.Parse(((TextBox) sender).Text);
         }
     }
 }
