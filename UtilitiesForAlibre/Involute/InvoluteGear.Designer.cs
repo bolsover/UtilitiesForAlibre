@@ -56,7 +56,6 @@ namespace Bolsover.Involute
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.planeTextBox = new System.Windows.Forms.TextBox();
             this.textBoxBeta = new System.Windows.Forms.TextBox();
             this.textBoxAlpha = new System.Windows.Forms.TextBox();
             this.textBoxDedendum = new System.Windows.Forms.TextBox();
@@ -74,11 +73,13 @@ namespace Bolsover.Involute
             this.label20 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBoxClearance = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
+            this.planeTextBox = new System.Windows.Forms.TextBox();
+            this.numericUpDownClearance = new System.Windows.Forms.NumericUpDown();
             this.buttonApply = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownToothCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownClearance)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -111,7 +112,6 @@ namespace Bolsover.Involute
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.planeTextBox, 1, 16);
             this.tableLayoutPanel1.Controls.Add(this.textBoxBeta, 1, 15);
             this.tableLayoutPanel1.Controls.Add(this.textBoxAlpha, 1, 14);
             this.tableLayoutPanel1.Controls.Add(this.textBoxDedendum, 1, 13);
@@ -129,8 +129,9 @@ namespace Bolsover.Involute
             this.tableLayoutPanel1.Controls.Add(this.label20, 2, 13);
             this.tableLayoutPanel1.Controls.Add(this.label13, 2, 12);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxClearance, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label28, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownClearance, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.planeTextBox, 1, 16);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 18;
@@ -357,13 +358,6 @@ namespace Bolsover.Involute
             this.label11.TabIndex = 21;
             this.label11.Text = "Pressure Angle";
             // 
-            // planeTextBox
-            // 
-            this.planeTextBox.Location = new System.Drawing.Point(155, 483);
-            this.planeTextBox.Name = "planeTextBox";
-            this.planeTextBox.Size = new System.Drawing.Size(142, 20);
-            this.planeTextBox.TabIndex = 15;
-            // 
             // textBoxBeta
             // 
             this.textBoxBeta.Enabled = false;
@@ -505,15 +499,6 @@ namespace Bolsover.Involute
             this.label12.TabIndex = 23;
             this.label12.Text = "Deg. °";
             // 
-            // textBoxClearance
-            // 
-            this.textBoxClearance.Location = new System.Drawing.Point(155, 153);
-            this.textBoxClearance.Name = "textBoxClearance";
-            this.textBoxClearance.Size = new System.Drawing.Size(142, 20);
-            this.textBoxClearance.TabIndex = 42;
-            this.textBoxClearance.TextChanged += new System.EventHandler(this.textBoxClearance_TextChanged);
-            this.textBoxClearance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxClearance_KeyPress);
-            // 
             // label28
             // 
             this.label28.Location = new System.Drawing.Point(303, 150);
@@ -521,6 +506,25 @@ namespace Bolsover.Involute
             this.label28.Size = new System.Drawing.Size(70, 23);
             this.label28.TabIndex = 43;
             this.label28.Text = "% Module";
+            // 
+            // planeTextBox
+            // 
+            this.planeTextBox.Location = new System.Drawing.Point(155, 483);
+            this.planeTextBox.Name = "planeTextBox";
+            this.planeTextBox.Size = new System.Drawing.Size(142, 20);
+            this.planeTextBox.TabIndex = 15;
+            // 
+            // numericUpDownClearance
+            // 
+            this.numericUpDownClearance.DecimalPlaces = 3;
+            this.numericUpDownClearance.Increment = new decimal(new int[] {1, 0, 0, 196608});
+            this.numericUpDownClearance.Location = new System.Drawing.Point(155, 153);
+            this.numericUpDownClearance.Maximum = new decimal(new int[] {1, 0, 0, 0});
+            this.numericUpDownClearance.Name = "numericUpDownClearance";
+            this.numericUpDownClearance.Size = new System.Drawing.Size(142, 20);
+            this.numericUpDownClearance.TabIndex = 5;
+            this.numericUpDownClearance.Value = new decimal(new int[] {167, 0, 0, 196608});
+            this.numericUpDownClearance.ValueChanged += new System.EventHandler(this.numericUpDownClearance_ValueChanged);
             // 
             // buttonApply
             // 
@@ -545,11 +549,13 @@ namespace Bolsover.Involute
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownToothCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownClearance)).EndInit();
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.NumericUpDown numericUpDownClearance;
+
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBoxClearance;
         private System.Windows.Forms.Label label28;
 
         private System.Windows.Forms.Label label25;

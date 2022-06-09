@@ -73,7 +73,7 @@ namespace Bolsover.Involute
             textBoxCentreX.Text = properties.WheelCentreX.ToString();
             textBoxCentreY.Text = properties.WheelCentreY.ToString();
             textBoxPressureAngle.Text = properties.PressureAngle.ToString();
-            textBoxClearance.Text = properties.Clearance.ToString();
+           
 
         }
 
@@ -169,15 +169,9 @@ namespace Bolsover.Involute
         }
 
 
-        private void textBoxClearance_KeyPress(object sender, KeyPressEventArgs e)
+      private void numericUpDownClearance_ValueChanged(object sender, EventArgs e)
         {
-            EnforceNumeric(sender, e);
-           
-        }
-
-        private void textBoxClearance_TextChanged(object sender, EventArgs e)
-        {
-            properties.Clearance = double.Parse(((TextBox) sender).Text);
+            properties.Clearance = (double) ((NumericUpDown) sender).Value;
         }
     }
 }

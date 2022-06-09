@@ -48,10 +48,6 @@
       <HintPath>C:\Program Files\Alibre Design\Program\alibre-dom.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="alibre-server">
-      <HintPath>C:\Program Files\Alibre Design\Program\alibre-server.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="AlibreAddOn">
       <HintPath>C:\Program Files\Alibre Design\Program\AlibreAddOn.dll</HintPath>
       <Private>False</Private>
