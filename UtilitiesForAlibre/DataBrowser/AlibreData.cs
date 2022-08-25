@@ -39,13 +39,17 @@ namespace Bolsover.DataBrowser
                 {
                     var i = 0;
                     foreach (var o in (ArrayList) parent)
+                    {
                         CreateChild(parent, ref i, o);
+                    }
                 }
                 else if (parent is IEnumerable)
                 {
                     var i = 0;
                     foreach (var o in (IEnumerable) parent)
+                    {
                         CreateChild(parent, ref i, o);
+                    }
                 }
                 else
                 {
@@ -88,7 +92,10 @@ namespace Bolsover.DataBrowser
                 | o is double | o is float | o is int | o is uint | o is nint
                 | o is nuint | o is long | o is ulong | o is short | o is ushort
                 | o is ushort | o is string | o is Enum | o is string)
+            {
                 return true;
+            }
+
             return false;
         }
 

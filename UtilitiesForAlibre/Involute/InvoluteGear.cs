@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using AlibreX;
+using Bolsover.Gears;
 
 namespace Bolsover.Involute
 {
@@ -11,7 +12,6 @@ namespace Bolsover.Involute
         private IADDesignPlane designPlane;
         private IADDesignSession session;
 
-        
 
         public InvoluteGear(IADSession session)
         {
@@ -51,6 +51,8 @@ namespace Bolsover.Involute
             properties.FilletRadius = 0.38;
             properties.CountInvolutePoints = 40;
             properties.Session = Session;
+            properties.HelixAngle = 15;
+            properties.HelicalGear = false;
 
             properties.Updated += PropertiesOnUpdated;
         }
@@ -73,8 +75,6 @@ namespace Bolsover.Involute
             textBoxCentreX.Text = properties.WheelCentreX.ToString();
             textBoxCentreY.Text = properties.WheelCentreY.ToString();
             textBoxPressureAngle.Text = properties.PressureAngle.ToString();
-           
-
         }
 
 
@@ -94,9 +94,13 @@ namespace Bolsover.Involute
         {
             if (((ComboBox) sender).SelectedValue != null &&
                 ((string) ((ComboBox) sender).SelectedValue).Equals("Series 1"))
+            {
                 comboBoxModule.DataSource = properties.Series1Module.ToArray();
+            }
             else
+            {
                 comboBoxModule.DataSource = properties.Series2Module.ToArray();
+            }
         }
 
         private void textBoxCentreX_TextChanged(object sender, EventArgs e)
@@ -124,10 +128,15 @@ namespace Bolsover.Involute
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
                 e.KeyChar != '.')
+            {
                 e.Handled = true;
+            }
 
             // only allow one decimal point
-            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1) e.Handled = true;
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
         }
 
         private void textBoxPressureAngle_KeyPress(object sender, KeyPressEventArgs e)
@@ -169,9 +178,19 @@ namespace Bolsover.Involute
         }
 
 
-      private void numericUpDownClearance_ValueChanged(object sender, EventArgs e)
+        private void numericUpDownClearance_ValueChanged(object sender, EventArgs e)
         {
             properties.Clearance = (double) ((NumericUpDown) sender).Value;
+        }
+
+        private void helicalGearCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            properties.HelicalGear = ((CheckBox) sender).CheckState == CheckState.Checked;
+        }
+
+        private void helixAngleUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            properties.HelixAngle = (double) ((NumericUpDown) sender).Value;
         }
     }
 }

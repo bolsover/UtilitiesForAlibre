@@ -96,8 +96,16 @@ namespace Bolsover.DataBrowser
 
         public bool Equals(AlibreFileSystem other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
             return Equals(other.Info.FullName, Info.FullName);
         }
 
@@ -216,7 +224,10 @@ namespace Bolsover.DataBrowser
                 (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_CREATED_BY);
 
             var s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_CREATED_DATE);
-            if (s != null) AlibreCreatedDate = DateTime.Parse((string) s);
+            if (s != null)
+            {
+                AlibreCreatedDate = DateTime.Parse((string) s);
+            }
 
             AlibreCreatingApplication =
                 (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty
@@ -225,7 +236,10 @@ namespace Bolsover.DataBrowser
                 (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_DOCUMENT_NUMBER);
 
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_ENG_APPROVAL_DATE);
-            if (s != null) AlibreEngApprovalDate = DateTime.Parse((string) s);
+            if (s != null)
+            {
+                AlibreEngApprovalDate = DateTime.Parse((string) s);
+            }
 
             AlibreEngApprovedBy =
                 (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_ENG_APPROVED_BY);
@@ -236,15 +250,24 @@ namespace Bolsover.DataBrowser
             AlibreLastAuthor =
                 (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_LAST_AUTHOR);
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_LAST_UPDATE_DATE);
-            if (s != null) AlibreLastUpdateDate = DateTime.Parse((string) s);
+            if (s != null)
+            {
+                AlibreLastUpdateDate = DateTime.Parse((string) s);
+            }
 
             AlibreMfgApprovedBy =
                 (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MFG_APPROVED_BY);
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MFG_APPROVED_DATE);
-            if (s != null) AlibreMfgApprovedDate = DateTime.Parse((string) s);
+            if (s != null)
+            {
+                AlibreMfgApprovedDate = DateTime.Parse((string) s);
+            }
 
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MODIFIED);
-            if (s != null) AlibreModified = DateTime.Parse((string) s);
+            if (s != null)
+            {
+                AlibreModified = DateTime.Parse((string) s);
+            }
 
             AlibreProduct =
                 (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_PRODUCT);
@@ -266,9 +289,21 @@ namespace Bolsover.DataBrowser
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof(AlibreFileSystem)) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != typeof(AlibreFileSystem))
+            {
+                return false;
+            }
+
             return Equals((AlibreFileSystem) obj);
         }
 
@@ -321,12 +356,14 @@ namespace Bolsover.DataBrowser
         public IEnumerable GetFileSystemInfos()
         {
             if (IsDirectory)
+            {
                 foreach (var x in AsDirectory.GetFileSystemInfos())
                 {
                     var alibreFileSystem = new AlibreFileSystem(x);
 
                     Children.Add(alibreFileSystem);
                 }
+            }
 
             return Children;
         }
@@ -342,7 +379,9 @@ namespace Bolsover.DataBrowser
         {
             var handler = PropertyChanged;
             if (handler != null)
+            {
                 handler(this, e);
+            }
         }
 
 

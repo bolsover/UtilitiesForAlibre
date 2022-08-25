@@ -129,7 +129,10 @@ namespace Bolsover.DataBrowser.PartNoConfig
             {
                 var handler = PropertyChanged;
                 Example = prefix + partNo + suffix;
-                if (handler != null) handler(this, e);
+                if (handler != null)
+                {
+                    handler(this, e);
+                }
             }
 
             #endregion
@@ -196,7 +199,11 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                     "\\UtilitiesForAlibre";
                 var directoryInfo = new DirectoryInfo(directoryPath);
-                if (!directoryInfo.Exists) Directory.CreateDirectory(directoryPath);
+                if (!directoryInfo.Exists)
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
                 var filepath = directoryPath + "\\partnumber.settings";
                 var fileInfo = new FileInfo(filepath);
                 if (fileInfo.Exists)
@@ -216,7 +223,11 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                     "\\UtilitiesForAlibre";
                 var directoryInfo = new DirectoryInfo(directoryPath);
-                if (!directoryInfo.Exists) Directory.CreateDirectory(directoryPath);
+                if (!directoryInfo.Exists)
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
                 var filepath = directoryPath + "\\partnumber.settings";
                 var swWriter = File.CreateText(filepath);
                 var tType = partNoSetting.GetType();

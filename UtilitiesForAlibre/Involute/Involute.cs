@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using AlibreX;
+using Bolsover.Gears;
 
 namespace Bolsover.Involute
 {
@@ -13,6 +15,7 @@ namespace Bolsover.Involute
         private List<List<Point>> pointsListR = new();
         private List<List<Point>> pointsListL = new();
 
+
         public Involute(InvoluteProperties properties)
         {
             this.properties = properties;
@@ -24,10 +27,12 @@ namespace Bolsover.Involute
             set => properties = value;
         }
 
+
         public void DrawGear2()
         {
             var sketch = createSketch();
             sketch.BeginChange();
+
             // Draw reference circles
             DrawReferenceCircles(sketch);
             // Draws involute curves and populates the lists of points pointsListR and pointsListL.
@@ -43,6 +48,8 @@ namespace Bolsover.Involute
             }
 
             DrawAddedendumArcs(sketch);
+
+
             sketch.EndChange();
         }
 
@@ -52,6 +59,7 @@ namespace Bolsover.Involute
             var centre = new Point(properties.WheelCentreX, properties.WheelCentreY);
 
             if (properties.DedendumCircleDiameter <= properties.BaseCircleDiameter)
+            {
                 for (var i = 0; i < properties.ToothCount; i++)
                 {
                     var pointR = pointsListR[i][0];
@@ -65,7 +73,9 @@ namespace Bolsover.Involute
                     sketch.Figures.AddCircularArcByCenterStartEnd(centre.X, centre.Y, intersectionL.X, intersectionL.Y,
                         intersectionR.X, intersectionR.Y);
                 }
+            }
             else
+            {
                 for (var i = 0; i < properties.ToothCount; i++)
                 {
                     var pointR = pointsListR[i][0];
@@ -74,6 +84,7 @@ namespace Bolsover.Involute
                     sketch.Figures.AddCircularArcByCenterStartEnd(centre.X, centre.Y, pointL.X, pointL.Y,
                         pointR.X, pointR.Y);
                 }
+            }
         }
 
 
@@ -89,9 +100,13 @@ namespace Bolsover.Involute
                 int j;
                 var lpR = pointsListR[i];
                 if (i == properties.ToothCount - 1)
+                {
                     j = 0;
+                }
                 else
+                {
                     j = i + 1;
+                }
 
                 var lpL = pointsListL[j];
                 var pR = lpR[lpR.Count - 1];
@@ -153,6 +168,7 @@ namespace Bolsover.Involute
             addendumCircle.IsReference = true;
         }
 
+
         /// <summary>
         /// Calls methods that generate lists of points representing th basic involute curves.
         /// Iterates through the teeth generating List<List<Point>> objects that hold the involute curves translated by the tooth angle.
@@ -169,18 +185,30 @@ namespace Bolsover.Involute
             {
                 var theta = 360 / (double) properties.ToothCount * toothNum * Math.PI / 180.0;
                 var translatedRPoints = new List<Point>();
-                foreach (var pointr in pointsR) translatedRPoints.Add(translatePoint(pointr, theta));
+                foreach (var pointr in pointsR)
+                {
+                    translatedRPoints.Add(translatePoint(pointr, theta));
+                }
 
                 var translatedLPoints = new List<Point>();
-                foreach (var pointl in pointsL) translatedLPoints.Add(translatePoint(pointl, theta));
+                foreach (var pointl in pointsL)
+                {
+                    translatedLPoints.Add(translatePoint(pointl, theta));
+                }
 
                 pointsListR.Add(translatedRPoints);
                 pointsListL.Add(translatedLPoints);
             }
 
-            foreach (var listPoint in pointsListR) AddBsplineByInterpolation(sketch, listPoint);
+            foreach (var listPoint in pointsListR)
+            {
+                AddBsplineByInterpolation(sketch, listPoint);
+            }
 
-            foreach (var listPoint in pointsListL) AddBsplineByInterpolation(sketch, listPoint);
+            foreach (var listPoint in pointsListL)
+            {
+                AddBsplineByInterpolation(sketch, listPoint);
+            }
         }
 
 
@@ -236,6 +264,7 @@ namespace Bolsover.Involute
                     Y = baseRadius / 10 * (Math.Sin(step) - step * Math.Cos(step))
                 };
                 if (properties.DedendumCircleDiameter >= properties.BaseCircleDiameter)
+                {
                     if (priorPoint != null &&
                         IsInsideCircle(centre, properties.DedendumCircleDiameter / 20, priorPoint) &&
                         !IsInsideCircle(centre, properties.DedendumCircleDiameter / 20, point) &&
@@ -244,11 +273,18 @@ namespace Bolsover.Involute
                         var Intersection = new Point();
                         var result = Intersect(centre, properties.DedendumCircleDiameter / 20,
                             priorPoint, point, ref Intersection);
-                        if (result == 0) points.Add(Intersection);
+                        if (result == 0)
+                        {
+                            points.Add(Intersection);
+                        }
                     }
+                }
 
                 if (!IsInsideCircle(centre, properties.DedendumCircleDiameter / 20, point) &&
-                    IsInsideCircle(centre, properties.AddendumCircleDiameter / 20, point)) points.Add(point);
+                    IsInsideCircle(centre, properties.AddendumCircleDiameter / 20, point))
+                {
+                    points.Add(point);
+                }
 
                 if (priorPoint != null &&
                     IsIntersecting(centre, properties.AddendumCircleDiameter / 20, priorPoint, point))
@@ -256,7 +292,10 @@ namespace Bolsover.Involute
                     var Intersection = new Point();
                     var result = Intersect(centre, properties.AddendumCircleDiameter / 20,
                         priorPoint, point, ref Intersection);
-                    if (result == 0) points.Add(Intersection);
+                    if (result == 0)
+                    {
+                        points.Add(Intersection);
+                    }
                 }
 
                 priorPoint = point;
@@ -289,6 +328,7 @@ namespace Bolsover.Involute
                     Y = baseRadius / 10 * (Math.Sin(-step - beta) + step * Math.Cos(-step - beta))
                 };
                 if (properties.DedendumCircleDiameter >= properties.BaseCircleDiameter)
+                {
                     if (priorPoint != null &&
                         IsInsideCircle(centre, properties.DedendumCircleDiameter / 20, priorPoint) &&
                         !IsInsideCircle(centre, properties.DedendumCircleDiameter / 20, point) &&
@@ -297,11 +337,18 @@ namespace Bolsover.Involute
                         var Intersection = new Point();
                         var result = Intersect(centre, properties.DedendumCircleDiameter / 20,
                             priorPoint, point, ref Intersection);
-                        if (result == 0) points.Add(Intersection);
+                        if (result == 0)
+                        {
+                            points.Add(Intersection);
+                        }
                     }
+                }
 
                 if (!IsInsideCircle(centre, properties.DedendumCircleDiameter / 20, point) &&
-                    IsInsideCircle(centre, properties.AddendumCircleDiameter / 20, point)) points.Add(point);
+                    IsInsideCircle(centre, properties.AddendumCircleDiameter / 20, point))
+                {
+                    points.Add(point);
+                }
 
                 if (priorPoint != null &&
                     IsIntersecting(centre, properties.AddendumCircleDiameter / 20, priorPoint, point))
@@ -309,7 +356,10 @@ namespace Bolsover.Involute
                     var Intersection = new Point();
                     var result = Intersect(centre, properties.AddendumCircleDiameter / 20,
                         priorPoint, point, ref Intersection);
-                    if (result == 0) points.Add(Intersection);
+                    if (result == 0)
+                    {
+                        points.Add(Intersection);
+                    }
                 }
 
                 priorPoint = point;
@@ -348,8 +398,13 @@ namespace Bolsover.Involute
         {
             if (Math.Sqrt(Math.Pow(CirclePos.X - checkPoint.X, 2) +
                           Math.Pow(CirclePos.Y - checkPoint.Y, 2)) < CircleRad)
+            {
                 return true;
-            else return false;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -365,8 +420,13 @@ namespace Bolsover.Involute
         {
             if (IsInsideCircle(CirclePos, CircleRad, LineStart) ^
                 IsInsideCircle(CirclePos, CircleRad, LineEnd))
+            {
                 return true;
-            else return false;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -427,7 +487,9 @@ namespace Bolsover.Involute
                 // make sure we have the correct root for our line segment
                 if (x < Math.Min(LineStart.X, LineEnd.X) ||
                     x > Math.Max(LineStart.X, LineEnd.X))
+                {
                     x = (-b - sqRtTerm) / (2 * a);
+                }
 
                 //solve for the y-component
                 var y = m * x + d;

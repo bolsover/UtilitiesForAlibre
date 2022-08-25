@@ -21,7 +21,10 @@ namespace Bolsover.DataBrowser.Materials
 
         public void AddChild(MaterialNode childNode)
         {
-            if (ChList is null) ChList = new ArrayList();
+            if (ChList is null)
+            {
+                ChList = new ArrayList();
+            }
 
             ChList.Add(childNode);
         }
@@ -34,6 +37,7 @@ namespace Bolsover.DataBrowser.Materials
             var j = -1;
             if (ChList != null)
 
+            {
                 for (var i = 0; i < ChList.Count; i++)
                 {
                     var node = (MaterialNode) ChList[i];
@@ -43,8 +47,12 @@ namespace Bolsover.DataBrowser.Materials
                         break;
                     }
                 }
+            }
 
-            if (j > -1) ChList.RemoveAt(j);
+            if (j > -1)
+            {
+                ChList.RemoveAt(j);
+            }
         }
     }
 }

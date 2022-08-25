@@ -21,8 +21,16 @@ namespace Bolsover.CycloidalGear
             var sketch = createSketch(Session);
             computeWheel();
             sketch.BeginChange();
-            if (GearProperties.DrawWheel) drawWheel(sketch);
-            if (GearProperties.DrawPinion) drawPinion(sketch);
+            if (GearProperties.DrawWheel)
+            {
+                drawWheel(sketch);
+            }
+
+            if (GearProperties.DrawPinion)
+            {
+                drawPinion(sketch);
+            }
+
             //sketch.Figures.AddLine(0.0, 0.0, 5.5, 6.6);
             sketch.EndChange();
         }
@@ -36,12 +44,16 @@ namespace Bolsover.CycloidalGear
         private void initializePinionToothWidth()
         {
             if (GearProperties.PinionCount <= 10)
+            {
                 GearProperties.PinionHalfToothAngle =
                     1.05D * GearProperties.Module / GearProperties.PinionPitchDiameter;
+            }
 
             else
+            {
                 GearProperties.PinionHalfToothAngle =
                     1.25D * GearProperties.Module / GearProperties.PinionPitchDiameter;
+            }
         }
 
         /// <summary>
@@ -57,7 +69,7 @@ namespace Bolsover.CycloidalGear
                 GearProperties.PinionAddendumRadius = 1.05D * GearProperties.Module;
             }
 
-            else if ((GearProperties.PinionCount == 8) | (GearProperties.PinionCount == 9))
+            else if (GearProperties.PinionCount == 8 | GearProperties.PinionCount == 9)
             {
                 // medium ogival
                 GearProperties.PinionAddendum = 0.67D * GearProperties.Module;
@@ -81,10 +93,15 @@ namespace Bolsover.CycloidalGear
         {
             GearProperties.PinionPitchDiameter = GearProperties.Module * GearProperties.PinionCount;
             if (GearProperties.CustomSlopEnabled)
+            {
                 GearProperties.PinionDedendum = GearProperties.WheelAddendum + GearProperties.CustomSlop;
+            }
             else
+            {
                 GearProperties.PinionDedendum =
                     GearProperties.Module * (GearProperties.PracticalWheelAddendumFactor + 0.4);
+            }
+
             initializePinionToothWidth();
             initialIzePinionAddendum();
         }
@@ -228,7 +245,10 @@ namespace Bolsover.CycloidalGear
             var radius_centre = new Point(centerx1, centery1);
             //var gear_centre = new Point(0.0D, 0.0D);
 
-            if (isPointWithinWheel(center, radius_centre, GearProperties.WheelPitchDiameter)) return radius_centre;
+            if (isPointWithinWheel(center, radius_centre, GearProperties.WheelPitchDiameter))
+            {
+                return radius_centre;
+            }
 
             radius_centre.X = centerx2;
             radius_centre.Y = centery2;

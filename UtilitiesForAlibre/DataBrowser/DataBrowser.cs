@@ -34,7 +34,10 @@ namespace Bolsover.DataBrowser
 
         public static DataBrowserForm Instance()
         {
-            if (instance == null) instance = new DataBrowserForm();
+            if (instance == null)
+            {
+                instance = new DataBrowserForm();
+            }
 
             instance.Visible = true;
             return instance;
@@ -73,7 +76,9 @@ namespace Bolsover.DataBrowser
                 {
                     if (((AlibreFileSystem) rowObject)
                         .HasChildren()) // return existing children if this branch has already been indexed.
+                    {
                         return ((AlibreFileSystem) rowObject).Children;
+                    }
 
                     return ((AlibreFileSystem) rowObject).GetFileSystemInfos();
                 }
@@ -86,11 +91,13 @@ namespace Bolsover.DataBrowser
 
             var roots = new ArrayList();
             foreach (var di in DriveInfo.GetDrives())
+            {
                 if (di.IsReady)
                 {
                     var alFileSystem = new AlibreFileSystem(new DirectoryInfo(di.Name));
                     roots.Add(alFileSystem);
                 }
+            }
 
             treeListView.Roots = roots;
             treeListView.CellEditStarting += HandleCellEditStarting;
@@ -547,13 +554,21 @@ namespace Bolsover.DataBrowser
         private void checkBoxFilter_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxFilter.Checked)
+            {
                 treeListView.ModelFilter = new ModelFilter(rowObject =>
                 {
-                    if (((AlibreFileSystem) rowObject).IsDirectory) return true;
+                    if (((AlibreFileSystem) rowObject).IsDirectory)
+                    {
+                        return true;
+                    }
+
                     return ((AlibreFileSystem) rowObject).Info.Extension.StartsWith(".AD_");
                 });
+            }
             else
+            {
                 treeListView.ModelFilter = new ModelFilter(rowObject => { return true; });
+            }
         }
 
         /// <summary>
@@ -579,7 +594,10 @@ namespace Bolsover.DataBrowser
                                 "\\UtilitiesForAlibre";
             var filepath = directorypath + "\\table.settings";
             var directoryInfo = new DirectoryInfo(directorypath);
-            if (!directoryInfo.Exists) Directory.CreateDirectory(directorypath);
+            if (!directoryInfo.Exists)
+            {
+                Directory.CreateDirectory(directorypath);
+            }
 
             File.WriteAllBytes(filepath, treeListViewViewState);
         }
@@ -614,7 +632,10 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void partNoConfigMouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) MouseDownLocation = e.Location;
+            if (e.Button == MouseButtons.Left)
+            {
+                MouseDownLocation = e.Location;
+            }
         }
 
         /// <summary>
@@ -661,7 +682,10 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void HandleCellEditFinished(object sender, CellEditEventArgs e)
         {
-            if (IsCopyToAllSelected) CopyToSelected(sender, e);
+            if (IsCopyToAllSelected)
+            {
+                CopyToSelected(sender, e);
+            }
         }
 
 
@@ -708,11 +732,13 @@ namespace Bolsover.DataBrowser
 
             // drawing can only edit description and part no fields
             if (rowObject.Info.Extension.ToUpper().StartsWith(".AD_D"))
+            {
                 if (!(e.Column == olvColumnAlibreDescription || e.Column == olvColumnAlibrePartNo))
                 {
                     e.Cancel = true;
                     return;
                 }
+            }
 
 
             // olvColumnAlibreMaterial uses MaterialPicker other string based columns use default editor
@@ -838,7 +864,11 @@ namespace Bolsover.DataBrowser
             var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                 "\\UtilitiesForAlibre";
             var directoryInfo = new DirectoryInfo(directoryPath);
-            if (!directoryInfo.Exists) Directory.CreateDirectory(directoryPath);
+            if (!directoryInfo.Exists)
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
             var filepath = directoryPath + "\\table.settings";
             var fileInfo = new FileInfo(filepath);
             if (fileInfo.Exists)

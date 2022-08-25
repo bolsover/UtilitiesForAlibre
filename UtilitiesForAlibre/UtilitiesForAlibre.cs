@@ -11,6 +11,7 @@ using Bolsover.Involute;
 using Bolsover.PlaneFinder;
 using Bolsover.Sample;
 using Bolsover.ThreeDLine;
+using Bolsover.Gears;
 using com.alibre.automation;
 
 namespace Bolsover
@@ -29,6 +30,7 @@ namespace Bolsover
         private const int SUBMENU_ID_UTILS_DATA_VIEWER = 604;
         private const int SUBMENU_ID_UTILS_3DLINE = 605;
         private const int SUBMENU_ID_UTILS_INVOLUTE_GEAR = 607;
+        private const int SUBMENU_ID_UTILS_GEARS = 608;
         private const int SUBMENU_ID_UTILS_SAMPLE = 606;
         private const int MENU_ID_HELP = 701;
         private const int SUBMENU_ID_HELP_ABOUT = 702;
@@ -39,6 +41,7 @@ namespace Bolsover
 
         private IADRoot alibreRoot;
         private IntPtr parentWinHandle;
+
 
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
@@ -63,10 +66,11 @@ namespace Bolsover
             {
                 SUBMENU_ID_FILE_OPEN, SUBMENU_ID_FILE_CLOSE, SUBMENU_ID_FILE_EXIT
             };
-            MENU_IDS_UTILS = new int[7]
+            MENU_IDS_UTILS = new int[8]
             {
                 SUBMENU_ID_DATA_BROWSER, SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, SUBMENU_ID_UTILS_PLANE_FINDER,
                 SUBMENU_ID_UTILS_DATA_VIEWER, SUBMENU_ID_UTILS_3DLINE, SUBMENU_ID_UTILS_INVOLUTE_GEAR,
+                SUBMENU_ID_UTILS_GEARS,
                 SUBMENU_ID_UTILS_SAMPLE
             };
             MENU_IDS_ROOT = new int[3]
@@ -133,6 +137,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_CLOSE: return "Save & Close";
                 case SUBMENU_ID_FILE_EXIT: return "Save All, Exit";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator Open/Close";
+                case SUBMENU_ID_UTILS_GEARS: return "Open Spur Gear Generator Dialog";
                 case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return "Involute Gear Generator (Experimental) Open/Close";
                 case SUBMENU_ID_HELP_ABOUT: return "About";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Sketch Plane Finder Open/Close";
@@ -182,6 +187,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
@@ -204,6 +210,7 @@ namespace Bolsover
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_SAMPLE: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -222,6 +229,7 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -253,6 +261,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_CLOSE: return "Saves and closes the current file";
                 case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Opens/Closes Cycloidal Gear Generator";
+                case SUBMENU_ID_UTILS_GEARS: return "Opens Gear Generator dialog";
                 case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return "Opens/Closes Experimental Involute Gear Generator";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens/Closes Property Viewer";
@@ -334,6 +343,10 @@ namespace Bolsover
                 {
                     return DoInvoluteGear(session);
                 }
+                case SUBMENU_ID_UTILS_GEARS:
+                {
+                    return DoGears();
+                }
                 case SUBMENU_ID_UTILS_PLANE_FINDER:
                 {
                     return DoPlaneFinder(session);
@@ -393,7 +406,9 @@ namespace Bolsover
             ThreeDLineAddOnCommand threeDLineAddOnCommand;
             if (threeDLineAddOnCommands.TryGetValue(e.ThreeDLineAddOnCommand.session.Identifier,
                     out threeDLineAddOnCommand))
+            {
                 threeDLineAddOnCommands.Remove(e.ThreeDLineAddOnCommand.session.Identifier);
+            }
         }
 
         #endregion
@@ -432,7 +447,9 @@ namespace Bolsover
         {
             SampleAddOnCommand sampleAddOnCommand;
             if (sampleAddOnCommands.TryGetValue(e.SampleAddOnCommand.session.Identifier, out sampleAddOnCommand))
+            {
                 sampleAddOnCommands.Remove(e.SampleAddOnCommand.session.Identifier);
+            }
         }
 
         #endregion
@@ -479,7 +496,9 @@ namespace Bolsover
             AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
             if (dataViewerAddOnCommands.TryGetValue(e.alibreDataViewerAddOnCommand.session.Identifier,
                     out alibreDataViewerAddOnCommand))
+            {
                 dataViewerAddOnCommands.Remove(e.alibreDataViewerAddOnCommand.session.Identifier);
+            }
         }
 
         #endregion
@@ -519,7 +538,9 @@ namespace Bolsover
             PlaneFinderAddOnCommand planeFinderAddOnCommand;
             if (planeFinderAddOnCommands.TryGetValue(e.planeFinderAddOnCommand.session.Identifier,
                     out planeFinderAddOnCommand))
+            {
                 planeFinderAddOnCommands.Remove(e.planeFinderAddOnCommand.session.Identifier);
+            }
         }
 
         #endregion
@@ -564,7 +585,9 @@ namespace Bolsover
             InvoluteGearAddOnCommand involuteGearAddOnCommand;
             if (involuteGearAddOnCommands.TryGetValue(e.involuteGearAddOnCommand.session.Identifier,
                     out involuteGearAddOnCommand))
+            {
                 involuteGearAddOnCommands.Remove(e.involuteGearAddOnCommand.session.Identifier);
+            }
         }
 
         #endregion
@@ -609,7 +632,9 @@ namespace Bolsover
             CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
             if (cycloidalGearAddOnCommands.TryGetValue(e.cycloidalGearAddOnCommand.session.Identifier,
                     out cycloidalGearAddOnCommand))
+            {
                 cycloidalGearAddOnCommands.Remove(e.cycloidalGearAddOnCommand.session.Identifier);
+            }
         }
 
         #endregion
@@ -637,6 +662,23 @@ namespace Bolsover
         {
             var browserForm = DataBrowserForm.Instance();
             browserForm.Visible = true;
+            return null;
+        }
+
+        #endregion
+
+        #region Gears
+
+        /// <summary>
+        /// Opens the DataBrowser.
+        /// Note that the DataBrowser returned is a static instance.
+        /// Any files already indexed by the DataBrowser will not show updated data if subsequently saved via Alibre. 
+        /// </summary>
+        /// <returns></returns>
+        private IAlibreAddOnCommand DoGears()
+        {
+            Gears.Gears gears = new Gears.Gears();
+            gears.Visible = true;
             return null;
         }
 
@@ -706,7 +748,11 @@ namespace Bolsover
         /// <returns></returns>
         private IAlibreAddOnCommand DoFileExit()
         {
-            foreach (IADSession session in alibreRoot.Sessions) session.Close(true);
+            foreach (IADSession session in alibreRoot.Sessions)
+            {
+                session.Close(true);
+            }
+
             alibreRoot.Terminate();
             return null;
         }

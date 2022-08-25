@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using AlibreAddOn;
 using AlibreX;
-
 using Bolsover.Sample;
 
 
@@ -13,6 +11,7 @@ namespace Bolsover
     {
         private const int MENU_ID_ROOT = 401;
         private const int MENU_ID_SAMPLE = 402;
+
         private int[] MENU_IDS_BASE = new int[1]
         {
             MENU_ID_SAMPLE
@@ -35,7 +34,6 @@ namespace Bolsover
         /// </summary>
         public int RootMenuItem => MENU_ID_ROOT;
 
-       
 
         /// <summary>
         /// Description("Returns Whether the given Menu ID has any sub menus")
@@ -44,9 +42,8 @@ namespace Bolsover
         /// <returns></returns>
         public bool HasSubMenus(int menuID)
         {
-
-         //   return false;
-            return menuID ==  MENU_ID_ROOT;
+            //   return false;
+            return menuID == MENU_ID_ROOT;
         }
 
         /// <summary>
@@ -66,9 +63,7 @@ namespace Bolsover
         /// <returns></returns>
         public string MenuItemText(int menuID)
         {
-            
             return "Sample";
-          
         }
 
         /// <summary>
@@ -93,9 +88,7 @@ namespace Bolsover
         /// <returns></returns>
         public ADDONMenuStates MenuItemState(int menuID, string sessionIdentifier)
         {
-
             return ADDONMenuStates.ADDON_MENU_ENABLED;
-          
         }
 
         /// <summary>
@@ -105,9 +98,7 @@ namespace Bolsover
         /// <returns></returns>
         public string MenuItemToolTip(int menuID)
         {
-            
             return "Utilities";
-          
         }
 
         /// <summary>
@@ -117,7 +108,7 @@ namespace Bolsover
         /// <returns></returns>
         public string MenuIcon(int menuID)
         {
-             return "nexus.ico";
+            return "nexus.ico";
         }
 
         /// <summary>
@@ -139,14 +130,12 @@ namespace Bolsover
         public IAlibreAddOnCommand InvokeCommand(int menuID, string sessionIdentifier)
         {
             var session = alibreRoot.Sessions.Item(sessionIdentifier);
-            
-            return DoSample(session);
 
+            return DoSample(session);
         }
 
         #endregion
 
-      
 
         #region Sample
 
@@ -182,12 +171,13 @@ namespace Bolsover
         {
             SampleAddOnCommand sampleAddOnCommand;
             if (emptyAddOnCommands.TryGetValue(e.SampleAddOnCommand.session.Identifier, out sampleAddOnCommand))
+            {
                 emptyAddOnCommands.Remove(e.SampleAddOnCommand.session.Identifier);
+            }
         }
 
         #endregion
 
-      
 
         /// <summary>
         /// Loads Data from AddOn

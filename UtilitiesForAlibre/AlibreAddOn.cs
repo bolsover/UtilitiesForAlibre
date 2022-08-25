@@ -12,6 +12,7 @@ namespace AlibreAddOnAssembly
         private static IntPtr parentWinHandle;
         private static UtilitiesForAlibre _utilitiesForAlibre;
 
+
         public static void AddOnLoad(IntPtr hwnd, IAutomationHook pAutomationHook, IntPtr unused)
         {
             alibreRoot = (IADRoot) pAutomationHook.Root;
@@ -47,7 +48,7 @@ namespace AlibreAddOnAssembly
 
         public static IAlibreAddOn GetAddOnInterface()
         {
-           return (IAlibreAddOn) _utilitiesForAlibre;
+            return (IAlibreAddOn) _utilitiesForAlibre;
         }
     }
 }

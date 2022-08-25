@@ -41,6 +41,12 @@ namespace Bolsover.Involute
         //0.38*module The radius of curvature between tooth surface and the tooth root.
         private double filletRadius;
 
+        private bool helicalGear;
+
+        private double helixAngle;
+
+        private double helixPitchLength;
+
 
         private double clearance;
 
@@ -91,6 +97,7 @@ namespace Bolsover.Involute
             BaseCircleDiameter = PitchCircleDiameter * Math.Cos(PressureAngle * Math.PI / 180);
             AddendumCircleDiameter = PitchCircleDiameter + 2 * Addendum;
             DedendumCircleDiameter = PitchCircleDiameter - 2 * Dedendum;
+
             Alpha = Math.Sqrt(PitchCircleDiameter * PitchCircleDiameter - BaseCircleDiameter * BaseCircleDiameter) /
                 (BaseCircleDiameter / 180 * Math.PI) - PressureAngle;
             Beta = 360 / (4 * (double) ToothCount) - Alpha;
@@ -269,6 +276,24 @@ namespace Bolsover.Involute
                 clearance = value;
                 recalculate();
             }
+        }
+
+        public bool HelicalGear
+        {
+            get => helicalGear;
+            set => helicalGear = value;
+        }
+
+        public double HelixAngle
+        {
+            get => helixAngle;
+            set => helixAngle = value;
+        }
+
+        public double HelixPitchLength
+        {
+            get => helixPitchLength;
+            set => helixPitchLength = value;
         }
 
         protected virtual void OnUpdated()

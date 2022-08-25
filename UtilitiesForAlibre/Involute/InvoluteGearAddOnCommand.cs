@@ -186,7 +186,9 @@ namespace Bolsover.Involute
                 try
                 {
                     if (proxy.Target.GetType() == typeof(AlibreDesignPlane))
+                    {
                         InvoluteGear.DesignPlane = proxy.Target as IADDesignPlane;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -204,7 +206,11 @@ namespace Bolsover.Involute
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (InvoluteGear != null) InvoluteGear.Dispose();
+            if (InvoluteGear != null)
+            {
+                InvoluteGear.Dispose();
+            }
+
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);

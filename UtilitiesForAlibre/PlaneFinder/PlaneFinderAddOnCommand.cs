@@ -175,7 +175,10 @@ namespace Bolsover.PlaneFinder
                 var proxy = (IADTargetProxy) session.SelectedObjects.Item(0);
                 try
                 {
-                    if (proxy.Target.GetType() == typeof(AlibreSketch)) PlaneFinder.Sketch = proxy.Target as IADSketch;
+                    if (proxy.Target.GetType() == typeof(AlibreSketch))
+                    {
+                        PlaneFinder.Sketch = proxy.Target as IADSketch;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -192,7 +195,11 @@ namespace Bolsover.PlaneFinder
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (PlaneFinder != null) PlaneFinder.Dispose();
+            if (PlaneFinder != null)
+            {
+                PlaneFinder.Dispose();
+            }
+
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);

@@ -236,7 +236,11 @@ namespace Bolsover.Sample
         {
             Debug.WriteLine("OnTerminate");
             WriteToUserControl("OnTerminate");
-            if (SampleUserControl != null) SampleUserControl.Dispose();
+            if (SampleUserControl != null)
+            {
+                SampleUserControl.Dispose();
+            }
+
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);

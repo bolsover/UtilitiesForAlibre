@@ -192,7 +192,11 @@ namespace Bolsover.AlibreDataViewer
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (alibreDataViewer != null) alibreDataViewer.Dispose();
+            if (alibreDataViewer != null)
+            {
+                alibreDataViewer.Dispose();
+            }
+
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);

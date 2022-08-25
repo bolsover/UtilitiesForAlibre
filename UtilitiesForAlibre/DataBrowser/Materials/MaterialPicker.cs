@@ -40,9 +40,9 @@ namespace Bolsover.DataBrowser.Materials
         }
 
 
-       /*
-         * Event handler used when a material item has been selected
-         */
+        /*
+          * Event handler used when a material item has been selected
+          */
         public event EventHandler<SelectedItemEventArgs> ItemHasBeenSelected;
 
         private void HandleCellEditStarting(object sender, CellEditEventArgs e)
@@ -51,8 +51,11 @@ namespace Bolsover.DataBrowser.Materials
             // Pass onto ItemHasBeenSelected handler
             var handler = ItemHasBeenSelected;
             if (handler != null)
+            {
                 handler(this, new SelectedItemEventArgs
                     {SelectedChoice = value});
+            }
+
             // dispose the MaterialPicker
             Dispose();
         }
@@ -127,7 +130,10 @@ namespace Bolsover.DataBrowser.Materials
                     toplevel.RemoveChild(subMaterial);
                 }
 
-                foreach (IADMaterialLibrary subLibrary in folder.SubFolders) WalkMaterials(subLibrary, f, toplevel);
+                foreach (IADMaterialLibrary subLibrary in folder.SubFolders)
+                {
+                    WalkMaterials(subLibrary, f, toplevel);
+                }
             }
         }
 

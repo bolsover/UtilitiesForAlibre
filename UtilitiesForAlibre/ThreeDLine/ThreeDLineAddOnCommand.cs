@@ -23,7 +23,6 @@ namespace Bolsover.ThreeDLine
             this.session = session; // a reference to the current design session
             PanelPosition = (int) ADDockStyle.AD_RIGHT; // where do you want the docked panel
             ThreeDLineUserControl = new ThreeDLineUserControl(session); // finally get to create your user control
-            
         }
 
         private IAD3DSketch get3DSketch()
@@ -32,12 +31,11 @@ namespace Bolsover.ThreeDLine
             if (session.SessionType == ADObjectSubType.AD_PART)
             {
                 myAd3DSketch = ((IADPartSession) session).Sketches3D.Add3DSketch("My3DSketch");
-              
             }
 
             return myAd3DSketch;
         }
-   
+
 
         /// <summary>
         /// Actions to take when closing
@@ -63,7 +61,7 @@ namespace Bolsover.ThreeDLine
             set
             {
                 Debug.WriteLine(value);
-                
+
                 if (value != (long) IntPtr.Zero)
                 {
                     var control = Control.FromHandle((IntPtr) value);
@@ -88,7 +86,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool IsTwoWayToggle()
         {
-           
             return false;
         }
 
@@ -99,7 +96,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool AddTab()
         {
-        
             return false;
         }
 
@@ -110,7 +106,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public void OnShowUI(long hWnd)
         {
-          
         }
 
         /// <summary>
@@ -124,7 +119,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public void OnRender(int hDC, int clipRectX, int clipRectY, int clipRectWidth, int clipRectHeight)
         {
-         
         }
 
 
@@ -138,7 +132,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnClick(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-         
             return false;
         }
 
@@ -151,7 +144,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnDoubleClick(int screenX, int screenY)
         {
-        
             return false;
         }
 
@@ -165,8 +157,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseDown(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-         
-
             return false;
         }
 
@@ -180,7 +170,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseMove(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-       
             return false;
         }
 
@@ -194,7 +183,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseUp(int screenX, int screenY, ADDONMouseButtons buttons)
         {
-         
             return false;
         }
 
@@ -211,7 +199,6 @@ namespace Bolsover.ThreeDLine
                 try
                 {
                     Debug.WriteLine(proxy.DisplayName);
-                   
                 }
                 catch (Exception e)
                 {
@@ -228,8 +215,11 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public void OnTerminate()
         {
-         
-            if (ThreeDLineUserControl != null) ThreeDLineUserControl.Dispose();
+            if (ThreeDLineUserControl != null)
+            {
+                ThreeDLineUserControl.Dispose();
+            }
+
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);
@@ -247,7 +237,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public void OnComplete()
         {
-          
             try
             {
                 DockedPanelHandle = CommandSite.AddDockedPanel(PanelPosition, "3D Line Add On");
@@ -258,8 +247,6 @@ namespace Bolsover.ThreeDLine
                     MessageBoxIcon.Exclamation);
                 throw ex;
             }
-
-          
         }
 
         /// <summary>
@@ -270,7 +257,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnKeyDown(int keycode)
         {
-          
             return false;
         }
 
@@ -282,7 +268,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnKeyUp(int keycode)
         {
-         
             return false;
         }
 
@@ -293,7 +278,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnEscape()
         {
-         
             return false;
         }
 
@@ -305,7 +289,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public bool OnMouseWheel(double delta)
         {
-          
             return false;
         }
 
@@ -315,7 +298,6 @@ namespace Bolsover.ThreeDLine
         /// <exception cref="NotImplementedException"></exception>
         public void On3DRender()
         {
-          
         }
 
         /// <summary>

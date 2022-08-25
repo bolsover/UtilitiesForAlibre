@@ -186,7 +186,9 @@ namespace Bolsover.CycloidalGear
                 try
                 {
                     if (proxy.Target.GetType() == typeof(AlibreDesignPlane))
+                    {
                         CycliodalGearParametersForm.DesignPlane = proxy.Target as IADDesignPlane;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -204,7 +206,11 @@ namespace Bolsover.CycloidalGear
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (CycliodalGearParametersForm != null) CycliodalGearParametersForm.Dispose();
+            if (CycliodalGearParametersForm != null)
+            {
+                CycliodalGearParametersForm.Dispose();
+            }
+
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);

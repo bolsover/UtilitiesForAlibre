@@ -74,8 +74,8 @@ namespace Bolsover.Involute
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.planeTextBox = new System.Windows.Forms.TextBox();
             this.numericUpDownClearance = new System.Windows.Forms.NumericUpDown();
+            this.planeTextBox = new System.Windows.Forms.TextBox();
             this.buttonApply = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownToothCount)).BeginInit();
@@ -134,7 +134,7 @@ namespace Bolsover.Involute
             this.tableLayoutPanel1.Controls.Add(this.planeTextBox, 1, 16);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 18;
+            this.tableLayoutPanel1.RowCount = 20;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -152,8 +152,10 @@ namespace Bolsover.Involute
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(376, 528);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(376, 603);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label8
@@ -507,13 +509,6 @@ namespace Bolsover.Involute
             this.label28.TabIndex = 43;
             this.label28.Text = "% Module";
             // 
-            // planeTextBox
-            // 
-            this.planeTextBox.Location = new System.Drawing.Point(155, 483);
-            this.planeTextBox.Name = "planeTextBox";
-            this.planeTextBox.Size = new System.Drawing.Size(142, 20);
-            this.planeTextBox.TabIndex = 15;
-            // 
             // numericUpDownClearance
             // 
             this.numericUpDownClearance.DecimalPlaces = 3;
@@ -525,6 +520,13 @@ namespace Bolsover.Involute
             this.numericUpDownClearance.TabIndex = 5;
             this.numericUpDownClearance.Value = new decimal(new int[] {167, 0, 0, 196608});
             this.numericUpDownClearance.ValueChanged += new System.EventHandler(this.numericUpDownClearance_ValueChanged);
+            // 
+            // planeTextBox
+            // 
+            this.planeTextBox.Location = new System.Drawing.Point(155, 483);
+            this.planeTextBox.Name = "planeTextBox";
+            this.planeTextBox.Size = new System.Drawing.Size(142, 20);
+            this.planeTextBox.TabIndex = 15;
             // 
             // buttonApply
             // 

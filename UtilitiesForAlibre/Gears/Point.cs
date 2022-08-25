@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Bolsover.Involute
+namespace Bolsover.Gears
 {
     /// <summary>
     /// A class to represent points in space
@@ -90,32 +91,77 @@ namespace Bolsover.Involute
             return new Point(X * cosAngle - Y * sinAngle, X * sinAngle + Y * cosAngle);
         }
 
-        // public static  Point Rotate(Point point, double angle)
-        // {
-        //     var cosAngle = Math.Cos(angle);
-        //     var sinAngle = Math.Sin(angle);
-        //     return new Point(point.X * cosAngle - point.Y * sinAngle, point.X * sinAngle + point.Y * cosAngle);
-        // }
-
-        /// <summary>
-        /// Translates a point about an angle
-        /// </summary>
-        /// <param name="point"></param>
-        /// <param name="theta"></param>
-        /// <returns></returns>
-        public static Point TranslatesPoint(Point point, double theta)
-        {
-            var result = new Point()
-            {
-                X = Math.Cos(theta) * point.X - Math.Sin(theta) * point.Y,
-                Y = Math.Sin(theta) * point.X + Math.Cos(theta) * point.Y
-            };
-            return result;
-        }
 
         public Point RotateAbout(Point origin, double angle)
         {
             return origin + (this - origin).Rotate(angle);
+        }
+
+        /// <summary>
+        /// Rotate a sequence of points about the origin in the anticlockwise
+        /// direction by the angle phi
+        /// </summary>
+        /// <param name="points">The points from which a rotated
+        /// <param name="phi">The angle to rotate by in radians</param>
+        /// point sequence will be generated</param>
+        /// <returns>The sequence of rotated points</returns>
+        /// 
+        public static List<Point> Rotated(List<Point> points, double phi)
+        {
+            var result = new List<Point>();
+            foreach (var point in points)
+            {
+                result.Add(point.Rotate(phi));
+            }
+
+            return result;
+        }
+
+        public static Point Mirror(Point point, double angleDegrees)
+        {
+            var magnitude = Math.Sqrt(point.X * point.X + point.Y * point.Y);
+            var d = Degrees(Math.Acos(point.Y / magnitude));
+            var d2 = angleDegrees - (d - angleDegrees);
+
+            var result = new Point()
+            {
+                X = Math.Sin(Radians(d2)) * magnitude,
+                Y = Math.Cos(Radians(d2)) * magnitude
+            };
+            return result;
+        }
+
+        /// <summary>
+        /// Converts the given angle in Degrees ° to Radians
+        /// Uses the formula Radians = Degrees * Pi/180
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns></returns>
+        public static double Radians(double angle)
+        {
+            return angle * (Math.PI / 180.0);
+        }
+
+        /// <summary>
+        /// Converts the given angle in Radians to Degrees
+        /// Uses the formula Degrees = Radians * 180/Pi
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static double Degrees(double radians)
+        {
+            return radians * (180.0 / Math.PI);
+        }
+
+        public static List<Point> MirrorPoints(List<Point> points, double angleDegrees)
+        {
+            var result = new List<Point>();
+            foreach (var point in points)
+            {
+                result.Add(Mirror(point, angleDegrees));
+            }
+
+            return result;
         }
     }
 }

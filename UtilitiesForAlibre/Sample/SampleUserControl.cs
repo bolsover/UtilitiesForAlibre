@@ -17,7 +17,10 @@ namespace Bolsover.Sample
         {
             textBox.AppendText(text + "\n");
             textBox.ScrollToCaret();
-            if (textBox.Text.Length > 5000) textBox.Text = textBox.Text.Substring(4000, textBox.Text.Length - 4000);
+            if (textBox.Text.Length > 5000)
+            {
+                textBox.Text = textBox.Text.Substring(4000, textBox.Text.Length - 4000);
+            }
         }
     }
 }

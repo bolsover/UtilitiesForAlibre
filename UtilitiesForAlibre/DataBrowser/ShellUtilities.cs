@@ -77,9 +77,15 @@ namespace Bolsover.DataBrowser
             get
             {
                 if (listView != null)
+                {
                     return listView.SmallImageList.Images;
+                }
+
                 if (treeView != null)
+                {
                     return treeView.ImageList.Images;
+                }
+
                 return null;
             }
         }
@@ -89,7 +95,10 @@ namespace Bolsover.DataBrowser
             get
             {
                 if (listView != null)
+                {
                     return listView.LargeImageList.Images;
+                }
+
                 return null;
             }
         }
@@ -99,9 +108,15 @@ namespace Bolsover.DataBrowser
             get
             {
                 if (listView != null)
+                {
                     return listView.SmallImageList;
+                }
+
                 if (treeView != null)
+                {
                     return treeView.ImageList;
+                }
+
                 return null;
             }
         }
@@ -111,7 +126,10 @@ namespace Bolsover.DataBrowser
             get
             {
                 if (listView != null)
+                {
                     return listView.LargeImageList;
+                }
+
                 return null;
             }
         }
@@ -124,12 +142,18 @@ namespace Bolsover.DataBrowser
         public int GetImageIndex(string path)
         {
             if (Directory.Exists(path))
+            {
                 path = Environment.SystemDirectory; // optimization! give all directories the same image
+            }
             else if (Path.HasExtension(path))
+            {
                 path = Path.GetExtension(path);
+            }
 
             if (SmallImageCollection.ContainsKey(path))
+            {
                 return SmallImageCollection.IndexOfKey(path);
+            }
 
             try
             {
@@ -147,7 +171,9 @@ namespace Bolsover.DataBrowser
         private void AddImageToCollection(string key, ImageList imageList, Icon image)
         {
             if (imageList == null)
+            {
                 return;
+            }
 
             if (imageList.ImageSize == image.Size)
             {
@@ -211,7 +237,10 @@ namespace Bolsover.DataBrowser
             var flags = SHGFI_TYPENAME;
             var result = SHGetFileInfo(path, 0, out shfi, Marshal.SizeOf(shfi), flags);
             if (result.ToInt32() == 0)
+            {
                 return string.Empty;
+            }
+
             return shfi.szTypeName;
         }
 
@@ -226,22 +255,31 @@ namespace Bolsover.DataBrowser
         {
             var flags = SHGFI_ICON;
             if (isSmallImage)
+            {
                 flags |= SHGFI_SMALLICON;
+            }
 
             var fileAttributes = 0;
             if (useFileType)
             {
                 flags |= SHGFI_USEFILEATTRIBUTES;
                 if (Directory.Exists(path))
+                {
                     fileAttributes = FILE_ATTRIBUTE_DIRECTORY;
+                }
                 else
+                {
                     fileAttributes = FILE_ATTRIBUTE_NORMAL;
+                }
             }
 
             var shfi = new SHFILEINFO();
             var result = SHGetFileInfo(path, fileAttributes, out shfi, Marshal.SizeOf(shfi), flags);
             if (result.ToInt32() == 0)
+            {
                 return null;
+            }
+
             return Icon.FromHandle(shfi.hIcon);
         }
 
@@ -260,7 +298,10 @@ namespace Bolsover.DataBrowser
             var flags = SHGFI_ICON | SHGFI_SYSICONINDEX;
             var result = SHGetFileInfo(path, 0, out shfi, Marshal.SizeOf(shfi), flags);
             if (result.ToInt32() == 0)
+            {
                 return -1;
+            }
+
             return shfi.iIcon;
         }
 
