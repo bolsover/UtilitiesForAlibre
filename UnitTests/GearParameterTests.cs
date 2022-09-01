@@ -1,6 +1,7 @@
 ﻿using Bolsover.Gears;
 using NUnit.Framework;
 
+
 namespace UnitTests
 {
     public class GearParameterTests
@@ -223,25 +224,25 @@ namespace UnitTests
             Assert.AreEqual(expectedResult, parameters.StandardCentreDistanceA, 0.0001);
         }
 
-        [Test]
-        public void CircularToothThicknessS1()
-        {
-            toothThicknessParameters();
-            var expectedResult = 17.8918;
+        // [Test]
+        // public void CircularToothThicknessS1()
+        // {
+        //     toothThicknessParameters();
+        //     var expectedResult = 17.8918;
+        //
+        //     Assert.AreEqual(expectedResult, parameters.CircularToothThicknessS1, 0.0001);
+        //     standardParameters();
+        // }
 
-            Assert.AreEqual(expectedResult, parameters.CircularToothThicknessS1, 0.0001);
-            standardParameters();
-        }
-
-        [Test]
-        public void ChordalToothThicknessSj1()
-        {
-            toothThicknessParameters();
-            var expectedResult = 17.8256;
-
-            Assert.AreEqual(expectedResult, parameters.ChordalToothThicknessSj1, 0.0001);
-            standardParameters();
-        }
+        // [Test]
+        // public void ChordalToothThicknessSj1()
+        // {
+        //     toothThicknessParameters();
+        //     var expectedResult = 17.8256;
+        //
+        //     Assert.AreEqual(expectedResult, parameters.ChordalToothThicknessSj1, 0.0001);
+        //     standardParameters();
+        // }
 
         [Test]
         public void HalfToothAngleAtPitchCircleTheta1()
@@ -253,14 +254,14 @@ namespace UnitTests
             standardParameters();
         }
 
-        [Test]
-        public void TeethWithoutUndercutZc1()
-        {
-            standardParameters();
-            var expectedResult = 6.8389;
-
-            Assert.AreEqual(expectedResult, parameters.TeethWithoutUndercutZc1, 0.0001);
-        }
+        // [Test]
+        // public void TeethWithoutUndercutZc1()
+        // {
+        //     standardParameters();
+        //     var expectedResult = 6.8389;
+        //
+        //     Assert.AreEqual(expectedResult, parameters.TeethWithoutUndercutZc1, 0.0001);
+        // }
 
         [Test]
         public void SumCoefficientOfProfileShift()
@@ -298,7 +299,7 @@ namespace UnitTests
         //
         //     Assert.AreEqual(expectedResult, parameters.OperatingCentreDistanceAw, 0.0001);
         // }
-
+       
 
         [Test]
         public void InvoluteFunctionInvAlpha()

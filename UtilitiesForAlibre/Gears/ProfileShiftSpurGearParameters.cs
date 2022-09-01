@@ -31,6 +31,7 @@ namespace Bolsover.Gears
         private GearType type;
         private double pressureAngleAlpha;
         private Point centre;
+        private double helixAngle = 0;
 
 
         #region CommonToBothGears
@@ -40,6 +41,7 @@ namespace Bolsover.Gears
             StringBuilder sb = new StringBuilder();
             sb.Append("Common Data\n");
             sb.Append("Module: " + ModuleMn + "\n");
+            sb.Append("Transverse Module: " + ModuleMt + "\n");
             sb.Append("Centre: " + Centre.X + ", " + Centre.Y + "\n");
             sb.Append("PressureAngle: " + PressureAngleAlpha + "\n");
             sb.Append("DistributionOfProfileShift: " + DistributionOfProfileShift + "\n");
@@ -109,6 +111,18 @@ namespace Bolsover.Gears
                 Update();
             }
         }
+        
+        public double HelixAngle
+        {
+            get => helixAngle;
+        set
+        {
+            helixAngle = value;
+            Update();
+        }
+         
+        }
+
 
         public double PressureAngleAlpha
         {
@@ -152,8 +166,17 @@ namespace Bolsover.Gears
             }
         }
 
+        /// <summary>
+        /// Transverse Module
+        /// </summary>
+        public double ModuleMt => ModuleMn / Math.Cos(Point.Radians(HelixAngle));
 
-        public double CentreDistanceIncrementFactorY => WorkingCentreDistanceAw / ModuleMn - (TeethZ1 + TeethZ2) / 2;
+        public double RadialPressureAngle => Point.Degrees(Math.Atan(Math.Tan(Point.Radians(PressureAngleAlpha)) / Math.Cos(Point.Radians(HelixAngle))));
+
+
+        public double CentreDistanceIncrementFactorY => (WorkingCentreDistanceAw / ModuleMn) - ((TeethZ1 + TeethZ2) / (2 * Math.Cos(Point.Radians(HelixAngle))));
+   //     public double CentreDistanceIncrementFactorY =>  (TeethZ1 + TeethZ2) / 2 * Math.Cos(Point.Radians(HelixAngle)) * (Math.Cos(Point.Radians(RadialPressureAngle))/Math.Cos(Point.Radians(WorkingPressureAngleAw)) -1);
+
 
         /// <summary>
         /// Involute function for working pressure angle
@@ -164,19 +187,27 @@ namespace Bolsover.Gears
         /// <summary>
         /// Involute function for standard pressure angle
         /// </summary>
-        public double InvoluteFunctionInvAlpha => Math.Tan(Point.Radians(PressureAngleAlpha)) - Point.Radians(PressureAngleAlpha);
+        public double InvoluteFunctionInvAlpha => Math.Tan(Point.Radians(RadialPressureAngle)) - Point.Radians(RadialPressureAngle);
 
         /// <summary>
         /// Standard Centre Distance is the normal distance between pinion and wheel centres when no profile adjustment has been made 
         /// </summary>
-        public double StandardCentreDistanceA => ModuleMn * ((TeethZ1 + TeethZ2) / 2);
+        ///  public double StandardCentreDistanceA => ModuleMn * ((TeethZ1 + TeethZ2) / 2);
+        public double StandardCentreDistanceA => ((TeethZ1 + TeethZ2) / (2 * Math.Cos(Point.Radians(HelixAngle)))) * ModuleMn;
 
         /// <summary>
         /// Working Pressure Angle is the the angle calculated when the Working Centre Distance has been changed from the Standard
         /// </summary>
+        // public double WorkingPressureAngleAw =>
+        //     Point.Degrees(
+        //         Math.Acos(StandardCentreDistanceA / WorkingCentreDistanceAw * Math.Cos(Point.Radians(RadialPressureAngle))));
+
         public double WorkingPressureAngleAw =>
             Point.Degrees(
-                Math.Acos(StandardCentreDistanceA / WorkingCentreDistanceAw * Math.Cos(Point.Radians(PressureAngleAlpha))));
+                Math.Acos((TeethZ1 + TeethZ2) * Math.Cos(Point.Radians(RadialPressureAngle))
+                          /
+                          ((TeethZ1 + TeethZ2) + (2 * CentreDistanceIncrementFactorY * Math.Cos(Point.Radians(HelixAngle))))
+                ));
 
         /// <summary>
         /// Utility function
@@ -191,8 +222,8 @@ namespace Bolsover.Gears
         /// The total sum coefficient of profile shifts including any allowance for backlash
         /// </summary>
         public double SumCoefficientOfProfileShift =>
-            (TeethZ1 + TeethZ2) * (InvoluteFunctionInvAlphaW - InvoluteFunctionInvAlpha) /
-            (2 * Math.Tan(Point.Radians(PressureAngleAlpha))) + ProfileShiftXMod;
+            ((TeethZ1 + TeethZ2) * (InvoluteFunctionInvAlphaW - InvoluteFunctionInvAlpha) /
+            (2 * Math.Tan(Point.Radians(PressureAngleAlpha))) + ProfileShiftXMod) ;
 
         /// <summary>
         /// The calculated profile shift required to achieve the desired circumferential backlash
@@ -212,8 +243,9 @@ namespace Bolsover.Gears
             var num1 = SquareRootOfSquares((TipDiameterDa1 + ProfileShiftXMod) / 2, BaseDiameterDb1 / 2);
             var num2 = SquareRootOfSquares((TipDiameterDa2 + ProfileShiftXMod) / 2, BaseDiameterDb2 / 2);
             var num3 = WorkingCentreDistanceAw * Math.Sin(Point.Radians(WorkingPressureAngleAw));
-            var num4 = ModuleMn * Math.PI * Math.Cos(Point.Radians(PressureAngleAlpha));
-            return (num1 + num2 - num3) / num4;
+            var num4 = ModuleMt * Math.PI * Math.Cos(Point.Radians(RadialPressureAngle));
+            
+            return (num1 + num2 - num3) / num4 ;
         }
 
 
@@ -431,14 +463,14 @@ namespace Bolsover.Gears
             sb.Append("TipDiameterDa1: " + TipDiameterDa1 + "\n");
             sb.Append("RootDiameterDr1: " + RootDiameterDr1 + "\n");
             sb.Append("BaseDiameterDb1: " + BaseDiameterDb1 + "\n");
-            sb.Append("BasePitchPb1: " + BasePitchPb1 + "\n");
-            sb.Append("Alpha1: " + Alpha1 + "\n");
-            sb.Append("RotateDegrees1: " + RotateDegrees1 + "\n");
-            sb.Append("CircularToothThicknessS1: " + CircularToothThicknessS1 + "\n");
-            sb.Append("TeethWithoutUndercutZc1: " + TeethWithoutUndercutZc1 + "\n");
+            // sb.Append("BasePitchPb1: " + BasePitchPb1 + "\n");
+            // sb.Append("Alpha1: " + Alpha1 + "\n");
+            // sb.Append("RotateDegrees1: " + RotateDegrees1 + "\n");
+            // sb.Append("CircularToothThicknessS1: " + CircularToothThicknessS1 + "\n");
+            // sb.Append("TeethWithoutUndercutZc1: " + TeethWithoutUndercutZc1 + "\n");
             sb.Append("AngleToFilletCentre1: " + AngleToFilletCentre1 + "\n");
             sb.Append("HalfToothAngleAtPitchCircleTheta1: " + HalfToothAngleAtPitchCircleTheta1 + "\n");
-            sb.Append("CircularToothThicknessS1: " + CircularToothThicknessS1 + "\n\n\n");
+            // sb.Append("CircularToothThicknessS1: " + CircularToothThicknessS1 + "\n\n\n");
             return sb.ToString();
         }
 
@@ -455,30 +487,30 @@ namespace Bolsover.Gears
         public double ProfileShiftX1 => SumCoefficientOfProfileShift - ProfileShiftX2;
             
             
-        public double ReferenceDiameterD1 => ModuleMn * TeethZ1;
-        public double BaseDiameterDb1 => ReferenceDiameterD1 * Math.Cos(Point.Radians(PressureAngleAlpha));
+        public double ReferenceDiameterD1 => ModuleMn * TeethZ1 / Math.Cos(Point.Radians(HelixAngle));
+        public double BaseDiameterDb1 => ReferenceDiameterD1 * Math.Cos(Point.Radians(RadialPressureAngle));
 
         public double TipDiameterDa1 =>
             ReferenceDiameterD1 + 2 * ((1 + CentreDistanceIncrementFactorY - ProfileShiftX2) * ModuleMn);
 
-        public double BasePitchPb1 => ModuleMn * Math.PI * Math.Cos(PressureAngleAlpha);
+        // public double BasePitchPb1 => ModuleMn * Math.PI * Math.Cos(Point.Radians(PressureAngleAlpha));
         public double WorkingPitchDiameterDw1 => BaseDiameterDb1 / Math.Cos(Point.Radians(WorkingPressureAngleAw));
         public double RootDiameterDr1 => ReferenceDiameterD1 + 2 * ModuleMn * (-1.25 + ProfileShiftX1);
 
         public double Alpha1 => Point.Degrees(
             Math.Sqrt(ReferenceDiameterD1 * ReferenceDiameterD1 - BaseDiameterDb1 * BaseDiameterDb1) /
-            BaseDiameterDb1) - PressureAngleAlpha;
+            BaseDiameterDb1) - RadialPressureAngleAlphaT;
 
         public double RotateDegrees1 => (HalfToothAngleAtPitchCircleTheta1 + Alpha1) * 2;
 
-        /// <summary>
-        /// Tooth thickness at reference pitch circle.
-        /// </summary>
-        public double CircularToothThicknessS1 =>
-            ModuleMn * (Math.PI / 2 + 2 * ProfileShiftX1 * Math.Tan(Point.Radians(PressureAngleAlpha)));
+        // /// <summary>
+        // /// Tooth thickness at reference pitch circle.
+        // /// </summary>
+        // public double CircularToothThicknessS1 =>
+        //     ModuleMn * (Math.PI / 2 + 2 * ProfileShiftX1 * Math.Tan(Point.Radians(PressureAngleAlpha)));
 
-        public double TeethWithoutUndercutZc1 =>
-            2 * (1 - ProfileShiftX1) / Math.Pow(Math.Sin(Point.Radians(PressureAngleAlpha)), 2);
+        // public double TeethWithoutUndercutZc1 =>
+        //     2 * (1 - ProfileShiftX1) / Math.Pow(Math.Sin(Point.Radians(PressureAngleAlpha)), 2);
 
         public double AngleToFilletCentre1 =>
             Math.Asin(FilletDiameter / 2 / ((RootDiameterDr1 + FilletDiameter) / 2));
@@ -508,7 +540,7 @@ namespace Bolsover.Gears
 
         public double HalfToothAngleAtPitchCircleTheta1 =>
             90 / TeethZ1 + 360 * (ProfileShiftX1 + ProfileShiftXMod) *
-            Math.Tan(Point.Radians(PressureAngleAlpha)) /
+            Math.Tan(Point.Radians(RadialPressureAngleAlphaT)) /
             (Math.PI * TeethZ1);
 
         public List<Point> InvoluteCurvePoints1()
@@ -534,14 +566,14 @@ namespace Bolsover.Gears
             sb.Append("TipDiameterDa2: " + TipDiameterDa2 + "\n");
             sb.Append("RootDiameterDr2: " + RootDiameterDr2 + "\n");
             sb.Append("BaseDiameterDb2: " + BaseDiameterDb2 + "\n");
-            sb.Append("BasePitchPb2: " + BasePitchPb2 + "\n");
-            sb.Append("Alpha2: " + Alpha2 + "\n");
-            sb.Append("RotateDegrees2: " + RotateDegrees2 + "\n");
-            sb.Append("CircularToothThicknessS2: " + CircularToothThicknessS2 + "\n");
-            sb.Append("TeethWithoutUndercutZc2: " + TeethWithoutUndercutZc2 + "\n");
+            // sb.Append("BasePitchPb2: " + BasePitchPb2 + "\n");
+            // sb.Append("Alpha2: " + Alpha2 + "\n");
+            // sb.Append("RotateDegrees2: " + RotateDegrees2 + "\n");
+           
+            // sb.Append("TeethWithoutUndercutZc2: " + TeethWithoutUndercutZc2 + "\n");
             sb.Append("AngleToFilletCentre2: " + AngleToFilletCentre2 + "\n");
             sb.Append("HalfToothAngleAtPitchCircleTheta2: " + HalfToothAngleAtPitchCircleTheta2 + "\n");
-            sb.Append("CircularToothThicknessS2: " + CircularToothThicknessS2 + "\n\n\n");
+            // sb.Append("CircularToothThicknessS2: " + CircularToothThicknessS2 + "\n\n\n");
             return sb.ToString();
         }
 
@@ -558,9 +590,9 @@ namespace Bolsover.Gears
         public double ProfileShiftX2 => SumCoefficientOfProfileShift * DistributionOfProfileShift / 100;
 
 
-        public double ReferenceDiameterD2 => ModuleMn * TeethZ2;
+        public double ReferenceDiameterD2 => ModuleMn * TeethZ2 /Math.Cos(Point.Radians(HelixAngle));
 
-        public double BaseDiameterDb2 => ReferenceDiameterD2 * Math.Cos(Point.Radians(PressureAngleAlpha));
+        public double BaseDiameterDb2 => ReferenceDiameterD2 * Math.Cos(Point.Radians(RadialPressureAngle));
 
 
         public double TipDiameterDa2 =>
@@ -575,36 +607,36 @@ namespace Bolsover.Gears
 
         public double Alpha2 => Point.Degrees(
             Math.Sqrt(ReferenceDiameterD2 * ReferenceDiameterD2 - BaseDiameterDb2 * BaseDiameterDb2) /
-            BaseDiameterDb2) - PressureAngleAlpha;
+            BaseDiameterDb2) - RadialPressureAngleAlphaT;
 
 
-        public double BasePitchPb2 => ModuleMn * Math.PI * Math.Cos(PressureAngleAlpha);
+        // public double BasePitchPb2 => ModuleMn * Math.PI * Math.Cos(Point.Radians(PressureAngleAlpha));
 
 
         public double WorkingPitchDiameterDw2 => BaseDiameterDb2 / Math.Cos(Point.Radians(WorkingPressureAngleAw));
 
 
-        public double TeethWithoutUndercutZc2 =>
-            2 * (1 - ProfileShiftX2) / Math.Pow(Math.Sin(Point.Radians(PressureAngleAlpha)), 2);
+        // public double TeethWithoutUndercutZc2 =>
+        //     2 * (1 - ProfileShiftX2) / Math.Pow(Math.Sin(Point.Radians(PressureAngleAlpha)), 2);
 
 
-        /// <summary>
-        /// Tooth thickness at reference pitch circle.
-        /// </summary>
-        public double CircularToothThicknessS2 =>
-            ModuleMn * (Math.PI / 2 + 2 * ProfileShiftX2 * Math.Tan(Point.Radians(PressureAngleAlpha)));
+        // /// <summary>
+        // /// Tooth thickness at reference pitch circle.
+        // /// </summary>
+        // public double CircularToothThicknessS2 =>
+        //     ModuleMn * (Math.PI / 2 + 2 * ProfileShiftX2 * Math.Tan(Point.Radians(PressureAngleAlpha)));
 
 
         public double HalfToothAngleAtPitchCircleTheta2 =>
             90 / TeethZ2 + 360 * (ProfileShiftX2 + ProfileShiftXMod) *
-            Math.Tan(Point.Radians(PressureAngleAlpha)) /
+            Math.Tan(Point.Radians(RadialPressureAngleAlphaT)) /
             (Math.PI * TeethZ2);
 
-        public double ChordalToothThicknessSj1 =>
-            TeethZ1 * ModuleMn * Math.Sin(Point.Radians(HalfToothAngleAtPitchCircleTheta1));
-
-        public double ChordalToothThicknessSj2 =>
-            TeethZ2 * ModuleMn * Math.Sin(Point.Radians(HalfToothAngleAtPitchCircleTheta2));
+        // public double ChordalToothThicknessSj1 =>
+        //     TeethZ1 * ModuleMn * Math.Sin(Point.Radians(HalfToothAngleAtPitchCircleTheta1));
+        //
+        // public double ChordalToothThicknessSj2 =>
+        //     TeethZ2 * ModuleMn * Math.Sin(Point.Radians(HalfToothAngleAtPitchCircleTheta2));
 
 
         public double ProfileShiftWithoutUndercutX1 =>
@@ -638,6 +670,7 @@ namespace Bolsover.Gears
         public Point PointA2 => new(RootFilletXa2, RootFilletYa2);
         public Point PointD2 => new(RootFilletXd2, RootFilletYd2);
 
+        
         public List<Point> InvoluteCurvePoints2()
         {
             var points = InvolutePoints(BaseDiameterDb2 / 2, TipDiameterDa2 / 2, 25);
@@ -649,15 +682,14 @@ namespace Bolsover.Gears
 
         #region Helical
 
-        public static double AxialPitch(double normalModule, double helixAngle)
-        {
-            return normalModule / Math.Cos(Point.Radians(helixAngle)) * Math.PI / Math.Tan(Point.Radians(helixAngle));
-        }
+        public double RadialPressureAngleAlphaT => Point.Degrees(Math.Atan(Math.Tan(Point.Radians(PressureAngleAlpha)) / Math.Cos(Point.Radians(HelixAngle))));
 
-        public static double HelixPitchLength(int teeth, double normalModule, double helixAngle)
-        {
-            return AxialPitch(normalModule, helixAngle) * teeth;
-        }
+        public  double AxialPitch =>
+            ModuleMt / Math.Cos(Point.Radians(HelixAngle)) * Math.PI / Math.Tan(Point.Radians(HelixAngle));
+       
+
+        public  double HelixPitchLength1 =>  AxialPitch * TeethZ1;
+        public  double HelixPitchLength2 =>  AxialPitch * TeethZ2;
 
         #endregion
     }

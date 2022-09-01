@@ -31,5 +31,49 @@ namespace UnitTests
                 i = i + 10;
             }
         }
+        
+        [Test]
+        public void PolarToCartesian()
+        {
+            var expectedResultx = 0.70711;
+            var expectedResulty = 0.70711;
+            Assert.AreEqual(expectedResultx, trochoid.PolarToCartesian(1, Point.Radians(45)).X, 0.0001);
+            Assert.AreEqual(expectedResulty, trochoid.PolarToCartesian(1, Point.Radians(45)).Y, 0.0001);
+
+        }
+        
+        [Test]
+        public void PolarRinv()
+        {
+            var expectedResult = 0.5075583;
+            
+            Assert.AreEqual(expectedResult, trochoid.PolarRinv(1, Point.Radians(10)), 0.0001);
+           
+
+        }
+        
+        [Test]
+        public void PolarEtaInv()
+        {
+            var expectedResult = 0.001740;
+            
+            Assert.AreEqual(expectedResult, trochoid.PolarEtaInv(Point.Radians(10)), 0.0001);
+           }
+        
+        [Test]
+        public void PolarRtro()
+        {
+            var expectedResult = 1.0;
+            
+            Assert.AreEqual(expectedResult, trochoid.PolarRtro(2, 0, 0), 0.0001);
+        }
+        
+        [Test]
+        public void PolarEtatro()
+        {
+            var expectedResult = 3;
+            
+            Assert.AreEqual(expectedResult, trochoid.PolarEtaTro(1, 1, 1), 0.0001);
+        }
     }
 }

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UtilitiesForAlibre"
-#define MyAppVersion "1.1.0.0"
+#define MyAppVersion "1.1.0.1"
 #define MyAppPublisher "David Bolsover"
 
 [Setup]
@@ -43,6 +43,8 @@ Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\PinionTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\WheelTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\HelicalPinionTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\HelicalWheelTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

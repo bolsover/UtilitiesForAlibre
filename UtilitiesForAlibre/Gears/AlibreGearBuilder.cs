@@ -99,6 +99,10 @@ namespace Bolsover.Gears
             parameters.PinionSession.Parameters.OpenParameterTransaction();
 
             parameters.PinionSession.Parameters.Item("C1").Value = parameters.TeethZ1;
+            if (parameters.HelixAngle > 0)
+            {
+                parameters.PinionSession.Parameters.Item("D3").Value = parameters.HelixPitchLength1 * scale;
+            }
             parameters.PinionSession.Parameters.CloseParameterTransaction();
 
 
@@ -193,6 +197,10 @@ namespace Bolsover.Gears
             parameters.WheelSession.Parameters.OpenParameterTransaction();
 
             parameters.WheelSession.Parameters.Item("C1").Value = parameters.TeethZ2;
+            if (parameters.HelixAngle > 0)
+            {
+                parameters.WheelSession.Parameters.Item("D3").Value = parameters.HelixPitchLength2 * scale;
+            }
             parameters.WheelSession.Parameters.CloseParameterTransaction();
 
 
@@ -269,26 +277,6 @@ namespace Bolsover.Gears
         }
 
 
-        // /// <summary>
-        // /// Converts the given angle in Degrees ° to Radians
-        // /// Uses the formula Radians = Degrees * Pi/180
-        // /// </summary>
-        // /// <param name="angle"></param>
-        // /// <returns></returns>
-        // protected double Radians(double angle)
-        // {
-        //     return angle * (Math.PI / 180.0);
-        // }
-        //
-        // /// <summary>
-        // /// Converts the given angle in Radians to Degrees
-        // /// Uses the formula Degrees = Radians * 180/Pi
-        // /// </summary>
-        // /// <param name="radians"></param>
-        // /// <returns></returns>
-        // protected double Degrees(double radians)
-        // {
-        //     return radians * (180.0 / Math.PI);
-        // }
+      
     }
 }

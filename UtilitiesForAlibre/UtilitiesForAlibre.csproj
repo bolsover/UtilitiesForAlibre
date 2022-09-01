@@ -157,6 +157,12 @@
         <Content Include="Copyright and License.txt">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Content Include="Gears\HelicalPinionTemplate.AD_PRT">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Gears\HelicalWheelTemplate.AD_PRT">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
         <Content Include="Gears\PinionTemplate.AD_PRT">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
