@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -9,6 +10,8 @@ namespace Bolsover
         public AboutForm()
         {
             InitializeComponent();
+            Icon applicationIcon = Globals.Icon;
+            this.Icon = applicationIcon;
             label1.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             var customAttributes = Assembly.GetExecutingAssembly()
                 .GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
