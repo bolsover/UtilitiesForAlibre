@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Bolsover.Gears
+namespace Bolsover.Gear
 {
     /// <summary>
     /// A class to represent points in space
@@ -51,13 +51,6 @@ namespace Bolsover.Gears
         public static Point FromPolar(double magnitude, double angle)
         {
             return new Point(Math.Cos(angle), Math.Sin(angle)).Scale(magnitude);
-        }
-
-        public static Point PolarOffset(Point origin, double magnitude, double angleRadians)
-        {
-            var x = origin.X + (magnitude * Math.Cos(angleRadians));
-            var y = origin.Y + (magnitude * Math.Sin(angleRadians));
-            return new Point(x, y);
         }
 
 
@@ -169,6 +162,13 @@ namespace Bolsover.Gears
             }
 
             return result;
+        }
+
+        public static Point PolarOffset(Point origin, double magnitude, double angleRadians)
+        {
+            var x = origin.X + (magnitude * Math.Cos(angleRadians));
+            var y = origin.Y + (magnitude * Math.Sin(angleRadians));
+            return new Point(x, y);
         }
     }
 }

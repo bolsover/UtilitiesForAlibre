@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using AlibreX;
+using Bolsover.Gear;
 using Microsoft.Win32;
 
 
@@ -11,7 +12,7 @@ namespace Bolsover.Gears
 {
     public partial class Gears : Form
     {
-        private ProfileShiftSpurGearParameters parameters = new();
+        private ExternalGearParameters parameters = new();
 
 
         public Gears()
@@ -19,6 +20,7 @@ namespace Bolsover.Gears
             InitializeComponent();
 
             initBindings();
+
             parameters.Updated += ParametersOnUpdated;
         }
 
@@ -69,6 +71,7 @@ namespace Bolsover.Gears
             {
                 numericUpDownOperatingCentreDistance.ForeColor = Color.Black;
             }
+
             textBoxRadialPressureAngle.Text = parameters.RadialPressureAngle.ToString("0.00000");
             textBoxTransverseModule.Text = parameters.ModuleMt.ToString("0.00000");
         }
@@ -94,16 +97,13 @@ namespace Bolsover.Gears
             if (parameters.HelixAngle > 0)
             {
                 BuildHelicalPinion();
-                
-               
             }
             else
             {
-                BuildPinion(); 
+                BuildPinion();
             }
-            
         }
-        
+
         private void BuildHelicalPinion()
         {
             var userTempDirectory = System.IO.Path.GetTempPath();
@@ -126,6 +126,54 @@ namespace Bolsover.Gears
             InitAlibrePinionFile(tempFile, true);
             var test = new AlibreGearBuilder(parameters);
             test.BuildPinion();
+        }
+
+        private void BuildTest()
+        {
+            Gear.InvoluteGear g1;
+            Gear.InvoluteGear g2;
+            GearPair gearPair;
+
+            GearToothPoints gearToothPoints;
+
+            g1 = new Gear.InvoluteGear(3, 24, 20, 0, 0.36);
+            g2 = new Gear.InvoluteGear(3, 12, 20, 0, 0.6);
+            g1.RootFilletFactorRf = 0.38;
+            g2.RootFilletFactorRf = 0.38;
+            g1.AddendumFilletFactorRa = 0.25;
+            g2.AddendumFilletFactorRa = 0.25;
+            gearPair = new GearPair(g1, g2, 56.4999, 0);
+            // gearPair.Updated += GearPairOnUpdated;
+            GearBuilder gearBuilder = new GearBuilder();
+            gearToothPoints = gearBuilder.BuildGearToothPoints(gearPair, false);
+
+
+            var userTempDirectory = System.IO.Path.GetTempPath();
+            var tempFile = userTempDirectory + "\\PinionPleaseSaveAs.AD_PRT";
+            var tempFileInfo = new FileInfo(tempFile);
+            if (tempFileInfo.Exists && IsFileLocked(tempFileInfo))
+            {
+                MessageBox.Show("Temporary file 'PinionPleaseSaveAs.AD_PRT' is currently open. \nPlease save-as or discard.", "Oops");
+                return;
+            }
+
+            var FilePath = (string) Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Alibre Design Add-Ons\",
+                "{305297BD-DE8D-4F36-86A4-AA5E69538A69}", null);
+            if (FilePath != null)
+            {
+                FilePath += "\\Gears\\PinionTemplate.AD_PRT";
+            }
+
+            System.IO.File.Copy(FilePath, tempFile, true);
+
+            gearToothPoints = gearBuilder.BuildGearToothPoints(gearPair, false);
+            gearToothPoints.TemplateFilePath = tempFile;
+
+            InitAlibrePinionFile(tempFile, true);
+            // var test = new AlibreGearBuilder(parameters);
+            // test.BuildPinion();
+
+            var test = new AlibreBuilder(gearToothPoints, parameters.PinionSession);
         }
 
         private void BuildPinion()
@@ -186,7 +234,6 @@ namespace Bolsover.Gears
             parameters.WheelSession = (IADDesignSession) parameters.Root.OpenFileEx(filePath, true);
         }
 
-       
 
         private void numericUpDownModule_ValueChanged(object sender, EventArgs e)
         {
@@ -234,11 +281,10 @@ namespace Bolsover.Gears
             }
             else
             {
-                 BuildWheel();
+                BuildWheel();
             }
-           
         }
-        
+
         private void BuildHelicalWheel()
         {
             var userTempDirectory = System.IO.Path.GetTempPath();
@@ -310,11 +356,11 @@ namespace Bolsover.Gears
             help.Append("Gear backlash can be adjusted as needed. A value of 0.1 will give a total backlash of appx 0.1mm for a module 1 gear pair.\n");
             help.Append("Root Fillet diameter can be adjusted as needed. \n");
             help.Append("Value is in terms of Module size. So a value of 0.38 will give a root fillet of 0.38mm diameter for a module 1 gear.\n");
-            
+
             help.Append("Instructions for Helical Spur Gears\n\n");
             help.Append("As above but also select required helix angle.\n");
-            
-            
+
+
             MessageBox.Show(help.ToString(), "Help");
         }
 

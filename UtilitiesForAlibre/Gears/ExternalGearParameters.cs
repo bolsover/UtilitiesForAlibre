@@ -19,7 +19,7 @@ namespace Bolsover.Gears
     /// There are differing theories on how to distribute the sum of the coefficient of profile shift. Usually, the
     /// pinion is given sufficient shift to prevent undercut with the remainder given to the wheel. 
     /// </summary>
-    public class ProfileShiftSpurGearParameters
+    public class ExternalGearParameters
     {
         private double teethZ1;
         private double teethZ2;
@@ -32,6 +32,7 @@ namespace Bolsover.Gears
         private double pressureAngleAlpha;
         private Point centre;
         private double helixAngle = 0;
+        private double tipReliefFactor = 0.1;
 
 
         #region CommonToBothGears
@@ -60,15 +61,11 @@ namespace Bolsover.Gears
 
         public event EventHandler Updated;
 
-        private void Update()
-        {
-            OnUpdated();
-        }
-
         private void OnUpdated()
         {
             Updated?.Invoke(this, EventArgs.Empty);
         }
+
 
         public double FilletFactor
         {
@@ -82,7 +79,7 @@ namespace Bolsover.Gears
             set
             {
                 type = value;
-                Update();
+                OnUpdated();
             }
         }
 
@@ -98,7 +95,7 @@ namespace Bolsover.Gears
             set
             {
                 centre = value;
-                Update();
+                OnUpdated();
             }
         }
 
@@ -108,19 +105,18 @@ namespace Bolsover.Gears
             set
             {
                 moduleMn = value;
-                Update();
+                OnUpdated();
             }
         }
-        
+
         public double HelixAngle
         {
             get => helixAngle;
-        set
-        {
-            helixAngle = value;
-            Update();
-        }
-         
+            set
+            {
+                helixAngle = value;
+                OnUpdated();
+            }
         }
 
 
@@ -130,7 +126,7 @@ namespace Bolsover.Gears
             set
             {
                 pressureAngleAlpha = value;
-                Update();
+                OnUpdated();
             }
         }
 
@@ -141,7 +137,7 @@ namespace Bolsover.Gears
             {
                 distributionOfProfileShift = value;
 
-                Update();
+                OnUpdated();
             }
         }
 
@@ -152,7 +148,7 @@ namespace Bolsover.Gears
             set
             {
                 circularBacklashReqdBc = value;
-                Update();
+                OnUpdated();
             }
         }
 
@@ -162,7 +158,7 @@ namespace Bolsover.Gears
             set
             {
                 workingCentreDistanceAw = value;
-                Update();
+                OnUpdated();
             }
         }
 
@@ -173,9 +169,8 @@ namespace Bolsover.Gears
 
         public double RadialPressureAngle => Point.Degrees(Math.Atan(Math.Tan(Point.Radians(PressureAngleAlpha)) / Math.Cos(Point.Radians(HelixAngle))));
 
-
         public double CentreDistanceIncrementFactorY => (WorkingCentreDistanceAw / ModuleMn) - ((TeethZ1 + TeethZ2) / (2 * Math.Cos(Point.Radians(HelixAngle))));
-   //     public double CentreDistanceIncrementFactorY =>  (TeethZ1 + TeethZ2) / 2 * Math.Cos(Point.Radians(HelixAngle)) * (Math.Cos(Point.Radians(RadialPressureAngle))/Math.Cos(Point.Radians(WorkingPressureAngleAw)) -1);
+        //     public double CentreDistanceIncrementFactorY =>  (TeethZ1 + TeethZ2) / 2 * Math.Cos(Point.Radians(HelixAngle)) * (Math.Cos(Point.Radians(RadialPressureAngle))/Math.Cos(Point.Radians(WorkingPressureAngleAw)) -1);
 
 
         /// <summary>
@@ -223,7 +218,7 @@ namespace Bolsover.Gears
         /// </summary>
         public double SumCoefficientOfProfileShift =>
             ((TeethZ1 + TeethZ2) * (InvoluteFunctionInvAlphaW - InvoluteFunctionInvAlpha) /
-            (2 * Math.Tan(Point.Radians(PressureAngleAlpha))) + ProfileShiftXMod) ;
+                (2 * Math.Tan(Point.Radians(PressureAngleAlpha))) + ProfileShiftXMod);
 
         /// <summary>
         /// The calculated profile shift required to achieve the desired circumferential backlash
@@ -244,8 +239,8 @@ namespace Bolsover.Gears
             var num2 = SquareRootOfSquares((TipDiameterDa2 + ProfileShiftXMod) / 2, BaseDiameterDb2 / 2);
             var num3 = WorkingCentreDistanceAw * Math.Sin(Point.Radians(WorkingPressureAngleAw));
             var num4 = ModuleMt * Math.PI * Math.Cos(Point.Radians(RadialPressureAngle));
-            
-            return (num1 + num2 - num3) / num4 ;
+
+            return (num1 + num2 - num3) / num4;
         }
 
 
@@ -293,6 +288,90 @@ namespace Bolsover.Gears
             return points;
         }
 
+        public static Point PointOnInvolute(double baseRadius, double distanceToInvolute)
+        {
+            var alpha = Math.Acos(baseRadius / distanceToInvolute);
+            var invAlpha = Math.Tan(alpha) - alpha; // involute function
+            var x = distanceToInvolute * Math.Cos(invAlpha); // X coordinate
+            var y = distanceToInvolute * Math.Sin(invAlpha); // Y coordinate
+            return new Point(x, y);
+        }
+
+
+        /// <summary>
+        /// Calculates the distance from the gear centre (0,0) to the point at which the tip relief radius starts.
+        /// </summary>
+        /// <param name="baseRadius"></param>
+        /// <param name="addendumRadius"></param>
+        /// <param name="reliefRadius"></param>
+        /// <returns></returns>
+        public static double CentreToTipReliefRadiusStart(double baseRadius, double addendumRadius, double reliefRadius)
+        {
+            var oa = addendumRadius - reliefRadius;
+            var oaSquared = oa * oa;
+            var opSquared = baseRadius * baseRadius;
+            var paSquared = oaSquared - opSquared;
+            var pa = Math.Sqrt(paSquared);
+            var pc = pa + reliefRadius;
+            var pcSquared = pc * pc;
+            var ocSquared = pcSquared + opSquared;
+            return Math.Sqrt(ocSquared);
+        }
+
+
+        /// <summary>
+        /// returns the angle in degrees that lies opposite sidea
+        /// </summary>
+        /// <param name="sidea"></param>
+        /// <param name="sideb"></param>
+        /// <param name="sidec"></param>
+        /// <returns>the angle in degrees that lies opposite sidea</returns>
+        public static double CosineRuleAngle(double sidea, double sideb, double sidec)
+        {
+            var a = sidea * sidea;
+            var b = sideb * sideb;
+            var c = sidec * sidec;
+
+            return Point.Degrees(Math.Acos((b + c - a) / (2 * sideb * sidec)));
+        }
+
+
+        public Point CentrePointOfTipRelief()
+        {
+            var angleToTipRadiusCentre = AngleToTipRadiusCentre();
+
+            var x = ((TipDiameterDa1 / 2) - TipReliefRadius) * Math.Cos(angleToTipRadiusCentre);
+
+            var y = ((TipDiameterDa1 / 2) - TipReliefRadius) * Math.Sin(angleToTipRadiusCentre);
+
+            return new Point(x, y);
+        }
+
+        public Point EndPointOnAddendumOfTipRelief()
+        {
+            var pointb = Point.PolarOffset(CentrePointOfTipRelief(), TipReliefRadius, CentrePointOfTipRelief().Gradient);
+            return pointb;
+        }
+
+        public double AngleToTipRadiusCentre()
+        {
+            var distanceToInvolute = CentreToTipReliefRadiusStart(BaseDiameterDb1 / 2, TipDiameterDa1 / 2, TipReliefRadius);
+            double angle1 = CosineRuleAngle(StartPointOnInvoluteOfTipRelief().Y, StartPointOnInvoluteOfTipRelief().X, distanceToInvolute);
+
+            double angle2 = CosineRuleAngle(TipReliefRadius, (TipDiameterDa1 / 2) - TipReliefRadius, distanceToInvolute);
+
+            var result = Point.Radians(angle1 + angle2);
+            return result;
+        }
+
+
+        public Point StartPointOnInvoluteOfTipRelief()
+        {
+            var distanceToInvolute = CentreToTipReliefRadiusStart(BaseDiameterDb1 / 2, TipDiameterDa1 / 2, TipReliefRadius);
+            Point pointc = PointOnInvolute(BaseDiameterDb1 / 2, distanceToInvolute);
+            return pointc;
+        }
+
 
         /// <summary>
         /// Returns the angle to a Point(x,y) in a circle diameter.
@@ -302,6 +381,57 @@ namespace Bolsover.Gears
         /// <returns></returns>
         public double AngleToPointOnCircle(Point circleCentre, Point pointOnCircleDiameter) =>
             Math.Atan2(pointOnCircleDiameter.Y - circleCentre.Y, pointOnCircleDiameter.X - circleCentre.X);
+
+        /// <summary>
+        /// Trims the given List<Point> of involute points to remove any points above the intersection with the tip relief arc.
+        /// The final point in the returned list will be the tip relief start point .
+        /// </summary>
+        /// <param name="involutePoints"></param>
+        /// <param name="radius"></param>
+        /// <returns></returns>
+        public List<Point> PointsToIntersectionWithTipReliefArc(List<Point> involutePoints, Point tipReliefStart)
+        {
+            var resultList = new List<Point>();
+            var centre = new Point(0, 0);
+            var radius = DistanceBetweenPoints(centre, tipReliefStart);
+            Point priorPoint = null;
+            for (var i = 0; i < involutePoints.Count; i++)
+            {
+                var point = involutePoints[i];
+                if (priorPoint != null && !IsInsideCircle(centre, radius, point) &&
+                    IsInsideCircle(centre, radius, priorPoint))
+                {
+                    resultList.Add(tipReliefStart);
+
+                    // var Intersection = new Point();
+                    // var result = Intersect(centre, radius,
+                    //     priorPoint, point, ref Intersection);
+                    // if (result == 0)
+                    // {
+                    //     resultList.Add(Intersection);
+                    // }
+                }
+
+                if (IsInsideCircle(centre, radius, point))
+                {
+                    resultList.Add(point);
+                }
+
+                priorPoint = point;
+            }
+
+            return resultList;
+        }
+
+        private double DistanceBetweenPoints(Point a, Point b)
+        {
+            var num1 = b.X - a.X;
+            var num2 = b.Y - a.Y;
+            var num1Squared = num1 * num1;
+            var num2Squared = num2 * num2;
+            var result = Math.Sqrt(num1Squared + num2Squared);
+            return result;
+        }
 
 
         /// <summary>
@@ -480,13 +610,13 @@ namespace Bolsover.Gears
             set
             {
                 teethZ1 = value;
-                Update();
+                OnUpdated();
             }
         }
 
         public double ProfileShiftX1 => SumCoefficientOfProfileShift - ProfileShiftX2;
-            
-            
+
+
         public double ReferenceDiameterD1 => ModuleMn * TeethZ1 / Math.Cos(Point.Radians(HelixAngle));
         public double BaseDiameterDb1 => ReferenceDiameterD1 * Math.Cos(Point.Radians(RadialPressureAngle));
 
@@ -515,8 +645,14 @@ namespace Bolsover.Gears
         public double AngleToFilletCentre1 =>
             Math.Asin(FilletDiameter / 2 / ((RootDiameterDr1 + FilletDiameter) / 2));
 
+        // public double AngleToFilletCentre(InvoluteGear g) =>
+        //     Math.Asin(RootFilletDiameter / 2 / ((g.RootDiameterDr + RootFilletDiameter) / 2));
+
         public double RootFilletXd1 => (FilletDiameter + RootDiameterDr1) / 2 *
                                        Math.Cos(AngleToFilletCentre1);
+
+        // public double RootFilletCentreXd(InvoluteGear g) => (RootFilletDiameter + g.RootDiameterDr) / 2 *
+        //                                                     Math.Cos(AngleToFilletCentre(g));
 
         public double RootFilletYd1 => -((FilletDiameter + RootDiameterDr1) / 2 *
                                          Math.Sin(AngleToFilletCentre1));
@@ -552,7 +688,6 @@ namespace Bolsover.Gears
 
         #endregion
 
-
         #region Gear2
 
         public string WheelData()
@@ -569,7 +704,7 @@ namespace Bolsover.Gears
             // sb.Append("BasePitchPb2: " + BasePitchPb2 + "\n");
             // sb.Append("Alpha2: " + Alpha2 + "\n");
             // sb.Append("RotateDegrees2: " + RotateDegrees2 + "\n");
-           
+
             // sb.Append("TeethWithoutUndercutZc2: " + TeethWithoutUndercutZc2 + "\n");
             sb.Append("AngleToFilletCentre2: " + AngleToFilletCentre2 + "\n");
             sb.Append("HalfToothAngleAtPitchCircleTheta2: " + HalfToothAngleAtPitchCircleTheta2 + "\n");
@@ -583,14 +718,14 @@ namespace Bolsover.Gears
             set
             {
                 teethZ2 = value;
-                Update();
+                OnUpdated();
             }
         }
 
         public double ProfileShiftX2 => SumCoefficientOfProfileShift * DistributionOfProfileShift / 100;
 
 
-        public double ReferenceDiameterD2 => ModuleMn * TeethZ2 /Math.Cos(Point.Radians(HelixAngle));
+        public double ReferenceDiameterD2 => ModuleMn * TeethZ2 / Math.Cos(Point.Radians(HelixAngle));
 
         public double BaseDiameterDb2 => ReferenceDiameterD2 * Math.Cos(Point.Radians(RadialPressureAngle));
 
@@ -670,7 +805,7 @@ namespace Bolsover.Gears
         public Point PointA2 => new(RootFilletXa2, RootFilletYa2);
         public Point PointD2 => new(RootFilletXd2, RootFilletYd2);
 
-        
+
         public List<Point> InvoluteCurvePoints2()
         {
             var points = InvolutePoints(BaseDiameterDb2 / 2, TipDiameterDa2 / 2, 25);
@@ -684,12 +819,28 @@ namespace Bolsover.Gears
 
         public double RadialPressureAngleAlphaT => Point.Degrees(Math.Atan(Math.Tan(Point.Radians(PressureAngleAlpha)) / Math.Cos(Point.Radians(HelixAngle))));
 
-        public  double AxialPitch =>
+        public double AxialPitch =>
             ModuleMt / Math.Cos(Point.Radians(HelixAngle)) * Math.PI / Math.Tan(Point.Radians(HelixAngle));
-       
 
-        public  double HelixPitchLength1 =>  AxialPitch * TeethZ1;
-        public  double HelixPitchLength2 =>  AxialPitch * TeethZ2;
+
+        public double HelixPitchLength1 => AxialPitch * TeethZ1;
+        public double HelixPitchLength2 => AxialPitch * TeethZ2;
+
+        public double TipReliefRadius => tipReliefFactor * ModuleMt;
+
+        #endregion
+
+
+        #region Tests
+
+        public Point CoordinateIntersectionCircleWithInvolute(double baseRadius, double circleRadius)
+        {
+            var num1 = Math.Acos(baseRadius / circleRadius); // pressure angle at circleRadius in radians
+            var num2 = Math.Tan(num1) - num1; // involute function of num1
+            var x = circleRadius * Math.Cos(num2); // X location
+            var y = circleRadius * Math.Sin(num2);
+            return new Point(x, y);
+        }
 
         #endregion
     }

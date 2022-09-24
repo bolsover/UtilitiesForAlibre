@@ -31,8 +31,7 @@ namespace Bolsover.DataBrowser{
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataBrowserForm));
-            this.treeListView = new BrightIdeasSoftware.TreeListView();
+             this.treeListView = new BrightIdeasSoftware.TreeListView();
             this.olvColumnName = new BrightIdeasSoftware.OLVColumn();
             this.olvColumnType = new BrightIdeasSoftware.OLVColumn();
             this.olvColumnModified = new BrightIdeasSoftware.OLVColumn();
@@ -360,7 +359,7 @@ namespace Bolsover.DataBrowser{
             this.Controls.Add(this.checkBoxCopy);
             this.Controls.Add(this.checkBoxFilter);
             this.Controls.Add(this.treeListView);
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            
             this.Name = "DataBrowserForm";
             this.Text = "Data Browser";
             ((System.ComponentModel.ISupportInitialize) (this.treeListView)).EndInit();

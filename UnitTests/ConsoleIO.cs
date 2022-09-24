@@ -11,7 +11,7 @@ namespace UnitTests
 
         public string ReadLine()
         {
-            return Console.ReadLine();
+            return Console.ReadLine()!;
         }
     }
 }

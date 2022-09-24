@@ -68,7 +68,7 @@ namespace Bolsover.DataBrowser
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Debug.WriteLine(parent);
             }
@@ -107,7 +107,7 @@ namespace Bolsover.DataBrowser
             {
                 o = obj.GetType().GetProperty(propName).GetValue(obj, null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 o = "Exception thrown getting " + propName;
             }

@@ -17,15 +17,7 @@ namespace Bolsover.DataBrowser.Materials
         private string originalValue = null;
         private MaterialNode value = null;
 
-        // public MaterialPicker()
-        // {
-        //     InitializeComponent();
-        //     Root = PrepareMaterialsTree();
-        //     setupColumns();
-        //     setupTree();
-        //     // actually uses cellEditStarting to detect when an item has been selected
-        //     treeListView1.CellEditStarting += HandleCellEditStarting; 
-        // }
+      
 
         public MaterialPicker(string value)
         {
@@ -60,22 +52,7 @@ namespace Bolsover.DataBrowser.Materials
             Dispose();
         }
 
-        // private void HandleCellClicked(object sender, CellClickEventArgs e)
-        // {
-        //     if (e.ClickCount == 2)
-        //     {
-        //         var olvListItem = e.Item;
-        //         if (olvListItem.RowObject is not null)
-        //         {
-        //             value = (MaterialNode) olvListItem.RowObject;
-        //             var handler = CellClickedEventHandler;
-        //             if (handler != null)
-        //                 handler(this, new SelectedItemEventArgs
-        //                     {SelectedChoice = value});
-        //             Dispose();
-        //         }
-        //     }
-        // }
+       
 
 
         /*
@@ -176,7 +153,7 @@ namespace Bolsover.DataBrowser.Materials
                 {
                     return ((MaterialNode) rowObject).ChList;
                 }
-                catch (UnauthorizedAccessException ex)
+                catch (UnauthorizedAccessException)
                 {
                     BeginInvoke((MethodInvoker) delegate { treeListView1.Collapse(rowObject); });
                     return new ArrayList();

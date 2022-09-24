@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using AlibreX;
 using Bolsover.DataBrowser.Materials;
 using BrightIdeasSoftware;
+using Microsoft.Win32;
 
 namespace Bolsover.DataBrowser
 {
@@ -46,6 +47,10 @@ namespace Bolsover.DataBrowser
         private DataBrowserForm()
         {
             InitializeComponent();
+            var FilePath = (string) Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Alibre Design Add-Ons\",
+                "{305297BD-DE8D-4F36-86A4-AA5E69538A69}", null);
+            Icon myIcon = new Icon(FilePath + "\\nexus.ico");
+            this.Icon = myIcon;
             setupColumns();
             setupTree();
             RegisterCustomEditors();
@@ -82,7 +87,7 @@ namespace Bolsover.DataBrowser
 
                     return ((AlibreFileSystem) rowObject).GetFileSystemInfos();
                 }
-                catch (UnauthorizedAccessException ex)
+                catch (UnauthorizedAccessException)
                 {
                     BeginInvoke((MethodInvoker) delegate { treeListView.Collapse(rowObject); });
                     return new ArrayList();

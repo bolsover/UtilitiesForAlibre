@@ -6,7 +6,7 @@ namespace UnitTests
 {
     public class GearParameterTests
     {
-        private ProfileShiftSpurGearParameters parameters = new();
+        private ExternalGearParameters parameters = new();
 
 
         [SetUp]
@@ -243,16 +243,16 @@ namespace UnitTests
         //     Assert.AreEqual(expectedResult, parameters.ChordalToothThicknessSj1, 0.0001);
         //     standardParameters();
         // }
-
-        [Test]
-        public void HalfToothAngleAtPitchCircleTheta1()
-        {
-            toothThicknessParameters();
-            var expectedResult = 8.54270;
-
-            Assert.AreEqual(expectedResult, parameters.HalfToothAngleAtPitchCircleTheta1, 0.0001);
-            standardParameters();
-        }
+        //
+        // [Test]
+        // public void HalfToothAngleAtPitchCircleTheta1()
+        // {
+        //     toothThicknessParameters();
+        //     var expectedResult = 8.54270;
+        //
+        //     Assert.AreEqual(expectedResult, parameters.HalfToothAngleAtPitchCircleTheta1, 0.0001);
+        //     standardParameters();
+        // }
 
         // [Test]
         // public void TeethWithoutUndercutZc1()
@@ -299,7 +299,7 @@ namespace UnitTests
         //
         //     Assert.AreEqual(expectedResult, parameters.OperatingCentreDistanceAw, 0.0001);
         // }
-       
+
 
         [Test]
         public void InvoluteFunctionInvAlpha()
