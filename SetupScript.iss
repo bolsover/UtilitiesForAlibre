@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UtilitiesForAlibre"
-#define MyAppVersion "1.1.0.1"
+#define MyAppVersion "1.2.0.0"
 #define MyAppPublisher "David Bolsover"
 
 [Setup]
@@ -32,7 +32,7 @@ ArchitecturesInstallIn64BitMode=x64
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\AboutForm.resx"; DestDir: "{app}"; Flags: ignoreversion
+; Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\AboutForm.resx"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Copyright and License.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\nexus.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\ObjectListView.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -41,10 +41,11 @@ Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.adc"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\PinionTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
-Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\WheelTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
-Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\HelicalPinionTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
-Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gears\HelicalWheelTemplate.AD_PRT"; DestDir: "{app}\Gears\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\PinionTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\WheelTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\HelicalPinionTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\HelicalWheelTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Icons\*.*";  DestDir: "{app}\Icons\"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
