@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
-using Bolsover.Gears;
+using Bolsover.Gear;
 using NUnit.Framework;
+
 
 namespace UnitTests
 {

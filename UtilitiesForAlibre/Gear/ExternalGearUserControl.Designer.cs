@@ -130,10 +130,6 @@ namespace Bolsover.Gear
             this.textBoxIncrementFactorY = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.textBoxContactRatio = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.textBoxAlpha1 = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBoxRotate = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
@@ -277,15 +273,11 @@ namespace Bolsover.Gear
             this.tableLayoutPanel1.Controls.Add(this.label8, 4, 16);
             this.tableLayoutPanel1.Controls.Add(this.label15, 5, 16);
             this.tableLayoutPanel1.Controls.Add(this.textBoxIncrementFactorY, 6, 16);
-            this.tableLayoutPanel1.Controls.Add(this.label30, 4, 20);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxContactRatio, 6, 20);
-            this.tableLayoutPanel1.Controls.Add(this.label39, 4, 21);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxAlpha1, 6, 21);
-            this.tableLayoutPanel1.Controls.Add(this.label40, 4, 22);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxRotate, 6, 22);
             this.tableLayoutPanel1.Controls.Add(this.label36, 4, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label62, 4, 19);
             this.tableLayoutPanel1.Controls.Add(this.label63, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label30, 4, 21);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxContactRatio, 6, 21);
+            this.tableLayoutPanel1.Controls.Add(this.label62, 4, 20);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 25;
@@ -1281,7 +1273,7 @@ namespace Bolsover.Gear
             // label30
             // 
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label30.Location = new System.Drawing.Point(528, 600);
+            this.label30.Location = new System.Drawing.Point(528, 630);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(194, 23);
             this.label30.TabIndex = 151;
@@ -1290,44 +1282,10 @@ namespace Bolsover.Gear
             // textBoxContactRatio
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.textBoxContactRatio, 2);
-            this.textBoxContactRatio.Location = new System.Drawing.Point(853, 603);
+            this.textBoxContactRatio.Location = new System.Drawing.Point(853, 633);
             this.textBoxContactRatio.Name = "textBoxContactRatio";
             this.textBoxContactRatio.Size = new System.Drawing.Size(194, 20);
             this.textBoxContactRatio.TabIndex = 152;
-            // 
-            // label39
-            // 
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label39.Location = new System.Drawing.Point(528, 630);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(194, 23);
-            this.label39.TabIndex = 153;
-            this.label39.Text = "Alpha1";
-            // 
-            // textBoxAlpha1
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.textBoxAlpha1, 2);
-            this.textBoxAlpha1.Location = new System.Drawing.Point(853, 633);
-            this.textBoxAlpha1.Name = "textBoxAlpha1";
-            this.textBoxAlpha1.Size = new System.Drawing.Size(194, 20);
-            this.textBoxAlpha1.TabIndex = 155;
-            // 
-            // label40
-            // 
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label40.Location = new System.Drawing.Point(528, 660);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(194, 23);
-            this.label40.TabIndex = 154;
-            this.label40.Text = "Rotate";
-            // 
-            // textBoxRotate
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.textBoxRotate, 2);
-            this.textBoxRotate.Location = new System.Drawing.Point(853, 663);
-            this.textBoxRotate.Name = "textBoxRotate";
-            this.textBoxRotate.Size = new System.Drawing.Size(194, 20);
-            this.textBoxRotate.TabIndex = 156;
             // 
             // label36
             // 
@@ -1343,7 +1301,7 @@ namespace Bolsover.Gear
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label62, 4);
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label62.Location = new System.Drawing.Point(528, 570);
+            this.label62.Location = new System.Drawing.Point(528, 600);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(525, 23);
             this.label62.TabIndex = 181;
@@ -1444,10 +1402,6 @@ namespace Bolsover.Gear
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.NumericUpDown numericUpDownHelixAngle;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox textBoxRotate;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.TextBox textBoxAlpha1;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox textBoxContactRatio;
         private System.Windows.Forms.Label label48;

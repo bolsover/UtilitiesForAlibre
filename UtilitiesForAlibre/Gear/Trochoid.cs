@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bolsover.Gears
+namespace Bolsover.Gear
 {
     /// <summary>
     /// A plane curve that is the trajectory of a point M inside or outside a circle that rolls upon another circle.

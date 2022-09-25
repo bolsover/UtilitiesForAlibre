@@ -1,333 +1,310 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props')" />
-    <Import Project="..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props')" />
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <GenerateResourceMSBuildArchitecture>
+			CurrentArchitecture
+		</GenerateResourceMSBuildArchitecture>
+    <GenerateResourceMSBuildRuntime>
+			CurrentRuntime
+		</GenerateResourceMSBuildRuntime>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{305297BD-DE8D-4F36-86A4-AA5E69538A69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bolsover</RootNamespace>
+    <AssemblyName>UtilitiesForAlibre</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>9</LangVersion>
+    <Nullable>disable</Nullable>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="alibre-api">
+      <HintPath>C:\Program Files\Alibre Design 25.0.1.25037\Program\alibre-api.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AlibreAddOn">
+      <HintPath>C:\Program Files\Alibre Design 25.0.1.25037\Program\AlibreAddOn.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AlibreX">
+      <HintPath>C:\Program Files\Alibre Design 25.0.1.25037\Program\AlibreX.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeCoverage.17.3.1\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="ObjectListView">
+      <HintPath>D:\ObjectListViewFull-2.9.1\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Resources.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Resources.Extensions.4.6.0\lib\netstandard2.0\System.Resources.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlibreAddOn.cs" />
+    <Compile Include="AlibreDataViewer\AlibreDataViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AlibreDataViewer\AlibreDataViewer.Designer.cs">
+      <DependentUpon>AlibreDataViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="CycloidalGear\CycliodalGearParametersForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CycloidalGear\CycliodalGearParametersForm.Designer.cs">
+      <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CycloidalGear\CycloidalGearAddOnCommand.cs" />
+    <Compile Include="CycloidalGear\CycloidalGearAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="CycloidalGear\CycloidalGearBuilder.cs" />
+    <Compile Include="CycloidalGear\CycloidalGearProperties.cs" />
+    <Compile Include="DataBrowser\AlibreConnector.cs" />
+    <Compile Include="DataBrowser\AlibreData.cs" />
+    <Compile Include="DataBrowser\AlibreFileSystem.cs" />
+    <Compile Include="DataBrowser\DataBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataBrowser\DataBrowser.Designer.cs" />
+    <Compile Include="DataBrowser\Materials\MaterialNode.cs" />
+    <Compile Include="DataBrowser\Materials\MaterialPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataBrowser\Materials\MaterialPicker.Designer.cs" />
+    <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
+    <Compile Include="DataBrowser\ShellUtilities.cs" />
+    <Compile Include="Gear\AlibreBuilder.cs" />
+    <Compile Include="Gear\ExternalGearUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gear\ExternalGearUserControl.Designer.cs">
+      <DependentUpon>ExternalGearUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gear\InvoluteGear.cs" />
+    <Compile Include="Gear\GearBuilder.cs" />
+    <Compile Include="Gear\GearForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gear\GearForm.Designer.cs">
+      <DependentUpon>GearForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gear\GearPair.cs" />
+    <Compile Include="Gear\GearToothPoints.cs" />
+    <Compile Include="Gear\Geometry.cs" />
+    <Compile Include="Gear\Point.cs" />
+    <Compile Include="Gear\Trochoid.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Sample\SampleAddOnCommand.cs" />
+    <Compile Include="Sample\SampleAddonCommandTerminateEventArgs.cs" />
+    <Compile Include="Sample\SampleUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sample\SampleUserControl.Designer.cs">
+      <DependentUpon>SampleUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlaneFinder\PlaneFinderAddOnCommand.cs" />
+    <Compile Include="PlaneFinder\PlaneFinderAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="PlaneFinder\PlaneFinder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlaneFinder\PlaneFinder.Designer.cs">
+      <DependentUpon>PlaneFinder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
+    <Compile Include="SingleMenuItem.cs" />
+    <Compile Include="ThreeDLine\Coordinate.cs" />
+    <Compile Include="ThreeDLine\ThreeDLineAddOnCommand.cs" />
+    <Compile Include="ThreeDLine\ThreeDLineAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="ThreeDLine\ThreeDLineUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ThreeDLine\ThreeDLineUserControl.Designer.cs" />
+    <Compile Include="UtilitiesForAlibre.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Copyright and License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\HelicalPinionTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\HelicalWheelTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\PinionTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\WheelTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\add-circle.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\bulb.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\cog-double.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\CycloidalGear.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\design-pen.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\design-tool.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\design-tool2.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\fibonacci.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-code-add.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-code-question.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-code-star.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-settings.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\monitor-settings.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\search.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\userquestion.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="nexus.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UtilitiesForAlibre.adc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlibreDataViewer\AlibreDataViewer.resx">
+      <DependentUpon>AlibreDataViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CycloidalGear\CycliodalGearParametersForm.resx">
+      <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBrowser\DataBrowser.resx">
+      <DependentUpon>DataBrowser.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx" />
+    <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx" />
+    <EmbeddedResource Include="Gear\ExternalGearUserControl.resx">
+      <DependentUpon>ExternalGearUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gear\GearForm.resx">
+      <DependentUpon>GearForm.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sample\SampleUserControl.resx">
+      <DependentUpon>SampleUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
+      <DependentUpon>PlaneFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThreeDLine\ThreeDLineUserControl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{305297BD-DE8D-4F36-86A4-AA5E69538A69}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Bolsover</RootNamespace>
-        <AssemblyName>UtilitiesForAlibre</AssemblyName>
-        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <LangVersion>9</LangVersion>
-        <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-        <Nullable>disable</Nullable>
-        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-        <NuGetPackageImportStamp>
-        </NuGetPackageImportStamp>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>x64</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>x64</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup>
-        <StartupObject />
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="alibre-api">
-            <HintPath>C:\Program Files\Alibre Design 25.0.1.25037\Program\alibre-api.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="AlibreAddOn">
-            <HintPath>C:\Program Files\Alibre Design 25.0.1.25037\Program\AlibreAddOn.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="AlibreX">
-            <HintPath>C:\Program Files\Alibre Design 25.0.1.25037\Program\AlibreX.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.CSharp" />
-        <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\Microsoft.CodeCoverage.17.3.1\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
-        </Reference>
-        <Reference Include="mscorlib" />
-        <Reference Include="ObjectListView">
-            <HintPath>D:\ObjectListViewFull-2.9.1\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Configuration" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Drawing" />
-        <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Numerics" />
-        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Resources.Extensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Resources.Extensions.6.0.0\lib\net461\System.Resources.Extensions.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Web" />
-        <Reference Include="System.Windows" />
-        <Reference Include="System.Windows.Forms" />
-        <Reference Include="System.Xml" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="AboutForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="AboutForm.Designer.cs">
-            <DependentUpon>AboutForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="AlibreAddOn.cs" />
-        <Compile Include="AlibreDataViewer\AlibreDataViewer.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="AlibreDataViewer\AlibreDataViewer.Designer.cs">
-            <DependentUpon>AlibreDataViewer.cs</DependentUpon>
-        </Compile>
-        <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs" />
-        <Compile Include="CycloidalGear\CycliodalGearParametersForm.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="CycloidalGear\CycliodalGearParametersForm.Designer.cs">
-            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="CycloidalGear\CycloidalGearAddOnCommand.cs" />
-        <Compile Include="CycloidalGear\CycloidalGearAddOnCommandTerminateEventArgs.cs" />
-        <Compile Include="CycloidalGear\CycloidalGearBuilder.cs" />
-        <Compile Include="CycloidalGear\CycloidalGearProperties.cs" />
-        <Compile Include="DataBrowser\AlibreConnector.cs" />
-        <Compile Include="DataBrowser\AlibreData.cs" />
-        <Compile Include="DataBrowser\AlibreFileSystem.cs" />
-        <Compile Include="DataBrowser\DataBrowser.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="DataBrowser\DataBrowser.Designer.cs" />
-        <Compile Include="DataBrowser\Materials\MaterialNode.cs" />
-        <Compile Include="DataBrowser\Materials\MaterialPicker.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="DataBrowser\Materials\MaterialPicker.Designer.cs" />
-        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
-        <Compile Include="DataBrowser\ShellUtilities.cs" />
-        <Compile Include="Gears\AlibreGearBuilder.cs" />
-        <Compile Include="Gears\GearCalculations.cs" />
-        <Compile Include="Gears\ExternalGearParameters.cs" />
-        <Compile Include="Gears\Gears.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Gears\Gears.Designer.cs">
-            <DependentUpon>Gears.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Gears\GearType.cs" />
-        <Compile Include="Gears\InternalGearParameters.cs" />
-        <Compile Include="Gears\Point.cs" />
-        <Compile Include="Gears\Trochoid.cs" />
-        <Compile Include="Gear\AlibreBuilder.cs" />
-        <Compile Include="Gear\ExternalGearUserControl.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Gear\ExternalGearUserControl.Designer.cs">
-            <DependentUpon>ExternalGearUserControl.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Gear\InvoluteGear.cs" />
-        <Compile Include="Gear\GearBuilder.cs" />
-        <Compile Include="Gear\GearForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Gear\GearForm.Designer.cs">
-            <DependentUpon>GearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Gear\GearPair.cs" />
-        <Compile Include="Gear\GearToothPoints.cs" />
-        <Compile Include="Gear\Geometry.cs" />
-        <Compile Include="Gear\Point.cs" />
-        <Compile Include="Globals.cs" />
-        <Compile Include="Involute\Involute.cs" />
-        <Compile Include="Involute\InvoluteGear.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Involute\InvoluteGear.Designer.cs" />
-        <Compile Include="Involute\InvoluteGearAddOnCommand.cs" />
-        <Compile Include="Involute\InvoluteGearAddOnCommandTerminateEventArgs.cs" />
-        <Compile Include="Involute\InvoluteProperties.cs" />
-        <Compile Include="Involute\Point.cs" />
-        <Compile Include="Sample\SampleAddOnCommand.cs" />
-        <Compile Include="Sample\SampleAddonCommandTerminateEventArgs.cs" />
-        <Compile Include="Sample\SampleUserControl.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Sample\SampleUserControl.Designer.cs">
-            <DependentUpon>SampleUserControl.cs</DependentUpon>
-        </Compile>
-        <Compile Include="PlaneFinder\PlaneFinderAddOnCommand.cs" />
-        <Compile Include="PlaneFinder\PlaneFinderAddOnCommandTerminateEventArgs.cs" />
-        <Compile Include="PlaneFinder\PlaneFinder.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="PlaneFinder\PlaneFinder.Designer.cs">
-            <DependentUpon>PlaneFinder.cs</DependentUpon>
-        </Compile>
-        <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
-        <Compile Include="SingleMenuItem.cs" />
-        <Compile Include="ThreeDLine\Coordinate.cs" />
-        <Compile Include="ThreeDLine\ThreeDLineAddOnCommand.cs" />
-        <Compile Include="ThreeDLine\ThreeDLineAddOnCommandTerminateEventArgs.cs" />
-        <Compile Include="ThreeDLine\ThreeDLineUserControl.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="ThreeDLine\ThreeDLineUserControl.Designer.cs" />
-        <Compile Include="UtilitiesForAlibre.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="Copyright and License.txt">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gears\HelicalPinionTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gears\HelicalWheelTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gears\PinionTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gears\WheelTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\add-circle.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\bulb.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\cog-double.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\CycloidalGear.png">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\design-pen.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\design-tool.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\design-tool2.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\fibonacci.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-code-add.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-code-question.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-code-star.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-settings.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\monitor-settings.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\search.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\userquestion.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="nexus.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="UtilitiesForAlibre.adc">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Include="AboutForm.resx">
-            <DependentUpon>AboutForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="AlibreDataViewer\AlibreDataViewer.resx">
-            <DependentUpon>AlibreDataViewer.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="CycloidalGear\CycliodalGearParametersForm.resx">
-            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="DataBrowser\DataBrowser.resx">
-            <DependentUpon>DataBrowser.cs</DependentUpon>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
-        <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx" />
-        <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx" />
-        <EmbeddedResource Include="Gears\Gears.resx">
-            <DependentUpon>Gears.cs</DependentUpon>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Gear\ExternalGearUserControl.resx">
-            <DependentUpon>ExternalGearUserControl.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Gear\GearForm.resx">
-            <DependentUpon>GearForm.cs</DependentUpon>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Involute\InvoluteGear.resx" />
-        <EmbeddedResource Include="Sample\SampleUserControl.resx">
-            <DependentUpon>SampleUserControl.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
-            <DependentUpon>PlaneFinder.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="ThreeDLine\ThreeDLineUserControl.resx" />
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="TheadedParts\" />
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="packages.config" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-        <PropertyGroup>
-            <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-        </PropertyGroup>
-        <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props'))" />
-        <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets'))" />
-        <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props'))" />
-        <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets'))" />
-    </Target>
-    <Import Project="..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
-    <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
                  Other similar extension points exist, see Microsoft.Common.targets.
             <Target Name="BeforeBuild">
             </Target>

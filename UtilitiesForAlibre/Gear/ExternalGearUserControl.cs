@@ -3,7 +3,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using AlibreX;
-using Bolsover.Gears;
 using Microsoft.Win32;
 
 namespace Bolsover.Gear
@@ -34,8 +33,10 @@ namespace Bolsover.Gear
             gear2.RootFilletFactorRf = 0.38;
             gear1.AddendumFilletFactorRa = 0.25;
             gear2.AddendumFilletFactorRa = 0.25;
-            gearPair = new GearPair(gear1, gear2, 18, 0);
-            gearPair.DeltaX = 50;
+            gearPair = new GearPair(gear1, gear2, 18, 0)
+            {
+                DeltaX = 50
+            };
             numericUpDownModule.Value = Convert.ToDecimal(gear1.ModeuleM);
             trackBarProfileShiftDistribution.Value = Convert.ToInt16(gearPair.DeltaX);
             numericUpDownOperatingCentreDistance.Value = Convert.ToDecimal(gearPair.StandardCentreDistanceA);
@@ -74,8 +75,7 @@ namespace Bolsover.Gear
             textBoxSumOfProfileShifts.Text = gearPair.SigmaX.ToString("0.00000");
             textBoxContactRatio.Text = gearPair.ContactRatio().ToString("0.00000");
 
-            textBoxAlpha1.Text = gearPair.G1.Alpha1.ToString("0.00000");
-            textBoxRotate.Text = gearPair.RotateDegrees(gearPair.G1).ToString("0.00000");
+           
             if (gearPair.ContactRatio() < 1.2)
             {
                 textBoxContactRatio.ForeColor = Color.Red;
@@ -137,7 +137,6 @@ namespace Bolsover.Gear
         private void trackBarProfileShiftDistribution_Scroll(object sender, EventArgs e)
         {
             Pair.DeltaX = ((TrackBar) sender).Value;
-
             sliderLabel.Text = Math.Abs(Convert.ToDouble(Pair.DeltaX)).ToString();
         }
 
@@ -186,11 +185,11 @@ namespace Bolsover.Gear
                 return;
             }
 
-            var FilePath = (string) Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Alibre Design Add-Ons\",
-                "{305297BD-DE8D-4F36-86A4-AA5E69538A69}", null);
+            var FilePath = Globals.InstallPath;
+           
             if (FilePath != null)
             {
-                FilePath += "\\Gears\\" + template;
+                FilePath += "\\Gear\\" + template;
             }
 
             File.Copy(FilePath, tempFile, true);

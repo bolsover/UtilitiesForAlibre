@@ -7,12 +7,10 @@ using System.Windows.Forms;
 using Bolsover.AlibreDataViewer;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
-using Bolsover.Involute;
 using Bolsover.PlaneFinder;
 using Bolsover.Sample;
 using Bolsover.ThreeDLine;
-using Bolsover.Gears;
-using com.alibre.automation;
+
 
 namespace Bolsover
 {
@@ -68,10 +66,12 @@ namespace Bolsover
             };
             MENU_IDS_UTILS = new int[7]
             {
-                SUBMENU_ID_DATA_BROWSER, SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, SUBMENU_ID_UTILS_PLANE_FINDER,
-                SUBMENU_ID_UTILS_DATA_VIEWER, SUBMENU_ID_UTILS_3DLINE,
-                // SUBMENU_ID_UTILS_INVOLUTE_GEAR,
-                SUBMENU_ID_UTILS_GEARS,
+                SUBMENU_ID_DATA_BROWSER, 
+                SUBMENU_ID_UTILS_GEARS, 
+                SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, 
+                SUBMENU_ID_UTILS_PLANE_FINDER,
+                SUBMENU_ID_UTILS_DATA_VIEWER, 
+                SUBMENU_ID_UTILS_3DLINE,
                 SUBMENU_ID_UTILS_SAMPLE
             };
             MENU_IDS_ROOT = new int[3]
@@ -138,8 +138,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_CLOSE: return "Save & Close";
                 case SUBMENU_ID_FILE_EXIT: return "Save All, Exit";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator Open/Close";
-                case SUBMENU_ID_UTILS_GEARS: return "Open Spur Gear Generator Dialog";
-                // case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return "Involute Gear Generator (Experimental) Open/Close";
+                case SUBMENU_ID_UTILS_GEARS: return "Gear Generator";
                 case SUBMENU_ID_HELP_ABOUT: return "About";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Sketch Plane Finder Open/Close";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Property Viewer Open/Close";
@@ -187,7 +186,6 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        // case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
@@ -209,7 +207,6 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        // case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -231,7 +228,6 @@ namespace Bolsover
                         case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        // case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -262,8 +258,7 @@ namespace Bolsover
                 case SUBMENU_ID_FILE_CLOSE: return "Saves and closes the current file";
                 case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
                 case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Opens/Closes Cycloidal Gear Generator";
-                case SUBMENU_ID_UTILS_GEARS: return "Opens Gear Generator dialog";
-                case SUBMENU_ID_UTILS_INVOLUTE_GEAR: return "Opens/Closes Experimental Involute Gear Generator";
+                case SUBMENU_ID_UTILS_GEARS: return "Opens Gear Generator Dialog";
                 case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
                 case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens/Closes Property Viewer";
                 case SUBMENU_ID_UTILS_3DLINE: return "Opens/Closes 3DLine Generator";
@@ -340,10 +335,7 @@ namespace Bolsover
                     return DoCycloidalGear(session);
                 }
 
-                // case SUBMENU_ID_UTILS_INVOLUTE_GEAR:
-                // {
-                //     return DoInvoluteGear(session);
-                // }
+             
                 case SUBMENU_ID_UTILS_GEARS:
                 {
                     return DoGears();
@@ -545,54 +537,7 @@ namespace Bolsover
         }
 
         #endregion
-
-        #region InvoluteGear
-
-        // /// <summary>
-        // /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
-        // /// </summary>
-        // private Dictionary<string, InvoluteGearAddOnCommand> involuteGearAddOnCommands = new();
-        //
-        // /// <summary>
-        // /// Opens the Involute Gear generator dialog.
-        // /// </summary>
-        // /// <param name="session"></param>
-        // /// <returns></returns>
-        // private IAlibreAddOnCommand DoInvoluteGear(IADSession session)
-        // {
-        //     InvoluteGearAddOnCommand involuteGearAddOnCommand;
-        //     if (!involuteGearAddOnCommands.ContainsKey(session.Identifier))
-        //     {
-        //         involuteGearAddOnCommand = new InvoluteGearAddOnCommand(session);
-        //         involuteGearAddOnCommand.InvoluteGear.Visible = true;
-        //         involuteGearAddOnCommand.Terminate += InvoluteGearAddOnCommandOnTerminate;
-        //         involuteGearAddOnCommands.Add(session.Identifier, involuteGearAddOnCommand);
-        //     }
-        //     else
-        //     {
-        //         if (involuteGearAddOnCommands.TryGetValue(session.Identifier, out involuteGearAddOnCommand))
-        //         {
-        //             involuteGearAddOnCommand.UserRequestedClose();
-        //             involuteGearAddOnCommands.Remove(session.Identifier);
-        //             return null;
-        //         }
-        //     }
-        //
-        //     return involuteGearAddOnCommand;
-        // }
-        //
-        // private void InvoluteGearAddOnCommandOnTerminate(object sender, InvoluteGearAddOnCommandTerminateEventArgs e)
-        // {
-        //     InvoluteGearAddOnCommand involuteGearAddOnCommand;
-        //     if (involuteGearAddOnCommands.TryGetValue(e.involuteGearAddOnCommand.session.Identifier,
-        //             out involuteGearAddOnCommand))
-        //     {
-        //         involuteGearAddOnCommands.Remove(e.involuteGearAddOnCommand.session.Identifier);
-        //     }
-        // }
-
-        #endregion
-
+      
         #region CycloidalGear
 
         /// <summary>

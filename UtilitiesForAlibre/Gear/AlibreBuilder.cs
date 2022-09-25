@@ -17,10 +17,10 @@ namespace Bolsover.Gear
             buildGear();
         }
 
-        public void buildGear()
+        private void buildGear()
         {
-            var sketchs = session.Sketches;
-            var sketch = sketchs.Item("Tooth");
+            var sketches = session.Sketches;
+            var sketch = sketches.Item("Tooth");
             var figures = sketch.Figures;
             // open the sketch for changes
             sketch.BeginChange();
@@ -29,14 +29,7 @@ namespace Bolsover.Gear
             // the default Alibre units are cm. Scale everything by 0.1 for correct mm dimensions
             var scale = 0.1;
             InvoluteGear gear1;
-            if (gearToothPoints.IsPinion)
-            {
-                gear1 = gearToothPoints.Pair.G1;
-            }
-            else
-            {
-                gear1 = gearToothPoints.Pair.G2;
-            }
+            gear1 = gearToothPoints.IsPinion ? gearToothPoints.Pair.G1 : gearToothPoints.Pair.G2;
 
             // draw line from centre to right root midpoint
             AddScaledLine(sketch, gearToothPoints.GearCentre, gearToothPoints.RightMidRoot, scale);
@@ -95,12 +88,12 @@ namespace Bolsover.Gear
         }
 
 
-        private IADSketchLine AddScaledLine(IADSketch sketch, Point start, Point end, double scale)
+        private static IADSketchLine AddScaledLine(IADSketch sketch, Point start, Point end, double scale)
         {
             return sketch.Figures.AddLine(start.X * scale, start.Y * scale, end.X * scale, end.Y * scale);
         }
 
-        private IADSketchCircularArc AddScaledCircularArcByCenterStartEnd(IADSketch sketch, Point centre, Point start,
+        private static IADSketchCircularArc AddScaledCircularArcByCenterStartEnd(IADSketch sketch, Point centre, Point start,
             Point end, double scale)
         {
             return sketch.Figures.AddCircularArcByCenterStartEnd(centre.X * scale, centre.Y * scale,
@@ -109,7 +102,7 @@ namespace Bolsover.Gear
         }
 
 
-        private IADSketchBspline AddScaledBsplineByInterpolation(IADSketch sketch, List<Point> points, double scale)
+        private static IADSketchBspline AddScaledBsplineByInterpolation(IADSketch sketch, List<Point> points, double scale)
         {
             Array interpolationPoints = new double[points.Count * 2];
             var j = 0;

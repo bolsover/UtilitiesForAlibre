@@ -35,7 +35,7 @@
             // rotation for left section of gear tooth
             var rotateRadians = Point.Radians(gearPair.RotateDegrees(gear1));
             // the basic right involute curve
-            gearToothPoints.RightInvolute = geometry.InvolutePoints(gear1.BaseRadiusRb, gearPair.AddendumRadiusRa(gear1, gear2), 25);
+            gearToothPoints.RightInvolute = Geometry.InvolutePoints(gear1.BaseRadiusRb, gearPair.AddendumRadiusRa(gear1, gear2), 25);
             //initial position of root fillet - will need to be adjusted to end at start of right involute
             gearToothPoints.RightRootFilletEnd = gearPair.RootFilletEndPoint(gear1);
             // start point of the tip relief
@@ -43,7 +43,7 @@
             // trim the right involute as required to fit root fillet ant tip relief
             gearToothPoints.RightInvolute = geometry.TrimmedInvolutePoints(gearToothPoints.RightInvolute, gearToothPoints.RightTipReliefStart, gearToothPoints.RightRootFilletEnd);
             // angle though which right root fillet needs to be rotated to correctly intersect the right involute
-            var angleToAdjustedRightRootFilletEnd = geometry.AngleToPointOnCircle(gearToothPoints.GearCentre, gearToothPoints.RightInvolute[0]);
+            var angleToAdjustedRightRootFilletEnd = Geometry.AngleToPointOnCircle(gearToothPoints.GearCentre, gearToothPoints.RightInvolute[0]);
             // adjust the root fillet points
             gearToothPoints.RightRootFilletEnd = gearToothPoints.RightRootFilletEnd.Rotate(angleToAdjustedRightRootFilletEnd);
             gearToothPoints.RightRootFilletCentre = gearPair.RootFilletCentrePoint(gear1).Rotate(angleToAdjustedRightRootFilletEnd);

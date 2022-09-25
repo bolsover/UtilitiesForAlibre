@@ -31,7 +31,7 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="steps"></param>
         /// <returns></returns>
-        public List<Point> InvolutePoints(double baseRadius, double addendumRadius, int steps)
+        public static List<Point> InvolutePoints(double baseRadius, double addendumRadius, int steps)
         {
             var points = new List<Point>(steps);
             var stepSize = (addendumRadius - baseRadius) / steps;
@@ -70,7 +70,7 @@ namespace Bolsover.Gear
         /// <param name="involutePoints"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public List<Point> PointsFromIntersectionWithRootFillet(List<Point> involutePoints, Point rootFilletEnd)
+        private List<Point> PointsFromIntersectionWithRootFillet(List<Point> involutePoints, Point rootFilletEnd)
         {
             var resultList = new List<Point>();
             var centre = new Point(0, 0);
@@ -110,7 +110,7 @@ namespace Bolsover.Gear
         /// <param name="involutePoints"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public List<Point> PointsToIntersectionWithTipReliefArc(List<Point> involutePoints, Point tipReliefStart)
+        public static List<Point> PointsToIntersectionWithTipReliefArc(List<Point> involutePoints, Point tipReliefStart)
         {
             var resultList = new List<Point>();
             var centre = new Point(0, 0);
@@ -149,7 +149,7 @@ namespace Bolsover.Gear
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        private double DistanceBetweenPoints(Point a, Point b)
+        private static double DistanceBetweenPoints(Point a, Point b)
         {
             var num1 = b.X - a.X;
             var num2 = b.Y - a.Y;
@@ -166,7 +166,7 @@ namespace Bolsover.Gear
         /// <param name="circleCentre"></param>
         /// <param name="pointOnCircleDiameter"></param>
         /// <returns></returns>
-        public double AngleToPointOnCircle(Point circleCentre, Point pointOnCircleDiameter) =>
+        public static double AngleToPointOnCircle(Point circleCentre, Point pointOnCircleDiameter) =>
             Math.Atan2(pointOnCircleDiameter.Y - circleCentre.Y, pointOnCircleDiameter.X - circleCentre.X);
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Bolsover.Gear
         /// <param name="circleRadius"></param>
         /// <param name="checkPoint"></param>
         /// <returns>Return bool true if the checkPoint is within the specifies circle. Otherwise false</returns>
-        private bool IsInsideCircle(Point centrePoint, double circleRadius, Point checkPoint)
+        private static bool IsInsideCircle(Point centrePoint, double circleRadius, Point checkPoint)
         {
             return (Math.Sqrt(Math.Pow(centrePoint.X - checkPoint.X, 2) +
                               Math.Pow(centrePoint.Y - checkPoint.Y, 2)) < circleRadius);
@@ -281,7 +281,7 @@ namespace Bolsover.Gear
         /// <param name="baseRadius"></param>
         /// <param name="distanceToInvolute"></param>
         /// <returns>A point in the involute at a distance from the gear centre</returns>
-        public Point PointOnInvolute(double baseRadius, double distanceToInvolute)
+        private static Point PointOnInvolute(double baseRadius, double distanceToInvolute)
         {
             var alpha = Math.Acos(baseRadius / distanceToInvolute);
             var invAlpha = Math.Tan(alpha) - alpha; // involute function
@@ -298,7 +298,7 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="reliefRadius"></param>
         /// <returns>A double value. The distance from the gear centre (0,0) to the start of the tip relief radius.</returns>
-        public double CentreToTipReliefRadiusStart(double baseRadius, double addendumRadius, double reliefRadius)
+        private static double CentreToTipReliefRadiusStart(double baseRadius, double addendumRadius, double reliefRadius)
         {
             var oa = addendumRadius - reliefRadius;
             var oaSquared = oa * oa;
@@ -319,7 +319,7 @@ namespace Bolsover.Gear
         /// <param name="sideb"></param>
         /// <param name="sidec"></param>
         /// <returns>the angle in degrees that lies opposite sidea</returns>
-        public double CosineRuleAngle(double sidea, double sideb, double sidec)
+        private static double CosineRuleAngle(double sidea, double sideb, double sidec)
         {
             var aSquared = sidea * sidea;
             var bSquared = sideb * sideb;
@@ -349,7 +349,7 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="tipReliefRadius"></param>
         /// <returns>Angle in radians to the centre of the tip relief radius</returns>
-        public double AngleToTipRadiusCentre(double baseRadius, double addendumRadius, double tipReliefRadius)
+        private double AngleToTipRadiusCentre(double baseRadius, double addendumRadius, double tipReliefRadius)
         {
             var distanceToInvolute = CentreToTipReliefRadiusStart(baseRadius, addendumRadius, tipReliefRadius);
             var srartPoint = StartPointOnInvoluteOfTipRelief(baseRadius, addendumRadius, tipReliefRadius);
@@ -391,13 +391,6 @@ namespace Bolsover.Gear
             return endPoint;
         }
 
-        // /// <summary>
-        // /// Returns the angle to a Point(x,y) in a circle diameter.
-        // /// </summary>
-        // /// <param name="circleCentre"></param>
-        // /// <param name="pointOnCircleDiameter"></param>
-        // /// <returns></returns>
-        // public double AngleToPointOnCircle(Point circleCentre, Point pointOnCircleDiameter) =>
-        //     Math.Atan2(pointOnCircleDiameter.Y - circleCentre.Y, pointOnCircleDiameter.X - circleCentre.X);
+       
     }
 }
