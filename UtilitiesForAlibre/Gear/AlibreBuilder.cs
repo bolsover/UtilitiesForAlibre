@@ -10,11 +10,16 @@ namespace Bolsover.Gear
         private GearToothPoints gearToothPoints;
         private IADDesignSession session;
 
-        public AlibreBuilder(GearToothPoints gearToothPoints, IADDesignSession session)
+        private AlibreBuilder(GearToothPoints gearToothPoints, IADDesignSession session)
         {
             this.gearToothPoints = gearToothPoints;
             this.session = session;
             buildGear();
+        }
+
+        public static AlibreBuilder CreateInstance(GearToothPoints gearToothPoints, IADDesignSession session)
+        {
+            return new AlibreBuilder(gearToothPoints, session);
         }
 
         private void buildGear()
@@ -54,7 +59,7 @@ namespace Bolsover.Gear
             // draw line from centre to left root midpoint
             AddScaledLine(sketch, gearToothPoints.GearCentre, gearToothPoints.LeftMidRoot, scale);
 
-            if (gear1.BaseDiameterDb > gear1.RootDiameterDr + gearToothPoints.Pair.RootFilletDiameter)
+            if (GearCalculations.BaseDiameterDb(gear1) > GearCalculations.RootDiameterDr(gear1) + GearCalculations.RootFilletDiameter(gear1))
             {
                 AddScaledLine(sketch, gearToothPoints.LeftRootFilletEnd, gearToothPoints.LeftInvolute[0], scale);
                 AddScaledLine(sketch, gearToothPoints.RightRootFilletEnd, gearToothPoints.RightInvolute[0], scale);
@@ -67,7 +72,7 @@ namespace Bolsover.Gear
             // if this is a helical gear, set the helix pitch length
             if (gear1.HelixAngleBeta > 0)
             {
-                session.Parameters.Item("D3").Value = gear1.HelixPitchLength * scale;
+                session.Parameters.Item("D3").Value = GearCalculations.HelixPitchLength(gear1) * scale;
             }
 
             // close the Alibre parameter transaction session

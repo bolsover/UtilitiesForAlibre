@@ -66,11 +66,11 @@ namespace Bolsover
             };
             MENU_IDS_UTILS = new int[7]
             {
-                SUBMENU_ID_DATA_BROWSER, 
-                SUBMENU_ID_UTILS_GEARS, 
-                SUBMENU_ID_UTILS_CYCLOIDAL_GEAR, 
+                SUBMENU_ID_DATA_BROWSER,
+                SUBMENU_ID_UTILS_GEARS,
+                SUBMENU_ID_UTILS_CYCLOIDAL_GEAR,
                 SUBMENU_ID_UTILS_PLANE_FINDER,
-                SUBMENU_ID_UTILS_DATA_VIEWER, 
+                SUBMENU_ID_UTILS_DATA_VIEWER,
                 SUBMENU_ID_UTILS_3DLINE,
                 SUBMENU_ID_UTILS_SAMPLE
             };
@@ -335,7 +335,7 @@ namespace Bolsover
                     return DoCycloidalGear(session);
                 }
 
-             
+
                 case SUBMENU_ID_UTILS_GEARS:
                 {
                     return DoGears();
@@ -537,7 +537,7 @@ namespace Bolsover
         }
 
         #endregion
-      
+
         #region CycloidalGear
 
         /// <summary>

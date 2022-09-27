@@ -45,7 +45,7 @@ namespace UnitTests
         {
             var expectedResult = 0.09745;
 
-            Assert.AreEqual(expectedResult, gearPair.CentreDistanceIncrementFactorY, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.CentreDistanceIncrementFactorY(g1, g2), 0.0001);
         }
         //
         // [Test]
@@ -61,7 +61,7 @@ namespace UnitTests
         {
             var expectedResult = 38.3222;
 
-            Assert.AreEqual(expectedResult, g1.BaseDiameterDb, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.BaseDiameterDb(g1), 0.0001);
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace UnitTests
         {
             var expectedResult = 191.6114;
 
-            Assert.AreEqual(expectedResult, g2.BaseDiameterDb, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.BaseDiameterDb(g2), 0.0001);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace UnitTests
         {
             var expectedResult = 48.1539;
 
-            Assert.AreEqual(expectedResult, gearPair.AddendumDiameterDa(g1, g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.AddendumDiameterDa(g1, g2), 0.0001);
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace UnitTests
         {
             var expectedResult = 213.842;
 
-            Assert.AreEqual(expectedResult, gearPair.AddendumDiameterDa(g2, g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.AddendumDiameterDa(g2, g1), 0.0001);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace UnitTests
         {
             var expectedResult = 34.657;
 
-            Assert.AreEqual(expectedResult, g1.RootDiameterDr, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.RootDiameterDr(g1), 0.0001);
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace UnitTests
         {
             var expectedResult = 200.3460;
 
-            Assert.AreEqual(expectedResult, g2.RootDiameterDr, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.RootDiameterDr(g1), 0.0001);
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace UnitTests
         {
             var expectedResult = 22.7959;
 
-            Assert.AreEqual(expectedResult, g1.AlphaT, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.AlphaT(g1), 0.0001);
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace UnitTests
         {
             var expectedResult = 23.1126;
 
-            Assert.AreEqual(expectedResult, gearPair.AlphaW, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.AlphaW(g1, g2), 0.0001);
         }
 
         [Test]
@@ -125,7 +125,7 @@ namespace UnitTests
         {
             var expectedResult = 0.023405;
 
-            Assert.AreEqual(expectedResult, gearPair.InvAlphaW, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.InvAlphaW(g1, g2), 0.0001);
         }
 
         [Test]
@@ -133,7 +133,7 @@ namespace UnitTests
         {
             var expectedResult = 41.6666;
 
-            Assert.AreEqual(expectedResult, gearPair.WorkingPitchDiameterDw(g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.WorkingPitchDiameterDw(g1, g2), 0.0001);
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace UnitTests
         {
             var expectedResult = 208.3333;
 
-            Assert.AreEqual(expectedResult, gearPair.WorkingPitchDiameterDw(g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.WorkingPitchDiameterDw(g2, g1), 0.0001);
         }
 
         [Test]
@@ -149,7 +149,7 @@ namespace UnitTests
         {
             var expectedResult = 0.09809;
 
-            Assert.AreEqual(expectedResult, gearPair.SigmaX, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.SigmaX(g2, g1), 0.0001);
         }
 
         // [Test]
@@ -183,7 +183,7 @@ namespace UnitTests
         {
             var expectedResult = 0.0;
 
-            Assert.AreEqual(expectedResult, gearPair.XMod, 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.XMod(g2, g1), 0.0001);
         }
 
 

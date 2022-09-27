@@ -281,7 +281,7 @@ namespace Bolsover.Gear
         /// <param name="baseRadius"></param>
         /// <param name="distanceToInvolute"></param>
         /// <returns>A point in the involute at a distance from the gear centre</returns>
-        private static Point PointOnInvolute(double baseRadius, double distanceToInvolute)
+        public static Point PointOnInvolute(double baseRadius, double distanceToInvolute)
         {
             var alpha = Math.Acos(baseRadius / distanceToInvolute);
             var invAlpha = Math.Tan(alpha) - alpha; // involute function
@@ -390,7 +390,5 @@ namespace Bolsover.Gear
             var endPoint = Point.PolarOffset(centrePoint, tipReliefRadius, centrePoint.Gradient);
             return endPoint;
         }
-
-       
     }
 }

@@ -17,7 +17,6 @@ namespace Bolsover.DataBrowser.Materials
         private string originalValue = null;
         private MaterialNode value = null;
 
-      
 
         public MaterialPicker(string value)
         {
@@ -51,8 +50,6 @@ namespace Bolsover.DataBrowser.Materials
             // dispose the MaterialPicker
             Dispose();
         }
-
-       
 
 
         /*

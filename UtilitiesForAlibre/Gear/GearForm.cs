@@ -23,7 +23,7 @@ namespace Bolsover.Gear
         {
             InitializeComponent();
             // icon should really be loaded from resources!!
-           
+
             Icon applicationIcon = Globals.Icon;
             this.Icon = applicationIcon;
             FormClosing += (sender, args) =>
