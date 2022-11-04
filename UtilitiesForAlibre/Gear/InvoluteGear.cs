@@ -1,37 +1,105 @@
 ﻿using System;
+using System.Text;
 
 namespace Bolsover.Gear
 {
     public class InvoluteGear
     {
-        private double modulem; // normal module
-        private double teethz; // teeth
-        private double pressureAnglealpha; //pressure angle in degrees
-        private double helixAnglebeta; // helix angle in degrees
-        private double rootFilletFactorrf; // root fillet factor 
-        private double addendumFilletFactorra; // tip (addendum) fillet factor 
-        private bool _isInternal;
-        private GearPair _gearPair;
+        private double _moduleM; // normal module
+        private double _teethZ; // teeth
+        private double _pressureAngleAlpha; //pressure angle in degrees
+        private double _helixAngleBeta; // helix angle in degrees
+        private double _rootFilletFactorRf; // root fillet factor 
+        private double _addendumFilletFactorRa; // tip (addendum) fillet factor 
+        private GearType _gearType;
+        private double _circularBacklashBc; // circular backlash required
+        private double _deltaX = 50; // distribution of profile shift X between g1, g2
+        private double _workingCentreDistanceAw; //working centre distance
 
 
-        protected InvoluteGear()
+        public InvoluteGear(double moduleM, int teethZ, double pressureAngleAlpha, double helixAngleBeta,
+            double profileShiftx)
         {
-        }
-
-        public InvoluteGear(double modulem, int teethz, double pressureAnglealpha, double helixAnglebeta, double profileShiftx)
-        {
-            this.modulem = modulem;
-            this.teethz = teethz;
-            this.pressureAnglealpha = pressureAnglealpha;
-            this.helixAnglebeta = helixAnglebeta;
+            _moduleM = moduleM;
+            _teethZ = teethZ;
+            _pressureAngleAlpha = pressureAngleAlpha;
+            _helixAngleBeta = helixAngleBeta;
             ProfileShiftX = profileShiftx;
         }
 
-
-        public bool IsInternal
+        public override string ToString()
         {
-            get => _isInternal;
-            set => _isInternal = value;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("**************************************\n");
+            sb.Append("Gear Data has been copied to the clipboard..\n");
+            sb.Append("**************************************\n");
+            sb.Append("Gear 1\n");
+            sb.Append("**************************************\n");
+            sb.Append("Module " + ModeuleM + "\n");
+            sb.Append("Teeth " + TeethZ + "\n");
+            sb.Append("Pressure Angle " + PressureAngleAlpha + "\n");
+            sb.Append("Helix Angle " + HelixAngleBeta + "\n");
+            sb.Append("Reference Diameter D " + GearCalculations.ReferenceDiameterD(this) + "\n");
+            sb.Append("Base Diameter Db " + GearCalculations.BaseDiameterDb(this) + "\n");
+            sb.Append("Root Diameter Dr " + GearCalculations.RootDiameterDr(this) + "\n");
+            sb.Append("Addendum Diameter Da " + GearCalculations.AddendumDiameterDa(this) + "\n");
+            sb.Append("ProfileShiftX " + ProfileShiftX + "\n");
+            sb.Append("Profile Shift WithoutUndercut X " + GearCalculations.ProfileShiftWithoutUndercutX(this) + "\n");
+            sb.Append("Axial Pitch " + GearCalculations.AxialPitch(this) + "\n");
+            sb.Append("Helix Pitch Length " + GearCalculations.HelixPitchLength(this) + "\n");
+            sb.Append("Helical Pressure Angle " + GearCalculations.AlphaT(this) + "\n");
+            sb.Append("Involute Function InvAlpha " + GearCalculations.InvAlpha(this) + "\n");
+            sb.Append("Transverse Module Mt " + GearCalculations.TransverseModuleMt(this) + "\n");
+            sb.Append("Root Fillet Diameter " + GearCalculations.RootFilletDiameter(this) + "\n");
+            sb.Append("Tip Relief Radius " + GearCalculations.AddendumReliefRadiusRa(this) + "\n");
+
+            sb.Append("**************************************\n");
+            sb.Append("Gear 2\n");
+            sb.Append("**************************************\n");
+            sb.Append("Module " + MatingGear.ModeuleM + "\n");
+            sb.Append("Teeth " + MatingGear.TeethZ + "\n");
+            sb.Append("Pressure Angle " + MatingGear.PressureAngleAlpha + "\n");
+            sb.Append("Helix Angle " + MatingGear.HelixAngleBeta + "\n");
+            sb.Append("Reference Diameter D " + GearCalculations.ReferenceDiameterD(MatingGear) + "\n");
+            sb.Append("Base Diameter Db " + GearCalculations.BaseDiameterDb(MatingGear) + "\n");
+            sb.Append("Root Diameter Dr " + GearCalculations.RootDiameterDr(MatingGear) + "\n");
+            sb.Append("Addendum Diameter Da " + GearCalculations.AddendumDiameterDa(MatingGear) + "\n");
+            sb.Append("ProfileShiftX " + MatingGear.ProfileShiftX + "\n");
+            sb.Append("Profile Shift WithoutUndercut X " + GearCalculations.ProfileShiftWithoutUndercutX(MatingGear) + "\n");
+            sb.Append("Axial Pitch " + GearCalculations.AxialPitch(MatingGear) + "\n");
+            sb.Append("Helix Pitch Length " + GearCalculations.HelixPitchLength(MatingGear) + "\n");
+            sb.Append("Helical Pressure Angle " + GearCalculations.AlphaT(MatingGear) + "\n");
+            sb.Append("Involute Function InvAlpha " + GearCalculations.InvAlpha(MatingGear) + "\n");
+            sb.Append("Transverse Module Mt " + GearCalculations.TransverseModuleMt(MatingGear) + "\n");
+            sb.Append("Root Fillet Diameter " + GearCalculations.RootFilletDiameter(MatingGear) + "\n");
+            sb.Append("Tip Relief Radius " + GearCalculations.AddendumReliefRadiusRa(MatingGear) + "\n");
+
+            sb.Append("**************************************\n");
+            sb.Append("Gear Set\n");
+            sb.Append("**************************************\n");
+            sb.Append("Standard Centre Distance " + GearCalculations.StandardCentreDistanceA(this) + "\n");
+            sb.Append("Operating Centre Distance " + WorkingCentreDistanceAw + "\n");
+            sb.Append("Backlash " + CircularBacklashBc + "\n");
+            sb.Append("Working Pressure Angle " + GearCalculations.AlphaW(this) + "\n");
+            sb.Append("Centre Distance Increment Factor Y " + GearCalculations.CentreDistanceIncrementFactorY(this) +
+                      "\n");
+            sb.Append("Working Pitch Diameter Dw " + GearCalculations.WorkingPitchDiameterDw(this) + "\n");
+            sb.Append("Contact Ratio " + GearCalculations.ContactRatio(this) + "\n");
+            return sb.ToString();
+        }
+
+
+        /// <summary>
+        /// Gear Type.
+        /// </summary>
+        public GearType GearType
+        {
+            get => _gearType;
+            set
+            {
+                _gearType = value;
+                Update();
+            }
         }
 
 
@@ -42,7 +110,7 @@ namespace Bolsover.Gear
             OnUpdated();
         }
 
-        protected void OnUpdated()
+        private void OnUpdated()
         {
             Updated?.Invoke(this, EventArgs.Empty);
         }
@@ -52,10 +120,10 @@ namespace Bolsover.Gear
         /// </summary>
         public double ModeuleM
         {
-            get => modulem;
+            get => _moduleM;
             set
             {
-                modulem = value;
+                _moduleM = value;
                 Update();
             }
         }
@@ -66,10 +134,10 @@ namespace Bolsover.Gear
         /// </summary>
         public double TeethZ
         {
-            get => teethz;
+            get => _teethZ;
             set
             {
-                teethz = value;
+                _teethZ = value;
                 Update();
             }
         }
@@ -79,10 +147,10 @@ namespace Bolsover.Gear
         /// </summary>
         public double PressureAngleAlpha
         {
-            get => pressureAnglealpha;
+            get => _pressureAngleAlpha;
             set
             {
-                pressureAnglealpha = value;
+                _pressureAngleAlpha = value;
                 Update();
             }
         }
@@ -92,10 +160,10 @@ namespace Bolsover.Gear
         /// </summary>
         public double HelixAngleBeta
         {
-            get => helixAnglebeta;
+            get => _helixAngleBeta;
             set
             {
-                helixAnglebeta = value;
+                _helixAngleBeta = value;
                 Update();
             }
         }
@@ -105,10 +173,10 @@ namespace Bolsover.Gear
         /// </summary>
         public double RootFilletFactorRf
         {
-            get => rootFilletFactorrf;
+            get => _rootFilletFactorRf;
             set
             {
-                rootFilletFactorrf = value;
+                _rootFilletFactorRf = value;
                 Update();
             }
         }
@@ -120,18 +188,51 @@ namespace Bolsover.Gear
 
         public double AddendumFilletFactorRa
         {
-            get => addendumFilletFactorra;
+            get => _addendumFilletFactorRa;
             set
             {
-                addendumFilletFactorra = value;
+                _addendumFilletFactorRa = value;
                 Update();
             }
         }
 
-        public GearPair Pair
+
+        public InvoluteGear MatingGear { get; set; }
+
+        public double CircularBacklashBc
         {
-            get => _gearPair;
-            set => _gearPair = value;
+            get => _circularBacklashBc;
+            set
+            {
+                _circularBacklashBc = value;
+                Update();
+            }
         }
+
+        public double DeltaX
+        {
+            get => _deltaX;
+            set
+            {
+                _deltaX = value;
+                Update();
+            }
+        }
+
+        public double WorkingCentreDistanceAw
+        {
+            get => _workingCentreDistanceAw;
+            set
+            {
+                _workingCentreDistanceAw = value;
+                Update();
+            }
+        }
+    }
+
+    public enum GearType
+    {
+        Internal,
+        External
     }
 }

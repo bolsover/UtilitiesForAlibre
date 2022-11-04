@@ -28,7 +28,8 @@ namespace UnitTests
 
             for (int i = 0; i < 1080;)
             {
-                io.WriteLine(trochoid.HypoTrochoidX(i).ToString("##0.000") + "," + trochoid.HypoTrochoidY(i).ToString("##0.000"));
+                io.WriteLine(trochoid.HypoTrochoidX(i).ToString("##0.000") + "," +
+                             trochoid.HypoTrochoidY(i).ToString("##0.000"));
                 i = i + 10;
             }
         }

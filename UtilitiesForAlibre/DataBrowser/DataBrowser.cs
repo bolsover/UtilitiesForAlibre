@@ -16,17 +16,17 @@ namespace Bolsover.DataBrowser
     {
         #region privateProperties
 
-        private AlibreFileSystem editingRow;
-        private bool IsCopyToAllSelected;
-        private readonly ToolTip copySelectedTooltip = new();
-        private readonly ToolTip filterTooltip = new();
-        private readonly ToolTip saveStateTooltip = new();
-        private readonly ToolTip restoreStateTooltip = new();
-        private readonly ToolTip partNoTooltip = new();
-        private byte[] treeListViewViewState;
-        private readonly PartNoConfig.PartNoConfig partNoConfig = new();
-        private Point MouseDownLocation; //Reference point for moving part no control
-        private static DataBrowserForm instance;
+        private AlibreFileSystem _editingRow;
+        private bool _isCopyToAllSelected;
+        private readonly ToolTip _copySelectedTooltip = new();
+        private readonly ToolTip _filterTooltip = new();
+        private readonly ToolTip _saveStateTooltip = new();
+        private readonly ToolTip _restoreStateTooltip = new();
+        private readonly ToolTip _partNoTooltip = new();
+        private byte[] _treeListViewViewState;
+        private readonly PartNoConfig.PartNoConfig _partNoConfig = new();
+        private Point _mouseDownLocation; //Reference point for moving part no control
+        private static DataBrowserForm _instance;
 
         #endregion
 
@@ -35,20 +35,19 @@ namespace Bolsover.DataBrowser
 
         public static DataBrowserForm Instance()
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = new DataBrowserForm();
+                _instance = new DataBrowserForm();
             }
 
-            instance.Visible = true;
-            return instance;
+            _instance.Visible = true;
+            return _instance;
         }
 
         private DataBrowserForm()
         {
             InitializeComponent();
-            Icon applicationIcon = Globals.Icon;
-            this.Icon = applicationIcon;
+            Icon = Globals.Icon;
             setupColumns();
             setupTree();
             RegisterCustomEditors();
@@ -117,11 +116,11 @@ namespace Bolsover.DataBrowser
 
         private void InitPartNoConfig()
         {
-            partNoConfig.MouseDown += partNoConfigMouseDown;
-            partNoConfig.MouseMove += partNoConfigMouseMove;
-            partNoConfig.Location = new Point(50, 50);
-            Controls.Add(partNoConfig);
-            partNoConfig.Hide();
+            _partNoConfig.MouseDown += partNoConfigMouseDown;
+            _partNoConfig.MouseMove += partNoConfigMouseMove;
+            _partNoConfig.Location = new Point(50, 50);
+            Controls.Add(_partNoConfig);
+            _partNoConfig.Hide();
         }
 
 
@@ -130,15 +129,15 @@ namespace Bolsover.DataBrowser
          */
         private void SetupToolTips()
         {
-            copySelectedTooltip.SetToolTip(checkBoxCopy,
+            _copySelectedTooltip.SetToolTip(checkBoxCopy,
                 "When selected, values entered in one field will be copied to all applicable fields in same column.");
-            filterTooltip.SetToolTip(checkBoxFilter,
+            _filterTooltip.SetToolTip(checkBoxFilter,
                 "When selected, the tree is filtered to show only Alibre files.");
-            saveStateTooltip.SetToolTip(buttonSaveState,
+            _saveStateTooltip.SetToolTip(buttonSaveState,
                 "Saves column layout to file.");
-            restoreStateTooltip.SetToolTip(buttonRestoreState,
+            _restoreStateTooltip.SetToolTip(buttonRestoreState,
                 "Restores column layout from file.");
-            partNoTooltip.SetToolTip(buttonPartNo,
+            _partNoTooltip.SetToolTip(buttonPartNo,
                 "Opens the Part Numbering control.");
         }
 
@@ -581,7 +580,7 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void checkBoxCopy_CheckedChanged(object sender, EventArgs e)
         {
-            IsCopyToAllSelected = ((CheckBox) sender).Checked;
+            _isCopyToAllSelected = ((CheckBox) sender).Checked;
         }
 
         /// <summary>
@@ -592,7 +591,7 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void buttonSaveState_Click(object sender, EventArgs e)
         {
-            treeListViewViewState = treeListView.SaveState();
+            _treeListViewViewState = treeListView.SaveState();
             var directorypath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                 "\\UtilitiesForAlibre";
             var filepath = directorypath + "\\table.settings";
@@ -602,7 +601,7 @@ namespace Bolsover.DataBrowser
                 Directory.CreateDirectory(directorypath);
             }
 
-            File.WriteAllBytes(filepath, treeListViewViewState);
+            File.WriteAllBytes(filepath, _treeListViewViewState);
         }
 
         /// <summary>
@@ -622,9 +621,9 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void buttonPartNo_Click(object sender, EventArgs e)
         {
-            partNoConfig.SelectedItems = treeListView.CheckedObjects;
-            partNoConfig.Show();
-            partNoConfig.BringToFront();
+            _partNoConfig.SelectedItems = treeListView.CheckedObjects;
+            _partNoConfig.Show();
+            _partNoConfig.BringToFront();
         }
 
 
@@ -637,7 +636,7 @@ namespace Bolsover.DataBrowser
         {
             if (e.Button == MouseButtons.Left)
             {
-                MouseDownLocation = e.Location;
+                _mouseDownLocation = e.Location;
             }
         }
 
@@ -650,8 +649,8 @@ namespace Bolsover.DataBrowser
         {
             if (e.Button == MouseButtons.Left)
             {
-                partNoConfig.Left = e.X + partNoConfig.Left - MouseDownLocation.X;
-                partNoConfig.Top = e.Y + partNoConfig.Top - MouseDownLocation.Y;
+                _partNoConfig.Left = e.X + _partNoConfig.Left - _mouseDownLocation.X;
+                _partNoConfig.Top = e.Y + _partNoConfig.Top - _mouseDownLocation.Y;
             }
         }
 
@@ -669,7 +668,7 @@ namespace Bolsover.DataBrowser
             try
             {
                 var materialNode = selectedItemEventArgs.SelectedChoice;
-                olvColumnAlibreMaterial.AspectPutter.Invoke(editingRow, materialNode);
+                olvColumnAlibreMaterial.AspectPutter.Invoke(_editingRow, materialNode);
             }
             catch (Exception exception)
             {
@@ -685,7 +684,7 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void HandleCellEditFinished(object sender, CellEditEventArgs e)
         {
-            if (IsCopyToAllSelected)
+            if (_isCopyToAllSelected)
             {
                 CopyToSelected(sender, e);
             }
@@ -706,7 +705,7 @@ namespace Bolsover.DataBrowser
         private void HandleCellEditStarting(object sender, CellEditEventArgs e)
         {
             var rowObject = (AlibreFileSystem) e.RowObject;
-            editingRow = rowObject;
+            _editingRow = rowObject;
 
             // directory items are not editable
             if (rowObject.IsDirectory)
@@ -722,19 +721,19 @@ namespace Bolsover.DataBrowser
                 return;
             }
 
-            // prevent edits to anything other than sheet metal, part and assembly abd drawing types
+            // prevent edits to anything other than sheet metal, part and assembly and drawing types
             var extension = rowObject.Info.Extension.ToUpper();
-            if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_P") |
-                  rowObject.Info.Extension.ToUpper().StartsWith(".AD_A") |
-                  rowObject.Info.Extension.ToUpper().StartsWith(".AD_S") |
-                  rowObject.Info.Extension.ToUpper().StartsWith(".AD_D")))
+            if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
+                  rowObject.Info.Extension.ToUpper().StartsWith(".AD_ASM") |
+                  rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP") |
+                  rowObject.Info.Extension.ToUpper().StartsWith(".AD_DRW")))
             {
                 e.Cancel = true;
                 return;
             }
 
             // drawing can only edit description and part no fields
-            if (rowObject.Info.Extension.ToUpper().StartsWith(".AD_D"))
+            if (rowObject.Info.Extension.ToUpper().StartsWith(".AD_DRW"))
             {
                 if (!(e.Column == olvColumnAlibreDescription || e.Column == olvColumnAlibrePartNo))
                 {
@@ -752,8 +751,8 @@ namespace Bolsover.DataBrowser
             }
             else
             {
-                if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_P") |
-                      rowObject.Info.Extension.ToUpper().StartsWith(".AD_S")))
+                if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
+                      rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP")))
                 {
                     e.Cancel = true;
                     return;
@@ -803,8 +802,8 @@ namespace Bolsover.DataBrowser
             foreach (var checkedObject in checkedObjects)
             {
                 var rowObject = (AlibreFileSystem) checkedObject;
-                if (e.Column == olvColumnAlibreMaterial && rowObject.Info.Extension.ToUpper().StartsWith(".AD_P") |
-                    rowObject.Info.Extension.ToUpper().StartsWith(".AD_S"))
+                if (e.Column == olvColumnAlibreMaterial && rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
+                    rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP"))
                 {
                     var afs = (AlibreFileSystem) e.RowObject;
                     var materialNode = new MaterialNode(afs.AlibreMaterial);
@@ -816,10 +815,10 @@ namespace Bolsover.DataBrowser
 
                 else
                 {
-                    if (rowObject.Info.Extension.ToUpper().StartsWith(".AD_P") |
-                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_A") |
-                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_S") |
-                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_D"))
+                    if (rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
+                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_ASM") |
+                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP") |
+                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_DRW"))
                     {
                         progressLabel.Text = "Copy to " + rowObject.Name;
                         e.Column.AspectPutter.Invoke(rowObject, e.NewValue);
@@ -876,8 +875,8 @@ namespace Bolsover.DataBrowser
             var fileInfo = new FileInfo(filepath);
             if (fileInfo.Exists)
             {
-                treeListViewViewState = File.ReadAllBytes(filepath);
-                treeListView.RestoreState(treeListViewViewState);
+                _treeListViewViewState = File.ReadAllBytes(filepath);
+                treeListView.RestoreState(_treeListViewViewState);
             }
         }
 

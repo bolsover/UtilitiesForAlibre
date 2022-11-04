@@ -10,9 +10,8 @@ namespace Bolsover
         public AboutForm()
         {
             InitializeComponent();
-            Icon applicationIcon = Globals.Icon;
-            this.Icon = applicationIcon;
-            label1.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            Icon = Globals.Icon;
+            label1.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version;
             var customAttributes = Assembly.GetExecutingAssembly()
                 .GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
             label2.Text = customAttributes.Length == 0

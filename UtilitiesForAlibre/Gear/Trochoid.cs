@@ -40,12 +40,22 @@ namespace Bolsover.Gear
         public double EpiModulus => FixedCircleRadius + RollingCircleRadius;
 
 
-        public double HypoTrochoidX(double theta) => HypoModulus * Math.Cos(Radians(theta)) + TracePoint * Math.Cos((HypoModulus / RollingCircleRadius) * Radians(theta));
-        public double HypoTrochoidY(double theta) => HypoModulus * Math.Sin(Radians(theta)) - TracePoint * Math.Sin((HypoModulus / RollingCircleRadius) * Radians(theta));
+        public double HypoTrochoidX(double theta) => HypoModulus * Math.Cos(Radians(theta)) +
+                                                     TracePoint * Math.Cos((HypoModulus / RollingCircleRadius) *
+                                                                           Radians(theta));
+
+        public double HypoTrochoidY(double theta) => HypoModulus * Math.Sin(Radians(theta)) -
+                                                     TracePoint * Math.Sin((HypoModulus / RollingCircleRadius) *
+                                                                           Radians(theta));
 
 
-        public double EpiTrochoidX(double theta) => EpiModulus * Math.Cos(Radians(theta)) - TracePoint * Math.Cos((EpiModulus / RollingCircleRadius) * Radians(theta));
-        public double EpiTrochoidY(double theta) => EpiModulus * Math.Sin(Radians(theta)) - TracePoint * Math.Sin((EpiModulus / RollingCircleRadius) * Radians(theta));
+        public double EpiTrochoidX(double theta) => EpiModulus * Math.Cos(Radians(theta)) -
+                                                    TracePoint * Math.Cos(
+                                                        (EpiModulus / RollingCircleRadius) * Radians(theta));
+
+        public double EpiTrochoidY(double theta) => EpiModulus * Math.Sin(Radians(theta)) -
+                                                    TracePoint * Math.Sin(
+                                                        (EpiModulus / RollingCircleRadius) * Radians(theta));
 
 
         // Parametric equation for Polar coordinates of involute 
@@ -71,10 +81,12 @@ namespace Bolsover.Gear
         /// <param name="lambda"></param>
         /// <returns></returns>
         public double PolarRtro(double baseDiameter, double delta, double lambda) =>
-            Math.Sqrt(Math.Pow(baseDiameter / 2, 2) + Math.Pow(delta, 2) - (baseDiameter * delta * Math.Cos((Math.PI / 2) - lambda)));
+            Math.Sqrt(Math.Pow(baseDiameter / 2, 2) + Math.Pow(delta, 2) -
+                      (baseDiameter * delta * Math.Cos((Math.PI / 2) - lambda)));
 
         public double PolarEtaTro(double theta, double epsilon, double alpha) => theta + epsilon + alpha;
 
-        public double TanEpsilon(double baseDiameter, double lambda, double delta) => delta * Math.Cos(lambda) / (baseDiameter / 2 - delta * Math.Sin(lambda));
+        public double TanEpsilon(double baseDiameter, double lambda, double delta) =>
+            delta * Math.Cos(lambda) / (baseDiameter / 2 - delta * Math.Sin(lambda));
     }
 }

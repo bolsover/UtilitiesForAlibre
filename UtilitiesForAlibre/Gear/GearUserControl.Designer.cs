@@ -2,7 +2,7 @@
 
 namespace Bolsover.Gear
 {
-    partial class ExternalGearUserControl
+    partial class GearUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -37,26 +37,10 @@ namespace Bolsover.Gear
             this.textBoxInvoluteFunction1 = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.numericUpDownModule = new System.Windows.Forms.NumericUpDown();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.textBoxInvoluteFunction2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.numericUpDownPressureAngle = new System.Windows.Forms.NumericUpDown();
             this.buttonBuildWheel = new System.Windows.Forms.Button();
             this.buttonBuildPinion = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.numericUpDownTeeth1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownTeeth2 = new System.Windows.Forms.NumericUpDown();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.numericUpDownHelixAngle = new System.Windows.Forms.NumericUpDown();
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.textBoxSumOfProfileShifts = new System.Windows.Forms.TextBox();
@@ -97,16 +81,6 @@ namespace Bolsover.Gear
             this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.textBoxTransverseModule = new System.Windows.Forms.TextBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.numericUpDownCircularBacklashBc = new System.Windows.Forms.NumericUpDown();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.rootFilletNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.tipReliefNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.textBoxProfileShiftWithoutUndercut1 = new System.Windows.Forms.TextBox();
@@ -128,24 +102,57 @@ namespace Bolsover.Gear
             this.label8 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.textBoxIncrementFactorY = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBoxContactRatio = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
+            this.labelContactRatio2 = new System.Windows.Forms.Label();
+            this.textBoxContactRatio = new System.Windows.Forms.TextBox();
+            this.labelContactRatio = new System.Windows.Forms.Label();
+            this.buttonReport = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.tipReliefNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.rootFilletNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.numericUpDownCircularBacklashBc = new System.Windows.Forms.NumericUpDown();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.numericUpDownModule = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.numericUpDownPressureAngle = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.numericUpDownHelixAngle = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.numericUpDownTeeth1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownTeeth2 = new System.Windows.Forms.NumericUpDown();
+            this.label39 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.wheelRadioExt = new System.Windows.Forms.RadioButton();
+            this.wheelRadioInt = new System.Windows.Forms.RadioButton();
+            this.label64 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownModule)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownPressureAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownHelixAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownCircularBacklashBc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.rootFilletNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tipReliefNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownOperatingCentreDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.trackBarProfileShiftDistribution)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.tipReliefNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.rootFilletNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownCircularBacklashBc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownModule)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownPressureAngle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownHelixAngle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -165,7 +172,7 @@ namespace Bolsover.Gear
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1076, 776);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "External Gears";
+            this.tabPage1.Text = "Gears";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -182,26 +189,10 @@ namespace Bolsover.Gear
             this.tableLayoutPanel1.Controls.Add(this.textBoxInvoluteFunction1, 6, 3);
             this.tableLayoutPanel1.Controls.Add(this.label45, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.label44, 4, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label28, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDownModule, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label50, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label51, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label52, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label20, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBoxInvoluteFunction2, 7, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label25, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDownPressureAngle, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.buttonBuildWheel, 3, 23);
             this.tableLayoutPanel1.Controls.Add(this.buttonBuildPinion, 2, 23);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label27, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDownTeeth1, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDownTeeth2, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label24, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label26, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDownHelixAngle, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.label48, 4, 18);
             this.tableLayoutPanel1.Controls.Add(this.label49, 5, 18);
             this.tableLayoutPanel1.Controls.Add(this.textBoxSumOfProfileShifts, 6, 18);
@@ -242,16 +233,6 @@ namespace Bolsover.Gear
             this.tableLayoutPanel1.Controls.Add(this.label60, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.label61, 5, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBoxTransverseModule, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label58, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label16, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label17, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDownCircularBacklashBc, 2, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label46, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label47, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.rootFilletNumericUpDown, 2, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label35, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.tipReliefNumericUpDown, 2, 11);
             this.tableLayoutPanel1.Controls.Add(this.label21, 0, 17);
             this.tableLayoutPanel1.Controls.Add(this.label22, 1, 17);
             this.tableLayoutPanel1.Controls.Add(this.textBoxProfileShiftWithoutUndercut1, 2, 17);
@@ -275,9 +256,39 @@ namespace Bolsover.Gear
             this.tableLayoutPanel1.Controls.Add(this.textBoxIncrementFactorY, 6, 16);
             this.tableLayoutPanel1.Controls.Add(this.label36, 4, 13);
             this.tableLayoutPanel1.Controls.Add(this.label63, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label30, 4, 21);
+            this.tableLayoutPanel1.Controls.Add(this.labelContactRatio2, 4, 21);
             this.tableLayoutPanel1.Controls.Add(this.textBoxContactRatio, 6, 21);
-            this.tableLayoutPanel1.Controls.Add(this.label62, 4, 20);
+            this.tableLayoutPanel1.Controls.Add(this.labelContactRatio, 4, 20);
+            this.tableLayoutPanel1.Controls.Add(this.buttonReport, 1, 23);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label35, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.tipReliefNumericUpDown, 2, 12);
+            this.tableLayoutPanel1.Controls.Add(this.rootFilletNumericUpDown, 2, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label47, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label46, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label16, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.label17, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownCircularBacklashBc, 2, 10);
+            this.tableLayoutPanel1.Controls.Add(this.label58, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label52, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label50, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label51, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label28, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownModule, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label25, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownPressureAngle, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label24, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label26, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownHelixAngle, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label27, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownTeeth1, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDownTeeth2, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label39, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 3, 7);
+            this.tableLayoutPanel1.Controls.Add(this.label64, 0, 19);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 25;
@@ -306,7 +317,7 @@ namespace Bolsover.Gear
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1063, 730);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1063, 747);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // textBoxInvoluteFunction1
@@ -335,78 +346,6 @@ namespace Bolsover.Gear
             this.label44.TabIndex = 97;
             this.label44.Text = "Standard Involute Function";
             // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label2.Location = new System.Drawing.Point(3, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(194, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Module";
-            // 
-            // label28
-            // 
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label28.Location = new System.Drawing.Point(228, 120);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(94, 23);
-            this.label28.TabIndex = 74;
-            this.label28.Text = "mn";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDownModule
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownModule, 2);
-            this.numericUpDownModule.DecimalPlaces = 4;
-            this.numericUpDownModule.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 262144
-            });
-            this.numericUpDownModule.Location = new System.Drawing.Point(328, 123);
-            this.numericUpDownModule.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
-            this.numericUpDownModule.Name = "numericUpDownModule";
-            this.numericUpDownModule.Size = new System.Drawing.Size(194, 20);
-            this.numericUpDownModule.TabIndex = 2;
-            this.numericUpDownModule.Value = new decimal(new int[]
-            {
-                1000, 0, 0, 196608
-            });
-            this.numericUpDownModule.ValueChanged += new System.EventHandler(this.numericUpDownModule_ValueChanged);
-            // 
-            // label50
-            // 
-            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label50.Location = new System.Drawing.Point(328, 90);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(91, 23);
-            this.label50.TabIndex = 115;
-            this.label50.Text = "Pinion";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label51
-            // 
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label51.Location = new System.Drawing.Point(428, 90);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(94, 23);
-            this.label51.TabIndex = 116;
-            this.label51.Text = "Wheel";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label52
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.label52, 4);
-            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label52.Location = new System.Drawing.Point(3, 60);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(462, 23);
-            this.label52.TabIndex = 117;
-            this.label52.Text = "Standard Parameters";
-            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label20
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label20, 4);
@@ -424,47 +363,6 @@ namespace Bolsover.Gear
             this.textBoxInvoluteFunction2.Name = "textBoxInvoluteFunction2";
             this.textBoxInvoluteFunction2.Size = new System.Drawing.Size(100, 20);
             this.textBoxInvoluteFunction2.TabIndex = 163;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label3.Location = new System.Drawing.Point(3, 150);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(194, 23);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Pressure Angle";
-            // 
-            // label25
-            // 
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label25.Location = new System.Drawing.Point(228, 150);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(94, 23);
-            this.label25.TabIndex = 75;
-            this.label25.Text = "α";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDownPressureAngle
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownPressureAngle, 2);
-            this.numericUpDownPressureAngle.DecimalPlaces = 1;
-            this.numericUpDownPressureAngle.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 65536
-            });
-            this.numericUpDownPressureAngle.Location = new System.Drawing.Point(328, 153);
-            this.numericUpDownPressureAngle.Maximum = new decimal(new int[]
-            {
-                30, 0, 0, 0
-            });
-            this.numericUpDownPressureAngle.Name = "numericUpDownPressureAngle";
-            this.numericUpDownPressureAngle.Size = new System.Drawing.Size(194, 20);
-            this.numericUpDownPressureAngle.TabIndex = 3;
-            this.numericUpDownPressureAngle.Value = new decimal(new int[]
-            {
-                20, 0, 0, 0
-            });
-            this.numericUpDownPressureAngle.ValueChanged += new System.EventHandler(this.numericUpDownPressureAngle_ValueChanged);
             // 
             // buttonBuildWheel
             // 
@@ -488,102 +386,6 @@ namespace Bolsover.Gear
             this.buttonBuildPinion.Text = "Build Pinion";
             this.buttonBuildPinion.UseVisualStyleBackColor = true;
             this.buttonBuildPinion.Click += new System.EventHandler(this.buttonBuildPinion_Click);
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label4.Location = new System.Drawing.Point(3, 210);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(194, 23);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Teeth";
-            // 
-            // label27
-            // 
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label27.Location = new System.Drawing.Point(228, 210);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(94, 23);
-            this.label27.TabIndex = 77;
-            this.label27.Text = "z1, z2";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDownTeeth1
-            // 
-            this.numericUpDownTeeth1.Location = new System.Drawing.Point(328, 213);
-            this.numericUpDownTeeth1.Maximum = new decimal(new int[]
-            {
-                1000, 0, 0, 0
-            });
-            this.numericUpDownTeeth1.Minimum = new decimal(new int[]
-            {
-                7, 0, 0, 0
-            });
-            this.numericUpDownTeeth1.Name = "numericUpDownTeeth1";
-            this.numericUpDownTeeth1.Size = new System.Drawing.Size(91, 20);
-            this.numericUpDownTeeth1.TabIndex = 5;
-            this.numericUpDownTeeth1.Value = new decimal(new int[]
-            {
-                18, 0, 0, 0
-            });
-            this.numericUpDownTeeth1.ValueChanged += new System.EventHandler(this.numericUpDownTeeth1_ValueChanged);
-            // 
-            // numericUpDownTeeth2
-            // 
-            this.numericUpDownTeeth2.Location = new System.Drawing.Point(428, 213);
-            this.numericUpDownTeeth2.Maximum = new decimal(new int[]
-            {
-                1000, 0, 0, 0
-            });
-            this.numericUpDownTeeth2.Minimum = new decimal(new int[]
-            {
-                7, 0, 0, 0
-            });
-            this.numericUpDownTeeth2.Name = "numericUpDownTeeth2";
-            this.numericUpDownTeeth2.Size = new System.Drawing.Size(94, 20);
-            this.numericUpDownTeeth2.TabIndex = 6;
-            this.numericUpDownTeeth2.Value = new decimal(new int[]
-            {
-                18, 0, 0, 0
-            });
-            this.numericUpDownTeeth2.ValueChanged += new System.EventHandler(this.numericUpDownTeeth2_ValueChanged);
-            // 
-            // label24
-            // 
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label24.Location = new System.Drawing.Point(3, 180);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(194, 23);
-            this.label24.TabIndex = 168;
-            this.label24.Text = "Helix Angle";
-            // 
-            // label26
-            // 
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label26.Location = new System.Drawing.Point(228, 180);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(94, 23);
-            this.label26.TabIndex = 169;
-            this.label26.Text = "β";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDownHelixAngle
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownHelixAngle, 2);
-            this.numericUpDownHelixAngle.DecimalPlaces = 1;
-            this.numericUpDownHelixAngle.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 65536
-            });
-            this.numericUpDownHelixAngle.Location = new System.Drawing.Point(328, 183);
-            this.numericUpDownHelixAngle.Maximum = new decimal(new int[]
-            {
-                45, 0, 0, 0
-            });
-            this.numericUpDownHelixAngle.Name = "numericUpDownHelixAngle";
-            this.numericUpDownHelixAngle.Size = new System.Drawing.Size(194, 20);
-            this.numericUpDownHelixAngle.TabIndex = 170;
-            this.numericUpDownHelixAngle.ValueChanged += new System.EventHandler(this.numericUpDownHelixAngle_ValueChanged);
             // 
             // label48
             // 
@@ -932,144 +734,6 @@ namespace Bolsover.Gear
             this.textBoxTransverseModule.Size = new System.Drawing.Size(200, 20);
             this.textBoxTransverseModule.TabIndex = 176;
             // 
-            // label58
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.label58, 4);
-            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label58.Location = new System.Drawing.Point(3, 240);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(516, 23);
-            this.label58.TabIndex = 162;
-            this.label58.Text = "Backlash and Root and Tip Adjustments";
-            this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label16
-            // 
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label16.Location = new System.Drawing.Point(3, 270);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(194, 23);
-            this.label16.TabIndex = 133;
-            this.label16.Text = "Circumferential Backlash";
-            // 
-            // label17
-            // 
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label17.Location = new System.Drawing.Point(228, 270);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(94, 23);
-            this.label17.TabIndex = 134;
-            this.label17.Text = "Bc";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDownCircularBacklashBc
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownCircularBacklashBc, 2);
-            this.numericUpDownCircularBacklashBc.DecimalPlaces = 3;
-            this.numericUpDownCircularBacklashBc.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
-            this.numericUpDownCircularBacklashBc.Location = new System.Drawing.Point(328, 273);
-            this.numericUpDownCircularBacklashBc.Maximum = new decimal(new int[]
-            {
-                1, 0, 0, 65536
-            });
-            this.numericUpDownCircularBacklashBc.Name = "numericUpDownCircularBacklashBc";
-            this.numericUpDownCircularBacklashBc.Size = new System.Drawing.Size(194, 20);
-            this.numericUpDownCircularBacklashBc.TabIndex = 135;
-            this.numericUpDownCircularBacklashBc.ValueChanged += new System.EventHandler(this.numericUpDownCircularBacklashBc_ValueChanged);
-            // 
-            // label46
-            // 
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label46.Location = new System.Drawing.Point(3, 300);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(219, 23);
-            this.label46.TabIndex = 159;
-            this.label46.Text = "Root Fillet Factor";
-            // 
-            // label47
-            // 
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label47.Location = new System.Drawing.Point(228, 300);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(94, 23);
-            this.label47.TabIndex = 160;
-            this.label47.Text = "rf";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // rootFilletNumericUpDown
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.rootFilletNumericUpDown, 2);
-            this.rootFilletNumericUpDown.DecimalPlaces = 3;
-            this.rootFilletNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
-            this.rootFilletNumericUpDown.Location = new System.Drawing.Point(328, 303);
-            this.rootFilletNumericUpDown.Maximum = new decimal(new int[]
-            {
-                5, 0, 0, 65536
-            });
-            this.rootFilletNumericUpDown.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
-            this.rootFilletNumericUpDown.Name = "rootFilletNumericUpDown";
-            this.rootFilletNumericUpDown.Size = new System.Drawing.Size(194, 20);
-            this.rootFilletNumericUpDown.TabIndex = 161;
-            this.rootFilletNumericUpDown.Value = new decimal(new int[]
-            {
-                380, 0, 0, 196608
-            });
-            this.rootFilletNumericUpDown.ValueChanged += new System.EventHandler(this.rootFilletNumericUpDown_ValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label1.Location = new System.Drawing.Point(3, 330);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 23);
-            this.label1.TabIndex = 177;
-            this.label1.Text = "Tip Relief Factor";
-            // 
-            // label35
-            // 
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label35.Location = new System.Drawing.Point(228, 330);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(94, 23);
-            this.label35.TabIndex = 178;
-            this.label35.Text = "tf";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tipReliefNumericUpDown
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.tipReliefNumericUpDown, 2);
-            this.tipReliefNumericUpDown.DecimalPlaces = 3;
-            this.tipReliefNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
-            this.tipReliefNumericUpDown.Location = new System.Drawing.Point(328, 333);
-            this.tipReliefNumericUpDown.Maximum = new decimal(new int[]
-            {
-                3, 0, 0, 65536
-            });
-            this.tipReliefNumericUpDown.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
-            this.tipReliefNumericUpDown.Name = "tipReliefNumericUpDown";
-            this.tipReliefNumericUpDown.Size = new System.Drawing.Size(194, 20);
-            this.tipReliefNumericUpDown.TabIndex = 179;
-            this.tipReliefNumericUpDown.Value = new decimal(new int[]
-            {
-                25, 0, 0, 131072
-            });
-            this.tipReliefNumericUpDown.ValueChanged += new System.EventHandler(this.tipReliefNumericUpDown_ValueChanged);
-            // 
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
@@ -1270,23 +934,6 @@ namespace Bolsover.Gear
             this.textBoxIncrementFactorY.Size = new System.Drawing.Size(200, 20);
             this.textBoxIncrementFactorY.TabIndex = 132;
             // 
-            // label30
-            // 
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label30.Location = new System.Drawing.Point(528, 630);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(194, 23);
-            this.label30.TabIndex = 151;
-            this.label30.Text = "Contact Ratio";
-            // 
-            // textBoxContactRatio
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.textBoxContactRatio, 2);
-            this.textBoxContactRatio.Location = new System.Drawing.Point(853, 633);
-            this.textBoxContactRatio.Name = "textBoxContactRatio";
-            this.textBoxContactRatio.Size = new System.Drawing.Size(194, 20);
-            this.textBoxContactRatio.TabIndex = 152;
-            // 
             // label36
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label36, 4);
@@ -1296,16 +943,6 @@ namespace Bolsover.Gear
             this.label36.Size = new System.Drawing.Size(525, 23);
             this.label36.TabIndex = 180;
             this.label36.Text = "For standard gears Operating Centre Distance should be same as Standard\r\n";
-            // 
-            // label62
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.label62, 4);
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label62.Location = new System.Drawing.Point(528, 600);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(525, 23);
-            this.label62.TabIndex = 181;
-            this.label62.Text = "Contact Ratio should not be less than 1.2";
             // 
             // label63
             // 
@@ -1318,34 +955,489 @@ namespace Bolsover.Gear
             this.label63.Text = "Output Parameters";
             this.label63.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ExternalGearUserControl
+            // labelContactRatio2
+            // 
+            this.labelContactRatio2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelContactRatio2.Location = new System.Drawing.Point(528, 630);
+            this.labelContactRatio2.Name = "labelContactRatio2";
+            this.labelContactRatio2.Size = new System.Drawing.Size(194, 23);
+            this.labelContactRatio2.TabIndex = 151;
+            this.labelContactRatio2.Text = "Contact Ratio";
+            // 
+            // textBoxContactRatio
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.textBoxContactRatio, 2);
+            this.textBoxContactRatio.Location = new System.Drawing.Point(853, 633);
+            this.textBoxContactRatio.Name = "textBoxContactRatio";
+            this.textBoxContactRatio.Size = new System.Drawing.Size(194, 20);
+            this.textBoxContactRatio.TabIndex = 152;
+            // 
+            // labelContactRatio
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.labelContactRatio, 4);
+            this.labelContactRatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelContactRatio.Location = new System.Drawing.Point(528, 600);
+            this.labelContactRatio.Name = "labelContactRatio";
+            this.labelContactRatio.Size = new System.Drawing.Size(525, 23);
+            this.labelContactRatio.TabIndex = 181;
+            this.labelContactRatio.Text = "Contact Ratio should not be less than 1.2";
+            // 
+            // buttonReport
+            // 
+            this.buttonReport.Location = new System.Drawing.Point(228, 693);
+            this.buttonReport.Name = "buttonReport";
+            this.buttonReport.Size = new System.Drawing.Size(94, 23);
+            this.buttonReport.TabIndex = 183;
+            this.buttonReport.Text = "Report";
+            this.buttonReport.UseVisualStyleBackColor = true;
+            this.buttonReport.Click += new System.EventHandler(this.buttonReport_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label1.Location = new System.Drawing.Point(3, 360);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(219, 23);
+            this.label1.TabIndex = 177;
+            this.label1.Text = "Tip Relief Factor";
+            // 
+            // label35
+            // 
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label35.Location = new System.Drawing.Point(228, 360);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(94, 23);
+            this.label35.TabIndex = 178;
+            this.label35.Text = "tf";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tipReliefNumericUpDown
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.tipReliefNumericUpDown, 2);
+            this.tipReliefNumericUpDown.DecimalPlaces = 3;
+            this.tipReliefNumericUpDown.Increment = new decimal(new int[]
+            {
+                1, 0, 0, 196608
+            });
+            this.tipReliefNumericUpDown.Location = new System.Drawing.Point(328, 363);
+            this.tipReliefNumericUpDown.Maximum = new decimal(new int[]
+            {
+                3, 0, 0, 65536
+            });
+            this.tipReliefNumericUpDown.Minimum = new decimal(new int[]
+            {
+                1, 0, 0, 196608
+            });
+            this.tipReliefNumericUpDown.Name = "tipReliefNumericUpDown";
+            this.tipReliefNumericUpDown.Size = new System.Drawing.Size(194, 20);
+            this.tipReliefNumericUpDown.TabIndex = 179;
+            this.tipReliefNumericUpDown.Value = new decimal(new int[]
+            {
+                25, 0, 0, 131072
+            });
+            this.tipReliefNumericUpDown.ValueChanged += new System.EventHandler(this.tipReliefNumericUpDown_ValueChanged);
+            // 
+            // rootFilletNumericUpDown
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.rootFilletNumericUpDown, 2);
+            this.rootFilletNumericUpDown.DecimalPlaces = 3;
+            this.rootFilletNumericUpDown.Increment = new decimal(new int[]
+            {
+                1, 0, 0, 196608
+            });
+            this.rootFilletNumericUpDown.Location = new System.Drawing.Point(328, 333);
+            this.rootFilletNumericUpDown.Maximum = new decimal(new int[]
+            {
+                5, 0, 0, 65536
+            });
+            this.rootFilletNumericUpDown.Minimum = new decimal(new int[]
+            {
+                1, 0, 0, 196608
+            });
+            this.rootFilletNumericUpDown.Name = "rootFilletNumericUpDown";
+            this.rootFilletNumericUpDown.Size = new System.Drawing.Size(194, 20);
+            this.rootFilletNumericUpDown.TabIndex = 161;
+            this.rootFilletNumericUpDown.Value = new decimal(new int[]
+            {
+                380, 0, 0, 196608
+            });
+            this.rootFilletNumericUpDown.ValueChanged += new System.EventHandler(this.rootFilletNumericUpDown_ValueChanged);
+            // 
+            // label47
+            // 
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label47.Location = new System.Drawing.Point(228, 330);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(94, 23);
+            this.label47.TabIndex = 160;
+            this.label47.Text = "rf";
+            this.label47.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label46
+            // 
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label46.Location = new System.Drawing.Point(3, 330);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(219, 23);
+            this.label46.TabIndex = 159;
+            this.label46.Text = "Root Fillet Factor";
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label16.Location = new System.Drawing.Point(3, 300);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(194, 23);
+            this.label16.TabIndex = 133;
+            this.label16.Text = "Circumferential Backlash";
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label17.Location = new System.Drawing.Point(228, 300);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(94, 23);
+            this.label17.TabIndex = 134;
+            this.label17.Text = "Bc";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDownCircularBacklashBc
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownCircularBacklashBc, 2);
+            this.numericUpDownCircularBacklashBc.DecimalPlaces = 3;
+            this.numericUpDownCircularBacklashBc.Increment = new decimal(new int[]
+            {
+                1, 0, 0, 196608
+            });
+            this.numericUpDownCircularBacklashBc.Location = new System.Drawing.Point(328, 303);
+            this.numericUpDownCircularBacklashBc.Maximum = new decimal(new int[]
+            {
+                1, 0, 0, 65536
+            });
+            this.numericUpDownCircularBacklashBc.Name = "numericUpDownCircularBacklashBc";
+            this.numericUpDownCircularBacklashBc.Size = new System.Drawing.Size(194, 20);
+            this.numericUpDownCircularBacklashBc.TabIndex = 135;
+            this.numericUpDownCircularBacklashBc.ValueChanged += new System.EventHandler(this.numericUpDownCircularBacklashBc_ValueChanged);
+            // 
+            // label58
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.label58, 4);
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label58.Location = new System.Drawing.Point(3, 270);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(516, 23);
+            this.label58.TabIndex = 162;
+            this.label58.Text = "Backlash and Root and Tip Adjustments";
+            this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label52
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.label52, 4);
+            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label52.Location = new System.Drawing.Point(3, 30);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(462, 23);
+            this.label52.TabIndex = 117;
+            this.label52.Text = "Standard Parameters";
+            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label50
+            // 
+            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label50.Location = new System.Drawing.Point(328, 60);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(91, 23);
+            this.label50.TabIndex = 115;
+            this.label50.Text = "Pinion";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label51
+            // 
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label51.Location = new System.Drawing.Point(428, 60);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(94, 23);
+            this.label51.TabIndex = 116;
+            this.label51.Text = "Wheel";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label2.Location = new System.Drawing.Point(3, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(194, 23);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Module";
+            // 
+            // label28
+            // 
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label28.Location = new System.Drawing.Point(228, 90);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(94, 23);
+            this.label28.TabIndex = 74;
+            this.label28.Text = "mn";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDownModule
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownModule, 2);
+            this.numericUpDownModule.DecimalPlaces = 4;
+            this.numericUpDownModule.Increment = new decimal(new int[]
+            {
+                1, 0, 0, 262144
+            });
+            this.numericUpDownModule.Location = new System.Drawing.Point(328, 93);
+            this.numericUpDownModule.Minimum = new decimal(new int[]
+            {
+                1, 0, 0, 196608
+            });
+            this.numericUpDownModule.Name = "numericUpDownModule";
+            this.numericUpDownModule.Size = new System.Drawing.Size(194, 20);
+            this.numericUpDownModule.TabIndex = 2;
+            this.numericUpDownModule.Value = new decimal(new int[]
+            {
+                1000, 0, 0, 196608
+            });
+            this.numericUpDownModule.ValueChanged += new System.EventHandler(this.numericUpDownModule_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label3.Location = new System.Drawing.Point(3, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(194, 23);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Pressure Angle";
+            // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label25.Location = new System.Drawing.Point(228, 120);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(94, 23);
+            this.label25.TabIndex = 75;
+            this.label25.Text = "α";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDownPressureAngle
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownPressureAngle, 2);
+            this.numericUpDownPressureAngle.DecimalPlaces = 1;
+            this.numericUpDownPressureAngle.Increment = new decimal(new int[]
+            {
+                1, 0, 0, 65536
+            });
+            this.numericUpDownPressureAngle.Location = new System.Drawing.Point(328, 123);
+            this.numericUpDownPressureAngle.Maximum = new decimal(new int[]
+            {
+                30, 0, 0, 0
+            });
+            this.numericUpDownPressureAngle.Name = "numericUpDownPressureAngle";
+            this.numericUpDownPressureAngle.Size = new System.Drawing.Size(194, 20);
+            this.numericUpDownPressureAngle.TabIndex = 3;
+            this.numericUpDownPressureAngle.Value = new decimal(new int[]
+            {
+                20, 0, 0, 0
+            });
+            this.numericUpDownPressureAngle.ValueChanged += new System.EventHandler(this.numericUpDownPressureAngle_ValueChanged);
+            // 
+            // label24
+            // 
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label24.Location = new System.Drawing.Point(3, 150);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(194, 23);
+            this.label24.TabIndex = 168;
+            this.label24.Text = "Helix Angle";
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label26.Location = new System.Drawing.Point(228, 150);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(94, 23);
+            this.label26.TabIndex = 169;
+            this.label26.Text = "β";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDownHelixAngle
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.numericUpDownHelixAngle, 2);
+            this.numericUpDownHelixAngle.DecimalPlaces = 1;
+            this.numericUpDownHelixAngle.Increment = new decimal(new int[]
+            {
+                1, 0, 0, 65536
+            });
+            this.numericUpDownHelixAngle.Location = new System.Drawing.Point(328, 153);
+            this.numericUpDownHelixAngle.Maximum = new decimal(new int[]
+            {
+                45, 0, 0, 0
+            });
+            this.numericUpDownHelixAngle.Name = "numericUpDownHelixAngle";
+            this.numericUpDownHelixAngle.Size = new System.Drawing.Size(194, 20);
+            this.numericUpDownHelixAngle.TabIndex = 170;
+            this.numericUpDownHelixAngle.ValueChanged += new System.EventHandler(this.numericUpDownHelixAngle_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label4.Location = new System.Drawing.Point(3, 180);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(194, 23);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Teeth";
+            // 
+            // label27
+            // 
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label27.Location = new System.Drawing.Point(228, 180);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(94, 23);
+            this.label27.TabIndex = 77;
+            this.label27.Text = "z1, z2";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDownTeeth1
+            // 
+            this.numericUpDownTeeth1.Location = new System.Drawing.Point(328, 183);
+            this.numericUpDownTeeth1.Maximum = new decimal(new int[]
+            {
+                1000, 0, 0, 0
+            });
+            this.numericUpDownTeeth1.Minimum = new decimal(new int[]
+            {
+                7, 0, 0, 0
+            });
+            this.numericUpDownTeeth1.Name = "numericUpDownTeeth1";
+            this.numericUpDownTeeth1.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownTeeth1.TabIndex = 5;
+            this.numericUpDownTeeth1.Value = new decimal(new int[]
+            {
+                18, 0, 0, 0
+            });
+            this.numericUpDownTeeth1.ValueChanged += new System.EventHandler(this.numericUpDownTeeth1_ValueChanged);
+            // 
+            // numericUpDownTeeth2
+            // 
+            this.numericUpDownTeeth2.Location = new System.Drawing.Point(428, 183);
+            this.numericUpDownTeeth2.Maximum = new decimal(new int[]
+            {
+                1000, 0, 0, 0
+            });
+            this.numericUpDownTeeth2.Minimum = new decimal(new int[]
+            {
+                7, 0, 0, 0
+            });
+            this.numericUpDownTeeth2.Name = "numericUpDownTeeth2";
+            this.numericUpDownTeeth2.Size = new System.Drawing.Size(94, 20);
+            this.numericUpDownTeeth2.TabIndex = 6;
+            this.numericUpDownTeeth2.Value = new decimal(new int[]
+            {
+                18, 0, 0, 0
+            });
+            this.numericUpDownTeeth2.ValueChanged += new System.EventHandler(this.numericUpDownTeeth2_ValueChanged);
+            // 
+            // label39
+            // 
+            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutPanel1.SetColumnSpan(this.label39, 2);
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label39.Location = new System.Drawing.Point(3, 210);
+            this.label39.Name = "label39";
+            this.tableLayoutPanel1.SetRowSpan(this.label39, 2);
+            this.label39.Size = new System.Drawing.Size(194, 60);
+            this.label39.TabIndex = 184;
+            this.label39.Text = "Type External/ Internal";
+            this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.wheelRadioExt);
+            this.groupBox1.Controls.Add(this.wheelRadioInt);
+            this.groupBox1.Location = new System.Drawing.Point(428, 213);
+            this.groupBox1.Name = "groupBox1";
+            this.tableLayoutPanel1.SetRowSpan(this.groupBox1, 2);
+            this.groupBox1.Size = new System.Drawing.Size(94, 54);
+            this.groupBox1.TabIndex = 192;
+            this.groupBox1.TabStop = false;
+            // 
+            // wheelRadioExt
+            // 
+            this.wheelRadioExt.Checked = true;
+            this.wheelRadioExt.Location = new System.Drawing.Point(6, 19);
+            this.wheelRadioExt.Name = "wheelRadioExt";
+            this.wheelRadioExt.Size = new System.Drawing.Size(42, 24);
+            this.wheelRadioExt.TabIndex = 189;
+            this.wheelRadioExt.TabStop = true;
+            this.wheelRadioExt.Text = "Ext";
+            this.wheelRadioExt.UseVisualStyleBackColor = true;
+            this.wheelRadioExt.CheckedChanged += new System.EventHandler(this.wheelRadioExt_CheckedChanged);
+            // 
+            // wheelRadioInt
+            // 
+            this.wheelRadioInt.Location = new System.Drawing.Point(54, 19);
+            this.wheelRadioInt.Name = "wheelRadioInt";
+            this.wheelRadioInt.Size = new System.Drawing.Size(38, 24);
+            this.wheelRadioInt.TabIndex = 191;
+            this.wheelRadioInt.Text = "Int";
+            this.wheelRadioInt.UseVisualStyleBackColor = true;
+            this.wheelRadioInt.CheckedChanged += new System.EventHandler(this.wheelRadioInt_CheckedChanged);
+            // 
+            // label64
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.label64, 4);
+            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label64.Location = new System.Drawing.Point(3, 570);
+            this.label64.Name = "label64";
+            this.tableLayoutPanel1.SetRowSpan(this.label64, 3);
+            this.label64.Size = new System.Drawing.Size(516, 83);
+            this.label64.TabIndex = 194;
+            this.label64.Text = "Internal Gears.\r\nMake sure the internal gear is big enough to contain the matchin" + "g external gear";
+            // 
+            // GearUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tabControl1);
-            this.Name = "ExternalGearUserControl";
+            this.Name = "GearUserControl";
             this.Size = new System.Drawing.Size(1095, 810);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownModule)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownPressureAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownHelixAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownCircularBacklashBc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.rootFilletNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tipReliefNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownOperatingCentreDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.trackBarProfileShiftDistribution)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.tipReliefNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.rootFilletNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownCircularBacklashBc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownModule)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownPressureAngle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownHelixAngle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownTeeth2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.Label label64;
+
+        private System.Windows.Forms.GroupBox groupBox1;
+
+        private System.Windows.Forms.RadioButton wheelRadioExt;
+        private System.Windows.Forms.RadioButton wheelRadioInt;
+
+        private System.Windows.Forms.Label label39;
+
+        private System.Windows.Forms.Button buttonReport;
+
         private System.Windows.Forms.Label label63;
 
-        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label labelContactRatio;
 
         private System.Windows.Forms.Label label36;
 
@@ -1402,7 +1494,7 @@ namespace Bolsover.Gear
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.NumericUpDown numericUpDownHelixAngle;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label labelContactRatio2;
         private System.Windows.Forms.TextBox textBoxContactRatio;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label49;

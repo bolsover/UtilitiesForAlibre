@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Bolsover.Gear
 {
-    public class Geometry
+    public static class Geometry
     {
         /// <summary>
         /// Calculates the coordinates (X,Y) of points on an involute curve given the radius of the involute base
@@ -54,11 +54,11 @@ namespace Bolsover.Gear
         /// </summary>
         /// <param name="involutePoints"></param>
         /// <returns></returns>
-        public List<Point> TrimmedInvolutePoints(List<Point> involutePoints, Point tipReliefStart, Point rootFilletEnd)
+        public static List<Point> TrimmedInvolutePoints(List<Point> involutePoints, Point tipReliefStart,
+            Point rootFilletEnd)
         {
-            List<Point> points = PointsToIntersectionWithTipReliefArc(involutePoints, tipReliefStart);
-
-            List<Point> result = PointsFromIntersectionWithRootFillet(points, rootFilletEnd);
+            var points = PointsToIntersectionWithTipReliefArc(involutePoints, tipReliefStart);
+            var result = PointsFromIntersectionWithRootFillet(points, rootFilletEnd);
 
             return result;
         }
@@ -70,19 +70,17 @@ namespace Bolsover.Gear
         /// <param name="involutePoints"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        private List<Point> PointsFromIntersectionWithRootFillet(List<Point> involutePoints, Point rootFilletEnd)
+        public static List<Point> PointsFromIntersectionWithRootFillet(List<Point> involutePoints, Point rootFilletEnd)
         {
             var resultList = new List<Point>();
             var centre = new Point(0, 0);
             var radius = DistanceBetweenPoints(centre, rootFilletEnd);
             Point priorPoint = null;
-            for (var i = 0; i < involutePoints.Count; i++)
+            foreach (var point in involutePoints)
             {
-                var point = involutePoints[i];
                 if (priorPoint != null && IsInsideCircle(centre, radius, priorPoint) &&
                     !IsInsideCircle(centre, radius, point))
                 {
-                    // resultList.Add(rootFilletEnd);
                     var Intersection = new Point();
                     var result = Intersect(centre, radius,
                         priorPoint, point, ref Intersection);
@@ -116,20 +114,12 @@ namespace Bolsover.Gear
             var centre = new Point(0, 0);
             var radius = DistanceBetweenPoints(centre, tipReliefStart);
             Point priorPoint = null;
-            for (var i = 0; i < involutePoints.Count; i++)
+            foreach (var point in involutePoints)
             {
-                var point = involutePoints[i];
                 if (priorPoint != null && !IsInsideCircle(centre, radius, point) &&
                     IsInsideCircle(centre, radius, priorPoint))
                 {
                     resultList.Add(tipReliefStart);
-                    // var Intersection = new Point();
-                    // var result = Intersect(centre, radius,
-                    //     priorPoint, point, ref Intersection);
-                    // if (result == 0)
-                    // {
-                    //     resultList.Add(Intersection);
-                    // }
                 }
 
                 if (IsInsideCircle(centre, radius, point))
@@ -149,7 +139,7 @@ namespace Bolsover.Gear
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        private static double DistanceBetweenPoints(Point a, Point b)
+        public static double DistanceBetweenPoints(Point a, Point b)
         {
             var num1 = b.X - a.X;
             var num2 = b.Y - a.Y;
@@ -222,7 +212,7 @@ namespace Bolsover.Gear
         /// <param name="lineEnd"></param>
         /// <param name="intersectionPoint"></param>
         /// <returns>Returns 0 if a solution is found otherwise returns -1</returns>
-        private int Intersect(Point centrePoint, double circleRadius,
+        private static int Intersect(Point centrePoint, double circleRadius,
             Point lineStart, Point lineEnd, ref Point intersectionPoint)
         {
             if (IsIntersecting(centrePoint, circleRadius, lineStart, lineEnd))
@@ -267,7 +257,7 @@ namespace Bolsover.Gear
         /// <param name="LineStart"></param>
         /// <param name="LineEnd"></param>
         /// <returns></returns>
-        private bool IsIntersecting(Point CirclePos, double CircleRad, Point LineStart,
+        private static bool IsIntersecting(Point CirclePos, double CircleRad, Point LineStart,
             Point LineEnd)
         {
             return (IsInsideCircle(CirclePos, CircleRad, LineStart) ^
@@ -312,6 +302,92 @@ namespace Bolsover.Gear
         }
 
 
+        // /// <summary>
+        // /// Calculates the distance from the centre of the inner gear addendum relief to a point on the base circle where a
+        // /// line from the addendum relief centre meets the base circle at a tangent. A line to the gear centre will be at 90°
+        // /// to this line. 
+        // /// </summary>
+        // /// <param name="baseRadius"></param>
+        // /// <param name="addendumRadius"></param>
+        // /// <param name="reliefRadius"></param>
+        // /// <returns></returns>
+        // public static double DistanceBaseTangentPointToInnerGearAddendumRelief(double baseRadius, double addendumRadius,
+        //     double reliefRadius)
+        // {
+        //     double hypotenuse;
+        //     if (addendumRadius > baseRadius)
+        //     {
+        //         hypotenuse = addendumRadius + reliefRadius;
+        //     }
+        //     else
+        //     {
+        //         hypotenuse = baseRadius + reliefRadius;
+        //     }
+        //     var hypotenuseSquared = hypotenuse * hypotenuse;
+        //     var baseRadiusSquared = baseRadius * baseRadius;
+        //     var resultSquared = hypotenuseSquared - baseRadiusSquared;
+        //     return Math.Sqrt(resultSquared);
+        // }
+        //
+        //
+        // /// <summary>
+        // /// Calculates the angle between a line from the gear centre to the centre point of the Addendum Relief circle centre
+        // /// and a line from the Addendum Relief circle centre to a tangent point on the base circle.
+        // /// </summary>
+        // /// <param name="gear"></param>
+        // /// <returns></returns>
+        // public static double InnerGearTipReliefCentreToBaseTangentAngle(InvoluteGear gear)
+        // {
+        //     var addendumRadius = GearCalculations.AddendumRadiusRa(gear);
+        //     var baseRadius = GearCalculations.BaseRadiusRb(gear);
+        //     var reliefRadius = GearCalculations.RootFilletRadius(gear);
+        //     
+        //     double d = DistanceBaseTangentPointToInnerGearAddendumRelief(baseRadius,
+        //         addendumRadius, reliefRadius );
+        //     double angleToBase;
+        //     if (addendumRadius > baseRadius)
+        //     {
+        //         angleToBase =  Point.Degrees(Math.Acos(d/(addendumRadius + reliefRadius) ));
+        //     }
+        //     else
+        //     {
+        //         angleToBase =  Point.Degrees(Math.Acos(d/(baseRadius + reliefRadius) )); 
+        //     }
+        //
+        //     return angleToBase;
+        // }
+
+        // /// <summary>
+        // /// For internal Gears, calculates the end point of the tip relief on the involute curve.
+        // /// </summary>
+        // /// <param name="gear"></param>
+        // /// <returns></returns>
+        // public static Point InnerGearTipReliefEnd(InvoluteGear gear)
+        // {
+        //     // double d = LineLengthToInnerGearAddendumRelief(GearCalculations.BaseRadiusRb(gear),
+        //     //     GearCalculations.AddendumRadiusRa(gear), GearCalculations.RootFilletRadius(gear) );
+        //     //
+        //      double centreToFilletCentre = GearCalculations.BaseRadiusRb(gear) + GearCalculations.RootFilletRadius(gear);
+        //     //
+        //     // double angleToBase = CosineRuleAngle(GearCalculations.BaseRadiusRb(gear), d,
+        //     //     centreToFilletCentre);
+        //
+        //     double angleToBase = InnerGearTipReliefCentreToBaseTangentAngle(gear);
+        //     
+        //     double radiansToBase = Point.Radians(180 - angleToBase);
+        //     
+        //     Point p = new Point(centreToFilletCentre, 0);
+        //     Point y = Point.PolarOffset(p, GearCalculations.RootFilletRadius(gear), radiansToBase);
+        //     Point centre = new Point(0, 0);
+        //     double distanceToY = DistanceBetweenPoints(centre, y);
+        //     
+        //     // double angleTofilletCentre = CosineRuleAngle(GearCalculations.RootFilletRadius(gear), distanceToY,
+        //     //     GearCalculations.BaseRadiusRb(gear));
+        //     
+        //     return PointOnInvolute(GearCalculations.BaseRadiusRb(gear), distanceToY);
+        // }
+
+
         /// <summary>
         /// returns the angle in degrees that lies opposite sidea
         /// </summary>
@@ -319,7 +395,7 @@ namespace Bolsover.Gear
         /// <param name="sideb"></param>
         /// <param name="sidec"></param>
         /// <returns>the angle in degrees that lies opposite sidea</returns>
-        private static double CosineRuleAngle(double sidea, double sideb, double sidec)
+        public static double CosineRuleAngle(double sidea, double sideb, double sidec)
         {
             var aSquared = sidea * sidea;
             var bSquared = sideb * sideb;
@@ -335,7 +411,7 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="tipReliefRadius"></param>
         /// <returns>Start point of the tip relief radius</returns>
-        public Point StartPointOnInvoluteOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
+        public static Point StartPointOnInvoluteOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
         {
             var distanceToInvolute = CentreToTipReliefRadiusStart(baseRadius, addendumRadius, tipReliefRadius);
             Point pointc = PointOnInvolute(baseRadius, distanceToInvolute);
@@ -349,15 +425,12 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="tipReliefRadius"></param>
         /// <returns>Angle in radians to the centre of the tip relief radius</returns>
-        private double AngleToTipRadiusCentre(double baseRadius, double addendumRadius, double tipReliefRadius)
+        private static double AngleToTipRadiusCentre(double baseRadius, double addendumRadius, double tipReliefRadius)
         {
             var distanceToInvolute = CentreToTipReliefRadiusStart(baseRadius, addendumRadius, tipReliefRadius);
-            var srartPoint = StartPointOnInvoluteOfTipRelief(baseRadius, addendumRadius, tipReliefRadius);
-
-            double angle1 = CosineRuleAngle(srartPoint.Y, srartPoint.X, distanceToInvolute);
-
-            double angle2 = CosineRuleAngle(tipReliefRadius, addendumRadius - tipReliefRadius, distanceToInvolute);
-
+            var startPoint = StartPointOnInvoluteOfTipRelief(baseRadius, addendumRadius, tipReliefRadius);
+            var angle1 = CosineRuleAngle(startPoint.Y, startPoint.X, distanceToInvolute);
+            var angle2 = CosineRuleAngle(tipReliefRadius, addendumRadius - tipReliefRadius, distanceToInvolute);
             var result = Point.Radians(angle1 + angle2);
             return result;
         }
@@ -369,7 +442,7 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="tipReliefRadius"></param>
         /// <returns>Centre point of the tip relief radius for a gear at centre 0,0</returns>
-        public Point CentrePointOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
+        public static Point CentrePointOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
         {
             var angleToTipRadiusCentre = AngleToTipRadiusCentre(baseRadius, addendumRadius, tipReliefRadius);
             var x = (addendumRadius - tipReliefRadius) * Math.Cos(angleToTipRadiusCentre);
@@ -384,11 +457,18 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="tipReliefRadius"></param>
         /// <returns>End point of the tip relief radius</returns>
-        public Point EndPointOnAddendumOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
+        public static Point EndPointOnAddendumOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
         {
             var centrePoint = CentrePointOfTipRelief(baseRadius, addendumRadius, tipReliefRadius);
             var endPoint = Point.PolarOffset(centrePoint, tipReliefRadius, centrePoint.Gradient);
             return endPoint;
+        }
+
+        public static double AngleRadiansBetweenTwoPoints(Point p1, Point p2)
+        {
+            var num1 = p2.Y - p1.Y;
+            var num2 = p2.X - p1.X;
+            return Math.Atan2(num1, num2);
         }
     }
 }

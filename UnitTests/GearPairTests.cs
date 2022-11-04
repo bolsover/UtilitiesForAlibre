@@ -8,7 +8,7 @@ namespace UnitTests
     {
         private InvoluteGear g1 = null!;
         private InvoluteGear g2 = null!;
-        private GearPair gearPair = null!;
+
 
         [SetUp]
         public void Setup()
@@ -19,16 +19,15 @@ namespace UnitTests
             g2.RootFilletFactorRf = 0.38;
             g1.AddendumFilletFactorRa = 0.25;
             g2.AddendumFilletFactorRa = 0.25;
-            gearPair = new GearPair(g1, g2, 56.4999, 0);
-            // gearPair.Updated += GearPairOnUpdated;
+            g1.WorkingCentreDistanceAw = 56.4999;
+            g2.WorkingCentreDistanceAw = 56.4999;
+            g1.CircularBacklashBc = 0;
+            g2.CircularBacklashBc = 0;
+            g1.MatingGear = g2;
+            g2.MatingGear = g1;
+            g1.GearType = GearType.External;
+            g2.GearType = GearType.External;
         }
-
-        // private void GearPairOnUpdated(object sender, EventArgs e)
-        // {
-        //     double expectedResult = 13;
-        //
-        //     Assert.AreEqual(expectedResult, g1.M, 0.0001);
-        // }
 
 
         [Test]
@@ -44,7 +43,7 @@ namespace UnitTests
         {
             var expectedResult = 0.8333;
 
-            Assert.AreEqual(expectedResult, GearCalculations.CentreDistanceIncrementFactorY(g1, g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.CentreDistanceIncrementFactorY(g1), 0.0001);
         }
 
         [Test]
@@ -76,7 +75,7 @@ namespace UnitTests
         {
             var expectedResult = 44.8398;
 
-            Assert.AreEqual(expectedResult, GearCalculations.AddendumDiameterDa(g1, g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.AddendumDiameterDa(g1), 0.0001);
         }
 
         [Test]
@@ -84,7 +83,7 @@ namespace UnitTests
         {
             var expectedResult = 79.3998;
 
-            Assert.AreEqual(expectedResult, GearCalculations.AddendumDiameterDa(g2, g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.AddendumDiameterDa(g2), 0.0001);
         }
 
         [Test]
@@ -116,7 +115,7 @@ namespace UnitTests
         {
             var expectedResult = 26.0886;
 
-            Assert.AreEqual(expectedResult, GearCalculations.AlphaW(g2, g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.AlphaW(g2), 0.0001);
         }
 
         [Test]
@@ -124,7 +123,7 @@ namespace UnitTests
         {
             var expectedResult = 0.034316;
 
-            Assert.AreEqual(expectedResult, GearCalculations.InvAlphaW(g2, g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.InvAlphaW(g2), 0.0001);
         }
 
         [Test]
@@ -132,7 +131,7 @@ namespace UnitTests
         {
             var expectedResult = 37.66659;
 
-            Assert.AreEqual(expectedResult, GearCalculations.WorkingPitchDiameterDw(g1, g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.WorkingPitchDiameterDw(g1), 0.0001);
         }
 
         [Test]
@@ -140,7 +139,7 @@ namespace UnitTests
         {
             var expectedResult = 75.33319;
 
-            Assert.AreEqual(expectedResult, GearCalculations.WorkingPitchDiameterDw(g2, g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.WorkingPitchDiameterDw(g2), 0.0001);
         }
 
         [Test]
@@ -148,7 +147,7 @@ namespace UnitTests
         {
             var expectedResult = 0.9600;
 
-            Assert.AreEqual(expectedResult, GearCalculations.SigmaX(g2, g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.SigmaX(g2), 0.0001);
         }
 
         [Test]
@@ -156,7 +155,7 @@ namespace UnitTests
         {
             var expectedResult = 1.20210;
 
-            Assert.AreEqual(expectedResult, GearCalculations.ContactRatio(g2, g1), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.ContactRatio(g2), 0.0001);
         }
 
         [Test]
@@ -164,7 +163,7 @@ namespace UnitTests
         {
             var expectedResult = 9.58539;
 
-            Assert.AreEqual(expectedResult, GearCalculations.Theta(g1, g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.Theta(g1), 0.0001);
         }
 
 
@@ -173,7 +172,7 @@ namespace UnitTests
         {
             var expectedResult = 20.878708;
 
-            Assert.AreEqual(expectedResult, GearCalculations.RotateDegrees(g1, g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.RotateDegrees(g1), 0.0001);
         }
 
 
@@ -182,7 +181,7 @@ namespace UnitTests
         {
             var expectedResult = 0.0;
 
-            Assert.AreEqual(expectedResult, GearCalculations.XMod(g1, g2), 0.0001);
+            Assert.AreEqual(expectedResult, GearCalculations.XMod(g1), 0.0001);
         }
 
 

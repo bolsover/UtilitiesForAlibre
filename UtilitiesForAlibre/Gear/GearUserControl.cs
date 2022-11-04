@@ -7,15 +7,16 @@ using AlibreX;
 
 namespace Bolsover.Gear
 {
-    public partial class ExternalGearUserControl : UserControl
+    public partial class GearUserControl : UserControl
     {
         private InvoluteGear g1;
         private InvoluteGear g2;
-        private GearPair gearPair;
 
-        public ExternalGearUserControl()
+
+        public GearUserControl()
         {
             InitializeComponent();
+
             initGearPair();
         }
 
@@ -27,23 +28,29 @@ namespace Bolsover.Gear
             g2.RootFilletFactorRf = 0.38;
             g1.AddendumFilletFactorRa = 0.25;
             g2.AddendumFilletFactorRa = 0.25;
-            gearPair = new GearPair(g1, g2, 18, 0)
-            {
-                DeltaX = 50
-            };
+            g1.GearType = GearType.External;
+            g2.GearType = GearType.External;
+            g1.MatingGear = g2;
+            g2.MatingGear = g1;
+            g1.CircularBacklashBc = 0;
+            g2.CircularBacklashBc = 0;
+            g1.MatingGear = g2;
+            g2.MatingGear = g1;
+            g1.DeltaX = 50;
+            g2.DeltaX = 50;
             numericUpDownModule.Value = Convert.ToDecimal(g1.ModeuleM);
-            trackBarProfileShiftDistribution.Value = Convert.ToInt16(gearPair.DeltaX);
-            numericUpDownOperatingCentreDistance.Value = Convert.ToDecimal(GearCalculations.StandardCentreDistanceA(g1, g2));
-            gearPair.Updated += GearPairOnUpdated;
+            trackBarProfileShiftDistribution.Value = Convert.ToInt16(g1.DeltaX);
+            numericUpDownOperatingCentreDistance.Value = Convert.ToDecimal(GearCalculations.StandardCentreDistanceA(g1));
+            g1.Updated += GearPairOnUpdated;
+            g2.Updated += GearPairOnUpdated;
             GearPairOnUpdated(null, null);
         }
 
 
         private void GearPairOnUpdated(object sender, EventArgs e)
         {
-            
-            g2.ProfileShiftX = GearCalculations.SigmaX(g1, g2) * gearPair.DeltaX / 100;
-            g1.ProfileShiftX = GearCalculations.SigmaX(g1, g2) - g2.ProfileShiftX;
+            g2.ProfileShiftX = GearCalculations.SigmaX(g1) * g1.DeltaX / 100;
+            g1.ProfileShiftX = GearCalculations.SigmaX(g1) - g2.ProfileShiftX;
             textBoxTransverseModule.Text = GearCalculations.TransverseModuleMt(g1).ToString("0.00000");
             textBoxX1.Text = g1.ProfileShiftX.ToString("0.00000");
             textBoxX2.Text = g2.ProfileShiftX.ToString("0.00000");
@@ -52,42 +59,34 @@ namespace Bolsover.Gear
             textBoxInvoluteFunction1.Text = GearCalculations.InvAlpha(g1).ToString("0.00000");
             textBoxInvoluteFunction2.Text = GearCalculations.InvAlpha(g1).ToString("0.00000");
             textBoxRadialPressureAngle.Text = GearCalculations.AlphaT(g1).ToString("0.00000");
-            textBoxWorkingPressureAngle2.Text = GearCalculations.AlphaW(g1, g2).ToString("0.00000");
-            textBoxWorkingInvoluteFunctionAlphaW.Text = GearCalculations.InvAlphaW(g1, g2).ToString("0.00000");
+            textBoxWorkingPressureAngle2.Text = GearCalculations.AlphaW(g1).ToString("0.00000");
+            textBoxWorkingInvoluteFunctionAlphaW.Text = GearCalculations.InvAlphaW(g1).ToString("0.00000");
             textBoxPitchCircleDiameter1.Text = GearCalculations.ReferenceDiameterD(g1).ToString("0.00000");
-            textBoxPitchCircleDiameter2.Text = GearCalculations.ReferenceDiameterD(g1).ToString("0.00000");
-            textBoxWorkingPitchDiameter1.Text = GearCalculations.WorkingPitchDiameterDw(g1, g2).ToString("0.00000");
-            textBoxWorkingPitchDiameter2.Text = GearCalculations.WorkingPitchDiameterDw(g2, g1).ToString("0.00000");
-            textBoxTipDiameter1.Text = GearCalculations.AddendumDiameterDa(g1, g2).ToString("0.00000");
-            textBoxTipDiameter2.Text = GearCalculations.AddendumDiameterDa(g2, g1).ToString("0.00000");
+            textBoxPitchCircleDiameter2.Text = GearCalculations.ReferenceDiameterD(g2).ToString("0.00000");
+            textBoxWorkingPitchDiameter1.Text = GearCalculations.WorkingPitchDiameterDw(g1).ToString("0.00000");
+            textBoxWorkingPitchDiameter2.Text = GearCalculations.WorkingPitchDiameterDw(g2).ToString("0.00000");
+            textBoxTipDiameter1.Text = GearCalculations.AddendumDiameterDa(g1).ToString("0.00000");
+            textBoxTipDiameter2.Text = GearCalculations.AddendumDiameterDa(g2).ToString("0.00000");
             textBoxBaseDiameter1.Text = GearCalculations.BaseDiameterDb(g1).ToString("0.00000");
             textBoxBaseDiameter2.Text = GearCalculations.BaseDiameterDb(g2).ToString("0.00000");
             textBoxRootDiameter1.Text = GearCalculations.RootDiameterDr(g1).ToString("0.00000");
             textBoxRootDiameter2.Text = GearCalculations.RootDiameterDr(g2).ToString("0.00000");
-            textBoxIncrementFactorY.Text = GearCalculations.CentreDistanceIncrementFactorY(g2, g1).ToString("0.00000");
-            textBoxStandardCentreDistance.Text = GearCalculations.StandardCentreDistanceA(g1, g2).ToString("0.00000");
-            textBoxBacklashModificationXmod.Text = GearCalculations.XMod(g1, g2).ToString("0.00000");
-            textBoxSumOfProfileShifts.Text = GearCalculations.SigmaX(g1, g2).ToString("0.00000");
-            textBoxContactRatio.Text = GearCalculations.ContactRatio(g1, g2).ToString("0.00000");
+            textBoxIncrementFactorY.Text = GearCalculations.CentreDistanceIncrementFactorY(g1).ToString("0.00000");
+            textBoxStandardCentreDistance.Text = GearCalculations.StandardCentreDistanceA(g1).ToString("0.00000");
+            textBoxBacklashModificationXmod.Text = GearCalculations.XMod(g1).ToString("0.00000");
+            textBoxSumOfProfileShifts.Text = GearCalculations.SigmaX(g1).ToString("0.00000");
+            textBoxContactRatio.Text = GearCalculations.ContactRatio(g2).ToString("0.00000");
 
+            textBoxContactRatio.ForeColor = GearCalculations.ContactRatio(g2) < 1.2 ? Color.Red : Color.Black;
 
-            if (GearCalculations.ContactRatio(g1, g2) < 1.2)
-            {
-                textBoxContactRatio.ForeColor = Color.Red;
-            }
-            else
-            {
-                textBoxContactRatio.ForeColor = Color.Black;
-            }
+            numericUpDownOperatingCentreDistance.ForeColor =
+                !Equals(g1.WorkingCentreDistanceAw, GearCalculations.StandardCentreDistanceA(g1), 0.00001)
+                    ? Color.Red
+                    : Color.Black;
 
-            if (!Equals(gearPair.WorkingCentreDistanceAw, GearCalculations.StandardCentreDistanceA(g1, g2), 0.00001))
-            {
-                numericUpDownOperatingCentreDistance.ForeColor = Color.Red;
-            }
-            else
-            {
-                numericUpDownOperatingCentreDistance.ForeColor = Color.Black;
-            }
+            textBoxContactRatio.Visible = g2.GearType != GearType.Internal;
+            labelContactRatio.Visible = g2.GearType != GearType.Internal;
+            labelContactRatio2.Visible = g2.GearType != GearType.Internal;
         }
 
         bool Equals(double x, double y, double tolerance)
@@ -127,18 +126,26 @@ namespace Bolsover.Gear
 
         private void numericUpDownOperatingCentreDistance_ValueChanged(object sender, EventArgs e)
         {
-            gearPair.WorkingCentreDistanceAw = (double) ((NumericUpDown) sender).Value;
+            var value = (double) ((NumericUpDown) sender).Value;
+            g1.WorkingCentreDistanceAw = value;
+            g1.WorkingCentreDistanceAw = value;
+            g2.WorkingCentreDistanceAw = value;
         }
 
         private void trackBarProfileShiftDistribution_Scroll(object sender, EventArgs e)
         {
-            gearPair.DeltaX = ((TrackBar) sender).Value;
-            sliderLabel.Text = Math.Abs(Convert.ToDouble(gearPair.DeltaX)).ToString();
+            var value = ((TrackBar) sender).Value;
+            g1.DeltaX = value;
+            g2.DeltaX = value;
+            sliderLabel.Text = Math.Abs(Convert.ToDouble(value)).ToString();
         }
 
         private void numericUpDownCircularBacklashBc_ValueChanged(object sender, EventArgs e)
         {
-            gearPair.CircularBacklashBc = (double) ((NumericUpDown) sender).Value;
+            var value = (double) ((NumericUpDown) sender).Value;
+
+            g1.CircularBacklashBc = value;
+            g2.CircularBacklashBc = value;
         }
 
         private void rootFilletNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -190,7 +197,24 @@ namespace Bolsover.Gear
 
             File.Copy(FilePath, tempFile, true);
 
-            var gearToothPoints = gearBuilder.BuildGearToothPoints(gearPair, pinion);
+            var gearToothPoints = new GearToothPoints
+            {
+                GearCentre = new Point(0, 0),
+                // gear is helical if the helix pitch angle is greater than 0 degrees.
+                IsHelical = g1.HelixAngleBeta > 0,
+                IsPinion = pinion,
+            };
+            if (pinion)
+            {
+                gearToothPoints.G1 = g1;
+            }
+            else
+            {
+                gearToothPoints.G1 = g2;
+            }
+
+            gearBuilder.BuildGearToothPoints(gearToothPoints);
+
             gearToothPoints.TemplateFilePath = tempFile;
 
             IADDesignSession session = InitAlibrePinionFile(tempFile, true);
@@ -234,13 +258,30 @@ namespace Bolsover.Gear
             var saveFile = "WheelPleaseSaveAs.AD_PRT";
             var template = "WheelTemplate.AD_PRT";
 
-            if (gearPair.G1.HelixAngleBeta > 0)
+            if (g1.HelixAngleBeta > 0)
             {
                 saveFile = "HelicalWheelPleaseSaveAs.AD_PRT";
                 template = "HelicalWheelTemplate.AD_PRT";
             }
 
             BuildGear(saveFile, template, pinion);
+        }
+
+        private void buttonReport_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(g1.ToString());
+            MessageBox.Show(g1.ToString(), "Gear Set", MessageBoxButtons.OK);
+        }
+
+
+        private void wheelRadioExt_CheckedChanged(object sender, EventArgs e)
+        {
+            g2.GearType = wheelRadioExt.Checked ? GearType.External : GearType.Internal;
+        }
+
+        private void wheelRadioInt_CheckedChanged(object sender, EventArgs e)
+        {
+            g2.GearType = wheelRadioInt.Checked ? GearType.Internal : GearType.External;
         }
     }
 }

@@ -7,7 +7,6 @@ namespace UnitTests
     {
         private InvoluteGear g1 = null!;
         private InvoluteGear g2 = null!;
-        private GearPair gearPair = null!;
         private ConsoleIO io = new();
         private GearToothPoints gearToothPoints = null!;
 
@@ -20,10 +19,19 @@ namespace UnitTests
             g2.RootFilletFactorRf = 0.38;
             g1.AddendumFilletFactorRa = 0.25;
             g2.AddendumFilletFactorRa = 0.25;
-            gearPair = new GearPair(g1, g2, 56.4999, 0);
-            // gearPair.Updated += GearPairOnUpdated;
+            g1.WorkingCentreDistanceAw = 56.4999;
+            g2.WorkingCentreDistanceAw = 56.4999;
+            g1.CircularBacklashBc = 0;
+            g2.CircularBacklashBc = 0;
+            g1.MatingGear = g2;
+            g2.MatingGear = g1;
+            g1.GearType = GearType.External;
+            g2.GearType = GearType.External;
             GearBuilder gearBuilder = new GearBuilder();
-            gearToothPoints = gearBuilder.BuildGearToothPoints(gearPair, false);
+            gearToothPoints = new GearToothPoints();
+            gearToothPoints.GearCentre = new Point(0, 0);
+            gearToothPoints.G1 = g2;
+            gearToothPoints = gearBuilder.BuildGearToothPoints(gearToothPoints);
             io.WriteLine(gearToothPoints.ToString());
         }
 
@@ -69,63 +77,63 @@ namespace UnitTests
             Assert.AreEqual(expectedResult, gearToothPoints.RightInvolute[10].Y, 0.01);
         }
 
-        [Test]
-        public void RightInvoluteMaxX()
-        {
-            var expectedResult = 22.08;
-            int count = gearToothPoints.RightInvolute.Count - 1;
-            Assert.AreEqual(expectedResult, gearToothPoints.RightInvolute[count].X, 0.01);
-        }
-
-        [Test]
-        public void RightInvoluteMaxY()
-        {
-            var expectedResult = 3.35;
-            int count = gearToothPoints.RightInvolute.Count - 1;
-            Assert.AreEqual(expectedResult, gearToothPoints.RightInvolute[count].Y, 0.01);
-        }
-
-        [Test]
-        public void RightTipReliefStartX()
-        {
-            var expectedResultX = 22.08;
-            Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefStart.X, 0.01);
-        }
-
-        [Test]
-        public void RightTipReliefStartY()
-        {
-            var expectedResultX = 3.35;
-            Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefStart.Y, 0.01);
-        }
-
-        [Test]
-        public void RightTipReliefCentreX()
-        {
-            var expectedResultX = 21.88;
-            Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefCentre.X, 0.01);
-        }
-
-        [Test]
-        public void RightTipReliefCentreY()
-        {
-            var expectedResultX = 3.51;
-            Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefCentre.Y, 0.01);
-        }
-
-        [Test]
-        public void RightTipReliefEndX()
-        {
-            var expectedResultX = 22.14;
-            Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefEnd.X, 0.01);
-        }
-
-        [Test]
-        public void RightTipReliefEndY()
-        {
-            var expectedResultX = 3.56;
-            Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefEnd.Y, 0.01);
-        }
+        // [Test]
+        // public void RightInvoluteMaxX()
+        // {
+        //     var expectedResult = 22.08;
+        //     int count = gearToothPoints.RightInvolute.Count - 1;
+        //     Assert.AreEqual(expectedResult, gearToothPoints.RightInvolute[count].X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void RightInvoluteMaxY()
+        // {
+        //     var expectedResult = 3.35;
+        //     int count = gearToothPoints.RightInvolute.Count - 1;
+        //     Assert.AreEqual(expectedResult, gearToothPoints.RightInvolute[count].Y, 0.01);
+        // }
+        //
+        // [Test]
+        // public void RightTipReliefStartX()
+        // {
+        //     var expectedResultX = 22.08;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefStart.X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void RightTipReliefStartY()
+        // {
+        //     var expectedResultX = 3.35;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefStart.Y, 0.01);
+        // }
+        //
+        // [Test]
+        // public void RightTipReliefCentreX()
+        // {
+        //     var expectedResultX = 21.88;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefCentre.X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void RightTipReliefCentreY()
+        // {
+        //     var expectedResultX = 3.51;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefCentre.Y, 0.01);
+        // }
+        //
+        // [Test]
+        // public void RightTipReliefEndX()
+        // {
+        //     var expectedResultX = 22.14;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefEnd.X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void RightTipReliefEndY()
+        // {
+        //     var expectedResultX = 3.56;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.RightTipReliefEnd.Y, 0.01);
+        // }
 
         [Test]
         public void RightMidRootX()
@@ -228,21 +236,21 @@ namespace UnitTests
             Assert.AreEqual(expectedResult, gearToothPoints.LeftInvolute[10].Y, 0.01);
         }
 
-        [Test]
-        public void LeftInvoluteMaxX()
-        {
-            var expectedResult = 21.82;
-            int count = gearToothPoints.LeftInvolute.Count - 1;
-            Assert.AreEqual(expectedResult, gearToothPoints.LeftInvolute[count].X, 0.01);
-        }
-
-        [Test]
-        public void LeftInvoluteMaxY()
-        {
-            var expectedResult = 4.73;
-            int count = gearToothPoints.LeftInvolute.Count - 1;
-            Assert.AreEqual(expectedResult, gearToothPoints.LeftInvolute[count].Y, 0.01);
-        }
+        // [Test]
+        // public void LeftInvoluteMaxX()
+        // {
+        //     var expectedResult = 21.82;
+        //     int count = gearToothPoints.LeftInvolute.Count - 1;
+        //     Assert.AreEqual(expectedResult, gearToothPoints.LeftInvolute[count].X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void LeftInvoluteMaxY()
+        // {
+        //     var expectedResult = 4.73;
+        //     int count = gearToothPoints.LeftInvolute.Count - 1;
+        //     Assert.AreEqual(expectedResult, gearToothPoints.LeftInvolute[count].Y, 0.01);
+        // }
 
         [Test]
         public void LeftRootFilletStartX()
@@ -285,47 +293,47 @@ namespace UnitTests
             var expectedResultX = 5.91;
             Assert.AreEqual(expectedResultX, gearToothPoints.LeftRootFilletEnd.Y, 0.01);
         }
+        //
+        // [Test]
+        // public void LeftTipReliefStartX()
+        // {
+        //     var expectedResultX = 21.82;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefStart.X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void LeftTipReliefStartY()
+        // {
+        //     var expectedResultX = 4.74;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefStart.Y, 0.01);
+        // }
 
-        [Test]
-        public void LeftTipReliefStartX()
-        {
-            var expectedResultX = 21.82;
-            Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefStart.X, 0.01);
-        }
-
-        [Test]
-        public void LeftTipReliefStartY()
-        {
-            var expectedResultX = 4.74;
-            Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefStart.Y, 0.01);
-        }
-
-        [Test]
-        public void LeftTipReliefCentreX()
-        {
-            var expectedResultX = 21.70;
-            Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefCentre.X, 0.01);
-        }
-
-        [Test]
-        public void LeftTipReliefCentreY()
-        {
-            var expectedResultX = 4.51;
-            Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefCentre.Y, 0.01);
-        }
-
-        [Test]
-        public void LeftTipReliefEndX()
-        {
-            var expectedResultX = 21.94;
-            Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefEnd.X, 0.01);
-        }
-
-        [Test]
-        public void LeftTipReliefEndY()
-        {
-            var expectedResultX = 4.57;
-            Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefEnd.Y, 0.01);
-        }
+        // [Test]
+        // public void LeftTipReliefCentreX()
+        // {
+        //     var expectedResultX = 21.70;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefCentre.X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void LeftTipReliefCentreY()
+        // {
+        //     var expectedResultX = 4.51;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefCentre.Y, 0.01);
+        // }
+        //
+        // [Test]
+        // public void LeftTipReliefEndX()
+        // {
+        //     var expectedResultX = 21.94;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefEnd.X, 0.01);
+        // }
+        //
+        // [Test]
+        // public void LeftTipReliefEndY()
+        // {
+        //     var expectedResultX = 4.57;
+        //     Assert.AreEqual(expectedResultX, gearToothPoints.LeftTipReliefEnd.Y, 0.01);
+        // }
     }
 }

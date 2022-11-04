@@ -31,30 +31,30 @@ namespace Bolsover.Gear
         /// </summary>
         private void InitializeComponent()
         {
-            this.externalGearUserControl1 = new Bolsover.Gear.ExternalGearUserControl();
+            this._gearUserControl1 = new Bolsover.Gear.GearUserControl();
             this.SuspendLayout();
             // 
             // externalGearUserControl1
             // 
-            this.externalGearUserControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.externalGearUserControl1.Location = new System.Drawing.Point(12, 12);
-            this.externalGearUserControl1.Name = "externalGearUserControl1";
-            this.externalGearUserControl1.Size = new System.Drawing.Size(1095, 810);
-            this.externalGearUserControl1.TabIndex = 0;
+            this._gearUserControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._gearUserControl1.Location = new System.Drawing.Point(12, 12);
+            this._gearUserControl1.Name = "_gearUserControl1";
+            this._gearUserControl1.Size = new System.Drawing.Size(1095, 810);
+            this._gearUserControl1.TabIndex = 0;
             // 
             // GearForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 836);
-            this.Controls.Add(this.externalGearUserControl1);
+            this.Controls.Add(this._gearUserControl1);
             
             this.Name = "GearForm";
             this.Text = "Gear Generator";
             this.ResumeLayout(false);
         }
 
-        private Bolsover.Gear.ExternalGearUserControl externalGearUserControl1;
+        private Bolsover.Gear.GearUserControl _gearUserControl1;
 
         #endregion
     }

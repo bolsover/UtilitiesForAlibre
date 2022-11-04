@@ -18,7 +18,8 @@ namespace Bolsover.Gear
             sb.Append("\n");
             sb.Append($"rightInvolute {RightInvolute[0].X},{RightInvolute[0].Y}\n");
             sb.Append($"rightInvolute {RightInvolute.Count} points \n");
-            sb.Append($"rightInvolute {RightInvolute[RightInvolute.Count - 1].X},{RightInvolute[RightInvolute.Count - 1].Y}\n");
+            sb.Append(
+                $"rightInvolute {RightInvolute[RightInvolute.Count - 1].X},{RightInvolute[RightInvolute.Count - 1].Y}\n");
             sb.Append("\n");
             sb.Append($"rightTipReliefStart {RightTipReliefStart.X},{RightTipReliefStart.Y}\n");
             sb.Append($"rightTipReliefCentre {RightTipReliefCentre.X},{RightTipReliefCentre.Y}\n");
@@ -49,9 +50,36 @@ namespace Bolsover.Gear
 
         public List<Point> RightInvolute { get; set; }
 
+        public Point RightAddendumFilletEnd { get; set; } // internal gears only
+
+        public Point RightAddendumFilletCentre { get; set; } // internal gears only
+
+        public Point RightAddendumFilletStart { get; set; } // internal gears only
+
+        public Point LeftAddendumFilletEnd { get; set; } // internal gears only
+
+        public Point LeftAddendumFilletCentre { get; set; } // internal gears only
+
+        public Point LeftAddendumFilletStart { get; set; } // internal gears only
+        public Point LeftInvoluteEnd { get; set; }
+
+        public Point RightInvoluteEnd { get; set; }
+
         public Point RightMidRoot { get; set; }
 
         public Point LeftMidRoot { get; set; }
+
+        public Point RightMidOuter { get; set; }
+
+        public Point LeftMidOuter { get; set; }
+
+        public Point RightMidBase { get; set; }
+
+        public Point LeftMidBase { get; set; }
+
+        public Point RightMidAddendum { get; set; }
+
+        public Point LeftMidAddendum { get; set; }
 
         public Point RightRootFilletStart { get; set; }
 
@@ -89,6 +117,6 @@ namespace Bolsover.Gear
 
         public bool IsPinion { get; set; }
 
-        public GearPair Pair { get; set; }
+        public InvoluteGear G1 { get; set; }
     }
 }

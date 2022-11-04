@@ -142,18 +142,19 @@ namespace Bolsover.DataBrowser
         {
             if (!IsDirectory
                 && AsFile is {IsReadOnly: false}
-                && AsFile.Extension.StartsWith(".AD_P") |
-                AsFile.Extension.StartsWith(".AD_A") |
-                AsFile.Extension.StartsWith(".AD_S"))
+                && AsFile.Extension.ToUpper().StartsWith(".AD_PRT") |
+                AsFile.Extension.ToUpper().StartsWith(".AD_ASM") |
+                AsFile.Extension.ToUpper().StartsWith(".AD_SMP"))
             {
                 if (!IsFileLocked(AsFile))
                 {
-                    var session = AlibreConnector.RetrieveSessionForFile(this);
-                    var designProperties = session.DesignProperties;
-
-                    ReadDesignProperties(designProperties);
-
-                    session.Close();
+                    IADDesignSession session = AlibreConnector.RetrieveSessionForFile(this);
+                    if (session != null)
+                    {
+                        var designProperties = session.DesignProperties;
+                        ReadDesignProperties(designProperties);
+                        session.Close();
+                    }
                 }
                 else // else routine reads data from open sessions
                 {
@@ -163,7 +164,6 @@ namespace Bolsover.DataBrowser
                         if (currentSession.FilePath.ToUpper().Replace("/", "\\").Equals(Info.FullName.ToUpper()))
                         {
                             var designProperties = ((IADDesignSession) currentSession).DesignProperties;
-
                             ReadDesignProperties(designProperties);
                         }
                     }
@@ -171,14 +171,18 @@ namespace Bolsover.DataBrowser
             }
             else if (!IsDirectory
                      && AsFile is {IsReadOnly: false}
-                     && AsFile.Extension.StartsWith(".AD_D"))
+                     && AsFile.Extension.ToUpper().StartsWith(".AD_DRW"))
             {
                 if (!IsFileLocked(AsFile))
                 {
-                    var session = AlibreConnector.RetrieveDrawingSessionForFile(this);
-                    var designProperties = session.Properties;
-                    ReadDrawingProperties(designProperties);
-                    session.Close();
+                    IADDrawingSession session = AlibreConnector.RetrieveDrawingSessionForFile(this);
+                    IADDrawingProperties designProperties;
+                    if (session != null)
+                    {
+                        designProperties = session.Properties;
+                        ReadDrawingProperties(designProperties);
+                        session.Close();
+                    }
                 }
                 //@todo fix this - can read data from open drawings at present
                 // else

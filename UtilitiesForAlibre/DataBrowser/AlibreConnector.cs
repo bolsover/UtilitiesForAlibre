@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 using AlibreX;
 
 namespace Bolsover.DataBrowser
@@ -48,7 +50,19 @@ namespace Bolsover.DataBrowser
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static IADDesignSession RetrieveSessionForFile(AlibreFileSystem alibreFileSystem)
         {
-            return (IADDesignSession) root.OpenFileEx(alibreFileSystem.FullName, false);
+            IADDesignSession session;
+            try
+            {
+                session = (IADDesignSession) root.OpenFileEx(alibreFileSystem.FullName, false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                MessageBox.Show("Error opening file " + alibreFileSystem.FullName, "Error");
+                return null;
+            }
+
+            return session;
         }
 
 
@@ -60,7 +74,19 @@ namespace Bolsover.DataBrowser
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static IADDrawingSession RetrieveDrawingSessionForFile(AlibreFileSystem alibreFileSystem)
         {
-            return (IADDrawingSession) root.OpenFileEx(alibreFileSystem.FullName, false);
+            IADDrawingSession session;
+            try
+            {
+                session = (IADDrawingSession) root.OpenFileEx(alibreFileSystem.FullName, false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                MessageBox.Show("Error opening file " + alibreFileSystem.FullName, "Error");
+                return null;
+            }
+
+            return session;
         }
     }
 }
