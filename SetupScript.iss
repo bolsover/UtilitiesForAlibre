@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UtilitiesForAlibre"
-#define MyAppVersion "1.2.0.0"
+#define MyAppVersion "1.3.0.0"
 #define MyAppPublisher "David Bolsover"
 
 [Setup]
@@ -17,8 +17,8 @@ DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
-;PrivilegesRequired=lowest
-PrivilegesRequiredOverridesAllowed=dialog
+PrivilegesRequired=admin
+;PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Setup
 OutputBaseFilename=UtilitiesForAlibreSetup
 SetupIconFile=D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\nexus.ico

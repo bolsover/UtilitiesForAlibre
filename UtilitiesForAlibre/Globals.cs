@@ -11,5 +11,7 @@ namespace Bolsover
         public static Icon Icon = new Icon(InstallPath + "\\nexus.ico");
 
         public static Image cycloidalGear = Image.FromFile(InstallPath + "\\icons\\CycloidalGear.png");
+
+        public static string version = "1.3.0.0";
     }
 }
