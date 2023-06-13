@@ -30,8 +30,8 @@ namespace Bolsover.DataBrowser.Materials
         }
 
         /*
-     * Removes MaterialNode childNode from the ChList.
-     */
+         * Removes MaterialNode childNode from the ChList.
+         */
         public void RemoveChild(MaterialNode childNode)
         {
             var j = -1;

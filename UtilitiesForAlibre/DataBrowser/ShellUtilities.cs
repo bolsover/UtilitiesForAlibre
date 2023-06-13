@@ -17,8 +17,8 @@ namespace Bolsover.DataBrowser
     /// </remarks>
     public class SysImageListHelper
     {
-        protected ObjectListView listView;
-        protected TreeView treeView;
+        protected ObjectListView ListView;
+        protected TreeView TreeView;
 
         private SysImageListHelper()
         {
@@ -37,7 +37,7 @@ namespace Bolsover.DataBrowser
                 treeView.ImageList.ImageSize = new Size(16, 16);
             }
 
-            this.treeView = treeView;
+            this.TreeView = treeView;
         }
 
         /// <summary>
@@ -69,21 +69,21 @@ namespace Bolsover.DataBrowser
             //if (listView.SmallImageList.Images.Count != listView.LargeImageList.Images.Count)
             //    throw new ArgumentException("Small and large image lists must have the same number of items.");
 
-            this.listView = listView;
+            this.ListView = listView;
         }
 
         protected ImageList.ImageCollection SmallImageCollection
         {
             get
             {
-                if (listView != null)
+                if (ListView != null)
                 {
-                    return listView.SmallImageList.Images;
+                    return ListView.SmallImageList.Images;
                 }
 
-                if (treeView != null)
+                if (TreeView != null)
                 {
-                    return treeView.ImageList.Images;
+                    return TreeView.ImageList.Images;
                 }
 
                 return null;
@@ -94,9 +94,9 @@ namespace Bolsover.DataBrowser
         {
             get
             {
-                if (listView != null)
+                if (ListView != null)
                 {
-                    return listView.LargeImageList.Images;
+                    return ListView.LargeImageList.Images;
                 }
 
                 return null;
@@ -107,14 +107,14 @@ namespace Bolsover.DataBrowser
         {
             get
             {
-                if (listView != null)
+                if (ListView != null)
                 {
-                    return listView.SmallImageList;
+                    return ListView.SmallImageList;
                 }
 
-                if (treeView != null)
+                if (TreeView != null)
                 {
-                    return treeView.ImageList;
+                    return TreeView.ImageList;
                 }
 
                 return null;
@@ -125,9 +125,9 @@ namespace Bolsover.DataBrowser
         {
             get
             {
-                if (listView != null)
+                if (ListView != null)
                 {
-                    return listView.LargeImageList;
+                    return ListView.LargeImageList;
                 }
 
                 return null;
@@ -222,7 +222,7 @@ namespace Bolsover.DataBrowser
         /// <returns>Values &lt; 31 indicate some sort of error. See ShellExecute() documentation for specifics.</returns>
         public static int Execute(string path, string operation)
         {
-            var result = ShellExecute(0, operation, path, "", "", SW_SHOWNORMAL);
+            var result = ShellExecute(0, operation, path, "", "", SwShownormal);
             return result.ToInt32();
         }
 
@@ -233,8 +233,8 @@ namespace Bolsover.DataBrowser
         /// <returns>A string describing the type of the file, or an empty string if something goes wrong.</returns>
         public static string GetFileType(string path)
         {
-            var shfi = new SHFILEINFO();
-            var flags = SHGFI_TYPENAME;
+            var shfi = new Shfileinfo();
+            var flags = ShgfiTypename;
             var result = SHGetFileInfo(path, 0, out shfi, Marshal.SizeOf(shfi), flags);
             if (result.ToInt32() == 0)
             {
@@ -253,27 +253,27 @@ namespace Bolsover.DataBrowser
         /// <returns>The icon of the given file, or null if something goes wrong</returns>
         public static Icon GetFileIcon(string path, bool isSmallImage, bool useFileType)
         {
-            var flags = SHGFI_ICON;
+            var flags = ShgfiIcon;
             if (isSmallImage)
             {
-                flags |= SHGFI_SMALLICON;
+                flags |= ShgfiSmallicon;
             }
 
             var fileAttributes = 0;
             if (useFileType)
             {
-                flags |= SHGFI_USEFILEATTRIBUTES;
+                flags |= ShgfiUsefileattributes;
                 if (Directory.Exists(path))
                 {
-                    fileAttributes = FILE_ATTRIBUTE_DIRECTORY;
+                    fileAttributes = FileAttributeDirectory;
                 }
                 else
                 {
-                    fileAttributes = FILE_ATTRIBUTE_NORMAL;
+                    fileAttributes = FileAttributeNormal;
                 }
             }
 
-            var shfi = new SHFILEINFO();
+            var shfi = new Shfileinfo();
             var result = SHGetFileInfo(path, fileAttributes, out shfi, Marshal.SizeOf(shfi), flags);
             if (result.ToInt32() == 0)
             {
@@ -294,8 +294,8 @@ namespace Bolsover.DataBrowser
         /// </remarks>
         public static int GetSysImageIndex(string path)
         {
-            var shfi = new SHFILEINFO();
-            var flags = SHGFI_ICON | SHGFI_SYSICONINDEX;
+            var shfi = new Shfileinfo();
+            var flags = ShgfiIcon | ShgfiSysiconindex;
             var result = SHGetFileInfo(path, 0, out shfi, Marshal.SizeOf(shfi), flags);
             if (result.ToInt32() == 0)
             {
@@ -307,48 +307,48 @@ namespace Bolsover.DataBrowser
 
         #region Native methods
 
-        private const int SHGFI_ICON = 0x00100; // get icon
-        private const int SHGFI_DISPLAYNAME = 0x00200; // get display name
-        private const int SHGFI_TYPENAME = 0x00400; // get type name
-        private const int SHGFI_ATTRIBUTES = 0x00800; // get attributes
-        private const int SHGFI_ICONLOCATION = 0x01000; // get icon location
-        private const int SHGFI_EXETYPE = 0x02000; // return exe type
-        private const int SHGFI_SYSICONINDEX = 0x04000; // get system icon index
-        private const int SHGFI_LINKOVERLAY = 0x08000; // put a link overlay on icon
-        private const int SHGFI_SELECTED = 0x10000; // show icon in selected state
-        private const int SHGFI_ATTR_SPECIFIED = 0x20000; // get only specified attributes
-        private const int SHGFI_LARGEICON = 0x00000; // get large icon
-        private const int SHGFI_SMALLICON = 0x00001; // get small icon
-        private const int SHGFI_OPENICON = 0x00002; // get open icon
-        private const int SHGFI_SHELLICONSIZE = 0x00004; // get shell size icon
-        private const int SHGFI_PIDL = 0x00008; // pszPath is a pidl
+        private const int ShgfiIcon = 0x00100; // get icon
+        private const int ShgfiDisplayname = 0x00200; // get display name
+        private const int ShgfiTypename = 0x00400; // get type name
+        private const int ShgfiAttributes = 0x00800; // get attributes
+        private const int ShgfiIconlocation = 0x01000; // get icon location
+        private const int ShgfiExetype = 0x02000; // return exe type
+        private const int ShgfiSysiconindex = 0x04000; // get system icon index
+        private const int ShgfiLinkoverlay = 0x08000; // put a link overlay on icon
+        private const int ShgfiSelected = 0x10000; // show icon in selected state
+        private const int ShgfiAttrSpecified = 0x20000; // get only specified attributes
+        private const int ShgfiLargeicon = 0x00000; // get large icon
+        private const int ShgfiSmallicon = 0x00001; // get small icon
+        private const int ShgfiOpenicon = 0x00002; // get open icon
+        private const int ShgfiShelliconsize = 0x00004; // get shell size icon
+        private const int ShgfiPidl = 0x00008; // pszPath is a pidl
 
-        private const int SHGFI_USEFILEATTRIBUTES = 0x00010; // use passed dwFileAttribute
+        private const int ShgfiUsefileattributes = 0x00010; // use passed dwFileAttribute
 
         //if (_WIN32_IE >= 0x0500)
-        private const int SHGFI_ADDOVERLAYS = 0x00020; // apply the appropriate overlays
-        private const int SHGFI_OVERLAYINDEX = 0x00040; // Get the index of the overlay
+        private const int ShgfiAddoverlays = 0x00020; // apply the appropriate overlays
+        private const int ShgfiOverlayindex = 0x00040; // Get the index of the overlay
 
-        private const int FILE_ATTRIBUTE_NORMAL = 0x00080; // Normal file
-        private const int FILE_ATTRIBUTE_DIRECTORY = 0x00010; // Directory
+        private const int FileAttributeNormal = 0x00080; // Normal file
+        private const int FileAttributeDirectory = 0x00010; // Directory
 
-        private const int MAX_PATH = 260;
+        private const int MaxPath = 260;
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        private struct SHFILEINFO
+        private struct Shfileinfo
         {
             public readonly IntPtr hIcon;
             public readonly int iIcon;
             public readonly int dwAttributes;
 
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_PATH)]
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MaxPath)]
             public readonly string szDisplayName;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
             public readonly string szTypeName;
         }
 
-        private const int SW_SHOWNORMAL = 1;
+        private const int SwShownormal = 1;
 
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr ShellExecute(int hwnd, string lpOperation, string lpFile,
@@ -356,7 +356,7 @@ namespace Bolsover.DataBrowser
 
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr SHGetFileInfo(string pszPath, int dwFileAttributes,
-            out SHFILEINFO psfi, int cbFileInfo, int uFlags);
+            out Shfileinfo psfi, int cbFileInfo, int uFlags);
 
         #endregion
     }

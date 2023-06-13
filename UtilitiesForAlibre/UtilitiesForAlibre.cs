@@ -5,6 +5,9 @@ using AlibreAddOn;
 using AlibreX;
 using System.Windows.Forms;
 using Bolsover.AlibreDataViewer;
+using Bolsover.Bevel.Models;
+using Bolsover.Bevel.Presenters;
+using Bolsover.Bevel.Views;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
 using Bolsover.PlaneFinder;
@@ -16,35 +19,39 @@ namespace Bolsover
 {
     public class UtilitiesForAlibre : IAlibreAddOn
     {
-        private const int MENU_ID_ROOT = 401;
-        private const int MENU_ID_FILE = 501;
-        private const int SUBMENU_ID_FILE_OPEN = 502;
-        private const int SUBMENU_ID_FILE_CLOSE = 503;
-        private const int SUBMENU_ID_FILE_EXIT = 504;
-        private const int SUBMENU_ID_DATA_BROWSER = 505;
-        private const int MENU_ID_UTILS = 601;
-        private const int SUBMENU_ID_UTILS_CYCLOIDAL_GEAR = 602;
-        private const int SUBMENU_ID_UTILS_PLANE_FINDER = 603;
-        private const int SUBMENU_ID_UTILS_DATA_VIEWER = 604;
-        private const int SUBMENU_ID_UTILS_3DLINE = 605;
-        private const int SUBMENU_ID_UTILS_INVOLUTE_GEAR = 607;
-        private const int SUBMENU_ID_UTILS_GEARS = 608;
-        private const int SUBMENU_ID_UTILS_SAMPLE = 606;
-        private const int MENU_ID_HELP = 701;
-        private const int SUBMENU_ID_HELP_ABOUT = 702;
-        private int[] MENU_IDS_FILE;
-        private int[] MENU_IDS_UTILS;
-        private int[] MENU_IDS_ROOT;
-        private int[] MENU_IDS_HELP;
+        private const int MenuIdRoot = 401;
+        private const int MenuIdFile = 501;
+        private const int SubmenuIdFileOpen = 502;
+        private const int SubmenuIdFileClose = 503;
+        private const int SubmenuIdFileExit = 504;
+        private const int SubmenuIdDataBrowser = 505;
+        private const int MenuIdGear = 506;
+        private const int MenuIdUtils = 601;
+        private const int SubmenuIdUtilsCycloidalGear = 602;
+        private const int SubmenuIdUtilsPlaneFinder = 603;
+        private const int SubmenuIdUtilsDataViewer = 604;
+        private const int SubmenuIdUtils3Dline = 605;
+        private const int SubmenuIdUtilsBevelGear = 607;
+        private const int SubmenuIdUtilsSpurGear = 608;
 
-        private IADRoot alibreRoot;
-        private IntPtr parentWinHandle;
+        private const int SubmenuIdUtilsSample = 606;
+        private const int MenuIdHelp = 701;
+        private const int SubmenuIdHelpAbout = 702;
+        private int[] _menuIdsFile;
+        private int[] _menuIdsUtils;
+        private int[] _menuIdsRoot;
+        private int[] _menuIdsHelp;
+        private int[] _menuIdsGear;
+
+
+        private IADRoot _alibreRoot;
+        private IntPtr _parentWinHandle;
 
 
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
-            this.alibreRoot = alibreRoot;
-            this.parentWinHandle = parentWinHandle;
+            this._alibreRoot = alibreRoot;
+            this._parentWinHandle = parentWinHandle;
             BuildMenuTree();
         }
 
@@ -53,50 +60,56 @@ namespace Bolsover
         /// <summary>
         /// Returns the menu ID of the add-on's root menu item
         /// </summary>
-        public int RootMenuItem => MENU_ID_ROOT;
+        public int RootMenuItem => MenuIdRoot;
 
         /// <summary>
         /// Builds the menu tree
         /// </summary>
         private void BuildMenuTree()
         {
-            MENU_IDS_FILE = new int[3]
+            _menuIdsFile = new int[3]
             {
-                SUBMENU_ID_FILE_OPEN, SUBMENU_ID_FILE_CLOSE, SUBMENU_ID_FILE_EXIT
+                SubmenuIdFileOpen, SubmenuIdFileClose, SubmenuIdFileExit
             };
-            MENU_IDS_UTILS = new int[7]
+            _menuIdsUtils = new int[5]
             {
-                SUBMENU_ID_DATA_BROWSER,
-                SUBMENU_ID_UTILS_GEARS,
-                SUBMENU_ID_UTILS_CYCLOIDAL_GEAR,
-                SUBMENU_ID_UTILS_PLANE_FINDER,
-                SUBMENU_ID_UTILS_DATA_VIEWER,
-                SUBMENU_ID_UTILS_3DLINE,
-                SUBMENU_ID_UTILS_SAMPLE
+                SubmenuIdDataBrowser,
+
+
+                SubmenuIdUtilsPlaneFinder,
+                SubmenuIdUtilsDataViewer,
+                SubmenuIdUtils3Dline,
+                SubmenuIdUtilsSample
             };
-            MENU_IDS_ROOT = new int[3]
+            _menuIdsRoot = new int[4]
             {
-                MENU_ID_FILE, MENU_ID_UTILS, MENU_ID_HELP
+                MenuIdFile, MenuIdUtils, MenuIdGear, MenuIdHelp
             };
-            MENU_IDS_HELP = new int[1]
+            _menuIdsHelp = new int[1]
             {
-                SUBMENU_ID_HELP_ABOUT
+                SubmenuIdHelpAbout
+            };
+
+            _menuIdsGear = new int[3]
+            {
+                SubmenuIdUtilsCycloidalGear, SubmenuIdUtilsBevelGear, SubmenuIdUtilsSpurGear
             };
         }
 
         /// <summary>
         /// Description("Returns Whether the given Menu ID has any sub menus")
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public bool HasSubMenus(int menuID)
+        public bool HasSubMenus(int menuId)
         {
-            switch (menuID)
+            switch (menuId)
             {
-                case MENU_ID_ROOT: return true;
-                case MENU_ID_FILE: return true;
-                case MENU_ID_UTILS: return true;
-                case MENU_ID_HELP: return true;
+                case MenuIdRoot: return true;
+                case MenuIdFile: return true;
+                case MenuIdUtils: return true;
+                case MenuIdHelp: return true;
+                case MenuIdGear: return true;
             }
 
             return false;
@@ -105,16 +118,17 @@ namespace Bolsover
         /// <summary>
         /// Returns the ID's of sub menu items under a popup menu item; the menu ID of a 'leaf' menu becomes its command ID
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public Array SubMenuItems(int menuID)
+        public Array SubMenuItems(int menuId)
         {
-            switch (menuID)
+            switch (menuId)
             {
-                case MENU_ID_ROOT: return MENU_IDS_ROOT;
-                case MENU_ID_FILE: return MENU_IDS_FILE;
-                case MENU_ID_UTILS: return MENU_IDS_UTILS;
-                case MENU_ID_HELP: return MENU_IDS_HELP;
+                case MenuIdRoot: return _menuIdsRoot;
+                case MenuIdFile: return _menuIdsFile;
+                case MenuIdGear: return _menuIdsGear;
+                case MenuIdUtils: return _menuIdsUtils;
+                case MenuIdHelp: return _menuIdsHelp;
             }
 
             return null;
@@ -123,27 +137,30 @@ namespace Bolsover
         /// <summary>
         /// Returns the display name of a menu item; a menu item with text of a single dash (“-“) is a separator
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public string MenuItemText(int menuID)
+        public string MenuItemText(int menuId)
         {
-            switch (menuID)
+            switch (menuId)
             {
-                case MENU_ID_ROOT: return "Utilities";
-                case MENU_ID_FILE: return "File";
-                case MENU_ID_UTILS: return "Utilities";
-                case MENU_ID_HELP: return "Help";
-                case SUBMENU_ID_DATA_BROWSER: return "Data Browser";
-                case SUBMENU_ID_FILE_OPEN: return "Open";
-                case SUBMENU_ID_FILE_CLOSE: return "Save & Close";
-                case SUBMENU_ID_FILE_EXIT: return "Save All, Exit";
-                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Cycloidal Gear Generator Open/Close";
-                case SUBMENU_ID_UTILS_GEARS: return "Gear Generator";
-                case SUBMENU_ID_HELP_ABOUT: return "About";
-                case SUBMENU_ID_UTILS_PLANE_FINDER: return "Sketch Plane Finder Open/Close";
-                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Property Viewer Open/Close";
-                case SUBMENU_ID_UTILS_3DLINE: return "3DLine Open/Close";
-                case SUBMENU_ID_UTILS_SAMPLE: return "Sample Open/Close";
+                case MenuIdRoot: return "Utilities";
+                case MenuIdFile: return "File";
+                case MenuIdUtils: return "Utilities";
+                case MenuIdHelp: return "Help";
+                case MenuIdGear: return "Gears";
+                case SubmenuIdDataBrowser: return "Data Browser";
+                case SubmenuIdFileOpen: return "Open";
+                case SubmenuIdFileClose: return "Save & Close";
+                case SubmenuIdFileExit: return "Save All, Exit";
+                case SubmenuIdUtilsCycloidalGear: return "Cycloidal Gear Generator Open/Close";
+                case SubmenuIdUtilsBevelGear: return "Bevel Gears";
+                case SubmenuIdUtilsSpurGear: return "Spur Gears";
+
+                case SubmenuIdHelpAbout: return "About";
+                case SubmenuIdUtilsPlaneFinder: return "Sketch Plane Finder Open/Close";
+                case SubmenuIdUtilsDataViewer: return "Property Viewer Open/Close";
+                case SubmenuIdUtils3Dline: return "3DLine Open/Close";
+                case SubmenuIdUtilsSample: return "Sample Open/Close";
             }
 
             return "";
@@ -152,9 +169,9 @@ namespace Bolsover
         /// <summary>
         /// Returns True if input menu item has sub menus // seems odd given name of method
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public bool PopupMenu(int menuID)
+        public bool PopupMenu(int menuId)
         {
             return false;
         }
@@ -166,73 +183,81 @@ namespace Bolsover
         /// ADDON_MENU_CHECKED = 3,
         /// ADDON_MENU_UNCHECKED = 4,
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <param name="sessionIdentifier"></param>
         /// <returns></returns>
-        public ADDONMenuStates MenuItemState(int menuID, string sessionIdentifier)
+        public ADDONMenuStates MenuItemState(int menuId, string sessionIdentifier)
         {
-            var session = alibreRoot.Sessions.Item(sessionIdentifier);
+            var session = _alibreRoot.Sessions.Item(sessionIdentifier);
 
             switch (session)
             {
                 case IADDrawingSession:
-                    switch (menuID)
+                    switch (menuId)
                     {
-                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_SAMPLE: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdFile: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileOpen: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtils3Dline: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsSample: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_GRAYED;
                     }
 
                     break;
 
                 case IADAssemblySession:
-                    switch (menuID)
+                    switch (menuId)
                     {
-                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SUBMENU_ID_UTILS_SAMPLE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdFile: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileOpen: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
+
+                        case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtils3Dline: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsSample: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
                 case IADPartSession:
-                    switch (menuID)
+                    switch (menuId)
                     {
-                        case MENU_ID_ROOT: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MENU_ID_FILE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MENU_ID_UTILS: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_DATA_BROWSER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_OPEN: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_CLOSE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_FILE_EXIT: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_GEARS: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_PLANE_FINDER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_DATA_VIEWER: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_3DLINE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_UTILS_SAMPLE: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SUBMENU_ID_HELP_ABOUT: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdFile: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case MenuIdGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileOpen: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
+
+                        case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtils3Dline: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsSample: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
@@ -244,26 +269,28 @@ namespace Bolsover
         /// <summary>
         /// Returns a tool tip string if input menu ID is that of a 'leaf' menu item
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public string MenuItemToolTip(int menuID)
+        public string MenuItemToolTip(int menuId)
         {
-            switch (menuID)
+            switch (menuId)
             {
-                case MENU_ID_ROOT: return "Utilities";
-                case MENU_ID_FILE: return "File";
-                case MENU_ID_UTILS: return "Utilities";
-                case SUBMENU_ID_DATA_BROWSER: return "Opens the custom Data Browser";
-                case SUBMENU_ID_FILE_OPEN: return "Opens files from file explorer";
-                case SUBMENU_ID_FILE_CLOSE: return "Saves and closes the current file";
-                case SUBMENU_ID_FILE_EXIT: return "Saves all open files and quits Alibre";
-                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR: return "Opens/Closes Cycloidal Gear Generator";
-                case SUBMENU_ID_UTILS_GEARS: return "Opens Gear Generator Dialog";
-                case SUBMENU_ID_UTILS_PLANE_FINDER: return "Finds the Plane on which a selected Sketch is drawn";
-                case SUBMENU_ID_UTILS_DATA_VIEWER: return "Opens/Closes Property Viewer";
-                case SUBMENU_ID_UTILS_3DLINE: return "Opens/Closes 3DLine Generator";
-                case SUBMENU_ID_UTILS_SAMPLE: return "Opens/Closes Sample";
-                case SUBMENU_ID_HELP_ABOUT: return "About Utilities for Alibre";
+                case MenuIdRoot: return "Utilities";
+                case MenuIdFile: return "File";
+                case MenuIdUtils: return "Utilities";
+                case MenuIdGear: return "Gears";
+                case SubmenuIdDataBrowser: return "Opens the custom Data Browser";
+                case SubmenuIdFileOpen: return "Opens files from file explorer";
+                case SubmenuIdFileClose: return "Saves and closes the current file";
+                case SubmenuIdFileExit: return "Saves all open files and quits Alibre";
+                case SubmenuIdUtilsCycloidalGear: return "Opens/Closes Cycloidal Gear Generator";
+                case SubmenuIdUtilsBevelGear: return "Opens Bevel Gear Generator";
+                case SubmenuIdUtilsSpurGear: return "Opens Spur Gear Generator";
+                case SubmenuIdUtilsPlaneFinder: return "Finds the Plane on which a selected Sketch is drawn";
+                case SubmenuIdUtilsDataViewer: return "Opens/Closes Property Viewer";
+                case SubmenuIdUtils3Dline: return "Opens/Closes 3DLine Generator";
+                case SubmenuIdUtilsSample: return "Opens/Closes Sample";
+                case SubmenuIdHelpAbout: return "About Utilities for Alibre";
             }
 
             return "";
@@ -272,9 +299,9 @@ namespace Bolsover
         /// <summary>
         /// Returns the icon name (with extension) for a menu item; the icon will be searched under the folder where the add-on's .adc file is present
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public string MenuIcon(int menuID)
+        public string MenuIcon(int menuId)
         {
             // if you want icons, reference them here...
             // switch (menuID)
@@ -305,58 +332,61 @@ namespace Bolsover
         /// <summary>
         /// Invokes the add-on command identified by menu ID; returning the add-on command interface is optional
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <param name="sessionIdentifier"></param>
         /// <returns></returns>
-        public IAlibreAddOnCommand InvokeCommand(int menuID, string sessionIdentifier)
+        public IAlibreAddOnCommand InvokeCommand(int menuId, string sessionIdentifier)
         {
-            var session = alibreRoot.Sessions.Item(sessionIdentifier);
+            var session = _alibreRoot.Sessions.Item(sessionIdentifier);
 
-            switch (menuID)
+            switch (menuId)
             {
-                case SUBMENU_ID_DATA_BROWSER:
+                case SubmenuIdDataBrowser:
                 {
                     return DoDataBrowser();
                 }
-                case SUBMENU_ID_FILE_OPEN:
+                case SubmenuIdFileOpen:
                 {
                     return DoFileOpen();
                 }
-                case SUBMENU_ID_FILE_CLOSE:
+                case SubmenuIdFileClose:
                 {
                     return DoFileClose(session);
                 }
-                case SUBMENU_ID_FILE_EXIT:
+                case SubmenuIdFileExit:
                 {
                     return DoFileExit();
                 }
-                case SUBMENU_ID_UTILS_CYCLOIDAL_GEAR:
+                case SubmenuIdUtilsCycloidalGear:
                 {
                     return DoCycloidalGear(session);
                 }
+                case SubmenuIdUtilsBevelGear:
+                {
+                    return DoBevelGear();
+                }
 
-
-                case SUBMENU_ID_UTILS_GEARS:
+                case SubmenuIdUtilsSpurGear:
                 {
                     return DoGears();
                 }
-                case SUBMENU_ID_UTILS_PLANE_FINDER:
+                case SubmenuIdUtilsPlaneFinder:
                 {
                     return DoPlaneFinder(session);
                 }
-                case SUBMENU_ID_UTILS_DATA_VIEWER:
+                case SubmenuIdUtilsDataViewer:
                 {
                     return DoAlibreDataViewer(session);
                 }
-                case SUBMENU_ID_UTILS_3DLINE:
+                case SubmenuIdUtils3Dline:
                 {
                     return Do3DLine(session);
                 }
-                case SUBMENU_ID_UTILS_SAMPLE:
+                case SubmenuIdUtilsSample:
                 {
                     return DoSample(session);
                 }
-                case SUBMENU_ID_HELP_ABOUT:
+                case SubmenuIdHelpAbout:
                 {
                     return DoHelpAbout(session);
                 }
@@ -369,24 +399,24 @@ namespace Bolsover
 
         #region ThreeDLine
 
-        private readonly Dictionary<string, ThreeDLineAddOnCommand> threeDLineAddOnCommands = new();
+        private readonly Dictionary<string, ThreeDLineAddOnCommand> _threeDLineAddOnCommands = new();
 
         private IAlibreAddOnCommand Do3DLine(IADSession session)
         {
             ThreeDLineAddOnCommand threeDLineAddOnCommand;
-            if (!threeDLineAddOnCommands.ContainsKey(session.Identifier))
+            if (!_threeDLineAddOnCommands.ContainsKey(session.Identifier))
             {
                 threeDLineAddOnCommand = new ThreeDLineAddOnCommand(session);
                 threeDLineAddOnCommand.ThreeDLineUserControl.Visible = true;
                 threeDLineAddOnCommand.Terminate += (sender, e) => ThreeDLineAddOnCommandOnTerminate(sender, e);
-                threeDLineAddOnCommands.Add(session.Identifier, threeDLineAddOnCommand);
+                _threeDLineAddOnCommands.Add(session.Identifier, threeDLineAddOnCommand);
             }
             else
             {
-                if (threeDLineAddOnCommands.TryGetValue(session.Identifier, out threeDLineAddOnCommand))
+                if (_threeDLineAddOnCommands.TryGetValue(session.Identifier, out threeDLineAddOnCommand))
                 {
                     threeDLineAddOnCommand.UserRequestedClose();
-                    threeDLineAddOnCommands.Remove(session.Identifier);
+                    _threeDLineAddOnCommands.Remove(session.Identifier);
                     return null;
                 }
             }
@@ -397,10 +427,10 @@ namespace Bolsover
         private void ThreeDLineAddOnCommandOnTerminate(object sender, ThreeDLineAddOnCommandTerminateEventArgs e)
         {
             ThreeDLineAddOnCommand threeDLineAddOnCommand;
-            if (threeDLineAddOnCommands.TryGetValue(e.ThreeDLineAddOnCommand.session.Identifier,
+            if (_threeDLineAddOnCommands.TryGetValue(e.ThreeDLineAddOnCommand.Session.Identifier,
                     out threeDLineAddOnCommand))
             {
-                threeDLineAddOnCommands.Remove(e.ThreeDLineAddOnCommand.session.Identifier);
+                _threeDLineAddOnCommands.Remove(e.ThreeDLineAddOnCommand.Session.Identifier);
             }
         }
 
@@ -411,24 +441,24 @@ namespace Bolsover
         /// <summary>
         /// A dictionary to keep track of currently open EmptyAddOnCommand object.
         /// </summary>
-        private readonly Dictionary<string, SampleAddOnCommand> sampleAddOnCommands = new();
+        private readonly Dictionary<string, SampleAddOnCommand> _sampleAddOnCommands = new();
 
         private IAlibreAddOnCommand DoSample(IADSession session)
         {
             SampleAddOnCommand sampleViewerAddOnCommand;
-            if (!sampleAddOnCommands.ContainsKey(session.Identifier))
+            if (!_sampleAddOnCommands.ContainsKey(session.Identifier))
             {
                 sampleViewerAddOnCommand = new SampleAddOnCommand(session);
                 sampleViewerAddOnCommand.SampleUserControl.Visible = true;
                 sampleViewerAddOnCommand.Terminate += SampleAddOnCommandOnTerminate;
-                sampleAddOnCommands.Add(session.Identifier, sampleViewerAddOnCommand);
+                _sampleAddOnCommands.Add(session.Identifier, sampleViewerAddOnCommand);
             }
             else
             {
-                if (sampleAddOnCommands.TryGetValue(session.Identifier, out sampleViewerAddOnCommand))
+                if (_sampleAddOnCommands.TryGetValue(session.Identifier, out sampleViewerAddOnCommand))
                 {
                     sampleViewerAddOnCommand.UserRequestedClose();
-                    sampleAddOnCommands.Remove(session.Identifier);
+                    _sampleAddOnCommands.Remove(session.Identifier);
                     return null;
                 }
             }
@@ -439,9 +469,9 @@ namespace Bolsover
         private void SampleAddOnCommandOnTerminate(object sender, SampleAddonCommandTerminateEventArgs e)
         {
             SampleAddOnCommand sampleAddOnCommand;
-            if (sampleAddOnCommands.TryGetValue(e.SampleAddOnCommand.session.Identifier, out sampleAddOnCommand))
+            if (_sampleAddOnCommands.TryGetValue(e.SampleAddOnCommand.Session.Identifier, out sampleAddOnCommand))
             {
-                sampleAddOnCommands.Remove(e.SampleAddOnCommand.session.Identifier);
+                _sampleAddOnCommands.Remove(e.SampleAddOnCommand.Session.Identifier);
             }
         }
 
@@ -452,7 +482,7 @@ namespace Bolsover
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
-        private readonly Dictionary<string, AlibreDataViewerAddOnCommand> dataViewerAddOnCommands = new();
+        private readonly Dictionary<string, AlibreDataViewerAddOnCommand> _dataViewerAddOnCommands = new();
 
 
         /// <summary>
@@ -463,19 +493,19 @@ namespace Bolsover
         private IAlibreAddOnCommand DoAlibreDataViewer(IADSession session)
         {
             AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
-            if (!dataViewerAddOnCommands.ContainsKey(session.Identifier))
+            if (!_dataViewerAddOnCommands.ContainsKey(session.Identifier))
             {
                 alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session);
-                alibreDataViewerAddOnCommand.alibreDataViewer.Visible = true;
+                alibreDataViewerAddOnCommand.AlibreDataViewer.Visible = true;
                 alibreDataViewerAddOnCommand.Terminate += AlibreDataViewerAddOnCommandOnTerminate;
-                dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
+                _dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
             }
             else
             {
-                if (dataViewerAddOnCommands.TryGetValue(session.Identifier, out alibreDataViewerAddOnCommand))
+                if (_dataViewerAddOnCommands.TryGetValue(session.Identifier, out alibreDataViewerAddOnCommand))
                 {
                     alibreDataViewerAddOnCommand.UserRequestedClose();
-                    dataViewerAddOnCommands.Remove(session.Identifier);
+                    _dataViewerAddOnCommands.Remove(session.Identifier);
                     return null;
                 }
             }
@@ -487,10 +517,10 @@ namespace Bolsover
             AlibreDataViewerAddOnCommandTerminateEventArgs e)
         {
             AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
-            if (dataViewerAddOnCommands.TryGetValue(e.alibreDataViewerAddOnCommand.session.Identifier,
+            if (_dataViewerAddOnCommands.TryGetValue(e.AlibreDataViewerAddOnCommand.Session.Identifier,
                     out alibreDataViewerAddOnCommand))
             {
-                dataViewerAddOnCommands.Remove(e.alibreDataViewerAddOnCommand.session.Identifier);
+                _dataViewerAddOnCommands.Remove(e.AlibreDataViewerAddOnCommand.Session.Identifier);
             }
         }
 
@@ -501,24 +531,24 @@ namespace Bolsover
         /// <summary>
         /// A dictionary to keep track of currently open PlaneFinderAddOnCommand object.
         /// </summary>
-        private readonly Dictionary<string, PlaneFinderAddOnCommand> planeFinderAddOnCommands = new();
+        private readonly Dictionary<string, PlaneFinderAddOnCommand> _planeFinderAddOnCommands = new();
 
         private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
         {
             PlaneFinderAddOnCommand planeFinderAddOnCommand;
-            if (!planeFinderAddOnCommands.ContainsKey(session.Identifier))
+            if (!_planeFinderAddOnCommands.ContainsKey(session.Identifier))
             {
                 planeFinderAddOnCommand = new PlaneFinderAddOnCommand(session);
                 planeFinderAddOnCommand.PlaneFinder.Visible = true;
                 planeFinderAddOnCommand.Terminate += PlaneFinderAddOnCommandOnTerminate;
-                planeFinderAddOnCommands.Add(session.Identifier, planeFinderAddOnCommand);
+                _planeFinderAddOnCommands.Add(session.Identifier, planeFinderAddOnCommand);
             }
             else
             {
-                if (planeFinderAddOnCommands.TryGetValue(session.Identifier, out planeFinderAddOnCommand))
+                if (_planeFinderAddOnCommands.TryGetValue(session.Identifier, out planeFinderAddOnCommand))
                 {
                     planeFinderAddOnCommand.UserRequestedClose();
-                    planeFinderAddOnCommands.Remove(session.Identifier);
+                    _planeFinderAddOnCommands.Remove(session.Identifier);
                     return null;
                 }
             }
@@ -529,10 +559,10 @@ namespace Bolsover
         private void PlaneFinderAddOnCommandOnTerminate(object sender, PlaneFinderAddOnCommandTerminateEventArgs e)
         {
             PlaneFinderAddOnCommand planeFinderAddOnCommand;
-            if (planeFinderAddOnCommands.TryGetValue(e.planeFinderAddOnCommand.session.Identifier,
+            if (_planeFinderAddOnCommands.TryGetValue(e.PlaneFinderAddOnCommand.Session.Identifier,
                     out planeFinderAddOnCommand))
             {
-                planeFinderAddOnCommands.Remove(e.planeFinderAddOnCommand.session.Identifier);
+                _planeFinderAddOnCommands.Remove(e.PlaneFinderAddOnCommand.Session.Identifier);
             }
         }
 
@@ -543,7 +573,7 @@ namespace Bolsover
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
-        private Dictionary<string, CycloidalGearAddOnCommand> cycloidalGearAddOnCommands = new();
+        private Dictionary<string, CycloidalGearAddOnCommand> _cycloidalGearAddOnCommands = new();
 
         /// <summary>
         /// Opens the Cycloidal Gear generator dialog.
@@ -553,19 +583,19 @@ namespace Bolsover
         private IAlibreAddOnCommand DoCycloidalGear(IADSession session)
         {
             CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
-            if (!cycloidalGearAddOnCommands.ContainsKey(session.Identifier))
+            if (!_cycloidalGearAddOnCommands.ContainsKey(session.Identifier))
             {
                 cycloidalGearAddOnCommand = new CycloidalGearAddOnCommand(session);
                 cycloidalGearAddOnCommand.CycliodalGearParametersForm.Visible = true;
                 cycloidalGearAddOnCommand.Terminate += CycloidalGearAddOnCommandOnTerminate;
-                cycloidalGearAddOnCommands.Add(session.Identifier, cycloidalGearAddOnCommand);
+                _cycloidalGearAddOnCommands.Add(session.Identifier, cycloidalGearAddOnCommand);
             }
             else
             {
-                if (cycloidalGearAddOnCommands.TryGetValue(session.Identifier, out cycloidalGearAddOnCommand))
+                if (_cycloidalGearAddOnCommands.TryGetValue(session.Identifier, out cycloidalGearAddOnCommand))
                 {
                     cycloidalGearAddOnCommand.UserRequestedClose();
-                    cycloidalGearAddOnCommands.Remove(session.Identifier);
+                    _cycloidalGearAddOnCommands.Remove(session.Identifier);
                     return null;
                 }
             }
@@ -576,10 +606,10 @@ namespace Bolsover
         private void CycloidalGearAddOnCommandOnTerminate(object sender, CycloidalGearAddOnCommandTerminateEventArgs e)
         {
             CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
-            if (cycloidalGearAddOnCommands.TryGetValue(e.cycloidalGearAddOnCommand.session.Identifier,
+            if (_cycloidalGearAddOnCommands.TryGetValue(e.CycloidalGearAddOnCommand.Session.Identifier,
                     out cycloidalGearAddOnCommand))
             {
-                cycloidalGearAddOnCommands.Remove(e.cycloidalGearAddOnCommand.session.Identifier);
+                _cycloidalGearAddOnCommands.Remove(e.CycloidalGearAddOnCommand.Session.Identifier);
             }
         }
 
@@ -613,6 +643,46 @@ namespace Bolsover
 
         #endregion
 
+        #region Bevel
+
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
+        private IAlibreAddOnCommand DoBevelGear()
+        {
+            var bevelGearView = new BevelGearView();
+            var pinion = new BevelGear
+            {
+                ShaftAngle = 90d,
+                SpiralAngle = 0d,
+                Module = 3.0d,
+                PressureAngle = 20.0d,
+                FaceWidth = 22.0d,
+                NumberOfTeeth = 20.0d,
+                Hand = "L",
+                GearType = "Standard"
+            };
+            var gear = new BevelGear
+            {
+                ShaftAngle = 90d,
+                SpiralAngle = 0d,
+                Module = 3.0d,
+                PressureAngle = 20.0d,
+                FaceWidth = 22.0d,
+                NumberOfTeeth = 40.0d,
+                Hand = "R",
+                GearType = "Standard"
+            };
+
+            var presenter = new BevelGearPresenter(bevelGearView, pinion, gear);
+            var form = new BevelGearForm(bevelGearView);
+
+            form.Show();
+            return null;
+        }
+
+        #endregion
+
         #region Gears
 
         /// <summary>
@@ -620,10 +690,6 @@ namespace Bolsover
         /// <returns></returns>
         private IAlibreAddOnCommand DoGears()
         {
-            // Gears.Gears gears = new Gears.Gears();
-            // gears.Visible = true;
-            // return null;
-
             Gear.GearForm.Instance();
 
             return null;
@@ -681,6 +747,9 @@ namespace Bolsover
         /// <returns></returns>
         private static IAlibreAddOnCommand DoFileClose(IADSession currentSession)
         {
+            //    object path = "E:/test";
+            // currentSession.SaveNew(ref path);
+            //   currentSession.SaveAs(ref path , "mytestassembly" );
             currentSession.Close(true);
             return null;
         }
@@ -695,12 +764,12 @@ namespace Bolsover
         /// <returns></returns>
         private IAlibreAddOnCommand DoFileExit()
         {
-            foreach (IADSession session in alibreRoot.Sessions)
+            foreach (IADSession session in _alibreRoot.Sessions)
             {
                 session.Close(true);
             }
 
-            alibreRoot.Terminate();
+            _alibreRoot.Terminate();
             return null;
         }
 

@@ -9,7 +9,7 @@ namespace Bolsover.Sample
 {
     public class SampleAddOnCommand : IAlibreAddOnCommand
     {
-        public IADSession session { get; }
+        public IADSession Session { get; }
         private long PanelHandle { get; set; }
         private int PanelPosition { get; }
 
@@ -18,7 +18,7 @@ namespace Bolsover.Sample
 
         public SampleAddOnCommand(IADSession session)
         {
-            this.session = session; // a reference to the current design session
+            this.Session = session; // a reference to the current design session
             PanelPosition = (int) ADDockStyle.AD_RIGHT; // where do you want the docked panel
             SampleUserControl = new SampleUserControl(session); // finally get to create your user control
         }
@@ -114,17 +114,17 @@ namespace Bolsover.Sample
         /// <summary>
         /// Called to get the add-on to render its GDI graphics into Alibre's graphics canvas;the origin and size of the view rectangle are passed in.
         /// </summary>
-        /// <param name="hDC"></param>
+        /// <param name="hDc"></param>
         /// <param name="clipRectX"></param>
         /// <param name="clipRectY"></param>
         /// <param name="clipRectWidth"></param>
         /// <param name="clipRectHeight"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void OnRender(int hDC, int clipRectX, int clipRectY, int clipRectWidth, int clipRectHeight)
+        public void OnRender(int hDc, int clipRectX, int clipRectY, int clipRectWidth, int clipRectHeight)
         {
-            Debug.WriteLine("OnRender hDC: " + hDC + ", clipRectX: " + clipRectX + ", clipRectY: " + clipRectY
+            Debug.WriteLine("OnRender hDC: " + hDc + ", clipRectX: " + clipRectX + ", clipRectY: " + clipRectY
                             + ", clipRectWidth: " + clipRectWidth + ", clipRectHeight: " + clipRectHeight);
-            WriteToUserControl("OnRender hDC: " + hDC + ", clipRectX: " + clipRectX + ", clipRectY: " + clipRectY
+            WriteToUserControl("OnRender hDC: " + hDc + ", clipRectX: " + clipRectX + ", clipRectY: " + clipRectY
                                + ", clipRectWidth: " + clipRectWidth + ", clipRectHeight: " + clipRectHeight);
         }
 
@@ -211,9 +211,9 @@ namespace Bolsover.Sample
         public void OnSelectionChange()
         {
             Debug.WriteLine("OnSelectionChange");
-            if (session.SelectedObjects.Count == 1)
+            if (Session.SelectedObjects.Count == 1)
             {
-                var proxy = (IADTargetProxy) session.SelectedObjects.Item(0);
+                var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
                 try
                 {
                     Debug.WriteLine(proxy.DisplayName);

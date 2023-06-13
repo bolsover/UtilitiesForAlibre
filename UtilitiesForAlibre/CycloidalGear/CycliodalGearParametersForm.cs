@@ -6,32 +6,32 @@ namespace Bolsover.CycloidalGear
 {
     public partial class CycliodalGearParametersForm : UserControl
     {
-        private IADDesignSession session;
-        private CycloidalGearProperties GearProperties = new();
-        private IADDesignPlane designPlane;
+        private IADDesignSession _session;
+        private CycloidalGearProperties _gearProperties = new();
+        private IADDesignPlane _designPlane;
 
 
         public CycliodalGearParametersForm(IADSession session)
         {
-            this.session = (IADDesignSession) session;
+            this._session = (IADDesignSession) session;
             InitializeComponent();
-            initParameters();
+            InitParameters();
         }
 
         public IADDesignPlane DesignPlane
         {
-            get => designPlane;
+            get => _designPlane;
 
             set
             {
-                designPlane = value;
-                GearProperties.Plane = DesignPlane;
-                planeTextBox.Text = designPlane.Name;
+                _designPlane = value;
+                _gearProperties.Plane = DesignPlane;
+                planeTextBox.Text = _designPlane.Name;
             }
         }
 
 
-        private void initParameters()
+        private void InitParameters()
         {
             moduleNumericUpDown.Value = (decimal) 4.0;
             wheelToothCountUpDwn.Value = 30;
@@ -48,60 +48,60 @@ namespace Bolsover.CycloidalGear
 
         private void moduleNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            GearProperties.Module = (double) ((NumericUpDown) sender).Value;
+            _gearProperties.Module = (double) ((NumericUpDown) sender).Value;
         }
 
         private void pinionToothCountUpDown_ValueChanged(object sender, EventArgs e)
         {
-            GearProperties.PinionCount = (int) ((NumericUpDown) sender).Value;
+            _gearProperties.PinionCount = (int) ((NumericUpDown) sender).Value;
         }
 
         private void wheelToothCountUpDwn_ValueChanged(object sender, EventArgs e)
         {
-            GearProperties.WheelCount = (int) ((NumericUpDown) sender).Value;
+            _gearProperties.WheelCount = (int) ((NumericUpDown) sender).Value;
         }
 
         private void wheelCenterHoleUpDown_ValueChanged(object sender, EventArgs e)
         {
-            GearProperties.WheelCentreHole = (double) ((NumericUpDown) sender).Value;
+            _gearProperties.WheelCentreHole = (double) ((NumericUpDown) sender).Value;
         }
 
         private void pinionCenterHoleUpDown_ValueChanged(object sender, EventArgs e)
         {
-            GearProperties.PinionCentreHole = (double) ((NumericUpDown) sender).Value;
+            _gearProperties.PinionCentreHole = (double) ((NumericUpDown) sender).Value;
         }
 
         private void customSlopUpDown_ValueChanged(object sender, EventArgs e)
         {
-            GearProperties.CustomSlop = (double) ((NumericUpDown) sender).Value;
+            _gearProperties.CustomSlop = (double) ((NumericUpDown) sender).Value;
         }
 
         private void customSlopCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            GearProperties.CustomSlopEnabled = ((CheckBox) sender).Checked;
+            _gearProperties.CustomSlopEnabled = ((CheckBox) sender).Checked;
         }
 
         private void drawWheelCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            GearProperties.DrawWheel = ((CheckBox) sender).Checked;
+            _gearProperties.DrawWheel = ((CheckBox) sender).Checked;
         }
 
         private void drawPinionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            GearProperties.DrawPinion = ((CheckBox) sender).Checked;
+            _gearProperties.DrawPinion = ((CheckBox) sender).Checked;
         }
 
 
         private void buttonApply_Click(object sender, EventArgs e)
         {
-            if (GearProperties.Plane == null)
+            if (_gearProperties.Plane == null)
             {
                 MessageBox.Show("Please select a Plane for the gear sketch.", "Error", MessageBoxButtons.OK);
                 return;
             }
 
-            var builder = new CycloidalGearBuilder(GearProperties, session);
-            MessageBox.Show(GearProperties.ToString(), "Gear Properties", MessageBoxButtons.OK);
+            var builder = new CycloidalGearBuilder(_gearProperties, _session);
+            MessageBox.Show(_gearProperties.ToString(), "Gear Properties", MessageBoxButtons.OK);
         }
 
         #endregion

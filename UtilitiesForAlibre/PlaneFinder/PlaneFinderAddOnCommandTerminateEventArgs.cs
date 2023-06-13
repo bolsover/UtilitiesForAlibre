@@ -6,9 +6,9 @@ namespace Bolsover.PlaneFinder
     {
         public PlaneFinderAddOnCommandTerminateEventArgs(PlaneFinderAddOnCommand planeFinderAddOnCommand)
         {
-            this.planeFinderAddOnCommand = planeFinderAddOnCommand;
+            this.PlaneFinderAddOnCommand = planeFinderAddOnCommand;
         }
 
-        public PlaneFinderAddOnCommand planeFinderAddOnCommand { get; }
+        public PlaneFinderAddOnCommand PlaneFinderAddOnCommand { get; }
     }
 }

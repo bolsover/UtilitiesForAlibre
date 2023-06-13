@@ -8,22 +8,22 @@ namespace Bolsover.AlibreDataViewer
 {
     public partial class AlibreDataViewer : UserControl
     {
-        public object rootObject { get; set; }
-        private IADSession session;
+        public object RootObject { get; set; }
+        private IADSession _session;
 
 
         public AlibreDataViewer(IADSession session)
         {
-            this.session = session;
+            this._session = session;
             InitializeComponent();
-            setupColumns();
-            setupTree();
+            SetupColumns();
+            SetupTree();
         }
 
 
         public void SetRootObject(object rootObject)
         {
-            this.rootObject = rootObject;
+            this.RootObject = rootObject;
             var roots = new ArrayList();
             var infos = rootObject.GetType().GetProperties();
             for (var i = 0; i < infos.Length; i++)
@@ -44,7 +44,7 @@ namespace Bolsover.AlibreDataViewer
         }
 
 
-        private void setupTree()
+        private void SetupTree()
         {
             treeListView.CanExpandGetter = rowObject =>
                 ((AlibreData) rowObject).HasChildren() | !AlibreData.IsPrimitiveType(((AlibreData) rowObject).Value);
@@ -52,7 +52,7 @@ namespace Bolsover.AlibreDataViewer
                 rowObject => ((AlibreData) rowObject).GetChildData(((AlibreData) rowObject).Value);
         }
 
-        private void setupColumns()
+        private void SetupColumns()
         {
             olvColumnProperty.AspectGetter =
                 rowObject => ((AlibreData) rowObject).PropertyName;

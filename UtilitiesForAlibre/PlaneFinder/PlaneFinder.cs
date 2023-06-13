@@ -8,17 +8,17 @@ namespace Bolsover.PlaneFinder
 {
     public partial class PlaneFinder : UserControl
     {
-        private IADSession session;
-        private IADSketch sketch;
+        private IADSession _session;
+        private IADSketch _sketch;
 
 
         public PlaneFinder(IADSession session)
         {
-            this.session = session;
+            this._session = session;
             InitializeComponent();
         }
 
-        private void getPlaneForSketch(IADSketch sketch)
+        private void GetPlaneForSketch(IADSketch sketch)
         {
             IADTargetProxy targetProxy = null;
             try
@@ -35,12 +35,12 @@ namespace Bolsover.PlaneFinder
 
         public IADSketch Sketch
         {
-            get => sketch;
+            get => _sketch;
             set
             {
-                sketch = value;
-                sketchTextBox.Text = sketch.Name;
-                getPlaneForSketch(sketch);
+                _sketch = value;
+                sketchTextBox.Text = _sketch.Name;
+                GetPlaneForSketch(_sketch);
             }
         }
     }

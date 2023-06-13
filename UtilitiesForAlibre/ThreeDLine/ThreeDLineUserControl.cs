@@ -10,27 +10,27 @@ namespace Bolsover.ThreeDLine
 {
     public partial class ThreeDLineUserControl : UserControl
     {
-        private IADSession session;
-        public BindingList<Coordinate> data = new();
+        private IADSession _session;
+        public BindingList<Coordinate> Data = new();
 
 
         public ThreeDLineUserControl(IADSession session)
         {
-            this.session = session;
-            initTestData();
+            this._session = session;
+            InitTestData();
             InitializeComponent();
             BindDataToGrid();
         }
 
         private void BindDataToGrid()
         {
-            coordinatesDataGridView.DataSource = data;
+            coordinatesDataGridView.DataSource = Data;
         }
 
-        private void initTestData()
+        private void InitTestData()
         {
-            data.Add(new Coordinate(0, 0, 0));
-            data.Add(new Coordinate(1, 1, 1));
+            Data.Add(new Coordinate(0, 0, 0));
+            Data.Add(new Coordinate(1, 1, 1));
         }
 
 
@@ -46,12 +46,12 @@ namespace Bolsover.ThreeDLine
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
                 textBoxExcel.Text = fdlg.FileName;
-                import();
+                Import();
             }
         }
 
 
-        private void import()
+        private void Import()
         {
             var name = "Sheet1";
             var constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
@@ -65,23 +65,23 @@ namespace Bolsover.ThreeDLine
             var sda = new OleDbDataAdapter(oconn);
             var dataTable = new DataTable();
             sda.Fill(dataTable);
-            data.Clear();
+            Data.Clear();
             Coordinate coordinate;
             foreach (DataRow row in dataTable.Rows)
             {
                 coordinate = new Coordinate((double) row[0], (double) row[1], (double) row[2]);
-                data.Add(coordinate);
+                Data.Add(coordinate);
             }
 
             var cm =
-                (CurrencyManager) coordinatesDataGridView.BindingContext[data];
+                (CurrencyManager) coordinatesDataGridView.BindingContext[Data];
             cm.Refresh();
         }
 
         private void buttonDeleteRow_Click(object sender, EventArgs e)
         {
             var cm =
-                (CurrencyManager) coordinatesDataGridView.BindingContext[data];
+                (CurrencyManager) coordinatesDataGridView.BindingContext[Data];
             var selectedCount = coordinatesDataGridView.SelectedRows.Count;
             while (selectedCount > 0)
             {
@@ -98,20 +98,20 @@ namespace Bolsover.ThreeDLine
 
         private void buttonAddRow_Click(object sender, EventArgs e)
         {
-            data.Add(new Coordinate(0, 0, 0));
+            Data.Add(new Coordinate(0, 0, 0));
             var cm =
-                (CurrencyManager) coordinatesDataGridView.BindingContext[data];
+                (CurrencyManager) coordinatesDataGridView.BindingContext[Data];
             cm.Refresh();
         }
 
         private void buttonDraw_Click(object sender, EventArgs e)
         {
-            var ad3DSketch = ((IADPartSession) session).Sketches3D.Add3DSketch("3DSketch");
+            var ad3DSketch = ((IADPartSession) _session).Sketches3D.Add3DSketch("3DSketch");
             ((Alibre3DSketch) ad3DSketch).BeginChange();
-            var prior = data[0];
-            for (var i = 1; i < data.Count;)
+            var prior = Data[0];
+            for (var i = 1; i < Data.Count;)
             {
-                var next = data[i++];
+                var next = Data[i++];
                 ad3DSketch.Figures.AddLine(prior.X / 10, prior.Y / 10, prior.Z / 10, next.X / 10, next.Y / 10,
                     next.Z / 10);
                 prior = next;

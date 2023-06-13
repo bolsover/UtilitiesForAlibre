@@ -6,9 +6,9 @@ namespace Bolsover.AlibreDataViewer
     {
         public AlibreDataViewerAddOnCommandTerminateEventArgs(AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand)
         {
-            this.alibreDataViewerAddOnCommand = alibreDataViewerAddOnCommand;
+            this.AlibreDataViewerAddOnCommand = alibreDataViewerAddOnCommand;
         }
 
-        public AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand { get; }
+        public AlibreDataViewerAddOnCommand AlibreDataViewerAddOnCommand { get; }
     }
 }

@@ -9,26 +9,26 @@ namespace Bolsover.Gear
     /// </summary>
     public class Trochoid
     {
-        private double rollingCircleRadius;
-        private double fixedCircleRadius;
-        private double tracePoint; // Distance From Centre Rolling Circle
+        private double _rollingCircleRadius;
+        private double _fixedCircleRadius;
+        private double _tracePoint; // Distance From Centre Rolling Circle
 
         public double RollingCircleRadius
         {
-            get => rollingCircleRadius;
-            set => rollingCircleRadius = value;
+            get => _rollingCircleRadius;
+            set => _rollingCircleRadius = value;
         }
 
         public double FixedCircleRadius
         {
-            get => fixedCircleRadius;
-            set => fixedCircleRadius = value;
+            get => _fixedCircleRadius;
+            set => _fixedCircleRadius = value;
         }
 
         public double TracePoint
         {
-            get => tracePoint;
-            set => tracePoint = value;
+            get => _tracePoint;
+            set => _tracePoint = value;
         }
 
         public static double Radians(double angle)

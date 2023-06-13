@@ -9,39 +9,39 @@ namespace Bolsover.DataBrowser.PartNoConfig
     public partial class PartNoConfig : UserControl
     {
         private readonly PartNoManager _partNoManager = new();
-        private IList selectedItems;
-        private readonly ToolTip saveTooltip = new();
-        private readonly ToolTip applyTooltip = new();
-        private readonly ToolTip cancelTooltip = new();
+        private IList _selectedItems;
+        private readonly ToolTip _saveTooltip = new();
+        private readonly ToolTip _applyTooltip = new();
+        private readonly ToolTip _cancelTooltip = new();
 
         public PartNoConfig()
         {
             InitializeComponent();
-            bindings();
+            Bindings();
             SetupToolTips();
         }
 
         public IList SelectedItems
         {
-            get => selectedItems;
+            get => _selectedItems;
             set
             {
-                selectedItems = value;
-                labelInfo.Text = "Info " + selectedItems.Count + " files to renumber.";
+                _selectedItems = value;
+                labelInfo.Text = "Info " + _selectedItems.Count + " files to renumber.";
             }
         }
 
         private void SetupToolTips()
         {
-            saveTooltip.SetToolTip(button2,
+            _saveTooltip.SetToolTip(button2,
                 "Saves the settings for the next part numbering session.");
-            applyTooltip.SetToolTip(button1,
+            _applyTooltip.SetToolTip(button1,
                 "Updates the selected files with the new part numbers.");
-            cancelTooltip.SetToolTip(buttonCancel,
+            _cancelTooltip.SetToolTip(buttonCancel,
                 "Cancels this dialog without updating files.");
         }
 
-        private void bindings()
+        private void Bindings()
         {
             textBoxPrefix.DataBindings.Add("Text", _partNoManager.PartNoSetting, "Prefix");
             textBoxSuffix.DataBindings.Add("Text", _partNoManager.PartNoSetting, "Suffix");
@@ -62,7 +62,7 @@ namespace Bolsover.DataBrowser.PartNoConfig
 
         private void buttonApply_Click(object sender, EventArgs e)
         {
-            foreach (var oItem in selectedItems)
+            foreach (var oItem in _selectedItems)
             {
                 var fileSystem = (AlibreFileSystem) oItem;
 
@@ -105,18 +105,18 @@ namespace Bolsover.DataBrowser.PartNoConfig
         [Serializable()]
         public class PartNoSetting
         {
-            private string prefix;
-            private string suffix;
-            private int partNo;
-            private int skipNo;
-            private string example;
+            private string _prefix;
+            private string _suffix;
+            private int _partNo;
+            private int _skipNo;
+            private string _example;
 
             public string Prefix
             {
-                get => prefix;
+                get => _prefix;
                 set
                 {
-                    prefix = value;
+                    _prefix = value;
                     InvokePropertyChanged(new PropertyChangedEventArgs("prefix"));
                 }
             }
@@ -128,7 +128,7 @@ namespace Bolsover.DataBrowser.PartNoConfig
             private void InvokePropertyChanged(PropertyChangedEventArgs e)
             {
                 var handler = PropertyChanged;
-                Example = prefix + partNo + suffix;
+                Example = _prefix + _partNo + _suffix;
                 if (handler != null)
                 {
                     handler(this, e);
@@ -139,44 +139,44 @@ namespace Bolsover.DataBrowser.PartNoConfig
 
             public string Suffix
             {
-                get => suffix;
+                get => _suffix;
                 set
                 {
-                    suffix = value;
+                    _suffix = value;
                     InvokePropertyChanged(new PropertyChangedEventArgs("suffix"));
                 }
             }
 
             public int PartNo
             {
-                get => partNo;
+                get => _partNo;
                 set
                 {
-                    partNo = value;
+                    _partNo = value;
                     InvokePropertyChanged(new PropertyChangedEventArgs("partNo"));
                 }
             }
 
             public int SkipNo
             {
-                get => skipNo;
+                get => _skipNo;
                 set
                 {
-                    skipNo = value;
+                    _skipNo = value;
                     InvokePropertyChanged(new PropertyChangedEventArgs("skipNo"));
                 }
             }
 
             public string Example
             {
-                get => prefix + partNo + suffix;
-                set => example = value;
+                get => _prefix + _partNo + _suffix;
+                set => _example = value;
             }
         }
 
         private class PartNoManager
         {
-            private static PartNoSetting partNoSetting = new();
+            private static PartNoSetting _partNoSetting = new();
 
             public PartNoManager()
             {
@@ -185,8 +185,8 @@ namespace Bolsover.DataBrowser.PartNoConfig
 
             public PartNoSetting PartNoSetting
             {
-                get => partNoSetting;
-                set => partNoSetting = value;
+                get => _partNoSetting;
+                set => _partNoSetting = value;
             }
 
             private void Initialize()
@@ -209,10 +209,10 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 if (fileInfo.Exists)
                 {
                     var srReader = File.OpenText(filepath);
-                    var tType = partNoSetting.GetType();
+                    var tType = _partNoSetting.GetType();
                     var xsSerializer = new System.Xml.Serialization.XmlSerializer(tType);
                     var oData = xsSerializer.Deserialize(srReader);
-                    partNoSetting = (PartNoSetting) oData;
+                    _partNoSetting = (PartNoSetting) oData;
                     srReader.Close();
                 }
             }
@@ -230,11 +230,11 @@ namespace Bolsover.DataBrowser.PartNoConfig
 
                 var filepath = directoryPath + "\\partnumber.settings";
                 var swWriter = File.CreateText(filepath);
-                var tType = partNoSetting.GetType();
+                var tType = _partNoSetting.GetType();
                 if (tType.IsSerializable)
                 {
                     var xsSerializer = new System.Xml.Serialization.XmlSerializer(tType);
-                    xsSerializer.Serialize(swWriter, partNoSetting);
+                    xsSerializer.Serialize(swWriter, _partNoSetting);
                     swWriter.Close();
                 }
             }

@@ -48,11 +48,11 @@ namespace Bolsover.DataBrowser
         {
             InitializeComponent();
             Icon = Globals.Icon;
-            setupColumns();
-            setupTree();
+            SetupColumns();
+            SetupTree();
             RegisterCustomEditors();
             SetupToolTips();
-            restoreState();
+            RestoreState();
             InitPartNoConfig();
             FormClosing += (sender, args) =>
             {
@@ -65,7 +65,7 @@ namespace Bolsover.DataBrowser
 
         #region privateInitialisationMethods
 
-        private void setupTree()
+        private void SetupTree()
         {
             // TreeListView require two delegates:
             // 1. CanExpandGetter - Can a particular model be expanded?
@@ -116,8 +116,8 @@ namespace Bolsover.DataBrowser
 
         private void InitPartNoConfig()
         {
-            _partNoConfig.MouseDown += partNoConfigMouseDown;
-            _partNoConfig.MouseMove += partNoConfigMouseMove;
+            _partNoConfig.MouseDown += PartNoConfigMouseDown;
+            _partNoConfig.MouseMove += PartNoConfigMouseMove;
             _partNoConfig.Location = new Point(50, 50);
             Controls.Add(_partNoConfig);
             _partNoConfig.Hide();
@@ -156,7 +156,7 @@ namespace Bolsover.DataBrowser
         /*
          * Set up column AspectPutters and AspectGetters
          */
-        private void setupColumns()
+        private void SetupColumns()
         {
             ConfigureAspectGetters();
             ConfigureAspectPutters();
@@ -383,7 +383,7 @@ namespace Bolsover.DataBrowser
 
         /*
          * Configures the AspectPutter for the Modified column.
-         * 
+         *
          */
         private void ConfigureAlibreModifiedAspectPutter()
         {
@@ -611,7 +611,7 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void buttonRestoreState_Click(object sender, EventArgs e)
         {
-            restoreState();
+            RestoreState();
         }
 
         /// <summary>
@@ -632,7 +632,7 @@ namespace Bolsover.DataBrowser
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void partNoConfigMouseDown(object sender, MouseEventArgs e)
+        private void PartNoConfigMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -645,7 +645,7 @@ namespace Bolsover.DataBrowser
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void partNoConfigMouseMove(object sender, MouseEventArgs e)
+        private void PartNoConfigMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -861,7 +861,7 @@ namespace Bolsover.DataBrowser
          * Restores the layout of table columns from those previously saved to file.
          * File is %AppData%\DataBrowser\table.settings
          */
-        private void restoreState()
+        private void RestoreState()
         {
             var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                 "\\UtilitiesForAlibre";

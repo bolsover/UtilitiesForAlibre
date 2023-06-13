@@ -5,11 +5,11 @@ namespace Bolsover.Sample
 {
     public partial class SampleUserControl : UserControl
     {
-        private IADSession session;
+        private IADSession _session;
 
         public SampleUserControl(IADSession session)
         {
-            this.session = session;
+            this._session = session;
             InitializeComponent();
         }
 

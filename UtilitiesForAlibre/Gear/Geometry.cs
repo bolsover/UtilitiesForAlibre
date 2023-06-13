@@ -81,12 +81,12 @@ namespace Bolsover.Gear
                 if (priorPoint != null && IsInsideCircle(centre, radius, priorPoint) &&
                     !IsInsideCircle(centre, radius, point))
                 {
-                    var Intersection = new Point();
+                    var intersection = new Point();
                     var result = Intersect(centre, radius,
-                        priorPoint, point, ref Intersection);
+                        priorPoint, point, ref intersection);
                     if (result == 0)
                     {
-                        resultList.Add(Intersection);
+                        resultList.Add(intersection);
                     }
                 }
 
@@ -252,16 +252,16 @@ namespace Bolsover.Gear
         /// <summary>
         /// Method to calculate if a line between two points intersects a given circle
         /// </summary>
-        /// <param name="CirclePos"></param>
-        /// <param name="CircleRad"></param>
-        /// <param name="LineStart"></param>
-        /// <param name="LineEnd"></param>
+        /// <param name="circlePos"></param>
+        /// <param name="circleRad"></param>
+        /// <param name="lineStart"></param>
+        /// <param name="lineEnd"></param>
         /// <returns></returns>
-        private static bool IsIntersecting(Point CirclePos, double CircleRad, Point LineStart,
-            Point LineEnd)
+        private static bool IsIntersecting(Point circlePos, double circleRad, Point lineStart,
+            Point lineEnd)
         {
-            return (IsInsideCircle(CirclePos, CircleRad, LineStart) ^
-                    IsInsideCircle(CirclePos, CircleRad, LineEnd));
+            return (IsInsideCircle(circlePos, circleRad, lineStart) ^
+                    IsInsideCircle(circlePos, circleRad, lineEnd));
         }
 
 
