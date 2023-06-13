@@ -9,7 +9,7 @@ namespace Bolsover.ThreeDLine
 {
     public class ThreeDLineAddOnCommand : IAlibreAddOnCommand
     {
-        public IADSession session { get; }
+        public IADSession Session { get; }
         private long PanelHandle { get; set; }
         private int PanelPosition { get; }
 
@@ -20,17 +20,17 @@ namespace Bolsover.ThreeDLine
 
         public ThreeDLineAddOnCommand(IADSession session)
         {
-            this.session = session; // a reference to the current design session
+            this.Session = session; // a reference to the current design session
             PanelPosition = (int) ADDockStyle.AD_RIGHT; // where do you want the docked panel
             ThreeDLineUserControl = new ThreeDLineUserControl(session); // finally get to create your user control
         }
 
-        private IAD3DSketch get3DSketch()
+        private IAD3DSketch Get3DSketch()
         {
             IAD3DSketch myAd3DSketch = null;
-            if (session.SessionType == ADObjectSubType.AD_PART)
+            if (Session.SessionType == ADObjectSubType.AD_PART)
             {
-                myAd3DSketch = ((IADPartSession) session).Sketches3D.Add3DSketch("My3DSketch");
+                myAd3DSketch = ((IADPartSession) Session).Sketches3D.Add3DSketch("My3DSketch");
             }
 
             return myAd3DSketch;
@@ -111,13 +111,13 @@ namespace Bolsover.ThreeDLine
         /// <summary>
         /// Called to get the add-on to render its GDI graphics into Alibre's graphics canvas;the origin and size of the view rectangle are passed in.
         /// </summary>
-        /// <param name="hDC"></param>
+        /// <param name="hDc"></param>
         /// <param name="clipRectX"></param>
         /// <param name="clipRectY"></param>
         /// <param name="clipRectWidth"></param>
         /// <param name="clipRectHeight"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void OnRender(int hDC, int clipRectX, int clipRectY, int clipRectWidth, int clipRectHeight)
+        public void OnRender(int hDc, int clipRectX, int clipRectY, int clipRectWidth, int clipRectHeight)
         {
         }
 
@@ -193,9 +193,9 @@ namespace Bolsover.ThreeDLine
         public void OnSelectionChange()
         {
             Debug.WriteLine("OnSelectionChange");
-            if (session.SelectedObjects.Count == 1)
+            if (Session.SelectedObjects.Count == 1)
             {
-                var proxy = (IADTargetProxy) session.SelectedObjects.Item(0);
+                var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
                 try
                 {
                     Debug.WriteLine(proxy.DisplayName);

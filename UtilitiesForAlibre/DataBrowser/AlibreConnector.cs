@@ -7,7 +7,7 @@ namespace Bolsover.DataBrowser
 {
     public class AlibreConnector
     {
-        private static IADRoot root;
+        private static IADRoot _root;
         // private static AlibreConnector instance = null;
 
 
@@ -16,7 +16,7 @@ namespace Bolsover.DataBrowser
         /// </summary>
         static AlibreConnector()
         {
-            root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
+            _root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
         }
 
 
@@ -25,12 +25,12 @@ namespace Bolsover.DataBrowser
         /// </summary>
         public static void TerminateAll()
         {
-            root.TerminateAll();
+            _root.TerminateAll();
         }
 
         public static IADRoot GetRoot()
         {
-            return root;
+            return _root;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Bolsover.DataBrowser
         /// <returns></returns>
         public static IADMaterialLibraries RetrieveMaterialLibrariesForRoot()
         {
-            return root.MaterialLibraries;
+            return _root.MaterialLibraries;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Bolsover.DataBrowser
             IADDesignSession session;
             try
             {
-                session = (IADDesignSession) root.OpenFileEx(alibreFileSystem.FullName, false);
+                session = (IADDesignSession) _root.OpenFileEx(alibreFileSystem.FullName, false);
             }
             catch (Exception e)
             {
@@ -77,7 +77,7 @@ namespace Bolsover.DataBrowser
             IADDrawingSession session;
             try
             {
-                session = (IADDrawingSession) root.OpenFileEx(alibreFileSystem.FullName, false);
+                session = (IADDrawingSession) _root.OpenFileEx(alibreFileSystem.FullName, false);
             }
             catch (Exception e)
             {

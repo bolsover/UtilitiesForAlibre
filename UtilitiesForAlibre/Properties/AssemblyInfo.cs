@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("David Bolsover")]
 [assembly: AssemblyProduct("UtilitiesForAlibre")]
-[assembly: AssemblyCopyright("Copyright ©  2022 David Bolsover")]
+[assembly: AssemblyCopyright("Copyright ©  2023 David Bolsover")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

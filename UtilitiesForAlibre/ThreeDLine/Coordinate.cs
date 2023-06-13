@@ -5,33 +5,33 @@ namespace Bolsover.ThreeDLine
 {
     public class Coordinate
     {
-        private double x;
-        private double y;
-        private double z;
+        private double _x;
+        private double _y;
+        private double _z;
 
         public Coordinate(double x, double y, double z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            this._x = x;
+            this._y = y;
+            this._z = z;
         }
 
         public double X
         {
-            get => x;
-            set => x = value;
+            get => _x;
+            set => _x = value;
         }
 
         public double Y
         {
-            get => y;
-            set => y = value;
+            get => _y;
+            set => _y = value;
         }
 
         public double Z
         {
-            get => z;
-            set => z = value;
+            get => _z;
+            set => _z = value;
         }
     }
 }

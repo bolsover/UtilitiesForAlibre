@@ -8,21 +8,21 @@ namespace AlibreAddOnAssembly
 {
     public static class AlibreAddOn
     {
-        private static IADRoot alibreRoot { get; set; }
-        private static IntPtr parentWinHandle;
+        private static IADRoot AlibreRoot { get; set; }
+        private static IntPtr _parentWinHandle;
         private static UtilitiesForAlibre _utilitiesForAlibre;
 
 
         public static void AddOnLoad(IntPtr hwnd, IAutomationHook pAutomationHook, IntPtr unused)
         {
-            alibreRoot = (IADRoot) pAutomationHook.Root;
-            parentWinHandle = hwnd;
-            _utilitiesForAlibre = new UtilitiesForAlibre(alibreRoot, parentWinHandle);
+            AlibreRoot = (IADRoot) pAutomationHook.Root;
+            _parentWinHandle = hwnd;
+            _utilitiesForAlibre = new UtilitiesForAlibre(AlibreRoot, _parentWinHandle);
         }
 
         public static IADRoot GetRoot()
         {
-            return alibreRoot;
+            return AlibreRoot;
         }
 
         public static void AddOnInvoke(

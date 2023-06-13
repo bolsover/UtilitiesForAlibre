@@ -4,9 +4,10 @@
 
         <IsPackable>false</IsPackable>
 
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
         <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net481</TargetFramework>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,11 +15,14 @@
         <PackageReference Include="NUnit" Version="3.13.1"/>
         <PackageReference Include="NUnit3TestAdapter" Version="3.17.0"/>
         <PackageReference Include="coverlet.collector" Version="3.0.2"/>
-        <PackageReference Include="System.Resources.Extensions" Version="6.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\UtilitiesForAlibre\UtilitiesForAlibre.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System.Windows.Forms"/>
     </ItemGroup>
 
 </Project>

@@ -54,9 +54,9 @@ namespace Bolsover.Gear
         }
 
 
-        public Point Offset(double X, double Y)
+        public Point Offset(double x, double y)
         {
-            return new Point(this.X + X, this.Y + Y);
+            return new Point(this.X + x, this.Y + y);
         }
 
         public Point Scale(double magnitude)

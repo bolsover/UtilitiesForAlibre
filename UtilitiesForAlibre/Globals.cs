@@ -10,8 +10,9 @@ namespace Bolsover
 
         public static Icon Icon = new Icon(InstallPath + "\\nexus.ico");
 
-        public static Image cycloidalGear = Image.FromFile(InstallPath + "\\icons\\CycloidalGear.png");
+        public static Image CycloidalGear = Image.FromFile(InstallPath + "\\icons\\CycloidalGear.png");
+        public static Image BevelGear = Image.FromFile(InstallPath + "\\bevel\\images\\Symbols.png");
 
-        public static string version = "1.3.0.0";
+        public static string Version = "1.4.0.0";
     }
 }

@@ -12,7 +12,7 @@ namespace Bolsover.DataBrowser
         #region Private Properties
 
         private bool _isChecked;
-        private ArrayList children = new();
+        private ArrayList _children = new();
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace Bolsover.DataBrowser
 
         public bool HasChildren()
         {
-            return children.Count > 0;
+            return _children.Count > 0;
         }
 
 
@@ -87,8 +87,8 @@ namespace Bolsover.DataBrowser
 
         public ArrayList Children
         {
-            get => children;
-            set => children = value;
+            get => _children;
+            set => _children = value;
         }
 
         #endregion
@@ -110,8 +110,8 @@ namespace Bolsover.DataBrowser
         }
 
         /*
-            * Utility to check if file is locked or open elsewhere
-            */
+         * Utility to check if file is locked or open elsewhere
+         */
         protected virtual bool IsFileLocked(FileInfo file)
         {
             try

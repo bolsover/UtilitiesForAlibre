@@ -6,17 +6,17 @@ namespace Bolsover.Gear
 {
     public partial class GearForm : Form
     {
-        private static GearForm instance;
+        private static GearForm _instance;
 
         public static GearForm Instance()
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = new GearForm();
+                _instance = new GearForm();
             }
 
-            instance.Visible = true;
-            return instance;
+            _instance.Visible = true;
+            return _instance;
         }
 
         private GearForm()

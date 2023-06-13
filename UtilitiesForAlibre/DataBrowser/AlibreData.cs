@@ -8,16 +8,16 @@ namespace Bolsover.DataBrowser
     public class AlibreData
 
     {
-        private string classType;
-        private ArrayList children = new();
-        private string propertyName;
-        private object propertyValue;
-        private object value;
-        private object parent;
+        private string _classType;
+        private ArrayList _children = new();
+        private string _propertyName;
+        private object _propertyValue;
+        private object _value;
+        private object _parent;
 
         public AlibreData(object parent)
         {
-            this.parent = parent;
+            this._parent = parent;
         }
 
         public IEnumerable GetChildData(object parent)
@@ -64,7 +64,7 @@ namespace Bolsover.DataBrowser
                         child.PropertyValue = IsPrimitiveType(GetPropertyValue(parent, info.Name))
                             ? GetPropertyValue(parent, info.Name)
                             : "";
-                        children.Add(child);
+                        _children.Add(child);
                     }
                 }
             }
@@ -73,7 +73,7 @@ namespace Bolsover.DataBrowser
                 Debug.WriteLine(parent);
             }
 
-            return children;
+            return _children;
         }
 
         private void CreateChild(object parent, ref int i, object o)
@@ -83,7 +83,7 @@ namespace Bolsover.DataBrowser
             child.ClassType = o.GetType().Name;
             child.Value = o;
             child.PropertyValue = IsPrimitiveType(o) ? o : "";
-            children.Add(child);
+            _children.Add(child);
         }
 
         public static bool IsPrimitiveType(object o)
@@ -118,43 +118,43 @@ namespace Bolsover.DataBrowser
 
         public string ClassType
         {
-            get => classType;
-            set => classType = value;
+            get => _classType;
+            set => _classType = value;
         }
 
         public ArrayList Children
         {
-            get => children;
-            set => children = value;
+            get => _children;
+            set => _children = value;
         }
 
         public string PropertyName
         {
-            get => propertyName;
-            set => propertyName = value;
+            get => _propertyName;
+            set => _propertyName = value;
         }
 
         public object PropertyValue
         {
-            get => propertyValue;
-            set => propertyValue = value;
+            get => _propertyValue;
+            set => _propertyValue = value;
         }
 
         public object Parent
         {
-            get => parent;
-            set => parent = value;
+            get => _parent;
+            set => _parent = value;
         }
 
         public object Value
         {
-            get => value;
-            set => this.value = value;
+            get => _value;
+            set => this._value = value;
         }
 
         public bool HasChildren()
         {
-            return children.Count > 0;
+            return _children.Count > 0;
         }
     }
 }

@@ -31,10 +31,11 @@ namespace Bolsover.Gear
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GearForm));
             this._gearUserControl1 = new Bolsover.Gear.GearUserControl();
             this.SuspendLayout();
             // 
-            // externalGearUserControl1
+            // _gearUserControl1
             // 
             this._gearUserControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._gearUserControl1.Location = new System.Drawing.Point(12, 12);
@@ -48,7 +49,7 @@ namespace Bolsover.Gear
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 836);
             this.Controls.Add(this._gearUserControl1);
-            
+         //   this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "GearForm";
             this.Text = "Gear Generator";
             this.ResumeLayout(false);

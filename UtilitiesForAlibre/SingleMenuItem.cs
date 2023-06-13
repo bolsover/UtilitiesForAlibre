@@ -9,21 +9,21 @@ namespace Bolsover
 {
     public class SingleMenuItem : IAlibreAddOn
     {
-        private const int MENU_ID_ROOT = 401;
-        private const int MENU_ID_SAMPLE = 402;
+        private const int MenuIdRoot = 401;
+        private const int MenuIdSample = 402;
 
-        private int[] MENU_IDS_BASE = new int[1]
+        private int[] _menuIdsBase = new int[1]
         {
-            MENU_ID_SAMPLE
+            MenuIdSample
         };
 
-        private IADRoot alibreRoot;
-        private IntPtr parentWinHandle;
+        private IADRoot _alibreRoot;
+        private IntPtr _parentWinHandle;
 
         public SingleMenuItem(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
-            this.alibreRoot = alibreRoot;
-            this.parentWinHandle = parentWinHandle;
+            this._alibreRoot = alibreRoot;
+            this._parentWinHandle = parentWinHandle;
             // DoSample(null);
         }
 
@@ -32,36 +32,36 @@ namespace Bolsover
         /// <summary>
         /// Returns the menu ID of the add-on's root menu item
         /// </summary>
-        public int RootMenuItem => MENU_ID_ROOT;
+        public int RootMenuItem => MenuIdRoot;
 
 
         /// <summary>
         /// Description("Returns Whether the given Menu ID has any sub menus")
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public bool HasSubMenus(int menuID)
+        public bool HasSubMenus(int menuId)
         {
             //   return false;
-            return menuID == MENU_ID_ROOT;
+            return menuId == MenuIdRoot;
         }
 
         /// <summary>
         /// Returns the ID's of sub menu items under a popup menu item; the menu ID of a 'leaf' menu becomes its command ID
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public Array SubMenuItems(int menuID)
+        public Array SubMenuItems(int menuId)
         {
-            return MENU_IDS_BASE;
+            return _menuIdsBase;
         }
 
         /// <summary>
         /// Returns the display name of a menu item; a menu item with text of a single dash (“-“) is a separator
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public string MenuItemText(int menuID)
+        public string MenuItemText(int menuId)
         {
             return "Sample";
         }
@@ -69,9 +69,9 @@ namespace Bolsover
         /// <summary>
         /// Returns True if input menu item has sub menus // seems odd given name of method
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public bool PopupMenu(int menuID)
+        public bool PopupMenu(int menuId)
         {
             return true;
         }
@@ -83,10 +83,10 @@ namespace Bolsover
         /// ADDON_MENU_CHECKED = 3,
         /// ADDON_MENU_UNCHECKED = 4,
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <param name="sessionIdentifier"></param>
         /// <returns></returns>
-        public ADDONMenuStates MenuItemState(int menuID, string sessionIdentifier)
+        public ADDONMenuStates MenuItemState(int menuId, string sessionIdentifier)
         {
             return ADDONMenuStates.ADDON_MENU_ENABLED;
         }
@@ -94,9 +94,9 @@ namespace Bolsover
         /// <summary>
         /// Returns a tool tip string if input menu ID is that of a 'leaf' menu item
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public string MenuItemToolTip(int menuID)
+        public string MenuItemToolTip(int menuId)
         {
             return "Utilities";
         }
@@ -104,9 +104,9 @@ namespace Bolsover
         /// <summary>
         /// Returns the icon name (with extension) for a menu item; the icon will be searched under the folder where the add-on's .adc file is present
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
-        public string MenuIcon(int menuID)
+        public string MenuIcon(int menuId)
         {
             return "nexus.ico";
         }
@@ -124,12 +124,12 @@ namespace Bolsover
         /// <summary>
         /// Invokes the add-on command identified by menu ID; returning the add-on command interface is optional
         /// </summary>
-        /// <param name="menuID"></param>
+        /// <param name="menuId"></param>
         /// <param name="sessionIdentifier"></param>
         /// <returns></returns>
-        public IAlibreAddOnCommand InvokeCommand(int menuID, string sessionIdentifier)
+        public IAlibreAddOnCommand InvokeCommand(int menuId, string sessionIdentifier)
         {
-            var session = alibreRoot.Sessions.Item(sessionIdentifier);
+            var session = _alibreRoot.Sessions.Item(sessionIdentifier);
 
             return DoSample(session);
         }
@@ -142,24 +142,24 @@ namespace Bolsover
         /// <summary>
         /// A dictionary to keep track of currently open EmptyAddOnCommand object.
         /// </summary>
-        private readonly Dictionary<string, SampleAddOnCommand> emptyAddOnCommands = new();
+        private readonly Dictionary<string, SampleAddOnCommand> _emptyAddOnCommands = new();
 
         private IAlibreAddOnCommand DoSample(IADSession session)
         {
             SampleAddOnCommand sampleViewerAddOnCommand;
-            if (!emptyAddOnCommands.ContainsKey(session.Identifier))
+            if (!_emptyAddOnCommands.ContainsKey(session.Identifier))
             {
                 sampleViewerAddOnCommand = new SampleAddOnCommand(session);
                 sampleViewerAddOnCommand.SampleUserControl.Visible = true;
                 sampleViewerAddOnCommand.Terminate += SampleAddOnCommandOnTerminate;
-                emptyAddOnCommands.Add(session.Identifier, sampleViewerAddOnCommand);
+                _emptyAddOnCommands.Add(session.Identifier, sampleViewerAddOnCommand);
             }
             else
             {
-                if (emptyAddOnCommands.TryGetValue(session.Identifier, out sampleViewerAddOnCommand))
+                if (_emptyAddOnCommands.TryGetValue(session.Identifier, out sampleViewerAddOnCommand))
                 {
                     sampleViewerAddOnCommand.UserRequestedClose();
-                    emptyAddOnCommands.Remove(session.Identifier);
+                    _emptyAddOnCommands.Remove(session.Identifier);
                     return null;
                 }
             }
@@ -170,9 +170,9 @@ namespace Bolsover
         private void SampleAddOnCommandOnTerminate(object sender, SampleAddonCommandTerminateEventArgs e)
         {
             SampleAddOnCommand sampleAddOnCommand;
-            if (emptyAddOnCommands.TryGetValue(e.SampleAddOnCommand.session.Identifier, out sampleAddOnCommand))
+            if (_emptyAddOnCommands.TryGetValue(e.SampleAddOnCommand.Session.Identifier, out sampleAddOnCommand))
             {
-                emptyAddOnCommands.Remove(e.SampleAddOnCommand.session.Identifier);
+                _emptyAddOnCommands.Remove(e.SampleAddOnCommand.Session.Identifier);
             }
         }
 
