@@ -33,7 +33,6 @@ namespace Bolsover
         private const int SubmenuIdUtils3Dline = 605;
         private const int SubmenuIdUtilsBevelGear = 607;
         private const int SubmenuIdUtilsSpurGear = 608;
-
         private const int SubmenuIdUtilsSample = 606;
         private const int MenuIdHelp = 701;
         private const int SubmenuIdHelpAbout = 702;
@@ -42,7 +41,6 @@ namespace Bolsover
         private int[] _menuIdsRoot;
         private int[] _menuIdsHelp;
         private int[] _menuIdsGear;
-
 
         private IADRoot _alibreRoot;
         private IntPtr _parentWinHandle;
@@ -74,8 +72,6 @@ namespace Bolsover
             _menuIdsUtils = new int[5]
             {
                 SubmenuIdDataBrowser,
-
-
                 SubmenuIdUtilsPlaneFinder,
                 SubmenuIdUtilsDataViewer,
                 SubmenuIdUtils3Dline,
@@ -152,10 +148,9 @@ namespace Bolsover
                 case SubmenuIdFileOpen: return "Open";
                 case SubmenuIdFileClose: return "Save & Close";
                 case SubmenuIdFileExit: return "Save All, Exit";
-                case SubmenuIdUtilsCycloidalGear: return "Cycloidal Gear Generator Open/Close";
+                case SubmenuIdUtilsCycloidalGear: return "Cycloidal Gears Open/Close";
                 case SubmenuIdUtilsBevelGear: return "Bevel Gears";
-                case SubmenuIdUtilsSpurGear: return "Spur Gears";
-
+                case SubmenuIdUtilsSpurGear: return "Spur & Helical Gears";
                 case SubmenuIdHelpAbout: return "About";
                 case SubmenuIdUtilsPlaneFinder: return "Sketch Plane Finder Open/Close";
                 case SubmenuIdUtilsDataViewer: return "Property Viewer Open/Close";
@@ -230,7 +225,6 @@ namespace Bolsover
                         case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
-
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtils3Dline: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsSample: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -249,7 +243,6 @@ namespace Bolsover
                         case SubmenuIdFileOpen: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
-
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -285,7 +278,7 @@ namespace Bolsover
                 case SubmenuIdFileExit: return "Saves all open files and quits Alibre";
                 case SubmenuIdUtilsCycloidalGear: return "Opens/Closes Cycloidal Gear Generator";
                 case SubmenuIdUtilsBevelGear: return "Opens Bevel Gear Generator";
-                case SubmenuIdUtilsSpurGear: return "Opens Spur Gear Generator";
+                case SubmenuIdUtilsSpurGear: return "Opens Spur/Helical Gear Generator";
                 case SubmenuIdUtilsPlaneFinder: return "Finds the Plane on which a selected Sketch is drawn";
                 case SubmenuIdUtilsDataViewer: return "Opens/Closes Property Viewer";
                 case SubmenuIdUtils3Dline: return "Opens/Closes 3DLine Generator";
