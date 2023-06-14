@@ -6,17 +6,17 @@ namespace Bolsover.Gear
     /// <summary>
     /// A class to represent points in space
     /// </summary>
-    public class Point
+    public class GearPoint
     {
         public double X { get; set; }
         public double Y { get; set; }
 
 
-        public Point()
+        public GearPoint()
         {
         }
 
-        public Point(double x, double y)
+        public GearPoint(double x, double y)
         {
             X = x;
             Y = y;
@@ -28,43 +28,43 @@ namespace Bolsover.Gear
             return "X: " + X + " Y: " + Y;
         }
 
-        public static Point operator +(Point m, Point n)
+        public static GearPoint operator +(GearPoint m, GearPoint n)
         {
             return m.Offset(n.X, n.Y);
         }
 
-        public static Point operator -(Point m)
+        public static GearPoint operator -(GearPoint m)
         {
-            return new Point(-m.X, -m.Y);
+            return new GearPoint(-m.X, -m.Y);
         }
 
-        public static Point operator -(Point m, Point n)
+        public static GearPoint operator -(GearPoint m, GearPoint n)
         {
             return m.Offset(-n);
         }
 
-        public Point Offset(Point m)
+        public GearPoint Offset(GearPoint m)
         {
             return Offset(m.X, m.Y);
         }
 
-        public static Point FromPolar(double magnitude, double angle)
+        public static GearPoint FromPolar(double magnitude, double angle)
         {
-            return new Point(Math.Cos(angle), Math.Sin(angle)).Scale(magnitude);
+            return new GearPoint(Math.Cos(angle), Math.Sin(angle)).Scale(magnitude);
         }
 
 
-        public Point Offset(double x, double y)
+        public GearPoint Offset(double x, double y)
         {
-            return new Point(this.X + x, this.Y + y);
+            return new GearPoint(this.X + x, this.Y + y);
         }
 
-        public Point Scale(double magnitude)
+        public GearPoint Scale(double magnitude)
         {
-            return new Point(magnitude * X, magnitude * Y);
+            return new GearPoint(magnitude * X, magnitude * Y);
         }
 
-        public static double Magnitude(Point p)
+        public static double Magnitude(GearPoint p)
         {
             return Math.Sqrt(SumOfSquares(p.X, p.Y));
         }
@@ -84,15 +84,15 @@ namespace Bolsover.Gear
         public double Gradient =>
             X == 0 ? Y < 0 ? double.MinValue : double.MaxValue : Y / X;
 
-        public Point Rotate(double angle)
+        public GearPoint Rotate(double angle)
         {
             var cosAngle = Math.Cos(angle);
             var sinAngle = Math.Sin(angle);
-            return new Point(X * cosAngle - Y * sinAngle, X * sinAngle + Y * cosAngle);
+            return new GearPoint(X * cosAngle - Y * sinAngle, X * sinAngle + Y * cosAngle);
         }
 
 
-        public Point RotateAbout(Point origin, double angle)
+        public GearPoint RotateAbout(GearPoint origin, double angle)
         {
             return origin + (this - origin).Rotate(angle);
         }
@@ -106,9 +106,9 @@ namespace Bolsover.Gear
         /// point sequence will be generated</param>
         /// <returns>The sequence of rotated points</returns>
         /// 
-        public static List<Point> Rotated(List<Point> points, double phi)
+        public static List<GearPoint> Rotated(List<GearPoint> points, double phi)
         {
-            var result = new List<Point>();
+            var result = new List<GearPoint>();
             foreach (var point in points)
             {
                 result.Add(point.Rotate(phi));
@@ -117,13 +117,13 @@ namespace Bolsover.Gear
             return result;
         }
 
-        public static Point Mirror(Point point, double angleDegrees)
+        public static GearPoint Mirror(GearPoint gearPoint, double angleDegrees)
         {
-            var magnitude = Math.Sqrt(point.X * point.X + point.Y * point.Y);
-            var d = Degrees(Math.Acos(point.Y / magnitude));
+            var magnitude = Math.Sqrt(gearPoint.X * gearPoint.X + gearPoint.Y * gearPoint.Y);
+            var d = Degrees(Math.Acos(gearPoint.Y / magnitude));
             var d2 = angleDegrees - (d - angleDegrees);
 
-            var result = new Point()
+            var result = new GearPoint()
             {
                 X = Math.Sin(Radians(d2)) * magnitude,
                 Y = Math.Cos(Radians(d2)) * magnitude
@@ -153,9 +153,9 @@ namespace Bolsover.Gear
             return radians * (180.0 / Math.PI);
         }
 
-        public static List<Point> MirrorPoints(List<Point> points, double angleDegrees)
+        public static List<GearPoint> MirrorPoints(List<GearPoint> points, double angleDegrees)
         {
-            var result = new List<Point>();
+            var result = new List<GearPoint>();
             foreach (var point in points)
             {
                 result.Add(Mirror(point, angleDegrees));
@@ -164,11 +164,11 @@ namespace Bolsover.Gear
             return result;
         }
 
-        public static Point PolarOffset(Point origin, double magnitude, double angleRadians)
+        public static GearPoint PolarOffset(GearPoint origin, double magnitude, double angleRadians)
         {
             var x = origin.X + (magnitude * Math.Cos(angleRadians));
             var y = origin.Y + (magnitude * Math.Sin(angleRadians));
-            return new Point(x, y);
+            return new GearPoint(x, y);
         }
     }
 }

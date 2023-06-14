@@ -29,7 +29,7 @@ namespace UnitTests
             g2.GearType = GearType.External;
             GearBuilder gearBuilder = new GearBuilder();
             gearToothPoints = new GearToothPoints();
-            gearToothPoints.GearCentre = new Point(0, 0);
+            gearToothPoints.GearCentre = new GearPoint(0, 0);
             gearToothPoints.G1 = g2;
             gearToothPoints = gearBuilder.BuildGearToothPoints(gearToothPoints);
             io.WriteLine(gearToothPoints.ToString());

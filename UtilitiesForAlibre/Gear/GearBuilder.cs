@@ -24,7 +24,7 @@ namespace Bolsover.Gear
             InvoluteGear gear = gearToothPoints.G1;
             var outerRingDiameter = GearCalculations.OuterRingDiameter(gear);
             // rotation for left section of gear tooth
-            var rotateRadians = Point.Radians(GearCalculations.RotateDegrees(gear));
+            var rotateRadians = GearPoint.Radians(GearCalculations.RotateDegrees(gear));
             // the basic right involute curve
             gearToothPoints.RightInvolute = Geometry.InvolutePoints(GearCalculations.BaseRadiusRb(gear),
                 GearCalculations.RootDiameterDr(gear) / 2, 25);
@@ -33,13 +33,13 @@ namespace Bolsover.Gear
             // Point pointq;
             if (GearCalculations.AddendumRadiusRa(gear) > GearCalculations.BaseRadiusRb(gear))
             {
-                var addendumPoint = new Point(GearCalculations.AddendumRadiusRa(gear), 0);
+                var addendumPoint = new GearPoint(GearCalculations.AddendumRadiusRa(gear), 0);
 
                 gearToothPoints.RightInvolute =
                     Geometry.PointsFromIntersectionWithRootFillet(gearToothPoints.RightInvolute, addendumPoint);
             }
 
-            Point[] filletPoints = GearCalculations.CalcAddendumFilletPoints(gear);
+            GearPoint[] filletPoints = GearCalculations.CalcAddendumFilletPoints(gear);
 
             gearToothPoints.RightAddendumFilletEnd = filletPoints[0];
             gearToothPoints.RightAddendumFilletCentre = filletPoints[1];
@@ -47,19 +47,19 @@ namespace Bolsover.Gear
 
 
             gearToothPoints.LeftAddendumFilletEnd =
-                Point.Mirror(gearToothPoints.RightAddendumFilletEnd, 90).Rotate(rotateRadians);
+                GearPoint.Mirror(gearToothPoints.RightAddendumFilletEnd, 90).Rotate(rotateRadians);
             gearToothPoints.LeftAddendumFilletCentre =
-                Point.Mirror(gearToothPoints.RightAddendumFilletCentre, 90).Rotate(rotateRadians);
+                GearPoint.Mirror(gearToothPoints.RightAddendumFilletCentre, 90).Rotate(rotateRadians);
             gearToothPoints.LeftAddendumFilletStart =
-                Point.Mirror(gearToothPoints.RightAddendumFilletStart, 90).Rotate(rotateRadians);
+                GearPoint.Mirror(gearToothPoints.RightAddendumFilletStart, 90).Rotate(rotateRadians);
 
             gearToothPoints.RightInvolute = Geometry.PointsFromIntersectionWithRootFillet(gearToothPoints.RightInvolute,
                 gearToothPoints.RightAddendumFilletEnd);
             gearToothPoints.RightInvolute[0] = gearToothPoints.RightAddendumFilletEnd;
 
             // Mirror and rotate right involute points to create Left involute
-            gearToothPoints.LeftInvolute = Point.MirrorPoints(gearToothPoints.RightInvolute, 90);
-            gearToothPoints.LeftInvolute = Point.Rotated(gearToothPoints.LeftInvolute, rotateRadians);
+            gearToothPoints.LeftInvolute = GearPoint.MirrorPoints(gearToothPoints.RightInvolute, 90);
+            gearToothPoints.LeftInvolute = GearPoint.Rotated(gearToothPoints.LeftInvolute, rotateRadians);
 
             gearToothPoints.RightInvoluteEnd = gearToothPoints.RightInvolute[gearToothPoints.RightInvolute.Count - 1];
             gearToothPoints.LeftInvoluteEnd = gearToothPoints.LeftInvolute[gearToothPoints.LeftInvolute.Count - 1];
@@ -68,32 +68,32 @@ namespace Bolsover.Gear
             gearToothPoints.LeftInvoluteStart = gearToothPoints.LeftInvolute[0];
 
             // left mid outer 
-            gearToothPoints.LeftMidOuter = new Point(GearCalculations.OuterRingDiameter(gear) / 2, 0)
+            gearToothPoints.LeftMidOuter = new GearPoint(GearCalculations.OuterRingDiameter(gear) / 2, 0)
                 .Rotate(rotateRadians / 2)
-                .Rotate(Point.Radians(180 / gear.TeethZ));
+                .Rotate(GearPoint.Radians(180 / gear.TeethZ));
             // right mid outer
-            gearToothPoints.RightMidOuter = gearToothPoints.LeftMidOuter.Rotate(Point.Radians(-360 / gear.TeethZ));
+            gearToothPoints.RightMidOuter = gearToothPoints.LeftMidOuter.Rotate(GearPoint.Radians(-360 / gear.TeethZ));
 
             // left mid Addendum
-            gearToothPoints.LeftMidAddendum = new Point(GearCalculations.AddendumRadiusRa(gear), 0)
+            gearToothPoints.LeftMidAddendum = new GearPoint(GearCalculations.AddendumRadiusRa(gear), 0)
                 .Rotate(rotateRadians / 2)
-                .Rotate(Point.Radians(180 / gear.TeethZ));
+                .Rotate(GearPoint.Radians(180 / gear.TeethZ));
             // right mid Addendum
-            gearToothPoints.RightMidAddendum = gearToothPoints.LeftMidAddendum.Rotate(Point.Radians(-360 / gear.TeethZ));
+            gearToothPoints.RightMidAddendum = gearToothPoints.LeftMidAddendum.Rotate(GearPoint.Radians(-360 / gear.TeethZ));
 
             // left mid Base
-            gearToothPoints.LeftMidBase = new Point(GearCalculations.BaseRadiusRb(gear), 0)
+            gearToothPoints.LeftMidBase = new GearPoint(GearCalculations.BaseRadiusRb(gear), 0)
                 .Rotate(rotateRadians / 2)
-                .Rotate(Point.Radians(180 / gear.TeethZ));
+                .Rotate(GearPoint.Radians(180 / gear.TeethZ));
             // right mid Addendum
-            gearToothPoints.RightMidBase = gearToothPoints.LeftMidBase.Rotate(Point.Radians(-360 / gear.TeethZ));
+            gearToothPoints.RightMidBase = gearToothPoints.LeftMidBase.Rotate(GearPoint.Radians(-360 / gear.TeethZ));
         }
 
         private void BuildExternalToothPoints(GearToothPoints gearToothPoints)
         {
             InvoluteGear gear = gearToothPoints.G1;
             // rotation for left section of gear tooth
-            var rotateRadians = Point.Radians(GearCalculations.RotateDegrees(gear));
+            var rotateRadians = GearPoint.Radians(GearCalculations.RotateDegrees(gear));
             // the basic right involute curve
             gearToothPoints.RightInvolute = Geometry.InvolutePoints(GearCalculations.BaseRadiusRb(gear),
                 GearCalculations.AddendumRadiusRa(gear), 25);
@@ -125,36 +125,36 @@ namespace Bolsover.Gear
                 GearCalculations.AddendumRadiusRa(gear), GearCalculations.AddendumReliefRadiusRa(gear));
             // tip centre point
             gearToothPoints.ToothTipCentre =
-                new Point(GearCalculations.AddendumRadiusRa(gear), 0).Rotate(rotateRadians / 2); //good
+                new GearPoint(GearCalculations.AddendumRadiusRa(gear), 0).Rotate(rotateRadians / 2); //good
             // left mid root point
-            gearToothPoints.LeftMidRoot = new Point(GearCalculations.RootDiameterDr(gear) / 2, 0)
+            gearToothPoints.LeftMidRoot = new GearPoint(GearCalculations.RootDiameterDr(gear) / 2, 0)
                 .Rotate(rotateRadians / 2)
-                .Rotate(Point.Radians(180 / gear.TeethZ));
+                .Rotate(GearPoint.Radians(180 / gear.TeethZ));
             // right mid root point
-            gearToothPoints.RightMidRoot = gearToothPoints.LeftMidRoot.Rotate(Point.Radians(-360 / gear.TeethZ));
+            gearToothPoints.RightMidRoot = gearToothPoints.LeftMidRoot.Rotate(GearPoint.Radians(-360 / gear.TeethZ));
             // left side points are mirrored, rotated copies of right side
-            gearToothPoints.LeftRootFilletStart = Point.Mirror(gearToothPoints.RightRootFilletStart, 90)
+            gearToothPoints.LeftRootFilletStart = GearPoint.Mirror(gearToothPoints.RightRootFilletStart, 90)
                 .Rotate(rotateRadians);
 
-            gearToothPoints.LeftRootFilletCentre = Point.Mirror(gearToothPoints.RightRootFilletCentre, 90)
+            gearToothPoints.LeftRootFilletCentre = GearPoint.Mirror(gearToothPoints.RightRootFilletCentre, 90)
                 .Rotate(rotateRadians);
 
-            gearToothPoints.LeftRootFilletEnd = Point.Mirror(gearToothPoints.RightRootFilletEnd, 90)
+            gearToothPoints.LeftRootFilletEnd = GearPoint.Mirror(gearToothPoints.RightRootFilletEnd, 90)
                 .Rotate(rotateRadians);
 
-            gearToothPoints.LeftTipReliefStart = Point.Mirror(gearToothPoints.RightTipReliefStart, 90)
+            gearToothPoints.LeftTipReliefStart = GearPoint.Mirror(gearToothPoints.RightTipReliefStart, 90)
                 .Rotate(rotateRadians);
 
-            gearToothPoints.LeftTipReliefCentre = Point.Mirror(gearToothPoints.RightTipReliefCentre, 90)
+            gearToothPoints.LeftTipReliefCentre = GearPoint.Mirror(gearToothPoints.RightTipReliefCentre, 90)
                 .Rotate(rotateRadians);
 
-            gearToothPoints.LeftTipReliefEnd = Point.Mirror(gearToothPoints.RightTipReliefEnd, 90)
+            gearToothPoints.LeftTipReliefEnd = GearPoint.Mirror(gearToothPoints.RightTipReliefEnd, 90)
                 .Rotate(rotateRadians);
 
 
             // Mirror and rotate right involute points to create Left involute
-            gearToothPoints.LeftInvolute = Point.MirrorPoints(gearToothPoints.RightInvolute, 90);
-            gearToothPoints.LeftInvolute = Point.Rotated(gearToothPoints.LeftInvolute, rotateRadians);
+            gearToothPoints.LeftInvolute = GearPoint.MirrorPoints(gearToothPoints.RightInvolute, 90);
+            gearToothPoints.LeftInvolute = GearPoint.Rotated(gearToothPoints.LeftInvolute, rotateRadians);
         }
     }
 }

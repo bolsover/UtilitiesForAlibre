@@ -198,9 +198,9 @@ namespace UnitTests
         {
             var expectedResultx = 16.04055;
             var expectedResulty = -0.55045;
-            Point pointA = GearCalculations.RootFilletStartPoint(g1);
-            Assert.AreEqual(expectedResultx, pointA.X, 0.0001);
-            Assert.AreEqual(expectedResulty, pointA.Y, 0.0001);
+            GearPoint gearPointA = GearCalculations.RootFilletStartPoint(g1);
+            Assert.AreEqual(expectedResultx, gearPointA.X, 0.0001);
+            Assert.AreEqual(expectedResulty, gearPointA.Y, 0.0001);
         }
 
         [Test]
@@ -208,9 +208,9 @@ namespace UnitTests
         {
             var expectedResultx = 16.61022;
             var expectedResulty = -0.57000;
-            Point pointD = GearCalculations.RootFilletCentrePoint(g1);
-            Assert.AreEqual(expectedResultx, pointD.X, 0.0001);
-            Assert.AreEqual(expectedResulty, pointD.Y, 0.0001);
+            GearPoint gearPointD = GearCalculations.RootFilletCentrePoint(g1);
+            Assert.AreEqual(expectedResultx, gearPointD.X, 0.0001);
+            Assert.AreEqual(expectedResulty, gearPointD.Y, 0.0001);
         }
 
         [Test]
@@ -218,9 +218,9 @@ namespace UnitTests
         {
             var expectedResultx = 16.61022;
             var expectedResulty = -0;
-            Point pointE = GearCalculations.RootFilletEndPoint(g1);
-            Assert.AreEqual(expectedResultx, pointE.X, 0.0001);
-            Assert.AreEqual(expectedResulty, pointE.Y, 0.0001);
+            GearPoint gearPointE = GearCalculations.RootFilletEndPoint(g1);
+            Assert.AreEqual(expectedResultx, gearPointE.X, 0.0001);
+            Assert.AreEqual(expectedResulty, gearPointE.Y, 0.0001);
         }
 
         [Test]

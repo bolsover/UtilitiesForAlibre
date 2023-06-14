@@ -277,7 +277,7 @@
         <Compile Include="Gear\Models\GearPair.cs" />
         <Compile Include="Gear\Models\IGear.cs" />
         <Compile Include="Gear\Models\IGearPair.cs" />
-        <Compile Include="Gear\Point.cs" />
+        <Compile Include="Gear\GearPoint.cs" />
         <Compile Include="Gear\Presenters\GearCalculator.cs" />
         <Compile Include="Gear\Presenters\GearPresenter.cs" />
         <Compile Include="Gear\Trochoid.cs" />

@@ -63,12 +63,12 @@ namespace Bolsover.Gear
         public double PolarEtaInv(double zeta) => zeta - Math.Atan(zeta);
 
         // Convert polar to cartesian r is radius of circle, eta is angle in radians
-        public Point PolarToCartesian(double r, double eta)
+        public GearPoint PolarToCartesian(double r, double eta)
         {
             double x = r * Math.Cos(eta);
             double y = r * Math.Sin(eta);
 
-            return new Point(x, y);
+            return new GearPoint(x, y);
         }
 
         // Parametric equation for trochoid undercut

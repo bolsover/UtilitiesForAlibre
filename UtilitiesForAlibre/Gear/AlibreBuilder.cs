@@ -181,7 +181,7 @@ namespace Bolsover.Gear
         }
 
 
-        private IADSketchCircle AddScaledCircle(IADSketch sketch, Point centre, double diameter, double scale,
+        private IADSketchCircle AddScaledCircle(IADSketch sketch, GearPoint centre, double diameter, double scale,
             bool isReference)
         {
             var circle = sketch.Figures.AddCircle(centre.X * scale, centre.Y * scale, diameter / 2 * scale);
@@ -190,13 +190,13 @@ namespace Bolsover.Gear
         }
 
 
-        private static IADSketchLine AddScaledLine(IADSketch sketch, Point start, Point end, double scale)
+        private static IADSketchLine AddScaledLine(IADSketch sketch, GearPoint start, GearPoint end, double scale)
         {
             return sketch.Figures.AddLine(start.X * scale, start.Y * scale, end.X * scale, end.Y * scale);
         }
 
-        private static IADSketchCircularArc AddScaledCircularArcByCenterStartEnd(IADSketch sketch, Point centre, Point start,
-            Point end, double scale)
+        private static IADSketchCircularArc AddScaledCircularArcByCenterStartEnd(IADSketch sketch, GearPoint centre, GearPoint start,
+            GearPoint end, double scale)
         {
             return sketch.Figures.AddCircularArcByCenterStartEnd(centre.X * scale, centre.Y * scale,
                 start.X * scale, start.Y * scale, end.X * scale,
@@ -204,7 +204,7 @@ namespace Bolsover.Gear
         }
 
 
-        private static IADSketchBspline AddScaledBsplineByInterpolation(IADSketch sketch, List<Point> points, double scale)
+        private static IADSketchBspline AddScaledBsplineByInterpolation(IADSketch sketch, List<GearPoint> points, double scale)
         {
             Array interpolationPoints = new double[points.Count * 2];
             var j = 0;
