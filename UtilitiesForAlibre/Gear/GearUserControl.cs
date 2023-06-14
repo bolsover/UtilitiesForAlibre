@@ -201,7 +201,7 @@ namespace Bolsover.Gear
 
             var gearToothPoints = new GearToothPoints
             {
-                GearCentre = new Point(0, 0),
+                GearCentre = new GearPoint(0, 0),
                 // gear is helical if the helix pitch angle is greater than 0 degrees.
                 IsHelical = _g1.HelixAngleBeta > 0,
                 IsPinion = pinion,

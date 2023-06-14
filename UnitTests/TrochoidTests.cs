@@ -39,8 +39,8 @@ namespace UnitTests
         {
             var expectedResultx = 0.70711;
             var expectedResulty = 0.70711;
-            Assert.AreEqual(expectedResultx, trochoid.PolarToCartesian(1, Point.Radians(45)).X, 0.0001);
-            Assert.AreEqual(expectedResulty, trochoid.PolarToCartesian(1, Point.Radians(45)).Y, 0.0001);
+            Assert.AreEqual(expectedResultx, trochoid.PolarToCartesian(1, GearPoint.Radians(45)).X, 0.0001);
+            Assert.AreEqual(expectedResulty, trochoid.PolarToCartesian(1, GearPoint.Radians(45)).Y, 0.0001);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace UnitTests
         {
             var expectedResult = 0.5075583;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarRinv(1, Point.Radians(10)), 0.0001);
+            Assert.AreEqual(expectedResult, trochoid.PolarRinv(1, GearPoint.Radians(10)), 0.0001);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace UnitTests
         {
             var expectedResult = 0.001740;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarEtaInv(Point.Radians(10)), 0.0001);
+            Assert.AreEqual(expectedResult, trochoid.PolarEtaInv(GearPoint.Radians(10)), 0.0001);
         }
 
         [Test]

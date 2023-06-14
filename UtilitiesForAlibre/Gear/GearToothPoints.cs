@@ -44,72 +44,72 @@ namespace Bolsover.Gear
             return sb.ToString();
         }
 
-        public Point GearCentre { get; set; }
+        public GearPoint GearCentre { get; set; }
 
-        public List<Point> LeftInvolute { get; set; }
+        public List<GearPoint> LeftInvolute { get; set; }
 
-        public List<Point> RightInvolute { get; set; }
+        public List<GearPoint> RightInvolute { get; set; }
 
-        public Point RightAddendumFilletEnd { get; set; } // internal gears only
+        public GearPoint RightAddendumFilletEnd { get; set; } // internal gears only
 
-        public Point RightAddendumFilletCentre { get; set; } // internal gears only
+        public GearPoint RightAddendumFilletCentre { get; set; } // internal gears only
 
-        public Point RightAddendumFilletStart { get; set; } // internal gears only
+        public GearPoint RightAddendumFilletStart { get; set; } // internal gears only
 
-        public Point LeftAddendumFilletEnd { get; set; } // internal gears only
+        public GearPoint LeftAddendumFilletEnd { get; set; } // internal gears only
 
-        public Point LeftAddendumFilletCentre { get; set; } // internal gears only
+        public GearPoint LeftAddendumFilletCentre { get; set; } // internal gears only
 
-        public Point LeftAddendumFilletStart { get; set; } // internal gears only
-        public Point LeftInvoluteEnd { get; set; }
+        public GearPoint LeftAddendumFilletStart { get; set; } // internal gears only
+        public GearPoint LeftInvoluteEnd { get; set; }
 
-        public Point RightInvoluteEnd { get; set; }
+        public GearPoint RightInvoluteEnd { get; set; }
 
-        public Point RightMidRoot { get; set; }
+        public GearPoint RightMidRoot { get; set; }
 
-        public Point LeftMidRoot { get; set; }
+        public GearPoint LeftMidRoot { get; set; }
 
-        public Point RightMidOuter { get; set; }
+        public GearPoint RightMidOuter { get; set; }
 
-        public Point LeftMidOuter { get; set; }
+        public GearPoint LeftMidOuter { get; set; }
 
-        public Point RightMidBase { get; set; }
+        public GearPoint RightMidBase { get; set; }
 
-        public Point LeftMidBase { get; set; }
+        public GearPoint LeftMidBase { get; set; }
 
-        public Point RightMidAddendum { get; set; }
+        public GearPoint RightMidAddendum { get; set; }
 
-        public Point LeftMidAddendum { get; set; }
+        public GearPoint LeftMidAddendum { get; set; }
 
-        public Point RightRootFilletStart { get; set; }
+        public GearPoint RightRootFilletStart { get; set; }
 
-        public Point LeftRootFilletStart { get; set; }
+        public GearPoint LeftRootFilletStart { get; set; }
 
-        public Point RightRootFilletEnd { get; set; }
+        public GearPoint RightRootFilletEnd { get; set; }
 
-        public Point LeftRootFilletEnd { get; set; }
+        public GearPoint LeftRootFilletEnd { get; set; }
 
-        public Point RightRootFilletCentre { get; set; }
+        public GearPoint RightRootFilletCentre { get; set; }
 
-        public Point LeftRootFilletCentre { get; set; }
+        public GearPoint LeftRootFilletCentre { get; set; }
 
-        public Point RightInvoluteStart { get; set; }
+        public GearPoint RightInvoluteStart { get; set; }
 
-        public Point LeftInvoluteStart { get; set; }
+        public GearPoint LeftInvoluteStart { get; set; }
 
-        public Point RightTipReliefStart { get; set; }
+        public GearPoint RightTipReliefStart { get; set; }
 
-        public Point LeftTipReliefStart { get; set; }
+        public GearPoint LeftTipReliefStart { get; set; }
 
-        public Point RightTipReliefEnd { get; set; }
+        public GearPoint RightTipReliefEnd { get; set; }
 
-        public Point LeftTipReliefEnd { get; set; }
+        public GearPoint LeftTipReliefEnd { get; set; }
 
-        public Point RightTipReliefCentre { get; set; }
+        public GearPoint RightTipReliefCentre { get; set; }
 
-        public Point LeftTipReliefCentre { get; set; }
+        public GearPoint LeftTipReliefCentre { get; set; }
 
-        public Point ToothTipCentre { get; set; }
+        public GearPoint ToothTipCentre { get; set; }
 
         public string TemplateFilePath { get; set; }
 
