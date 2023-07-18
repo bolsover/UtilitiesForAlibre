@@ -2,7 +2,7 @@
 
 namespace Bolsover.Gear.Views
 {
-    partial class GearView
+    partial class StandardGearForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,29 +31,29 @@ namespace Bolsover.Gear.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.view = new Bolsover.Gear.Views.StandardGearView();
             this.SuspendLayout();
             // 
-            // label1
+            // view
             // 
-            this.label1.Location = new System.Drawing.Point(191, 111);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 63);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.view.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.view.Location = new System.Drawing.Point(0, 0);
+            this.view.Name = "view";
+            this.view.Size = new System.Drawing.Size(582, 590);
+            this.view.TabIndex = 0;
             // 
-            // GearView
+            // StandardGearForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Name = "GearView";
-            this.Text = "GearsForm";
+            this.ClientSize = new System.Drawing.Size(582, 590);
+            this.Controls.Add(this.view);
+            this.Name = "StandardGearForm";
+            this.Text = "Standard Spur and Helical Gears";
             this.ResumeLayout(false);
         }
-
-        private System.Windows.Forms.Label label1;
+        
+        private Bolsover.Gear.Views.StandardGearView view;
 
         #endregion
     }

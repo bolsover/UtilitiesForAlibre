@@ -70,7 +70,8 @@ namespace Bolsover.Gear
         /// <param name="involutePoints"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public static List<GearPoint> PointsFromIntersectionWithRootFillet(List<GearPoint> involutePoints, GearPoint rootFilletEnd)
+        public static List<GearPoint> PointsFromIntersectionWithRootFillet(List<GearPoint> involutePoints,
+            GearPoint rootFilletEnd)
         {
             var resultList = new List<GearPoint>();
             var centre = new GearPoint(0, 0);
@@ -108,7 +109,8 @@ namespace Bolsover.Gear
         /// <param name="involutePoints"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public static List<GearPoint> PointsToIntersectionWithTipReliefArc(List<GearPoint> involutePoints, GearPoint tipReliefStart)
+        public static List<GearPoint> PointsToIntersectionWithTipReliefArc(List<GearPoint> involutePoints,
+            GearPoint tipReliefStart)
         {
             var resultList = new List<GearPoint>();
             var centre = new GearPoint(0, 0);
@@ -411,7 +413,8 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="tipReliefRadius"></param>
         /// <returns>Start point of the tip relief radius</returns>
-        public static GearPoint StartPointOnInvoluteOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
+        public static GearPoint StartPointOnInvoluteOfTipRelief(double baseRadius, double addendumRadius,
+            double tipReliefRadius)
         {
             var distanceToInvolute = CentreToTipReliefRadiusStart(baseRadius, addendumRadius, tipReliefRadius);
             GearPoint pointc = PointOnInvolute(baseRadius, distanceToInvolute);
@@ -457,7 +460,8 @@ namespace Bolsover.Gear
         /// <param name="addendumRadius"></param>
         /// <param name="tipReliefRadius"></param>
         /// <returns>End point of the tip relief radius</returns>
-        public static GearPoint EndPointOnAddendumOfTipRelief(double baseRadius, double addendumRadius, double tipReliefRadius)
+        public static GearPoint EndPointOnAddendumOfTipRelief(double baseRadius, double addendumRadius,
+            double tipReliefRadius)
         {
             var centrePoint = CentrePointOfTipRelief(baseRadius, addendumRadius, tipReliefRadius);
             var endPoint = GearPoint.PolarOffset(centrePoint, tipReliefRadius, centrePoint.Gradient);

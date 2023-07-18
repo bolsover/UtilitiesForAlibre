@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using AlibreX;
 using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Views;
+using Bolsover.Utils;
 
 namespace Bolsover.Bevel.Presenters
 {
@@ -87,71 +88,84 @@ namespace Bolsover.Bevel.Presenters
         private void SetupLabelLatexImages()
         {
             var view = (BevelGearView) _view;
-            view.ShaftAngleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.ShaftAngleLatex);
-            view.ModuleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.ModuleLatex);
-            view.PressureAngleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PressureAngleLatex);
-            view.SpiralAngleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.SpiralAngleLatex);
+            view.ShaftAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.ShaftAngleLatex);
+            view.ModuleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.ModuleLatex);
+            view.PressureAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PressureAngleLatex);
+            view.SpiralAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.SpiralAngleLatex);
 
-            view.RadialPressureAngleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.RadialPressureAngleLatex);
+            view.RadialPressureAngleLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.RadialPressureAngleLatex);
             view.RadialPressureAngleFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(LatexUtils.RadialPressureAngleFormulaLatex);
-            view.NumberOfTeethLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.NumberOfTeethLatex);
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.RadialPressureAngleFormulaLatex);
+            view.NumberOfTeethLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.NumberOfTeethLatex);
 
-            view.PitchDiameterLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PitchDiameterLatex);
-            view.PitchDiameterFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PitchDiameterFormulaLatex);
+            view.PitchDiameterLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchDiameterLatex);
+            view.PitchDiameterFormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchDiameterFormulaLatex);
 
-            view.PitchConeAngle1Label.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PitchConeAngle1Latex);
-            view.PitchConeAngle1FormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PitchConeAngle1FormulaLatex);
+            view.PitchConeAngle1Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle1Latex);
+            view.PitchConeAngle1FormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle1FormulaLatex);
 
-            view.PitchConeAngle2Label.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PitchConeAngle2Latex);
-            view.PitchConeAngle2FormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PitchConeAngle2FormulaLatex);
+            view.PitchConeAngle2Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle2Latex);
+            view.PitchConeAngle2FormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle2FormulaLatex);
 
-            view.ConeDistanceLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.ConeDistanceLatex);
-            view.ConeDistanceFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.ConeDistanceFormulaLatex);
+            view.ConeDistanceLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.ConeDistanceLatex);
+            view.ConeDistanceFormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.ConeDistanceFormulaLatex);
 
-            view.FaceWidthLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.FaceWidthLatex);
-            view.FaceWidthFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.FaceWidthFormulaLatex);
+            view.FaceWidthLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.FaceWidthLatex);
+            view.FaceWidthFormulaLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.FaceWidthFormulaLatex);
 
-            view.Addendum1Label.Image = LatexUtils.CreateImageFromLatex(LatexUtils.Addendum1Latex);
+            view.Addendum1Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.Addendum1Latex);
             view.Addendum1FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa1GleasonStraightFormulaLatex);
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
 
-            view.Addendum2Label.Image = LatexUtils.CreateImageFromLatex(LatexUtils.Addendum2Latex);
+            view.Addendum2Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.Addendum2Latex);
             view.Addendum2FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa2GleasonStraightFormulaLatex);
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
 
-            view.DedendumLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.DedendumLatex);
+            view.DedendumLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumLatex);
             view.DedendumFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(LatexUtils.DedendumHfGleasonStraightFormulaLatex);
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
 
-            view.DedendumAngleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.DedendumAngleLatex);
-            view.DedendumAngleFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.DedendumAngleFormulaLatex);
+            view.DedendumAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumAngleLatex);
+            view.DedendumAngleFormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumAngleFormulaLatex);
 
-            view.AddendumAngle1Label.Image = LatexUtils.CreateImageFromLatex(LatexUtils.AddendumAngle1Latex);
-            view.AddendumAngle1FormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.AddendumAngle1FormulaLatex);
+            view.AddendumAngle1Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle1Latex);
+            view.AddendumAngle1FormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle1FormulaLatex);
 
-            view.AddendumAngle2Label.Image = LatexUtils.CreateImageFromLatex(LatexUtils.AddendumAngle2Latex);
-            view.AddendumAngle2FormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.AddendumAngle2FormulaLatex);
+            view.AddendumAngle2Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle2Latex);
+            view.AddendumAngle2FormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle2FormulaLatex);
 
-            view.OuterConeAngleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.OuterConeAngleLatex);
-            view.OuterConeAngleFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.OuterConeAngleFormulaLatex);
+            view.OuterConeAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.OuterConeAngleLatex);
+            view.OuterConeAngleFormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.OuterConeAngleFormulaLatex);
 
-            view.RootConeAngleLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.RootConeAngleLatex);
-            view.RootConeAngleFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.RootConeAngleFormulaLatex);
+            view.RootConeAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.RootConeAngleLatex);
+            view.RootConeAngleFormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.RootConeAngleFormulaLatex);
 
-            view.OutsideDiameterLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.OutsideDiameterLatex);
-            view.OutsideDiameterFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.OutsideDiameterFormulaLatex);
+            view.OutsideDiameterLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.OutsideDiameterLatex);
+            view.OutsideDiameterFormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.OutsideDiameterFormulaLatex);
 
-            view.PitchApexToCrownLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.PitchApexToCrownLatex);
+            view.PitchApexToCrownLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchApexToCrownLatex);
             view.PitchApexToCrownFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(LatexUtils.PitchApexToCrownFormulaLatex);
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchApexToCrownFormulaLatex);
 
-            view.AxialFaceWidthLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.AxialFaceWidthLatex);
-            view.AxialFaceWidthFormulaLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.AxialFaceWidthFormulaLatex);
+            view.AxialFaceWidthLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.AxialFaceWidthLatex);
+            view.AxialFaceWidthFormulaLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AxialFaceWidthFormulaLatex);
 
-            view.InnerOutsideDiameterLabel.Image = LatexUtils.CreateImageFromLatex(LatexUtils.InnerOutsideDiameterLatex);
+            view.InnerOutsideDiameterLabel.Image =
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.InnerOutsideDiameterLatex);
             view.InnerOutsideDiameterFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(LatexUtils.InnerOutsideDiameterFormulaLatex);
+                LatexUtils.CreateImageFromLatex(BevelLatexStrings.InnerOutsideDiameterFormulaLatex);
         }
 
         private void BindData()
@@ -240,11 +254,11 @@ namespace Bolsover.Bevel.Presenters
 
                 {
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.StandardAddendumHaFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.StandardAddendumHaFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.StandardDedendumHfFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.StandardDedendumHfFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.StandardAddendumHa2FormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.StandardAddendumHa2FormulaLatex);
                     view.SpiralAngleNumericUpDown.Value = decimal.Zero;
                     view.SpiralAngleNumericUpDown.Enabled = false;
                     view.PinionHandComboBox.Enabled = false;
@@ -259,11 +273,11 @@ namespace Bolsover.Bevel.Presenters
 
                 {
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa1GleasonStraightFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.DedendumHfGleasonStraightFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa2GleasonStraightFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
                     view.SpiralAngleNumericUpDown.Value = decimal.Zero;
                     view.SpiralAngleNumericUpDown.Enabled = false;
                     view.PinionHandComboBox.Enabled = false;
@@ -282,11 +296,11 @@ namespace Bolsover.Bevel.Presenters
 
                     // zerol gears use same addendum/dedendum formulae as straight gleason gears
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa1GleasonStraightFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.DedendumHfGleasonStraightFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa2GleasonStraightFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
                     view.PinionHandComboBox.Enabled = true;
                     view.PinionHandComboBox.Visible = true;
                     view.GearHandComboBox.Enabled = true;
@@ -303,11 +317,11 @@ namespace Bolsover.Bevel.Presenters
                     // throw new System.NotImplementedException();
                     // spiral gears use different addendum/dedendum formulae 
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa1GleasonSpiralFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonSpiralFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.DedendumGleasonSpiralFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumGleasonSpiralFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(LatexUtils.AddendumHa2GleasonSpiralFormulaLatex);
+                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonSpiralFormulaLatex);
                     view.PinionHandComboBox.Enabled = true;
                     view.PinionHandComboBox.Visible = true;
                     view.GearHandComboBox.Enabled = true;

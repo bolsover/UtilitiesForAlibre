@@ -1,17 +1,17 @@
 ﻿using System.Windows.Forms;
+using Bolsover.Gear.Views;
 using NUnit.Framework;
 
-
-namespace UnitTests
+namespace UnitTests.Gear
 {
-    public class LatexImageTests
+    public class StandardGearViewTests
     {
         [Test]
         public void TestFrame()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LatexImageForm());
+            Application.Run(new StandardGearForm());
         }
     }
 }

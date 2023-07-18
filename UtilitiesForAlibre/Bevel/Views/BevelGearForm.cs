@@ -4,6 +4,8 @@ namespace Bolsover.Bevel.Views
 {
     public partial class BevelGearForm : Form
     {
+        private BevelGearView bevelGearView;
+
         public BevelGearForm(BevelGearView view)
         {
             bevelGearView = view;

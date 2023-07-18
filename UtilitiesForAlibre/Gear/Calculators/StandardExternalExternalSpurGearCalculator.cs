@@ -4,16 +4,16 @@ using static Bolsover.Utils.ConversionUtils;
 
 namespace Bolsover.Gear.Calculators
 {
-    public class StandardExternalExternalSpurGearCalculator : IGearCalculator
+    public class StandardExternalExternalSpurGearCalculator 
     {
         public double CalculateInvoluteAlpha(IGearPair gearPair)
         {
-            return Math.Tan(Radians(gearPair.Gear.PressureAngle)) - Radians(gearPair.Gear.PressureAngle);
+            return Math.Tan(Radians(gearPair.Gear.NormalPressureAngle)) - Radians(gearPair.Gear.NormalPressureAngle);
         }
 
         public double CalculateInvoluteFunction(IGearPair gearPair)
         {
-            var twoTanAlpha = 2 * Math.Tan(Radians(gearPair.Gear.PressureAngle));
+            var twoTanAlpha = 2 * Math.Tan(Radians(gearPair.Gear.NormalPressureAngle));
             var x1plusx2 = gearPair.Pinion.CoefficientOfProfileShift + gearPair.Gear.CoefficientOfProfileShift;
             var z1plusz2 = gearPair.Pinion.NumberOfTeeth + gearPair.Gear.NumberOfTeeth;
             var involuteAlpha = CalculateInvoluteAlpha(gearPair);
@@ -26,35 +26,34 @@ namespace Bolsover.Gear.Calculators
         {
             var num1 = gearPair.Gear.NumberOfTeeth + gearPair.Pinion.NumberOfTeeth;
             var num2 = 2 * CalculateCentreDistanceIncrementFactor(gearPair);
-            var num3 = Math.Cos(Radians(gearPair.Gear.PressureAngle));
+            var num3 = Math.Cos(Radians(gearPair.Gear.NormalPressureAngle));
             return Degrees(Math.Acos(num1 * num3 / (num1 + num2)));
         }
 
         public double CalculateCentreDistance(IGearPair gearPair)
         {
-            return (gearPair.Pinion.NumberOfTeeth + gearPair.Gear.NumberOfTeeth) * gearPair.Gear.Module / 2;
+            return (gearPair.Pinion.NumberOfTeeth + gearPair.Gear.NumberOfTeeth) * gearPair.Gear.NormalModule / 2;
         }
 
-        
 
         public double CalculateGearPitchDiameter(IGearPair gearPair)
         {
-            return gearPair.Gear.NumberOfTeeth * gearPair.Gear.Module;
+            return gearPair.Gear.NumberOfTeeth * gearPair.Gear.NormalModule;
         }
 
         public double CalculatePinionPitchDiameter(IGearPair gearPair)
         {
-            return gearPair.Pinion.NumberOfTeeth * gearPair.Pinion.Module;
+            return gearPair.Pinion.NumberOfTeeth * gearPair.Pinion.NormalModule;
         }
 
         public double CalculatePinionBaseDiameter(IGearPair gearPair)
         {
-            return CalculatePinionPitchDiameter(gearPair) * Math.Cos(Radians(gearPair.Gear.PressureAngle));
+            return CalculatePinionPitchDiameter(gearPair) * Math.Cos(Radians(gearPair.Gear.NormalPressureAngle));
         }
 
         public double CalculateGearBaseDiameter(IGearPair gearPair)
         {
-            return CalculateGearPitchDiameter(gearPair) * Math.Cos(Radians(gearPair.Gear.PressureAngle));
+            return CalculateGearPitchDiameter(gearPair) * Math.Cos(Radians(gearPair.Gear.NormalPressureAngle));
         }
 
         public double CalculatePinionWorkingPitchDiameter(IGearPair gearPair)
@@ -75,13 +74,13 @@ namespace Bolsover.Gear.Calculators
         public double CalculatePinionAddendum(IGearPair gearPair)
         {
             return (1.00 + CalculateCentreDistanceIncrementFactor(gearPair) - gearPair.Gear.CoefficientOfProfileShift) *
-                   gearPair.Gear.Module;
+                   gearPair.Gear.NormalModule;
         }
 
         public double CalculateGearAddendum(IGearPair gearPair)
         {
             return (1.00 + CalculateCentreDistanceIncrementFactor(gearPair) - gearPair.Pinion.CoefficientOfProfileShift) *
-                   gearPair.Gear.Module;
+                   gearPair.Gear.NormalModule;
         }
 
         public double CalculateGearDedendum(IGearPair gearPair)
@@ -105,14 +104,14 @@ namespace Bolsover.Gear.Calculators
         {
             return (2.25 + CalculateCentreDistanceIncrementFactor(gearPair) -
                     (gearPair.Pinion.CoefficientOfProfileShift + gearPair.Gear.CoefficientOfProfileShift)) *
-                   gearPair.Gear.Module;
+                   gearPair.Gear.NormalModule;
         }
 
         public double CalculateGearWholeDepth(IGearPair gearPair)
         {
             return (2.25 + CalculateCentreDistanceIncrementFactor(gearPair) -
                     (gearPair.Pinion.CoefficientOfProfileShift + gearPair.Gear.CoefficientOfProfileShift)) *
-                   gearPair.Gear.Module;
+                   gearPair.Gear.NormalModule;
         }
 
 
@@ -140,7 +139,7 @@ namespace Bolsover.Gear.Calculators
 
         public double CalculateCentreDistanceIncrementFactor(IGearPair gearPair)
         {
-            var num1 = gearPair.Gear.WorkingCentreDistance / gearPair.Gear.Module;
+            var num1 = gearPair.Gear.WorkingCentreDistance / gearPair.Gear.NormalModule;
             var num2 = gearPair.Gear.NumberOfTeeth + gearPair.Pinion.NumberOfTeeth;
             var num3 = 2;
 
@@ -153,94 +152,52 @@ namespace Bolsover.Gear.Calculators
             var z1Plusz2 = gearPair.Pinion.NumberOfTeeth + gearPair.Gear.NumberOfTeeth;
             var invalphaw = CalculateInvoluteFunction(gearPair);
             var invalpha = CalculateInvoluteAlpha(gearPair);
-            var twoTanAlpha = 2 * Math.Tan(Radians(gearPair.Gear.PressureAngle));
+            var twoTanAlpha = 2 * Math.Tan(Radians(gearPair.Gear.NormalPressureAngle));
 
             var result = z1Plusz2 * (invalphaw - invalpha) / twoTanAlpha;
             return result;
         }
 
-      
 
         public double CalculateRadialWorkingPressureAngle(IGearPair gearPair)
         {
             throw new NotImplementedException();
         }
-        
-       public double CalculateGearHalfToothAngleAtPitchDiameter(IGearPair gearPair)
+
+        public double CalculateGearHalfToothAngleAtPitchDiameter(IGearPair gearPair)
         {
-          return  90 / gearPair.Gear.NumberOfTeeth + 360 * (gearPair.Gear.CoefficientOfProfileShift + CalculateGearBacklashModification(gearPair)) *
-                Math.Tan(Radians(gearPair.Gear.PressureAngle)) /
+            return 90 / gearPair.Gear.NumberOfTeeth + 360 *
+                (gearPair.Gear.CoefficientOfProfileShift + CalculateGearBacklashModification(gearPair)) *
+                Math.Tan(Radians(gearPair.Gear.NormalPressureAngle)) /
                 (Math.PI * gearPair.Gear.NumberOfTeeth);
         }
 
         public double CalculatePinionHalfToothAngleAtPitchDiameter(IGearPair gearPair)
         {
-            return  90 / gearPair.Pinion.NumberOfTeeth + 360 * (gearPair.Pinion.CoefficientOfProfileShift + CalculatePinionBacklashModification(gearPair)) *
-                Math.Tan(Radians(gearPair.Pinion.PressureAngle)) /
+            return 90 / gearPair.Pinion.NumberOfTeeth + 360 *
+                (gearPair.Pinion.CoefficientOfProfileShift + CalculatePinionBacklashModification(gearPair)) *
+                Math.Tan(Radians(gearPair.Pinion.NormalPressureAngle)) /
                 (Math.PI * gearPair.Pinion.NumberOfTeeth);
         }
 
         public double CalculateGearBacklashModification(IGearPair gearPair)
         {
-            return  -gearPair.Gear.CircularBacklash /
-                 (2 * gearPair.Gear.Module *
-                  Math.Tan(Radians(gearPair.Gear.PressureAngle))) *
-                 Math.Cos(Radians(CalculateWorkingPressureAngle(gearPair))) /
-                 Math.Cos(Radians(gearPair.Gear.PressureAngle));
+            return -gearPair.Gear.CircularBacklash /
+                   (2 * gearPair.Gear.NormalModule *
+                    Math.Tan(Radians(gearPair.Gear.NormalPressureAngle))) *
+                   Math.Cos(Radians(CalculateWorkingPressureAngle(gearPair))) /
+                   Math.Cos(Radians(gearPair.Gear.NormalPressureAngle));
         }
-        
+
         public double CalculatePinionBacklashModification(IGearPair gearPair)
         {
-            return  -gearPair.Pinion.CircularBacklash /
-                    (2 * gearPair.Pinion.Module *
-                     Math.Tan(Radians(gearPair.Pinion.PressureAngle))) *
-                    Math.Cos(Radians(CalculateWorkingPressureAngle(gearPair))) /
-                    Math.Cos(Radians(gearPair.Pinion.PressureAngle));
+            return -gearPair.Pinion.CircularBacklash /
+                   (2 * gearPair.Pinion.NormalModule *
+                    Math.Tan(Radians(gearPair.Pinion.NormalPressureAngle))) *
+                   Math.Cos(Radians(CalculateWorkingPressureAngle(gearPair))) /
+                   Math.Cos(Radians(gearPair.Pinion.NormalPressureAngle));
         }
 
-        public double CalculatePinionMaxProfileShiftWithoutUndercut(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
 
-        public double CalculateGearMaxProfileShiftWithoutUndercut(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double CalculatePinionAxialPitch(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double CalculateGearAxialPitch(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double CalculatePinionHelixPitchLength(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double CalculateGearHelixPitchLength(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double CalculateGearTransversePressureAngle(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double CalculatePinionTransversePressureAngle(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double CalculateGearOuterRingDiameter(IGearPair gearPair)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

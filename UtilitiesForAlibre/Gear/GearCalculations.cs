@@ -615,7 +615,9 @@ namespace Bolsover.Gear
         public static double RootFilletEndYe(InvoluteGear gear) => 0;
 
         public static GearPoint RootFilletEndPoint(InvoluteGear gear) => new(RootFilletEndXe(gear), RootFilletEndYe(gear));
-        public static GearPoint RootFilletStartPoint(InvoluteGear gear) => new(RootFilletStartXa(gear), RootFilletStartYa(gear));
+
+        public static GearPoint RootFilletStartPoint(InvoluteGear gear) =>
+            new(RootFilletStartXa(gear), RootFilletStartYa(gear));
 
         public static GearPoint RootFilletCentrePoint(InvoluteGear gear) =>
             new(RootFilletCentreXd(gear), RootFilletCentreYd(gear));

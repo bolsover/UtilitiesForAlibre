@@ -10,6 +10,7 @@ using Bolsover.Bevel.Presenters;
 using Bolsover.Bevel.Views;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
+using Bolsover.Gear.Views;
 using Bolsover.PlaneFinder;
 using Bolsover.Sample;
 using Bolsover.ThreeDLine;
@@ -31,7 +32,7 @@ namespace Bolsover
         private const int SubmenuIdUtilsPlaneFinder = 603;
         private const int SubmenuIdUtilsDataViewer = 604;
         private const int SubmenuIdUtils3Dline = 605;
-        private const int SubmenuIdUtilsBevelGear = 607;
+        private const int SubmenuIdUtilsStandardGear = 607;
         private const int SubmenuIdUtilsSpurGear = 608;
         private const int SubmenuIdUtilsSample = 606;
         private const int MenuIdHelp = 701;
@@ -88,7 +89,7 @@ namespace Bolsover
 
             _menuIdsGear = new int[3]
             {
-                SubmenuIdUtilsCycloidalGear, SubmenuIdUtilsBevelGear, SubmenuIdUtilsSpurGear
+                SubmenuIdUtilsCycloidalGear, SubmenuIdUtilsStandardGear, SubmenuIdUtilsSpurGear
             };
         }
 
@@ -149,8 +150,8 @@ namespace Bolsover
                 case SubmenuIdFileClose: return "Save & Close";
                 case SubmenuIdFileExit: return "Save All, Exit";
                 case SubmenuIdUtilsCycloidalGear: return "Cycloidal Gears Open/Close";
-                case SubmenuIdUtilsBevelGear: return "Bevel Gears";
-                case SubmenuIdUtilsSpurGear: return "Spur & Helical Gears";
+                case SubmenuIdUtilsStandardGear: return "Standard Spur & Helical Gears";
+                case SubmenuIdUtilsSpurGear: return "Advanced Spur & Helical Gears";
                 case SubmenuIdHelpAbout: return "About";
                 case SubmenuIdUtilsPlaneFinder: return "Sketch Plane Finder Open/Close";
                 case SubmenuIdUtilsDataViewer: return "Property Viewer Open/Close";
@@ -199,7 +200,7 @@ namespace Bolsover
                         case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_GRAYED;
@@ -222,7 +223,7 @@ namespace Bolsover
                         case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -244,7 +245,7 @@ namespace Bolsover
                         case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsBevelGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -277,8 +278,8 @@ namespace Bolsover
                 case SubmenuIdFileClose: return "Saves and closes the current file";
                 case SubmenuIdFileExit: return "Saves all open files and quits Alibre";
                 case SubmenuIdUtilsCycloidalGear: return "Opens/Closes Cycloidal Gear Generator";
-                case SubmenuIdUtilsBevelGear: return "Opens Bevel Gear Generator";
-                case SubmenuIdUtilsSpurGear: return "Opens Spur/Helical Gear Generator";
+                case SubmenuIdUtilsStandardGear: return "Opens Standard Spur and Helical Gear Generator";
+                case SubmenuIdUtilsSpurGear: return "Opens Advanced Spur and Helical Gear Generator";
                 case SubmenuIdUtilsPlaneFinder: return "Finds the Plane on which a selected Sketch is drawn";
                 case SubmenuIdUtilsDataViewer: return "Opens/Closes Property Viewer";
                 case SubmenuIdUtils3Dline: return "Opens/Closes 3DLine Generator";
@@ -354,9 +355,9 @@ namespace Bolsover
                 {
                     return DoCycloidalGear(session);
                 }
-                case SubmenuIdUtilsBevelGear:
+                case SubmenuIdUtilsStandardGear:
                 {
-                    return DoBevelGear();
+                    return DoStandardGear();
                 }
 
                 case SubmenuIdUtilsSpurGear:
@@ -641,35 +642,35 @@ namespace Bolsover
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        private IAlibreAddOnCommand DoBevelGear()
+        private IAlibreAddOnCommand DoStandardGear()
         {
-            var bevelGearView = new BevelGearView();
-            var pinion = new BevelGear
-            {
-                ShaftAngle = 90d,
-                SpiralAngle = 0d,
-                Module = 3.0d,
-                PressureAngle = 20.0d,
-                FaceWidth = 22.0d,
-                NumberOfTeeth = 20.0d,
-                Hand = "L",
-                GearType = "Standard"
-            };
-            var gear = new BevelGear
-            {
-                ShaftAngle = 90d,
-                SpiralAngle = 0d,
-                Module = 3.0d,
-                PressureAngle = 20.0d,
-                FaceWidth = 22.0d,
-                NumberOfTeeth = 40.0d,
-                Hand = "R",
-                GearType = "Standard"
-            };
-
-            var presenter = new BevelGearPresenter(bevelGearView, pinion, gear);
-            var form = new BevelGearForm(bevelGearView);
-
+            // var bevelGearView = new BevelGearView();
+            // var pinion = new BevelGear
+            // {
+            //     ShaftAngle = 90d,
+            //     SpiralAngle = 0d,
+            //     Module = 3.0d,
+            //     PressureAngle = 20.0d,
+            //     FaceWidth = 22.0d,
+            //     NumberOfTeeth = 20.0d,
+            //     Hand = "L",
+            //     GearType = "Standard"
+            // };
+            // var gear = new BevelGear
+            // {
+            //     ShaftAngle = 90d,
+            //     SpiralAngle = 0d,
+            //     Module = 3.0d,
+            //     PressureAngle = 20.0d,
+            //     FaceWidth = 22.0d,
+            //     NumberOfTeeth = 40.0d,
+            //     Hand = "R",
+            //     GearType = "Standard"
+            // };
+            //
+            // var presenter = new BevelGearPresenter(bevelGearView, pinion, gear);
+            // var form = new BevelGearForm(bevelGearView);
+            var form = new StandardGearForm();
             form.Show();
             return null;
         }

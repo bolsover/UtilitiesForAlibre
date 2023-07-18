@@ -216,11 +216,11 @@ namespace Bolsover.Bevel.Views
             this.TableLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
             this.TableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.TableLayoutPanel1.ColumnCount = 5;
-            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
-            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.36364F));
-            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.90909F));
-            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.90909F));
+            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36F));
+            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.TableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
             this.TableLayoutPanel1.Controls.Add(this.TableLayoutPanel4, 4, 6);
             this.TableLayoutPanel1.Controls.Add(this.TableLayoutPanel3, 3, 6);
             this.TableLayoutPanel1.Controls.Add(this.Label9, 0, 4);
@@ -277,11 +277,11 @@ namespace Bolsover.Bevel.Views
             this.TableLayoutPanel4.Controls.Add(this.NumberOfTeethGearNumericUpDown, 0, 0);
             this.TableLayoutPanel4.Controls.Add(this.GearHandComboBox, 1, 0);
             this.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TableLayoutPanel4.Location = new System.Drawing.Point(657, 190);
+            this.TableLayoutPanel4.Location = new System.Drawing.Point(656, 190);
             this.TableLayoutPanel4.Name = "TableLayoutPanel4";
             this.TableLayoutPanel4.RowCount = 1;
             this.TableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayoutPanel4.Size = new System.Drawing.Size(119, 24);
+            this.TableLayoutPanel4.Size = new System.Drawing.Size(120, 24);
             this.TableLayoutPanel4.TabIndex = 2;
             // 
             // NumberOfTeethGearNumericUpDown
@@ -297,7 +297,7 @@ namespace Bolsover.Bevel.Views
                 10, 0, 0, 0
             });
             this.NumberOfTeethGearNumericUpDown.Name = "NumberOfTeethGearNumericUpDown";
-            this.NumberOfTeethGearNumericUpDown.Size = new System.Drawing.Size(53, 20);
+            this.NumberOfTeethGearNumericUpDown.Size = new System.Drawing.Size(54, 20);
             this.NumberOfTeethGearNumericUpDown.TabIndex = 104;
             this.NumberOfTeethGearNumericUpDown.Value = new decimal(new int[]
             {
@@ -313,7 +313,7 @@ namespace Bolsover.Bevel.Views
             {
                 "L", "R"
             });
-            this.GearHandComboBox.Location = new System.Drawing.Point(62, 3);
+            this.GearHandComboBox.Location = new System.Drawing.Point(63, 3);
             this.GearHandComboBox.Name = "GearHandComboBox";
             this.GearHandComboBox.Size = new System.Drawing.Size(54, 21);
             this.GearHandComboBox.TabIndex = 105;
@@ -327,7 +327,7 @@ namespace Bolsover.Bevel.Views
             this.TableLayoutPanel3.Controls.Add(this.NumberOfTeethPinionNumericUpDown, 0, 0);
             this.TableLayoutPanel3.Controls.Add(this.PinionHandComboBox, 1, 0);
             this.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TableLayoutPanel3.Location = new System.Drawing.Point(533, 190);
+            this.TableLayoutPanel3.Location = new System.Drawing.Point(532, 190);
             this.TableLayoutPanel3.Name = "TableLayoutPanel3";
             this.TableLayoutPanel3.RowCount = 1;
             this.TableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -374,7 +374,7 @@ namespace Bolsover.Bevel.Views
             this.Label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label9.Location = new System.Drawing.Point(4, 125);
             this.Label9.Name = "Label9";
-            this.Label9.Size = new System.Drawing.Size(169, 30);
+            this.Label9.Size = new System.Drawing.Size(164, 30);
             this.Label9.TabIndex = 9;
             this.Label9.Text = "Pressure Angle";
             this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -382,9 +382,9 @@ namespace Bolsover.Bevel.Views
             // PressureAngleLabel
             // 
             this.PressureAngleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PressureAngleLabel.Location = new System.Drawing.Point(180, 125);
+            this.PressureAngleLabel.Location = new System.Drawing.Point(175, 125);
             this.PressureAngleLabel.Name = "PressureAngleLabel";
-            this.PressureAngleLabel.Size = new System.Drawing.Size(64, 30);
+            this.PressureAngleLabel.Size = new System.Drawing.Size(71, 30);
             this.PressureAngleLabel.TabIndex = 10;
             // 
             // Label11
@@ -392,7 +392,7 @@ namespace Bolsover.Bevel.Views
             this.Label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label11.Location = new System.Drawing.Point(4, 187);
             this.Label11.Name = "Label11";
-            this.Label11.Size = new System.Drawing.Size(169, 30);
+            this.Label11.Size = new System.Drawing.Size(164, 30);
             this.Label11.TabIndex = 11;
             this.Label11.Text = "Number Of Teeth, Hand";
             this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -400,16 +400,16 @@ namespace Bolsover.Bevel.Views
             // Label3
             // 
             this.Label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label3.Location = new System.Drawing.Point(657, 1);
+            this.Label3.Location = new System.Drawing.Point(656, 1);
             this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(119, 30);
+            this.Label3.Size = new System.Drawing.Size(120, 30);
             this.Label3.TabIndex = 2;
             this.Label3.Text = "Gear";
             // 
             // Label2
             // 
             this.Label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label2.Location = new System.Drawing.Point(533, 1);
+            this.Label2.Location = new System.Drawing.Point(532, 1);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(117, 30);
             this.Label2.TabIndex = 1;
@@ -418,9 +418,9 @@ namespace Bolsover.Bevel.Views
             // Label6
             // 
             this.Label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label6.Location = new System.Drawing.Point(180, 1);
+            this.Label6.Location = new System.Drawing.Point(175, 1);
             this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(64, 30);
+            this.Label6.Size = new System.Drawing.Size(71, 30);
             this.Label6.TabIndex = 6;
             this.Label6.Text = "Symbol";
             this.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -428,26 +428,26 @@ namespace Bolsover.Bevel.Views
             // Label18
             // 
             this.Label18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label18.Location = new System.Drawing.Point(251, 1);
+            this.Label18.Location = new System.Drawing.Point(253, 1);
             this.Label18.Name = "Label18";
-            this.Label18.Size = new System.Drawing.Size(275, 30);
+            this.Label18.Size = new System.Drawing.Size(272, 30);
             this.Label18.TabIndex = 18;
             this.Label18.Text = "Formula";
             // 
             // NumberOfTeethLabel
             // 
             this.NumberOfTeethLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NumberOfTeethLabel.Location = new System.Drawing.Point(180, 187);
+            this.NumberOfTeethLabel.Location = new System.Drawing.Point(175, 187);
             this.NumberOfTeethLabel.Name = "NumberOfTeethLabel";
-            this.NumberOfTeethLabel.Size = new System.Drawing.Size(64, 30);
+            this.NumberOfTeethLabel.Size = new System.Drawing.Size(71, 30);
             this.NumberOfTeethLabel.TabIndex = 19;
             // 
             // ShaftAngleLabel
             // 
             this.ShaftAngleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ShaftAngleLabel.Location = new System.Drawing.Point(180, 63);
+            this.ShaftAngleLabel.Location = new System.Drawing.Point(175, 63);
             this.ShaftAngleLabel.Name = "ShaftAngleLabel";
-            this.ShaftAngleLabel.Size = new System.Drawing.Size(64, 30);
+            this.ShaftAngleLabel.Size = new System.Drawing.Size(71, 30);
             this.ShaftAngleLabel.TabIndex = 61;
             // 
             // Label1
@@ -455,7 +455,7 @@ namespace Bolsover.Bevel.Views
             this.Label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label1.Location = new System.Drawing.Point(4, 1);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(169, 30);
+            this.Label1.Size = new System.Drawing.Size(164, 30);
             this.Label1.TabIndex = 64;
             this.Label1.Text = "Item";
             // 
@@ -464,7 +464,7 @@ namespace Bolsover.Bevel.Views
             this.Label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label4.Location = new System.Drawing.Point(4, 94);
             this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(169, 30);
+            this.Label4.Size = new System.Drawing.Size(164, 30);
             this.Label4.TabIndex = 96;
             this.Label4.Text = "Module";
             this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -474,7 +474,7 @@ namespace Bolsover.Bevel.Views
             this.Label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label7.Location = new System.Drawing.Point(4, 63);
             this.Label7.Name = "Label7";
-            this.Label7.Size = new System.Drawing.Size(169, 30);
+            this.Label7.Size = new System.Drawing.Size(164, 30);
             this.Label7.TabIndex = 97;
             this.Label7.Text = "Shaft Angle";
             this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -482,9 +482,9 @@ namespace Bolsover.Bevel.Views
             // ModuleLabel
             // 
             this.ModuleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModuleLabel.Location = new System.Drawing.Point(180, 94);
+            this.ModuleLabel.Location = new System.Drawing.Point(175, 94);
             this.ModuleLabel.Name = "ModuleLabel";
-            this.ModuleLabel.Size = new System.Drawing.Size(64, 30);
+            this.ModuleLabel.Size = new System.Drawing.Size(71, 30);
             this.ModuleLabel.TabIndex = 98;
             // 
             // ShaftAngleNnumericUpDown
@@ -496,13 +496,13 @@ namespace Bolsover.Bevel.Views
             {
                 1, 0, 0, 65536
             });
-            this.ShaftAngleNnumericUpDown.Location = new System.Drawing.Point(533, 68);
+            this.ShaftAngleNnumericUpDown.Location = new System.Drawing.Point(532, 68);
             this.ShaftAngleNnumericUpDown.Maximum = new decimal(new int[]
             {
                 180, 0, 0, 0
             });
             this.ShaftAngleNnumericUpDown.Name = "ShaftAngleNnumericUpDown";
-            this.ShaftAngleNnumericUpDown.Size = new System.Drawing.Size(243, 20);
+            this.ShaftAngleNnumericUpDown.Size = new System.Drawing.Size(244, 20);
             this.ShaftAngleNnumericUpDown.TabIndex = 100;
             this.ShaftAngleNnumericUpDown.Value = new decimal(new int[]
             {
@@ -519,13 +519,13 @@ namespace Bolsover.Bevel.Views
             {
                 1, 0, 0, 131072
             });
-            this.ModuleNumericUpDown.Location = new System.Drawing.Point(533, 99);
+            this.ModuleNumericUpDown.Location = new System.Drawing.Point(532, 99);
             this.ModuleNumericUpDown.Minimum = new decimal(new int[]
             {
                 1, 0, 0, 131072
             });
             this.ModuleNumericUpDown.Name = "ModuleNumericUpDown";
-            this.ModuleNumericUpDown.Size = new System.Drawing.Size(243, 20);
+            this.ModuleNumericUpDown.Size = new System.Drawing.Size(244, 20);
             this.ModuleNumericUpDown.TabIndex = 101;
             this.ModuleNumericUpDown.Value = new decimal(new int[]
             {
@@ -542,7 +542,7 @@ namespace Bolsover.Bevel.Views
             {
                 1, 0, 0, 131072
             });
-            this.PressureAngleNumericUpDown.Location = new System.Drawing.Point(533, 130);
+            this.PressureAngleNumericUpDown.Location = new System.Drawing.Point(532, 130);
             this.PressureAngleNumericUpDown.Maximum = new decimal(new int[]
             {
                 35, 0, 0, 0
@@ -552,7 +552,7 @@ namespace Bolsover.Bevel.Views
                 10, 0, 0, 0
             });
             this.PressureAngleNumericUpDown.Name = "PressureAngleNumericUpDown";
-            this.PressureAngleNumericUpDown.Size = new System.Drawing.Size(243, 20);
+            this.PressureAngleNumericUpDown.Size = new System.Drawing.Size(244, 20);
             this.PressureAngleNumericUpDown.TabIndex = 102;
             this.PressureAngleNumericUpDown.Value = new decimal(new int[]
             {
@@ -570,13 +570,13 @@ namespace Bolsover.Bevel.Views
             });
             this.GearTypeComboBox.Location = new System.Drawing.Point(4, 36);
             this.GearTypeComboBox.Name = "GearTypeComboBox";
-            this.GearTypeComboBox.Size = new System.Drawing.Size(169, 21);
+            this.GearTypeComboBox.Size = new System.Drawing.Size(164, 21);
             this.GearTypeComboBox.TabIndex = 106;
             this.GearTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.gearTypeComboBox_SelectedIndexChanged);
             // 
             // LinkLabel1
             // 
-            this.LinkLabel1.Location = new System.Drawing.Point(180, 32);
+            this.LinkLabel1.Location = new System.Drawing.Point(175, 32);
             this.LinkLabel1.Name = "LinkLabel1";
             this.LinkLabel1.Size = new System.Drawing.Size(50, 20);
             this.LinkLabel1.TabIndex = 107;
@@ -589,7 +589,7 @@ namespace Bolsover.Bevel.Views
             this.Label24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label24.Location = new System.Drawing.Point(4, 156);
             this.Label24.Name = "Label24";
-            this.Label24.Size = new System.Drawing.Size(169, 30);
+            this.Label24.Size = new System.Drawing.Size(164, 30);
             this.Label24.TabIndex = 111;
             this.Label24.Text = "Spiral Angle";
             this.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -597,9 +597,9 @@ namespace Bolsover.Bevel.Views
             // SpiralAngleLabel
             // 
             this.SpiralAngleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpiralAngleLabel.Location = new System.Drawing.Point(180, 156);
+            this.SpiralAngleLabel.Location = new System.Drawing.Point(175, 156);
             this.SpiralAngleLabel.Name = "SpiralAngleLabel";
-            this.SpiralAngleLabel.Size = new System.Drawing.Size(64, 30);
+            this.SpiralAngleLabel.Size = new System.Drawing.Size(71, 30);
             this.SpiralAngleLabel.TabIndex = 112;
             // 
             // SpiralAngleNumericUpDown
@@ -611,13 +611,13 @@ namespace Bolsover.Bevel.Views
             {
                 1, 0, 0, 65536
             });
-            this.SpiralAngleNumericUpDown.Location = new System.Drawing.Point(533, 161);
+            this.SpiralAngleNumericUpDown.Location = new System.Drawing.Point(532, 161);
             this.SpiralAngleNumericUpDown.Maximum = new decimal(new int[]
             {
                 45, 0, 0, 0
             });
             this.SpiralAngleNumericUpDown.Name = "SpiralAngleNumericUpDown";
-            this.SpiralAngleNumericUpDown.Size = new System.Drawing.Size(243, 20);
+            this.SpiralAngleNumericUpDown.Size = new System.Drawing.Size(244, 20);
             this.SpiralAngleNumericUpDown.TabIndex = 118;
             this.SpiralAngleNumericUpDown.ValueChanged += new System.EventHandler(this.spiralAngleNumericUpDown_ValueChanged);
             // 
@@ -633,18 +633,18 @@ namespace Bolsover.Bevel.Views
             // FaceWidthLabel
             // 
             this.FaceWidthLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FaceWidthLabel.Location = new System.Drawing.Point(180, 218);
+            this.FaceWidthLabel.Location = new System.Drawing.Point(175, 218);
             this.FaceWidthLabel.Name = "FaceWidthLabel";
-            this.FaceWidthLabel.Size = new System.Drawing.Size(64, 30);
+            this.FaceWidthLabel.Size = new System.Drawing.Size(71, 30);
             this.FaceWidthLabel.TabIndex = 23;
             // 
             // FaceWidthFormulaLabel
             // 
             this.FaceWidthFormulaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FaceWidthFormulaLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.FaceWidthFormulaLabel.Location = new System.Drawing.Point(251, 218);
+            this.FaceWidthFormulaLabel.Location = new System.Drawing.Point(253, 218);
             this.FaceWidthFormulaLabel.Name = "FaceWidthFormulaLabel";
-            this.FaceWidthFormulaLabel.Size = new System.Drawing.Size(275, 30);
+            this.FaceWidthFormulaLabel.Size = new System.Drawing.Size(272, 30);
             this.FaceWidthFormulaLabel.TabIndex = 30;
             // 
             // CancelButton
@@ -652,7 +652,7 @@ namespace Bolsover.Bevel.Views
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.Location = new System.Drawing.Point(4, 268);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(169, 29);
+            this.CancelButton.Size = new System.Drawing.Size(164, 29);
             this.CancelButton.TabIndex = 119;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -661,7 +661,7 @@ namespace Bolsover.Bevel.Views
             // PinionButton
             // 
             this.PinionButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PinionButton.Location = new System.Drawing.Point(533, 268);
+            this.PinionButton.Location = new System.Drawing.Point(532, 268);
             this.PinionButton.Name = "PinionButton";
             this.PinionButton.Size = new System.Drawing.Size(117, 29);
             this.PinionButton.TabIndex = 120;
@@ -672,9 +672,9 @@ namespace Bolsover.Bevel.Views
             // BuildGearButton
             // 
             this.BuildGearButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BuildGearButton.Location = new System.Drawing.Point(657, 268);
+            this.BuildGearButton.Location = new System.Drawing.Point(656, 268);
             this.BuildGearButton.Name = "BuildGearButton";
-            this.BuildGearButton.Size = new System.Drawing.Size(119, 29);
+            this.BuildGearButton.Size = new System.Drawing.Size(120, 29);
             this.BuildGearButton.TabIndex = 121;
             this.BuildGearButton.Text = "Build Gear";
             this.BuildGearButton.UseVisualStyleBackColor = true;
@@ -689,7 +689,7 @@ namespace Bolsover.Bevel.Views
             {
                 1, 0, 0, 196608
             });
-            this.FaceWidthNumericUpDown.Location = new System.Drawing.Point(533, 223);
+            this.FaceWidthNumericUpDown.Location = new System.Drawing.Point(532, 223);
             this.FaceWidthNumericUpDown.Maximum = new decimal(new int[]
             {
                 250, 0, 0, 0
@@ -699,7 +699,7 @@ namespace Bolsover.Bevel.Views
                 2, 0, 0, 0
             });
             this.FaceWidthNumericUpDown.Name = "FaceWidthNumericUpDown";
-            this.FaceWidthNumericUpDown.Size = new System.Drawing.Size(243, 20);
+            this.FaceWidthNumericUpDown.Size = new System.Drawing.Size(244, 20);
             this.FaceWidthNumericUpDown.TabIndex = 122;
             this.FaceWidthNumericUpDown.Value = new decimal(new int[]
             {

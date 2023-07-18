@@ -195,7 +195,8 @@ namespace Bolsover.Gear
             return sketch.Figures.AddLine(start.X * scale, start.Y * scale, end.X * scale, end.Y * scale);
         }
 
-        private static IADSketchCircularArc AddScaledCircularArcByCenterStartEnd(IADSketch sketch, GearPoint centre, GearPoint start,
+        private static IADSketchCircularArc AddScaledCircularArcByCenterStartEnd(IADSketch sketch, GearPoint centre,
+            GearPoint start,
             GearPoint end, double scale)
         {
             return sketch.Figures.AddCircularArcByCenterStartEnd(centre.X * scale, centre.Y * scale,
@@ -204,7 +205,8 @@ namespace Bolsover.Gear
         }
 
 
-        private static IADSketchBspline AddScaledBsplineByInterpolation(IADSketch sketch, List<GearPoint> points, double scale)
+        private static IADSketchBspline AddScaledBsplineByInterpolation(IADSketch sketch, List<GearPoint> points,
+            double scale)
         {
             Array interpolationPoints = new double[points.Count * 2];
             var j = 0;

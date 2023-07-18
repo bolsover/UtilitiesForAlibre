@@ -57,7 +57,7 @@ namespace Bolsover.Bevel.Views
         }
 
        
-        private BevelGearView bevelGearView;
+       
 
         #endregion
     }

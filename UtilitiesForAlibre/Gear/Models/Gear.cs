@@ -1,210 +1,314 @@
-﻿namespace Bolsover.Gear.Models
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+namespace Bolsover.Gear.Models
 {
-    public class Gear : IGear
+    public class Gear : IGear, INotifyPropertyChanged
     {
+        private double _addendumCircleDiameter;
+        private double _addendumFilletFactor;
+        private double _axialPitch;
+        private double _baseCircleDiameter;
+        private double _centreDistanceIncrementFactor;
+        private double _circularBacklash;
+        private double _coefficientOfProfileShift;
+        private double _contactRatio;
+        private double _dedendumCircleDiameter;
+        private double _delta;
+        private string _gearType;
+        private double _helicalPressureAngle;
+        private double _helixAngle;
+        private double _helixPitchLength;
+        private double _involuteFunction;
         private double _module;
         private double _numberOfTeeth;
-        private double _pressureAngle;
-        private double _workingPressureAngle;
-        private double _helixAngle;
-        private double _rootFilletFactor;
-        private double _addendumFilletFactor;
-        private string _gearType;
-        private double _circularBacklash;
-        private double _delta;
-        private double _workingCentreDistance;
-        private double _standardCentreDistance;
-        private double _centreDistanceIncrementFactor;
         private double _pitchDiameter;
-        private double _workingPitchDiameter;
-        private double _baseCircleDiameter;
-        private double _rootCircleDiameter;
-        private double _addendumCircleDiameter;
-        private double _dedendumCircleDiameter;
+        private double _pressureAngle;
         private double _profileShift;
-        private double _axialPitch;
-        private double _helixPitchLength;
-        private double _helicalPressureAngle;
-        private double _involuteFunction;
-        private double _transverseModule;
         private double _rootFilletDiameter;
+        private double _rootFilletFactor;
+        private double _standardCentreDistance;
         private double _tipReliefRadius;
-        private double _contactRatio;
-        private double _coefficientOfProfileShift;
+        private double _transverseModule;
+        private double _workingCentreDistance;
+        private double _workingPitchDiameter;
+        private double _radialWorkingPressureAngle;
+        private double _baseDiameter;
+        private double _addendum;
+        private double _dedendum;
+        private double _wholeDepth;
+        private double _outsideDiameter;
+        private double _rootDiameter;
+        private string _simpleGearString;
+        private double _radialPressureAngle;
+        // private double _centreDistance;
+        //
+        // public double CentreDistance
+        // {
+        //     get => _centreDistance;
+        //     set {
+        //         _centreDistance = value;
+        //         OnUpdated();
+        //     }
+        // }
 
+        public string GearString
+        {
+            get => _simpleGearString;
+            set => SetField(ref _simpleGearString, value);
+        }   
+        
 
-        public double Module
+        public double ProfileShift
+        {
+            get => _profileShift;
+            set => SetField(ref _radialWorkingPressureAngle, value);
+        }
+
+        public double NormalModule
         {
             get => _module;
-            set => _module = value;
+            set
+            {
+                _module = value;
+                OnUpdated();
+            }
         }
 
         public double NumberOfTeeth
         {
             get => _numberOfTeeth;
-            set => _numberOfTeeth = value;
+            set
+            {
+                _numberOfTeeth = value;
+                OnUpdated();
+            }
         }
 
-        public double PressureAngle
+        public double NormalPressureAngle
         {
             get => _pressureAngle;
-            set => _pressureAngle = value;
+            set
+            {
+                _pressureAngle = value;
+                OnUpdated();
+            }
         }
 
-        public double WorkingPressureAngle
+        public double RadialWorkingPressureAngle
         {
-            get => _workingPressureAngle;
-            set => _workingPressureAngle = value;
+            get => _radialWorkingPressureAngle;
+            set => SetField(ref _radialWorkingPressureAngle, value);
+        }
+
+        public double RadialPressureAngle
+        {
+            get => _radialPressureAngle;
+            set => SetField(ref _radialPressureAngle, value);
         }
 
         public double HelixAngle
         {
             get => _helixAngle;
-            set => _helixAngle = value;
+            set
+            {
+                _helixAngle = value;
+                OnUpdated();
+            }
         }
 
         public double RootFilletFactor
         {
             get => _rootFilletFactor;
-            set => _rootFilletFactor = value;
+            set => SetField(ref _rootFilletFactor, value);
         }
 
         public double AddendumFilletFactor
         {
             get => _addendumFilletFactor;
-            set => _addendumFilletFactor = value;
+            set => SetField(ref _addendumFilletFactor, value);
         }
 
         public string GearType
         {
             get => _gearType;
-            set => _gearType = value;
+            set => SetField(ref _gearType, value);
         }
 
         public double CircularBacklash
         {
             get => _circularBacklash;
-            set => _circularBacklash = value;
+            set => SetField(ref _circularBacklash, value);
         }
 
         public double Delta
         {
             get => _delta;
-            set => _delta = value;
+            set => SetField(ref _delta, value);
         }
 
         public double WorkingCentreDistance
         {
             get => _workingCentreDistance;
-            set => _workingCentreDistance = value;
+            set => SetField(ref _workingCentreDistance, value);
         }
 
         public double StandardCentreDistance
         {
             get => _standardCentreDistance;
-            set => _standardCentreDistance = value;
+            set => SetField(ref _standardCentreDistance, value);
         }
 
         public double CentreDistanceIncrementFactor
         {
             get => _centreDistanceIncrementFactor;
-            set => _centreDistanceIncrementFactor = value;
+            set => SetField(ref _centreDistanceIncrementFactor, value);
         }
 
         public double PitchDiameter
         {
             get => _pitchDiameter;
-            set => _pitchDiameter = value;
+            set => SetField(ref _pitchDiameter, value);
         }
 
         public double WorkingPitchDiameter
         {
             get => _workingPitchDiameter;
-            set => _workingPitchDiameter = value;
+            set => SetField(ref _workingPitchDiameter, value);
         }
 
         public double BaseCircleDiameter
         {
             get => _baseCircleDiameter;
-            set => _baseCircleDiameter = value;
+            set => SetField(ref _baseCircleDiameter, value);
         }
 
-        public double RootCircleDiameter
-        {
-            get => _rootCircleDiameter;
-            set => _rootCircleDiameter = value;
-        }
 
         public double AddendumCircleDiameter
         {
             get => _addendumCircleDiameter;
-            set => _addendumCircleDiameter = value;
+            set => SetField(ref _addendumCircleDiameter, value);
         }
 
         public double DedendumCircleDiameter
         {
             get => _dedendumCircleDiameter;
-            set => _dedendumCircleDiameter = value;
+            set => SetField(ref _dedendumCircleDiameter, value);
         }
 
         public double CoefficientOfProfileShift
         {
             get => _coefficientOfProfileShift;
-            set => _coefficientOfProfileShift = value;
-        }
-
-        public double ProfileShift
-        {
-            get => _profileShift;
-            set => _profileShift = value;
+            set => SetField(ref _coefficientOfProfileShift, value);
         }
 
         public double AxialPitch
         {
             get => _axialPitch;
-            set => _axialPitch = value;
+            set => SetField(ref _axialPitch, value);
         }
 
         public double HelixPitchLength
         {
             get => _helixPitchLength;
-            set => _helixPitchLength = value;
+            set => SetField(ref _helixPitchLength, value);
         }
 
         public double HelicalPressureAngle
         {
             get => _helicalPressureAngle;
-            set => _helicalPressureAngle = value;
+            set => SetField(ref _helicalPressureAngle, value);
         }
 
         public double InvoluteFunction
         {
             get => _involuteFunction;
-            set => _involuteFunction = value;
+            set => SetField(ref _involuteFunction, value);
         }
 
         public double TransverseModule
         {
             get => _transverseModule;
-            set => _transverseModule = value;
+            set => SetField(ref _transverseModule, value);
         }
 
         public double RootFilletDiameter
         {
             get => _rootFilletDiameter;
-            set => _rootFilletDiameter = value;
+            set => SetField(ref _rootFilletDiameter, value);
         }
 
         public double TipReliefRadius
         {
             get => _tipReliefRadius;
-            set => _tipReliefRadius = value;
+            set => SetField(ref _tipReliefRadius, value);
         }
 
         public double ContactRatio
         {
             get => _contactRatio;
-            set => _contactRatio = value;
+            set => SetField(ref _contactRatio, value);
+        }
+
+        public double BaseDiameter
+        {
+            get => _baseDiameter;
+            set => SetField(ref _baseDiameter, value);
+        }
+
+        public double Addendum
+        {
+            get => _addendum;
+            set => SetField(ref _addendum, value);
+        }
+
+        public double Dedendum
+        {
+            get => _dedendum;
+            set => SetField(ref _dedendum, value);
+        }
+
+        public double WholeDepth
+        {
+            get => _wholeDepth;
+            set => SetField(ref _wholeDepth, value);
+        }
+
+        public double OutsideDiameter
+        {
+            get => _outsideDiameter;
+            set => SetField(ref _outsideDiameter, value);
+        }
+
+        public double RootDiameter
+        {
+            get => _rootDiameter;
+            set => SetField(ref _rootDiameter, value);
+        }
+
+        public event EventHandler Updated;
+
+        private void OnUpdated()
+        {
+            Updated?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }
