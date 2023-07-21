@@ -81,6 +81,7 @@ namespace Bolsover.Gear.Presenters
             _view.CancelEvent += ViewOnCancelEvent;
             _view.BuildGearEvent += ViewOnBuildWheelEvent;
             _view.EditPressureAngleEvent += ViewOnEditPressureAngleEvent;
+            _view.EditGearHeightEvent += ViewOnEditGearHeightEvent;
         }
 
         private void ClearLabelText()
@@ -270,6 +271,12 @@ namespace Bolsover.Gear.Presenters
             _gearPair.Gear.NormalPressureAngle = (double) ((NumericUpDown) sender).Value;
             _gearPair.Pinion.NormalPressureAngle = (double) ((NumericUpDown) sender).Value;
         }
+        
+        private void ViewOnEditGearHeightEvent(object sender, EventArgs e)
+        {
+            _gearPair.Gear.Height = (double) ((NumericUpDown) sender).Value;
+            _gearPair.Pinion.Height = (double) ((NumericUpDown) sender).Value;
+        }
 
         private void ViewOnCancelEvent(object sender, EventArgs e)
         {
@@ -321,19 +328,25 @@ namespace Bolsover.Gear.Presenters
             };
 
             InvoluteGear gear = new InvoluteGear(_gearPair.Gear.NormalModule, (int) _gearPair.Gear.NumberOfTeeth, _gearPair.Gear.NormalPressureAngle,
-                _gearPair.Gear.HelixAngle, 0);
-            gear.GearType = GearType.External;
-            gear.RootFilletFactorRf = 0.38;
-            gear.AddendumFilletFactorRa = 0.1;
-            gear.CircularBacklashBc = 0.0;
-            gear.WorkingCentreDistanceAw = _gearPair.Gear.StandardCentreDistance;
+                _gearPair.Gear.HelixAngle, 0)
+            {
+                GearType = GearType.External,
+                RootFilletFactorRf = 0.38,
+                AddendumFilletFactorRa = 0.1,
+                CircularBacklashBc = 0.0,
+                WorkingCentreDistanceAw = _gearPair.Gear.StandardCentreDistance,
+                Height = _gearPair.Gear.Height
+            };
             InvoluteGear matingGear = new InvoluteGear(_gearPair.Gear.NormalModule, (int) _gearPair.Gear.NumberOfTeeth,
-                _gearPair.Gear.NormalPressureAngle, _gearPair.Gear.HelixAngle, 0);
-            matingGear.GearType = GearType.External;
-            matingGear.RootFilletFactorRf = 0.38;
-            matingGear.AddendumFilletFactorRa = 0.1;
-            matingGear.CircularBacklashBc = 0.0;
-            matingGear.WorkingCentreDistanceAw = _gearPair.Gear.StandardCentreDistance;
+                _gearPair.Gear.NormalPressureAngle, _gearPair.Gear.HelixAngle, 0)
+            {
+                GearType = GearType.External,
+                RootFilletFactorRf = 0.38,
+                AddendumFilletFactorRa = 0.1,
+                CircularBacklashBc = 0.0,
+                WorkingCentreDistanceAw = _gearPair.Gear.StandardCentreDistance,
+                Height = _gearPair.Gear.Height
+            };
             gear.MatingGear = matingGear;
             matingGear.MatingGear = gear;
             gearToothPoints.G1 = gear;

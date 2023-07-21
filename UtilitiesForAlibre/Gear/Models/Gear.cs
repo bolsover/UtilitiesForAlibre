@@ -44,28 +44,32 @@ namespace Bolsover.Gear.Models
         private double _rootDiameter;
         private string _simpleGearString;
         private double _radialPressureAngle;
-        // private double _centreDistance;
-        //
-        // public double CentreDistance
-        // {
-        //     get => _centreDistance;
-        //     set {
-        //         _centreDistance = value;
-        //         OnUpdated();
-        //     }
-        // }
+        private double _height = 10;
+        private double _pitch;
+
+        public double Pitch
+        {
+            get => _pitch;
+            set => SetField(ref _pitch, value);
+        }
 
         public string GearString
         {
             get => _simpleGearString;
             set => SetField(ref _simpleGearString, value);
-        }   
-        
+        }
+
 
         public double ProfileShift
         {
             get => _profileShift;
             set => SetField(ref _radialWorkingPressureAngle, value);
+        }
+
+        public double Height
+        {
+            get => _height;
+            set => _height = value;
         }
 
         public double NormalModule

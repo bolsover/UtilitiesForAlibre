@@ -39,14 +39,14 @@ namespace Bolsover.Gear.Views
             this.view.Dock = System.Windows.Forms.DockStyle.Fill;
             this.view.Location = new System.Drawing.Point(0, 0);
             this.view.Name = "view";
-            this.view.Size = new System.Drawing.Size(582, 590);
+            this.view.Size = new System.Drawing.Size(582, 656);
             this.view.TabIndex = 0;
             // 
             // StandardGearForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 590);
+            this.ClientSize = new System.Drawing.Size(582, 656);
             this.Controls.Add(this.view);
             this.Name = "StandardGearForm";
             this.Text = "Standard Spur and Helical Gears";

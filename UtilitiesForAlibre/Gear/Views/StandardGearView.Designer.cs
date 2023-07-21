@@ -89,6 +89,8 @@ namespace Bolsover.Gear.Views
             this.gearLabel = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.buildGearButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.heightNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2.SuspendLayout();
@@ -99,6 +101,7 @@ namespace Bolsover.Gear.Views
             ((System.ComponentModel.ISupportInitialize) (this.pressureAngleNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.helixAngleNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.teethNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.heightNumericUpDown)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -604,8 +607,7 @@ namespace Bolsover.Gear.Views
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.35192F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.75958F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.8885F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.dataTextBox, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.dataTextBox, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
@@ -621,13 +623,16 @@ namespace Bolsover.Gear.Views
             this.tableLayoutPanel1.Controls.Add(this.helixAngleNumericUpDown, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.teethNumericUpDown, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.gearLabel, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cancelButton, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.buildGearButton, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.cancelButton, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.buildGearButton, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.heightNumericUpDown, 2, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(15);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -643,10 +648,10 @@ namespace Bolsover.Gear.Views
             this.tableLayoutPanel1.SetColumnSpan(this.dataTextBox, 3);
             this.dataTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataTextBox.Font = new System.Drawing.Font("Cascadia Code", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.dataTextBox.Location = new System.Drawing.Point(3, 183);
+            this.dataTextBox.Location = new System.Drawing.Point(3, 213);
             this.dataTextBox.Multiline = true;
             this.dataTextBox.Name = "dataTextBox";
-            this.dataTextBox.Size = new System.Drawing.Size(568, 346);
+            this.dataTextBox.Size = new System.Drawing.Size(568, 316);
             this.dataTextBox.TabIndex = 0;
             // 
             // helixAngleSymbolLabel
@@ -759,7 +764,7 @@ namespace Bolsover.Gear.Views
             // cancelButton
             // 
             this.cancelButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cancelButton.Location = new System.Drawing.Point(4, 154);
+            this.cancelButton.Location = new System.Drawing.Point(4, 184);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(149, 22);
@@ -771,7 +776,7 @@ namespace Bolsover.Gear.Views
             // buildGearButton
             // 
             this.buildGearButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buildGearButton.Location = new System.Drawing.Point(371, 154);
+            this.buildGearButton.Location = new System.Drawing.Point(371, 184);
             this.buildGearButton.Margin = new System.Windows.Forms.Padding(4);
             this.buildGearButton.Name = "buildGearButton";
             this.buildGearButton.Size = new System.Drawing.Size(199, 22);
@@ -779,6 +784,42 @@ namespace Bolsover.Gear.Views
             this.buildGearButton.Text = "Build Gear";
             this.buildGearButton.UseVisualStyleBackColor = true;
             this.buildGearButton.Click += new System.EventHandler(this.buildGearButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(151, 30);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Height";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // heightNumericUpDown
+            // 
+            this.heightNumericUpDown.DecimalPlaces = 1;
+            this.heightNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.heightNumericUpDown.Increment = new decimal(new int[]
+            {
+                1, 0, 0, 65536
+            });
+            this.heightNumericUpDown.Location = new System.Drawing.Point(370, 153);
+            this.heightNumericUpDown.Maximum = new decimal(new int[]
+            {
+                1000, 0, 0, 0
+            });
+            this.heightNumericUpDown.Minimum = new decimal(new int[]
+            {
+                1, 0, 0, 65536
+            });
+            this.heightNumericUpDown.Name = "heightNumericUpDown";
+            this.heightNumericUpDown.Size = new System.Drawing.Size(201, 20);
+            this.heightNumericUpDown.TabIndex = 25;
+            this.heightNumericUpDown.Value = new decimal(new int[]
+            {
+                10, 0, 0, 0
+            });
+            this.heightNumericUpDown.ValueChanged += new System.EventHandler(this.heightNumericUpDown_ValueChanged);
             // 
             // tabControl1
             // 
@@ -817,10 +858,14 @@ namespace Bolsover.Gear.Views
             ((System.ComponentModel.ISupportInitialize) (this.pressureAngleNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.helixAngleNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.teethNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.heightNumericUpDown)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown heightNumericUpDown;
 
         public System.Windows.Forms.TextBox dataTextBox;
 

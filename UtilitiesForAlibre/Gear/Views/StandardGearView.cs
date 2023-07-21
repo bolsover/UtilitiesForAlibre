@@ -21,10 +21,16 @@ namespace Bolsover.Gear.Views
         public event EventHandler EditPinionNumberOfTeethEvent;
         public event EventHandler EditGearNumberOfTeethEvent;
         public event EventHandler EditHelixAngleEvent;
+        public event EventHandler EditGearHeightEvent;
 
         private void teethNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             EditGearNumberOfTeethEvent?.Invoke(sender, e);
+        }
+        
+        private void heightNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            EditGearHeightEvent?.Invoke(sender, e);
         }
 
         private void moduleNumericUpDown_ValueChanged(object sender, EventArgs e)

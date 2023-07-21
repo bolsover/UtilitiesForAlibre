@@ -4,6 +4,8 @@ namespace Bolsover.Gear.Models
 {
     public interface IGear
     {
+        
+        double Height { get; set; } // height of gear
         double NormalModule { get; set; } // normal module
         
         double NumberOfTeeth { get; set; } // teeth
@@ -42,10 +44,7 @@ namespace Bolsover.Gear.Models
         double WholeDepth { get; set; }
         double OutsideDiameter { get; set; }
         double RootDiameter { get; set; }
-        
-        // double CentreDistance { get; set; }
-
-        
+        double Pitch { get; set; }
         string GearString { get; set; }
         event EventHandler Updated;
     }

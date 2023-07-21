@@ -166,6 +166,7 @@ namespace Bolsover.Gear
             _session.Parameters.OpenParameterTransaction();
             // set the number of teeth for the circular pattern
             _session.Parameters.Item("C1").Value = gear.TeethZ;
+            _session.Parameters.Item("D2").Value = gear.Height * scale;
             // if this is a helical gear, set the helix pitch length
             if (gear.HelixAngleBeta > 0)
             {

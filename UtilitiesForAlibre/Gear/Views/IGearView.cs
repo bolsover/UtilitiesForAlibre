@@ -11,5 +11,6 @@ namespace Bolsover.Gear.Views
         event EventHandler EditPinionNumberOfTeethEvent;
         event EventHandler EditGearNumberOfTeethEvent;
         event EventHandler EditHelixAngleEvent;
+        event EventHandler EditGearHeightEvent;
     }
 }

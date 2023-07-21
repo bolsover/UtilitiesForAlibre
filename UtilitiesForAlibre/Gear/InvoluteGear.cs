@@ -15,6 +15,7 @@ namespace Bolsover.Gear
         private double _circularBacklashBc; // circular backlash required
         private double _deltaX = 50; // distribution of profile shift X between g1, g2
         private double _workingCentreDistanceAw; //working centre distance
+        private double _height = 10; //height of gear in mm
 
 
         public InvoluteGear(double moduleM, int teethZ, double pressureAngleAlpha, double helixAngleBeta,
@@ -86,6 +87,19 @@ namespace Bolsover.Gear
             sb.Append("Working Pitch Diameter Dw " + GearCalculations.WorkingPitchDiameterDw(this) + "\n");
             sb.Append("Contact Ratio " + GearCalculations.ContactRatio(this) + "\n");
             return sb.ToString();
+        }
+        
+        /// <summary>
+        /// Height.
+        /// </summary>
+        public double Height
+        {
+            get => _height;
+            set
+            {
+                _height = value;
+              
+            }
         }
 
 
