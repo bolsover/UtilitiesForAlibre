@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Bolsover.Gear;
+using Bolsover.Gear.Models;
 using NUnit.Framework;
 
 

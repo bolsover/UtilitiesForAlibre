@@ -1,10 +1,4 @@
-﻿using System.Drawing;
-using System.IO;
-using WpfMath;
-using WpfMath.Parsers;
-using XamlMath;
-
-namespace Bolsover.Bevel.Models
+﻿namespace Bolsover.Bevel.Models
 {
     public static class BevelLatexStrings
     {

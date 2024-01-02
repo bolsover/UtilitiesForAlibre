@@ -1,5 +1,7 @@
 ﻿using System;
 using Bolsover.Gear;
+using Bolsover.Gear.Calculators;
+using Bolsover.Gear.Models;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -25,8 +27,8 @@ namespace UnitTests
             g2.CircularBacklashBc = 0;
             g1.MatingGear = g2;
             g2.MatingGear = g1;
-            g1.GearType = GearType.External;
-            g2.GearType = GearType.External;
+            g1.GearTypeEnum = GearTypeEnum.External;
+            g2.GearTypeEnum = GearTypeEnum.External;
         }
 
 
@@ -271,10 +273,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResultX, Geometry.PointOnInvolute(16.914 / 2, 20 / 2).Y, 0.0001);
         }
 
-        // [Test]
-        // public void Update()
-        // {
-        //     g1.M = 13;
-        // }
+     
     }
 }

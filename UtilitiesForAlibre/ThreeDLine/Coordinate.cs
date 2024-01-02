@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Bolsover.ThreeDLine
+﻿namespace Bolsover.ThreeDLine
 {
     public class Coordinate
     {

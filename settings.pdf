@@ -1,0 +1,463 @@
+Command Center Browser,  Open, Ctrl+O
+Command Center Browser,  Help, F1
+Command Center Browser,  New Part, Ctrl+Shift+T
+Command Center Browser,  New Sheet Metal Part, Ctrl+Shift+L
+Command Center Browser,  New Assembly, Ctrl+Shift+B
+Command Center Browser,  New Drawing, Ctrl+Shift+D
+Command Center Browser,  New Bill of Materials, Ctrl+Shift+M
+Command Center Browser,  Options, Ctrl+Shift+O
+Command Center Browser,  COMMUNITY_HOME, Alt+Home
+Design Boolean Browser,  Select All, Ctrl+A
+Design Boolean Browser,  Copy, Ctrl+C
+Design Boolean Browser,  Open, Ctrl+O
+Design Boolean Browser,  Print, Ctrl+P
+Design Boolean Browser,  Paste, Ctrl+V
+Design Boolean Browser,  Cut, Ctrl+X
+Design Boolean Browser,  Redo, Ctrl+Y
+Design Boolean Browser,  Undo, Ctrl+Z
+Design Boolean Browser,  Delete, Del
+Design Boolean Browser,  Design Properties, Alt+Enter
+Design Boolean Browser,  Edit System Options, Ctrl+Shift+O
+Design Boolean Browser,  View Orientations, Ctrl+U
+Design Boolean Browser,  Rotation Points, Ctrl+R
+Design Boolean Browser,  Measure, Ctrl+M
+Design Boolean Browser,  Equation Editor, Ctrl+E
+Design Boolean Browser,  TOGGLE_WORKSPACES, Ctrl+Tab
+Design Boolean Browser,  Help, F1
+Design Boolean Browser,  Previous View, F3
+Design Boolean Browser,  Next View, F4
+Design Boolean Browser,  Regenerate Assembly, F5
+Design Boolean Browser,  Zoom to Fit, Home
+Design Boolean Browser,  Insert Part/Subassembly, Ctrl+Shift+I
+Design Boolean Browser,  Hide selection, Ctrl+H
+Design Boolean Browser,  Toggle Annotations, Ctrl+Shift+A
+Design Boolean Browser,  Toggle Sketch Dimensions, Ctrl+Shift+E
+Design Boolean Browser,  Toggle Constraint Symbols, Ctrl+Shift+C
+Design Boolean Browser,  Toggle Grid, Ctrl+Shift+G
+Design Boolean Browser,  Toggle Redlines, Ctrl+Shift+R
+Design Boolean Browser,  Toggle Sketches, Ctrl+Shift+K
+Design Boolean Browser,  Toggle Planes/Axes/Points/Surfaces, Ctrl+Shift+P
+Design Boolean Browser,  TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Boolean Browser,  Insert Assembly Constraint, Ctrl+Shift+C
+Design Boolean Browser,  New Part, Ctrl+Shift+T
+Design Boolean Browser,  New Sheet Metal Part, Ctrl+Shift+L
+Design Boolean Browser,  New Assembly, Ctrl+Shift+B
+Design Boolean Browser,  New Drawing, Ctrl+Shift+D
+Design Boolean Browser,  New Bill of Materials, Ctrl+Shift+M
+Design Boolean Browser,  Orient to front, Ctrl+1
+Design Boolean Browser,  Orient to back, Ctrl+2
+Design Boolean Browser,  Orient to left, Ctrl+3
+Design Boolean Browser,  Orient to right, Ctrl+4
+Design Boolean Browser,  Orient to top, Ctrl+5
+Design Boolean Browser,  Orient to bottom, Ctrl+6
+Design Boolean Browser,  Orient to isometric (-X  +Y  +Z), Ctrl+7
+Design Boolean Browser,  Toggle Points, Alt+1
+Design Boolean Browser,  Toggle Axes, Alt+2
+Design Boolean Browser,  Toggle Planes, Alt+3
+Design Boolean Browser,  Toggle Coordinate System, Alt+4
+Design Boolean Browser,  Toggle 3D View Indicator, Alt+5
+Design Assembly Exploded View Browser,  Select All, Ctrl+A
+Design Assembly Exploded View Browser,  Copy, Ctrl+C
+Design Assembly Exploded View Browser,  Open, Ctrl+O
+Design Assembly Exploded View Browser,  Save, Ctrl+S
+Design Assembly Exploded View Browser,  Print, Ctrl+P
+Design Assembly Exploded View Browser,  Paste, Ctrl+V
+Design Assembly Exploded View Browser,  Cut, Ctrl+X
+Design Assembly Exploded View Browser,  Redo, Ctrl+Y
+Design Assembly Exploded View Browser,  Undo, Ctrl+Z
+Design Assembly Exploded View Browser,  Delete, Del
+Design Assembly Exploded View Browser,  Design Properties, Alt+Enter
+Design Assembly Exploded View Browser,  Edit System Options, Ctrl+Shift+O
+Design Assembly Exploded View Browser,  View Orientations, Ctrl+U
+Design Assembly Exploded View Browser,  Rotation Points, Ctrl+R
+Design Assembly Exploded View Browser,  Measure, Ctrl+M
+Design Assembly Exploded View Browser,  Global Parameters, Ctrl+G
+Design Assembly Exploded View Browser,  Equation Editor, Ctrl+E
+Design Assembly Exploded View Browser,  TOGGLE_WORKSPACES, Ctrl+Tab
+Design Assembly Exploded View Browser,  Help, F1
+Design Assembly Exploded View Browser,  Previous View, F3
+Design Assembly Exploded View Browser,  Next View, F4
+Design Assembly Exploded View Browser,  Regenerate Assembly, F5
+Design Assembly Exploded View Browser,  Zoom to Fit, Home
+Design Assembly Exploded View Browser,  Insert Part/Subassembly, Ctrl+Shift+I
+Design Assembly Exploded View Browser,  Insert New Part, Ctrl+Shift+N
+Design Assembly Exploded View Browser,  Hide selection, Ctrl+H
+Design Assembly Exploded View Browser,  Toggle Annotations, Ctrl+Shift+A
+Design Assembly Exploded View Browser,  Toggle Sketch Dimensions, Ctrl+Shift+E
+Design Assembly Exploded View Browser,  Toggle Constraint Symbols, Ctrl+Shift+C
+Design Assembly Exploded View Browser,  Toggle Grid, Ctrl+Shift+G
+Design Assembly Exploded View Browser,  Toggle Redlines, Ctrl+Shift+R
+Design Assembly Exploded View Browser,  Toggle Sketches, Ctrl+Shift+K
+Design Assembly Exploded View Browser,  Toggle Planes/Axes/Points/Surfaces, Ctrl+Shift+P
+Design Assembly Exploded View Browser,  Save Design As, Ctrl+Shift+S
+Design Assembly Exploded View Browser,  TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Assembly Exploded View Browser,  Insert Assembly Constraint, Ctrl+Q
+Design Assembly Exploded View Browser,  New Part, Ctrl+Shift+T
+Design Assembly Exploded View Browser,  New Sheet Metal Part, Ctrl+Shift+L
+Design Assembly Exploded View Browser,  New Assembly, Ctrl+Shift+B
+Design Assembly Exploded View Browser,  New Drawing, Ctrl+Shift+D
+Design Assembly Exploded View Browser,  New Bill of Materials, Ctrl+Shift+M
+Design Assembly Exploded View Browser,  Orient to front, Ctrl+1
+Design Assembly Exploded View Browser,  Orient to back, Ctrl+2
+Design Assembly Exploded View Browser,  Orient to left, Ctrl+3
+Design Assembly Exploded View Browser,  Orient to right, Ctrl+4
+Design Assembly Exploded View Browser,  Orient to top, Ctrl+5
+Design Assembly Exploded View Browser,  Orient to bottom, Ctrl+6
+Design Assembly Exploded View Browser,  Orient to isometric (-X  +Y  +Z), Ctrl+7
+Design Assembly Exploded View Browser,  Toggle Points, Alt+1
+Design Assembly Exploded View Browser,  Toggle Axes, Alt+2
+Design Assembly Exploded View Browser,  Toggle Planes, Alt+3
+Design Assembly Exploded View Browser,  Toggle Coordinate System, Alt+4
+Design Assembly Exploded View Browser,  Toggle 3D View Indicator, Alt+5
+Design Assembly Exploded View Browser,  Toggle Surfaces, Alt+7
+GlobalParam Editor,  New Part, Ctrl+Shift+T
+GlobalParam Editor,  New Sheet Metal Part, Ctrl+Shift+L
+GlobalParam Editor,  New Assembly, Ctrl+Shift+B
+GlobalParam Editor,  New Drawing, Ctrl+Shift+D
+GlobalParam Editor,  New Bill of Materials, Ctrl+Shift+M
+GlobalParam Editor,  New Global Parameters, Ctrl+Shift+G
+GlobalParam Editor,  Open, Ctrl+O
+GlobalParam Editor,  Save, Ctrl+S
+GlobalParam Editor,  Save Design As, Ctrl+Shift+S
+GlobalParam Editor,  Print, Ctrl+P
+GlobalParam Editor,  Select All, Ctrl+A
+GlobalParam Editor,  Cut, Ctrl+X
+GlobalParam Editor,  Copy, Ctrl+C
+GlobalParam Editor,  Paste, Ctrl+V
+GlobalParam Editor,  Clear Contents, Del
+GlobalParam Editor,  Undo, Ctrl+Z
+GlobalParam Editor,  Redo, Ctrl+Y
+GlobalParam Editor,  New Global Parameter, Ctrl+N
+GlobalParam Editor,  Delete Global Parameter, Ctrl+D
+GlobalParam Editor,  Link Global Parameter, Ctrl+L
+GlobalParam Editor,  Help, F1
+GlobalParam Editor,  TOGGLE_WORKSPACES, Ctrl+Tab
+GlobalParam Editor,  Options, Ctrl+Shift+O
+GlobalParam Editor,  Update Designs, Ctrl+Shift+U
+GlobalParam Editor,  Global Parameters Properties, Alt+Enter
+BOM Editor,  New Part, Ctrl+Shift+T
+BOM Editor,  New Sheet Metal Part, Ctrl+Shift+L
+BOM Editor,  New Assembly, Ctrl+Shift+B
+BOM Editor,  New Drawing, Ctrl+Shift+D
+BOM Editor,  New Bill of Materials, Ctrl+Shift+M
+BOM Editor,  Open, Ctrl+O
+BOM Editor,  Save, Ctrl+S
+BOM Editor,  Save Design As, Ctrl+Shift+S
+BOM Editor,  Print, Ctrl+P
+BOM Editor,  Select All, Ctrl+A
+BOM Editor,  Cut, Ctrl+X
+BOM Editor,  Copy, Ctrl+C
+BOM Editor,  Paste, Ctrl+V
+BOM Editor,  Clear Contents, Del
+BOM Editor,  Undo, Ctrl+Z
+BOM Editor,  Redo, Ctrl+Y
+BOM Editor,  Help, F1
+BOM Editor,  TOGGLE_WORKSPACES, Ctrl+Tab
+BOM Editor,  Options, Ctrl+Shift+O
+Drawing Browser,  Select All, Ctrl+A
+Drawing Browser,  Copy, Ctrl+C
+Drawing Browser,  Copy With Base Point, Shift+C
+Drawing Browser,  Open, Ctrl+O
+Drawing Browser,  Save, Ctrl+S
+Drawing Browser,  Paste, Ctrl+V
+Drawing Browser,  Paste Stamper, Ctrl+T
+Drawing Browser,  Cut, Ctrl+X
+Drawing Browser,  Redo, Ctrl+Y
+Drawing Browser,  Undo, Ctrl+Z
+Drawing Browser,  Delete, Del
+Drawing Browser,  Drawing Properties, Alt+Enter
+Drawing Browser,  Edit System Options, Ctrl+Shift+O
+Drawing Browser,  Activate 2D Sketch, Ctrl+K
+Drawing Browser,  Insert Bill of Materials View, Ctrl+B
+Drawing Browser,  Insert Custom Symbol, Ctrl+I
+Drawing Browser,  Layers, Ctrl+L
+Drawing Browser,  Dimension Styles, Ctrl+D
+Drawing Browser,  Toggle Annotations, Ctrl+Shift+A
+Drawing Browser,  Toggle Constraint Symbols, Ctrl+Shift+C
+Drawing Browser,  Toggle Redlines, Ctrl+Shift+R
+Drawing Browser,  TOGGLE_WORKSPACES, Ctrl+Tab
+Drawing Browser,  Print, Ctrl+P
+Drawing Browser,  Help, F1
+Drawing Browser,  Zoom to Fit, Home
+Drawing Browser,  Previous View, F3
+Drawing Browser,  Next View, F4
+Drawing Browser,  Save Design As, Ctrl+Shift+S
+Drawing Browser,  New Part, Ctrl+Shift+T
+Drawing Browser,  New Sheet Metal Part, Ctrl+Shift+L
+Drawing Browser,  New Assembly, Ctrl+Shift+B
+Drawing Browser,  New Drawing, Ctrl+Shift+D
+Drawing Browser,  New Bill of Materials, Ctrl+Shift+M
+Drawing Browser,  REFRESH_DRAWING_CANVAS, F5
+Drawing Browser,  Reproject Views, Ctrl+R
+Drawing Browser,  Manage Design Properties, Ctrl+M
+Drawing Browser,  Trim Figure, T
+Drawing Browser,  Extend Figure, E
+Drawing Browser,  Rectangle by Center, Alt+R
+Drawing Browser,  Rectangle by Three Corners, Alt+Shift+R
+Drawing Browser,  Rectangle by Two Corners, R
+Drawing Browser,  Circle, C
+Drawing Browser,  Line, L
+Drawing Browser,  Fixed Constraint, F
+Drawing Browser,  Vertical Constraint, V
+Drawing Browser,  Horizontal Constraint, H
+Drawing Browser,  Intersection Constraint, I
+Drawing Browser,  Symmetric Constraint, Y
+Drawing Browser,  Coradial Constraint, A
+Drawing Browser,  Concentric Constraint, Z
+Drawing Browser,  Collinear Constraint, O
+Drawing Browser,  Coincident Constraint, N
+Drawing Browser,  Midline Constraint, M
+Drawing Browser,  Equal Constraint, Q
+Drawing Browser,  Tangent Constraint, G
+Drawing Browser,  Perpendicular Constraint, U
+Drawing Browser,  Parallel Constraint, P
+Drawing Browser,  Select, S
+Design Assembly Browser,  Select All, Ctrl+A
+Design Assembly Browser,  Copy, Ctrl+C
+Design Assembly Browser,  Open, Ctrl+O
+Design Assembly Browser,  Save, Ctrl+S
+Design Assembly Browser,  Print, Ctrl+P
+Design Assembly Browser,  Paste, Ctrl+V
+Design Assembly Browser,  Cut, Ctrl+X
+Design Assembly Browser,  Redo, Ctrl+Y
+Design Assembly Browser,  Undo, Ctrl+Z
+Design Assembly Browser,  Delete, Del
+Design Assembly Browser,  Design Properties, Alt+Enter
+Design Assembly Browser,  Edit System Options, Ctrl+Shift+O
+Design Assembly Browser,  View Orientations, Ctrl+U
+Design Assembly Browser,  Rotation Points, Ctrl+R
+Design Assembly Browser,  Measure, Ctrl+M
+Design Assembly Browser,  Global Parameters, Ctrl+G
+Design Assembly Browser,  Equation Editor, Ctrl+E
+Design Assembly Browser,  TOGGLE_WORKSPACES, Ctrl+Tab
+Design Assembly Browser,  Help, F1
+Design Assembly Browser,  Previous View, F3
+Design Assembly Browser,  Next View, F4
+Design Assembly Browser,  Regenerate Assembly, F5
+Design Assembly Browser,  Zoom to Fit, Home
+Design Assembly Browser,  Insert Part/Subassembly, Ctrl+Shift+I
+Design Assembly Browser,  Insert New Part, Ctrl+Shift+N
+Design Assembly Browser,  Hide selection, Ctrl+H
+Design Assembly Browser,  Toggle Annotations, Ctrl+Shift+A
+Design Assembly Browser,  Toggle Sketch Dimensions, Ctrl+Shift+E
+Design Assembly Browser,  Toggle Constraint Symbols, Ctrl+Shift+C
+Design Assembly Browser,  Toggle Grid, Ctrl+Shift+G
+Design Assembly Browser,  Toggle Redlines, Ctrl+Shift+R
+Design Assembly Browser,  Toggle Sketches, Ctrl+Shift+K
+Design Assembly Browser,  Toggle Planes/Axes/Points/Surfaces, Ctrl+Shift+P
+Design Assembly Browser,  Save Design As, Ctrl+Shift+S
+Design Assembly Browser,  TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Assembly Browser,  Insert Assembly Constraint, Ctrl+Q
+Design Assembly Browser,  New Part, Ctrl+Shift+T
+Design Assembly Browser,  New Sheet Metal Part, Ctrl+Shift+L
+Design Assembly Browser,  New Assembly, Ctrl+Shift+B
+Design Assembly Browser,  New Drawing, Ctrl+Shift+D
+Design Assembly Browser,  New Bill of Materials, Ctrl+Shift+M
+Design Assembly Browser,  Regenerate Assembly Deep, Ctrl+Shift+F5
+Design Assembly Browser,  Orient to front, Ctrl+1
+Design Assembly Browser,  Orient to back, Ctrl+2
+Design Assembly Browser,  Orient to left, Ctrl+3
+Design Assembly Browser,  Orient to right, Ctrl+4
+Design Assembly Browser,  Orient to top, Ctrl+5
+Design Assembly Browser,  Orient to bottom, Ctrl+6
+Design Assembly Browser,  Orient to isometric (-X  +Y  +Z), Ctrl+7
+Design Assembly Browser,  Toggle Points, Alt+1
+Design Assembly Browser,  Toggle Axes, Alt+2
+Design Assembly Browser,  Toggle Planes, Alt+3
+Design Assembly Browser,  Toggle Coordinate System, Alt+4
+Design Assembly Browser,  Toggle 3D View Indicator, Alt+5
+Design Assembly Browser,  Toggle Surfaces, Alt+7
+Design Assembly Browser,  Show Reference Geometry, Alt+0
+Design Assembly Browser,  Trim Figure, T
+Design Assembly Browser,  Extend Figure, E
+Design Assembly Browser,  Reference Rectangle by two corners, Shift+R
+Design Assembly Browser,  Reference Line, Shift+L
+Design Assembly Browser,  Rectangle by Center, Alt+R
+Design Assembly Browser,  Rectangle by Three Corners, Alt+Shift+R
+Design Assembly Browser,  Rectangle by Two Corners, R
+Design Assembly Browser,  Circle, C
+Design Assembly Browser,  Line, L
+Design Assembly Browser,  Dimension, D
+Design Assembly Browser,  Fixed Constraint, F
+Design Assembly Browser,  Vertical Constraint, V
+Design Assembly Browser,  Horizontal Constraint, H
+Design Assembly Browser,  Intersection Constraint, I
+Design Assembly Browser,  Symmetric Constraint, Y
+Design Assembly Browser,  Coradial Constraint, A
+Design Assembly Browser,  Concentric Constraint, Z
+Design Assembly Browser,  Collinear Constraint, O
+Design Assembly Browser,  Coincident Constraint, N
+Design Assembly Browser,  Midline Constraint, M
+Design Assembly Browser,  Equal Constraint, Q
+Design Assembly Browser,  Tangent Constraint, G
+Design Assembly Browser,  Perpendicular Constraint, U
+Design Assembly Browser,  Parallel Constraint, P
+Design Assembly Browser,  Select, S
+Design Sheet Metal Browser,  Select All, Ctrl+A
+Design Sheet Metal Browser,  Copy, Ctrl+C
+Design Sheet Metal Browser,  Copy With Base Point, Shift+C
+Design Sheet Metal Browser,  Open, Ctrl+O
+Design Sheet Metal Browser,  Save, Ctrl+S
+Design Sheet Metal Browser,  Print, Ctrl+P
+Design Sheet Metal Browser,  Paste, Ctrl+V
+Design Sheet Metal Browser,  Paste Stamper, Ctrl+T
+Design Sheet Metal Browser,  Cut, Ctrl+X
+Design Sheet Metal Browser,  Redo, Ctrl+Y
+Design Sheet Metal Browser,  Undo, Ctrl+Z
+Design Sheet Metal Browser,  Delete, Del
+Design Sheet Metal Browser,  Design Properties, Alt+Enter
+Design Sheet Metal Browser,  Edit System Options, Ctrl+Shift+O
+Design Sheet Metal Browser,  Activate 2D Sketch, Ctrl+K
+Design Sheet Metal Browser,  View Orientations, Ctrl+U
+Design Sheet Metal Browser,  Rotation Points, Ctrl+R
+Design Sheet Metal Browser,  Measure, Ctrl+M
+Design Sheet Metal Browser,  Global Parameters, Ctrl+G
+Design Sheet Metal Browser,  Equation Editor, Ctrl+E
+Design Sheet Metal Browser,  TOGGLE_WORKSPACES, Ctrl+Tab
+Design Sheet Metal Browser,  Help, F1
+Design Sheet Metal Browser,  Previous View, F3
+Design Sheet Metal Browser,  Next View, F4
+Design Sheet Metal Browser,  Regenerate All, F5
+Design Sheet Metal Browser,  Zoom to Fit, Home
+Design Sheet Metal Browser,  Hide selection, Ctrl+H
+Design Sheet Metal Browser,  Toggle Sketches, Ctrl+Shift+K
+Design Sheet Metal Browser,  Toggle Annotations, Ctrl+Shift+A
+Design Sheet Metal Browser,  Toggle Sketch Dimensions, Ctrl+Shift+E
+Design Sheet Metal Browser,  Toggle Constraint Symbols, Ctrl+Shift+C
+Design Sheet Metal Browser,  Toggle Grid, Ctrl+Shift+G
+Design Sheet Metal Browser,  Toggle Redlines, Ctrl+Shift+R
+Design Sheet Metal Browser,  Toggle Planes/Axes/Points/Surfaces, Ctrl+Shift+P
+Design Sheet Metal Browser,  Save Design As, Ctrl+Shift+S
+Design Sheet Metal Browser,  TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Sheet Metal Browser,  Toggle DOF Colors, Ctrl+Shift+N
+Design Sheet Metal Browser,  Toggle DOF Callouts, Ctrl+Shift+U
+Design Sheet Metal Browser,  Check the body for errors, Ctrl+Shift+H
+Design Sheet Metal Browser,  New Part, Ctrl+Shift+T
+Design Sheet Metal Browser,  New Sheet Metal Part, Ctrl+Shift+L
+Design Sheet Metal Browser,  New Assembly, Ctrl+Shift+B
+Design Sheet Metal Browser,  New Drawing, Ctrl+Shift+D
+Design Sheet Metal Browser,  New Bill of Materials, Ctrl+Shift+M
+Design Sheet Metal Browser,  Orient To Sketch Plane, Ctrl+Shift+Z
+Design Sheet Metal Browser,  Isometric To Sketch Plane, Ctrl+Shift+Q
+Design Sheet Metal Browser,  Orient to front, Ctrl+1
+Design Sheet Metal Browser,  Orient to back, Ctrl+2
+Design Sheet Metal Browser,  Orient to left, Ctrl+3
+Design Sheet Metal Browser,  Orient to right, Ctrl+4
+Design Sheet Metal Browser,  Orient to top, Ctrl+5
+Design Sheet Metal Browser,  Orient to bottom, Ctrl+6
+Design Sheet Metal Browser,  Orient to isometric (-X  +Y  +Z), Ctrl+7
+Design Sheet Metal Browser,  Toggle Points, Alt+1
+Design Sheet Metal Browser,  Toggle Axes, Alt+2
+Design Sheet Metal Browser,  Toggle Planes, Alt+3
+Design Sheet Metal Browser,  Toggle Coordinate System, Alt+4
+Design Sheet Metal Browser,  Toggle 3D View Indicator, Alt+5
+Design Sheet Metal Browser,  Trim Figure, T
+Design Sheet Metal Browser,  Extend Figure, E
+Design Sheet Metal Browser,  Reference Rectangle by two corners, Shift+R
+Design Sheet Metal Browser,  Reference Line, Shift+L
+Design Sheet Metal Browser,  Rectangle by Center, Alt+R
+Design Sheet Metal Browser,  Rectangle by Three Corners, Alt+Shift+R
+Design Sheet Metal Browser,  Rectangle by Two Corners, R
+Design Sheet Metal Browser,  Circle, C
+Design Sheet Metal Browser,  Line, L
+Design Sheet Metal Browser,  Dimension, D
+Design Sheet Metal Browser,  Fixed Constraint, F
+Design Sheet Metal Browser,  Vertical Constraint, V
+Design Sheet Metal Browser,  Horizontal Constraint, H
+Design Sheet Metal Browser,  Intersection Constraint, I
+Design Sheet Metal Browser,  Symmetric Constraint, Y
+Design Sheet Metal Browser,  Coradial Constraint, A
+Design Sheet Metal Browser,  Concentric Constraint, Z
+Design Sheet Metal Browser,  Collinear Constraint, O
+Design Sheet Metal Browser,  Coincident Constraint, N
+Design Sheet Metal Browser,  Midline Constraint, M
+Design Sheet Metal Browser,  Equal Constraint, Q
+Design Sheet Metal Browser,  Tangent Constraint, G
+Design Sheet Metal Browser,  Perpendicular Constraint, U
+Design Sheet Metal Browser,  Parallel Constraint, P
+Design Sheet Metal Browser,  Select, S
+Design Part Browser,  Select All, Ctrl+A
+Design Part Browser,  Copy, Ctrl+C
+Design Part Browser,  Copy With Base Point, Shift+C
+Design Part Browser,  Open, Ctrl+O
+Design Part Browser,  Save, Ctrl+S
+Design Part Browser,  Print, Ctrl+P
+Design Part Browser,  Paste, Ctrl+V
+Design Part Browser,  Paste Stamper, Ctrl+T
+Design Part Browser,  Cut, Ctrl+X
+Design Part Browser,  Redo, Ctrl+Y
+Design Part Browser,  Undo, Ctrl+Z
+Design Part Browser,  Delete, Del
+Design Part Browser,  Design Properties, Alt+Enter
+Design Part Browser,  Edit System Options, Ctrl+Shift+O
+Design Part Browser,  Activate 2D Sketch, Ctrl+K
+Design Part Browser,  View Orientations, Ctrl+U
+Design Part Browser,  Rotation Points, Ctrl+R
+Design Part Browser,  Measure, Ctrl+M
+Design Part Browser,  Global Parameters, Ctrl+G
+Design Part Browser,  Equation Editor, Ctrl+E
+Design Part Browser,  TOGGLE_WORKSPACES, Ctrl+Tab
+Design Part Browser,  Help, F1
+Design Part Browser,  Previous View, F3
+Design Part Browser,  Next View, F4
+Design Part Browser,  Regenerate all features, F5
+Design Part Browser,  Zoom to Fit, Home
+Design Part Browser,  Hide selection, Ctrl+H
+Design Part Browser,  Toggle Sketches, Ctrl+Shift+K
+Design Part Browser,  Toggle Annotations, Ctrl+Shift+A
+Design Part Browser,  Toggle Sketch Dimensions, Ctrl+Shift+E
+Design Part Browser,  Toggle Constraint Symbols, Ctrl+Shift+C
+Design Part Browser,  Toggle Grid, Ctrl+Shift+G
+Design Part Browser,  Toggle Redlines, Ctrl+Shift+R
+Design Part Browser,  Toggle Planes/Axes/Points/Surfaces, Ctrl+Shift+P
+Design Part Browser,  Save Design As, Ctrl+Shift+S
+Design Part Browser,  TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Part Browser,  Toggle DOF Colors, Ctrl+Shift+N
+Design Part Browser,  Toggle DOF Callouts, Ctrl+Shift+U
+Design Part Browser,  Check the body for errors, Ctrl+Shift+H
+Design Part Browser,  Check the body for errors, Ctrl+Shift+X
+Design Part Browser,  New Part, Ctrl+Shift+T
+Design Part Browser,  New Sheet Metal Part, Ctrl+Shift+L
+Design Part Browser,  New Assembly, Ctrl+Shift+B
+Design Part Browser,  New Drawing, Ctrl+Shift+D
+Design Part Browser,  New Bill of Materials, Ctrl+Shift+M
+Design Part Browser,  Regenerate Part Deep, Ctrl+Shift+F5
+Design Part Browser,  Orient To Sketch Plane, Ctrl+Shift+Z
+Design Part Browser,  Isometric To Sketch Plane, Ctrl+Shift+Q
+Design Part Browser,  Orient to front, Ctrl+1
+Design Part Browser,  Orient to back, Ctrl+2
+Design Part Browser,  Orient to left, Ctrl+3
+Design Part Browser,  Orient to right, Ctrl+4
+Design Part Browser,  Orient to top, Ctrl+5
+Design Part Browser,  Orient to bottom, Ctrl+6
+Design Part Browser,  Orient to isometric (-X  +Y  +Z), Ctrl+7
+Design Part Browser,  Toggle Points, Alt+1
+Design Part Browser,  Toggle Axes, Alt+2
+Design Part Browser,  Toggle Planes, Alt+3
+Design Part Browser,  Toggle Coordinate System, Alt+4
+Design Part Browser,  Toggle 3D View Indicator, Alt+5
+Design Part Browser,  Trim Figure, T
+Design Part Browser,  Extend Figure, E
+Design Part Browser,  Reference Rectangle by two corners, Shift+R
+Design Part Browser,  Reference Line, Shift+L
+Design Part Browser,  Rectangle by Center, Alt+R
+Design Part Browser,  Rectangle by Three Corners, Alt+Shift+R
+Design Part Browser,  Rectangle by Two Corners, R
+Design Part Browser,  Circle, C
+Design Part Browser,  Line, L
+Design Part Browser,  Dimension, D
+Design Part Browser,  Fixed Constraint, F
+Design Part Browser,  Vertical Constraint, V
+Design Part Browser,  Horizontal Constraint, H
+Design Part Browser,  Intersection Constraint, I
+Design Part Browser,  Symmetric Constraint, Y
+Design Part Browser,  Coradial Constraint, A
+Design Part Browser,  Concentric Constraint, Z
+Design Part Browser,  Collinear Constraint, O
+Design Part Browser,  Coincident Constraint, N
+Design Part Browser,  Midline Constraint, M
+Design Part Browser,  Equal Constraint, Q
+Design Part Browser,  Tangent Constraint, G
+Design Part Browser,  Perpendicular Constraint, U
+Design Part Browser,  Parallel Constraint, P
+Design Part Browser,  Select, S

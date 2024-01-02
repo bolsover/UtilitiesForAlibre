@@ -1,7 +1,8 @@
 ﻿using System;
+using Bolsover.Gear.Models;
 using static Bolsover.Utils.ConversionUtils;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Calculators
 {
     public static class GearCalculations
     {
@@ -18,7 +19,7 @@ namespace Bolsover.Gear
             // 
             double a = 0;
             // g1 is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 var num1 = gear.MatingGear.TeethZ - gear.TeethZ;
                 var num2 = 2 * Math.Cos(Radians(gear.HelixAngleBeta));
@@ -26,7 +27,7 @@ namespace Bolsover.Gear
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = gear.TeethZ - gear.MatingGear.TeethZ;
                 var num2 = 2 * Math.Cos(Radians(gear.HelixAngleBeta));
@@ -34,7 +35,7 @@ namespace Bolsover.Gear
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = gear.TeethZ + gear.MatingGear.TeethZ;
                 var num2 = 2 * Math.Cos(Radians(gear.HelixAngleBeta));
@@ -47,7 +48,6 @@ namespace Bolsover.Gear
             return a;
         }
 
-
         /// <summary>
         /// Involute function for working pressure angle
         /// </summary>
@@ -56,7 +56,6 @@ namespace Bolsover.Gear
             TestForBothInternalError(gear);
             return Math.Tan(Radians(AlphaW(gear))) - Radians(AlphaW(gear));
         }
-
 
         /// <summary>
         /// For an external gear pair,the total sum coefficient of profile shifts including any allowance for backlash.
@@ -69,7 +68,7 @@ namespace Bolsover.Gear
         {
             double x = 0;
             // gear is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 var num1 = InvAlpha(gear);
                 var num2 = InvAlphaW(gear);
@@ -80,7 +79,7 @@ namespace Bolsover.Gear
             }
 
             // gear is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
 
             {
                 var num1 = InvAlpha(gear.MatingGear);
@@ -92,7 +91,7 @@ namespace Bolsover.Gear
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = InvAlpha(gear);
                 var num2 = InvAlphaW(gear);
@@ -108,7 +107,6 @@ namespace Bolsover.Gear
             return x;
         }
 
-
         //@Todo test against all gear types
 
         /// <summary>
@@ -122,7 +120,7 @@ namespace Bolsover.Gear
 
             double xm = 0;
 
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 xm = -gear.CircularBacklashBc /
                      (2 * gear.ModeuleM *
@@ -132,7 +130,7 @@ namespace Bolsover.Gear
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 xm = -gear.CircularBacklashBc /
                      (2 * gear.ModeuleM *
@@ -142,7 +140,7 @@ namespace Bolsover.Gear
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 xm = -gear.CircularBacklashBc /
                      (2 * gear.ModeuleM *
@@ -155,7 +153,6 @@ namespace Bolsover.Gear
             return xm;
         }
 
-
         /// <summary>
         /// Working Pressure Angle of the gear pair
         /// </summary>
@@ -166,7 +163,7 @@ namespace Bolsover.Gear
         {
             double aw = 0;
 
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 var num1 = gear.MatingGear.TeethZ - gear.TeethZ;
                 var num2 = 2 * CentreDistanceIncrementFactorY(gear) *
@@ -176,7 +173,7 @@ namespace Bolsover.Gear
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = gear.TeethZ - gear.MatingGear.TeethZ;
                 var num2 = 2 * CentreDistanceIncrementFactorY(gear.MatingGear) *
@@ -186,7 +183,7 @@ namespace Bolsover.Gear
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = gear.TeethZ + gear.MatingGear.TeethZ;
                 var num2 = 2 * CentreDistanceIncrementFactorY(gear) *
@@ -201,7 +198,6 @@ namespace Bolsover.Gear
             return aw;
         }
 
-
         /// <summary>
         /// Centre Distance Increment Factor for the gear pair
         /// </summary>
@@ -212,7 +208,7 @@ namespace Bolsover.Gear
         {
             double y = 0;
             // g1 is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 var num1 = gear.WorkingCentreDistanceAw / gear.ModeuleM;
                 var num2 = gear.MatingGear.TeethZ - gear.TeethZ;
@@ -222,7 +218,7 @@ namespace Bolsover.Gear
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = gear.WorkingCentreDistanceAw / gear.ModeuleM;
                 var num2 = gear.TeethZ - gear.MatingGear.TeethZ;
@@ -232,7 +228,7 @@ namespace Bolsover.Gear
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = gear.WorkingCentreDistanceAw / gear.ModeuleM;
                 var num2 = gear.TeethZ + gear.MatingGear.TeethZ;
@@ -246,7 +242,6 @@ namespace Bolsover.Gear
             return y;
         }
 
-
         /// <summary>
         /// Returns Tip or Addendum diameter of gear
         /// </summary>
@@ -257,19 +252,19 @@ namespace Bolsover.Gear
         {
             double da = 0;
             // g1 is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 da = ReferenceDiameterD(gear) + (2 * AddendumHa(gear));
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 da = ReferenceDiameterD(gear) - (2 * AddendumHa(gear));
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 da = ReferenceDiameterD(gear) + (2 * AddendumHa(gear));
             }
@@ -287,9 +282,7 @@ namespace Bolsover.Gear
         /// <returns></returns>
         public static double AddendumRadiusRa(InvoluteGear gear) => AddendumDiameterDa(gear) / 2;
 
-
         public static double AddendumReliefRadiusRa(InvoluteGear gear) => gear.AddendumFilletFactorRa * gear.ModeuleM;
-
 
         /// <summary>
         /// Working Pitch Diameter
@@ -304,7 +297,6 @@ namespace Bolsover.Gear
 
             return dw;
         }
-
 
         /// <summary>
         /// Utility function
@@ -324,19 +316,19 @@ namespace Bolsover.Gear
         {
             double ha = 0;
             // g1 is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 ha = (1 + gear.ProfileShiftX) * gear.ModeuleM;
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 ha = (1 - gear.ProfileShiftX) * gear.ModeuleM;
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 ha = (1 + CentreDistanceIncrementFactorY(gear) - gear.MatingGear.ProfileShiftX) * gear.ModeuleM;
             }
@@ -347,17 +339,15 @@ namespace Bolsover.Gear
             return ha;
         }
 
-
         /// <summary>
         /// Half Tooth Angle At Reference Diameter (Pitch circle)
         /// </summary>
         /// <param name="g"></param>
-        /// <returns></returns>
+        /// <returns>Half Tooth Angle At Reference Diameter (Pitch circle)</returns>
         public static double Theta(InvoluteGear gear) =>
             90 / gear.TeethZ + 360 * (gear.ProfileShiftX + XMod(gear)) *
             Math.Tan(Radians(AlphaT(gear))) /
             (Math.PI * gear.TeethZ);
-
 
         /// <summary>
         /// Angle by which involute has to be rotated to form opposing tooth flank
@@ -408,19 +398,19 @@ namespace Bolsover.Gear
         {
             double invAlpha = 0;
             // g1 is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 invAlpha = Math.Tan(Radians(AlphaT(gear))) - Radians(AlphaT(gear));
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 invAlpha = Math.Tan(Radians(AlphaT(gear))) - Radians(AlphaT(gear));
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 invAlpha = Math.Tan(Radians(AlphaT(gear))) - Radians(AlphaT(gear));
             }
@@ -433,7 +423,7 @@ namespace Bolsover.Gear
 
         private static void TestForBothInternalError(InvoluteGear gear)
         {
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 throw new InvalidOperationException("Both gears can't be internal!");
             }
@@ -449,7 +439,6 @@ namespace Bolsover.Gear
             return Math.Ceiling(RootDiameterDr(gear)) + gear.ModeuleM;
         }
 
-
         /// <summary>
         /// Root diameter of the given gear
         /// </summary>
@@ -459,19 +448,19 @@ namespace Bolsover.Gear
         {
             double dr = 0;
             // g1 is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
             {
                 dr = AddendumDiameterDa(gear) - (2 * (2.25 * gear.ModeuleM));
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 dr = AddendumDiameterDa(gear) + (2 * (2.25 * gear.ModeuleM));
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 dr = ReferenceDiameterD(gear) + 2 * gear.ModeuleM * (-1.25 + gear.ProfileShiftX);
             }
@@ -481,7 +470,6 @@ namespace Bolsover.Gear
 
             return dr;
         }
-
 
         /// <summary>
         /// Base diameter of the given gear
@@ -500,7 +488,6 @@ namespace Bolsover.Gear
         /// </summary>
         public static double BaseRadiusRb(InvoluteGear gear) => BaseDiameterDb(gear) / 2;
 
-
         /// <summary>
         /// Reference or Standard pitch diameter of the given gear
         /// </summary>
@@ -514,14 +501,12 @@ namespace Bolsover.Gear
             return gear.ModeuleM * gear.TeethZ / Math.Cos(Radians(gear.HelixAngleBeta));
         }
 
-
         /// <summary>
         /// Transverse or axial module of the given gear
         /// </summary>
         /// <param name="gear"></param>
         /// <returns></returns>
         public static double TransverseModuleMt(InvoluteGear gear) => gear.ModeuleM / Math.Cos(Radians(gear.HelixAngleBeta));
-
 
         /// <summary>
         /// Calculated contact ratio of the pinion, wheel pair.
@@ -532,7 +517,7 @@ namespace Bolsover.Gear
         {
             double ratio = 0;
             // g1 is external, mating gear is internal
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.Internal)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.Internal)
 
             {
                 var num2 = SquareRootOfSquares((AddendumDiameterDa(gear) + XMod(gear)) / 2, BaseDiameterDb(gear) / 2);
@@ -546,7 +531,7 @@ namespace Bolsover.Gear
             }
 
             // g1 is internal, mating gear is external
-            if (gear.GearType == GearType.Internal && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.Internal && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num2 = SquareRootOfSquares((AddendumDiameterDa(gear) + XMod(gear)) / 2, BaseDiameterDb(gear) / 2);
                 var num1 = SquareRootOfSquares((AddendumDiameterDa(gear.MatingGear) + XMod(gear)) / 2,
@@ -558,7 +543,7 @@ namespace Bolsover.Gear
             }
 
             // both gears are external
-            if (gear.GearType == GearType.External && gear.MatingGear.GearType == GearType.External)
+            if (gear.GearTypeEnum == GearTypeEnum.External && gear.MatingGear.GearTypeEnum == GearTypeEnum.External)
             {
                 var num1 = SquareRootOfSquares((AddendumDiameterDa(gear) + XMod(gear)) / 2, BaseDiameterDb(gear) / 2);
                 var num2 = SquareRootOfSquares((AddendumDiameterDa(gear.MatingGear) + XMod(gear)) / 2,
@@ -585,7 +570,6 @@ namespace Bolsover.Gear
         public static double RootFilletDiameter(InvoluteGear gear) => gear.ModeuleM * gear.RootFilletFactorRf;
 
         public static double RootFilletRadius(InvoluteGear gear) => RootFilletDiameter(gear) / 2;
-
 
         /// <summary>
         /// Returns the angle in radians to the centre of the root fillet circle
@@ -654,7 +638,6 @@ namespace Bolsover.Gear
             return Math.Sqrt(resultSquared);
         }
 
-
         /// <summary>
         /// Calculates the angle between a line from the gear centre to the centre point of the Addendum Relief circle centre
         /// and a line from the Addendum Relief circle centre to a tangent point on the base circle.
@@ -698,6 +681,7 @@ namespace Bolsover.Gear
             return gearCentreToFilletCentre;
         }
 
+      
 
         /// <summary>
         /// Nasty big routine to find location of inner gear tip relief points.
@@ -713,7 +697,7 @@ namespace Bolsover.Gear
             // tolerance of 0.000001 seems to work well with alibre
             double tolerance = 0.000001;
             GearPoint centre = new GearPoint(0, 0);
-
+        
             double targetGearCentreToFilletCentreDistance = CalcGearCentreToFilletCentreDistance(gear);
             double addendumReliefRadius = RootFilletRadius(gear);
             double targetGearCentreToStartPointDistance = targetGearCentreToFilletCentreDistance - addendumReliefRadius;
@@ -721,12 +705,12 @@ namespace Bolsover.Gear
             double angleToBase = InnerGearTipReliefCentreToBaseTangentAngle(gear);
             // the search range with be +- this angle about the initial search point.
             double changeAngle = 4.0d;
-
+        
             // initial angles for search
             double maxAngle = angleToBase + changeAngle;
             double minAngle = angleToBase - changeAngle;
             double midAngle = angleToBase;
-
+        
             // points used in binary search. Final results will be taken from the three Mid Points.
             // Min and Max points are used in the binary search
             GearPoint startMidGearPoint;
@@ -738,7 +722,7 @@ namespace Bolsover.Gear
             GearPoint startMaxGearPoint;
             GearPoint centreMaxGearPoint;
             GearPoint endMaxGearPoint;
-
+        
             // setup the mid points
             endMidGearPoint = EndPoint(gear, targetGearCentreToFilletCentreDistance, angleToBase);
             centreMidGearPoint = CentrePoint(gear, endMidGearPoint, midAngle);
@@ -759,7 +743,7 @@ namespace Bolsover.Gear
             startMaxGearPoint = StartPoint(gear, centreMaxGearPoint);
             double distanceToStartMaxPoint = Geometry.DistanceBetweenPoints(centre, startMaxGearPoint);
             double maxTestValue = Math.Abs(targetGearCentreToStartPointDistance - distanceToStartMaxPoint);
-
+        
             // search loop 
             while (!Equals(0, midTestValue, tolerance))
             {
@@ -787,26 +771,26 @@ namespace Bolsover.Gear
                     centreMaxGearPoint = CentrePoint(gear, endMaxGearPoint, maxAngle);
                     startMaxGearPoint = StartPoint(gear, centreMaxGearPoint);
                 }
-
+        
                 distanceToStartMaxPoint = Geometry.DistanceBetweenPoints(centre, startMaxGearPoint);
-
+        
                 // max test value
                 maxTestValue = Math.Abs(targetGearCentreToStartPointDistance - distanceToStartMaxPoint);
-
+        
                 // calculate distance to mid start point
                 distanceToStartMidPoint = Geometry.DistanceBetweenPoints(centre, startMidGearPoint);
-
+        
                 // test value this needs to tend towards zero
                 midTestValue = Math.Abs(targetGearCentreToStartPointDistance - distanceToStartMidPoint);
-
+        
                 distanceToStartMinPoint = Geometry.DistanceBetweenPoints(centre, startMinGearPoint);
-
+        
                 // min test value
                 minTestValue = Math.Abs(targetGearCentreToStartPointDistance - distanceToStartMinPoint);
             }
-
+        
             GearPoint[] results = new[] {endMidGearPoint, centreMidGearPoint, startMidGearPoint};
-
+        
             return results;
         }
 
@@ -815,7 +799,6 @@ namespace Bolsover.Gear
             var diff = Math.Abs(x - y);
             return diff <= tolerance;
         }
-
 
         public static GearPoint StartPoint(InvoluteGear gear, GearPoint centreGearPoint)
         {
@@ -828,7 +811,6 @@ namespace Bolsover.Gear
             return GearPoint.PolarOffset(endGearPoint,
                 RootFilletRadius(gear), GearPoint.Radians(-adjustedAngleToBase));
         }
-
 
         public static GearPoint EndPoint(InvoluteGear gear, double gearCentreToFilletCentre, double adjustedAngleToBase)
         {

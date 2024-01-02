@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using Microsoft.Win32;
+﻿using System.Windows.Forms;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Views
 {
     public partial class GearForm : Form
     {

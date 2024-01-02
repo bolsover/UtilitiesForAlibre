@@ -3,6 +3,8 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using AlibreX;
+using Bolsover.Gear.Builder;
+using Bolsover.Gear.Calculators;
 using Bolsover.Gear.Models;
 using Bolsover.Gear.Views;
 using static Bolsover.Gear.Images.GearLatexStrings;
@@ -10,11 +12,16 @@ using static Bolsover.Utils.LatexUtils;
 
 namespace Bolsover.Gear.Presenters
 {
-    public class StandardGearPresenter
+    public sealed class StandardGearPresenter
     {
         private readonly StandardGearView _view;
         private readonly IGearPair _gearPair;
-        private readonly StandardHelicalGearCalculator calculator = new();
+        private readonly StandardHelicalGearCalculator _calculator = new();
+        private const string GearSubDirectory = "\\Gear\\";
+        private const double RootFilletFactorRf = 0.38;
+        private const double AddendumFilletFactorRa = 0.1;
+        private const double CircularBacklashBc = 0.0;
+        private const double ProfileShiftx = 0;
 
 
         public StandardGearPresenter(StandardGearView view)
@@ -41,11 +48,12 @@ namespace Bolsover.Gear.Presenters
                 NormalPressureAngle = 20.0,
                 HelixAngle = 0,
                 NumberOfTeeth = 50.0,
-                CoefficientOfProfileShift = 0,
+                NormalCoefficientOfProfileShift = 0,
                 TipReliefRadius = 0.25,
                 RootFilletFactor = 0.38,
                 CentreDistanceIncrementFactor = 0,
-                WorkingCentreDistance = 50
+                WorkingCentreDistance = 50,
+                Type = GearType.External
             };
 
             var pinion = new Bolsover.Gear.Models.Gear
@@ -54,14 +62,16 @@ namespace Bolsover.Gear.Presenters
                 NormalPressureAngle = 20.0,
                 HelixAngle = 0,
                 NumberOfTeeth = 50.0,
-                CoefficientOfProfileShift = 0,
+                NormalCoefficientOfProfileShift = 0,
                 TipReliefRadius = 0.25,
                 RootFilletFactor = 0.38,
                 CentreDistanceIncrementFactor = 0,
-                WorkingCentreDistance = 50
+                WorkingCentreDistance = 50,
+                Type = GearType.External
             };
             _gearPair.Gear = gear;
             _gearPair.Pinion = pinion;
+            _gearPair.Auto = true;
         }
 
 
@@ -163,49 +173,52 @@ namespace Bolsover.Gear.Presenters
 
         private void Calculate()
         {
-            _gearPair.Gear.TransverseModule = calculator.CalculateTransverseModule(_gearPair);
-            _gearPair.Pinion.TransverseModule = _gearPair.Gear.TransverseModule;
-            _gearPair.Gear.RadialPressureAngle = calculator.CalculateRadialPressureAngle(_gearPair);
-            _gearPair.Pinion.RadialPressureAngle = _gearPair.Gear.RadialPressureAngle;
-            _gearPair.Gear.InvoluteFunction = calculator.CalculateTransverseInvoluteFunction(_gearPair);
-            _gearPair.Pinion.InvoluteFunction = _gearPair.Gear.InvoluteFunction;
-            _gearPair.Gear.StandardCentreDistance = calculator.CalculateStandardCentreDistance(_gearPair);
-            _gearPair.Pinion.StandardCentreDistance = _gearPair.Gear.StandardCentreDistance;
-            // for standard gears, working centre distance is the same as standard centre distance
-            _gearPair.Gear.WorkingCentreDistance = _gearPair.Gear.StandardCentreDistance;
-            _gearPair.Pinion.WorkingCentreDistance = _gearPair.Gear.StandardCentreDistance;
+            var gear = _gearPair.Gear;
+            var pinion = _gearPair.Pinion;
 
-            _gearPair.Gear.CentreDistanceIncrementFactor = calculator.CalculateProfileShiftedCentreDistanceIncrementFactor(_gearPair);
-            _gearPair.Pinion.CentreDistanceIncrementFactor = _gearPair.Gear.CentreDistanceIncrementFactor;
-            _gearPair.Gear.CoefficientOfProfileShift = calculator.CalculateStandardCoefficientOfProfileShift();
-            _gearPair.Pinion.CoefficientOfProfileShift = _gearPair.Gear.CoefficientOfProfileShift;
-            _gearPair.Gear.RadialWorkingPressureAngle = calculator.CalculateWorkingRadialPressureAngle(_gearPair);
-            _gearPair.Pinion.RadialWorkingPressureAngle = _gearPair.Gear.RadialWorkingPressureAngle;
-            _gearPair.Gear.PitchDiameter = calculator.CalculateGearStandardPitchDiameter(_gearPair);
-            _gearPair.Pinion.PitchDiameter = calculator.CalculatePinionStandardPitchDiameter(_gearPair);
-            _gearPair.Gear.BaseDiameter = calculator.CalculateGearBaseDiameter(_gearPair);
-            _gearPair.Pinion.BaseDiameter = calculator.CalculatePinionBaseDiameter(_gearPair);
-            _gearPair.Gear.Addendum = calculator.CalculateGearAddendum(_gearPair);
-            _gearPair.Pinion.Addendum = calculator.CalculatePinionAddendum(_gearPair);
-            _gearPair.Gear.Dedendum = calculator.CalculateGearDedendum(_gearPair);
-            _gearPair.Pinion.Dedendum = calculator.CalculatePinionDedendum(_gearPair);
-            _gearPair.Gear.WholeDepth = calculator.CalculateWholeDepth(_gearPair);
-            _gearPair.Pinion.WholeDepth = _gearPair.Gear.WholeDepth;
-            _gearPair.Gear.OutsideDiameter = calculator.CalculateGearOutsideDiameter(_gearPair);
-            _gearPair.Pinion.OutsideDiameter = calculator.CalculatePinionOutsideDiameter(_gearPair);
-            _gearPair.Gear.RootDiameter = calculator.CalculateGearRootDiameter(_gearPair);
-            _gearPair.Pinion.RootDiameter = calculator.CalculatePinionRootDiameter(_gearPair);
-            _gearPair.Gear.AddendumCircleDiameter = calculator.CalculateStandardGearAddendumCircleDiameter(_gearPair);
-            _gearPair.Pinion.AddendumCircleDiameter = calculator.CalculateStandardPinionAddendumCircleDiameter(_gearPair);
-            _gearPair.Gear.DedendumCircleDiameter = calculator.CalculateStandardGearDedendumCircleDiameter(_gearPair);
-            _gearPair.Pinion.DedendumCircleDiameter = calculator.CalculateStandardPinionDedendumCircleDiameter(_gearPair);
-            _gearPair.Gear.GearString = ToSimpleGearString(_gearPair.Gear);
-            _gearPair.Pinion.GearString = ToSimpleGearString(_gearPair.Pinion);
+            gear.TransverseModule = _calculator.CalculateTransverseModule(_gearPair);
+            pinion.TransverseModule = _gearPair.Gear.TransverseModule;
+            gear.RadialPressureAngle = _calculator.CalculateRadialPressureAngle(_gearPair);
+            pinion.RadialPressureAngle = _gearPair.Gear.RadialPressureAngle;
+            gear.InvoluteFunction = _calculator.CalculateTransverseInvoluteFunction(_gearPair);
+            pinion.InvoluteFunction = _gearPair.Gear.InvoluteFunction;
+            gear.StandardCentreDistance = _calculator.CalculateStandardCentreDistance(_gearPair);
+            pinion.StandardCentreDistance = _gearPair.Gear.StandardCentreDistance;
+            // for standard gears, working centre distance is the same as standard centre distance
+            gear.WorkingCentreDistance = _gearPair.Gear.StandardCentreDistance;
+            pinion.WorkingCentreDistance = _gearPair.Gear.StandardCentreDistance;
+            gear.CentreDistanceIncrementFactor = _calculator.CalculateProfileShiftedCentreDistanceIncrementFactor(_gearPair);
+            pinion.CentreDistanceIncrementFactor = _gearPair.Gear.CentreDistanceIncrementFactor;
+            gear.NormalCoefficientOfProfileShift = _calculator.CalculateStandardCoefficientOfProfileShift();
+            pinion.NormalCoefficientOfProfileShift = _gearPair.Gear.NormalCoefficientOfProfileShift;
+            gear.RadialWorkingPressureAngle = _calculator.CalculateWorkingRadialPressureAngle(_gearPair);
+            pinion.RadialWorkingPressureAngle = _gearPair.Gear.RadialWorkingPressureAngle;
+            gear.PitchCircleDiameter = _calculator.CalculateGearStandardPitchDiameter(_gearPair);
+            pinion.PitchCircleDiameter = _calculator.CalculatePinionStandardPitchDiameter(_gearPair);
+            gear.BaseCircleDiameter = _calculator.CalculateGearBaseDiameter(_gearPair);
+            pinion.BaseCircleDiameter = _calculator.CalculatePinionBaseDiameter(_gearPair);
+            gear.Addendum = _calculator.CalculateGearAddendum(_gearPair);
+            pinion.Addendum = _calculator.CalculatePinionAddendum(_gearPair);
+            gear.Dedendum = _calculator.CalculateGearDedendum(_gearPair);
+            pinion.Dedendum = _calculator.CalculatePinionDedendum(_gearPair);
+            gear.WholeDepth = _calculator.CalculateWholeDepth(_gearPair);
+            pinion.WholeDepth = _gearPair.Gear.WholeDepth;
+            gear.OutsideDiameter = _calculator.CalculateGearOutsideDiameter(_gearPair);
+            pinion.OutsideDiameter = _calculator.CalculatePinionOutsideDiameter(_gearPair);
+            gear.RootCircleDiameter = _calculator.CalculateGearRootDiameter(_gearPair);
+            pinion.RootCircleDiameter = _calculator.CalculatePinionRootDiameter(_gearPair);
+            gear.AddendumCircleDiameter = _calculator.CalculateStandardGearAddendumCircleDiameter(_gearPair);
+            pinion.AddendumCircleDiameter = _calculator.CalculateStandardPinionAddendumCircleDiameter(_gearPair);
+            gear.DedendumCircleDiameter = _calculator.CalculateStandardGearDedendumCircleDiameter(_gearPair);
+            pinion.DedendumCircleDiameter = _calculator.CalculateStandardPinionDedendumCircleDiameter(_gearPair);
+            gear.GearString = ToSimpleGearString(_gearPair.Gear);
+            pinion.GearString = ToSimpleGearString(_gearPair.Pinion);
         }
+
 
         private string ToSimpleGearString(IGear gear)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("Item ".PadRight(30) + "Metric".PadRight(30) + "Imperial");
             stringBuilder.AppendLine("");
             stringBuilder.AppendLine("Normal Module".PadRight(30) + gear.NormalModule.ToString("0.000").PadRight(30) +
@@ -214,139 +227,166 @@ namespace Bolsover.Gear.Presenters
             stringBuilder.AppendLine("Radial Module".PadRight(30) + gear.TransverseModule.ToString("0.000").PadRight(30) +
                                      (25.4 / gear.TransverseModule).ToString("0.0000 in DP") + ", " +
                                      (Math.PI / (25.4 / gear.TransverseModule)).ToString("0.0000 in CP"));
-            stringBuilder.AppendLine("Normal Pressure Angle".PadRight(30) + gear.NormalPressureAngle.ToString("0.000°").PadRight(30) +
-                                     gear.NormalPressureAngle.ToString("0.000°"));
-            stringBuilder.AppendLine("Radial Pressure Angle".PadRight(30) + gear.RadialPressureAngle.ToString("0.000°").PadRight(30) +
-                                     gear.RadialPressureAngle.ToString("0.000°"));
+
             stringBuilder.AppendLine(
-                "Helix Angle".PadRight(30) + gear.HelixAngle.ToString("0.000°").PadRight(30) + gear.HelixAngle.ToString("0.000°"));
-            stringBuilder.AppendLine("Number Of Teeth".PadRight(30) + gear.NumberOfTeeth.ToString().PadRight(30) + gear.NumberOfTeeth.ToString());
-            stringBuilder.AppendLine("Base Diameter".PadRight(30) + gear.BaseDiameter.ToString("0.000 mm").PadRight(30) +
-                                     (gear.BaseDiameter / 25.4).ToString("0.0000 in"));
-            stringBuilder.AppendLine("Root Diameter".PadRight(30) + gear.RootDiameter.ToString("0.000 mm").PadRight(30) +
-                                     (gear.BaseDiameter / 25.4).ToString("0.0000 in"));
-            stringBuilder.AppendLine("Pitch Diameter".PadRight(30) + gear.PitchDiameter.ToString("0.000 mm").PadRight(30) +
-                                     (gear.RootDiameter / 25.4).ToString("0.0000 in"));
-            stringBuilder.AppendLine("Outside Diameter".PadRight(30) + gear.OutsideDiameter.ToString("0.000 mm").PadRight(30) +
-                                     (gear.OutsideDiameter / 25.4).ToString("0.0000 in"));
-            stringBuilder.AppendLine("Addendum".PadRight(30) + gear.Addendum.ToString("0.000 mm").PadRight(30) +
-                                     (gear.Addendum / 25.4).ToString("0.0000 in"));
-            stringBuilder.AppendLine("Dedendum".PadRight(30) + gear.Dedendum.ToString("0.000 mm").PadRight(30) +
-                                     (gear.Dedendum / 25.4).ToString("0.0000 in"));
-            stringBuilder.AppendLine("Whole Depth".PadRight(30) + gear.WholeDepth.ToString("0.000 mm").PadRight(30) +
-                                     (gear.WholeDepth / 25.4).ToString("0.0000 in"));
+                GetFormattedData("Normal Pressure Angle", gear.NormalPressureAngle, gear.NormalPressureAngle, "0.000°", "0.000°"));
+            stringBuilder.AppendLine(
+                GetFormattedData("Radial Pressure Angle", gear.RadialPressureAngle, gear.RadialPressureAngle, "0.000°", "0.000°"));
+            stringBuilder.AppendLine(GetFormattedData("Helix Angle", gear.HelixAngle, gear.HelixAngle, "0.000°", "0.000°"));
+            stringBuilder.AppendLine(GetFormattedData("Number Of Teeth", gear.NumberOfTeeth, gear.NumberOfTeeth, "0", "0"));
+            stringBuilder.AppendLine(GetFormattedData("Base Diameter", gear.BaseCircleDiameter, gear.BaseCircleDiameter / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Root Diameter", gear.RootCircleDiameter, gear.RootCircleDiameter / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Pitch Diameter", gear.PitchCircleDiameter, gear.PitchCircleDiameter / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Outside Diameter", gear.OutsideDiameter, gear.OutsideDiameter / 25.4, "0.000 mm",
+                "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Addendum", gear.Addendum, gear.Addendum / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Dedendum", gear.Dedendum, gear.Dedendum / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("WholeDepth", gear.WholeDepth, gear.WholeDepth / 25.4, "0.000 mm", "0.0000 in"));
+
+           
             stringBuilder.AppendLine("");
             stringBuilder.AppendLine(
                 "Note: This utility will create standard External Spur and Helical Gears only. " +
-                "The generated gear will almost certainly need to be edited in Alibre for gear height and " +
+                "The generated gear will almost certainly need to be edited in Alibre to add centre hole/boss and " +
                 "in the case of helical gears for hand (Left or Right) of the helix.  ");
             stringBuilder.AppendLine("Also note that this utility does not generate gears with an undercut to the tooth profile. " +
                                      "This can be a problem for gears with a low tooth count (typically <= 17) and/or a high helix angle.");
 
-            stringBuilder.AppendLine("Finally, be aware that gears (particularly helical) with high tooth counts may take a very long time to generate!");
-                return stringBuilder.ToString();
+            stringBuilder.AppendLine(
+                "Finally, be aware that gears (particularly helical) with high tooth counts may take a very long time to generate!");
+            return stringBuilder.ToString();
+        }
+
+        private string GetFormattedData(String columnName, double metricValue, double imperialValue, string metricFormat, string imperialFormat)
+        {
+            const int columnWidth = 30;
+            var metric = metricValue.ToString(metricFormat);
+            var imperial = imperialValue.ToString(imperialFormat);
+            return $"{columnName,-columnWidth}{metric,-columnWidth}{imperial}";
+            
         }
 
 
         private void ViewOnEditGearNumberOfTeethEvent(object sender, EventArgs e)
         {
-            _gearPair.Gear.NumberOfTeeth = (double) ((NumericUpDown) sender).Value;
-            _gearPair.Pinion.NumberOfTeeth = (double) ((NumericUpDown) sender).Value;
+            if(sender is NumericUpDown numericUpDown)
+            {
+                double newValue = (double)numericUpDown.Value;
+                _gearPair.Gear.NumberOfTeeth = newValue;
+                _gearPair.Pinion.NumberOfTeeth = newValue;
+            }
         }
 
         private void ViewOnEditModuleEvent(object sender, EventArgs e)
         {
-            _gearPair.Gear.NormalModule = (double) ((NumericUpDown) sender).Value;
-            _gearPair.Pinion.NormalModule = (double) ((NumericUpDown) sender).Value;
+            if(sender is NumericUpDown numericUpDown)
+            {
+                double newValue = (double)numericUpDown.Value;
+                _gearPair.Gear.NormalModule = newValue;
+                _gearPair.Pinion.NormalModule = newValue;
+            }
+           
         }
 
         private void ViewOnEditHelixAngleEvent(object sender, EventArgs e)
         {
-            _gearPair.Gear.HelixAngle = (double) ((NumericUpDown) sender).Value;
-            _gearPair.Pinion.HelixAngle = (double) ((NumericUpDown) sender).Value;
+            if (sender is NumericUpDown numericUpDown)
+            {
+                double newValue = (double)numericUpDown.Value;
+                _gearPair.Gear.HelixAngle = newValue;
+                _gearPair.Pinion.HelixAngle = newValue;
+            }
+           
         }
 
         private void ViewOnEditPressureAngleEvent(object sender, EventArgs e)
         {
-            _gearPair.Gear.NormalPressureAngle = (double) ((NumericUpDown) sender).Value;
-            _gearPair.Pinion.NormalPressureAngle = (double) ((NumericUpDown) sender).Value;
+            if (sender is NumericUpDown numericUpDown)
+            {
+                double newValue = (double)numericUpDown.Value;
+                _gearPair.Gear.NormalPressureAngle = newValue;
+                _gearPair.Pinion.NormalPressureAngle = newValue;
+            }
+          
         }
-        
+
         private void ViewOnEditGearHeightEvent(object sender, EventArgs e)
         {
-            _gearPair.Gear.Height = (double) ((NumericUpDown) sender).Value;
-            _gearPair.Pinion.Height = (double) ((NumericUpDown) sender).Value;
+            if (sender is NumericUpDown numericUpDown)
+            {
+                double newValue = (double)numericUpDown.Value;
+                _gearPair.Gear.Height = newValue;
+                _gearPair.Pinion.Height = newValue;
+            }
+            
         }
 
-        private void ViewOnCancelEvent(object sender, EventArgs e)
-        {
-            _view.FindForm().Close();
-        }
+        private void ViewOnCancelEvent(object sender, EventArgs e) => _view.FindForm()!.Close();
 
+        // private void ViewOnBuildWheelEvent(object sender, EventArgs e)
+        // {
+        //     var saveFile = "WheelPleaseSaveAs.AD_PRT";
+        //     var template = "WheelTemplate.AD_PRT";
+        //
+        //     if (_gearPair.Gear.HelixAngle > 0)
+        //     {
+        //         saveFile = "HelicalWheelPleaseSaveAs.AD_PRT";
+        //         template = "HelicalWheelTemplate.AD_PRT";
+        //     }
+        //
+        //     BuildGear(saveFile, template);
+        // }
+        
         private void ViewOnBuildWheelEvent(object sender, EventArgs e)
         {
-            var saveFile = "WheelPleaseSaveAs.AD_PRT";
-            var template = "WheelTemplate.AD_PRT";
-
-            if (_gearPair.Gear.HelixAngle > 0)
-            {
-                saveFile = "HelicalWheelPleaseSaveAs.AD_PRT";
-                template = "HelicalWheelTemplate.AD_PRT";
-            }
-
-            BuildGear(saveFile, template);
+            var gearDetails = GetGearDetails();
+            BuildGear(gearDetails.SaveFile, gearDetails.Template);
         }
+    
+        private (string SaveFile, string Template) GetGearDetails()
+        {
+            var isHelical = _gearPair.Gear.HelixAngle > 0;
+
+            var saveFile = isHelical 
+                ? "HelicalWheelPleaseSaveAs.AD_PRT" 
+                : "WheelPleaseSaveAs.AD_PRT";
+
+            var template = isHelical 
+                ? "HelicalWheelTemplate.AD_PRT" 
+                : "WheelTemplate.AD_PRT";
+        
+            return (saveFile, template);
+        }
+
+ 
+
 
         private void BuildGear(string saveFile, string template)
         {
-            GearBuilder gearBuilder = new GearBuilder();
+            var gearBuilder = new GearBuilder();
 
-            var userTempDirectory = Path.GetTempPath();
-            var tempFile = userTempDirectory + "\\" + saveFile;
+            var tempFile = Path.Combine(Path.GetTempPath(), saveFile);
             var tempFileInfo = new FileInfo(tempFile);
             if (tempFileInfo.Exists && IsFileLocked(tempFileInfo))
             {
-                MessageBox.Show("Temporary file " + saveFile + "is currently open. \nPlease save-as or discard.", "Oops");
+                MessageBox.Show($"Temporary file {saveFile} is currently open. \nPlease save-as or discard.", "Oops");
                 return;
             }
 
-            var filePath = Globals.InstallPath;
+            var filepath = $"{Globals.InstallPath}{GearSubDirectory}{template}";
 
-            if (filePath != null)
-            {
-                filePath += "\\Gear\\" + template;
-            }
-
-            File.Copy(filePath, tempFile, true);
+           File.Copy(filepath, tempFile, true);
 
             var gearToothPoints = new GearToothPoints
             {
                 GearCentre = new GearPoint(0, 0),
                 // gear is helical if the helix pitch angle is greater than 0 degrees.
                 IsHelical = _gearPair.Gear.HelixAngle > 0,
-                IsPinion = false,
+                IsPinion = false
             };
 
-            InvoluteGear gear = new InvoluteGear(_gearPair.Gear.NormalModule, (int) _gearPair.Gear.NumberOfTeeth, _gearPair.Gear.NormalPressureAngle,
-                _gearPair.Gear.HelixAngle, 0)
-            {
-                GearType = GearType.External,
-                RootFilletFactorRf = 0.38,
-                AddendumFilletFactorRa = 0.1,
-                CircularBacklashBc = 0.0,
-                WorkingCentreDistanceAw = _gearPair.Gear.StandardCentreDistance,
-                Height = _gearPair.Gear.Height
-            };
-            InvoluteGear matingGear = new InvoluteGear(_gearPair.Gear.NormalModule, (int) _gearPair.Gear.NumberOfTeeth,
-                _gearPair.Gear.NormalPressureAngle, _gearPair.Gear.HelixAngle, 0)
-            {
-                GearType = GearType.External,
-                RootFilletFactorRf = 0.38,
-                AddendumFilletFactorRa = 0.1,
-                CircularBacklashBc = 0.0,
-                WorkingCentreDistanceAw = _gearPair.Gear.StandardCentreDistance,
-                Height = _gearPair.Gear.Height
-            };
+            var gear = CreateInvoluteGear(_gearPair.Gear);
+            var matingGear = CreateInvoluteGear(_gearPair.Gear);
             gear.MatingGear = matingGear;
             matingGear.MatingGear = gear;
             gearToothPoints.G1 = gear;
@@ -355,24 +395,42 @@ namespace Bolsover.Gear.Presenters
 
             gearToothPoints.TemplateFilePath = tempFile;
 
-            IADDesignSession session = InitAlibrePinionFile(tempFile, true);
+            var session = InitAlibrePinionFile(tempFile, true);
 
             AlibreBuilder.CreateInstance(gearToothPoints, session);
         }
 
+        private InvoluteGear CreateInvoluteGear(IGear gearSettings)
+        {
+            return new InvoluteGear(
+                gearSettings.NormalModule,
+                (int) gearSettings.NumberOfTeeth,
+                gearSettings.NormalPressureAngle,
+                gearSettings.HelixAngle,
+                ProfileShiftx)
+            {
+                GearTypeEnum = GearTypeEnum.External,
+                RootFilletFactorRf = RootFilletFactorRf,
+                AddendumFilletFactorRa = AddendumFilletFactorRa,
+                CircularBacklashBc = CircularBacklashBc,
+                WorkingCentreDistanceAw = gearSettings.StandardCentreDistance,
+                Height = gearSettings.Height
+            };
+        }
+
         public IADDesignSession InitAlibrePinionFile(string filePath, bool openEditor)
         {
-            IADRoot root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
-            IADDesignSession session = (IADDesignSession) root.OpenFileEx(filePath, true);
+            var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
+            var session = (IADDesignSession) root.OpenFileEx(filePath, true);
             return session;
         }
 
 
-        protected virtual bool IsFileLocked(FileInfo file)
+        private bool IsFileLocked(FileInfo file)
         {
             try
             {
-                using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
+                using (var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
                 {
                     stream.Close();
                 }

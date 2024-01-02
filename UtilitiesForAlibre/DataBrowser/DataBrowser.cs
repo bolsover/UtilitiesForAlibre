@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using AlibreX;
 using Bolsover.DataBrowser.Materials;
 using BrightIdeasSoftware;
-using Microsoft.Win32;
 
 namespace Bolsover.DataBrowser
 {

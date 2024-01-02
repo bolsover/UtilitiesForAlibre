@@ -11,10 +11,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="itext7" Version="8.0.1" />
+        <PackageReference Include="itext7.pdfhtml" Version="5.0.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1"/>
+        <PackageReference Include="Moq" Version="4.20.70" />
         <PackageReference Include="NUnit" Version="3.13.1"/>
         <PackageReference Include="NUnit3TestAdapter" Version="3.17.0"/>
         <PackageReference Include="coverlet.collector" Version="3.0.2"/>
+        <PackageReference Include="System.Collections" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +26,19 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Reference Include="alibre-core">
+          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-core.dll</HintPath>
+        </Reference>
+        <Reference Include="alibre-executive">
+          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-executive.dll</HintPath>
+        </Reference>
+        <Reference Include="generics_NET">
+          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\generics_NET.dll</HintPath>
+        </Reference>
+        <Reference Include="SupportClass">
+          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\SupportClass.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Data.Linq" />
         <Reference Include="System.Windows.Forms"/>
     </ItemGroup>
 

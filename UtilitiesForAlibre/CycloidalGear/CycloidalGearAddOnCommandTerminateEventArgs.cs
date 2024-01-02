@@ -1,5 +1,4 @@
 ﻿using System;
-using Bolsover.AlibreDataViewer;
 
 namespace Bolsover.CycloidalGear
 {

@@ -6,7 +6,8 @@ namespace Bolsover.Gear.Models
     {
         private IGear _pinion; // when calculating this is always gear 1
         private IGear _gear; // when calculating this is always gear 2
-        private double _centreDistance;
+        
+        private bool _auto;
 
         public IGear Pinion
         {
@@ -20,7 +21,12 @@ namespace Bolsover.Gear.Models
             set => _gear = value;
         }
 
-        
+        public bool Auto
+        {
+            get => _auto;
+            set => _auto = value;
+        }
+
 
         public event EventHandler Updated;
 

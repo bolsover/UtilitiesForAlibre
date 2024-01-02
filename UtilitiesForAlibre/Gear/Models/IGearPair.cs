@@ -7,7 +7,7 @@ namespace Bolsover.Gear.Models
         IGear Pinion { get; set; }
         IGear Gear { get; set; }
         
-        // double centreDistance { get; set; }
+        bool Auto { get; set; }
 
         event EventHandler Updated;
     }

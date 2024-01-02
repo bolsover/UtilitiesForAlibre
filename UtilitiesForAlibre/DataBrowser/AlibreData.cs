@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Reflection;
 using com.alibre.automation;
 
 namespace Bolsover.DataBrowser
@@ -107,9 +108,9 @@ namespace Bolsover.DataBrowser
             {
                 o = obj.GetType().GetProperty(propName).GetValue(obj, null);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                o = "Exception thrown getting " + propName;
+                o = "Exception thrown getting " + propName + " " + ex.Message;
             }
 
             return o;

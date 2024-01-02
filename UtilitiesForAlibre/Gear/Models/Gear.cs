@@ -13,8 +13,8 @@ namespace Bolsover.Gear.Models
         private double _axialPitch;
         private double _baseCircleDiameter;
         private double _centreDistanceIncrementFactor;
-        private double _circularBacklash;
-        private double _coefficientOfProfileShift;
+        private double _circumferentialBacklash;
+         private double _normalCoefficientOfProfileShift;
         private double _contactRatio;
         private double _dedendumCircleDiameter;
         private double _delta;
@@ -27,7 +27,6 @@ namespace Bolsover.Gear.Models
         private double _numberOfTeeth;
         private double _pitchDiameter;
         private double _pressureAngle;
-        private double _profileShift;
         private double _rootFilletDiameter;
         private double _rootFilletFactor;
         private double _standardCentreDistance;
@@ -36,7 +35,7 @@ namespace Bolsover.Gear.Models
         private double _workingCentreDistance;
         private double _workingPitchDiameter;
         private double _radialWorkingPressureAngle;
-        private double _baseDiameter;
+       
         private double _addendum;
         private double _dedendum;
         private double _wholeDepth;
@@ -46,6 +45,14 @@ namespace Bolsover.Gear.Models
         private double _radialPressureAngle;
         private double _height = 10;
         private double _pitch;
+        private GearType _type;
+      
+        private double _backlashAdjustmentFactorXMod;
+       
+        private IGearPair _gearPair;
+        private double _normalBacklash;
+        private double _theta;
+        private double _alpha;
 
         public double Pitch
         {
@@ -59,11 +66,42 @@ namespace Bolsover.Gear.Models
             set => SetField(ref _simpleGearString, value);
         }
 
-
-        public double ProfileShift
+        public GearType Type
         {
-            get => _profileShift;
-            set => SetField(ref _radialWorkingPressureAngle, value);
+            get => _type;
+            set => SetField(ref _type, value);
+        }
+
+
+        public double BacklashAdjustmentFactorXMod
+        {
+            get => _backlashAdjustmentFactorXMod;
+            set => SetField(ref _backlashAdjustmentFactorXMod, value);
+        }
+
+        public double Theta
+        {
+            get => _theta;
+            set => SetField(ref _theta, value);
+        }
+
+        public double Alpha
+        {
+            get => _alpha;
+            set => SetField(ref _alpha, value);
+        }
+
+
+        public double NormalCoefficientOfProfileShift
+        {
+            get => _normalCoefficientOfProfileShift;
+            set => SetField(ref _normalCoefficientOfProfileShift, value);
+        }
+
+        public IGearPair GearPair
+        {
+            get => _gearPair;
+            set => _gearPair = value;
         }
 
         public double Height
@@ -142,10 +180,20 @@ namespace Bolsover.Gear.Models
             set => SetField(ref _gearType, value);
         }
 
-        public double CircularBacklash
+        public double NormalBacklash
         {
-            get => _circularBacklash;
-            set => SetField(ref _circularBacklash, value);
+            get => _normalBacklash;
+            set
+            {
+                _normalBacklash = value;
+                OnUpdated();
+            }
+        }
+
+        public double CircumferentialBacklash
+        {
+            get => _circumferentialBacklash;
+            set => SetField(ref _circumferentialBacklash, value);
         }
 
         public double Delta
@@ -172,18 +220,13 @@ namespace Bolsover.Gear.Models
             set => SetField(ref _centreDistanceIncrementFactor, value);
         }
 
-        public double PitchDiameter
+        public double PitchCircleDiameter
         {
             get => _pitchDiameter;
             set => SetField(ref _pitchDiameter, value);
         }
 
-        public double WorkingPitchDiameter
-        {
-            get => _workingPitchDiameter;
-            set => SetField(ref _workingPitchDiameter, value);
-        }
-
+     
         public double BaseCircleDiameter
         {
             get => _baseCircleDiameter;
@@ -203,12 +246,8 @@ namespace Bolsover.Gear.Models
             set => SetField(ref _dedendumCircleDiameter, value);
         }
 
-        public double CoefficientOfProfileShift
-        {
-            get => _coefficientOfProfileShift;
-            set => SetField(ref _coefficientOfProfileShift, value);
-        }
-
+        
+      
         public double AxialPitch
         {
             get => _axialPitch;
@@ -257,12 +296,7 @@ namespace Bolsover.Gear.Models
             set => SetField(ref _contactRatio, value);
         }
 
-        public double BaseDiameter
-        {
-            get => _baseDiameter;
-            set => SetField(ref _baseDiameter, value);
-        }
-
+       
         public double Addendum
         {
             get => _addendum;
@@ -287,10 +321,58 @@ namespace Bolsover.Gear.Models
             set => SetField(ref _outsideDiameter, value);
         }
 
-        public double RootDiameter
+        public double RootCircleDiameter
         {
             get => _rootDiameter;
             set => SetField(ref _rootDiameter, value);
+        }
+        
+        public string ToAdvancedGearString()
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("Item ".PadRight(30) + "Metric".PadRight(30) + "Imperial");
+            // stringBuilder.AppendLine("");
+
+            stringBuilder.AppendLine("Normal Module".PadRight(30) + NormalModule.ToString("0.000").PadRight(30) +
+                                     (25.4 / NormalModule).ToString("0.0000 in DP") + ", " +
+                                     (Math.PI / (25.4 / NormalModule)).ToString("0.0000 in CP"));
+            stringBuilder.AppendLine("Radial Module".PadRight(30) + TransverseModule.ToString("0.000").PadRight(30) +
+                                     (25.4 / TransverseModule).ToString("0.0000 in DP") + ", " +
+                                     (Math.PI / (25.4 / TransverseModule)).ToString("0.0000 in CP"));
+
+            stringBuilder.AppendLine(
+                GetFormattedData("Normal Pressure Angle", NormalPressureAngle, NormalPressureAngle, "0.000°", "0.000°"));
+            stringBuilder.AppendLine(
+                GetFormattedData("Radial Pressure Angle", RadialPressureAngle, RadialPressureAngle, "0.000°", "0.000°"));
+            stringBuilder.AppendLine(GetFormattedData("Helix Angle", HelixAngle, HelixAngle, "0.000°", "0.000°"));
+            stringBuilder.AppendLine(GetFormattedData("Number Of Teeth", NumberOfTeeth, NumberOfTeeth, "0", "0"));
+            stringBuilder.AppendLine(GetFormattedData("Base Diameter", BaseCircleDiameter, BaseCircleDiameter / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Root Diameter", RootCircleDiameter, RootCircleDiameter / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Pitch Diameter", PitchCircleDiameter, PitchCircleDiameter / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Outside Diameter", OutsideDiameter, OutsideDiameter / 25.4, "0.000 mm",
+                "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Addendum", Addendum, Addendum / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Dedendum", Dedendum, Dedendum / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Whole Depth", WholeDepth, WholeDepth / 25.4, "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Std Centre Distance", StandardCentreDistance, StandardCentreDistance / 25.4,
+                "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Working Centre Distance", WorkingCentreDistance, WorkingCentreDistance / 25.4,
+                "0.000 mm", "0.0000 in"));
+            stringBuilder.AppendLine(GetFormattedData("Theta", Theta, Theta,
+                "0.000°", "0.0000°"));
+            stringBuilder.AppendLine(GetFormattedData("Alpha", Alpha, Alpha,
+                "0.000°", "0.0000°"));
+
+            stringBuilder.AppendLine("");
+            return stringBuilder.ToString();
+        }
+        
+        private string GetFormattedData(String columnName, double metricValue, double imperialValue, string metricFormat, string imperialFormat)
+        {
+            const int columnWidth = 30;
+            var metric = metricValue.ToString(metricFormat);
+            var imperial = imperialValue.ToString(imperialFormat);
+            return $"{columnName,-columnWidth}{metric,-columnWidth}{imperial}";
         }
 
         public event EventHandler Updated;

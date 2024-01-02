@@ -38,11 +38,11 @@ namespace Bolsover.Bevel.Views
             // 
             // bevelGearUserControl1
             // 
-            this.bevelGearView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bevelGearView.Location = new System.Drawing.Point(0, 0);
-            this.bevelGearView.Name = "bevelGearView";
-            this.bevelGearView.Size = new System.Drawing.Size(798, 829);
-            this.bevelGearView.TabIndex = 0;
+            this._bevelGearView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._bevelGearView.Location = new System.Drawing.Point(0, 0);
+            this._bevelGearView.Name = "_bevelGearView";
+            this._bevelGearView.Size = new System.Drawing.Size(798, 829);
+            this._bevelGearView.TabIndex = 0;
             
             // 
             // BevelGearForm
@@ -50,7 +50,7 @@ namespace Bolsover.Bevel.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 829);
-            this.Controls.Add(this.bevelGearView);
+            this.Controls.Add(this._bevelGearView);
             this.Name = "BevelGearForm";
             this.Text = "Bevel Gears";
             this.ResumeLayout(false);

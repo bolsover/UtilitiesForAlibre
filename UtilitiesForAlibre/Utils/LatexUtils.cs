@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 using WpfMath;
 using WpfMath.Parsers;
 using XamlMath;
@@ -29,9 +31,18 @@ namespace Bolsover.Utils
 
         public static Image CreateImageFromLatex(string latex)
         {
-            var formula = Parser.Parse(latex);
-            var pngBytes = formula.RenderToPng(15.0, 0.0, 0.0, "Cambria");
+            TexFormula formula = null;
+            try
+            {
+                formula = Parser.Parse(latex);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error parsing latex" + latex);
+                return null;
+            }
 
+            var pngBytes = formula.RenderToPng(15.0, 0.0, 0.0, "Cambria");
             return ByteArrayToImage(pngBytes);
         }
     }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using AlibreX;
-using Bolsover.Gear;
+using Bolsover.Gear.Calculators;
+using Bolsover.Gear.Models;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Builder
 {
     public class AlibreBuilder
     {
@@ -14,7 +15,7 @@ namespace Bolsover.Gear
         {
             this._gearToothPoints = gearToothPoints;
             this._session = session;
-            if (gearToothPoints.G1.GearType == GearType.External)
+            if (gearToothPoints.G1.GearTypeEnum == GearTypeEnum.External)
             {
                 BuildExternalGear();
             }

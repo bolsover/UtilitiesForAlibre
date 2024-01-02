@@ -1,11 +1,13 @@
-﻿using System;
+﻿    using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using AlibreX;
+using Bolsover.Gear.Builder;
+using Bolsover.Gear.Calculators;
+using Bolsover.Gear.Models;
 
-
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Views
 {
     public partial class GearUserControl : UserControl
     {
@@ -28,8 +30,8 @@ namespace Bolsover.Gear
             _g2.RootFilletFactorRf = 0.38;
             _g1.AddendumFilletFactorRa = 0.25;
             _g2.AddendumFilletFactorRa = 0.25;
-            _g1.GearType = GearType.External;
-            _g2.GearType = GearType.External;
+            _g1.GearTypeEnum = GearTypeEnum.External;
+            _g2.GearTypeEnum = GearTypeEnum.External;
             _g1.MatingGear = _g2;
             _g2.MatingGear = _g1;
             _g1.CircularBacklashBc = 0;
@@ -86,9 +88,9 @@ namespace Bolsover.Gear
                     ? Color.Red
                     : Color.Black;
 
-            textBoxContactRatio.Visible = _g2.GearType != GearType.Internal;
-            labelContactRatio.Visible = _g2.GearType != GearType.Internal;
-            labelContactRatio2.Visible = _g2.GearType != GearType.Internal;
+            textBoxContactRatio.Visible = _g2.GearTypeEnum != GearTypeEnum.Internal;
+            labelContactRatio.Visible = _g2.GearTypeEnum != GearTypeEnum.Internal;
+            labelContactRatio2.Visible = _g2.GearTypeEnum != GearTypeEnum.Internal;
         }
 
         bool Equals(double x, double y, double tolerance)
@@ -278,12 +280,12 @@ namespace Bolsover.Gear
 
         private void wheelRadioExt_CheckedChanged(object sender, EventArgs e)
         {
-            _g2.GearType = wheelRadioExt.Checked ? GearType.External : GearType.Internal;
+            _g2.GearTypeEnum = wheelRadioExt.Checked ? GearTypeEnum.External : GearTypeEnum.Internal;
         }
 
         private void wheelRadioInt_CheckedChanged(object sender, EventArgs e)
         {
-            _g2.GearType = wheelRadioInt.Checked ? GearType.Internal : GearType.External;
+            _g2.GearTypeEnum = wheelRadioInt.Checked ? GearTypeEnum.Internal : GearTypeEnum.External;
         }
     }
 }

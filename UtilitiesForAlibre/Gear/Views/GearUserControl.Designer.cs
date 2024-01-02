@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Views
 {
     partial class GearUserControl
     {
@@ -1112,7 +1112,7 @@ namespace Bolsover.Gear
             this.numericUpDownCircularBacklashBc.Location = new System.Drawing.Point(328, 303);
             this.numericUpDownCircularBacklashBc.Maximum = new decimal(new int[]
             {
-                1, 0, 0, 65536
+                1, 0, 0, 0
             });
             this.numericUpDownCircularBacklashBc.Name = "numericUpDownCircularBacklashBc";
             this.numericUpDownCircularBacklashBc.Size = new System.Drawing.Size(194, 20);

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Models
 {
     public class GearToothPoints
     {

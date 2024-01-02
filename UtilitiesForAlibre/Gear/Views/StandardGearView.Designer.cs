@@ -31,7 +31,7 @@ namespace Bolsover.Gear.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            // this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.itemLabel2 = new System.Windows.Forms.Label();
             this.symbolLabel2 = new System.Windows.Forms.Label();
             this.formulaLabel2 = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@ namespace Bolsover.Gear.Views
             this.rootDiameterSymbolLabel = new System.Windows.Forms.Label();
             this.rootDiameterFormulaLabel = new System.Windows.Forms.Label();
             this.rootDiameterTextBox = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            // this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@ namespace Bolsover.Gear.Views
             this.symbolLabel = new System.Windows.Forms.Label();
             this.normalModuleSymbolLabel = new System.Windows.Forms.Label();
             this.normalPressureAngleSymbolLabel = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            // this.settingTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataTextBox = new System.Windows.Forms.TextBox();
             this.helixAngleSymbolLabel = new System.Windows.Forms.Label();
@@ -93,9 +93,7 @@ namespace Bolsover.Gear.Views
             this.heightNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            // this.settingTabPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.moduleNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.pressureAngleNumericUpDown)).BeginInit();
@@ -105,68 +103,7 @@ namespace Bolsover.Gear.Views
             this.tabControl1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Controls.Add(this.itemLabel2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.symbolLabel2, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.formulaLabel2, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.gearLabel2, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.transverseInvoluteFunctionLabel, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.transverseInvoluteSymbolLabel, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.involuteFormulaLabel, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.involuteFunctiontextBox, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.pitchDiameterLabel, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.PitchDiameterSymbolLabel, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.pitchDiameterFormulaLabel, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.pitchDiameterTextBox, 3, 2);
-            this.tableLayoutPanel2.Controls.Add(this.baseDiameterLabel, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.baseDiameterSymbolLabel, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.baseDiameterFormulaLabel, 2, 3);
-            this.tableLayoutPanel2.Controls.Add(this.baseDiameterTextBox, 3, 3);
-            this.tableLayoutPanel2.Controls.Add(this.addendumLabel, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.addendumSymbolLabel, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.addendumFormulaLabel, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.addendumTextBox, 3, 4);
-            this.tableLayoutPanel2.Controls.Add(this.dedendumLabel, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.dedendumSymbolLabel, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.dedendumFormulaLabel, 2, 5);
-            this.tableLayoutPanel2.Controls.Add(this.dedendumTextBox, 3, 5);
-            this.tableLayoutPanel2.Controls.Add(this.woleDepthLabel, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.wholeDepthSymbolLabel, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.wholeDepthFormulaLabel, 2, 6);
-            this.tableLayoutPanel2.Controls.Add(this.wholeDepthTextBox, 3, 6);
-            this.tableLayoutPanel2.Controls.Add(this.outsideDiameterLabel, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.outsideDiameterSymbolLabel, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.outsideDiameterFormulaLabel, 2, 7);
-            this.tableLayoutPanel2.Controls.Add(this.outsideDiameterTextBox, 3, 7);
-            this.tableLayoutPanel2.Controls.Add(this.rootDiameterLabel, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.rootDiameterSymbolLabel, 1, 8);
-            this.tableLayoutPanel2.Controls.Add(this.rootDiameterFormulaLabel, 2, 8);
-            this.tableLayoutPanel2.Controls.Add(this.rootDiameterTextBox, 3, 8);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 10;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(574, 532);
-            this.tableLayoutPanel2.TabIndex = 0;
+          
             // 
             // itemLabel2
             // 
@@ -502,17 +439,6 @@ namespace Bolsover.Gear.Views
             this.rootDiameterTextBox.Size = new System.Drawing.Size(139, 20);
             this.rootDiameterTextBox.TabIndex = 55;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.tableLayoutPanel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(580, 538);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Calculations";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -589,17 +515,17 @@ namespace Bolsover.Gear.Views
             this.normalPressureAngleSymbolLabel.Size = new System.Drawing.Size(204, 30);
             this.normalPressureAngleSymbolLabel.TabIndex = 11;
             this.normalPressureAngleSymbolLabel.Text = "Pressure Angle Symbol";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(580, 538);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Settings";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            // // 
+            // // settingTabPage
+            // // 
+            // this.settingTabPage.Controls.Add(this.tableLayoutPanel1);
+            // this.settingTabPage.Location = new System.Drawing.Point(4, 22);
+            // this.settingTabPage.Name = "settingTabPage";
+            // this.settingTabPage.Padding = new System.Windows.Forms.Padding(3);
+            // this.settingTabPage.Size = new System.Drawing.Size(580, 538);
+            // this.settingTabPage.TabIndex = 0;
+            // this.settingTabPage.Text = "Settings";
+            // this.settingTabPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -820,21 +746,21 @@ namespace Bolsover.Gear.Views
                 10, 0, 0, 0
             });
             this.heightNumericUpDown.ValueChanged += new System.EventHandler(this.heightNumericUpDown_ValueChanged);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(588, 564);
-            this.tabControl1.TabIndex = 0;
+            // // 
+            // // tabControl1
+            // // 
+            // this.tabControl1.Controls.Add(this.settingTabPage);
+            // // this.tabControl1.Controls.Add(this.tabPage2);
+            // this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            // this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            // this.tabControl1.Name = "tabControl1";
+            // this.tabControl1.SelectedIndex = 0;
+            // this.tabControl1.Size = new System.Drawing.Size(588, 564);
+            // this.tabControl1.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -848,10 +774,7 @@ namespace Bolsover.Gear.Views
             this.Controls.Add(this.panel1);
             this.Name = "StandardGearView";
             this.Size = new System.Drawing.Size(588, 564);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            // this.settingTabPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize) (this.moduleNumericUpDown)).EndInit();
@@ -913,9 +836,6 @@ namespace Bolsover.Gear.Views
         private System.Windows.Forms.Label symbolLabel2;
         private System.Windows.Forms.Label formulaLabel2;
         private System.Windows.Forms.Label gearLabel2;
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -924,7 +844,7 @@ namespace Bolsover.Gear.Views
         private System.Windows.Forms.Label symbolLabel;
         public System.Windows.Forms.Label normalModuleSymbolLabel;
         public System.Windows.Forms.Label normalPressureAngleSymbolLabel;
-        private System.Windows.Forms.TabPage tabPage1;
+        // private System.Windows.Forms.TabPage settingTabPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.Label helixAngleSymbolLabel;
         public System.Windows.Forms.Label teethLabel;

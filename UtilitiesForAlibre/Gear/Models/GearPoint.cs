@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Models
 {
     /// <summary>
     /// A class to represent points in space

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Bolsover.Gear.Views
 {
@@ -8,6 +7,7 @@ namespace Bolsover.Gear.Views
         public StandardGearForm()
         {
             InitializeComponent();
+            Icon = Globals.Icon;
         }
     }
 }

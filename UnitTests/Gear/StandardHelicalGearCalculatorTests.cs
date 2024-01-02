@@ -1,5 +1,6 @@
-﻿using Bolsover.Gear.Models;
-using Bolsover.Gear.Presenters;
+﻿using Bolsover.Gear.Calculators;
+using Bolsover.Gear.Models;
+
 using NUnit.Framework;
 
 namespace UnitTests.Gear
@@ -97,36 +98,7 @@ namespace UnitTests.Gear
         }
 
 
-        [Test]
-        public void CalculateProfileShiftedCentreDistance()
-        {
-            StandardHelicalGearCalculator calculator = new StandardHelicalGearCalculator();
-            IGearPair gearPair = new GearPair();
-            IGear gear = new Bolsover.Gear.Models.Gear();
-            gear.NumberOfTeeth = 60;
-            gear.NormalModule = 3;
-            gear.NormalPressureAngle = 20;
-            gear.HelixAngle = 30;
-            gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
-
-            IGear pinion = new Bolsover.Gear.Models.Gear();
-            pinion.NumberOfTeeth = 12;
-            pinion.NormalModule = 3;
-            pinion.NormalPressureAngle = 20;
-            pinion.HelixAngle = 30;
-            pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
-
-            gearPair.Gear = gear;
-            gearPair.Pinion = pinion;
-
-
-            var expected = 125.00192;
-            var actual = calculator.CalculateProfileShiftedCentreDistance(gearPair);
-            Assert.AreEqual(expected, actual, 0.001);
-
-        }
+        
 
         [Test]
         public void CalculateTransverseInvoluteAlpha()
@@ -139,7 +111,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -147,7 +119,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -168,7 +140,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -176,7 +148,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -197,7 +169,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -205,7 +177,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -226,7 +198,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -234,7 +206,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -255,7 +227,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -263,7 +235,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -284,7 +256,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -292,7 +264,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -313,7 +285,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -321,7 +293,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -343,7 +315,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -351,7 +323,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
             
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -375,7 +347,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -383,7 +355,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -404,7 +376,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -412,7 +384,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -433,7 +405,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -441,7 +413,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -462,7 +434,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -470,7 +442,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -491,7 +463,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -499,7 +471,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -520,7 +492,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -528,7 +500,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -549,7 +521,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -557,7 +529,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;
@@ -578,7 +550,7 @@ namespace UnitTests.Gear
             gear.NormalPressureAngle = 20;
             gear.HelixAngle = 30;
             gear.WorkingCentreDistance = 125;
-            gear.CoefficientOfProfileShift = 0;
+            gear.NormalCoefficientOfProfileShift = 0;
 
             IGear pinion = new Bolsover.Gear.Models.Gear();
             pinion.NumberOfTeeth = 12;
@@ -586,7 +558,7 @@ namespace UnitTests.Gear
             pinion.NormalPressureAngle = 20;
             pinion.HelixAngle = 30;
             pinion.WorkingCentreDistance = 125;
-            pinion.CoefficientOfProfileShift = 0.09809;
+            pinion.NormalCoefficientOfProfileShift = 0.09809;
 
             gearPair.Gear = gear;
             gearPair.Pinion = pinion;

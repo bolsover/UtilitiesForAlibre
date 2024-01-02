@@ -1,4 +1,6 @@
 ﻿using Bolsover.Gear;
+using Bolsover.Gear.Calculators;
+using Bolsover.Gear.Models;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -64,10 +66,10 @@ namespace UnitTests
         public void InnerGearTipReliefCentreToBaseTangentAngle1()
         {
             InvoluteGear gear = new InvoluteGear(3, 40, 20, 0, 0);
-            gear.GearType = GearType.Internal;
+            gear.GearTypeEnum = GearTypeEnum.Internal;
             gear.RootFilletFactorRf = .38;
             gear.MatingGear = new InvoluteGear(3, 16, 20, 0, 0);
-            gear.MatingGear.GearType = GearType.External;
+            gear.MatingGear.GearTypeEnum = GearTypeEnum.External;
             gear.MatingGear.RootFilletFactorRf = .38;
             var expectedResultX = 78.33785;
             Assert.AreEqual(expectedResultX, GearCalculations.InnerGearTipReliefCentreToBaseTangentAngle(gear), 0.00001);
@@ -77,10 +79,10 @@ namespace UnitTests
         public void InnerGearTipReliefCentreToBaseTangentAngle2()
         {
             InvoluteGear gear = new InvoluteGear(3, 24, 20, 0, 0);
-            gear.GearType = GearType.Internal;
+            gear.GearTypeEnum = GearTypeEnum.Internal;
             gear.RootFilletFactorRf = .38;
             gear.MatingGear = new InvoluteGear(3, 16, 20, 0, 0);
-            gear.MatingGear.GearType = GearType.External;
+            gear.MatingGear.GearTypeEnum = GearTypeEnum.External;
             gear.MatingGear.RootFilletFactorRf = .38;
             var expectedResultX = 79.5551;
             Assert.AreEqual(expectedResultX, GearCalculations.InnerGearTipReliefCentreToBaseTangentAngle(gear), 0.00001);
@@ -103,10 +105,10 @@ namespace UnitTests
         public void CalcAddendumFilletPoints()
         {
             InvoluteGear gear = new InvoluteGear(3, 40, 20, 0, 0);
-            gear.GearType = GearType.Internal;
+            gear.GearTypeEnum = GearTypeEnum.Internal;
             gear.RootFilletFactorRf = .38;
             gear.MatingGear = new InvoluteGear(3, 16, 20, 0, 0);
-            gear.MatingGear.GearType = GearType.External;
+            gear.MatingGear.GearTypeEnum = GearTypeEnum.External;
             gear.MatingGear.RootFilletFactorRf = .38;
 
             GearCalculations.CalcAddendumFilletPoints(gear);

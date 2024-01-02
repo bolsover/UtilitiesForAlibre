@@ -1,21 +1,23 @@
-﻿using System.Drawing;
-using System.IO;
-using WpfMath;
-using WpfMath.Parsers;
-using XamlMath;
-
-namespace Bolsover.Gear.Images
+﻿namespace Bolsover.Gear.Images
 {
     public class GearLatexStrings
     {
         public const string ModuleSymbol = @"m";
         public const string NormalModuleSymbol = @"m_{n}";
-        public const string PressureAngleSymbol = @"\alpha_{n}";
+        public const string TransverseModuleSymbol = @"m_{t}";
+        public const string AxialModuleSymbol = @"m_{x}";
+
+        public const string StandardPressureAngleSymbol = @"\alpha";
         public const string NormalPressureAngleSymbol = @"\alpha_{n}";
+        public const string RadialPressureAngleSymbol = @"\alpha_{t}";
+        public const string AxialPressureAngleSymbol = @"\alpha_{x}";
         public const string HelixAngleSymbol = @"\beta";
         public const string TransverseInvoluteFunctionSymbol = @"inv\,\alpha_{t}";
         public const string WorkingInvoluteFunctionSymbol = @"inv\,\alpha_{w}";
         public const string TransverseInvoluteFunctionFormula = @"tan\alpha-\alpha_{t}";
+        public const string NormalBacklashSymbol = @"j_{n}";
+        public const string CircularBacklashSymbol = @"j_{t}";
+        public const string CircularBacklashXmodSymbol = @"j_{t}, x_{mod}";
 
         public const string WorkingInvoluteFunctionFormula =
             @"2\,tan\alpha\left(\frac{x_{2}-x_{1}}{z_{2}-z_{1}}\right)+ inv\alpha";
@@ -35,14 +37,13 @@ namespace Bolsover.Gear.Images
         public const string StandardCentreDistanceIncrementFactorFormula =
             @"0\, for\, standard\, gears";
 
-        public const string CentreDistanceSymbol = @"a_{x}";
+        public const string OperatingCentreDistanceSymbol = @"a_{w}";
         public const string CentreDistanceFormula = @"\left(\frac{z_{2}-z_{1}}{2}+y\right)m";
         public const string StandardCentreDistanceFormula = @"N\backslash A";
         public const string StandardCoefficientOfProfileShiftSymbol = @"x";
         public const string StandardCoefficientOfProfileShiftFormula = @"0\, for\, standard\, gears";
-        public const string CoefficientOfProfileShiftSymbol = @"x_{1}, x_{2}";
         public const string SpiralAngleSymbol = @"\beta";
-        public const string RadialPressureAngleSymbol = @"\alpha_{t}";
+
         public const string NumberOfTeethSymbol = @"z";
         public const string NumberOfTeethSymbol2 = @"z_{1}, z_{2}";
         public const string PitchDiameterSymbol = @"d";
@@ -79,5 +80,10 @@ namespace Bolsover.Gear.Images
         public const string RootDiameter1Formula = @"d_{a1}-2h";
         public const string RootDiameter2Symbol = @"d_{f2}";
         public const string RootDiameter2Formula = @"d_{a2}+2h";
+
+        public const string RootFilletFactorSymbol = @"f_{r}";
+        public const string TipReliefFactorSymbol = @"f_{t}";
+        public const string TotalProfileShiftSymbol = @"x_{1} + x_{2} +x_{mod}";
+        public const string ProfileShiftSymbol = @"x_{1}, x_{2}";
     }
 }

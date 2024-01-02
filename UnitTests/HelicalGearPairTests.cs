@@ -1,4 +1,6 @@
 ﻿using Bolsover.Gear;
+using Bolsover.Gear.Calculators;
+using Bolsover.Gear.Models;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -20,8 +22,8 @@ namespace UnitTests
             g2.AddendumFilletFactorRa = 0.25;
             g1.WorkingCentreDistanceAw = 125;
             g2.WorkingCentreDistanceAw = 125;
-            g1.CircularBacklashBc = 0;
-            g2.CircularBacklashBc = 0;
+            g1.CircularBacklashBc = 0.1;
+            g2.CircularBacklashBc = 0.1;
             g1.MatingGear = g2;
             g2.MatingGear = g1;
             g1.DeltaX = 50;
@@ -29,8 +31,8 @@ namespace UnitTests
 
             g1.ProfileShiftX = 0.6;
             g2.ProfileShiftX = 35;
-            g1.GearType = GearType.External;
-            g2.GearType = GearType.External;
+            g1.GearTypeEnum = GearTypeEnum.External;
+            g2.GearTypeEnum = GearTypeEnum.External;
         }
 
 

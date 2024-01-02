@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text;
+using Bolsover.Gear.Calculators;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Models
 {
     public class InvoluteGear
     {
@@ -11,7 +12,7 @@ namespace Bolsover.Gear
         private double _helixAngleBeta; // helix angle in degrees
         private double _rootFilletFactorRf; // root fillet factor 
         private double _addendumFilletFactorRa; // tip (addendum) fillet factor 
-        private GearType _gearType;
+        private GearTypeEnum _gearTypeEnum;
         private double _circularBacklashBc; // circular backlash required
         private double _deltaX = 50; // distribution of profile shift X between g1, g2
         private double _workingCentreDistanceAw; //working centre distance
@@ -106,12 +107,12 @@ namespace Bolsover.Gear
         /// <summary>
         /// Gear Type.
         /// </summary>
-        public GearType GearType
+        public GearTypeEnum GearTypeEnum
         {
-            get => _gearType;
+            get => _gearTypeEnum;
             set
             {
-                _gearType = value;
+                _gearTypeEnum = value;
                 Update();
             }
         }
@@ -244,7 +245,7 @@ namespace Bolsover.Gear
         }
     }
 
-    public enum GearType
+    public enum GearTypeEnum
     {
         Internal,
         External

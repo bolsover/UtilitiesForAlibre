@@ -1,4 +1,6 @@
 ﻿using Bolsover.Gear;
+using Bolsover.Gear.Builder;
+using Bolsover.Gear.Models;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -25,8 +27,8 @@ namespace UnitTests
             g2.CircularBacklashBc = 0;
             g1.MatingGear = g2;
             g2.MatingGear = g1;
-            g1.GearType = GearType.External;
-            g2.GearType = GearType.External;
+            g1.GearTypeEnum = GearTypeEnum.External;
+            g2.GearTypeEnum = GearTypeEnum.External;
             GearBuilder gearBuilder = new GearBuilder();
             gearToothPoints = new GearToothPoints();
             gearToothPoints.GearCentre = new GearPoint(0, 0);

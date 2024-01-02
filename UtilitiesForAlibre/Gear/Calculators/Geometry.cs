@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bolsover.Gear.Models;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Calculators
 {
     public static class Geometry
     {
@@ -64,7 +65,7 @@ namespace Bolsover.Gear
         }
 
         /// <summary>
-        /// Trims the given List<Point> of involute points to remove any points below the intersection with the root fillet.
+        /// Trims the given List<GearPoint> of involute points to remove any points below the intersection with the root fillet.
         /// A calculated (interpolated) point will be added to ensure the root fillet ends where the involute curve starts.
         /// </summary>
         /// <param name="involutePoints"></param>
@@ -103,7 +104,7 @@ namespace Bolsover.Gear
         }
 
         /// <summary>
-        /// Trims the given List<Point> of involute points to remove any points above the intersection with the tip relief arc.
+        /// Trims the given List<GearPoint> of involute points to remove any points above the intersection with the tip relief arc.
         /// The final point in the returned list will be the tip relief start point .
         /// </summary>
         /// <param name="involutePoints"></param>
@@ -304,91 +305,7 @@ namespace Bolsover.Gear
         }
 
 
-        // /// <summary>
-        // /// Calculates the distance from the centre of the inner gear addendum relief to a point on the base circle where a
-        // /// line from the addendum relief centre meets the base circle at a tangent. A line to the gear centre will be at 90°
-        // /// to this line. 
-        // /// </summary>
-        // /// <param name="baseRadius"></param>
-        // /// <param name="addendumRadius"></param>
-        // /// <param name="reliefRadius"></param>
-        // /// <returns></returns>
-        // public static double DistanceBaseTangentPointToInnerGearAddendumRelief(double baseRadius, double addendumRadius,
-        //     double reliefRadius)
-        // {
-        //     double hypotenuse;
-        //     if (addendumRadius > baseRadius)
-        //     {
-        //         hypotenuse = addendumRadius + reliefRadius;
-        //     }
-        //     else
-        //     {
-        //         hypotenuse = baseRadius + reliefRadius;
-        //     }
-        //     var hypotenuseSquared = hypotenuse * hypotenuse;
-        //     var baseRadiusSquared = baseRadius * baseRadius;
-        //     var resultSquared = hypotenuseSquared - baseRadiusSquared;
-        //     return Math.Sqrt(resultSquared);
-        // }
-        //
-        //
-        // /// <summary>
-        // /// Calculates the angle between a line from the gear centre to the centre point of the Addendum Relief circle centre
-        // /// and a line from the Addendum Relief circle centre to a tangent point on the base circle.
-        // /// </summary>
-        // /// <param name="gear"></param>
-        // /// <returns></returns>
-        // public static double InnerGearTipReliefCentreToBaseTangentAngle(InvoluteGear gear)
-        // {
-        //     var addendumRadius = GearCalculations.AddendumRadiusRa(gear);
-        //     var baseRadius = GearCalculations.BaseRadiusRb(gear);
-        //     var reliefRadius = GearCalculations.RootFilletRadius(gear);
-        //     
-        //     double d = DistanceBaseTangentPointToInnerGearAddendumRelief(baseRadius,
-        //         addendumRadius, reliefRadius );
-        //     double angleToBase;
-        //     if (addendumRadius > baseRadius)
-        //     {
-        //         angleToBase =  Point.Degrees(Math.Acos(d/(addendumRadius + reliefRadius) ));
-        //     }
-        //     else
-        //     {
-        //         angleToBase =  Point.Degrees(Math.Acos(d/(baseRadius + reliefRadius) )); 
-        //     }
-        //
-        //     return angleToBase;
-        // }
-
-        // /// <summary>
-        // /// For internal Gears, calculates the end point of the tip relief on the involute curve.
-        // /// </summary>
-        // /// <param name="gear"></param>
-        // /// <returns></returns>
-        // public static Point InnerGearTipReliefEnd(InvoluteGear gear)
-        // {
-        //     // double d = LineLengthToInnerGearAddendumRelief(GearCalculations.BaseRadiusRb(gear),
-        //     //     GearCalculations.AddendumRadiusRa(gear), GearCalculations.RootFilletRadius(gear) );
-        //     //
-        //      double centreToFilletCentre = GearCalculations.BaseRadiusRb(gear) + GearCalculations.RootFilletRadius(gear);
-        //     //
-        //     // double angleToBase = CosineRuleAngle(GearCalculations.BaseRadiusRb(gear), d,
-        //     //     centreToFilletCentre);
-        //
-        //     double angleToBase = InnerGearTipReliefCentreToBaseTangentAngle(gear);
-        //     
-        //     double radiansToBase = Point.Radians(180 - angleToBase);
-        //     
-        //     Point p = new Point(centreToFilletCentre, 0);
-        //     Point y = Point.PolarOffset(p, GearCalculations.RootFilletRadius(gear), radiansToBase);
-        //     Point centre = new Point(0, 0);
-        //     double distanceToY = DistanceBetweenPoints(centre, y);
-        //     
-        //     // double angleTofilletCentre = CosineRuleAngle(GearCalculations.RootFilletRadius(gear), distanceToY,
-        //     //     GearCalculations.BaseRadiusRb(gear));
-        //     
-        //     return PointOnInvolute(GearCalculations.BaseRadiusRb(gear), distanceToY);
-        // }
-
+  
 
         /// <summary>
         /// returns the angle in degrees that lies opposite sidea

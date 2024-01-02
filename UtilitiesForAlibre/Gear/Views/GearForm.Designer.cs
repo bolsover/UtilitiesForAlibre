@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Views
 {
     partial class GearForm
     {
@@ -32,7 +32,7 @@ namespace Bolsover.Gear
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GearForm));
-            this._gearUserControl1 = new Bolsover.Gear.GearUserControl();
+            this._gearUserControl1 = new GearUserControl();
             this.SuspendLayout();
             // 
             // _gearUserControl1
@@ -55,7 +55,7 @@ namespace Bolsover.Gear
             this.ResumeLayout(false);
         }
 
-        private Bolsover.Gear.GearUserControl _gearUserControl1;
+        private GearUserControl _gearUserControl1;
 
         #endregion
     }

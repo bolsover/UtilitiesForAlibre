@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Bolsover.Gear.Calculators;
+using Bolsover.Gear.Models;
 
-namespace Bolsover.Gear
+namespace Bolsover.Gear.Builder
 {
     public class GearBuilder
     {
         public GearToothPoints BuildGearToothPoints(GearToothPoints gearToothPoints)
         {
-            if (gearToothPoints.G1.GearType == GearType.External)
+            if (gearToothPoints.G1.GearTypeEnum == GearTypeEnum.External)
             {
                 BuildExternalToothPoints(gearToothPoints);
             }

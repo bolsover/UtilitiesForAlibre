@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using AlibreAddOn;
 using AlibreX;
-using Bolsover.AlibreDataViewer;
 using com.alibre.automation;
 
 namespace Bolsover.CycloidalGear

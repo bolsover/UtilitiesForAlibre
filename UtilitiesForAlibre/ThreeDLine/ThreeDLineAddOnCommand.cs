@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using AlibreAddOn;
 using AlibreX;
-using Bolsover.Sample;
 
 namespace Bolsover.ThreeDLine
 {
