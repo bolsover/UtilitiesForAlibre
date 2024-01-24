@@ -208,14 +208,7 @@ namespace Bolsover.Gear.Views
                 IsHelical = _g1.HelixAngleBeta > 0,
                 IsPinion = pinion,
             };
-            if (pinion)
-            {
-                gearToothPoints.G1 = _g1;
-            }
-            else
-            {
-                gearToothPoints.G1 = _g2;
-            }
+            gearToothPoints.G1 = pinion ? _g1 : _g2;
 
             gearBuilder.BuildGearToothPoints(gearToothPoints);
 

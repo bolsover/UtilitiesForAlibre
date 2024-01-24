@@ -670,5 +670,37 @@ namespace UnitTests.Involute.Calculator
             var actual = _calculator.CalculateProfileShiftModificationForBacklash(_designInputParams);
             Assert.AreEqual(expected, actual, 0.001);
         }
+        
+        [Test]
+        public void CalculatePhi()
+        {
+            _designInputParams.WorkingCentreDistance = 14.000;
+
+            _designInputParams.Gear.Module = 3.0;
+            _designInputParams.Gear.PressureAngle = 20.0;
+            _designInputParams.Gear.HelixAngle = 30;
+            _designInputParams.Gear.Teeth = 24.0;
+            _designInputParams.Gear.CoefficientOfProfileShift = 0.36;
+            _designInputParams.Gear.AddendumFilletFactor = 0.25;
+            _designInputParams.Gear.RootFilletFactor = 0.38;
+            _designInputParams.Gear.CircularBacklash = 0.0;
+            _designInputParams.Gear.Style = GearStyle.Internal | GearStyle.Helical; // configures the gear as an external helical gear
+
+            _designInputParams.Pinion.Module = 3.0;
+            _designInputParams.Pinion.PressureAngle = 20.0;
+            _designInputParams.Pinion.HelixAngle = 30;
+            _designInputParams.Pinion.Teeth = 16.0;
+            _designInputParams.Pinion.CoefficientOfProfileShift = 0.6;
+            _designInputParams.Pinion.AddendumFilletFactor = 0.25;
+            _designInputParams.Pinion.RootFilletFactor = 0.38;
+            _designInputParams.Pinion.CircularBacklash = 0.0;
+            _designInputParams.Pinion.Style = GearStyle.External | GearStyle.Helical; // configures the gear as an external helical gear
+
+            var expected1 = 1.28419d;
+            var expected2 = 1.28419d;
+            var result = _calculator.CalculatePhi(_designInputParams);
+            Assert.AreEqual(expected1, result.Item1, 0.001);
+            Assert.AreEqual(expected2, result.Item2, 0.001);
+        }
     }
 }

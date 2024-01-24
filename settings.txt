@@ -1,0 +1,463 @@
+Command Center Browser, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+Command Center Browser, SHORTCUTS, HELPITEM, F1
+Command Center Browser, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+Command Center Browser, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+Command Center Browser, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+Command Center Browser, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+Command Center Browser, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+Command Center Browser, SHORTCUTS, COMMANDCENTER_OPTIONS, Ctrl+Shift+O
+Command Center Browser, SHORTCUTS, COMMUNITY_HOME, Alt+Home
+Design Boolean Browser, SHORTCUTS, SELECTALL, Ctrl+A
+Design Boolean Browser, SHORTCUTS, COPY, Ctrl+C
+Design Boolean Browser, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+Design Boolean Browser, SHORTCUTS, PRINT_DESIGN, Ctrl+P
+Design Boolean Browser, SHORTCUTS, PASTE, Ctrl+V
+Design Boolean Browser, SHORTCUTS, CUT, Ctrl+X
+Design Boolean Browser, SHORTCUTS, REDO, Ctrl+Y
+Design Boolean Browser, SHORTCUTS, UNDO, Ctrl+Z
+Design Boolean Browser, SHORTCUTS, DELETE, Del
+Design Boolean Browser, SHORTCUTS, DESIGN_PROPERTIES, Alt+Enter
+Design Boolean Browser, SHORTCUTS, PROFILE_OPTIONS, Ctrl+Shift+O
+Design Boolean Browser, SHORTCUTS, CUSTOM_ORIENTATIONS, Ctrl+U
+Design Boolean Browser, SHORTCUTS, ROTATION_POINTS, Ctrl+R
+Design Boolean Browser, SHORTCUTS, CMD_MEASUREMENTTOOL, Ctrl+M
+Design Boolean Browser, SHORTCUTS, EQUATION, Ctrl+E
+Design Boolean Browser, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+Design Boolean Browser, SHORTCUTS, HELPITEM, F1
+Design Boolean Browser, SHORTCUTS, PREVIOUS_VIEW, F3
+Design Boolean Browser, SHORTCUTS, NEXT_VIEW, F4
+Design Boolean Browser, SHORTCUTS, REGENERATE_ASSEMBLY, F5
+Design Boolean Browser, SHORTCUTS, ZOOM_FIT, Home
+Design Boolean Browser, SHORTCUTS, INSERT_DESIGN, Ctrl+Shift+I
+Design Boolean Browser, SHORTCUTS, HIDE_SELECTION, Ctrl+H
+Design Boolean Browser, SHORTCUTS, TOGGLE_ANNOTATIONS, Ctrl+Shift+A
+Design Boolean Browser, SHORTCUTS, TOGGLE_SKETCH_DIMENSIONS, Ctrl+Shift+E
+Design Boolean Browser, SHORTCUTS, TOGGLE_CONSTRAINTS, Ctrl+Shift+C
+Design Boolean Browser, SHORTCUTS, TOGGLE_GRID, Ctrl+Shift+G
+Design Boolean Browser, SHORTCUTS, TOGGLE_REDLINES, Ctrl+Shift+R
+Design Boolean Browser, SHORTCUTS, TOGGLE_SKETCHES, Ctrl+Shift+K
+Design Boolean Browser, SHORTCUTS, TOGGLE_ALLREFS, Ctrl+Shift+P
+Design Boolean Browser, SHORTCUTS, TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Boolean Browser, SHORTCUTS, CMD_ASSEMBLY_CONSTRAINTS, Ctrl+Shift+C
+Design Boolean Browser, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+Design Boolean Browser, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+Design Boolean Browser, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+Design Boolean Browser, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+Design Boolean Browser, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+Design Boolean Browser, SHORTCUTS, CMD_ORIENT_FRONT, Ctrl+1
+Design Boolean Browser, SHORTCUTS, CMD_ORIENT_BACK, Ctrl+2
+Design Boolean Browser, SHORTCUTS, CMD_ORIENT_LEFT, Ctrl+3
+Design Boolean Browser, SHORTCUTS, CMD_ORIENT_RIGHT, Ctrl+4
+Design Boolean Browser, SHORTCUTS, CMD_ORIENT_TOP, Ctrl+5
+Design Boolean Browser, SHORTCUTS, CMD_ORIENT_BOTTOM, Ctrl+6
+Design Boolean Browser, SHORTCUTS, CMD_ORIENT_ISO_FRONT_NW, Ctrl+7
+Design Boolean Browser, SHORTCUTS, TOGGLE_POINTS, Alt+1
+Design Boolean Browser, SHORTCUTS, TOGGLE_AXES, Alt+2
+Design Boolean Browser, SHORTCUTS, TOGGLE_PLANES, Alt+3
+Design Boolean Browser, SHORTCUTS, TOGGLE_COORDINATE_SYSTEM, Alt+4
+Design Boolean Browser, SHORTCUTS, TOGGLE_ORIENTATION_GLYPH, Alt+5
+Design Assembly Exploded View Browser, SHORTCUTS, SELECTALL, Ctrl+A
+Design Assembly Exploded View Browser, SHORTCUTS, COPY, Ctrl+C
+Design Assembly Exploded View Browser, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+Design Assembly Exploded View Browser, SHORTCUTS, SAVE_DESIGN, Ctrl+S
+Design Assembly Exploded View Browser, SHORTCUTS, PRINT_DESIGN, Ctrl+P
+Design Assembly Exploded View Browser, SHORTCUTS, PASTE, Ctrl+V
+Design Assembly Exploded View Browser, SHORTCUTS, CUT, Ctrl+X
+Design Assembly Exploded View Browser, SHORTCUTS, REDO, Ctrl+Y
+Design Assembly Exploded View Browser, SHORTCUTS, UNDO, Ctrl+Z
+Design Assembly Exploded View Browser, SHORTCUTS, DELETE, Del
+Design Assembly Exploded View Browser, SHORTCUTS, DESIGN_PROPERTIES, Alt+Enter
+Design Assembly Exploded View Browser, SHORTCUTS, PROFILE_OPTIONS, Ctrl+Shift+O
+Design Assembly Exploded View Browser, SHORTCUTS, CUSTOM_ORIENTATIONS, Ctrl+U
+Design Assembly Exploded View Browser, SHORTCUTS, ROTATION_POINTS, Ctrl+R
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_MEASUREMENTTOOL, Ctrl+M
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_GLOBAL_PARAMETERS, Ctrl+G
+Design Assembly Exploded View Browser, SHORTCUTS, EQUATION, Ctrl+E
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+Design Assembly Exploded View Browser, SHORTCUTS, HELPITEM, F1
+Design Assembly Exploded View Browser, SHORTCUTS, PREVIOUS_VIEW, F3
+Design Assembly Exploded View Browser, SHORTCUTS, NEXT_VIEW, F4
+Design Assembly Exploded View Browser, SHORTCUTS, REGENERATE_ASSEMBLY, F5
+Design Assembly Exploded View Browser, SHORTCUTS, ZOOM_FIT, Home
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_INSERT_DESIGN_IMPORT, Ctrl+Shift+I
+Design Assembly Exploded View Browser, SHORTCUTS, INSERT_NEW_PART, Ctrl+Shift+N
+Design Assembly Exploded View Browser, SHORTCUTS, HIDE_SELECTION, Ctrl+H
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_ANNOTATIONS, Ctrl+Shift+A
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_SKETCH_DIMENSIONS, Ctrl+Shift+E
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_CONSTRAINTS, Ctrl+Shift+C
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_GRID, Ctrl+Shift+G
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_REDLINES, Ctrl+Shift+R
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_SKETCHES, Ctrl+Shift+K
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_ALLREFS, Ctrl+Shift+P
+Design Assembly Exploded View Browser, SHORTCUTS, SAVE_DESIGN_AS, Ctrl+Shift+S
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ASSEMBLY_CONSTRAINTS, Ctrl+Q
+Design Assembly Exploded View Browser, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+Design Assembly Exploded View Browser, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+Design Assembly Exploded View Browser, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+Design Assembly Exploded View Browser, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+Design Assembly Exploded View Browser, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ORIENT_FRONT, Ctrl+1
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ORIENT_BACK, Ctrl+2
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ORIENT_LEFT, Ctrl+3
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ORIENT_RIGHT, Ctrl+4
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ORIENT_TOP, Ctrl+5
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ORIENT_BOTTOM, Ctrl+6
+Design Assembly Exploded View Browser, SHORTCUTS, CMD_ORIENT_ISO_FRONT_NW, Ctrl+7
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_POINTS, Alt+1
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_AXES, Alt+2
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_PLANES, Alt+3
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_COORDINATE_SYSTEM, Alt+4
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_ORIENTATION_GLYPH, Alt+5
+Design Assembly Exploded View Browser, SHORTCUTS, TOGGLE_SURFACES, Alt+7
+GlobalParam Editor, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+GlobalParam Editor, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+GlobalParam Editor, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+GlobalParam Editor, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+GlobalParam Editor, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+GlobalParam Editor, SHORTCUTS, FILE_NEW_GLOBALPARAM, Ctrl+Shift+G
+GlobalParam Editor, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+GlobalParam Editor, SHORTCUTS, SAVE_DESIGN, Ctrl+S
+GlobalParam Editor, SHORTCUTS, SAVE_DESIGN_AS, Ctrl+Shift+S
+GlobalParam Editor, SHORTCUTS, PRINT_DRAWING, Ctrl+P
+GlobalParam Editor, SHORTCUTS, SELECTALL, Ctrl+A
+GlobalParam Editor, SHORTCUTS, CUT, Ctrl+X
+GlobalParam Editor, SHORTCUTS, COPY, Ctrl+C
+GlobalParam Editor, SHORTCUTS, PASTE, Ctrl+V
+GlobalParam Editor, SHORTCUTS, CLEAR_SELECTION, Del
+GlobalParam Editor, SHORTCUTS, UNDO, Ctrl+Z
+GlobalParam Editor, SHORTCUTS, REDO, Ctrl+Y
+GlobalParam Editor, SHORTCUTS, NEW_GLOBAL_PARAM, Ctrl+N
+GlobalParam Editor, SHORTCUTS, DELETE_GLOBAL_PARAM, Ctrl+D
+GlobalParam Editor, SHORTCUTS, LINK_GLOBAL_PARAM, Ctrl+L
+GlobalParam Editor, SHORTCUTS, HELPITEM, F1
+GlobalParam Editor, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+GlobalParam Editor, SHORTCUTS, COMMANDCENTER_OPTIONS, Ctrl+Shift+O
+GlobalParam Editor, SHORTCUTS, UPDATE_OPEN_DESIGNS, Ctrl+Shift+U
+GlobalParam Editor, SHORTCUTS, GLOBAL_PARAMETER_PROPERTIES, Alt+Enter
+BOM Editor, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+BOM Editor, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+BOM Editor, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+BOM Editor, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+BOM Editor, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+BOM Editor, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+BOM Editor, SHORTCUTS, SAVE_DESIGN, Ctrl+S
+BOM Editor, SHORTCUTS, SAVE_DESIGN_AS, Ctrl+Shift+S
+BOM Editor, SHORTCUTS, PRINT_DRAWING, Ctrl+P
+BOM Editor, SHORTCUTS, SELECTALL, Ctrl+A
+BOM Editor, SHORTCUTS, CUT, Ctrl+X
+BOM Editor, SHORTCUTS, COPY, Ctrl+C
+BOM Editor, SHORTCUTS, PASTE, Ctrl+V
+BOM Editor, SHORTCUTS, CLEAR_SELECTION, Del
+BOM Editor, SHORTCUTS, UNDO, Ctrl+Z
+BOM Editor, SHORTCUTS, REDO, Ctrl+Y
+BOM Editor, SHORTCUTS, HELPITEM, F1
+BOM Editor, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+BOM Editor, SHORTCUTS, COMMANDCENTER_OPTIONS, Ctrl+Shift+O
+Drawing Browser, SHORTCUTS, SELECTALL, Ctrl+A
+Drawing Browser, SHORTCUTS, COPY, Ctrl+C
+Drawing Browser, SHORTCUTS, COPY_WITH_BASE_POINT, Shift+C
+Drawing Browser, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+Drawing Browser, SHORTCUTS, SAVE_DESIGN, Ctrl+S
+Drawing Browser, SHORTCUTS, PASTE, Ctrl+V
+Drawing Browser, SHORTCUTS, PASTE_STAMPER, Ctrl+T
+Drawing Browser, SHORTCUTS, CUT, Ctrl+X
+Drawing Browser, SHORTCUTS, REDO, Ctrl+Y
+Drawing Browser, SHORTCUTS, UNDO, Ctrl+Z
+Drawing Browser, SHORTCUTS, DELETE, Del
+Drawing Browser, SHORTCUTS, DRAWING_PROPERTIES, Alt+Enter
+Drawing Browser, SHORTCUTS, PROFILE_OPTIONS, Ctrl+Shift+O
+Drawing Browser, SHORTCUTS, SKETCH_MODE, Ctrl+K
+Drawing Browser, SHORTCUTS, INSERT_BOM_VIEW, Ctrl+B
+Drawing Browser, SHORTCUTS, INSERT_CUSTOM_SYMBOL, Ctrl+I
+Drawing Browser, SHORTCUTS, LAYERS, Ctrl+L
+Drawing Browser, SHORTCUTS, CMD_DIMENSION_STYLES, Ctrl+D
+Drawing Browser, SHORTCUTS, TOGGLE_ANNOTATIONS, Ctrl+Shift+A
+Drawing Browser, SHORTCUTS, TOGGLE_CONSTRAINTS, Ctrl+Shift+C
+Drawing Browser, SHORTCUTS, TOGGLE_REDLINES, Ctrl+Shift+R
+Drawing Browser, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+Drawing Browser, SHORTCUTS, PRINT_DRAWING, Ctrl+P
+Drawing Browser, SHORTCUTS, HELPITEM, F1
+Drawing Browser, SHORTCUTS, ZOOM_FIT, Home
+Drawing Browser, SHORTCUTS, PREVIOUS_VIEW, F3
+Drawing Browser, SHORTCUTS, NEXT_VIEW, F4
+Drawing Browser, SHORTCUTS, SAVE_DESIGN_AS, Ctrl+Shift+S
+Drawing Browser, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+Drawing Browser, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+Drawing Browser, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+Drawing Browser, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+Drawing Browser, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+Drawing Browser, SHORTCUTS, REFRESH_DRAWING_CANVAS, F5
+Drawing Browser, SHORTCUTS, REPROJECT_VIEWS, Ctrl+R
+Drawing Browser, SHORTCUTS, MANAGE_DESIGN_PROPERTIES, Ctrl+M
+Drawing Browser, SHORTCUTS, TRIM_SKETCH, T
+Drawing Browser, SHORTCUTS, SKETCH_EXTEND, E
+Drawing Browser, SHORTCUTS, SKETCH_RECTANGLE_CENTER, Alt+R
+Drawing Browser, SHORTCUTS, SKETCH_RECTANGLE_THREEPOINT, Alt+Shift+R
+Drawing Browser, SHORTCUTS, SKETCH_RECTANGLE_TWOPOINT, R
+Drawing Browser, SHORTCUTS, SKETCH_DRAG_CIRCLE, C
+Drawing Browser, SHORTCUTS, SKETCH_LINE, L
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_FIXED, F
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_VERTICAL, V
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_HORIZONTAL, H
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_INTERSECTION, I
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_SYMMETRIC, Y
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CORADIAL, A
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CONCENTRIC, Z
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COLLINEAR, O
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COINCIDENT, N
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_MIDPOINT, M
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_EQUAL, Q
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_TANGENT, G
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PERPENDICULAR, U
+Drawing Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PARALLEL, P
+Drawing Browser, SHORTCUTS, SELECT_SKETCH, S
+Design Assembly Browser, SHORTCUTS, SELECTALL, Ctrl+A
+Design Assembly Browser, SHORTCUTS, COPY, Ctrl+C
+Design Assembly Browser, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+Design Assembly Browser, SHORTCUTS, SAVE_DESIGN, Ctrl+S
+Design Assembly Browser, SHORTCUTS, PRINT_DESIGN, Ctrl+P
+Design Assembly Browser, SHORTCUTS, PASTE, Ctrl+V
+Design Assembly Browser, SHORTCUTS, CUT, Ctrl+X
+Design Assembly Browser, SHORTCUTS, REDO, Ctrl+Y
+Design Assembly Browser, SHORTCUTS, UNDO, Ctrl+Z
+Design Assembly Browser, SHORTCUTS, DELETE, Del
+Design Assembly Browser, SHORTCUTS, DESIGN_PROPERTIES, Alt+Enter
+Design Assembly Browser, SHORTCUTS, PROFILE_OPTIONS, Ctrl+Shift+O
+Design Assembly Browser, SHORTCUTS, CUSTOM_ORIENTATIONS, Ctrl+U
+Design Assembly Browser, SHORTCUTS, ROTATION_POINTS, Ctrl+R
+Design Assembly Browser, SHORTCUTS, CMD_MEASUREMENTTOOL, Ctrl+M
+Design Assembly Browser, SHORTCUTS, CMD_GLOBAL_PARAMETERS, Ctrl+G
+Design Assembly Browser, SHORTCUTS, EQUATION, Ctrl+E
+Design Assembly Browser, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+Design Assembly Browser, SHORTCUTS, HELPITEM, F1
+Design Assembly Browser, SHORTCUTS, PREVIOUS_VIEW, F3
+Design Assembly Browser, SHORTCUTS, NEXT_VIEW, F4
+Design Assembly Browser, SHORTCUTS, REGENERATE_ASSEMBLY, F5
+Design Assembly Browser, SHORTCUTS, ZOOM_FIT, Home
+Design Assembly Browser, SHORTCUTS, CMD_INSERT_DESIGN_IMPORT, Ctrl+Shift+I
+Design Assembly Browser, SHORTCUTS, INSERT_NEW_PART, Ctrl+Shift+N
+Design Assembly Browser, SHORTCUTS, HIDE_SELECTION, Ctrl+H
+Design Assembly Browser, SHORTCUTS, TOGGLE_ANNOTATIONS, Ctrl+Shift+A
+Design Assembly Browser, SHORTCUTS, TOGGLE_SKETCH_DIMENSIONS, Ctrl+Shift+E
+Design Assembly Browser, SHORTCUTS, TOGGLE_CONSTRAINTS, Ctrl+Shift+C
+Design Assembly Browser, SHORTCUTS, TOGGLE_GRID, Ctrl+Shift+G
+Design Assembly Browser, SHORTCUTS, TOGGLE_REDLINES, Ctrl+Shift+R
+Design Assembly Browser, SHORTCUTS, TOGGLE_SKETCHES, Ctrl+Shift+K
+Design Assembly Browser, SHORTCUTS, TOGGLE_ALLREFS, Ctrl+Shift+P
+Design Assembly Browser, SHORTCUTS, SAVE_DESIGN_AS, Ctrl+Shift+S
+Design Assembly Browser, SHORTCUTS, TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Assembly Browser, SHORTCUTS, CMD_ASSEMBLY_CONSTRAINTS, Ctrl+Q
+Design Assembly Browser, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+Design Assembly Browser, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+Design Assembly Browser, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+Design Assembly Browser, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+Design Assembly Browser, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+Design Assembly Browser, SHORTCUTS, REGENERATE_ASSEMBLY_DEEP, Ctrl+Shift+F5
+Design Assembly Browser, SHORTCUTS, CMD_ORIENT_FRONT, Ctrl+1
+Design Assembly Browser, SHORTCUTS, CMD_ORIENT_BACK, Ctrl+2
+Design Assembly Browser, SHORTCUTS, CMD_ORIENT_LEFT, Ctrl+3
+Design Assembly Browser, SHORTCUTS, CMD_ORIENT_RIGHT, Ctrl+4
+Design Assembly Browser, SHORTCUTS, CMD_ORIENT_TOP, Ctrl+5
+Design Assembly Browser, SHORTCUTS, CMD_ORIENT_BOTTOM, Ctrl+6
+Design Assembly Browser, SHORTCUTS, CMD_ORIENT_ISO_FRONT_NW, Ctrl+7
+Design Assembly Browser, SHORTCUTS, TOGGLE_POINTS, Alt+1
+Design Assembly Browser, SHORTCUTS, TOGGLE_AXES, Alt+2
+Design Assembly Browser, SHORTCUTS, TOGGLE_PLANES, Alt+3
+Design Assembly Browser, SHORTCUTS, TOGGLE_COORDINATE_SYSTEM, Alt+4
+Design Assembly Browser, SHORTCUTS, TOGGLE_ORIENTATION_GLYPH, Alt+5
+Design Assembly Browser, SHORTCUTS, TOGGLE_SURFACES, Alt+7
+Design Assembly Browser, SHORTCUTS, TOGGLE_COMPONENT_GEOMETRY, Alt+0
+Design Assembly Browser, SHORTCUTS, TRIM_SKETCH, T
+Design Assembly Browser, SHORTCUTS, SKETCH_EXTEND, E
+Design Assembly Browser, SHORTCUTS, SKETCH_REF_RECTANGLE_TWOPOINT, Shift+R
+Design Assembly Browser, SHORTCUTS, SKETCH_REF_LINE_POPUP_TOOLBAR, Shift+L
+Design Assembly Browser, SHORTCUTS, SKETCH_RECTANGLE_CENTER, Alt+R
+Design Assembly Browser, SHORTCUTS, SKETCH_RECTANGLE_THREEPOINT, Alt+Shift+R
+Design Assembly Browser, SHORTCUTS, SKETCH_RECTANGLE_TWOPOINT, R
+Design Assembly Browser, SHORTCUTS, SKETCH_DRAG_CIRCLE, C
+Design Assembly Browser, SHORTCUTS, SKETCH_LINE, L
+Design Assembly Browser, SHORTCUTS, SKETCH_QUICK_DIMENSION, D
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_FIXED, F
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_VERTICAL, V
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_HORIZONTAL, H
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_INTERSECTION, I
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_SYMMETRIC, Y
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CORADIAL, A
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CONCENTRIC, Z
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COLLINEAR, O
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COINCIDENT, N
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_MIDPOINT, M
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_EQUAL, Q
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_TANGENT, G
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PERPENDICULAR, U
+Design Assembly Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PARALLEL, P
+Design Assembly Browser, SHORTCUTS, SELECT_SKETCH, S
+Design Sheet Metal Browser, SHORTCUTS, SELECTALL, Ctrl+A
+Design Sheet Metal Browser, SHORTCUTS, COPY, Ctrl+C
+Design Sheet Metal Browser, SHORTCUTS, COPY_WITH_BASE_POINT, Shift+C
+Design Sheet Metal Browser, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+Design Sheet Metal Browser, SHORTCUTS, SAVE_DESIGN, Ctrl+S
+Design Sheet Metal Browser, SHORTCUTS, PRINT_DESIGN, Ctrl+P
+Design Sheet Metal Browser, SHORTCUTS, PASTE, Ctrl+V
+Design Sheet Metal Browser, SHORTCUTS, PASTE_STAMPER, Ctrl+T
+Design Sheet Metal Browser, SHORTCUTS, CUT, Ctrl+X
+Design Sheet Metal Browser, SHORTCUTS, REDO, Ctrl+Y
+Design Sheet Metal Browser, SHORTCUTS, UNDO, Ctrl+Z
+Design Sheet Metal Browser, SHORTCUTS, DELETE, Del
+Design Sheet Metal Browser, SHORTCUTS, DESIGN_PROPERTIES, Alt+Enter
+Design Sheet Metal Browser, SHORTCUTS, PROFILE_OPTIONS, Ctrl+Shift+O
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_MODE, Ctrl+K
+Design Sheet Metal Browser, SHORTCUTS, CUSTOM_ORIENTATIONS, Ctrl+U
+Design Sheet Metal Browser, SHORTCUTS, ROTATION_POINTS, Ctrl+R
+Design Sheet Metal Browser, SHORTCUTS, CMD_MEASUREMENTTOOL, Ctrl+M
+Design Sheet Metal Browser, SHORTCUTS, CMD_GLOBAL_PARAMETERS, Ctrl+G
+Design Sheet Metal Browser, SHORTCUTS, EQUATION, Ctrl+E
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+Design Sheet Metal Browser, SHORTCUTS, HELPITEM, F1
+Design Sheet Metal Browser, SHORTCUTS, PREVIOUS_VIEW, F3
+Design Sheet Metal Browser, SHORTCUTS, NEXT_VIEW, F4
+Design Sheet Metal Browser, SHORTCUTS, REGENERATE_SM, F5
+Design Sheet Metal Browser, SHORTCUTS, ZOOM_FIT, Home
+Design Sheet Metal Browser, SHORTCUTS, HIDE_SELECTION, Ctrl+H
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_SKETCHES, Ctrl+Shift+K
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_ANNOTATIONS, Ctrl+Shift+A
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_SKETCH_DIMENSIONS, Ctrl+Shift+E
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_CONSTRAINTS, Ctrl+Shift+C
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_GRID, Ctrl+Shift+G
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_REDLINES, Ctrl+Shift+R
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_ALLREFS, Ctrl+Shift+P
+Design Sheet Metal Browser, SHORTCUTS, SAVE_DESIGN_AS, Ctrl+Shift+S
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Sheet Metal Browser, SHORTCUTS, CMD_TOGGLE_DOF_COLOR, Ctrl+Shift+N
+Design Sheet Metal Browser, SHORTCUTS, CMD_TOGGLE_DOF_CALLOUTS, Ctrl+Shift+U
+Design Sheet Metal Browser, SHORTCUTS, CMD_DESIGN_CHECK_BODY, Ctrl+Shift+H
+Design Sheet Metal Browser, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+Design Sheet Metal Browser, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+Design Sheet Metal Browser, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+Design Sheet Metal Browser, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+Design Sheet Metal Browser, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+Design Sheet Metal Browser, SHORTCUTS, ALIBRE_SNAP_TO_WORKING, Ctrl+Shift+Z
+Design Sheet Metal Browser, SHORTCUTS, ALIBRE_SNAP_TO_ISO_WORKING, Ctrl+Shift+Q
+Design Sheet Metal Browser, SHORTCUTS, CMD_ORIENT_FRONT, Ctrl+1
+Design Sheet Metal Browser, SHORTCUTS, CMD_ORIENT_BACK, Ctrl+2
+Design Sheet Metal Browser, SHORTCUTS, CMD_ORIENT_LEFT, Ctrl+3
+Design Sheet Metal Browser, SHORTCUTS, CMD_ORIENT_RIGHT, Ctrl+4
+Design Sheet Metal Browser, SHORTCUTS, CMD_ORIENT_TOP, Ctrl+5
+Design Sheet Metal Browser, SHORTCUTS, CMD_ORIENT_BOTTOM, Ctrl+6
+Design Sheet Metal Browser, SHORTCUTS, CMD_ORIENT_ISO_FRONT_NW, Ctrl+7
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_POINTS, Alt+1
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_AXES, Alt+2
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_PLANES, Alt+3
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_COORDINATE_SYSTEM, Alt+4
+Design Sheet Metal Browser, SHORTCUTS, TOGGLE_ORIENTATION_GLYPH, Alt+5
+Design Sheet Metal Browser, SHORTCUTS, TRIM_SKETCH, T
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_EXTEND, E
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_REF_RECTANGLE_TWOPOINT, Shift+R
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_REF_LINE_POPUP_TOOLBAR, Shift+L
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_RECTANGLE_CENTER, Alt+R
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_RECTANGLE_THREEPOINT, Alt+Shift+R
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_RECTANGLE_TWOPOINT, R
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_DRAG_CIRCLE, C
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_LINE, L
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_QUICK_DIMENSION, D
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_FIXED, F
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_VERTICAL, V
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_HORIZONTAL, H
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_INTERSECTION, I
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_SYMMETRIC, Y
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CORADIAL, A
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CONCENTRIC, Z
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COLLINEAR, O
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COINCIDENT, N
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_MIDPOINT, M
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_EQUAL, Q
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_TANGENT, G
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PERPENDICULAR, U
+Design Sheet Metal Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PARALLEL, P
+Design Sheet Metal Browser, SHORTCUTS, SELECT_SKETCH, S
+Design Part Browser, SHORTCUTS, SELECTALL, Ctrl+A
+Design Part Browser, SHORTCUTS, COPY, Ctrl+C
+Design Part Browser, SHORTCUTS, COPY_WITH_BASE_POINT, Shift+C
+Design Part Browser, SHORTCUTS, OPEN_DESIGN, Ctrl+O
+Design Part Browser, SHORTCUTS, SAVE_DESIGN, Ctrl+S
+Design Part Browser, SHORTCUTS, PRINT_DESIGN, Ctrl+P
+Design Part Browser, SHORTCUTS, PASTE, Ctrl+V
+Design Part Browser, SHORTCUTS, PASTE_STAMPER, Ctrl+T
+Design Part Browser, SHORTCUTS, CUT, Ctrl+X
+Design Part Browser, SHORTCUTS, REDO, Ctrl+Y
+Design Part Browser, SHORTCUTS, UNDO, Ctrl+Z
+Design Part Browser, SHORTCUTS, DELETE, Del
+Design Part Browser, SHORTCUTS, DESIGN_PROPERTIES, Alt+Enter
+Design Part Browser, SHORTCUTS, PROFILE_OPTIONS, Ctrl+Shift+O
+Design Part Browser, SHORTCUTS, SKETCH_MODE, Ctrl+K
+Design Part Browser, SHORTCUTS, CUSTOM_ORIENTATIONS, Ctrl+U
+Design Part Browser, SHORTCUTS, ROTATION_POINTS, Ctrl+R
+Design Part Browser, SHORTCUTS, CMD_MEASUREMENTTOOL, Ctrl+M
+Design Part Browser, SHORTCUTS, CMD_GLOBAL_PARAMETERS, Ctrl+G
+Design Part Browser, SHORTCUTS, EQUATION, Ctrl+E
+Design Part Browser, SHORTCUTS, TOGGLE_WORKSPACES, Ctrl+Tab
+Design Part Browser, SHORTCUTS, HELPITEM, F1
+Design Part Browser, SHORTCUTS, PREVIOUS_VIEW, F3
+Design Part Browser, SHORTCUTS, NEXT_VIEW, F4
+Design Part Browser, SHORTCUTS, REGENERATE, F5
+Design Part Browser, SHORTCUTS, ZOOM_FIT, Home
+Design Part Browser, SHORTCUTS, HIDE_SELECTION, Ctrl+H
+Design Part Browser, SHORTCUTS, TOGGLE_SKETCHES, Ctrl+Shift+K
+Design Part Browser, SHORTCUTS, TOGGLE_ANNOTATIONS, Ctrl+Shift+A
+Design Part Browser, SHORTCUTS, TOGGLE_SKETCH_DIMENSIONS, Ctrl+Shift+E
+Design Part Browser, SHORTCUTS, TOGGLE_CONSTRAINTS, Ctrl+Shift+C
+Design Part Browser, SHORTCUTS, TOGGLE_GRID, Ctrl+Shift+G
+Design Part Browser, SHORTCUTS, TOGGLE_REDLINES, Ctrl+Shift+R
+Design Part Browser, SHORTCUTS, TOGGLE_ALLREFS, Ctrl+Shift+P
+Design Part Browser, SHORTCUTS, SAVE_DESIGN_AS, Ctrl+Shift+S
+Design Part Browser, SHORTCUTS, TOGGLE_WIREFRAME, Ctrl+Shift+W
+Design Part Browser, SHORTCUTS, CMD_TOGGLE_DOF_COLOR, Ctrl+Shift+N
+Design Part Browser, SHORTCUTS, CMD_TOGGLE_DOF_CALLOUTS, Ctrl+Shift+U
+Design Part Browser, SHORTCUTS, CMD_DESIGN_CHECK_BODY, Ctrl+Shift+H
+Design Part Browser, SHORTCUTS, CMD_LOG_PROPERTIES, Ctrl+Shift+X
+Design Part Browser, SHORTCUTS, FILE_NEW_PART, Ctrl+Shift+T
+Design Part Browser, SHORTCUTS, FILE_NEW_SHEET_METAL_PART, Ctrl+Shift+L
+Design Part Browser, SHORTCUTS, FILE_NEW_ASSEMBLY, Ctrl+Shift+B
+Design Part Browser, SHORTCUTS, FILE_NEW_DRAWING, Ctrl+Shift+D
+Design Part Browser, SHORTCUTS, FILE_NEW_BOM, Ctrl+Shift+M
+Design Part Browser, SHORTCUTS, REGENERATE_PART_DEEP, Ctrl+Shift+F5
+Design Part Browser, SHORTCUTS, ALIBRE_SNAP_TO_WORKING, Ctrl+Shift+Z
+Design Part Browser, SHORTCUTS, ALIBRE_SNAP_TO_ISO_WORKING, Ctrl+Shift+Q
+Design Part Browser, SHORTCUTS, CMD_ORIENT_FRONT, Ctrl+1
+Design Part Browser, SHORTCUTS, CMD_ORIENT_BACK, Ctrl+2
+Design Part Browser, SHORTCUTS, CMD_ORIENT_LEFT, Ctrl+3
+Design Part Browser, SHORTCUTS, CMD_ORIENT_RIGHT, Ctrl+4
+Design Part Browser, SHORTCUTS, CMD_ORIENT_TOP, Ctrl+5
+Design Part Browser, SHORTCUTS, CMD_ORIENT_BOTTOM, Ctrl+6
+Design Part Browser, SHORTCUTS, CMD_ORIENT_ISO_FRONT_NW, Ctrl+7
+Design Part Browser, SHORTCUTS, TOGGLE_POINTS, Alt+1
+Design Part Browser, SHORTCUTS, TOGGLE_AXES, Alt+2
+Design Part Browser, SHORTCUTS, TOGGLE_PLANES, Alt+3
+Design Part Browser, SHORTCUTS, TOGGLE_COORDINATE_SYSTEM, Alt+4
+Design Part Browser, SHORTCUTS, TOGGLE_ORIENTATION_GLYPH, Alt+5
+Design Part Browser, SHORTCUTS, TRIM_SKETCH, T
+Design Part Browser, SHORTCUTS, SKETCH_EXTEND, E
+Design Part Browser, SHORTCUTS, SKETCH_REF_RECTANGLE_TWOPOINT, Shift+R
+Design Part Browser, SHORTCUTS, SKETCH_REF_LINE_POPUP_TOOLBAR, Shift+L
+Design Part Browser, SHORTCUTS, SKETCH_RECTANGLE_CENTER, Alt+R
+Design Part Browser, SHORTCUTS, SKETCH_RECTANGLE_THREEPOINT, Alt+Shift+R
+Design Part Browser, SHORTCUTS, SKETCH_RECTANGLE_TWOPOINT, R
+Design Part Browser, SHORTCUTS, SKETCH_DRAG_CIRCLE, C
+Design Part Browser, SHORTCUTS, SKETCH_LINE, L
+Design Part Browser, SHORTCUTS, SKETCH_QUICK_DIMENSION, D
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_FIXED, F
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_VERTICAL, V
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_HORIZONTAL, H
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_INTERSECTION, I
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_SYMMETRIC, Y
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CORADIAL, A
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_CONCENTRIC, Z
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COLLINEAR, O
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_COINCIDENT, N
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_MIDPOINT, M
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_EQUAL, Q
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_TANGENT, G
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PERPENDICULAR, U
+Design Part Browser, SHORTCUTS, SKETCH_CONSTRAINTS_PARALLEL, P
+Design Part Browser, SHORTCUTS, SELECT_SKETCH, S

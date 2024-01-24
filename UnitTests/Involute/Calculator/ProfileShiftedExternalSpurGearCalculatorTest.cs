@@ -214,7 +214,7 @@ namespace UnitTests.Involute.Calculator
 
 
             var expected = .014904;
-            var actual = _calculator.CalculateInvoluteFunction(_designInputParams);
+            var actual = _calculator.CalculateInvoluteFunction(_designInputParams).Item1;
             Assert.AreEqual(expected, actual, 0.001);
         }
         
@@ -625,6 +625,72 @@ namespace UnitTests.Involute.Calculator
           // var expected = 1.202;
             io.WriteLine(_calculator.CalculateGearString(_designInputParams, _calculator.DesignOutputParams));
          //  Assert.AreEqual(expected, actual, 0.001);
+        }
+        
+        [Test]
+        public void CalculatePhi()
+        {
+            _designInputParams.WorkingCentreDistance = 56.4999;
+
+            _designInputParams.Gear.Module = 3.0;
+            _designInputParams.Gear.PressureAngle = 20.0;
+            _designInputParams.Gear.HelixAngle = 0;
+            _designInputParams.Gear.Teeth = 24.0;
+            _designInputParams.Gear.CoefficientOfProfileShift = 0.36;
+            _designInputParams.Gear.AddendumFilletFactor = 0.25;
+            _designInputParams.Gear.RootFilletFactor = 0.38;
+            _designInputParams.Gear.CircularBacklash = 0.1;
+            _designInputParams.Gear.Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
+
+            _designInputParams.Pinion.Module = 3.0;
+            _designInputParams.Pinion.PressureAngle = 20.0;
+            _designInputParams.Pinion.HelixAngle = 0;
+            _designInputParams.Pinion.Teeth = 12.0;
+            _designInputParams.Pinion.CoefficientOfProfileShift = 0.6;
+            _designInputParams.Pinion.AddendumFilletFactor = 0.25;
+            _designInputParams.Pinion.RootFilletFactor = 0.38;
+            _designInputParams.Pinion.CircularBacklash = 0.1;
+            _designInputParams.Pinion.Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
+
+            var expected1 = 0.85395;
+            var expected2 = 0.85395;
+            var result = _calculator.CalculatePhi(_designInputParams);
+            Assert.AreEqual(expected1, result.Item1, 0.001);
+            Assert.AreEqual(expected2, result.Item2, 0.001);
+        }
+        
+        // backlash specified
+        [Test]
+        public void CalculateTheta()
+        {
+            _designInputParams.WorkingCentreDistance = 56.4999;
+
+            _designInputParams.Gear.Module = 3.0;
+            _designInputParams.Gear.PressureAngle = 20.0;
+            _designInputParams.Gear.HelixAngle = 0;
+            _designInputParams.Gear.Teeth = 24.0;
+            _designInputParams.Gear.CoefficientOfProfileShift = 0.36;
+            _designInputParams.Gear.AddendumFilletFactor = 0.25;
+            _designInputParams.Gear.RootFilletFactor = 0.38;
+            _designInputParams.Gear.CircularBacklash = 0.0;
+            _designInputParams.Gear.Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
+
+            _designInputParams.Pinion.Module = 3.0;
+            _designInputParams.Pinion.PressureAngle = 20.0;
+            _designInputParams.Pinion.HelixAngle = 0;
+            _designInputParams.Pinion.Teeth = 12.0;
+            _designInputParams.Pinion.CoefficientOfProfileShift = 0.6;
+            _designInputParams.Pinion.AddendumFilletFactor = 0.25;
+            _designInputParams.Pinion.RootFilletFactor = 0.38;
+            _designInputParams.Pinion.CircularBacklash = 0.0;
+            _designInputParams.Pinion.Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
+
+
+            var expected1 = 9.585395;
+            var expected2 = 4.375618;
+            var result = _calculator.CalculateTheta(_designInputParams);
+            Assert.AreEqual(expected1, result.Item1, 0.001);
+            Assert.AreEqual(expected2, result.Item2, 0.001);
         }
     }
 }

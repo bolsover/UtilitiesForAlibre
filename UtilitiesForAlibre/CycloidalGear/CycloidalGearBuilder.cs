@@ -285,7 +285,7 @@ namespace Bolsover.CycloidalGear
         {
             _gearProperties.WheelAddFactor = ComputeAddendumFactor();
             _gearProperties.PracticalWheelAddendumFactor = _gearProperties.WheelAddFactor * 0.95;
-            _gearProperties.GearRatio = _gearProperties.WheelCount / _gearProperties.PinionCount;
+            _gearProperties.GearRatio = (double)_gearProperties.WheelCount / _gearProperties.PinionCount;
             _gearProperties.WheelCircularPitch = _gearProperties.Module * Math.PI;
             _gearProperties.WheelDedendum = _gearProperties.Module * Math.PI / 2;
             _gearProperties.WheelPitchDiameter = _gearProperties.Module * _gearProperties.WheelCount;

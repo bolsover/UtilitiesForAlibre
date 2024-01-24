@@ -576,15 +576,27 @@ namespace Bolsover.Gear.Calculators
         /// </summary>
         /// <param name="gear"></param>
         /// <returns></returns>
-        public static double AngleToFilletCentre(InvoluteGear gear) =>
-            Math.Asin(RootFilletDiameter(gear) / 2 / ((RootDiameterDr(gear) + RootFilletDiameter(gear)) / 2));
+        public static double AngleToFilletCentre(InvoluteGear gear)
+        {
+            var result = Math.Asin(RootFilletDiameter(gear) / 2 / ((RootDiameterDr(gear) + RootFilletDiameter(gear)) / 2));
+            return result;
+        }
 
-        public static double RootFilletCentreXd(InvoluteGear gear) => (RootFilletDiameter(gear) + RootDiameterDr(gear)) / 2 *
-                                                                      Math.Cos(AngleToFilletCentre(gear));
 
-        public static double RootFilletCentreYd(InvoluteGear gear) =>
-            -(RootFilletDiameter(gear) + RootDiameterDr(gear)) / 2 *
-            Math.Sin(AngleToFilletCentre(gear));
+        public static double RootFilletCentreXd(InvoluteGear gear)
+        {
+            var result =   (RootFilletDiameter(gear) + RootDiameterDr(gear)) / 2 *
+                           Math.Cos(AngleToFilletCentre(gear));
+            return result;
+        }
+   
+
+        public static double RootFilletCentreYd(InvoluteGear gear)
+        {
+            var result =  -(RootFilletDiameter(gear) + RootDiameterDr(gear)) / 2 * Math.Sin(AngleToFilletCentre(gear));
+            return result;
+        }
+           
 
         public static double RootFilletStartXa(InvoluteGear gear) =>
             RootDiameterDr(gear) / 2 * Math.Cos(AngleToFilletCentre(gear));

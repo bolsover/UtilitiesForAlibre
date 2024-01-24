@@ -16,6 +16,8 @@
 
         double RadialModule { get; set; }
         double RootFilletDiameter { get; set; }
+        
+        double RootFilletRadius { get; set; }
         double TipReliefRadius { get; set; }
 
         double Addendum { get; set; }
@@ -55,5 +57,17 @@
         double ContactRatioBeta { get; set; }
 
         double ContactRatioGamma { get; }
+        
+        double Phi { get; set; }
+        
+        double Theta { get; set; }
+        
+        double Kappa { get; set; } // also the rotate degrees
+        
+        double HalfToothAngle { get; set; }
+        
+        double ToothAngle { get; set; }
+        
+        double OuterRingDiameter { get; set; } // outer diameter of internal gear`
     }
 }

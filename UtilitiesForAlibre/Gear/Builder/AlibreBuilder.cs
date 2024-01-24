@@ -13,8 +13,8 @@ namespace Bolsover.Gear.Builder
 
         private AlibreBuilder(GearToothPoints gearToothPoints, IADDesignSession session)
         {
-            this._gearToothPoints = gearToothPoints;
-            this._session = session;
+            _gearToothPoints = gearToothPoints;
+            _session = session;
             if (gearToothPoints.G1.GearTypeEnum == GearTypeEnum.External)
             {
                 BuildExternalGear();

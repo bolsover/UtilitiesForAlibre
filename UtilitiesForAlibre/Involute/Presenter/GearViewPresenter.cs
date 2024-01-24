@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Bolsover.Involute.Builder;
 using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
 using Bolsover.Involute.View;
@@ -14,6 +15,8 @@ namespace Bolsover.Involute.Presenter
         public GearPairDesignInputParams Model;
         public GearPairDesignOutputParams GearPairDesignOutputParams;
         private IGearCalculator _gearCalculator;
+        private IToothPointsBuilder _toothPointsBuilder;
+        private AlibreToothBuilder _alibreToothBuilder;
 
         public GearViewPresenter(GearView view)
         {
@@ -29,6 +32,7 @@ namespace Bolsover.Involute.Presenter
             {
                 GearPairDesignInputParams = Model
             };
+            _toothPointsBuilder = new ExternalSpurHelicalToothBuilder(); // setup default builder
             InitGearPair();
             SetupDefaults();
             ClearLabelText();
@@ -56,6 +60,11 @@ namespace Bolsover.Involute.Presenter
             pinion.GearPairDesign = Model;
 
             Model.Auto = true;
+
+            GearPairDesignOutputParams.PinionDesignOutput = new GearDesignOutputParams();
+            GearPairDesignOutputParams.GearDesignOutput = new GearDesignOutputParams();
+            GearPairDesignOutputParams.PinionDesignOutput.GearDesignInputParams = pinion;
+            GearPairDesignOutputParams.GearDesignOutput.GearDesignInputParams = gear;
         }
 
         private void SetupDefaults()
@@ -207,10 +216,8 @@ namespace Bolsover.Involute.Presenter
                     Model.Gear.Style &= ~GearStyle.Internal;
                     Model.Gear.Style |= GearStyle.External;
                 }
-               
             }
 
-          
 
             Recalculate();
         }
@@ -407,14 +414,41 @@ namespace Bolsover.Involute.Presenter
 
         private void ViewOnBuildPinionEvent(object sender, EventArgs e)
         {
-            var pinionDetails = GetPinionDetails();
-            // BuildGear(pinionDetails.SaveFile, pinionDetails.Template);
+            Recalculate();
+            var gearDetails = GetPinionDetails();
+            SetupBuilderForGearType();
+            var tooth = _toothPointsBuilder.Build(GearPairDesignOutputParams.PinionDesignOutput);
+            _alibreToothBuilder ??= new AlibreToothBuilder();
+            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, GearPairDesignOutputParams.PinionDesignOutput);
+        }
+
+        private void SetupBuilderForGearType()
+        {
+            if (Model.Gear.Style.HasFlag(GearStyle.External) && ( Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
+            {
+                if (_toothPointsBuilder is not ExternalSpurHelicalToothBuilder)
+                {
+                    _toothPointsBuilder = new ExternalSpurHelicalToothBuilder();
+                }
+            }
+            else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && ( Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
+
+            {
+                if (_toothPointsBuilder is not InternalSpurHelicalToothBuilder)
+                {
+                    _toothPointsBuilder = new InternalSpurHelicalToothBuilder();
+                }
+            }
         }
 
         private void ViewOnBuildWheelEvent(object sender, EventArgs e)
         {
+            Recalculate();
             var gearDetails = GetGearDetails();
-            // BuildGear(gearDetails.SaveFile, gearDetails.Template);
+            SetupBuilderForGearType();
+            var tooth = _toothPointsBuilder.Build(GearPairDesignOutputParams.GearDesignOutput);
+            _alibreToothBuilder ??= new AlibreToothBuilder();
+            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, GearPairDesignOutputParams.GearDesignOutput);
         }
 
         private (string SaveFile, string Template) GetGearDetails()
@@ -493,7 +527,7 @@ namespace Bolsover.Involute.Presenter
             {
                 _gearCalculator = new ProfileShiftedIntExtSpurGearCalculator(Model, GearPairDesignOutputParams);
             }
-           
+
             _gearCalculator.Calculate();
         }
 
@@ -503,7 +537,7 @@ namespace Bolsover.Involute.Presenter
             {
                 _gearCalculator = new ProfileShiftedExternalHelicalGearCalculator(Model, GearPairDesignOutputParams);
             }
-            
+
             _gearCalculator.Calculate();
         }
 
@@ -513,7 +547,7 @@ namespace Bolsover.Involute.Presenter
             {
                 _gearCalculator = new ProfileShiftedExternalSpurGearCalculator(Model, GearPairDesignOutputParams);
             }
-            
+
             _gearCalculator.Calculate();
         }
 

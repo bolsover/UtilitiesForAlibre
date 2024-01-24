@@ -11,7 +11,6 @@ namespace Bolsover.Involute.Model
         private IGearDesignInputParams _gearDesignInputParams;
         private double _radialWorkingPressureAngle;
         private double _radialPressureAngle;
-
         private double _pitchCircleDiameter;
         private double _baseCircleDiameter;
         private double _normalCoefficientOfProfileShift;
@@ -21,7 +20,6 @@ namespace Bolsover.Involute.Model
         private double _radialModule;
         private double _rootFilletDiameter;
         private double _tipReliefRadius;
-
         private double _addendum;
         private double _dedendum;
         private double _wholeDepth;
@@ -30,7 +28,6 @@ namespace Bolsover.Involute.Model
         private double _pitch;
         private string _gearString;
         private double _backlashAdjustmentFactorXMod;
-
         private double _workingPitchDiameter;
         private double _workingPressureAngle;
         private double _sumCoefficientOfProfileShift;
@@ -45,6 +42,13 @@ namespace Bolsover.Involute.Model
         private double _contactRatioAlpha;
         private double _contactRatioBeta;
         private double _contactRatioGamma;
+        private double _phi;
+        private double _theta;
+        private double _kappa;
+        private double _halfToothAngle;
+        private double _toothAngle;
+        private double _rootFilletRadius;
+        private double _outerRingDiameter;
 
         public IGearDesignInputParams GearDesignInputParams
         {
@@ -110,6 +114,12 @@ namespace Bolsover.Involute.Model
         {
             get => _rootFilletDiameter;
             set => SetField(ref _rootFilletDiameter, value);
+        }
+
+        public double RootFilletRadius
+        {
+            get => _rootFilletRadius;
+            set => SetField(ref _rootFilletRadius, value);
         }
 
         public double TipReliefRadius
@@ -201,6 +211,42 @@ namespace Bolsover.Involute.Model
             get => _contactRatioAlpha + _contactRatioBeta;
         }
 
+        public double Phi
+        {
+            get => _phi;
+            set => SetField(ref _phi, value);
+        }
+
+        public double Theta
+        {
+            get => _theta;
+            set => SetField(ref _theta, value);
+        }
+
+        public double Kappa
+        {
+            get => _kappa;
+            set => SetField(ref _kappa, value);
+        }
+
+        public double HalfToothAngle
+        {
+            get => _halfToothAngle;
+            set => SetField(ref _halfToothAngle, value);
+        }
+
+        public double ToothAngle
+        {
+            get => _toothAngle;
+            set => SetField(ref _toothAngle, value);
+        }
+
+        public double OuterRingDiameter
+        {
+            get => _outerRingDiameter;
+            set => SetField(ref _outerRingDiameter, value);
+        }
+
         public void Reset()
         {
             _contactRatioAlpha = 0;
@@ -236,7 +282,11 @@ namespace Bolsover.Involute.Model
             _radialInvoluteFunction = 0;
             _radialWorkingInvoluteFunction = 0;
             _involuteFunction = 0;
-        
+            _phi = 0;
+            _theta = 0;
+            _kappa = 0;
+            _halfToothAngle = 0;
+            _toothAngle = 0;
             
             
         }

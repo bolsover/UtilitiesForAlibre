@@ -86,7 +86,7 @@ namespace Bolsover.Involute.Calculator
         /// </summary>
         /// <param name="pairDesignInputParams"></param>
         /// <returns></returns>
-        double CalculateInvoluteFunction(IGearPairDesignInputParams pairDesignInputParams);
+        (double, double) CalculateInvoluteFunction(IGearPairDesignInputParams pairDesignInputParams);
         
         /// <summary>
         /// Calculates the Dedendum h_f
@@ -194,5 +194,52 @@ namespace Bolsover.Involute.Calculator
         /// <returns>item1: helix pitch length of pinion, item 2 helix pitch length of gear</returns>
         (double, double) CalculateHelixPitchLength(IGearPairDesignInputParams pairDesignInputParams);
         
+        
+        /// <summary>
+        /// Calculates the small angle between the point at which the involute starts on the base circle and the
+        /// point at which the involute crosses the reference pitch diameter
+        /// </summary>
+        /// <param name="pairDesignInputParams"></param>
+        /// <returns>a tuple containing the angles for the pinion and gear as item1 and item2 respectively</returns>
+        (double, double) CalculatePhi(IGearPairDesignInputParams pairDesignInputParams);
+        
+       /// <summary>
+       ///  Half Tooth Angle At Reference Diameter (Pitch circle)
+       /// </summary>
+       /// <param name="pairDesignInputParams"></param>
+       /// <returns></returns>
+        (double, double) CalculateTheta(IGearPairDesignInputParams pairDesignInputParams);
+        
+        /// <summary>
+        /// Angle by which involute has to be rotated to form opposing tooth flank
+        /// </summary>
+        /// <param name="g"></param>
+        /// <returns></returns>
+        (double, double) CalculateKappa(IGearPairDesignInputParams pairDesignInputParams);
+        
+        /// <summary>
+        /// Calculates a proposed filename based on the gear input parameters
+        /// </summary>
+        /// <param name="pairDesignInputParams"></param>
+        /// <returns>A tuple with proposed file names for pinion (item1) and gear (item2)</returns>
+        (string, string) CalculateFileName(IGearPairDesignInputParams pairDesignInputParams);
+
+        (double, double) CalculateHalfToothAngle(IGearPairDesignInputParams pairDesignInputParams);
+
+
+        (double, double) CalculateToothAngle(IGearPairDesignInputParams pairDesignInputParams);
+
+        (double, double) CalculateTipReliefRadius(IGearPairDesignInputParams designInputParams);
+
+        (double, double) CalculateRootReliefDiameter(IGearPairDesignInputParams designInputParams);
+
+        (double, double) CalculateRootReliefRadius(IGearPairDesignInputParams designInputParams);
+        
+        /// <summary>
+        /// Calculates the outer ring diameter of a ring or internal gear
+        /// </summary>
+        /// <param name="designInputParams"></param>
+        /// <returns>A tuple with outer ring diameters for pinion (item1) and gear (item2)</returns>
+        (double, double) CalculateOuterRingDiameter(IGearPairDesignInputParams designInputParams); 
     }
 }

@@ -99,7 +99,7 @@ namespace Bolsover.Gear.Calculators
 
                 priorGearPoint = point;
             }
-
+            
             return resultList;
         }
 
@@ -215,7 +215,7 @@ namespace Bolsover.Gear.Calculators
         /// <param name="lineEnd"></param>
         /// <param name="intersectionGearPoint"></param>
         /// <returns>Returns 0 if a solution is found otherwise returns -1</returns>
-        private static int Intersect(GearPoint centreGearPoint, double circleRadius,
+        public static int Intersect(GearPoint centreGearPoint, double circleRadius,
             GearPoint lineStart, GearPoint lineEnd, ref GearPoint intersectionGearPoint)
         {
             if (IsIntersecting(centreGearPoint, circleRadius, lineStart, lineEnd))
@@ -305,6 +305,12 @@ namespace Bolsover.Gear.Calculators
         }
 
 
+        public static GearPoint MidPoint(GearPoint point1, GearPoint point2)
+        {
+            double midX = (point1.X + point2.X) / 2;
+            double midY = (point1.Y + point2.Y) / 2;
+            return new GearPoint(midX, midY);
+        }
   
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace UnitTests
     {
         private InvoluteGear g1 = null!;
         private InvoluteGear g2 = null!;
-
+        private ConsoleIO io = new();
 
         [SetUp]
         public void Setup()
@@ -29,8 +29,9 @@ namespace UnitTests
             g2.MatingGear = g1;
             g1.GearTypeEnum = GearTypeEnum.External;
             g2.GearTypeEnum = GearTypeEnum.External;
+            // g1.HelixAngleBeta = 30;
+            // g2.HelixAngleBeta = 30;
         }
-
 
         [Test]
         public void Alpha1()
@@ -164,10 +165,9 @@ namespace UnitTests
         public void Theta1()
         {
             var expectedResult = 9.58539;
-
+            io.WriteLine(GearCalculations.Theta(g1).ToString());
             Assert.AreEqual(expectedResult, GearCalculations.Theta(g1), 0.0001);
         }
-
 
         [Test]
         public void RotateDegrees1()
@@ -177,7 +177,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResult, GearCalculations.RotateDegrees(g1), 0.0001);
         }
 
-
         [Test]
         public void XMod()
         {
@@ -185,7 +184,6 @@ namespace UnitTests
 
             Assert.AreEqual(expectedResult, GearCalculations.XMod(g1), 0.0001);
         }
-
 
         [Test]
         public void AngleToFilletCentre()
@@ -272,7 +270,5 @@ namespace UnitTests
             var expectedResultX = 0.68052;
             Assert.AreEqual(expectedResultX, Geometry.PointOnInvolute(16.914 / 2, 20 / 2).Y, 0.0001);
         }
-
-     
     }
 }
