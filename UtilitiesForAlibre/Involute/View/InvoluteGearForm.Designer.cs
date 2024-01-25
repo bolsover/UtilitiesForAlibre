@@ -41,14 +41,14 @@ namespace Bolsover.Involute.View
             this.gearView.Location = new System.Drawing.Point(0, 0);
             this.gearView.Margin = new System.Windows.Forms.Padding(4);
             this.gearView.Name = "gearView";
-            this.gearView.Size = new System.Drawing.Size(1634, 855);
+            this.gearView.Size = new System.Drawing.Size(1634, 953);
             this.gearView.TabIndex = 0;
             // 
             // InvoluteGearForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1634, 855);
+            this.ClientSize = new System.Drawing.Size(1634, 953);
             this.Controls.Add(this.gearView);
             this.Name = "InvoluteGearForm";
             this.Text = "InvoluteGearForm";

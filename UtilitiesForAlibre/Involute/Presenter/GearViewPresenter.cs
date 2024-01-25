@@ -58,9 +58,7 @@ namespace Bolsover.Involute.Presenter
             Model.Pinion = pinion;
             gear.GearPairDesign = Model;
             pinion.GearPairDesign = Model;
-
             Model.Auto = true;
-
             GearPairDesignOutputParams.PinionDesignOutput = new GearDesignOutputParams();
             GearPairDesignOutputParams.GearDesignOutput = new GearDesignOutputParams();
             GearPairDesignOutputParams.PinionDesignOutput.GearDesignInputParams = pinion;
@@ -188,36 +186,36 @@ namespace Bolsover.Involute.Presenter
                 ViewOnAutoManualEvent(null, null);
             }
 
-            if (sender.Equals(_view.extRadioButton))
+            if (sender is RadioButton radioButton)
             {
-                if (sender is not RadioButton radioButton) return;
-                if (radioButton.Checked)
+                if (sender.Equals(_view.extRadioButton))
                 {
-                    Model.Gear.Style &= ~GearStyle.Internal;
-                    Model.Gear.Style |= GearStyle.External;
+                    if (radioButton.Checked)
+                    {
+                        Model.Gear.Style &= ~GearStyle.Internal;
+                        Model.Gear.Style |= GearStyle.External;
+                    }
+                    else
+                    {
+                        Model.Gear.Style &= ~GearStyle.External;
+                        Model.Gear.Style |= GearStyle.Internal;
+                    }
                 }
-                else
+                else if (sender.Equals(_view.intRadioButton))
                 {
-                    Model.Gear.Style &= ~GearStyle.External;
-                    Model.Gear.Style |= GearStyle.Internal;
+                    if (radioButton.Checked)
+                    {
+                        Model.Gear.Style &= ~GearStyle.External;
+                        Model.Gear.Style |= GearStyle.Internal;
+                        MessageBox.Show("Internal gears must be large enough to fit the pinion inside!");
+                    }
+                    else
+                    {
+                        Model.Gear.Style &= ~GearStyle.Internal;
+                        Model.Gear.Style |= GearStyle.External;
+                    }
                 }
             }
-            else if (sender.Equals(_view.intRadioButton))
-            {
-                if (sender is not RadioButton radioButton) return;
-                if (radioButton.Checked)
-                {
-                    Model.Gear.Style &= ~GearStyle.External;
-                    Model.Gear.Style |= GearStyle.Internal;
-                    MessageBox.Show("Internal gears must be large enough to fit the pinion inside!");
-                }
-                else
-                {
-                    Model.Gear.Style &= ~GearStyle.Internal;
-                    Model.Gear.Style |= GearStyle.External;
-                }
-            }
-
 
             Recalculate();
         }
@@ -416,28 +414,28 @@ namespace Bolsover.Involute.Presenter
         {
             Recalculate();
             var gearDetails = GetPinionDetails();
-            SetupBuilderForGearType();
+            SetupBuilderForGearType(false);
             var tooth = _toothPointsBuilder.Build(GearPairDesignOutputParams.PinionDesignOutput);
             _alibreToothBuilder ??= new AlibreToothBuilder();
             _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, GearPairDesignOutputParams.PinionDesignOutput);
         }
 
-        private void SetupBuilderForGearType()
+        private void SetupBuilderForGearType(bool isGear)
         {
-            if (Model.Gear.Style.HasFlag(GearStyle.External) && ( Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
+            if (!isGear) // this is a pinion
             {
-                if (_toothPointsBuilder is not ExternalSpurHelicalToothBuilder)
-                {
-                    _toothPointsBuilder = new ExternalSpurHelicalToothBuilder();
-                }
+                _toothPointsBuilder = _toothPointsBuilder is ExternalSpurHelicalToothBuilder ? _toothPointsBuilder : new ExternalSpurHelicalToothBuilder();
+                return;
             }
-            else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && ( Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
 
+            // this is a gear
+            if (Model.Gear.Style.HasFlag(GearStyle.External) && (Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
             {
-                if (_toothPointsBuilder is not InternalSpurHelicalToothBuilder)
-                {
-                    _toothPointsBuilder = new InternalSpurHelicalToothBuilder();
-                }
+                _toothPointsBuilder = _toothPointsBuilder is ExternalSpurHelicalToothBuilder ? _toothPointsBuilder : new ExternalSpurHelicalToothBuilder();
+            }
+            else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && (Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
+            {
+                _toothPointsBuilder = _toothPointsBuilder is InternalSpurHelicalToothBuilder ? _toothPointsBuilder : new InternalSpurHelicalToothBuilder();
             }
         }
 
@@ -445,7 +443,7 @@ namespace Bolsover.Involute.Presenter
         {
             Recalculate();
             var gearDetails = GetGearDetails();
-            SetupBuilderForGearType();
+            SetupBuilderForGearType(true);
             var tooth = _toothPointsBuilder.Build(GearPairDesignOutputParams.GearDesignOutput);
             _alibreToothBuilder ??= new AlibreToothBuilder();
             _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, GearPairDesignOutputParams.GearDesignOutput);

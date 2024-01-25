@@ -1,5 +1,5 @@
 ﻿using Bolsover.Involute.Builder;
-using Bolsover.Gear.Models;
+using static Bolsover.Utils.ConversionUtils;
 using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
 using NUnit.Framework;
@@ -96,7 +96,7 @@ namespace UnitTests.Involute.Builder
             var tooth = _externalSpurHelicalToothBuilder.Build(_designPairOutputParams.GearDesignOutput);
 
             var kappa = _calculator.CalculateKappa(_designPairInputParams);
-            var kappaRadians = GearPoint.Radians(kappa.Item2);
+            var kappaRadians = Radians(kappa.Item2);
              
 
             // Assert

@@ -24,7 +24,6 @@ namespace Bolsover.Involute.Model
 
         public GearDesignInputParams()
         {
-            
             SetDefaults();
         }
 

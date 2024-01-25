@@ -2,6 +2,7 @@
 using Bolsover.Gear;
 using Bolsover.Gear.Models;
 using NUnit.Framework;
+using static Bolsover.Utils.ConversionUtils;
 
 
 namespace UnitTests
@@ -31,7 +32,7 @@ namespace UnitTests
             {
                 io.WriteLine(trochoid.HypoTrochoidX(i).ToString("##0.000") + "," +
                              trochoid.HypoTrochoidY(i).ToString("##0.000"));
-                i = i + 10;
+                i = i + 1;
             }
         }
 
@@ -40,8 +41,8 @@ namespace UnitTests
         {
             var expectedResultx = 0.70711;
             var expectedResulty = 0.70711;
-            Assert.AreEqual(expectedResultx, trochoid.PolarToCartesian(1, GearPoint.Radians(45)).X, 0.0001);
-            Assert.AreEqual(expectedResulty, trochoid.PolarToCartesian(1, GearPoint.Radians(45)).Y, 0.0001);
+            Assert.AreEqual(expectedResultx, trochoid.PolarToCartesian(1, Radians(45)).X, 0.0001);
+            Assert.AreEqual(expectedResulty, trochoid.PolarToCartesian(1, Radians(45)).Y, 0.0001);
         }
 
         [Test]
@@ -49,7 +50,7 @@ namespace UnitTests
         {
             var expectedResult = 0.5075583;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarRinv(1, GearPoint.Radians(10)), 0.0001);
+            Assert.AreEqual(expectedResult, trochoid.PolarRinv(1, Radians(10)), 0.0001);
         }
 
         [Test]
@@ -57,7 +58,7 @@ namespace UnitTests
         {
             var expectedResult = 0.001740;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarEtaInv(GearPoint.Radians(10)), 0.0001);
+            Assert.AreEqual(expectedResult, trochoid.PolarEtaInv(Radians(10)), 0.0001);
         }
 
         [Test]

@@ -362,7 +362,7 @@ namespace Bolsover.Gear.Calculators
         /// <param name="gear"></param>
         /// <returns></returns>
         public static double ProfileShiftWithoutUndercutX(InvoluteGear gear) =>
-            1 - gear.TeethZ / 2 * Math.Pow(Math.Sin(GearPoint.Radians(gear.PressureAngleAlpha)), 2);
+            1 - gear.TeethZ / 2 * Math.Pow(Math.Sin(Radians(gear.PressureAngleAlpha)), 2);
 
         /// <summary>
         /// Calculates the axial pitch of the specified gear 
@@ -370,8 +370,8 @@ namespace Bolsover.Gear.Calculators
         /// <param name="gear"></param>
         /// <returns></returns>
         public static double AxialPitch(InvoluteGear gear) =>
-            TransverseModuleMt(gear) / Math.Cos(GearPoint.Radians(gear.HelixAngleBeta)) * Math.PI /
-            Math.Tan(GearPoint.Radians(gear.HelixAngleBeta));
+            TransverseModuleMt(gear) / Math.Cos(Radians(gear.HelixAngleBeta)) * Math.PI /
+            Math.Tan(Radians(gear.HelixAngleBeta));
 
         /// <summary>
         /// Calculates the helix pitch length for the specified gear.
@@ -667,11 +667,11 @@ namespace Bolsover.Gear.Calculators
             double angleToBase;
             if (addendumRadius > baseRadius)
             {
-                angleToBase = GearPoint.Degrees(Math.Acos(d / (addendumRadius + reliefRadius)));
+                angleToBase = Degrees(Math.Acos(d / (addendumRadius + reliefRadius)));
             }
             else
             {
-                angleToBase = GearPoint.Degrees(Math.Acos(d / (baseRadius + reliefRadius)));
+                angleToBase = Degrees(Math.Acos(d / (baseRadius + reliefRadius)));
             }
 
             return angleToBase;
@@ -815,18 +815,18 @@ namespace Bolsover.Gear.Calculators
         public static GearPoint StartPoint(InvoluteGear gear, GearPoint centreGearPoint)
         {
             return GearPoint.PolarOffset(centreGearPoint, RootFilletRadius(gear),
-                GearPoint.Radians(180 - Math.Atan(centreGearPoint.Y / centreGearPoint.X)));
+                Radians(180 - Math.Atan(centreGearPoint.Y / centreGearPoint.X)));
         }
 
         public static GearPoint CentrePoint(InvoluteGear gear, GearPoint endGearPoint, double adjustedAngleToBase)
         {
             return GearPoint.PolarOffset(endGearPoint,
-                RootFilletRadius(gear), GearPoint.Radians(-adjustedAngleToBase));
+                RootFilletRadius(gear), Radians(-adjustedAngleToBase));
         }
 
         public static GearPoint EndPoint(InvoluteGear gear, double gearCentreToFilletCentre, double adjustedAngleToBase)
         {
-            double radiansToBase = GearPoint.Radians(180 - adjustedAngleToBase);
+            double radiansToBase = Radians(180 - adjustedAngleToBase);
 
             GearPoint p = new GearPoint(gearCentreToFilletCentre, 0);
             GearPoint y = GearPoint.PolarOffset(p, RootFilletRadius(gear), radiansToBase);

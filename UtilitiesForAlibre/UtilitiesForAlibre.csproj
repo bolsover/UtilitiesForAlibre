@@ -275,10 +275,8 @@
         <Compile Include="DataBrowser\ShellUtilities.cs"/>
         <Compile Include="Gear\Builder\AlibreBuilder.cs" />
         <Compile Include="Gear\Builder\GearBuilder.cs" />
-        <Compile Include="Gear\Calculators\AdvancedHelicalGearCalculator.cs" />
         <Compile Include="Gear\Calculators\GearCalculations.cs" />
         <Compile Include="Gear\Calculators\Geometry.cs" />
-        <Compile Include="Gear\Calculators\StandardHelicalGearCalculator.cs" />
         <Compile Include="Gear\Images\GearLatexStrings.cs" />
         <Compile Include="Gear\Models\Gear.cs" />
         <Compile Include="Gear\Models\GearPair.cs" />
@@ -289,33 +287,6 @@
         <Compile Include="Gear\Models\IGearPair.cs" />
         <Compile Include="Gear\Models\InvoluteGear.cs" />
         <Compile Include="Gear\Models\Trochoid.cs" />
-        <Compile Include="Gear\Presenters\AdvancedGearPresenterCalculations.cs" />
-        <Compile Include="Gear\Presenters\StandardGearPresenter.cs" />
-        <Compile Include="Gear\Views\GearForm.cs">
-          <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Gear\Views\GearForm.Designer.cs">
-          <DependentUpon>GearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Gear\Views\GearUserControl.cs">
-          <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Gear\Views\GearUserControl.Designer.cs">
-          <DependentUpon>GearUserControl.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Gear\Views\StandardGearForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Gear\Views\StandardGearForm.Designer.cs">
-            <DependentUpon>StandardGearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Gear\Views\IGearView.cs" />
-        <Compile Include="Gear\Views\StandardGearView.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Gear\Views\StandardGearView.Designer.cs">
-            <DependentUpon>StandardGearView.cs</DependentUpon>
-        </Compile>
         <Compile Include="Globals.cs" />
         <Compile Include="Involute\Builder\AlibreToothBuilder.cs" />
         <Compile Include="Involute\Builder\ExternalHelicalGearBuilder.cs" />
@@ -331,6 +302,7 @@
         <Compile Include="Involute\Calculator\ProfileShiftedExternalHelicalGearCalculator.cs" />
         <Compile Include="Involute\Calculator\ProfileShiftedIntExtHelicalGearCalculator.cs" />
         <Compile Include="Involute\Calculator\ProfileShiftedIntExtSpurGearCalculator.cs" />
+        <Compile Include="Involute\Calculator\StandardHelicalGearCalculator.cs" />
         <Compile Include="Involute\Calculator\ToothPointCalculator.cs" />
         <Compile Include="Involute\Model\GearDesignOutputParams.cs" />
         <Compile Include="Involute\Model\GearPairDesignOutputParams.cs" />
@@ -344,6 +316,7 @@
         <Compile Include="Involute\Model\Tooth.cs" />
         <Compile Include="Involute\Model\ToothPoint.cs" />
         <Compile Include="Involute\Presenter\GearViewPresenter.cs" />
+        <Compile Include="Involute\Presenter\StandardGearPresenter.cs" />
         <Compile Include="Involute\View\GearView.cs">
           <SubType>UserControl</SubType>
         </Compile>
@@ -356,19 +329,23 @@
         <Compile Include="Involute\View\InvoluteGearForm.Designer.cs">
           <DependentUpon>InvoluteGearForm.cs</DependentUpon>
         </Compile>
+        <Compile Include="Involute\View\StandardGearForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Involute\View\StandardGearForm.Designer.cs">
+          <DependentUpon>StandardGearForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Involute\View\StandardGearView.cs">
+          <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Include="Involute\View\StandardGearView.Designer.cs">
+          <DependentUpon>StandardGearView.cs</DependentUpon>
+        </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\Settings.Designer.cs">
             <AutoGen>True</AutoGen>
             <DesignTimeSharedInput>True</DesignTimeSharedInput>
             <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-        <Compile Include="Sample\SampleAddOnCommand.cs" />
-        <Compile Include="Sample\SampleAddonCommandTerminateEventArgs.cs" />
-        <Compile Include="Sample\SampleUserControl.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Sample\SampleUserControl.Designer.cs">
-            <DependentUpon>SampleUserControl.cs</DependentUpon>
         </Compile>
         <Compile Include="PlaneFinder\PlaneFinderAddOnCommand.cs" />
         <Compile Include="PlaneFinder\PlaneFinderAddOnCommandTerminateEventArgs.cs" />
@@ -379,7 +356,6 @@
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
-        <Compile Include="SingleMenuItem.cs" />
         <Compile Include="ThreeDLine\Coordinate.cs" />
         <Compile Include="ThreeDLine\ThreeDLineAddOnCommand.cs" />
         <Compile Include="ThreeDLine\ThreeDLineAddOnCommandTerminateEventArgs.cs" />
@@ -494,24 +470,17 @@
         </EmbeddedResource>
         <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx" />
         <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx" />
-        <EmbeddedResource Include="Gear\Views\GearForm.resx">
-          <DependentUpon>GearForm.cs</DependentUpon>
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Gear\Views\StandardGearForm.resx">
-            <DependentUpon>StandardGearForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Gear\Views\StandardGearView.resx">
-            <DependentUpon>StandardGearView.cs</DependentUpon>
-        </EmbeddedResource>
         <EmbeddedResource Include="Involute\View\GearView.resx">
           <DependentUpon>GearView.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Involute\View\InvoluteGearForm.resx">
           <DependentUpon>InvoluteGearForm.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="Sample\SampleUserControl.resx">
-            <DependentUpon>SampleUserControl.cs</DependentUpon>
+        <EmbeddedResource Include="Involute\View\StandardGearForm.resx">
+          <DependentUpon>StandardGearForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Involute\View\StandardGearView.resx">
+          <DependentUpon>StandardGearView.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
             <DependentUpon>PlaneFinder.cs</DependentUpon>
@@ -525,12 +494,6 @@
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
-    </ItemGroup>
-    <ItemGroup>
-      <Resource Include="Gear\Views\GearUserControl.resx">
-        <DependentUpon>GearUserControl.cs</DependentUpon>
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Involute\Images\" />

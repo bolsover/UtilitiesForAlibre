@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bolsover.Gear.Models;
+using static Bolsover.Utils.ConversionUtils;
 
 namespace Bolsover.Gear.Calculators
 {
@@ -326,7 +327,7 @@ namespace Bolsover.Gear.Calculators
             var bSquared = sideb * sideb;
             var cSquared = sidec * sidec;
             var resultRadians = Math.Acos((bSquared + cSquared - aSquared) / (2 * sideb * sidec));
-            return GearPoint.Degrees(resultRadians);
+            return Degrees(resultRadians);
         }
 
         /// <summary>
@@ -357,7 +358,7 @@ namespace Bolsover.Gear.Calculators
             var startPoint = StartPointOnInvoluteOfTipRelief(baseRadius, addendumRadius, tipReliefRadius);
             var angle1 = CosineRuleAngle(startPoint.Y, startPoint.X, distanceToInvolute);
             var angle2 = CosineRuleAngle(tipReliefRadius, addendumRadius - tipReliefRadius, distanceToInvolute);
-            var result = GearPoint.Radians(angle1 + angle2);
+            var result = Radians(angle1 + angle2);
             return result;
         }
 

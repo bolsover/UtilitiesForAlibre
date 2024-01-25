@@ -4,13 +4,13 @@ using System.Text;
 using System.Windows.Forms;
 using AlibreX;
 using Bolsover.Gear.Builder;
-using Bolsover.Gear.Calculators;
 using Bolsover.Gear.Models;
-using Bolsover.Gear.Views;
+using Bolsover.Involute.Calculator;
+using Bolsover.Involute.View;
 using static Bolsover.Gear.Images.GearLatexStrings;
 using static Bolsover.Utils.LatexUtils;
 
-namespace Bolsover.Gear.Presenters
+namespace Bolsover.Involute.Presenter
 {
     public sealed class StandardGearPresenter
     {

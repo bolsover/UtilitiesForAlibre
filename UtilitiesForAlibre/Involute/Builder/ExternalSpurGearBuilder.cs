@@ -21,7 +21,6 @@ namespace Bolsover.Involute.Builder
             {
                 AddScaledPoint(sketch, tooth.Points[i].Point, scale);
             }
-
             AddScaledCircle(sketch, tooth.Points[0].Point, gear.RootCircleDiameter, scale,
                 true);
             AddScaledCircle(sketch, tooth.Points[0].Point, gear.BaseCircleDiameter, scale,
@@ -30,18 +29,14 @@ namespace Bolsover.Involute.Builder
                 true);
             AddScaledCircle(sketch, tooth.Points[0].Point, gear.OutsideDiameter, scale,
                 true);
-
-
             AddScaledLine(sketch, tooth.Points[0].Point, tooth.Points[1].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[1].Point, tooth.Points[2].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[3].Point, tooth.Points[4].Point, tooth.Points[2].Point, scale);
-
             AddScaledBsplineByInterpolation(sketch, tooth.RhsInvolute, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[7].Point, tooth.Points[6].Point, tooth.Points[8].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[8].Point, tooth.Points[10].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[11].Point, tooth.Points[10].Point, tooth.Points[12].Point, scale);
             AddScaledBsplineByInterpolation(sketch, tooth.LhsInvolute, scale);
-
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[15].Point, tooth.Points[16].Point, tooth.Points[14].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[16].Point, tooth.Points[17].Point, scale);
             AddScaledLine(sketch, tooth.Points[0].Point, tooth.Points[17].Point, scale);

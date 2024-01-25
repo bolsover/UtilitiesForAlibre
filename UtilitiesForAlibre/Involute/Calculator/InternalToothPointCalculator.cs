@@ -42,11 +42,11 @@ namespace Bolsover.Involute.Calculator
             double angleToBase;
             if (addendumRadius > baseRadius)
             {
-                angleToBase = GearPoint.Degrees(Math.Acos(d / (addendumRadius + reliefRadius)));
+                angleToBase = Degrees(Math.Acos(d / (addendumRadius + reliefRadius)));
             }
             else
             {
-                angleToBase = GearPoint.Degrees(Math.Acos(d / (baseRadius + reliefRadius)));
+                angleToBase = Degrees(Math.Acos(d / (baseRadius + reliefRadius)));
             }
 
             return angleToBase;
@@ -82,7 +82,7 @@ namespace Bolsover.Involute.Calculator
 
         public static GearPoint EndPoint(IGearDesignOutputParams gearDesignOutputParams, double gearCentreToFilletCentre, double adjustedAngleToBase)
         {
-            double radiansToBase = GearPoint.Radians(180 - adjustedAngleToBase);
+            double radiansToBase = Radians(180 - adjustedAngleToBase);
 
             var p = new GearPoint(gearCentreToFilletCentre, 0);
             var y = GearPoint.PolarOffset(p, gearDesignOutputParams.RootFilletRadius, radiansToBase);
@@ -101,13 +101,13 @@ namespace Bolsover.Involute.Calculator
         public static GearPoint StartPoint(IGearDesignOutputParams gearDesignOutputParams, GearPoint centreGearPoint)
         {
             return GearPoint.PolarOffset(centreGearPoint, gearDesignOutputParams.RootFilletRadius,
-                GearPoint.Radians(180 - Math.Atan(centreGearPoint.Y / centreGearPoint.X)));
+                Radians(180 - Math.Atan(centreGearPoint.Y / centreGearPoint.X)));
         }
 
         public static GearPoint CentrePoint(IGearDesignOutputParams gearDesignOutputParams, GearPoint endGearPoint, double adjustedAngleToBase)
         {
             return GearPoint.PolarOffset(endGearPoint,
-                gearDesignOutputParams.RootFilletRadius, GearPoint.Radians(-adjustedAngleToBase));
+                gearDesignOutputParams.RootFilletRadius, Radians(-adjustedAngleToBase));
         }
 
         /// <summary>

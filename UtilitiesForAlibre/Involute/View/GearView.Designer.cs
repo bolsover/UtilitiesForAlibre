@@ -387,7 +387,7 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.SetRowSpan(this.TypeLabel, 2);
             this.TypeLabel.Size = new System.Drawing.Size(215, 74);
             this.TypeLabel.TabIndex = 27;
-            this.TypeLabel.Text = "Gear Type External/Internal";
+            this.TypeLabel.Text = "Gear Type: Internal or External\r\nPinion is always External";
             this.TypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // rootFilletFactorLabel
@@ -737,7 +737,6 @@ namespace Bolsover.Involute.View
             this.intRadioButton.Text = "Internal";
             this.intRadioButton.UseVisualStyleBackColor = true;
             this.intRadioButton.CheckedChanged += new System.EventHandler(this.intRadioButton_CheckedChanged);
-           
             // 
             // extRadioButton
             // 
@@ -751,7 +750,6 @@ namespace Bolsover.Involute.View
             this.extRadioButton.Text = "External";
             this.extRadioButton.UseVisualStyleBackColor = true;
             this.extRadioButton.CheckedChanged += new System.EventHandler(this.extRadioButton_CheckedChanged);
-            
             // 
             // backlashLabel
             // 

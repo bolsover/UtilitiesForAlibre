@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using Bolsover.Gear.Presenters;
+using Bolsover.Involute.Presenter;
 
-namespace Bolsover.Gear.Views
+namespace Bolsover.Involute.View
 {
-    public partial class StandardGearView : UserControl, IGearView
+    public partial class StandardGearView : UserControl
     {
         private Form _parentForm;
 

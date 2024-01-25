@@ -3,6 +3,7 @@ using Bolsover.Gear.Calculators;
 using Bolsover.Gear.Models;
 using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
+using static Bolsover.Utils.ConversionUtils;
 
 namespace Bolsover.Involute.Builder
 {
@@ -15,7 +16,7 @@ namespace Bolsover.Involute.Builder
         {
             tooth = new();
             // rotation for left section of gear tooth
-            var rotateRadians = GearPoint.Radians(gearDesignOutputParams.Kappa);
+            var rotateRadians = Radians(gearDesignOutputParams.Kappa);
             // the basic right involute curve
             var rhsInvolute = InternalToothPointCalculator.BuildBasicInternalInvolute(gearDesignOutputParams, 25);
             if (gearDesignOutputParams.OutsideDiameter / 2 > gearDesignOutputParams.BaseCircleDiameter / 2)
@@ -49,23 +50,23 @@ namespace Bolsover.Involute.Builder
             // left mid outer 
             tooth.Points[19].Point = new GearPoint(gearDesignOutputParams.OuterRingDiameter / 2, 0)
                 .Rotate(rotateRadians / 2)
-                .Rotate(GearPoint.Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+                .Rotate(Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             // right mid outer
-            tooth.Points[18].Point = tooth.Points[19].Point.Rotate(GearPoint.Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+            tooth.Points[18].Point = tooth.Points[19].Point.Rotate(Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
 
             // left mid Addendum
             tooth.Points[17].Point = new GearPoint(gearDesignOutputParams.OutsideDiameter / 2, 0)
                 .Rotate(rotateRadians / 2)
-                .Rotate(GearPoint.Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+                .Rotate(Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             // right mid Addendum
-            tooth.Points[1].Point = tooth.Points[17].Point.Rotate(GearPoint.Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+            tooth.Points[1].Point = tooth.Points[17].Point.Rotate(Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
 
             // left mid Base
             tooth.Points[21].Point = new GearPoint(gearDesignOutputParams.BaseCircleDiameter / 2, 0)
                 .Rotate(rotateRadians / 2)
-                .Rotate(GearPoint.Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+                .Rotate(Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             // right mid Addendum
-            tooth.Points[20].Point = tooth.Points[21].Point.Rotate(GearPoint.Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+            tooth.Points[20].Point = tooth.Points[21].Point.Rotate(Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             tooth.RhsInvolute = rhsInvolute;
             tooth.LhsInvolute = lhsInvolute;
             return tooth;

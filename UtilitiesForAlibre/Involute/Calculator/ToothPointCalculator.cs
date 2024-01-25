@@ -167,8 +167,8 @@ namespace Bolsover.Involute.Calculator
         {
             var midRoot = new GearPoint(gearDesignOutputParams.RootCircleDiameter / 2, 0)
                 .Rotate(Radians(gearDesignOutputParams.Kappa / 2))
-                .Rotate(GearPoint.Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth))
-                .Rotate(GearPoint.Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+                .Rotate(Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth))
+                .Rotate(Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             return midRoot;
         }
         
@@ -176,8 +176,8 @@ namespace Bolsover.Involute.Calculator
         {
             var midRoot = new GearPoint(gearDesignOutputParams.RootCircleDiameter / 2, 0)
                 .Rotate(Radians(gearDesignOutputParams.Kappa / 2))
-                .Rotate(GearPoint.Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth))
-                .Rotate(GearPoint.Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
+                .Rotate(Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth))
+                .Rotate(Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             var kappaRadians = Radians(gearDesignOutputParams.Kappa);
             return GearPoint.Mirror(midRoot, 90).Rotate(kappaRadians);
         }

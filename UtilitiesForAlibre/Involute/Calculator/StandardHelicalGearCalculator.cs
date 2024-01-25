@@ -2,7 +2,7 @@
 using Bolsover.Gear.Models;
 using static Bolsover.Utils.ConversionUtils;
 
-namespace Bolsover.Gear.Calculators
+namespace Bolsover.Involute.Calculator
 {
     public class StandardHelicalGearCalculator
     {

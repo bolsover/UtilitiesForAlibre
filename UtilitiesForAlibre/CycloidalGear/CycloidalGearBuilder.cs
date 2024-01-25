@@ -1,5 +1,6 @@
 ﻿using System;
 using AlibreX;
+using Bolsover.Utils;
 
 namespace Bolsover.CycloidalGear
 {
@@ -107,10 +108,6 @@ namespace Bolsover.CycloidalGear
         }
 
 
-        public double Radians(double angle)
-        {
-            return Math.PI / 180 * angle;
-        }
 
         private void DrawWheel(IADSketch sketch)
         {
@@ -126,18 +123,18 @@ namespace Bolsover.CycloidalGear
             {
                 var refAngleApex = toothAngle * i;
                 var nextRefAngleApex = toothAngle * (i + 1);
-                var point1X = outerRadius * Math.Cos(Radians(refAngleApex));
-                var point1Y = outerRadius * Math.Sin(Radians(refAngleApex));
-                var point2X = wheelPitchRadius * Math.Cos(Radians(refAngleApex + toothAngle / 4));
-                var point2Y = wheelPitchRadius * Math.Sin(Radians(refAngleApex + toothAngle / 4));
-                var point3X = innerRadius * Math.Cos(Radians(refAngleApex + toothAngle / 4));
-                var point3Y = innerRadius * Math.Sin(Radians(refAngleApex + toothAngle / 4));
-                var point4X = innerRadius * Math.Cos(Radians(refAngleApex - toothAngle / 4));
-                var point4Y = innerRadius * Math.Sin(Radians(refAngleApex - toothAngle / 4));
-                var point5X = wheelPitchRadius * Math.Cos(Radians(refAngleApex - toothAngle / 4));
-                var point5Y = wheelPitchRadius * Math.Sin(Radians(refAngleApex - toothAngle / 4));
-                var point6X = innerRadius * Math.Cos(Radians(nextRefAngleApex - toothAngle / 4));
-                var point6Y = innerRadius * Math.Sin(Radians(nextRefAngleApex - toothAngle / 4));
+                var point1X = outerRadius * Math.Cos(ConversionUtils.Radians(refAngleApex));
+                var point1Y = outerRadius * Math.Sin(ConversionUtils.Radians(refAngleApex));
+                var point2X = wheelPitchRadius * Math.Cos(ConversionUtils.Radians(refAngleApex + toothAngle / 4));
+                var point2Y = wheelPitchRadius * Math.Sin(ConversionUtils.Radians(refAngleApex + toothAngle / 4));
+                var point3X = innerRadius * Math.Cos(ConversionUtils.Radians(refAngleApex + toothAngle / 4));
+                var point3Y = innerRadius * Math.Sin(ConversionUtils.Radians(refAngleApex + toothAngle / 4));
+                var point4X = innerRadius * Math.Cos(ConversionUtils.Radians(refAngleApex - toothAngle / 4));
+                var point4Y = innerRadius * Math.Sin(ConversionUtils.Radians(refAngleApex - toothAngle / 4));
+                var point5X = wheelPitchRadius * Math.Cos(ConversionUtils.Radians(refAngleApex - toothAngle / 4));
+                var point5Y = wheelPitchRadius * Math.Sin(ConversionUtils.Radians(refAngleApex - toothAngle / 4));
+                var point6X = innerRadius * Math.Cos(ConversionUtils.Radians(nextRefAngleApex - toothAngle / 4));
+                var point6Y = innerRadius * Math.Sin(ConversionUtils.Radians(nextRefAngleApex - toothAngle / 4));
                 var pointA = new Point(point1X, point1Y);
                 var pointB = new Point(point2X, point2Y);
                 var pointC = new Point(point5X, point5Y);
@@ -188,21 +185,21 @@ namespace Bolsover.CycloidalGear
             {
                 var refAngleApex = toothAngle * i;
                 var nextRefAngleApex = toothAngle * (i + 1);
-                var point1X = outerRadius * Math.Cos(Radians(refAngleApex)) + pinionCentreX;
-                var point1Y = outerRadius * Math.Sin(Radians(refAngleApex));
-                var point2X = pinionPitchRadius * Math.Cos(Radians(refAngleApex) + halfToothAngle) +
+                var point1X = outerRadius * Math.Cos(ConversionUtils.Radians(refAngleApex)) + pinionCentreX;
+                var point1Y = outerRadius * Math.Sin(ConversionUtils.Radians(refAngleApex));
+                var point2X = pinionPitchRadius * Math.Cos(ConversionUtils.Radians(refAngleApex) + halfToothAngle) +
                               pinionCentreX;
-                var point2Y = pinionPitchRadius * Math.Sin(Radians(refAngleApex) + halfToothAngle);
-                var point3X = innerRadius * Math.Cos(Radians(refAngleApex) + halfToothAngle) + pinionCentreX;
-                var point3Y = innerRadius * Math.Sin(Radians(refAngleApex) + halfToothAngle);
-                var point4X = innerRadius * Math.Cos(Radians(refAngleApex) - halfToothAngle) + pinionCentreX;
-                var point4Y = innerRadius * Math.Sin(Radians(refAngleApex) - halfToothAngle);
-                var point5X = pinionPitchRadius * Math.Cos(Radians(refAngleApex) - halfToothAngle) +
+                var point2Y = pinionPitchRadius * Math.Sin(ConversionUtils.Radians(refAngleApex) + halfToothAngle);
+                var point3X = innerRadius * Math.Cos(ConversionUtils.Radians(refAngleApex) + halfToothAngle) + pinionCentreX;
+                var point3Y = innerRadius * Math.Sin(ConversionUtils.Radians(refAngleApex) + halfToothAngle);
+                var point4X = innerRadius * Math.Cos(ConversionUtils.Radians(refAngleApex) - halfToothAngle) + pinionCentreX;
+                var point4Y = innerRadius * Math.Sin(ConversionUtils.Radians(refAngleApex) - halfToothAngle);
+                var point5X = pinionPitchRadius * Math.Cos(ConversionUtils.Radians(refAngleApex) - halfToothAngle) +
                               pinionCentreX;
-                var point5Y = pinionPitchRadius * Math.Sin(Radians(refAngleApex) - halfToothAngle);
-                var point6X = innerRadius * Math.Cos(Radians(nextRefAngleApex) - halfToothAngle) +
+                var point5Y = pinionPitchRadius * Math.Sin(ConversionUtils.Radians(refAngleApex) - halfToothAngle);
+                var point6X = innerRadius * Math.Cos(ConversionUtils.Radians(nextRefAngleApex) - halfToothAngle) +
                               pinionCentreX;
-                var point6Y = innerRadius * Math.Sin(Radians(nextRefAngleApex) - halfToothAngle);
+                var point6Y = innerRadius * Math.Sin(ConversionUtils.Radians(nextRefAngleApex) - halfToothAngle);
                 var pointA = new Point(point1X, point1Y);
                 var pointB = new Point(point2X, point2Y);
                 var pointC = new Point(point5X, point5Y);

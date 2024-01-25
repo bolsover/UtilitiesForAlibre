@@ -3,40 +3,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using AlibreAddOn;
 using AlibreX;
-using System.Windows.Forms;
 using Bolsover.AlibreDataViewer;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
-using Bolsover.Gear.Views;
 using Bolsover.Involute.View;
 using Bolsover.PlaneFinder;
-using Bolsover.Sample;
-using Bolsover.ThreeDLine;
-
 
 namespace Bolsover
 {
     public class UtilitiesForAlibre : IAlibreAddOn
     {
         private const int MenuIdRoot = 401;
-        private const int MenuIdFile = 501;
-        private const int SubmenuIdFileOpen = 502;
-        private const int SubmenuIdFileClose = 503;
-        private const int SubmenuIdFileExit = 504;
+
         private const int SubmenuIdDataBrowser = 505;
         private const int MenuIdGear = 506;
         private const int MenuIdUtils = 601;
         private const int SubmenuIdUtilsCycloidalGear = 602;
         private const int SubmenuIdUtilsPlaneFinder = 603;
         private const int SubmenuIdUtilsDataViewer = 604;
-        private const int SubmenuIdUtils3Dline = 605;
         private const int SubmenuIdUtilsStandardGear = 607;
         private const int SubmenuIdUtilsAdvancedGear = 609;
-        private const int SubmenuIdUtilsSpurGear = 608;
-        private const int SubmenuIdUtilsSample = 606;
         private const int MenuIdHelp = 701;
         private const int SubmenuIdHelpAbout = 702;
-        private int[] _menuIdsFile;
         private int[] _menuIdsUtils;
         private int[] _menuIdsRoot;
         private int[] _menuIdsHelp;
@@ -44,7 +32,6 @@ namespace Bolsover
 
         private IADRoot _alibreRoot;
         private IntPtr _parentWinHandle;
-
 
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
@@ -65,30 +52,28 @@ namespace Bolsover
         /// </summary>
         private void BuildMenuTree()
         {
-            _menuIdsFile = new int[3]
-            {
-                SubmenuIdFileOpen, SubmenuIdFileClose, SubmenuIdFileExit
-            };
-            _menuIdsUtils = new int[5]
+            _menuIdsUtils = new int[3]
             {
                 SubmenuIdDataBrowser,
                 SubmenuIdUtilsPlaneFinder,
                 SubmenuIdUtilsDataViewer,
-                SubmenuIdUtils3Dline,
-                SubmenuIdUtilsSample
             };
-            _menuIdsRoot = new int[4]
+            _menuIdsRoot = new int[3]
             {
-                MenuIdFile, MenuIdUtils, MenuIdGear, MenuIdHelp
+                MenuIdUtils,
+                MenuIdGear,
+                MenuIdHelp
             };
             _menuIdsHelp = new int[1]
             {
                 SubmenuIdHelpAbout
             };
 
-            _menuIdsGear = new int[4]
+            _menuIdsGear = new int[3]
             {
-                SubmenuIdUtilsCycloidalGear, SubmenuIdUtilsStandardGear, SubmenuIdUtilsAdvancedGear, SubmenuIdUtilsSpurGear
+                SubmenuIdUtilsCycloidalGear,
+                SubmenuIdUtilsStandardGear,
+                SubmenuIdUtilsAdvancedGear
             };
         }
 
@@ -102,7 +87,7 @@ namespace Bolsover
             switch (menuId)
             {
                 case MenuIdRoot: return true;
-                case MenuIdFile: return true;
+
                 case MenuIdUtils: return true;
                 case MenuIdHelp: return true;
                 case MenuIdGear: return true;
@@ -121,7 +106,6 @@ namespace Bolsover
             switch (menuId)
             {
                 case MenuIdRoot: return _menuIdsRoot;
-                case MenuIdFile: return _menuIdsFile;
                 case MenuIdGear: return _menuIdsGear;
                 case MenuIdUtils: return _menuIdsUtils;
                 case MenuIdHelp: return _menuIdsHelp;
@@ -140,23 +124,16 @@ namespace Bolsover
             switch (menuId)
             {
                 case MenuIdRoot: return "Utilities";
-                case MenuIdFile: return "File";
                 case MenuIdUtils: return "Utilities";
                 case MenuIdHelp: return "Help";
                 case MenuIdGear: return "Gears";
                 case SubmenuIdDataBrowser: return "Data Browser";
-                case SubmenuIdFileOpen: return "Open";
-                case SubmenuIdFileClose: return "Save & Close";
-                case SubmenuIdFileExit: return "Save All, Exit";
                 case SubmenuIdUtilsCycloidalGear: return "Cycloidal Gears Open/Close";
                 case SubmenuIdUtilsStandardGear: return "Standard Spur & Helical Gears";
                 case SubmenuIdUtilsAdvancedGear: return "Advanced Spur & Helical Gears";
-                case SubmenuIdUtilsSpurGear: return "Old Tool";
                 case SubmenuIdHelpAbout: return "About";
                 case SubmenuIdUtilsPlaneFinder: return "Sketch Plane Finder Open/Close";
                 case SubmenuIdUtilsDataViewer: return "Property Viewer Open/Close";
-                case SubmenuIdUtils3Dline: return "3DLine Open/Close";
-                case SubmenuIdUtilsSample: return "Sample Open/Close";
             }
 
             return "";
@@ -192,21 +169,14 @@ namespace Bolsover
                     switch (menuId)
                     {
                         case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MenuIdFile: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileOpen: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtils3Dline: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsSample: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_GRAYED;
                     }
 
@@ -216,21 +186,14 @@ namespace Bolsover
                     switch (menuId)
                     {
                         case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MenuIdFile: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileOpen: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtils3Dline: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsSample: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -239,21 +202,14 @@ namespace Bolsover
                     switch (menuId)
                     {
                         case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case MenuIdFile: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileOpen: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileClose: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdFileExit: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsSpurGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtils3Dline: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsSample: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -273,21 +229,15 @@ namespace Bolsover
             switch (menuId)
             {
                 case MenuIdRoot: return "Utilities";
-                case MenuIdFile: return "File";
+
                 case MenuIdUtils: return "Utilities";
                 case MenuIdGear: return "Gears";
                 case SubmenuIdDataBrowser: return "Opens the custom Data Browser";
-                case SubmenuIdFileOpen: return "Opens files from file explorer";
-                case SubmenuIdFileClose: return "Saves and closes the current file";
-                case SubmenuIdFileExit: return "Saves all open files and quits Alibre";
                 case SubmenuIdUtilsCycloidalGear: return "Opens/Closes Cycloidal Gear Generator";
                 case SubmenuIdUtilsStandardGear: return "Opens Standard Spur and Helical Gear Generator";
                 case SubmenuIdUtilsAdvancedGear: return "Opens Advanced Spur and Helical Gear Generator";
-                case SubmenuIdUtilsSpurGear: return "Opens Old Spur and Helical Gear Generator";
                 case SubmenuIdUtilsPlaneFinder: return "Finds the Plane on which a selected Sketch is drawn";
                 case SubmenuIdUtilsDataViewer: return "Opens/Closes Property Viewer";
-                case SubmenuIdUtils3Dline: return "Opens/Closes 3DLine Generator";
-                case SubmenuIdUtilsSample: return "Opens/Closes Sample";
                 case SubmenuIdHelpAbout: return "About Utilities for Alibre";
             }
 
@@ -343,18 +293,6 @@ namespace Bolsover
                 {
                     return DoDataBrowser();
                 }
-                case SubmenuIdFileOpen:
-                {
-                    return DoFileOpen();
-                }
-                case SubmenuIdFileClose:
-                {
-                    return DoFileClose(session);
-                }
-                case SubmenuIdFileExit:
-                {
-                    return DoFileExit();
-                }
                 case SubmenuIdUtilsCycloidalGear:
                 {
                     return DoCycloidalGear(session);
@@ -363,15 +301,9 @@ namespace Bolsover
                 {
                     return DoStandardGear();
                 }
-                
                 case SubmenuIdUtilsAdvancedGear:
                 {
                     return DoAdvancedGear();
-                }
-
-                case SubmenuIdUtilsSpurGear:
-                {
-                    return DoGears();
                 }
                 case SubmenuIdUtilsPlaneFinder:
                 {
@@ -380,14 +312,6 @@ namespace Bolsover
                 case SubmenuIdUtilsDataViewer:
                 {
                     return DoAlibreDataViewer(session);
-                }
-                case SubmenuIdUtils3Dline:
-                {
-                    return Do3DLine(session);
-                }
-                case SubmenuIdUtilsSample:
-                {
-                    return DoSample(session);
                 }
                 case SubmenuIdHelpAbout:
                 {
@@ -400,93 +324,12 @@ namespace Bolsover
 
         #endregion
 
-        #region ThreeDLine
-
-        private readonly Dictionary<string, ThreeDLineAddOnCommand> _threeDLineAddOnCommands = new();
-
-        private IAlibreAddOnCommand Do3DLine(IADSession session)
-        {
-            ThreeDLineAddOnCommand threeDLineAddOnCommand;
-            if (!_threeDLineAddOnCommands.ContainsKey(session.Identifier))
-            {
-                threeDLineAddOnCommand = new ThreeDLineAddOnCommand(session);
-                threeDLineAddOnCommand.ThreeDLineUserControl.Visible = true;
-                threeDLineAddOnCommand.Terminate += (sender, e) => ThreeDLineAddOnCommandOnTerminate(sender, e);
-                _threeDLineAddOnCommands.Add(session.Identifier, threeDLineAddOnCommand);
-            }
-            else
-            {
-                if (_threeDLineAddOnCommands.TryGetValue(session.Identifier, out threeDLineAddOnCommand))
-                {
-                    threeDLineAddOnCommand.UserRequestedClose();
-                    _threeDLineAddOnCommands.Remove(session.Identifier);
-                    return null;
-                }
-            }
-
-            return threeDLineAddOnCommand;
-        }
-
-        private void ThreeDLineAddOnCommandOnTerminate(object sender, ThreeDLineAddOnCommandTerminateEventArgs e)
-        {
-            ThreeDLineAddOnCommand threeDLineAddOnCommand;
-            if (_threeDLineAddOnCommands.TryGetValue(e.ThreeDLineAddOnCommand.Session.Identifier,
-                    out threeDLineAddOnCommand))
-            {
-                _threeDLineAddOnCommands.Remove(e.ThreeDLineAddOnCommand.Session.Identifier);
-            }
-        }
-
-        #endregion
-
-        #region Sample
-
-        /// <summary>
-        /// A dictionary to keep track of currently open EmptyAddOnCommand object.
-        /// </summary>
-        private readonly Dictionary<string, SampleAddOnCommand> _sampleAddOnCommands = new();
-
-        private IAlibreAddOnCommand DoSample(IADSession session)
-        {
-            SampleAddOnCommand sampleViewerAddOnCommand;
-            if (!_sampleAddOnCommands.ContainsKey(session.Identifier))
-            {
-                sampleViewerAddOnCommand = new SampleAddOnCommand(session);
-                sampleViewerAddOnCommand.SampleUserControl.Visible = true;
-                sampleViewerAddOnCommand.Terminate += SampleAddOnCommandOnTerminate;
-                _sampleAddOnCommands.Add(session.Identifier, sampleViewerAddOnCommand);
-            }
-            else
-            {
-                if (_sampleAddOnCommands.TryGetValue(session.Identifier, out sampleViewerAddOnCommand))
-                {
-                    sampleViewerAddOnCommand.UserRequestedClose();
-                    _sampleAddOnCommands.Remove(session.Identifier);
-                    return null;
-                }
-            }
-
-            return sampleViewerAddOnCommand;
-        }
-
-        private void SampleAddOnCommandOnTerminate(object sender, SampleAddonCommandTerminateEventArgs e)
-        {
-            SampleAddOnCommand sampleAddOnCommand;
-            if (_sampleAddOnCommands.TryGetValue(e.SampleAddOnCommand.Session.Identifier, out sampleAddOnCommand))
-            {
-                _sampleAddOnCommands.Remove(e.SampleAddOnCommand.Session.Identifier);
-            }
-        }
-
-        #endregion
-
         #region DataViewer
 
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
         private readonly Dictionary<string, AlibreDataViewerAddOnCommand> _dataViewerAddOnCommands = new();
-
 
         /// <summary>
         /// Toggles the viewer on/off
@@ -653,113 +496,19 @@ namespace Bolsover
         /// <returns></returns>
         private IAlibreAddOnCommand DoStandardGear()
         {
-            
             var form = new StandardGearForm();
             form.Show();
             return null;
         }
-        
+
         /// <summary>
         /// </summary>
         /// <returns></returns>
         private IAlibreAddOnCommand DoAdvancedGear()
         {
-            
             var form = new InvoluteGearForm();
             form.Show();
-            
-            return null;
-        }
 
-        #endregion
-
-        #region Gears
-
-        /// <summary>
-        /// </summary>
-        /// <returns></returns>
-        private IAlibreAddOnCommand DoGears()
-        {
-            GearForm.Instance();
-
-            return null;
-        }
-
-        #endregion
-
-        #region FileOpen
-
-        /// <summary>
-        /// Opens a standard file dialog, opens the selected file or returns null if the user closes the dialog without selecting a file.
-        /// </summary>
-        /// <returns></returns>
-        private static IAlibreAddOnCommand DoFileOpen()
-        {
-            var filePath = string.Empty;
-            var openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Alibre Files (*.AD_*)|*.AD_*|All files (*.*)|*.*";
-            openFileDialog.Title = "Open Alibre File";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                //Get the path of specified file
-                filePath = openFileDialog.FileName;
-                OpenWithDefaultProgram(filePath);
-                return (IAlibreAddOnCommand) null;
-            }
-
-            // fall through if no file selected
-            return (IAlibreAddOnCommand) null;
-        }
-
-        /// <summary>
-        /// Helper method to open files with default program
-        /// </summary>
-        /// <param name="path"></param>
-        public static void OpenWithDefaultProgram(string path)
-        {
-            using var fileopener = new Process();
-            fileopener.StartInfo.FileName = "explorer";
-            fileopener.StartInfo.Arguments = "\"" + path + "\"";
-            fileopener.Start();
-        }
-
-        #endregion
-
-        #region FileClose
-
-        /// <summary>
-        /// Closes the current session, saving the file if required
-        /// </summary>
-        /// <param name="currentSession"></param>
-        /// <returns></returns>
-        private static IAlibreAddOnCommand DoFileClose(IADSession currentSession)
-        {
-            //    object path = "E:/test";
-            // currentSession.SaveNew(ref path);
-            //   currentSession.SaveAs(ref path , "mytestassembly" );
-            currentSession.Close(true);
-            return null;
-        }
-
-        #endregion
-
-        #region FileExit
-
-        /// <summary>
-        /// Saves and closes all open files, terminates the application
-        /// </summary>
-        /// <returns></returns>
-        private IAlibreAddOnCommand DoFileExit()
-        {
-            foreach (IADSession session in _alibreRoot.Sessions)
-            {
-                session.Close(true);
-            }
-
-            _alibreRoot.Terminate();
             return null;
         }
 

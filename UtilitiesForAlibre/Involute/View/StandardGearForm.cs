@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bolsover.Gear.Views
+namespace Bolsover.Involute.View
 {
     public partial class StandardGearForm : Form
     {

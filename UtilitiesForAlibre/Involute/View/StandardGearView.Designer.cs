@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Bolsover.Gear.Views
+namespace Bolsover.Involute.View
 {
     partial class StandardGearView
     {

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 
-namespace Bolsover.Gear.Views
+
+namespace Bolsover.Involute.View
 {
     partial class StandardGearForm
     {
@@ -31,7 +32,7 @@ namespace Bolsover.Gear.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.view = new Bolsover.Gear.Views.StandardGearView();
+            this.view = new StandardGearView();
             this.SuspendLayout();
             // 
             // view
@@ -53,7 +54,7 @@ namespace Bolsover.Gear.Views
             this.ResumeLayout(false);
         }
         
-        private Bolsover.Gear.Views.StandardGearView view;
+        private StandardGearView view;
 
         #endregion
     }
