@@ -142,8 +142,8 @@ namespace Bolsover.Involute.Calculator
             var alphaW = Math.Acos(((z2 - z1) * Math.Cos(alpha)) / ((2 * y) + z2 - z1)); // Working Pressure Angle in radians
             var num1 = jt / (2 * m * Math.Tan(alpha));
             var num2 = Math.Cos(alphaW) / Math.Cos(alpha);
-            var xMod =-(num1 * num2);
-            return xMod;
+            var xMod = num1 * num2;
+            return -xMod;
         }
 
         private void SetupEventListeners()

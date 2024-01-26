@@ -5,10 +5,6 @@ namespace Bolsover.Involute.Model
 {
     public class Tooth
     {
-        private Dictionary<int, ToothPoint> _points;
-        private List<GearPoint> _rhsInvolute;
-        private List<GearPoint> _lhsInvolute;
-
         public Tooth()
         {
             Init();
@@ -16,7 +12,7 @@ namespace Bolsover.Involute.Model
 
         private void Init()
         {
-            _points = new Dictionary<int, ToothPoint>()
+            Points = new Dictionary<int, ToothPoint>
             {
                 {0, new ToothPoint(0, "Centre of Gear", new GearPoint(0, 0))},
                 {1, new ToothPoint(1, "RHS Mid point between adjacent teeth on root diameter", new GearPoint(0, 0))},
@@ -39,31 +35,19 @@ namespace Bolsover.Involute.Model
                 {18, new ToothPoint(18, "RHS Mid tooth point outer ring diameter", new GearPoint(0, 0))},
                 {19, new ToothPoint(19, "LHS Mid tooth point outer ring diameter", new GearPoint(0, 0))},
                 {20, new ToothPoint(20, "RHS Mid Base diameter", new GearPoint(0, 0))},
-                {21, new ToothPoint(21, "LHS Mid Base diameter", new GearPoint(0, 0))},
+                {21, new ToothPoint(21, "LHS Mid Base diameter", new GearPoint(0, 0))}
 
             };
-            _rhsInvolute = new List<GearPoint>();
-            _lhsInvolute = new List<GearPoint>();
+            RhsInvolute = new List<GearPoint>();
+            LhsInvolute = new List<GearPoint>();
         }
         
        
 
-        public Dictionary<int, ToothPoint> Points
-        {
-            get => _points;
-            set => _points = value;
-        }
+        public Dictionary<int, ToothPoint> Points { get; set; }
 
-        public List<GearPoint> LhsInvolute
-        {
-            get => _lhsInvolute;
-            set => _lhsInvolute = value;
-        }
+        public List<GearPoint> LhsInvolute { get; set; }
 
-        public List<GearPoint> RhsInvolute
-        {
-            get => _rhsInvolute;
-            set => _rhsInvolute = value;
-        }
+        public List<GearPoint> RhsInvolute { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Bolsover.Involute.Model
         private IGearDesignOutputParams _pinionDesignOutput;
         private IGearDesignOutputParams _gearDesignOutput;
 
-        private string _gearString;
+        
 
         public GearPairDesignOutputParams()
         {

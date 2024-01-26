@@ -31,6 +31,7 @@ namespace Bolsover.Involute.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.normalModuleSymbolLabel = new System.Windows.Forms.Label();
             this.normalPressureAngleSymbolLabel = new System.Windows.Forms.Label();
@@ -88,20 +89,21 @@ namespace Bolsover.Involute.View
             this.assignedTotalNormalProfileShiftTextBox = new System.Windows.Forms.TextBox();
             this.xModTextBox = new System.Windows.Forms.TextBox();
             this.dataTextBox = new System.Windows.Forms.TextBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.moduleNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.pressureAngleNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.helixAngleNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.heightNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.gearTeethNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.rootFilletFactorNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.addendumFilletFactorNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.operatingCentreDistanceNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.pinionTeethNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moduleNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pressureAngleNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helixAngleNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gearTeethNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rootFilletFactorNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addendumFilletFactorNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatingCentreDistanceNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pinionTeethNumericUpDown)).BeginInit();
             this.extIntGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.normalBacklashNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.pinionProfileShiftNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.gearProfileShiftNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.normalBacklashNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pinionProfileShiftNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gearProfileShiftNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -234,10 +236,7 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.SetColumnSpan(this.moduleNumericUpDown, 2);
             this.moduleNumericUpDown.DecimalPlaces = 3;
             this.moduleNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.moduleNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 131072
-            });
+            this.moduleNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             this.moduleNumericUpDown.Location = new System.Drawing.Point(450, 78);
             this.moduleNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.moduleNumericUpDown.Name = "moduleNumericUpDown";
@@ -250,27 +249,15 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.SetColumnSpan(this.pressureAngleNumericUpDown, 2);
             this.pressureAngleNumericUpDown.DecimalPlaces = 2;
             this.pressureAngleNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pressureAngleNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 131072
-            });
+            this.pressureAngleNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             this.pressureAngleNumericUpDown.Location = new System.Drawing.Point(450, 115);
             this.pressureAngleNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.pressureAngleNumericUpDown.Maximum = new decimal(new int[]
-            {
-                30, 0, 0, 0
-            });
-            this.pressureAngleNumericUpDown.Minimum = new decimal(new int[]
-            {
-                10, 0, 0, 0
-            });
+            this.pressureAngleNumericUpDown.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
+            this.pressureAngleNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.pressureAngleNumericUpDown.Name = "pressureAngleNumericUpDown";
             this.pressureAngleNumericUpDown.Size = new System.Drawing.Size(290, 22);
             this.pressureAngleNumericUpDown.TabIndex = 18;
-            this.pressureAngleNumericUpDown.Value = new decimal(new int[]
-            {
-                20, 0, 0, 0
-            });
+            this.pressureAngleNumericUpDown.Value = new decimal(new int[] { 20, 0, 0, 0 });
             this.pressureAngleNumericUpDown.ValueChanged += new System.EventHandler(this.pressureAngleNumericUpDown_ValueChanged);
             // 
             // helixAngleNumericUpDown
@@ -278,16 +265,10 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.SetColumnSpan(this.helixAngleNumericUpDown, 2);
             this.helixAngleNumericUpDown.DecimalPlaces = 2;
             this.helixAngleNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helixAngleNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 131072
-            });
+            this.helixAngleNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             this.helixAngleNumericUpDown.Location = new System.Drawing.Point(450, 152);
             this.helixAngleNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.helixAngleNumericUpDown.Maximum = new decimal(new int[]
-            {
-                45, 0, 0, 0
-            });
+            this.helixAngleNumericUpDown.Maximum = new decimal(new int[] { 45, 0, 0, 0 });
             this.helixAngleNumericUpDown.Name = "helixAngleNumericUpDown";
             this.helixAngleNumericUpDown.Size = new System.Drawing.Size(290, 22);
             this.helixAngleNumericUpDown.TabIndex = 19;
@@ -296,7 +277,7 @@ namespace Bolsover.Involute.View
             // gearLabel
             // 
             this.gearLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.gearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gearLabel.Location = new System.Drawing.Point(598, 0);
             this.gearLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gearLabel.Name = "gearLabel";
@@ -345,32 +326,20 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.SetColumnSpan(this.heightNumericUpDown, 2);
             this.heightNumericUpDown.DecimalPlaces = 3;
             this.heightNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.heightNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 65536
-            });
+            this.heightNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             this.heightNumericUpDown.Location = new System.Drawing.Point(450, 744);
             this.heightNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.heightNumericUpDown.Maximum = new decimal(new int[]
-            {
-                1000, 0, 0, 0
-            });
-            this.heightNumericUpDown.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, 65536
-            });
+            this.heightNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            this.heightNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             this.heightNumericUpDown.Name = "heightNumericUpDown";
             this.heightNumericUpDown.Size = new System.Drawing.Size(290, 22);
             this.heightNumericUpDown.TabIndex = 25;
-            this.heightNumericUpDown.Value = new decimal(new int[]
-            {
-                10, 0, 0, 0
-            });
+            this.heightNumericUpDown.Value = new decimal(new int[] { 10, 0, 0, 0 });
             this.heightNumericUpDown.ValueChanged += new System.EventHandler(this.heightNumericUpDown_ValueChanged);
             // 
             // pionLabel
             // 
-            this.pionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.pionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pionLabel.Location = new System.Drawing.Point(450, 0);
             this.pionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pionLabel.Name = "pionLabel";
@@ -414,7 +383,7 @@ namespace Bolsover.Involute.View
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.adjustmentsLabel, 4);
             this.adjustmentsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.adjustmentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.adjustmentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjustmentsLabel.Location = new System.Drawing.Point(4, 407);
             this.adjustmentsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.adjustmentsLabel.Name = "adjustmentsLabel";
@@ -490,21 +459,12 @@ namespace Bolsover.Involute.View
             this.gearTeethNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gearTeethNumericUpDown.Location = new System.Drawing.Point(598, 189);
             this.gearTeethNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.gearTeethNumericUpDown.Maximum = new decimal(new int[]
-            {
-                2000, 0, 0, 0
-            });
-            this.gearTeethNumericUpDown.Minimum = new decimal(new int[]
-            {
-                10, 0, 0, 0
-            });
+            this.gearTeethNumericUpDown.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
+            this.gearTeethNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.gearTeethNumericUpDown.Name = "gearTeethNumericUpDown";
             this.gearTeethNumericUpDown.Size = new System.Drawing.Size(142, 22);
             this.gearTeethNumericUpDown.TabIndex = 20;
-            this.gearTeethNumericUpDown.Value = new decimal(new int[]
-            {
-                60, 0, 0, 0
-            });
+            this.gearTeethNumericUpDown.Value = new decimal(new int[] { 60, 0, 0, 0 });
             this.gearTeethNumericUpDown.ValueChanged += new System.EventHandler(this.teethNumericUpDown_ValueChanged);
             // 
             // buildPinionButton
@@ -523,7 +483,7 @@ namespace Bolsover.Involute.View
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label3, 4);
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(4, 296);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
@@ -534,7 +494,7 @@ namespace Bolsover.Involute.View
             // 
             // itemLabel
             // 
-            this.itemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.itemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemLabel.Location = new System.Drawing.Point(4, 0);
             this.itemLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.itemLabel.Name = "itemLabel";
@@ -544,7 +504,7 @@ namespace Bolsover.Involute.View
             // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(227, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
@@ -556,7 +516,7 @@ namespace Bolsover.Involute.View
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.standardSettingLabel, 4);
             this.standardSettingLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.standardSettingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.standardSettingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.standardSettingLabel.Location = new System.Drawing.Point(4, 37);
             this.standardSettingLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.standardSettingLabel.Name = "standardSettingLabel";
@@ -600,27 +560,15 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.SetColumnSpan(this.rootFilletFactorNumericUpDown, 2);
             this.rootFilletFactorNumericUpDown.DecimalPlaces = 3;
             this.rootFilletFactorNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rootFilletFactorNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.rootFilletFactorNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             this.rootFilletFactorNumericUpDown.Location = new System.Drawing.Point(450, 337);
             this.rootFilletFactorNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.rootFilletFactorNumericUpDown.Maximum = new decimal(new int[]
-            {
-                5, 0, 0, 65536
-            });
-            this.rootFilletFactorNumericUpDown.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.rootFilletFactorNumericUpDown.Maximum = new decimal(new int[] { 5, 0, 0, 65536 });
+            this.rootFilletFactorNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 196608 });
             this.rootFilletFactorNumericUpDown.Name = "rootFilletFactorNumericUpDown";
             this.rootFilletFactorNumericUpDown.Size = new System.Drawing.Size(290, 22);
             this.rootFilletFactorNumericUpDown.TabIndex = 56;
-            this.rootFilletFactorNumericUpDown.Value = new decimal(new int[]
-            {
-                38, 0, 0, 131072
-            });
+            this.rootFilletFactorNumericUpDown.Value = new decimal(new int[] { 38, 0, 0, 131072 });
             this.rootFilletFactorNumericUpDown.ValueChanged += new System.EventHandler(this.rootFilletFactorNumericUpDown_ValueChanged);
             // 
             // addendumFilletFactorNumericUpDown
@@ -628,43 +576,25 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.SetColumnSpan(this.addendumFilletFactorNumericUpDown, 2);
             this.addendumFilletFactorNumericUpDown.DecimalPlaces = 3;
             this.addendumFilletFactorNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addendumFilletFactorNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.addendumFilletFactorNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             this.addendumFilletFactorNumericUpDown.Location = new System.Drawing.Point(450, 374);
             this.addendumFilletFactorNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.addendumFilletFactorNumericUpDown.Maximum = new decimal(new int[]
-            {
-                5, 0, 0, 65536
-            });
-            this.addendumFilletFactorNumericUpDown.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.addendumFilletFactorNumericUpDown.Maximum = new decimal(new int[] { 5, 0, 0, 65536 });
+            this.addendumFilletFactorNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 196608 });
             this.addendumFilletFactorNumericUpDown.Name = "addendumFilletFactorNumericUpDown";
             this.addendumFilletFactorNumericUpDown.Size = new System.Drawing.Size(290, 22);
             this.addendumFilletFactorNumericUpDown.TabIndex = 57;
-            this.addendumFilletFactorNumericUpDown.Value = new decimal(new int[]
-            {
-                1, 0, 0, 65536
-            });
+            this.addendumFilletFactorNumericUpDown.Value = new decimal(new int[] { 1, 0, 0, 65536 });
             this.addendumFilletFactorNumericUpDown.ValueChanged += new System.EventHandler(this.addendumFilletFactorNumericUpDown_ValueChanged);
             // 
             // operatingCentreDistanceNumericUpDown
             // 
             this.operatingCentreDistanceNumericUpDown.DecimalPlaces = 3;
             this.operatingCentreDistanceNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatingCentreDistanceNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.operatingCentreDistanceNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             this.operatingCentreDistanceNumericUpDown.Location = new System.Drawing.Point(450, 448);
             this.operatingCentreDistanceNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.operatingCentreDistanceNumericUpDown.Maximum = new decimal(new int[]
-            {
-                10000, 0, 0, 0
-            });
+            this.operatingCentreDistanceNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             this.operatingCentreDistanceNumericUpDown.Name = "operatingCentreDistanceNumericUpDown";
             this.operatingCentreDistanceNumericUpDown.Size = new System.Drawing.Size(140, 22);
             this.operatingCentreDistanceNumericUpDown.TabIndex = 58;
@@ -687,24 +617,19 @@ namespace Bolsover.Involute.View
             this.pinionTeethNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pinionTeethNumericUpDown.Location = new System.Drawing.Point(450, 189);
             this.pinionTeethNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.pinionTeethNumericUpDown.Maximum = new decimal(new int[]
-            {
-                2000, 0, 0, 0
-            });
+            this.pinionTeethNumericUpDown.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
+            this.pinionTeethNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.pinionTeethNumericUpDown.Name = "pinionTeethNumericUpDown";
             this.pinionTeethNumericUpDown.Size = new System.Drawing.Size(140, 22);
             this.pinionTeethNumericUpDown.TabIndex = 63;
-            this.pinionTeethNumericUpDown.Value = new decimal(new int[]
-            {
-                20, 0, 0, 0
-            });
+            this.pinionTeethNumericUpDown.Value = new decimal(new int[] { 20, 0, 0, 0 });
             this.pinionTeethNumericUpDown.ValueChanged += new System.EventHandler(this.pinionTeethNumericUpDown_ValueChanged);
             // 
             // alibreSettingLabel
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.alibreSettingLabel, 4);
             this.alibreSettingLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alibreSettingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.alibreSettingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.alibreSettingLabel.Location = new System.Drawing.Point(4, 703);
             this.alibreSettingLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.alibreSettingLabel.Name = "alibreSettingLabel";
@@ -753,19 +678,21 @@ namespace Bolsover.Involute.View
             // 
             // backlashLabel
             // 
+            this.backlashLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backlashLabel.Location = new System.Drawing.Point(4, 481);
             this.backlashLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.backlashLabel.Name = "backlashLabel";
-            this.backlashLabel.Size = new System.Drawing.Size(192, 37);
+            this.backlashLabel.Size = new System.Drawing.Size(215, 37);
             this.backlashLabel.TabIndex = 28;
             this.backlashLabel.Text = "Circular Backlash";
             // 
             // circularBacklashSymbolLabel
             // 
+            this.circularBacklashSymbolLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.circularBacklashSymbolLabel.Location = new System.Drawing.Point(227, 481);
             this.circularBacklashSymbolLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.circularBacklashSymbolLabel.Name = "circularBacklashSymbolLabel";
-            this.circularBacklashSymbolLabel.Size = new System.Drawing.Size(192, 37);
+            this.circularBacklashSymbolLabel.Size = new System.Drawing.Size(215, 37);
             this.circularBacklashSymbolLabel.TabIndex = 38;
             this.circularBacklashSymbolLabel.Text = "Circular Backlash Symbol";
             // 
@@ -773,16 +700,10 @@ namespace Bolsover.Involute.View
             // 
             this.normalBacklashNumericUpDown.DecimalPlaces = 4;
             this.normalBacklashNumericUpDown.Enabled = false;
-            this.normalBacklashNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.normalBacklashNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             this.normalBacklashNumericUpDown.Location = new System.Drawing.Point(450, 485);
             this.normalBacklashNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.normalBacklashNumericUpDown.Maximum = new decimal(new int[]
-            {
-                10, 0, 0, 0
-            });
+            this.normalBacklashNumericUpDown.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             this.normalBacklashNumericUpDown.Name = "normalBacklashNumericUpDown";
             this.normalBacklashNumericUpDown.Size = new System.Drawing.Size(140, 22);
             this.normalBacklashNumericUpDown.TabIndex = 55;
@@ -790,19 +711,21 @@ namespace Bolsover.Involute.View
             // 
             // profileShiftLabel
             // 
+            this.profileShiftLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileShiftLabel.Location = new System.Drawing.Point(4, 518);
             this.profileShiftLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.profileShiftLabel.Name = "profileShiftLabel";
-            this.profileShiftLabel.Size = new System.Drawing.Size(192, 37);
+            this.profileShiftLabel.Size = new System.Drawing.Size(215, 37);
             this.profileShiftLabel.TabIndex = 34;
             this.profileShiftLabel.Text = "Profile Shift";
             // 
             // profileShiftSymbolLabel
             // 
+            this.profileShiftSymbolLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileShiftSymbolLabel.Location = new System.Drawing.Point(227, 518);
             this.profileShiftSymbolLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.profileShiftSymbolLabel.Name = "profileShiftSymbolLabel";
-            this.profileShiftSymbolLabel.Size = new System.Drawing.Size(192, 37);
+            this.profileShiftSymbolLabel.Size = new System.Drawing.Size(215, 37);
             this.profileShiftSymbolLabel.TabIndex = 44;
             this.profileShiftSymbolLabel.Text = "Profile Shift Symbol";
             // 
@@ -810,20 +733,11 @@ namespace Bolsover.Involute.View
             // 
             this.pinionProfileShiftNumericUpDown.DecimalPlaces = 4;
             this.pinionProfileShiftNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pinionProfileShiftNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.pinionProfileShiftNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             this.pinionProfileShiftNumericUpDown.Location = new System.Drawing.Point(450, 522);
             this.pinionProfileShiftNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.pinionProfileShiftNumericUpDown.Maximum = new decimal(new int[]
-            {
-                1, 0, 0, 0
-            });
-            this.pinionProfileShiftNumericUpDown.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, -2147483648
-            });
+            this.pinionProfileShiftNumericUpDown.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            this.pinionProfileShiftNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, -2147483648 });
             this.pinionProfileShiftNumericUpDown.Name = "pinionProfileShiftNumericUpDown";
             this.pinionProfileShiftNumericUpDown.Size = new System.Drawing.Size(140, 22);
             this.pinionProfileShiftNumericUpDown.TabIndex = 60;
@@ -833,20 +747,11 @@ namespace Bolsover.Involute.View
             // 
             this.gearProfileShiftNumericUpDown.DecimalPlaces = 4;
             this.gearProfileShiftNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gearProfileShiftNumericUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 196608
-            });
+            this.gearProfileShiftNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             this.gearProfileShiftNumericUpDown.Location = new System.Drawing.Point(598, 522);
             this.gearProfileShiftNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.gearProfileShiftNumericUpDown.Maximum = new decimal(new int[]
-            {
-                1, 0, 0, 0
-            });
-            this.gearProfileShiftNumericUpDown.Minimum = new decimal(new int[]
-            {
-                1, 0, 0, -2147483648
-            });
+            this.gearProfileShiftNumericUpDown.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            this.gearProfileShiftNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, -2147483648 });
             this.gearProfileShiftNumericUpDown.Name = "gearProfileShiftNumericUpDown";
             this.gearProfileShiftNumericUpDown.Size = new System.Drawing.Size(142, 22);
             this.gearProfileShiftNumericUpDown.TabIndex = 61;
@@ -854,19 +759,22 @@ namespace Bolsover.Involute.View
             // 
             // totalProfileShiftLabel
             // 
+            this.totalProfileShiftLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.totalProfileShiftLabel.Location = new System.Drawing.Point(4, 555);
             this.totalProfileShiftLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.totalProfileShiftLabel.Name = "totalProfileShiftLabel";
-            this.totalProfileShiftLabel.Size = new System.Drawing.Size(192, 37);
+            this.totalProfileShiftLabel.Size = new System.Drawing.Size(215, 37);
             this.totalProfileShiftLabel.TabIndex = 68;
-            this.totalProfileShiftLabel.Text = "Calculated total Profile Shift";
+            this.totalProfileShiftLabel.Text = "Total Profile Shift Calc";
+            this.toolTip.SetToolTip(this.totalProfileShiftLabel, "The total profile shift calculated does not include any allowance for backlash.\r\n" + "This calculated sum should be assigned between the pinion and gear.");
             // 
             // totalProfileShiftSymbolLabel
             // 
+            this.totalProfileShiftSymbolLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.totalProfileShiftSymbolLabel.Location = new System.Drawing.Point(227, 555);
             this.totalProfileShiftSymbolLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.totalProfileShiftSymbolLabel.Name = "totalProfileShiftSymbolLabel";
-            this.totalProfileShiftSymbolLabel.Size = new System.Drawing.Size(192, 37);
+            this.totalProfileShiftSymbolLabel.Size = new System.Drawing.Size(215, 37);
             this.totalProfileShiftSymbolLabel.TabIndex = 70;
             this.totalProfileShiftSymbolLabel.Text = "Total ProfileShift Symbol";
             // 
@@ -884,29 +792,33 @@ namespace Bolsover.Involute.View
             // noteLabel
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.noteLabel, 4);
+            this.noteLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noteLabel.Location = new System.Drawing.Point(4, 629);
             this.noteLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.noteLabel.Name = "noteLabel";
             this.tableLayoutPanel1.SetRowSpan(this.noteLabel, 2);
-            this.noteLabel.Size = new System.Drawing.Size(658, 37);
+            this.noteLabel.Size = new System.Drawing.Size(736, 74);
             this.noteLabel.TabIndex = 71;
             this.noteLabel.Text = "Note";
             // 
             // totalShiftLabel
             // 
+            this.totalShiftLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.totalShiftLabel.Location = new System.Drawing.Point(4, 592);
             this.totalShiftLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.totalShiftLabel.Name = "totalShiftLabel";
-            this.totalShiftLabel.Size = new System.Drawing.Size(192, 28);
+            this.totalShiftLabel.Size = new System.Drawing.Size(215, 37);
             this.totalShiftLabel.TabIndex = 72;
-            this.totalShiftLabel.Text = "Actual assigned total";
+            this.totalShiftLabel.Text = "Total Profile Shift Actual";
+            this.toolTip.SetToolTip(this.totalShiftLabel, "This is the sum of boxes x1, x2 above. Ideally this should be equal to the calcul" + "ated total.");
             // 
             // assignedTotalProfileShiftSymbol
             // 
+            this.assignedTotalProfileShiftSymbol.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assignedTotalProfileShiftSymbol.Location = new System.Drawing.Point(227, 592);
             this.assignedTotalProfileShiftSymbol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.assignedTotalProfileShiftSymbol.Name = "assignedTotalProfileShiftSymbol";
-            this.assignedTotalProfileShiftSymbol.Size = new System.Drawing.Size(133, 28);
+            this.assignedTotalProfileShiftSymbol.Size = new System.Drawing.Size(215, 37);
             this.assignedTotalProfileShiftSymbol.TabIndex = 73;
             this.assignedTotalProfileShiftSymbol.Text = "Assigned total ";
             // 
@@ -932,8 +844,8 @@ namespace Bolsover.Involute.View
             // 
             // dataTextBox
             // 
-            this.dataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataTextBox.Font = new System.Drawing.Font("Cascadia Code", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.dataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataTextBox.Font = new System.Drawing.Font("Cascadia Code", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataTextBox.Location = new System.Drawing.Point(758, 0);
             this.dataTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.dataTextBox.Multiline = true;
@@ -954,22 +866,24 @@ namespace Bolsover.Involute.View
             this.Size = new System.Drawing.Size(1636, 918);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.moduleNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.pressureAngleNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.helixAngleNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.heightNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.gearTeethNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.rootFilletFactorNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.addendumFilletFactorNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.operatingCentreDistanceNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.pinionTeethNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moduleNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pressureAngleNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helixAngleNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gearTeethNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rootFilletFactorNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addendumFilletFactorNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatingCentreDistanceNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pinionTeethNumericUpDown)).EndInit();
             this.extIntGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize) (this.normalBacklashNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.pinionProfileShiftNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.gearProfileShiftNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.normalBacklashNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pinionProfileShiftNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gearProfileShiftNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolTip toolTip;
 
         public System.Windows.Forms.TextBox xModTextBox;
 

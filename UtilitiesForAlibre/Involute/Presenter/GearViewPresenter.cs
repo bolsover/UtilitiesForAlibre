@@ -13,7 +13,7 @@ namespace Bolsover.Involute.Presenter
     {
         private GearView _view;
         public GearPairDesignInputParams Model;
-        public GearPairDesignOutputParams GearPairDesignOutputParams;
+        private GearPairDesignOutputParams _gearPairDesignOutputParams;
         private IGearCalculator _gearCalculator;
         private IToothPointsBuilder _toothPointsBuilder;
         private AlibreToothBuilder _alibreToothBuilder;
@@ -28,7 +28,7 @@ namespace Bolsover.Involute.Presenter
         {
             Model = new GearPairDesignInputParams();
 
-            GearPairDesignOutputParams = new GearPairDesignOutputParams
+            _gearPairDesignOutputParams = new GearPairDesignOutputParams
             {
                 GearPairDesignInputParams = Model
             };
@@ -59,10 +59,10 @@ namespace Bolsover.Involute.Presenter
             gear.GearPairDesign = Model;
             pinion.GearPairDesign = Model;
             Model.Auto = true;
-            GearPairDesignOutputParams.PinionDesignOutput = new GearDesignOutputParams();
-            GearPairDesignOutputParams.GearDesignOutput = new GearDesignOutputParams();
-            GearPairDesignOutputParams.PinionDesignOutput.GearDesignInputParams = pinion;
-            GearPairDesignOutputParams.GearDesignOutput.GearDesignInputParams = gear;
+            _gearPairDesignOutputParams.PinionDesignOutput = new GearDesignOutputParams();
+            _gearPairDesignOutputParams.GearDesignOutput = new GearDesignOutputParams();
+            _gearPairDesignOutputParams.PinionDesignOutput.GearDesignInputParams = pinion;
+            _gearPairDesignOutputParams.GearDesignOutput.GearDesignInputParams = gear;
         }
 
         private void SetupDefaults()
@@ -130,36 +130,37 @@ namespace Bolsover.Involute.Presenter
             Calculate();
 
             var xMod = _gearCalculator.CalculateProfileShiftModificationForBacklash(Model);
-            _view.dataTextBox.Text = _gearCalculator.CalculateGearString(Model, GearPairDesignOutputParams);
+            _view.dataTextBox.Text = _gearCalculator.CalculateGearString(Model, _gearPairDesignOutputParams);
             _view.xModTextBox.Text = _gearCalculator.CalculateProfileShiftModificationForBacklash(Model).ToString("F4");
+            var sumx = _gearPairDesignOutputParams.GearPairDesignInputParams.Gear.CoefficientOfProfileShift +
+                      _gearPairDesignOutputParams.GearPairDesignInputParams.Pinion.CoefficientOfProfileShift;
+            _view.assignedTotalNormalProfileShiftTextBox.Text = sumx.ToString("F4");
 
             // Difference coefficient of profile shift is only used for internal gears
             if (Model.Gear.Style.HasFlag(GearStyle.Internal))
             {
                 var xDiff = _gearCalculator.CalculateDifferenceCoefficientOfProfileShift(Model);
-                _view.totalNormalProfileShiftTextBox.Text = (xDiff + xMod).ToString("F4");
+                _view.totalNormalProfileShiftTextBox.Text = (xDiff).ToString("F4");
             }
             else
                 // Sum coefficient of profile shift is only used for external gears
             {
                 var xSum = _gearCalculator.CalculateSumCoefficientOfProfileShift(Model);
-                _view.totalNormalProfileShiftTextBox.Text = (xSum + xMod).ToString("F4");
+                _view.totalNormalProfileShiftTextBox.Text = (xSum).ToString("F4");
             }
 
-            if (Model.Auto)
-            {
-                Model.WorkingCentreDistance = _gearCalculator.CalculateCentreDistance(Model);
-                _view.operatingCentreDistanceNumericUpDown.Value = (decimal) Model.WorkingCentreDistance;
-                _view.pinionProfileShiftNumericUpDown.Value = 0.0M;
-                _view.gearProfileShiftNumericUpDown.Value = 0.0M;
-            }
+            if (!Model.Auto) return;
+            Model.WorkingCentreDistance = _gearCalculator.CalculateCentreDistance(Model);
+            _view.operatingCentreDistanceNumericUpDown.Value = (decimal) Model.WorkingCentreDistance;
+            _view.pinionProfileShiftNumericUpDown.Value = 0.0M;
+            _view.gearProfileShiftNumericUpDown.Value = 0.0M;
         }
 
         private void ViewOnEditAddendumFilletFactorEvent(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.AddendumFilletFactor = newValue;
                 Model.Pinion.AddendumFilletFactor = newValue;
             }
@@ -171,7 +172,7 @@ namespace Bolsover.Involute.Presenter
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.RootFilletFactor = newValue;
                 Model.Pinion.RootFilletFactor = newValue;
             }
@@ -262,7 +263,7 @@ namespace Bolsover.Involute.Presenter
 
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.Module = newValue;
                 Model.Pinion.Module = newValue;
             }
@@ -279,7 +280,7 @@ namespace Bolsover.Involute.Presenter
 
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.Teeth = newValue;
             }
 
@@ -303,7 +304,7 @@ namespace Bolsover.Involute.Presenter
 
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Pinion.Teeth = newValue;
             }
 
@@ -322,7 +323,7 @@ namespace Bolsover.Involute.Presenter
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.CircularBacklash = newValue;
                 Model.Pinion.CircularBacklash = newValue;
             }
@@ -334,7 +335,7 @@ namespace Bolsover.Involute.Presenter
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.CoefficientOfProfileShift = newValue;
             }
 
@@ -345,7 +346,7 @@ namespace Bolsover.Involute.Presenter
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Pinion.CoefficientOfProfileShift = newValue;
             }
 
@@ -358,7 +359,7 @@ namespace Bolsover.Involute.Presenter
             {
                 if (sender is NumericUpDown numericUpDown)
                 {
-                    double newValue = (double) numericUpDown.Value;
+                    var newValue = (double) numericUpDown.Value;
                     Model.WorkingCentreDistance = newValue;
                 }
             }
@@ -385,7 +386,7 @@ namespace Bolsover.Involute.Presenter
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.Height = newValue;
                 Model.Pinion.Height = newValue;
             }
@@ -402,7 +403,7 @@ namespace Bolsover.Involute.Presenter
 
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.PressureAngle = newValue;
                 Model.Pinion.PressureAngle = newValue;
             }
@@ -415,9 +416,9 @@ namespace Bolsover.Involute.Presenter
             Recalculate();
             var gearDetails = GetPinionDetails();
             SetupBuilderForGearType(false);
-            var tooth = _toothPointsBuilder.Build(GearPairDesignOutputParams.PinionDesignOutput);
+            var tooth = _toothPointsBuilder.Build(_gearPairDesignOutputParams.PinionDesignOutput);
             _alibreToothBuilder ??= new AlibreToothBuilder();
-            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, GearPairDesignOutputParams.PinionDesignOutput);
+            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, _gearPairDesignOutputParams.PinionDesignOutput);
         }
 
         private void SetupBuilderForGearType(bool isGear)
@@ -444,9 +445,9 @@ namespace Bolsover.Involute.Presenter
             Recalculate();
             var gearDetails = GetGearDetails();
             SetupBuilderForGearType(true);
-            var tooth = _toothPointsBuilder.Build(GearPairDesignOutputParams.GearDesignOutput);
+            var tooth = _toothPointsBuilder.Build(_gearPairDesignOutputParams.GearDesignOutput);
             _alibreToothBuilder ??= new AlibreToothBuilder();
-            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, GearPairDesignOutputParams.GearDesignOutput);
+            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, _gearPairDesignOutputParams.GearDesignOutput);
         }
 
         private (string SaveFile, string Template) GetGearDetails()
@@ -482,68 +483,68 @@ namespace Bolsover.Involute.Presenter
         private void Calculate()
         {
             if (Model.Gear.Style.HasFlag(GearStyle.External) && Model.Gear.Style.HasFlag(GearStyle.Spur))
-                CalculatePositiveShiftedExternalSpurGear(Model);
+                CalculatePositiveShiftedExternalSpurGear();
             else if (Model.Gear.Style.HasFlag(GearStyle.External) && Model.Gear.Style.HasFlag(GearStyle.Helical))
-                CalculatePositiveShiftedExternalHelicalGear(Model);
+                CalculatePositiveShiftedExternalHelicalGear();
             else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && Model.Gear.Style.HasFlag(GearStyle.Spur))
-                CalculatePositiveShiftedIntExtSpurGear(Model);
+                CalculatePositiveShiftedIntExtSpurGear();
             else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && Model.Gear.Style.HasFlag(GearStyle.Helical))
-                CalculatePositiveShiftedIntExtHelicalGear(Model);
+                CalculatePositiveShiftedIntExtHelicalGear();
             else if (Model.Gear.Style.HasFlag(GearStyle.Rack) && Model.Gear.Style.HasFlag(GearStyle.Spur))
-                CalculateStraightRackGear(Model);
+                CalculateStraightRackGear();
             else if (Model.Gear.Style.HasFlag(GearStyle.Rack) && Model.Gear.Style.HasFlag(GearStyle.Helical))
-                CalculateHelicalRackGear(Model);
+                CalculateHelicalRackGear();
             else
                 throw new ArgumentException("Gear style not recognised");
         }
 
         #region GearStyles
 
-        private void CalculateHelicalRackGear(IGearPairDesignInputParams pairDesignInputParams)
+        private void CalculateHelicalRackGear()
         {
             throw new NotImplementedException();
         }
 
-        private void CalculateStraightRackGear(IGearPairDesignInputParams pairDesignInputParams)
+        private void CalculateStraightRackGear()
         {
             throw new NotImplementedException();
         }
 
-        private void CalculatePositiveShiftedIntExtHelicalGear(IGearPairDesignInputParams pairDesignInputParams)
+        private void CalculatePositiveShiftedIntExtHelicalGear()
         {
             if (_gearCalculator is not ProfileShiftedIntExtHelicalGearCalculator)
             {
-                _gearCalculator = new ProfileShiftedIntExtHelicalGearCalculator(Model, GearPairDesignOutputParams);
+                _gearCalculator = new ProfileShiftedIntExtHelicalGearCalculator(Model, _gearPairDesignOutputParams);
             }
 
             _gearCalculator.Calculate();
         }
 
-        private void CalculatePositiveShiftedIntExtSpurGear(IGearPairDesignInputParams pairDesignInputParams)
+        private void CalculatePositiveShiftedIntExtSpurGear()
         {
             if (_gearCalculator is not ProfileShiftedIntExtSpurGearCalculator)
             {
-                _gearCalculator = new ProfileShiftedIntExtSpurGearCalculator(Model, GearPairDesignOutputParams);
+                _gearCalculator = new ProfileShiftedIntExtSpurGearCalculator(Model, _gearPairDesignOutputParams);
             }
 
             _gearCalculator.Calculate();
         }
 
-        private void CalculatePositiveShiftedExternalHelicalGear(IGearPairDesignInputParams pairDesignInputParams)
+        private void CalculatePositiveShiftedExternalHelicalGear()
         {
             if (_gearCalculator is not ProfileShiftedExternalHelicalGearCalculator)
             {
-                _gearCalculator = new ProfileShiftedExternalHelicalGearCalculator(Model, GearPairDesignOutputParams);
+                _gearCalculator = new ProfileShiftedExternalHelicalGearCalculator(Model, _gearPairDesignOutputParams);
             }
 
             _gearCalculator.Calculate();
         }
 
-        private void CalculatePositiveShiftedExternalSpurGear(IGearPairDesignInputParams pairDesignInputParams)
+        private void CalculatePositiveShiftedExternalSpurGear()
         {
             if (_gearCalculator is not ProfileShiftedExternalSpurGearCalculator)
             {
-                _gearCalculator = new ProfileShiftedExternalSpurGearCalculator(Model, GearPairDesignOutputParams);
+                _gearCalculator = new ProfileShiftedExternalSpurGearCalculator(Model, _gearPairDesignOutputParams);
             }
 
             _gearCalculator.Calculate();

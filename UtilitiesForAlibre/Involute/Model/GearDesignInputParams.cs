@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -18,7 +17,6 @@ namespace Bolsover.Involute.Model
        private double _workingCentreDistance;
         private double _profileShift;
         private GearStyle _style;
-        private IGearPairDesignInputParams _gearPairDesign;
         private double _circularBacklash;
         private double _heightOfPitchLine;
 
@@ -117,13 +115,8 @@ namespace Bolsover.Involute.Model
             set => SetField(ref _style, value);
         }
 
-        public IGearPairDesignInputParams GearPairDesign
-        {
-            get => _gearPairDesign;
-            set => _gearPairDesign = value;
-        }
+        public IGearPairDesignInputParams GearPairDesign { get; set; }
 
-       
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

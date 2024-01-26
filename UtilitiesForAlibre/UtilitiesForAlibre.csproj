@@ -356,13 +356,6 @@
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
-        <Compile Include="ThreeDLine\Coordinate.cs" />
-        <Compile Include="ThreeDLine\ThreeDLineAddOnCommand.cs" />
-        <Compile Include="ThreeDLine\ThreeDLineAddOnCommandTerminateEventArgs.cs" />
-        <Compile Include="ThreeDLine\ThreeDLineUserControl.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="ThreeDLine\ThreeDLineUserControl.Designer.cs" />
         <Compile Include="UtilitiesForAlibre.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Utils\ConversionUtils.cs" />
@@ -485,7 +478,6 @@
         <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="ThreeDLine\ThreeDLineUserControl.resx" />
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />

@@ -6,7 +6,7 @@ namespace Bolsover.Involute.View
 {
     public partial class StandardGearView : UserControl
     {
-        private Form _parentForm;
+        // private Form _parentForm;
 
         public StandardGearView()
         {
@@ -15,21 +15,15 @@ namespace Bolsover.Involute.View
         }
 
         public event EventHandler BuildGearEvent;
-        public event EventHandler BuildPinionEvent;
+        
         public event EventHandler CancelEvent;
         public event EventHandler EditModuleEvent;
         public event EventHandler EditPressureAngleEvent;
-        public event EventHandler EditPinionNumberOfTeethEvent;
+        
         public event EventHandler EditGearNumberOfTeethEvent;
         public event EventHandler EditHelixAngleEvent;
         public event EventHandler EditGearHeightEvent;
-        public event EventHandler AutoCalculateCentreDistanceEvent;
-        public event EventHandler EditCentreDistanceEvent;
-        public event EventHandler EditGearTypeEvent;
-        public event EventHandler EditPinionTypeEvent;
-        public event EventHandler EditPinionProfileShiftEvent;
-        public event EventHandler EditGearProfileShiftEvent;
-        public event EventHandler EditNormalBacklashEvent;
+       
 
         private void teethNumericUpDown_ValueChanged(object sender, EventArgs e)
         {

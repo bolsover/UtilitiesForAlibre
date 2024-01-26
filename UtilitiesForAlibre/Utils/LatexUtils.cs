@@ -8,7 +8,7 @@ using XamlMath;
 
 namespace Bolsover.Utils
 {
-    public class LatexUtils
+    public static class LatexUtils
     {
         private static readonly TexFormulaParser Parser = WpfTeXFormulaParser.Instance;
 
@@ -31,7 +31,7 @@ namespace Bolsover.Utils
 
         public static Image CreateImageFromLatex(string latex)
         {
-            TexFormula formula = null;
+            TexFormula formula ;
             try
             {
                 formula = Parser.Parse(latex);

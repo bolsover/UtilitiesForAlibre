@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Bolsover.Gear.Calculators;
 using Bolsover.Gear.Models;
 using Bolsover.Involute.Model;
@@ -117,7 +118,7 @@ namespace Bolsover.Involute.Calculator
         /// location of centre and start points. Observe that the start-centre distance is Module * factor and the start point is
         /// located on the base or addendum circle (whichever is greater).
         /// </summary>
-        /// <param name="gear"></param>
+        /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
         public static GearPoint[] CalcAddendumFilletPoints(IGearDesignOutputParams gearDesignOutputParams)
         {
@@ -131,7 +132,7 @@ namespace Bolsover.Involute.Calculator
             // the angle used as the initial start point for the search
             var angleToBase = InnerGearTipReliefCentreToBaseTangentAngle(gearDesignOutputParams);
             // the search range with be +- this angle about the initial search point.
-            var changeAngle = 4.0d;
+            var changeAngle = 6.0d;
 
             // initial angles for search
             var maxAngle = angleToBase + changeAngle;
@@ -170,9 +171,9 @@ namespace Bolsover.Involute.Calculator
             startMaxGearPoint = StartPoint(gearDesignOutputParams, centreMaxGearPoint);
             var distanceToStartMaxPoint = Geometry.DistanceBetweenPoints(centre, startMaxGearPoint);
             var maxTestValue = Math.Abs(targetGearCentreToStartPointDistance - distanceToStartMaxPoint);
-
+         
             // search loop 
-            while (!Equals(0, midTestValue, tolerance))
+            while (!Equals(0, midTestValue, tolerance) )
             {
                 if (maxTestValue > minTestValue)
                 {
@@ -180,7 +181,7 @@ namespace Bolsover.Involute.Calculator
                     startMaxGearPoint = startMidGearPoint;
                     // recalc midAngle
                     maxAngle = midAngle;
-                    midAngle = (minAngle + maxAngle) / 2;
+                    midAngle = (minAngle + maxAngle) / 2 - 0.0000001;
                     centreMidGearPoint = CentrePoint(gearDesignOutputParams, endMidGearPoint, midAngle);
                     startMidGearPoint = StartPoint(gearDesignOutputParams, centreMidGearPoint);
                     centreMinGearPoint = CentrePoint(gearDesignOutputParams, endMinGearPoint, minAngle);
@@ -192,7 +193,7 @@ namespace Bolsover.Involute.Calculator
                     startMinGearPoint = startMidGearPoint;
                     // recalc midAngle
                     minAngle = midAngle;
-                    midAngle = (minAngle + maxAngle) / 2;
+                    midAngle = (minAngle + maxAngle) / 2 + 0.0000001;
                     centreMidGearPoint = CentrePoint(gearDesignOutputParams, endMidGearPoint, midAngle);
                     startMidGearPoint = StartPoint(gearDesignOutputParams, centreMidGearPoint);
                     centreMaxGearPoint = CentrePoint(gearDesignOutputParams, endMaxGearPoint, maxAngle);
@@ -214,6 +215,8 @@ namespace Bolsover.Involute.Calculator
 
                 // min test value
                 minTestValue = Math.Abs(targetGearCentreToStartPointDistance - distanceToStartMinPoint);
+                // Console.Out.WriteLine(maxTestValue + ", " + midTestValue + "," + maxTestValue);
+               
             }
 
             var kappaRadians = Radians(gearDesignOutputParams.Kappa);

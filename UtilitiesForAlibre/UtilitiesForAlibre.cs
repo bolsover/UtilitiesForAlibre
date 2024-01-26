@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using AlibreAddOn;
 using AlibreX;
 using Bolsover.AlibreDataViewer;
@@ -35,8 +34,8 @@ namespace Bolsover
 
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
-            this._alibreRoot = alibreRoot;
-            this._parentWinHandle = parentWinHandle;
+            _alibreRoot = alibreRoot;
+            _parentWinHandle = parentWinHandle;
             BuildMenuTree();
         }
 
@@ -52,24 +51,24 @@ namespace Bolsover
         /// </summary>
         private void BuildMenuTree()
         {
-            _menuIdsUtils = new int[3]
+            _menuIdsUtils = new []
             {
                 SubmenuIdDataBrowser,
                 SubmenuIdUtilsPlaneFinder,
                 SubmenuIdUtilsDataViewer,
             };
-            _menuIdsRoot = new int[3]
+            _menuIdsRoot = new []
             {
                 MenuIdUtils,
                 MenuIdGear,
                 MenuIdHelp
             };
-            _menuIdsHelp = new int[1]
+            _menuIdsHelp = new []
             {
                 SubmenuIdHelpAbout
             };
 
-            _menuIdsGear = new int[3]
+            _menuIdsGear = new []
             {
                 SubmenuIdUtilsCycloidalGear,
                 SubmenuIdUtilsStandardGear,
@@ -84,16 +83,14 @@ namespace Bolsover
         /// <returns></returns>
         public bool HasSubMenus(int menuId)
         {
-            switch (menuId)
+            return menuId switch
             {
-                case MenuIdRoot: return true;
-
-                case MenuIdUtils: return true;
-                case MenuIdHelp: return true;
-                case MenuIdGear: return true;
-            }
-
-            return false;
+                MenuIdRoot => true,
+                MenuIdUtils => true,
+                MenuIdHelp => true,
+                MenuIdGear => true,
+                _ => false
+            };
         }
 
         /// <summary>
@@ -103,15 +100,14 @@ namespace Bolsover
         /// <returns></returns>
         public Array SubMenuItems(int menuId)
         {
-            switch (menuId)
+            return menuId switch
             {
-                case MenuIdRoot: return _menuIdsRoot;
-                case MenuIdGear: return _menuIdsGear;
-                case MenuIdUtils: return _menuIdsUtils;
-                case MenuIdHelp: return _menuIdsHelp;
-            }
-
-            return null;
+                MenuIdRoot => _menuIdsRoot,
+                MenuIdGear => _menuIdsGear,
+                MenuIdUtils => _menuIdsUtils,
+                MenuIdHelp => _menuIdsHelp,
+                _ => null
+            };
         }
 
         /// <summary>
@@ -121,22 +117,21 @@ namespace Bolsover
         /// <returns></returns>
         public string MenuItemText(int menuId)
         {
-            switch (menuId)
+            return menuId switch
             {
-                case MenuIdRoot: return "Utilities";
-                case MenuIdUtils: return "Utilities";
-                case MenuIdHelp: return "Help";
-                case MenuIdGear: return "Gears";
-                case SubmenuIdDataBrowser: return "Data Browser";
-                case SubmenuIdUtilsCycloidalGear: return "Cycloidal Gears Open/Close";
-                case SubmenuIdUtilsStandardGear: return "Standard Spur & Helical Gears";
-                case SubmenuIdUtilsAdvancedGear: return "Advanced Spur & Helical Gears";
-                case SubmenuIdHelpAbout: return "About";
-                case SubmenuIdUtilsPlaneFinder: return "Sketch Plane Finder Open/Close";
-                case SubmenuIdUtilsDataViewer: return "Property Viewer Open/Close";
-            }
-
-            return "";
+                MenuIdRoot => "Utilities",
+                MenuIdUtils => "Utilities",
+                MenuIdHelp => "Help",
+                MenuIdGear => "Gears",
+                SubmenuIdDataBrowser => "Data Browser",
+                SubmenuIdUtilsCycloidalGear => "Cycloidal Gears Open/Close",
+                SubmenuIdUtilsStandardGear => "Standard Spur & Helical Gears",
+                SubmenuIdUtilsAdvancedGear => "Advanced Spur & Helical Gears",
+                SubmenuIdHelpAbout => "About",
+                SubmenuIdUtilsPlaneFinder => "Sketch Plane Finder Open/Close",
+                SubmenuIdUtilsDataViewer => "Property Viewer Open/Close",
+                _ => ""
+            };
         }
 
         /// <summary>
@@ -226,22 +221,20 @@ namespace Bolsover
         /// <returns></returns>
         public string MenuItemToolTip(int menuId)
         {
-            switch (menuId)
+            return menuId switch
             {
-                case MenuIdRoot: return "Utilities";
-
-                case MenuIdUtils: return "Utilities";
-                case MenuIdGear: return "Gears";
-                case SubmenuIdDataBrowser: return "Opens the custom Data Browser";
-                case SubmenuIdUtilsCycloidalGear: return "Opens/Closes Cycloidal Gear Generator";
-                case SubmenuIdUtilsStandardGear: return "Opens Standard Spur and Helical Gear Generator";
-                case SubmenuIdUtilsAdvancedGear: return "Opens Advanced Spur and Helical Gear Generator";
-                case SubmenuIdUtilsPlaneFinder: return "Finds the Plane on which a selected Sketch is drawn";
-                case SubmenuIdUtilsDataViewer: return "Opens/Closes Property Viewer";
-                case SubmenuIdHelpAbout: return "About Utilities for Alibre";
-            }
-
-            return "";
+                MenuIdRoot => "Utilities",
+                MenuIdUtils => "Utilities",
+                MenuIdGear => "Gears",
+                SubmenuIdDataBrowser => "Opens the custom Data Browser",
+                SubmenuIdUtilsCycloidalGear => "Opens/Closes Cycloidal Gear Generator",
+                SubmenuIdUtilsStandardGear => "Opens Standard Spur and Helical Gear Generator",
+                SubmenuIdUtilsAdvancedGear => "Opens Advanced Spur and Helical Gear Generator",
+                SubmenuIdUtilsPlaneFinder => "Finds the Plane on which a selected Sketch is drawn",
+                SubmenuIdUtilsDataViewer => "Opens/Closes Property Viewer",
+                SubmenuIdHelpAbout => "About Utilities for Alibre",
+                _ => ""
+            };
         }
 
         /// <summary>
@@ -287,39 +280,17 @@ namespace Bolsover
         {
             var session = _alibreRoot.Sessions.Item(sessionIdentifier);
 
-            switch (menuId)
+            return menuId switch
             {
-                case SubmenuIdDataBrowser:
-                {
-                    return DoDataBrowser();
-                }
-                case SubmenuIdUtilsCycloidalGear:
-                {
-                    return DoCycloidalGear(session);
-                }
-                case SubmenuIdUtilsStandardGear:
-                {
-                    return DoStandardGear();
-                }
-                case SubmenuIdUtilsAdvancedGear:
-                {
-                    return DoAdvancedGear();
-                }
-                case SubmenuIdUtilsPlaneFinder:
-                {
-                    return DoPlaneFinder(session);
-                }
-                case SubmenuIdUtilsDataViewer:
-                {
-                    return DoAlibreDataViewer(session);
-                }
-                case SubmenuIdHelpAbout:
-                {
-                    return DoHelpAbout(session);
-                }
-            }
-
-            return null;
+                SubmenuIdDataBrowser => DoDataBrowser(),
+                SubmenuIdUtilsCycloidalGear => DoCycloidalGear(session),
+                SubmenuIdUtilsStandardGear => DoStandardGear(),
+                SubmenuIdUtilsAdvancedGear => DoAdvancedGear(),
+                SubmenuIdUtilsPlaneFinder => DoPlaneFinder(session),
+                SubmenuIdUtilsDataViewer => DoAlibreDataViewer(session),
+                SubmenuIdHelpAbout => DoHelpAbout(session),
+                _ => null
+            };
         }
 
         #endregion
@@ -348,12 +319,10 @@ namespace Bolsover
             }
             else
             {
-                if (_dataViewerAddOnCommands.TryGetValue(session.Identifier, out alibreDataViewerAddOnCommand))
-                {
-                    alibreDataViewerAddOnCommand.UserRequestedClose();
-                    _dataViewerAddOnCommands.Remove(session.Identifier);
-                    return null;
-                }
+                if (!_dataViewerAddOnCommands.TryGetValue(session.Identifier, out alibreDataViewerAddOnCommand)) return null;
+                alibreDataViewerAddOnCommand.UserRequestedClose();
+                _dataViewerAddOnCommands.Remove(session.Identifier);
+                return null;
             }
 
             return alibreDataViewerAddOnCommand;
@@ -362,9 +331,8 @@ namespace Bolsover
         private void AlibreDataViewerAddOnCommandOnTerminate(object sender,
             AlibreDataViewerAddOnCommandTerminateEventArgs e)
         {
-            AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
             if (_dataViewerAddOnCommands.TryGetValue(e.AlibreDataViewerAddOnCommand.Session.Identifier,
-                    out alibreDataViewerAddOnCommand))
+                    out _))
             {
                 _dataViewerAddOnCommands.Remove(e.AlibreDataViewerAddOnCommand.Session.Identifier);
             }
@@ -384,19 +352,22 @@ namespace Bolsover
             PlaneFinderAddOnCommand planeFinderAddOnCommand;
             if (!_planeFinderAddOnCommands.ContainsKey(session.Identifier))
             {
-                planeFinderAddOnCommand = new PlaneFinderAddOnCommand(session);
-                planeFinderAddOnCommand.PlaneFinder.Visible = true;
+                planeFinderAddOnCommand = new PlaneFinderAddOnCommand(session)
+                {
+                    PlaneFinder =
+                    {
+                        Visible = true
+                    }
+                };
                 planeFinderAddOnCommand.Terminate += PlaneFinderAddOnCommandOnTerminate;
                 _planeFinderAddOnCommands.Add(session.Identifier, planeFinderAddOnCommand);
             }
             else
             {
-                if (_planeFinderAddOnCommands.TryGetValue(session.Identifier, out planeFinderAddOnCommand))
-                {
-                    planeFinderAddOnCommand.UserRequestedClose();
-                    _planeFinderAddOnCommands.Remove(session.Identifier);
-                    return null;
-                }
+                if (!_planeFinderAddOnCommands.TryGetValue(session.Identifier, out planeFinderAddOnCommand)) return planeFinderAddOnCommand;
+                planeFinderAddOnCommand.UserRequestedClose();
+                _planeFinderAddOnCommands.Remove(session.Identifier);
+                return null;
             }
 
             return planeFinderAddOnCommand;
@@ -404,9 +375,8 @@ namespace Bolsover
 
         private void PlaneFinderAddOnCommandOnTerminate(object sender, PlaneFinderAddOnCommandTerminateEventArgs e)
         {
-            PlaneFinderAddOnCommand planeFinderAddOnCommand;
             if (_planeFinderAddOnCommands.TryGetValue(e.PlaneFinderAddOnCommand.Session.Identifier,
-                    out planeFinderAddOnCommand))
+                    out _))
             {
                 _planeFinderAddOnCommands.Remove(e.PlaneFinderAddOnCommand.Session.Identifier);
             }
@@ -419,7 +389,7 @@ namespace Bolsover
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
-        private Dictionary<string, CycloidalGearAddOnCommand> _cycloidalGearAddOnCommands = new();
+        private readonly Dictionary<string, CycloidalGearAddOnCommand> _cycloidalGearAddOnCommands = new();
 
         /// <summary>
         /// Opens the Cycloidal Gear generator dialog.
@@ -431,19 +401,22 @@ namespace Bolsover
             CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
             if (!_cycloidalGearAddOnCommands.ContainsKey(session.Identifier))
             {
-                cycloidalGearAddOnCommand = new CycloidalGearAddOnCommand(session);
-                cycloidalGearAddOnCommand.CycliodalGearParametersForm.Visible = true;
+                cycloidalGearAddOnCommand = new CycloidalGearAddOnCommand(session)
+                {
+                    CycliodalGearParametersForm =
+                    {
+                        Visible = true
+                    }
+                };
                 cycloidalGearAddOnCommand.Terminate += CycloidalGearAddOnCommandOnTerminate;
                 _cycloidalGearAddOnCommands.Add(session.Identifier, cycloidalGearAddOnCommand);
             }
             else
             {
-                if (_cycloidalGearAddOnCommands.TryGetValue(session.Identifier, out cycloidalGearAddOnCommand))
-                {
-                    cycloidalGearAddOnCommand.UserRequestedClose();
-                    _cycloidalGearAddOnCommands.Remove(session.Identifier);
-                    return null;
-                }
+                if (!_cycloidalGearAddOnCommands.TryGetValue(session.Identifier, out cycloidalGearAddOnCommand)) return null;
+                cycloidalGearAddOnCommand.UserRequestedClose();
+                _cycloidalGearAddOnCommands.Remove(session.Identifier);
+                return null;
             }
 
             return cycloidalGearAddOnCommand;
@@ -451,9 +424,8 @@ namespace Bolsover
 
         private void CycloidalGearAddOnCommandOnTerminate(object sender, CycloidalGearAddOnCommandTerminateEventArgs e)
         {
-            CycloidalGearAddOnCommand cycloidalGearAddOnCommand;
             if (_cycloidalGearAddOnCommands.TryGetValue(e.CycloidalGearAddOnCommand.Session.Identifier,
-                    out cycloidalGearAddOnCommand))
+                    out _))
             {
                 _cycloidalGearAddOnCommands.Remove(e.CycloidalGearAddOnCommand.Session.Identifier);
             }
@@ -463,7 +435,7 @@ namespace Bolsover
 
         #region HelpAbout
 
-        private IAlibreAddOnCommand DoHelpAbout(IADSession session)
+        private static IAlibreAddOnCommand DoHelpAbout(IADSession session)
         {
             var aboutForm = new AboutForm();
             aboutForm.Visible = true;
@@ -494,7 +466,7 @@ namespace Bolsover
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        private IAlibreAddOnCommand DoStandardGear()
+        private static IAlibreAddOnCommand DoStandardGear()
         {
             var form = new StandardGearForm();
             form.Show();
@@ -504,7 +476,7 @@ namespace Bolsover
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        private IAlibreAddOnCommand DoAdvancedGear()
+        private static IAlibreAddOnCommand DoAdvancedGear()
         {
             var form = new InvoluteGearForm();
             form.Show();

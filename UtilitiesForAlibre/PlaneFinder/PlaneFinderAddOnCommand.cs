@@ -18,7 +18,7 @@ namespace Bolsover.PlaneFinder
 
         public PlaneFinderAddOnCommand(IADSession session)
         {
-            this.Session = session;
+            Session = session;
             PanelPosition = (int) ADDockStyle.AD_RIGHT;
             PlaneFinder = new PlaneFinder(session);
         }
@@ -26,8 +26,6 @@ namespace Bolsover.PlaneFinder
         /// <summary>
         /// Actions to take when closing
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public void UserRequestedClose()
         {
             PlaneFinder.Dispose();
@@ -36,26 +34,21 @@ namespace Bolsover.PlaneFinder
             CommandSite = null;
         }
 
-
-        public virtual long DockedPanelHandle
+        protected virtual long DockedPanelHandle
         {
             get => PanelHandle;
             set
             {
                 Debug.WriteLine(value);
-                if (value != (long) IntPtr.Zero)
-                {
-                    var control = Control.FromHandle((IntPtr) value);
-                    if (control != null)
-                    {
-                        PlaneFinder.Parent = control;
-                        PlaneFinder.Dock = DockStyle.Fill;
-                        PlaneFinder.AutoSize = true;
-                        PlaneFinder.Show();
-                        control.Show();
-                        PanelHandle = value;
-                    }
-                }
+                if (value == (long) IntPtr.Zero) return;
+                var control = Control.FromHandle((IntPtr) value);
+                if (control == null) return;
+                PlaneFinder.Parent = control;
+                PlaneFinder.Dock = DockStyle.Fill;
+                PlaneFinder.AutoSize = true;
+                PlaneFinder.Show();
+                control.Show();
+                PanelHandle = value;
             }
         }
 

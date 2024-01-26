@@ -14,16 +14,15 @@ namespace Bolsover.PlaneFinder
 
         public PlaneFinder(IADSession session)
         {
-            this._session = session;
+            _session = session;
             InitializeComponent();
         }
 
         private void GetPlaneForSketch(IADSketch sketch)
         {
-            IADTargetProxy targetProxy = null;
             try
             {
-                targetProxy = sketch.SketchPlane;
+                var targetProxy = sketch.SketchPlane;
                 planeTextBox.Text = targetProxy.DisplayName;
             }
             catch (Exception ex)

@@ -1,8 +1,8 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
+
 
 namespace Bolsover.Involute.Model
 {
@@ -41,7 +41,6 @@ namespace Bolsover.Involute.Model
         private double _involuteFunction;
         private double _contactRatioAlpha;
         private double _contactRatioBeta;
-        private double _contactRatioGamma;
         private double _phi;
         private double _theta;
         private double _kappa;
@@ -185,7 +184,7 @@ namespace Bolsover.Involute.Model
         public double InvoluteFunction
         {
             get => _involuteFunction;
-            set => _involuteFunction = value;
+            set => SetField(ref _involuteFunction, value);
         }
 
         public double WorkingPressureAngle
@@ -251,7 +250,6 @@ namespace Bolsover.Involute.Model
         {
             _contactRatioAlpha = 0;
             _contactRatioBeta = 0;
-            _contactRatioGamma = 0; 
             _radialWorkingPressureAngle = 0;
             _radialPressureAngle = 0;
             _pitchCircleDiameter = 0;

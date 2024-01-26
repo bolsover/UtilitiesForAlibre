@@ -1,249 +1,117 @@
 ﻿using System.Text;
 using AlibreX;
 
-namespace Bolsover
+namespace Bolsover.CycloidalGear
 {
     public class CycloidalGearProperties
     {
-        #region Initial Parameters
+       
 
-        private IADDesignPlane _plane;
-        private double _module = 4.0D;
-        private int _wheelCount = 30;
-        private int _pinionCount = 8;
-        private double _wheelCentreHole = 6.0D;
-        private double _pinionCentreHole = 3.0D;
-        private double _customSlop = 0.0D;
-        private bool _customSlopEnabled = false;
-        private bool _drawWheel = true;
-        private bool _drawPinion = true;
-
-        #endregion
-
-        #region Calculated Parameters
-
-        private double _wheelAddFactor = 0.0D;
-        private double _practicalWheelAddendumFactor = 0.0D;
         private double _pinionAddFactor = 0.0D;
         private double _practicalPinionAddendumFactor = 0.0D;
-        private double _gearRatio = 0.0D;
-        private double _wheelCircularPitch = 0.0D;
-        private double _wheelDedendum = 0.0D;
-        private double _pinionDedendum = 0.0D;
-        private double _wheelPitchDiameter = 0.0D;
-        private double _pinionPitchDiameter = 0.0D;
-        private double _wheelAddendum = 0.0D;
-        private double _pinionAddendum = 0.0D;
-        private double _wheelAddendumRadius = 0.0D;
-        private double _pinionAddendumRadius = 0.0D;
-        private double _pinionHalfToothAngle = 0.0D;
 
-        #endregion
 
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("plane: ");
-            stringBuilder.Append(_plane.Name);
+            stringBuilder.Append(Plane.Name);
             stringBuilder.Append("\nmodule: ");
-            stringBuilder.Append(_module);
+            stringBuilder.Append(Module);
             stringBuilder.Append("\nwheelCount: ");
-            stringBuilder.Append(_wheelCount);
+            stringBuilder.Append(WheelCount);
             stringBuilder.Append("\npinionCount: ");
-            stringBuilder.Append(_pinionCount);
+            stringBuilder.Append(PinionCount);
             stringBuilder.Append("\nwheelCentreHole: ");
-            stringBuilder.Append(_wheelCentreHole);
+            stringBuilder.Append(WheelCentreHole);
             stringBuilder.Append("\npinionCentreHole: ");
-            stringBuilder.Append(_pinionCentreHole);
+            stringBuilder.Append(PinionCentreHole);
             stringBuilder.Append("\ncustomSlop: ");
-            stringBuilder.Append(_customSlop);
+            stringBuilder.Append(CustomSlop);
             stringBuilder.Append("\ncustomSlopEnabled: ");
-            stringBuilder.Append(_customSlopEnabled);
+            stringBuilder.Append(CustomSlopEnabled);
             stringBuilder.Append("\ndrawWheel: ");
-            stringBuilder.Append(_drawWheel);
+            stringBuilder.Append(DrawWheel);
             stringBuilder.Append("\ndrawPinion: ");
-            stringBuilder.Append(_drawPinion);
+            stringBuilder.Append(DrawPinion);
             stringBuilder.Append("\nwheelAddFactor: ");
-            stringBuilder.Append(_wheelAddFactor);
+            stringBuilder.Append(WheelAddFactor);
             stringBuilder.Append("\npracticalWheelAddendumFactor: ");
-            stringBuilder.Append(_practicalWheelAddendumFactor);
+            stringBuilder.Append(PracticalWheelAddendumFactor);
             stringBuilder.Append("\npinionAddFactor: ");
             stringBuilder.Append(_pinionAddFactor);
             stringBuilder.Append("\ngearRatio: ");
-            stringBuilder.Append(_gearRatio);
+            stringBuilder.Append(GearRatio);
             stringBuilder.Append("\nwheelCircularPitch: ");
-            stringBuilder.Append(_wheelCircularPitch);
+            stringBuilder.Append(WheelCircularPitch);
             stringBuilder.Append("\nwheelDedendum: ");
-            stringBuilder.Append(_wheelDedendum);
+            stringBuilder.Append(WheelDedendum);
             stringBuilder.Append("\nwheelPitchDiameter: ");
-            stringBuilder.Append(_wheelPitchDiameter);
+            stringBuilder.Append(WheelPitchDiameter);
             stringBuilder.Append("\npinionPitchDiameter: ");
-            stringBuilder.Append(_pinionPitchDiameter);
+            stringBuilder.Append(PinionPitchDiameter);
             stringBuilder.Append("\nwheelAddendum: ");
-            stringBuilder.Append(_wheelAddendum);
+            stringBuilder.Append(WheelAddendum);
             stringBuilder.Append("\npinionAddendum: ");
-            stringBuilder.Append(_pinionAddendum);
+            stringBuilder.Append(PinionAddendum);
             stringBuilder.Append("\nwheelAddendumRadius: ");
-            stringBuilder.Append(_wheelAddendumRadius);
+            stringBuilder.Append(WheelAddendumRadius);
             stringBuilder.Append("\npinionAddendumRadius: ");
-            stringBuilder.Append(_pinionAddendumRadius);
+            stringBuilder.Append(PinionAddendumRadius);
             stringBuilder.Append("\npinionHalfToothAngle: ");
-            stringBuilder.Append(_pinionHalfToothAngle);
+            stringBuilder.Append(PinionHalfToothAngle);
 
             return stringBuilder.ToString();
         }
 
         #region Getters and Setters
 
-        public double WheelAddFactor
-        {
-            get => _wheelAddFactor;
-            set => _wheelAddFactor = value;
-        }
+        public double WheelAddFactor { get; set; } 
 
-        public double PracticalWheelAddendumFactor
-        {
-            get => _practicalWheelAddendumFactor;
-            set => _practicalWheelAddendumFactor = value;
-        }
+        public double PracticalWheelAddendumFactor { get; set; }
 
-        public double PinionAddFactor
-        {
-            get => _pinionAddFactor;
-            set => _pinionAddFactor = value;
-        }
+       
+        public double GearRatio { get; set; } 
 
-        public double PracticalPinionAddendumFactor
-        {
-            get => _practicalPinionAddendumFactor;
-            set => _practicalPinionAddendumFactor = value;
-        }
+        public double WheelCircularPitch { get; set; }
 
-        public double GearRatio
-        {
-            get => _gearRatio;
-            set => _gearRatio = value;
-        }
+        public double WheelDedendum { get; set; }
 
-        public double WheelCircularPitch
-        {
-            get => _wheelCircularPitch;
-            set => _wheelCircularPitch = value;
-        }
+        public double PinionDedendum { get; set; }
 
-        public double WheelDedendum
-        {
-            get => _wheelDedendum;
-            set => _wheelDedendum = value;
-        }
+        public double WheelPitchDiameter { get; set; }
 
-        public double PinionDedendum
-        {
-            get => _pinionDedendum;
-            set => _pinionDedendum = value;
-        }
+        public double PinionPitchDiameter { get; set; }
 
-        public double WheelPitchDiameter
-        {
-            get => _wheelPitchDiameter;
-            set => _wheelPitchDiameter = value;
-        }
+        public double WheelAddendum { get; set; }
 
-        public double PinionPitchDiameter
-        {
-            get => _pinionPitchDiameter;
-            set => _pinionPitchDiameter = value;
-        }
+        public double PinionAddendum { get; set; } 
 
-        public double WheelAddendum
-        {
-            get => _wheelAddendum;
-            set => _wheelAddendum = value;
-        }
+        public double WheelAddendumRadius { get; set; } 
 
-        public double PinionAddendum
-        {
-            get => _pinionAddendum;
-            set => _pinionAddendum = value;
-        }
+        public double PinionAddendumRadius { get; set; }
 
-        public double WheelAddendumRadius
-        {
-            get => _wheelAddendumRadius;
-            set => _wheelAddendumRadius = value;
-        }
+        public double PinionHalfToothAngle { get; set; } 
 
-        public double PinionAddendumRadius
-        {
-            get => _pinionAddendumRadius;
-            set => _pinionAddendumRadius = value;
-        }
+        public IADDesignPlane Plane { get; set; }
 
-        public double PinionHalfToothAngle
-        {
-            get => _pinionHalfToothAngle;
-            set => _pinionHalfToothAngle = value;
-        }
+        public double Module { get; set; } = 4.0D;
 
-        public IADDesignPlane Plane
-        {
-            get => _plane;
-            set => _plane = value;
-        }
+        public int WheelCount { get; set; } = 30;
 
-        public double Module
-        {
-            get => _module;
-            set => _module = value;
-        }
+        public int PinionCount { get; set; } = 8;
 
-        public int WheelCount
-        {
-            get => _wheelCount;
-            set => _wheelCount = value;
-        }
+        public double WheelCentreHole { get; set; } = 6.0D;
 
-        public int PinionCount
-        {
-            get => _pinionCount;
-            set => _pinionCount = value;
-        }
+        public double PinionCentreHole { get; set; } = 3.0D;
 
-        public double WheelCentreHole
-        {
-            get => _wheelCentreHole;
-            set => _wheelCentreHole = value;
-        }
+        public double CustomSlop { get; set; } 
 
-        public double PinionCentreHole
-        {
-            get => _pinionCentreHole;
-            set => _pinionCentreHole = value;
-        }
+        public bool CustomSlopEnabled { get; set; }
 
-        public double CustomSlop
-        {
-            get => _customSlop;
-            set => _customSlop = value;
-        }
+        public bool DrawWheel { get; set; } = true;
 
-        public bool CustomSlopEnabled
-        {
-            get => _customSlopEnabled;
-            set => _customSlopEnabled = value;
-        }
-
-        public bool DrawWheel
-        {
-            get => _drawWheel;
-            set => _drawWheel = value;
-        }
-
-        public bool DrawPinion
-        {
-            get => _drawPinion;
-            set => _drawPinion = value;
-        }
+        public bool DrawPinion { get; set; } = true;
 
         #endregion
     }

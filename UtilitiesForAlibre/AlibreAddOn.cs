@@ -48,7 +48,7 @@ namespace AlibreAddOnAssembly
 
         public static IAlibreAddOn GetAddOnInterface()
         {
-            return (IAlibreAddOn) _utilitiesForAlibre;
+            return  _utilitiesForAlibre;
         }
     }
 }

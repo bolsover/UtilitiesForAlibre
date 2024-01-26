@@ -257,7 +257,7 @@ namespace Bolsover.Involute.Presenter
             return stringBuilder.ToString();
         }
 
-        private string GetFormattedData(String columnName, double metricValue, double imperialValue, string metricFormat, string imperialFormat)
+        private static string GetFormattedData(string columnName, double metricValue, double imperialValue, string metricFormat, string imperialFormat)
         {
             const int columnWidth = 30;
             var metric = metricValue.ToString(metricFormat);
@@ -269,74 +269,51 @@ namespace Bolsover.Involute.Presenter
 
         private void ViewOnEditGearNumberOfTeethEvent(object sender, EventArgs e)
         {
-            if(sender is NumericUpDown numericUpDown)
-            {
-                double newValue = (double)numericUpDown.Value;
-                _gearPair.Gear.NumberOfTeeth = newValue;
-                _gearPair.Pinion.NumberOfTeeth = newValue;
-            }
+            if (sender is not NumericUpDown numericUpDown) return;
+            var newValue = (double)numericUpDown.Value;
+            _gearPair.Gear.NumberOfTeeth = newValue;
+            _gearPair.Pinion.NumberOfTeeth = newValue;
         }
 
         private void ViewOnEditModuleEvent(object sender, EventArgs e)
         {
-            if(sender is NumericUpDown numericUpDown)
-            {
-                double newValue = (double)numericUpDown.Value;
-                _gearPair.Gear.NormalModule = newValue;
-                _gearPair.Pinion.NormalModule = newValue;
-            }
-           
+            if (sender is not NumericUpDown numericUpDown) return;
+            var newValue = (double)numericUpDown.Value;
+            _gearPair.Gear.NormalModule = newValue;
+            _gearPair.Pinion.NormalModule = newValue;
+
         }
 
         private void ViewOnEditHelixAngleEvent(object sender, EventArgs e)
         {
-            if (sender is NumericUpDown numericUpDown)
-            {
-                double newValue = (double)numericUpDown.Value;
-                _gearPair.Gear.HelixAngle = newValue;
-                _gearPair.Pinion.HelixAngle = newValue;
-            }
-           
+            if (sender is not NumericUpDown numericUpDown) return;
+            var newValue = (double)numericUpDown.Value;
+            _gearPair.Gear.HelixAngle = newValue;
+            _gearPair.Pinion.HelixAngle = newValue;
+
         }
 
         private void ViewOnEditPressureAngleEvent(object sender, EventArgs e)
         {
-            if (sender is NumericUpDown numericUpDown)
-            {
-                double newValue = (double)numericUpDown.Value;
-                _gearPair.Gear.NormalPressureAngle = newValue;
-                _gearPair.Pinion.NormalPressureAngle = newValue;
-            }
-          
+            if (sender is not NumericUpDown numericUpDown) return;
+            var newValue = (double)numericUpDown.Value;
+            _gearPair.Gear.NormalPressureAngle = newValue;
+            _gearPair.Pinion.NormalPressureAngle = newValue;
+
         }
 
         private void ViewOnEditGearHeightEvent(object sender, EventArgs e)
         {
-            if (sender is NumericUpDown numericUpDown)
-            {
-                double newValue = (double)numericUpDown.Value;
-                _gearPair.Gear.Height = newValue;
-                _gearPair.Pinion.Height = newValue;
-            }
-            
+            if (sender is not NumericUpDown numericUpDown) return;
+            var newValue = (double)numericUpDown.Value;
+            _gearPair.Gear.Height = newValue;
+            _gearPair.Pinion.Height = newValue;
+
         }
 
         private void ViewOnCancelEvent(object sender, EventArgs e) => _view.FindForm()!.Close();
 
-        // private void ViewOnBuildWheelEvent(object sender, EventArgs e)
-        // {
-        //     var saveFile = "WheelPleaseSaveAs.AD_PRT";
-        //     var template = "WheelTemplate.AD_PRT";
-        //
-        //     if (_gearPair.Gear.HelixAngle > 0)
-        //     {
-        //         saveFile = "HelicalWheelPleaseSaveAs.AD_PRT";
-        //         template = "HelicalWheelTemplate.AD_PRT";
-        //     }
-        //
-        //     BuildGear(saveFile, template);
-        // }
-        
+       
         private void ViewOnBuildWheelEvent(object sender, EventArgs e)
         {
             var gearDetails = GetGearDetails();
@@ -395,12 +372,12 @@ namespace Bolsover.Involute.Presenter
 
             gearToothPoints.TemplateFilePath = tempFile;
 
-            var session = InitAlibrePinionFile(tempFile, true);
+            var session = InitAlibrePinionFile(tempFile);
 
             AlibreBuilder.CreateInstance(gearToothPoints, session);
         }
 
-        private InvoluteGear CreateInvoluteGear(IGear gearSettings)
+        private static InvoluteGear CreateInvoluteGear(IGear gearSettings)
         {
             return new InvoluteGear(
                 gearSettings.NormalModule,
@@ -418,7 +395,7 @@ namespace Bolsover.Involute.Presenter
             };
         }
 
-        public IADDesignSession InitAlibrePinionFile(string filePath, bool openEditor)
+        private static IADDesignSession InitAlibrePinionFile(string filePath)
         {
             var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
             var session = (IADDesignSession) root.OpenFileEx(filePath, true);
@@ -426,14 +403,12 @@ namespace Bolsover.Involute.Presenter
         }
 
 
-        private bool IsFileLocked(FileInfo file)
+        private static bool IsFileLocked(FileInfo file)
         {
             try
             {
-                using (var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
-                {
-                    stream.Close();
-                }
+                using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+                stream.Close();
             }
             catch (IOException)
             {

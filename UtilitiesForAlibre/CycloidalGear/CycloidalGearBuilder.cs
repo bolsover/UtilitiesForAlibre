@@ -6,9 +6,9 @@ namespace Bolsover.CycloidalGear
 {
     public class CycloidalGearBuilder
     {
-        private CycloidalGearProperties _gearProperties;
-        private IADDesignSession _session;
-        private double _errorLimit = 0.000001D;
+        private readonly CycloidalGearProperties _gearProperties;
+        private readonly IADDesignSession _session;
+        private const double ErrorLimit = 0.000001D;
 
         public CycloidalGearBuilder(CycloidalGearProperties gearProperties, IADDesignSession session)
         {
@@ -32,7 +32,6 @@ namespace Bolsover.CycloidalGear
                 DrawPinion(sketch);
             }
 
-            //sketch.Figures.AddLine(0.0, 0.0, 5.5, 6.6);
             sketch.EndChange();
         }
 
@@ -111,8 +110,8 @@ namespace Bolsover.CycloidalGear
 
         private void DrawWheel(IADSketch sketch)
         {
-            var wheelCentreX = 0.0D;
-            var wheelCentreY = 0.0D;
+            const double wheelCentreX = 0.0D;
+            const double wheelCentreY = 0.0D;
             var outerDiameter = _gearProperties.WheelPitchDiameter + _gearProperties.WheelAddendum * 2;
             var innerDiameter = _gearProperties.WheelPitchDiameter - _gearProperties.WheelDedendum * 2;
             var outerRadius = outerDiameter / 2;
@@ -163,7 +162,7 @@ namespace Bolsover.CycloidalGear
 
             if (_gearProperties.WheelCentreHole > 0)
             {
-                var wheelCenterHole =
+             
                     sketch.Figures.AddCircle(wheelCentreX, wheelCentreY, _gearProperties.WheelCentreHole / 20);
             }
         }
@@ -172,7 +171,7 @@ namespace Bolsover.CycloidalGear
         {
             InitPinion();
             var pinionCentreX = _gearProperties.WheelPitchDiameter + _gearProperties.PinionPitchDiameter;
-            var pinionCentreY = 0.0D;
+            const double pinionCentreY = 0.0D;
             var outerDiameter = _gearProperties.PinionPitchDiameter + _gearProperties.PinionAddendum * 2;
             var innerDiameter = _gearProperties.PinionPitchDiameter - _gearProperties.PinionDedendum * 2;
             var outerRadius = outerDiameter / 2;
@@ -221,9 +220,9 @@ namespace Bolsover.CycloidalGear
 
             if (_gearProperties.PinionCentreHole > 0)
             {
-                var circlecentre =
-                    sketch.Figures.AddCircle(pinionCentreX / 10, pinionCentreY / 10,
-                        _gearProperties.PinionCentreHole / 20);
+                
+                sketch.Figures.AddCircle(pinionCentreX / 10, pinionCentreY / 10,
+                    _gearProperties.PinionCentreHole / 20);
             }
         }
 
@@ -240,8 +239,7 @@ namespace Bolsover.CycloidalGear
             var centery2 = y3 - basey;
 
             var radiusCentre = new Point(centerx1, centery1);
-            //var gear_centre = new Point(0.0D, 0.0D);
-
+           
             if (IsPointWithinWheel(center, radiusCentre, _gearProperties.WheelPitchDiameter))
             {
                 return radiusCentre;
@@ -252,7 +250,7 @@ namespace Bolsover.CycloidalGear
             return radiusCentre;
         }
 
-        private bool IsPointWithinWheel(Point wheelCentre, Point testPoint, double wheelRadius)
+        private static bool IsPointWithinWheel(Point wheelCentre, Point testPoint, double wheelRadius)
         {
             var dX = testPoint.X - wheelCentre.X;
             var dY = testPoint.Y - wheelCentre.Y;
@@ -265,7 +263,7 @@ namespace Bolsover.CycloidalGear
             var t0 = 1.0;
             var t1 = 0.0;
             var r2 = 2.0 * _gearProperties.WheelCount / _gearProperties.PinionCount;
-            while (Math.Abs(t1 - t0) > _errorLimit)
+            while (Math.Abs(t1 - t0) > ErrorLimit)
             {
                 t0 = t1;
                 var b = Math.Atan2(Math.Sin(t0), 1.0 + r2 - Math.Cos(t0));
