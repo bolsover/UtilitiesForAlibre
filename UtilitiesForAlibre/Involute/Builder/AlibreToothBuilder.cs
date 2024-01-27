@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using AlibreX;
-using Bolsover.Gear.Models;
 using Bolsover.Involute.Model;
 
 namespace Bolsover.Involute.Builder

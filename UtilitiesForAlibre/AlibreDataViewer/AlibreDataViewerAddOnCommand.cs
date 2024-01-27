@@ -13,12 +13,12 @@ namespace Bolsover.AlibreDataViewer
         private long PanelHandle { get; set; }
         private int PanelPosition { get; }
 
-        public AlibreDataViewer AlibreDataViewer;
+        public readonly AlibreDataViewer AlibreDataViewer;
 
 
         public AlibreDataViewerAddOnCommand(IADSession session)
         {
-            this.Session = session;
+            Session = session;
             PanelPosition = (int) ADDockStyle.AD_RIGHT;
             AlibreDataViewer = new AlibreDataViewer(session);
         }
@@ -26,8 +26,6 @@ namespace Bolsover.AlibreDataViewer
         /// <summary>
         /// Actions to take when closing
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public void UserRequestedClose()
         {
             AlibreDataViewer.Dispose();
@@ -43,19 +41,15 @@ namespace Bolsover.AlibreDataViewer
             set
             {
                 Debug.WriteLine(value);
-                if (value != (long) IntPtr.Zero)
-                {
-                    var control = Control.FromHandle((IntPtr) value);
-                    if (control != null)
-                    {
-                        AlibreDataViewer.Parent = control;
-                        AlibreDataViewer.Dock = DockStyle.Fill;
-                        AlibreDataViewer.AutoSize = true;
-                        AlibreDataViewer.Show();
-                        control.Show();
-                        PanelHandle = value;
-                    }
-                }
+                if (value == (long)IntPtr.Zero) return;
+                var control = Control.FromHandle((IntPtr) value);
+                if (control == null) return;
+                AlibreDataViewer.Parent = control;
+                AlibreDataViewer.Dock = DockStyle.Fill;
+                AlibreDataViewer.AutoSize = true;
+                AlibreDataViewer.Show();
+                control.Show();
+                PanelHandle = value;
             }
         }
 
@@ -170,17 +164,15 @@ namespace Bolsover.AlibreDataViewer
         /// </summary>
         public void OnSelectionChange()
         {
-            if (Session.SelectedObjects.Count == 1)
+            if (Session.SelectedObjects.Count != 1) return;
+            var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
+            try
             {
-                var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
-                try
-                {
-                    AlibreDataViewer.SetRootObject(proxy.Target);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e);
-                }
+                AlibreDataViewer.SetRootObject(proxy.Target);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
             }
         }
 
@@ -192,10 +184,7 @@ namespace Bolsover.AlibreDataViewer
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (AlibreDataViewer != null)
-            {
-                AlibreDataViewer.Dispose();
-            }
+            AlibreDataViewer?.Dispose();
 
             if (CommandSite != null)
             {
@@ -205,7 +194,7 @@ namespace Bolsover.AlibreDataViewer
             }
 
             var args = new AlibreDataViewerAddOnCommandTerminateEventArgs(this);
-            Terminate.Invoke(this, args);
+            Terminate?.Invoke(this, args);
         }
 
 
@@ -221,9 +210,9 @@ namespace Bolsover.AlibreDataViewer
             }
             catch (Exception ex)
             {
-                var num = (int) MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
-                throw ex;
+                throw;
             }
 
             Debug.WriteLine("OnComplete Done");

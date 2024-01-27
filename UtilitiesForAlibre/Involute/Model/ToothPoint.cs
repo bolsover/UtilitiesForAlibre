@@ -1,6 +1,4 @@
-﻿using Bolsover.Gear.Models;
-
-namespace Bolsover.Involute.Model
+﻿namespace Bolsover.Involute.Model
 {
     public class ToothPoint
     {

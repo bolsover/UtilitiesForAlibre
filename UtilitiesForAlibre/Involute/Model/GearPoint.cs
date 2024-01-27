@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static Bolsover.Utils.ConversionUtils;
 
-namespace Bolsover.Gear.Models
+namespace Bolsover.Involute.Model
 {
     /// <summary>
     /// A class to represent points in space

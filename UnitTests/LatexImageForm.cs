@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
-using Bolsover.Gear.Images;
+using Bolsover.Involute.Images;
 using Bolsover.Utils;
 
 namespace UnitTests

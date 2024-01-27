@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bolsover.Gear.Models;
+using Bolsover.Involute.Model;
 using static Bolsover.Utils.ConversionUtils;
 
-namespace Bolsover.Gear.Calculators
+namespace Bolsover.Involute.Calculator
 {
     public static class Geometry
     {

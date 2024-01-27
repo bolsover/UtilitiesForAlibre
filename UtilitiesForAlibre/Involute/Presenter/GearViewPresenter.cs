@@ -4,7 +4,7 @@ using Bolsover.Involute.Builder;
 using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
 using Bolsover.Involute.View;
-using static Bolsover.Gear.Images.GearLatexStrings;
+using static Bolsover.Involute.Images.GearLatexStrings;
 using static Bolsover.Utils.LatexUtils;
 
 namespace Bolsover.Involute.Presenter

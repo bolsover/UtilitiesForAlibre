@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bolsover.Gear.Calculators;
-using Bolsover.Gear.Models;
 using Bolsover.Involute.Model;
 using static Bolsover.Utils.ConversionUtils;
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Reflection;
 using System.Windows.Forms;
 using AlibreX;
 using Bolsover.DataBrowser;
@@ -13,7 +14,7 @@ namespace Bolsover.AlibreDataViewer
 
         public AlibreDataViewer(IADSession session)
         {
-            this._session = session;
+            _session = session;
             InitializeComponent();
             SetupColumns();
             SetupTree();
@@ -22,19 +23,20 @@ namespace Bolsover.AlibreDataViewer
 
         public void SetRootObject(object rootObject)
         {
-            this.RootObject = rootObject;
+            RootObject = rootObject;
             var roots = new ArrayList();
             var infos = rootObject.GetType().GetProperties();
-            for (var i = 0; i < infos.Length; i++)
+            foreach (var t in infos)
             {
-                var child = new AlibreData(rootObject);
-                var info = infos[i];
-                child.PropertyName = info.Name;
-                child.ClassType = info.PropertyType.Name;
-                child.PropertyValue = AlibreData.IsPrimitiveType(child.GetPropertyValue(rootObject, info.Name))
-                    ? child.GetPropertyValue(rootObject, info.Name)
+                var child = new AlibreData(rootObject)
+                {
+                    PropertyName = t.Name,
+                    ClassType = t.PropertyType.Name
+                };
+                child.PropertyValue = AlibreData.IsPrimitiveType(child.GetPropertyValue(rootObject, t.Name))
+                    ? child.GetPropertyValue(rootObject, t.Name)
                     : "";
-                child.Value = child.GetPropertyValue(rootObject, info.Name);
+                child.Value = child.GetPropertyValue(rootObject, t.Name);
 
                 roots.Add(child);
             }

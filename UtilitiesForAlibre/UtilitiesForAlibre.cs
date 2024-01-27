@@ -20,7 +20,6 @@ namespace Bolsover
         private const int SubmenuIdUtilsCycloidalGear = 602;
         private const int SubmenuIdUtilsPlaneFinder = 603;
         private const int SubmenuIdUtilsDataViewer = 604;
-        private const int SubmenuIdUtilsStandardGear = 607;
         private const int SubmenuIdUtilsAdvancedGear = 609;
         private const int MenuIdHelp = 701;
         private const int SubmenuIdHelpAbout = 702;
@@ -71,8 +70,7 @@ namespace Bolsover
             _menuIdsGear = new []
             {
                 SubmenuIdUtilsCycloidalGear,
-                SubmenuIdUtilsStandardGear,
-                SubmenuIdUtilsAdvancedGear
+               SubmenuIdUtilsAdvancedGear
             };
         }
 
@@ -125,8 +123,7 @@ namespace Bolsover
                 MenuIdGear => "Gears",
                 SubmenuIdDataBrowser => "Data Browser",
                 SubmenuIdUtilsCycloidalGear => "Cycloidal Gears Open/Close",
-                SubmenuIdUtilsStandardGear => "Standard Spur & Helical Gears",
-                SubmenuIdUtilsAdvancedGear => "Advanced Spur & Helical Gears",
+                SubmenuIdUtilsAdvancedGear => "Spur & Helical Gears",
                 SubmenuIdHelpAbout => "About",
                 SubmenuIdUtilsPlaneFinder => "Sketch Plane Finder Open/Close",
                 SubmenuIdUtilsDataViewer => "Property Viewer Open/Close",
@@ -168,8 +165,7 @@ namespace Bolsover
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                         case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_GRAYED;
@@ -185,7 +181,6 @@ namespace Bolsover
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -201,7 +196,6 @@ namespace Bolsover
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsStandardGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
@@ -228,8 +222,7 @@ namespace Bolsover
                 MenuIdGear => "Gears",
                 SubmenuIdDataBrowser => "Opens the custom Data Browser",
                 SubmenuIdUtilsCycloidalGear => "Opens/Closes Cycloidal Gear Generator",
-                SubmenuIdUtilsStandardGear => "Opens Standard Spur and Helical Gear Generator",
-                SubmenuIdUtilsAdvancedGear => "Opens Advanced Spur and Helical Gear Generator",
+                SubmenuIdUtilsAdvancedGear => "Opens Spur and Helical Gear Generator",
                 SubmenuIdUtilsPlaneFinder => "Finds the Plane on which a selected Sketch is drawn",
                 SubmenuIdUtilsDataViewer => "Opens/Closes Property Viewer",
                 SubmenuIdHelpAbout => "About Utilities for Alibre",
@@ -284,7 +277,6 @@ namespace Bolsover
             {
                 SubmenuIdDataBrowser => DoDataBrowser(),
                 SubmenuIdUtilsCycloidalGear => DoCycloidalGear(session),
-                SubmenuIdUtilsStandardGear => DoStandardGear(),
                 SubmenuIdUtilsAdvancedGear => DoAdvancedGear(),
                 SubmenuIdUtilsPlaneFinder => DoPlaneFinder(session),
                 SubmenuIdUtilsDataViewer => DoAlibreDataViewer(session),
@@ -463,15 +455,6 @@ namespace Bolsover
 
         #region Bevel
 
-        /// <summary>
-        /// </summary>
-        /// <returns></returns>
-        private static IAlibreAddOnCommand DoStandardGear()
-        {
-            var form = new StandardGearForm();
-            form.Show();
-            return null;
-        }
 
         /// <summary>
         /// </summary>

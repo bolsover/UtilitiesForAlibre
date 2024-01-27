@@ -273,20 +273,6 @@
         </Compile>
         <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs"/>
         <Compile Include="DataBrowser\ShellUtilities.cs"/>
-        <Compile Include="Gear\Builder\AlibreBuilder.cs" />
-        <Compile Include="Gear\Builder\GearBuilder.cs" />
-        <Compile Include="Gear\Calculators\GearCalculations.cs" />
-        <Compile Include="Gear\Calculators\Geometry.cs" />
-        <Compile Include="Gear\Images\GearLatexStrings.cs" />
-        <Compile Include="Gear\Models\Gear.cs" />
-        <Compile Include="Gear\Models\GearPair.cs" />
-        <Compile Include="Gear\Models\GearPoint.cs" />
-        <Compile Include="Gear\Models\GearToothPoints.cs" />
-        <Compile Include="Gear\Models\GearType.cs" />
-        <Compile Include="Gear\Models\IGear.cs" />
-        <Compile Include="Gear\Models\IGearPair.cs" />
-        <Compile Include="Gear\Models\InvoluteGear.cs" />
-        <Compile Include="Gear\Models\Trochoid.cs" />
         <Compile Include="Globals.cs" />
         <Compile Include="Involute\Builder\AlibreToothBuilder.cs" />
         <Compile Include="Involute\Builder\ExternalHelicalGearBuilder.cs" />
@@ -296,16 +282,18 @@
         <Compile Include="Involute\Builder\InternalSpurHelicalToothBuilder.cs" />
         <Compile Include="Involute\Builder\IToothPointsBuilder.cs" />
         <Compile Include="Involute\Builder\ExternalSpurGearBuilder.cs" />
+        <Compile Include="Involute\Calculator\Geometry.cs" />
         <Compile Include="Involute\Calculator\IGearCalculator.cs" />
         <Compile Include="Involute\Calculator\InternalToothPointCalculator.cs" />
         <Compile Include="Involute\Calculator\ProfileShiftedExternalSpurGearCalculator.cs" />
         <Compile Include="Involute\Calculator\ProfileShiftedExternalHelicalGearCalculator.cs" />
         <Compile Include="Involute\Calculator\ProfileShiftedIntExtHelicalGearCalculator.cs" />
         <Compile Include="Involute\Calculator\ProfileShiftedIntExtSpurGearCalculator.cs" />
-        <Compile Include="Involute\Calculator\StandardHelicalGearCalculator.cs" />
         <Compile Include="Involute\Calculator\ToothPointCalculator.cs" />
+        <Compile Include="Involute\Images\GearLatexStrings.cs" />
         <Compile Include="Involute\Model\GearDesignOutputParams.cs" />
         <Compile Include="Involute\Model\GearPairDesignOutputParams.cs" />
+        <Compile Include="Involute\Model\GearPoint.cs" />
         <Compile Include="Involute\Model\GearStyle.cs" />
         <Compile Include="Involute\Model\IGearDesignInputParams.cs" />
         <Compile Include="Involute\Model\IGearDesignOutputParams.cs" />
@@ -315,8 +303,8 @@
         <Compile Include="Involute\Model\IGearPairDesignOutputParams.cs" />
         <Compile Include="Involute\Model\Tooth.cs" />
         <Compile Include="Involute\Model\ToothPoint.cs" />
+        <Compile Include="Involute\Model\Trochoid.cs" />
         <Compile Include="Involute\Presenter\GearViewPresenter.cs" />
-        <Compile Include="Involute\Presenter\StandardGearPresenter.cs" />
         <Compile Include="Involute\View\GearView.cs">
           <SubType>UserControl</SubType>
         </Compile>
@@ -328,18 +316,6 @@
         </Compile>
         <Compile Include="Involute\View\InvoluteGearForm.Designer.cs">
           <DependentUpon>InvoluteGearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Involute\View\StandardGearForm.cs">
-          <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Involute\View\StandardGearForm.Designer.cs">
-          <DependentUpon>StandardGearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Involute\View\StandardGearView.cs">
-          <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Involute\View\StandardGearView.Designer.cs">
-          <DependentUpon>StandardGearView.cs</DependentUpon>
         </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\Settings.Designer.cs">
@@ -469,12 +445,6 @@
         <EmbeddedResource Include="Involute\View\InvoluteGearForm.resx">
           <DependentUpon>InvoluteGearForm.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="Involute\View\StandardGearForm.resx">
-          <DependentUpon>StandardGearForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Involute\View\StandardGearView.resx">
-          <DependentUpon>StandardGearView.cs</DependentUpon>
-        </EmbeddedResource>
         <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </EmbeddedResource>
@@ -486,9 +456,6 @@
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Involute\Images\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

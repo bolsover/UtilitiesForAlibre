@@ -17,7 +17,7 @@ namespace Bolsover.CycloidalGear
 
         public CycloidalGearAddOnCommand(IADSession session)
         {
-            this.Session = session;
+            Session = session;
             PanelPosition = (int) ADDockStyle.AD_RIGHT;
             CycliodalGearParametersForm = new CycliodalGearParametersForm(session);
         }
@@ -25,8 +25,6 @@ namespace Bolsover.CycloidalGear
         /// <summary>
         /// Actions to take when closing
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public void UserRequestedClose()
         {
             CycliodalGearParametersForm.Dispose();
@@ -42,19 +40,15 @@ namespace Bolsover.CycloidalGear
             set
             {
                 Debug.WriteLine(value);
-                if (value != (long) IntPtr.Zero)
-                {
-                    var control = Control.FromHandle((IntPtr) value);
-                    if (control != null)
-                    {
-                        CycliodalGearParametersForm.Parent = control;
-                        CycliodalGearParametersForm.Dock = DockStyle.Fill;
-                        CycliodalGearParametersForm.AutoSize = true;
-                        CycliodalGearParametersForm.Show();
-                        control.Show();
-                        PanelHandle = value;
-                    }
-                }
+                if (value == (long)IntPtr.Zero) return;
+                var control = Control.FromHandle((IntPtr) value);
+                if (control == null) return;
+                CycliodalGearParametersForm.Parent = control;
+                CycliodalGearParametersForm.Dock = DockStyle.Fill;
+                CycliodalGearParametersForm.AutoSize = true;
+                CycliodalGearParametersForm.Show();
+                control.Show();
+                PanelHandle = value;
             }
         }
 
@@ -218,7 +212,7 @@ namespace Bolsover.CycloidalGear
             }
 
             var args = new CycloidalGearAddOnCommandTerminateEventArgs(this);
-            Terminate.Invoke(this, args);
+            Terminate?.Invoke(this, args);
 
             Debug.WriteLine("OnTerminate Done");
         }
@@ -236,9 +230,9 @@ namespace Bolsover.CycloidalGear
             }
             catch (Exception ex)
             {
-                var num = (int) MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
-                throw ex;
+                throw;
             }
 
             Debug.WriteLine("OnComplete Done");
