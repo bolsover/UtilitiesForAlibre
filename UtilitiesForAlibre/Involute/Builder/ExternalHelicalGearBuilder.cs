@@ -3,7 +3,7 @@ using Bolsover.Involute.Model;
 
 namespace Bolsover.Involute.Builder
 {
-    public class ExternalHelicalGearBuilder : AlibreToothBuilder
+    public abstract class ExternalHelicalGearBuilder : AlibreToothBuilder
     {
         public static void Build(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
         {
@@ -15,9 +15,9 @@ namespace Bolsover.Involute.Builder
             // the existing sketch has a placeholder - just delete
             figures.Item(0).Delete();
             // the default Alibre units are cm. Scale everything by 0.1 for correct mm dimensions
-            var scale = 0.1;
+            const double scale = 0.1;
 
-            for (int i = 0; i < tooth.Points.Count; i++)
+            for (var i = 0; i < tooth.Points.Count; i++)
             {
                 AddScaledPoint(sketch, tooth.Points[i].Point, scale);
             }

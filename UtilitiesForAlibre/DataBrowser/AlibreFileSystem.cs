@@ -7,7 +7,7 @@ using AlibreX;
 
 namespace Bolsover.DataBrowser
 {
-    public class AlibreFileSystem : IEquatable<AlibreFileSystem>, INotifyPropertyChanged
+    public sealed class AlibreFileSystem : IEquatable<AlibreFileSystem>, INotifyPropertyChanged
     {
         #region Private Properties
 
@@ -112,7 +112,7 @@ namespace Bolsover.DataBrowser
         /*
          * Utility to check if file is locked or open elsewhere
          */
-        protected virtual bool IsFileLocked(FileInfo file)
+        private bool IsFileLocked(FileInfo file)
         {
             try
             {
@@ -379,7 +379,7 @@ namespace Bolsover.DataBrowser
         #endregion
 
 
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        private void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             var handler = PropertyChanged;
             if (handler != null)
@@ -389,7 +389,7 @@ namespace Bolsover.DataBrowser
         }
 
 
-        protected void SetPropertyField<T>(string propertyName, ref T field, T newValue)
+        private void SetPropertyField<T>(string propertyName, ref T field, T newValue)
         {
             if (!EqualityComparer<T>.Default.Equals(field, newValue))
             {

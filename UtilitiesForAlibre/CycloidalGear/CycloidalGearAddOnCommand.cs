@@ -11,7 +11,7 @@ namespace Bolsover.CycloidalGear
     {
         public IADSession Session { get; }
         private long PanelHandle { get; set; }
-        public int PanelPosition { get; set; }
+        private int PanelPosition { get; set; }
 
         public CycliodalGearParametersForm CycliodalGearParametersForm;
 
@@ -173,20 +173,18 @@ namespace Bolsover.CycloidalGear
         /// <exception cref="NotImplementedException"></exception>
         public void OnSelectionChange()
         {
-            if (Session.SelectedObjects.Count == 1)
+            if (Session.SelectedObjects.Count != 1) return;
+            var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
+            try
             {
-                var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
-                try
+                if (proxy.Target.GetType() == typeof(AlibreDesignPlane))
                 {
-                    if (proxy.Target.GetType() == typeof(AlibreDesignPlane))
-                    {
-                        CycliodalGearParametersForm.DesignPlane = proxy.Target as IADDesignPlane;
-                    }
+                    CycliodalGearParametersForm.DesignPlane = proxy.Target as IADDesignPlane;
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e);
-                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
             }
         }
 
@@ -199,10 +197,7 @@ namespace Bolsover.CycloidalGear
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (CycliodalGearParametersForm != null)
-            {
-                CycliodalGearParametersForm.Dispose();
-            }
+            CycliodalGearParametersForm?.Dispose();
 
             if (CommandSite != null)
             {

@@ -9,64 +9,55 @@ namespace Bolsover.Involute.Model
     /// </summary>
     public class Trochoid
     {
-        private double _rollingCircleRadius;
-        private double _fixedCircleRadius;
-        private double _tracePoint; // Distance From Centre Rolling Circle
+        public double RollingCircleRadius { get; set; }
 
-        public double RollingCircleRadius
-        {
-            get => _rollingCircleRadius;
-            set => _rollingCircleRadius = value;
-        }
+        public double FixedCircleRadius { get; set; }
 
-        public double FixedCircleRadius
-        {
-            get => _fixedCircleRadius;
-            set => _fixedCircleRadius = value;
-        }
+        public double TracePoint { get; set; }
 
-        public double TracePoint
-        {
-            get => _tracePoint;
-            set => _tracePoint = value;
-        }
-
-        public static double Radians(double angle)
+        private static double Radians(double angle)
         {
             return angle * (Math.PI / 180.0);
         }
 
-        public double HypoModulus => FixedCircleRadius - RollingCircleRadius;
-        public double EpiModulus => FixedCircleRadius + RollingCircleRadius;
+        private double HypoModulus
+        {
+            get => FixedCircleRadius - RollingCircleRadius;
+        }
+
+        private double EpiModulus
+        {
+            get => FixedCircleRadius + RollingCircleRadius;
+        }
 
 
         public double HypoTrochoidX(double theta) => HypoModulus * Math.Cos(Radians(theta)) +
-                                                     TracePoint * Math.Cos((HypoModulus / RollingCircleRadius) *
+                                                     TracePoint * Math.Cos(HypoModulus / RollingCircleRadius *
                                                                            Radians(theta));
 
         public double HypoTrochoidY(double theta) => HypoModulus * Math.Sin(Radians(theta)) -
-                                                     TracePoint * Math.Sin((HypoModulus / RollingCircleRadius) *
+                                                     TracePoint * Math.Sin(HypoModulus / RollingCircleRadius *
                                                                            Radians(theta));
 
 
         public double EpiTrochoidX(double theta) => EpiModulus * Math.Cos(Radians(theta)) -
                                                     TracePoint * Math.Cos(
-                                                        (EpiModulus / RollingCircleRadius) * Radians(theta));
+                                                        EpiModulus / RollingCircleRadius * Radians(theta));
 
         public double EpiTrochoidY(double theta) => EpiModulus * Math.Sin(Radians(theta)) -
                                                     TracePoint * Math.Sin(
-                                                        (EpiModulus / RollingCircleRadius) * Radians(theta));
+                                                        EpiModulus / RollingCircleRadius * Radians(theta));
 
 
         // Parametric equation for Polar coordinates of involute 
-        public double PolarRinv(double baseDiameter, double zeta) => (baseDiameter / 2) * Math.Sqrt(1 + Math.Pow(zeta, 2));
-        public double PolarEtaInv(double zeta) => zeta - Math.Atan(zeta);
+        public static double PolarRinv(double baseDiameter, double zeta) => baseDiameter / 2 * Math.Sqrt(1 + Math.Pow(zeta, 2));
+        public static double PolarEtaInv(double zeta) => zeta - Math.Atan(zeta);
 
         // Convert polar to cartesian r is radius of circle, eta is angle in radians
-        public GearPoint PolarToCartesian(double r, double eta)
+        public static GearPoint PolarToCartesian(double r, double eta)
         {
-            double x = r * Math.Cos(eta);
-            double y = r * Math.Sin(eta);
+            var x = r * Math.Cos(eta);
+            var y = r * Math.Sin(eta);
 
             return new GearPoint(x, y);
         }
@@ -80,11 +71,11 @@ namespace Bolsover.Involute.Model
         /// <param name="delta"> </param>
         /// <param name="lambda"></param>
         /// <returns></returns>
-        public double PolarRtro(double baseDiameter, double delta, double lambda) =>
+        public static double PolarRtro(double baseDiameter, double delta, double lambda) =>
             Math.Sqrt(Math.Pow(baseDiameter / 2, 2) + Math.Pow(delta, 2) -
-                      (baseDiameter * delta * Math.Cos((Math.PI / 2) - lambda)));
+                      baseDiameter * delta * Math.Cos(Math.PI / 2 - lambda));
 
-        public double PolarEtaTro(double theta, double epsilon, double alpha) => theta + epsilon + alpha;
+        public static double PolarEtaTro(double theta, double epsilon, double alpha) => theta + epsilon + alpha;
 
         public double TanEpsilon(double baseDiameter, double lambda, double delta) =>
             delta * Math.Cos(lambda) / (baseDiameter / 2 - delta * Math.Sin(lambda));

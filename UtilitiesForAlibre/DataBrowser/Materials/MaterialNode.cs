@@ -15,16 +15,16 @@ namespace Bolsover.DataBrowser.Materials
         public IADMaterial Material { get; set; }
         public string NodeName { get; set; }
 
-        public bool CanExpand => ChList != null;
+        public bool CanExpand
+        {
+            get => ChList != null;
+        }
 
         public ArrayList ChList { get; set; }
 
         public void AddChild(MaterialNode childNode)
         {
-            if (ChList is null)
-            {
-                ChList = new ArrayList();
-            }
+            ChList ??= new ArrayList();
 
             ChList.Add(childNode);
         }
@@ -41,11 +41,9 @@ namespace Bolsover.DataBrowser.Materials
                 for (var i = 0; i < ChList.Count; i++)
                 {
                     var node = (MaterialNode) ChList[i];
-                    if (node.NodeName.Equals(childNode.NodeName))
-                    {
-                        j = i;
-                        break;
-                    }
+                    if (!node.NodeName.Equals(childNode.NodeName)) continue;
+                    j = i;
+                    break;
                 }
             }
 

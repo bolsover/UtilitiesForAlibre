@@ -13,7 +13,7 @@ namespace Bolsover.CycloidalGear
 
         public CycliodalGearParametersForm(IADSession session)
         {
-            this._session = (IADDesignSession) session;
+            _session = (IADDesignSession) session;
             InitializeComponent();
             InitParameters();
         }

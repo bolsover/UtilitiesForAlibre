@@ -82,7 +82,7 @@ namespace Bolsover.Bevel.Presenters
             var m460 = gear.Module * 0.460;
             var z2CosDelta1 = gear.NumberOfTeeth * Math.Cos(Radians(CalculateGleasonPinionPitchConeAngle(pinion, gear)));
             var z1CosDelta2 = pinion.NumberOfTeeth * Math.Cos(Radians(CalculateGleasonGearPitchConeAngle(pinion, gear)));
-            var result = m540 + (m460 / (z2CosDelta1 / z1CosDelta2));
+            var result = m540 + m460 / (z2CosDelta1 / z1CosDelta2);
             return result;
         }
 
@@ -92,7 +92,7 @@ namespace Bolsover.Bevel.Presenters
             var m390 = gear.Module * 0.390;
             var z2CosDelta1 = gear.NumberOfTeeth * Math.Cos(Radians(CalculateGleasonPinionPitchConeAngle(pinion, gear)));
             var z1CosDelta2 = pinion.NumberOfTeeth * Math.Cos(Radians(CalculateGleasonGearPitchConeAngle(pinion, gear)));
-            var result = m460 + (m390 / (z2CosDelta1 / z1CosDelta2));
+            var result = m460 + m390 / (z2CosDelta1 / z1CosDelta2);
             return result;
         }
 
@@ -116,34 +116,34 @@ namespace Bolsover.Bevel.Presenters
             return 2.0 * pinion.Module - CalculateGleasonGearAddendum(pinion, gear);
         }
 
-        public static double CalculateStandardPinionAddendum(IBevelGear pinion, IBevelGear gear)
+        public static double CalculateStandardPinionAddendum(IBevelGear pinion)
         {
             return 1.0 * pinion.Module;
         }
 
-        public static double CalculateStandardGearAddendum(IBevelGear pinion, IBevelGear gear)
+        public static double CalculateStandardGearAddendum(IBevelGear gear)
         {
             return 1.0 * gear.Module;
         }
 
-        public static double CalculateStandardPinionDedendum(IBevelGear pinion, IBevelGear gear)
+        public static double CalculateStandardPinionDedendum(IBevelGear pinion)
         {
             return 1.25 * pinion.Module;
         }
 
-        public static double CalculateStandardGearDedendum(IBevelGear pinion, IBevelGear gear)
+        public static double CalculateStandardGearDedendum(IBevelGear gear)
         {
             return 1.25 * gear.Module;
         }
 
         public static double CalculateGleasonPinionDedendum(IBevelGear pinion, IBevelGear gear)
         {
-            return (2.188 * pinion.Module) - CalculateGleasonPinionAddendum(pinion, gear);
+            return 2.188 * pinion.Module - CalculateGleasonPinionAddendum(pinion, gear);
         }
 
         public static double CalculateGleasonGearDedendum(IBevelGear pinion, IBevelGear gear)
         {
-            return (2.188 * gear.Module) - CalculateGleasonGearAddendum(pinion, gear);
+            return 2.188 * gear.Module - CalculateGleasonGearAddendum(pinion, gear);
         }
 
 
@@ -181,7 +181,7 @@ namespace Bolsover.Bevel.Presenters
 
         public static double CalculateStandardPinionDedendumAngle(IBevelGear pinion, IBevelGear gear)
         {
-            var dedendum = CalculateStandardPinionDedendum(pinion, gear);
+            var dedendum = CalculateStandardPinionDedendum(pinion);
             var coneDistance = CalculateConeDistance(pinion, gear);
             var result = Degrees(Math.Atan(dedendum / coneDistance));
             return result;
@@ -214,7 +214,7 @@ namespace Bolsover.Bevel.Presenters
 
         public static double CalculateStandardPinionAddendumAngle(IBevelGear pinion, IBevelGear gear)
         {
-            var addedendum = CalculateStandardPinionAddendum(pinion, gear);
+            var addedendum = CalculateStandardPinionAddendum(pinion);
             var coneDistance = CalculateConeDistance(pinion, gear);
             var result = Degrees(Math.Atan(addedendum / coneDistance));
             return result;
@@ -352,7 +352,7 @@ namespace Bolsover.Bevel.Presenters
         public static double CalculateStandardPinionPitchApexToCrown(IBevelGear pinion, IBevelGear gear)
         {
             var coneDistance = CalculateConeDistance(pinion, gear);
-            var pinionAddendum = CalculateStandardPinionAddendum(pinion, gear);
+            var pinionAddendum = CalculateStandardPinionAddendum(pinion);
             var pinionPitchConeAngle = CalculateStandardPinionPitchConeAngle(pinion, gear);
             var result = coneDistance * Math.Cos(Radians(pinionPitchConeAngle)) -
                          pinionAddendum * Math.Sin(Radians(pinionPitchConeAngle));
@@ -362,7 +362,7 @@ namespace Bolsover.Bevel.Presenters
         public static double CalculateStandardGearPitchApexToCrown(IBevelGear pinion, IBevelGear gear)
         {
             var coneDistance = CalculateConeDistance(pinion, gear);
-            var gearAddendum = CalculateStandardGearAddendum(pinion, gear);
+            var gearAddendum = CalculateStandardGearAddendum(gear);
             var gearPitchConeAngle = CalculateStandardGearPitchConeAngle(pinion, gear);
             var result = coneDistance * Math.Cos(Radians(gearPitchConeAngle)) -
                          gearAddendum * Math.Sin(Radians(gearPitchConeAngle));
@@ -456,7 +456,7 @@ namespace Bolsover.Bevel.Presenters
         public static double CalculateStandardGearOutsideDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var pitchDiameter = CalculateStandardGearPitchDiameter(gear);
-            var addendum = CalculateStandardGearAddendum(pinion, gear);
+            var addendum = CalculateStandardGearAddendum(gear);
             var gearPitchConeAngle = CalculateStandardGearPitchConeAngle(pinion, gear);
             var result = pitchDiameter + 2 * addendum * Math.Cos(Radians(gearPitchConeAngle));
             return result;
@@ -465,7 +465,7 @@ namespace Bolsover.Bevel.Presenters
         public static double CalculateStandardPinionOutsideDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var pitchDiameter = CalculateStandardPinionPitchDiameter(pinion);
-            var addendum = CalculateStandardPinionAddendum(pinion, gear);
+            var addendum = CalculateStandardPinionAddendum(pinion);
             var gearPitchConeAngle = CalculateStandardPinionPitchConeAngle(pinion, gear);
             var result = pitchDiameter + 2 * addendum * Math.Cos(Radians(gearPitchConeAngle));
             return result;

@@ -9,24 +9,24 @@ namespace Bolsover.Involute.Builder
 {
     public class AlibreToothBuilder
     {
-        public void Build(Tooth tooth, string SaveFile, string Template, IGearDesignOutputParams Gear)
+        public void Build(Tooth tooth, string saveFile, string template, IGearDesignOutputParams gear)
         {
-            var tempFile = GetAlibreFilePath(SaveFile, Template);
+            var tempFile = GetAlibreFilePath(saveFile, template);
             if (tempFile == null) return;
-            IADDesignSession session = InitAlibreFile(tempFile, true);
-            Calculate(session, tooth, Gear);
+            var session = InitAlibreFile(tempFile);
+            Calculate(session, tooth, gear);
         }
 
-        private void Calculate(IADDesignSession session, Tooth tooth, IGearDesignOutputParams Gear)
+        private static void Calculate(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
         {
-            if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
-                ExternalSpurGearBuilder.Build(session, tooth, Gear);
-            else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
-                ExternalHelicalGearBuilder.Build(session, tooth, Gear);
-            else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
-                InternalSpurGearBuilder.Build(session, tooth, Gear);
-            else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
-                InternalHelicalGearBuilder.Build(session, tooth, Gear);
+            if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
+                ExternalSpurGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
+                ExternalHelicalGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
+                InternalSpurGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
+                InternalHelicalGearBuilder.Build(session, tooth, gear);
             // else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
             //     CalculateStraightRackGear(Model);
             // else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
@@ -35,7 +35,7 @@ namespace Bolsover.Involute.Builder
                 throw new ArgumentException("Gear style not recognised");
         }
 
-        private string GetAlibreFilePath(string SaveFile, string Template)
+        private static string GetAlibreFilePath(string SaveFile, string Template)
         {
             var filePath = Globals.InstallPath;
             var tempFile = Path.Combine(Path.GetTempPath(), SaveFile);
@@ -55,21 +55,19 @@ namespace Bolsover.Involute.Builder
             return tempFile;
         }
 
-        private IADDesignSession InitAlibreFile(string filePath, bool openEditor)
+        private static IADDesignSession InitAlibreFile(string filePath)
         {
-            IADRoot root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
-            IADDesignSession session = (IADDesignSession) root.OpenFileEx(filePath, true);
+            var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
+            var session = (IADDesignSession) root.OpenFileEx(filePath, true);
             return session;
         }
 
-        protected virtual bool IsFileLocked(FileInfo file)
+        private static bool IsFileLocked(FileInfo file)
         {
             try
             {
-                using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
-                {
-                    stream.Close();
-                }
+                using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+                stream.Close();
             }
             catch (IOException)
             {

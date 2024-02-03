@@ -43,11 +43,11 @@ namespace Bolsover.DataBrowser.PartNoConfig
 
         private void Bindings()
         {
-            textBoxPrefix.DataBindings.Add("Text", _partNoManager.PartNoSetting, "Prefix");
-            textBoxSuffix.DataBindings.Add("Text", _partNoManager.PartNoSetting, "Suffix");
-            nextNumberSpinner.DataBindings.Add("Value", _partNoManager.PartNoSetting, "PartNo");
-            stepSpinner.DataBindings.Add("Value", _partNoManager.PartNoSetting, "SkipNo");
-            textBoxExample.DataBindings.Add("Text", _partNoManager.PartNoSetting, "Example");
+            textBoxPrefix.DataBindings.Add("Text", PartNoManager.PartNoSetting, "Prefix");
+            textBoxSuffix.DataBindings.Add("Text", PartNoManager.PartNoSetting, "Suffix");
+            nextNumberSpinner.DataBindings.Add("Value", PartNoManager.PartNoSetting, "PartNo");
+            stepSpinner.DataBindings.Add("Value", PartNoManager.PartNoSetting, "SkipNo");
+            textBoxExample.DataBindings.Add("Text", PartNoManager.PartNoSetting, "Example");
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -72,11 +72,11 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 {
                     labelInfo.Text = "Info updating " + fileSystem.Name;
                     var session = AlibreConnector.RetrieveSessionForFile(fileSystem);
-                    fileSystem.AlibrePartNo = _partNoManager.PartNoSetting.Prefix +
-                                              _partNoManager.PartNoSetting.PartNo +
-                                              _partNoManager.PartNoSetting.Suffix;
-                    _partNoManager.PartNoSetting.PartNo += _partNoManager.PartNoSetting.SkipNo;
-                    nextNumberSpinner.Value = _partNoManager.PartNoSetting.PartNo;
+                    fileSystem.AlibrePartNo = PartNoManager.PartNoSetting.Prefix +
+                                              PartNoManager.PartNoSetting.PartNo +
+                                              PartNoManager.PartNoSetting.Suffix;
+                    PartNoManager.PartNoSetting.PartNo += PartNoManager.PartNoSetting.SkipNo;
+                    nextNumberSpinner.Value = PartNoManager.PartNoSetting.PartNo;
                     var designProperties = session.DesignProperties;
                     designProperties.Number = fileSystem.AlibrePartNo;
                     session.Close(true);
@@ -85,11 +85,11 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 {
                     labelInfo.Text = "Info updating " + fileSystem.Name;
                     var session = AlibreConnector.RetrieveDrawingSessionForFile(fileSystem);
-                    fileSystem.AlibrePartNo = _partNoManager.PartNoSetting.Prefix +
-                                              _partNoManager.PartNoSetting.PartNo +
-                                              _partNoManager.PartNoSetting.Suffix;
-                    _partNoManager.PartNoSetting.PartNo += _partNoManager.PartNoSetting.SkipNo;
-                    nextNumberSpinner.Value = _partNoManager.PartNoSetting.PartNo;
+                    fileSystem.AlibrePartNo = PartNoManager.PartNoSetting.Prefix +
+                                              PartNoManager.PartNoSetting.PartNo +
+                                              PartNoManager.PartNoSetting.Suffix;
+                    PartNoManager.PartNoSetting.PartNo += PartNoManager.PartNoSetting.SkipNo;
+                    nextNumberSpinner.Value = PartNoManager.PartNoSetting.PartNo;
                     var designProperties = session.Properties;
                     designProperties.Number = fileSystem.AlibrePartNo;
                     session.Close(true);
@@ -102,7 +102,7 @@ namespace Bolsover.DataBrowser.PartNoConfig
             Hide();
         }
 
-        [Serializable()]
+        [Serializable]
         public class PartNoSetting
         {
             private string _prefix;
@@ -129,10 +129,7 @@ namespace Bolsover.DataBrowser.PartNoConfig
             {
                 var handler = PropertyChanged;
                 Example = _prefix + _partNo + _suffix;
-                if (handler != null)
-                {
-                    handler(this, e);
-                }
+                handler?.Invoke(this, e);
             }
 
             #endregion
@@ -183,7 +180,7 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 Initialize();
             }
 
-            public PartNoSetting PartNoSetting
+            public static PartNoSetting PartNoSetting
             {
                 get => _partNoSetting;
                 set => _partNoSetting = value;
@@ -194,7 +191,7 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 LoadConfig();
             }
 
-            public void LoadConfig()
+            private static void LoadConfig()
             {
                 var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                     "\\UtilitiesForAlibre";
@@ -206,15 +203,13 @@ namespace Bolsover.DataBrowser.PartNoConfig
 
                 var filepath = directoryPath + "\\partnumber.settings";
                 var fileInfo = new FileInfo(filepath);
-                if (fileInfo.Exists)
-                {
-                    var srReader = File.OpenText(filepath);
-                    var tType = _partNoSetting.GetType();
-                    var xsSerializer = new System.Xml.Serialization.XmlSerializer(tType);
-                    var oData = xsSerializer.Deserialize(srReader);
-                    _partNoSetting = (PartNoSetting) oData;
-                    srReader.Close();
-                }
+                if (!fileInfo.Exists) return;
+                var srReader = File.OpenText(filepath);
+                var tType = _partNoSetting.GetType();
+                var xsSerializer = new System.Xml.Serialization.XmlSerializer(tType);
+                var oData = xsSerializer.Deserialize(srReader);
+                _partNoSetting = (PartNoSetting) oData;
+                srReader.Close();
             }
 
             // Save configuration file
@@ -231,12 +226,10 @@ namespace Bolsover.DataBrowser.PartNoConfig
                 var filepath = directoryPath + "\\partnumber.settings";
                 var swWriter = File.CreateText(filepath);
                 var tType = _partNoSetting.GetType();
-                if (tType.IsSerializable)
-                {
-                    var xsSerializer = new System.Xml.Serialization.XmlSerializer(tType);
-                    xsSerializer.Serialize(swWriter, _partNoSetting);
-                    swWriter.Close();
-                }
+                if (!tType.IsSerializable) return;
+                var xsSerializer = new System.Xml.Serialization.XmlSerializer(tType);
+                xsSerializer.Serialize(swWriter, _partNoSetting);
+                swWriter.Close();
             }
         }
     }

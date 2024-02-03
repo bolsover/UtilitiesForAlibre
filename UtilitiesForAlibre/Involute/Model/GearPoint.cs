@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using static Bolsover.Utils.ConversionUtils;
 
 namespace Bolsover.Involute.Model
@@ -9,8 +10,8 @@ namespace Bolsover.Involute.Model
     /// </summary>
     public class GearPoint
     {
-        public double X { get; set; }
-        public double Y { get; set; }
+        public double X { get; private set; }
+        public double Y { get; private set; }
 
 
         public GearPoint()
@@ -44,7 +45,7 @@ namespace Bolsover.Involute.Model
             return m.Offset(-n);
         }
 
-        public GearPoint Offset(GearPoint m)
+        private GearPoint Offset(GearPoint m)
         {
             return Offset(m.X, m.Y);
         }
@@ -55,12 +56,12 @@ namespace Bolsover.Involute.Model
         }
 
 
-        public GearPoint Offset(double x, double y)
+        private GearPoint Offset(double x, double y)
         {
-            return new GearPoint(this.X + x, this.Y + y);
+            return new GearPoint(X + x, Y + y);
         }
 
-        public GearPoint Scale(double magnitude)
+        private GearPoint Scale(double magnitude)
         {
             return new GearPoint(magnitude * X, magnitude * Y);
         }
@@ -70,7 +71,7 @@ namespace Bolsover.Involute.Model
             return Math.Sqrt(SumOfSquares(p.X, p.Y));
         }
 
-        public static double SumOfSquares(double x, double y)
+        private static double SumOfSquares(double x, double y)
         {
             return x * x + y * y;
         }
@@ -80,10 +81,15 @@ namespace Bolsover.Involute.Model
             return x * x - y * y;
         }
 
-        public double Phase => Math.Atan2(Y, X);
+        public double Phase
+        {
+            get => Math.Atan2(Y, X);
+        }
 
-        public double Gradient =>
-            X == 0 ? Y < 0 ? double.MinValue : double.MaxValue : Y / X;
+        public double Gradient
+        {
+            get => X == 0 ? Y < 0 ? double.MinValue : double.MaxValue : Y / X;
+        }
 
         public GearPoint Rotate(double angle)
         {
@@ -109,13 +115,7 @@ namespace Bolsover.Involute.Model
         /// 
         public static List<GearPoint> Rotated(List<GearPoint> points, double phi)
         {
-            var result = new List<GearPoint>();
-            foreach (var point in points)
-            {
-                result.Add(point.Rotate(phi));
-            }
-
-            return result;
+            return points.Select(point => point.Rotate(phi)).ToList();
         }
 
         public static GearPoint Mirror(GearPoint gearPoint, double angleDegrees)
@@ -124,7 +124,7 @@ namespace Bolsover.Involute.Model
             var d = Degrees(Math.Acos(gearPoint.Y / magnitude));
             var d2 = angleDegrees - (d - angleDegrees);
 
-            var result = new GearPoint()
+            var result = new GearPoint
             {
                 X = Math.Sin(Radians(d2)) * magnitude,
                 Y = Math.Cos(Radians(d2)) * magnitude
@@ -132,43 +132,17 @@ namespace Bolsover.Involute.Model
             return result;
         }
 
-        // /// <summary>
-        // /// Converts the given angle in Degrees ° to Radians
-        // /// Uses the formula Radians = Degrees * Pi/180
-        // /// </summary>
-        // /// <param name="angle"></param>
-        // /// <returns></returns>
-        // public static double Radians(double angle)
-        // {
-        //     return angle * (Math.PI / 180.0);
-        // }
-        //
-        // /// <summary>
-        // /// Converts the given angle in Radians to Degrees
-        // /// Uses the formula Degrees = Radians * 180/Pi
-        // /// </summary>
-        // /// <param name="radians"></param>
-        // /// <returns></returns>
-        // public static double Degrees(double radians)
-        // {
-        //     return radians * (180.0 / Math.PI);
-        // }
+       
 
         public static List<GearPoint> MirrorPoints(List<GearPoint> points, double angleDegrees)
         {
-            var result = new List<GearPoint>();
-            foreach (var point in points)
-            {
-                result.Add(Mirror(point, angleDegrees));
-            }
-
-            return result;
+            return points.Select(point => Mirror(point, angleDegrees)).ToList();
         }
 
         public static GearPoint PolarOffset(GearPoint origin, double magnitude, double angleRadians)
         {
-            var x = origin.X + (magnitude * Math.Cos(angleRadians));
-            var y = origin.Y + (magnitude * Math.Sin(angleRadians));
+            var x = origin.X + magnitude * Math.Cos(angleRadians);
+            var y = origin.Y + magnitude * Math.Sin(angleRadians);
             return new GearPoint(x, y);
         }
     }

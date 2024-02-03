@@ -9,36 +9,34 @@ namespace Bolsover.Involute.Calculator
     {
         public static List<GearPoint> RhsInvolute(IGearDesignOutputParams gearDesignOutputParams)
         {
-            var RHSinvolute = BuildBasicInvolute(gearDesignOutputParams, 25);
+            var rhSinvolute = BuildBasicInvolute(gearDesignOutputParams, 25);
             var rootFilletEnd = GearPointRhsEndRootRelief(gearDesignOutputParams);
             var tipReliefStart = RhsStartOfTipRelief(gearDesignOutputParams);
-            RHSinvolute = Geometry.TrimmedInvolutePoints(RHSinvolute, tipReliefStart, rootFilletEnd);
+            rhSinvolute = Geometry.TrimmedInvolutePoints(rhSinvolute, tipReliefStart, rootFilletEnd);
 
-            return RHSinvolute;
+            return rhSinvolute;
         }
         
      
 
         public static GearPoint RhsStartInvolute(IGearDesignOutputParams gearDesignOutputParams)
         {
-            var RHSinvolute = BuildBasicInvolute(gearDesignOutputParams, 25);
+            var rhSinvolute = BuildBasicInvolute(gearDesignOutputParams, 25);
             var rootFilletEnd = GearPointRhsEndRootRelief(gearDesignOutputParams);
             var tipReliefStart = RhsStartOfTipRelief(gearDesignOutputParams);
-            RHSinvolute = Geometry.TrimmedInvolutePoints(RHSinvolute, tipReliefStart, rootFilletEnd);
+            rhSinvolute = Geometry.TrimmedInvolutePoints(rhSinvolute, tipReliefStart, rootFilletEnd);
 
-            return RHSinvolute[0];
+            return rhSinvolute[0];
         }
 
         public static List<GearPoint> LhsInvolute(IGearDesignOutputParams gearDesignOutputParams)
         {
             var rightInvolute = BuildBasicInvolute(gearDesignOutputParams, 25);
             var rootFilletEnd = GearPointRhsEndRootRelief(gearDesignOutputParams);
-
             var point6 = RhsStartOfTipRelief(gearDesignOutputParams);
             rightInvolute = Geometry.TrimmedInvolutePoints(rightInvolute,
                 point6, rootFilletEnd);
             var kappaRadians = Radians(gearDesignOutputParams.Kappa);
-
             var leftInvolute = GearPoint.MirrorPoints(rightInvolute, 90);
             leftInvolute = GearPoint.Rotated(leftInvolute, kappaRadians);
             return leftInvolute;
@@ -59,7 +57,7 @@ namespace Bolsover.Involute.Calculator
             return leftInvolute[0];
         }
 
-        public static double AngleToRootFilletCentre(IGearDesignOutputParams gearDesignOutputParams)
+        private static double AngleToRootFilletCentre(IGearDesignOutputParams gearDesignOutputParams)
         {
             var result =  Math.Asin(gearDesignOutputParams.RootFilletDiameter / (gearDesignOutputParams.RootCircleDiameter + gearDesignOutputParams.RootFilletDiameter));
             return result;
@@ -80,7 +78,7 @@ namespace Bolsover.Involute.Calculator
             var centre = new GearPoint(0, 0);
             var x = (gearDesignOutputParams.RootFilletDiameter + gearDesignOutputParams.RootCircleDiameter) / 2 *
                     Math.Cos(AngleToFilletCentre(gearDesignOutputParams));
-            var y = -((gearDesignOutputParams.RootFilletDiameter/2) + gearDesignOutputParams.RootCircleDiameter / 2) *
+            var y = -(gearDesignOutputParams.RootFilletDiameter/2 + gearDesignOutputParams.RootCircleDiameter / 2) *
                     Math.Sin(AngleToFilletCentre(gearDesignOutputParams));
             var angleToAdjustedRightRootFilletEnd = Geometry.AngleToPointOnCircle(centre, rhSinvolute[0]);
             var result = new GearPoint(x, y).Rotate(angleToAdjustedRightRootFilletEnd);
@@ -124,9 +122,9 @@ namespace Bolsover.Involute.Calculator
             return GearPoint.Mirror(rhs, 90).Rotate(kappaRadians);
         }
 
-        public static List<GearPoint> BuildBasicInvolute(IGearDesignOutputParams gearDesignOutputParams, int steps)
+        private static List<GearPoint> BuildBasicInvolute(IGearDesignOutputParams gearDesignOutputParams, int steps)
         {
-            List<GearPoint> involuteList = Geometry.InvolutePoints(gearDesignOutputParams.BaseCircleDiameter / 2,
+            var involuteList = Geometry.InvolutePoints(gearDesignOutputParams.BaseCircleDiameter / 2,
                 gearDesignOutputParams.OutsideDiameter / 2, steps);
             return involuteList;
         }
@@ -191,7 +189,7 @@ namespace Bolsover.Involute.Calculator
             var addendumRadius = gearDesignOutputParams.OutsideDiameter / 2;
             var tipReliefRadius = gearDesignOutputParams.TipReliefRadius;
             var distanceToInvolute = CentreToTipReliefRadiusStart(baseRadius, addendumRadius, tipReliefRadius);
-            GearPoint pointc = PointOnInvolute(baseRadius, distanceToInvolute);
+            var pointc = PointOnInvolute(baseRadius, distanceToInvolute);
             return pointc;
         }
         
@@ -201,7 +199,7 @@ namespace Bolsover.Involute.Calculator
             var addendumRadius = gearDesignOutputParams.OutsideDiameter / 2;
             var tipReliefRadius = gearDesignOutputParams.TipReliefRadius;
             var distanceToInvolute = CentreToTipReliefRadiusStart(baseRadius, addendumRadius, tipReliefRadius);
-            GearPoint pointc = PointOnInvolute(baseRadius, distanceToInvolute);
+            var pointc = PointOnInvolute(baseRadius, distanceToInvolute);
             var kappaRadians = Radians(gearDesignOutputParams.Kappa);
             return GearPoint.Mirror(pointc, 90).Rotate(kappaRadians);
         }
@@ -212,7 +210,7 @@ namespace Bolsover.Involute.Calculator
         /// <param name="baseRadius"></param>
         /// <param name="distanceToInvolute"></param>
         /// <returns>A point in the involute at a distance from the gear centre</returns>
-        public static GearPoint PointOnInvolute(double baseRadius, double distanceToInvolute)
+        private static GearPoint PointOnInvolute(double baseRadius, double distanceToInvolute)
         {
             var alpha = Math.Acos(baseRadius / distanceToInvolute);
             var invAlpha = Math.Tan(alpha) - alpha; // involute function
@@ -221,15 +219,8 @@ namespace Bolsover.Involute.Calculator
             return new GearPoint(x, y);
         }
         
-        // public static GearPoint LhsStartRootRelief(IGearDesignOutputParams gearDesignOutputParams)
-        // {
-        //     var rhs =  ToothPointCalculator.RhsStartOfTipRelief(gearDesignOutputParams);
-        //     var kappaRadians = Radians(gearDesignOutputParams.Kappa);
-        //     return GearPoint.Mirror(rhs, 90).Rotate(kappaRadians);
-        // }
         public static GearPoint LhsEndRootRelief(IGearDesignOutputParams gearDesignOutputParams)
         {
-            // var result = GearPointRhsEndRootRelief(gearDesignOutputParams);
             var result = GearPointRhsEndRootRelief(gearDesignOutputParams);
             var kappaRadians = Radians(gearDesignOutputParams.Kappa);
             return GearPoint.Mirror(result, 90).Rotate(kappaRadians);
@@ -262,8 +253,8 @@ namespace Bolsover.Involute.Calculator
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        public static double AngleToFilletCentre(IGearDesignOutputParams gearDesignOutputParams) =>
-            Math.Asin(gearDesignOutputParams.RootFilletDiameter / ((gearDesignOutputParams.RootCircleDiameter + gearDesignOutputParams.RootFilletDiameter)));
+        private static double AngleToFilletCentre(IGearDesignOutputParams gearDesignOutputParams) =>
+            Math.Asin(gearDesignOutputParams.RootFilletDiameter / (gearDesignOutputParams.RootCircleDiameter + gearDesignOutputParams.RootFilletDiameter));
 
         public static GearPoint RhsStartRootRelief(IGearDesignOutputParams gearDesignOutputParams)
         {
@@ -276,7 +267,7 @@ namespace Bolsover.Involute.Calculator
             rhSinvolute = Geometry.TrimmedInvolutePoints(rhSinvolute, tipReliefStart, rootFilletEnd);
             var centre = new GearPoint(0, 0);
             var angleToAdjustedRightRootFilletEnd = Geometry.AngleToPointOnCircle(centre, rhSinvolute[0]);
-            var angleToFilletCentre = Math.Asin(gearDesignOutputParams.RootFilletDiameter / ((gearDesignOutputParams.RootCircleDiameter) + gearDesignOutputParams.RootFilletDiameter));
+            var angleToFilletCentre = Math.Asin(gearDesignOutputParams.RootFilletDiameter / (gearDesignOutputParams.RootCircleDiameter + gearDesignOutputParams.RootFilletDiameter));
             var rootFilletStartX = gearDesignOutputParams.RootCircleDiameter / 2 * Math.Cos(angleToFilletCentre);
             var rootFilletStartY = -gearDesignOutputParams.RootCircleDiameter / 2 * Math.Sin(angleToFilletCentre);
 

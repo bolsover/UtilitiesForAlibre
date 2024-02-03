@@ -3,7 +3,7 @@ using Bolsover.Involute.Model;
 
 namespace Bolsover.Involute.Builder
 {
-    public class InternalSpurGearBuilder : AlibreToothBuilder
+    public abstract class InternalSpurGearBuilder : AlibreToothBuilder
     {
         public static void Build(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
         {

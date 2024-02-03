@@ -163,20 +163,16 @@ namespace Bolsover.PlaneFinder
         /// </summary>
         public void OnSelectionChange()
         {
-            if (Session.SelectedObjects.Count == 1)
+            if (Session.SelectedObjects.Count != 1) return;
+            var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
+            try
             {
-                var proxy = (IADTargetProxy) Session.SelectedObjects.Item(0);
-                try
-                {
-                    if (proxy.Target.GetType() == typeof(AlibreSketch))
-                    {
-                        PlaneFinder.Sketch = proxy.Target as IADSketch;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e);
-                }
+                if (proxy.Target.GetType() != typeof(AlibreSketch)) return;
+                PlaneFinder.Sketch = proxy.Target as IADSketch;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
             }
         }
 
@@ -188,10 +184,7 @@ namespace Bolsover.PlaneFinder
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
-            if (PlaneFinder != null)
-            {
-                PlaneFinder.Dispose();
-            }
+            PlaneFinder?.Dispose();
 
             if (CommandSite != null)
             {
@@ -201,7 +194,7 @@ namespace Bolsover.PlaneFinder
             }
 
             var args = new PlaneFinderAddOnCommandTerminateEventArgs(this);
-            Terminate.Invoke(this, args);
+            Terminate?.Invoke(this, args);
         }
 
 
@@ -217,9 +210,9 @@ namespace Bolsover.PlaneFinder
             }
             catch (Exception ex)
             {
-                var num = (int) MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
-                throw ex;
+                throw;
             }
 
             Debug.WriteLine("OnComplete Done");

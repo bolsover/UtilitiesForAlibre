@@ -41,11 +41,8 @@ namespace Bolsover.DataBrowser.Materials
             _value = (MaterialNode) e.RowObject;
             // Pass onto ItemHasBeenSelected handler
             var handler = ItemHasBeenSelected;
-            if (handler != null)
-            {
-                handler(this, new SelectedItemEventArgs
-                    {SelectedChoice = _value});
-            }
+            handler?.Invoke(this, new SelectedItemEventArgs
+                {SelectedChoice = _value});
 
             // dispose the MaterialPicker
             Dispose();
@@ -69,9 +66,11 @@ namespace Bolsover.DataBrowser.Materials
                 _root.AddChild(child);
                 foreach (IADMaterial material in library.Materials)
                 {
-                    var materialNode = new MaterialNode(material.Name);
-                    materialNode.Material = material;
-                    materialNode.Guid = GetAlibreMaterialGuid(material);
+                    var materialNode = new MaterialNode(material.Name)
+                        {
+                            Material = material,
+                            Guid = GetAlibreMaterialGuid(material)
+                        };
                     child.AddChild(materialNode);
                 }
 
@@ -96,9 +95,11 @@ namespace Bolsover.DataBrowser.Materials
 
                 foreach (IADMaterial material in folder.Materials)
                 {
-                    var subMaterial = new MaterialNode(material.Name);
-                    subMaterial.Material = material;
-                    subMaterial.Guid = GetAlibreMaterialGuid(material);
+                    var subMaterial = new MaterialNode(material.Name)
+                        {
+                            Material = material,
+                            Guid = GetAlibreMaterialGuid(material)
+                        };
                     f.AddChild(subMaterial);
                     // if this subMaterial is also in the toplevel materials remove from top level
                     toplevel.RemoveChild(subMaterial);
@@ -114,7 +115,7 @@ namespace Bolsover.DataBrowser.Materials
         /*
          * Nasty routine to obtain material guid.
          */
-        private string GetAlibreMaterialGuid(object obj)
+        private static string GetAlibreMaterialGuid(object obj)
         {
             var t = obj.GetType();
             var fieldInfo = t.GetField("alibreMaterial",
@@ -156,8 +157,8 @@ namespace Bolsover.DataBrowser.Materials
                     return new ArrayList();
                 }
             };
-            var roots = new ArrayList();
-            roots.Add(PrepareMaterialsTree());
+            var roots = new ArrayList
+                { PrepareMaterialsTree() };
             treeListView1.Roots = roots;
         }
 

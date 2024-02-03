@@ -34,10 +34,7 @@ namespace Bolsover.DataBrowser
 
         public static DataBrowserForm Instance()
         {
-            if (_instance == null)
-            {
-                _instance = new DataBrowserForm();
-            }
+            _instance ??= new DataBrowserForm();
 
             _instance.Visible = true;
             return _instance;
@@ -75,13 +72,9 @@ namespace Bolsover.DataBrowser
             {
                 try
                 {
-                    if (((AlibreFileSystem) rowObject)
-                        .HasChildren()) // return existing children if this branch has already been indexed.
-                    {
-                        return ((AlibreFileSystem) rowObject).Children;
-                    }
-
-                    return ((AlibreFileSystem) rowObject).GetFileSystemInfos();
+                    return ((AlibreFileSystem) rowObject)
+                        .HasChildren() ? // return existing children if this branch has already been indexed.
+                            ((AlibreFileSystem) rowObject).Children : ((AlibreFileSystem) rowObject).GetFileSystemInfos();
                 }
                 catch (UnauthorizedAccessException)
                 {
@@ -93,11 +86,9 @@ namespace Bolsover.DataBrowser
             var roots = new ArrayList();
             foreach (var di in DriveInfo.GetDrives())
             {
-                if (di.IsReady)
-                {
-                    var alFileSystem = new AlibreFileSystem(new DirectoryInfo(di.Name));
-                    roots.Add(alFileSystem);
-                }
+                if (!di.IsReady) continue;
+                var alFileSystem = new AlibreFileSystem(new DirectoryInfo(di.Name));
+                roots.Add(alFileSystem);
             }
 
             treeListView.Roots = roots;
@@ -178,14 +169,11 @@ namespace Bolsover.DataBrowser
             // Register MaterialPicker for use exclusively with olvColumnAlibreMaterial
             ObjectListView.EditorRegistry.Register(typeof(string), (model, column, value) =>
             {
-                if (column == olvColumnAlibreMaterial)
-                {
-                    var mc = new MaterialPicker(value.ToString());
-                    mc.ItemHasBeenSelected += McOnItemHasBeenSelected;
-                    return mc;
-                }
+                if (column != olvColumnAlibreMaterial) return null;
+                var mc = new MaterialPicker(value.ToString());
+                mc.ItemHasBeenSelected += McOnItemHasBeenSelected;
+                return mc;
 
-                return null;
             });
         }
 
@@ -204,24 +192,22 @@ namespace Bolsover.DataBrowser
         {
             olvColumnAlibreMaterial.AspectPutter = (editingRow, value) =>
             {
-                if (value.GetType() == typeof(MaterialNode))
-                {
-                    Console.WriteLine(value);
-                    var designSession = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem) editingRow);
-                    var designProperties = designSession.DesignProperties;
-                    designProperties.Material = ((MaterialNode) value).Guid;
-                    ((AlibreFileSystem) editingRow).AlibreMaterialGuid = ((MaterialNode) value).Guid;
+                if (value.GetType() != typeof(MaterialNode)) return;
+                Console.WriteLine(value);
+                var designSession = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem) editingRow);
+                var designProperties = designSession.DesignProperties;
+                designProperties.Material = ((MaterialNode) value).Guid;
+                ((AlibreFileSystem) editingRow).AlibreMaterialGuid = ((MaterialNode) value).Guid;
 
-                    try
-                    {
-                        designSession.Close(true);
-                        ((AlibreFileSystem) editingRow).AlibreMaterial = ((MaterialNode) value).NodeName;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                try
+                {
+                    designSession.Close(true);
+                    ((AlibreFileSystem) editingRow).AlibreMaterial = ((MaterialNode) value).NodeName;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
                 }
             };
         }
@@ -537,7 +523,7 @@ namespace Bolsover.DataBrowser
             olvColumnAlibreReceivedFrom.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreReceivedFrom;
             olvColumnAlibreRevision.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreRevision;
             olvColumnAlibreStockSize.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreStockSize;
-            olvColumnAlibreSupplier.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreSupplier;
+            olvColumnAlibreSupplier.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreSupplier;
             olvColumnAlibreTitle.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreTitle;
             olvColumnAlibreVendor.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreVendor;
             olvColumnAlibreWebLink.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreWebLink;
@@ -558,17 +544,12 @@ namespace Bolsover.DataBrowser
             {
                 treeListView.ModelFilter = new ModelFilter(rowObject =>
                 {
-                    if (((AlibreFileSystem) rowObject).IsDirectory)
-                    {
-                        return true;
-                    }
-
-                    return ((AlibreFileSystem) rowObject).Info.Extension.StartsWith(".AD_");
+                    return ((AlibreFileSystem) rowObject).IsDirectory || ((AlibreFileSystem) rowObject).Info.Extension.StartsWith(".AD_");
                 });
             }
             else
             {
-                treeListView.ModelFilter = new ModelFilter(rowObject => { return true; });
+                treeListView.ModelFilter = new ModelFilter(rowObject => true);
             }
         }
 
@@ -661,8 +642,8 @@ namespace Bolsover.DataBrowser
         /// Resets the AlibreMaterial property of the row being edited with the Name of the Material.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void McOnItemHasBeenSelected(object sender, MaterialPicker.SelectedItemEventArgs selectedItemEventArgs)
+        /// /// <param name="selectedItemEventArgs"></param>
+       private void McOnItemHasBeenSelected(object sender, MaterialPicker.SelectedItemEventArgs selectedItemEventArgs)
         {
             try
             {
@@ -814,15 +795,13 @@ namespace Bolsover.DataBrowser
 
                 else
                 {
-                    if (rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
-                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_ASM") |
-                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP") |
-                        rowObject.Info.Extension.ToUpper().StartsWith(".AD_DRW"))
-                    {
-                        progressLabel.Text = "Copy to " + rowObject.Name;
-                        e.Column.AspectPutter.Invoke(rowObject, e.NewValue);
-                        treeListView.Refresh();
-                    }
+                    if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
+                          rowObject.Info.Extension.ToUpper().StartsWith(".AD_ASM") |
+                          rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP") |
+                          rowObject.Info.Extension.ToUpper().StartsWith(".AD_DRW"))) continue;
+                    progressLabel.Text = "Copy to " + rowObject.Name;
+                    e.Column.AspectPutter.Invoke(rowObject, e.NewValue);
+                    treeListView.Refresh();
                 }
             }
 
@@ -837,10 +816,8 @@ namespace Bolsover.DataBrowser
         {
             try
             {
-                using (var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
-                {
-                    stream.Close();
-                }
+                using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+                stream.Close();
             }
             catch (IOException)
             {
@@ -872,11 +849,9 @@ namespace Bolsover.DataBrowser
 
             var filepath = directoryPath + "\\table.settings";
             var fileInfo = new FileInfo(filepath);
-            if (fileInfo.Exists)
-            {
-                _treeListViewViewState = File.ReadAllBytes(filepath);
-                treeListView.RestoreState(_treeListViewViewState);
-            }
+            if (!fileInfo.Exists) return;
+            _treeListViewViewState = File.ReadAllBytes(filepath);
+            treeListView.RestoreState(_treeListViewViewState);
         }
 
         #endregion

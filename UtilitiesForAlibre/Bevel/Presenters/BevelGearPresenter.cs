@@ -4,15 +4,16 @@ using System.Windows.Forms;
 using AlibreX;
 using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Views;
-using Bolsover.Utils;
+using static Bolsover.Bevel.Presenters.BevelGearCalculator;
+using static Bolsover.Utils.LatexUtils;
 
 namespace Bolsover.Bevel.Presenters
 {
-    public class BevelGearPresenter
+    public sealed class BevelGearPresenter
     {
-        private IBevelGearView _view;
-        private IBevelGear _pinion;
-        private IBevelGear _gear;
+        private readonly IBevelGearView _view;
+        private readonly IBevelGear _pinion;
+        private readonly IBevelGear _gear;
 
 
         public BevelGearPresenter(IBevelGearView view, IBevelGear pinion, IBevelGear gear)
@@ -88,84 +89,84 @@ namespace Bolsover.Bevel.Presenters
         private void SetupLabelLatexImages()
         {
             var view = (BevelGearView) _view;
-            view.ShaftAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.ShaftAngleLatex);
-            view.ModuleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.ModuleLatex);
-            view.PressureAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PressureAngleLatex);
-            view.SpiralAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.SpiralAngleLatex);
+            view.ShaftAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.ShaftAngleLatex);
+            view.ModuleLabel.Image = CreateImageFromLatex(BevelLatexStrings.ModuleLatex);
+            view.PressureAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.PressureAngleLatex);
+            view.SpiralAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.SpiralAngleLatex);
 
             view.RadialPressureAngleLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.RadialPressureAngleLatex);
+                CreateImageFromLatex(BevelLatexStrings.RadialPressureAngleLatex);
             view.RadialPressureAngleFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.RadialPressureAngleFormulaLatex);
-            view.NumberOfTeethLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.NumberOfTeethLatex);
+                CreateImageFromLatex(BevelLatexStrings.RadialPressureAngleFormulaLatex);
+            view.NumberOfTeethLabel.Image = CreateImageFromLatex(BevelLatexStrings.NumberOfTeethLatex);
 
-            view.PitchDiameterLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchDiameterLatex);
+            view.PitchDiameterLabel.Image = CreateImageFromLatex(BevelLatexStrings.PitchDiameterLatex);
             view.PitchDiameterFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchDiameterFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.PitchDiameterFormulaLatex);
 
-            view.PitchConeAngle1Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle1Latex);
+            view.PitchConeAngle1Label.Image = CreateImageFromLatex(BevelLatexStrings.PitchConeAngle1Latex);
             view.PitchConeAngle1FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle1FormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.PitchConeAngle1FormulaLatex);
 
-            view.PitchConeAngle2Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle2Latex);
+            view.PitchConeAngle2Label.Image = CreateImageFromLatex(BevelLatexStrings.PitchConeAngle2Latex);
             view.PitchConeAngle2FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchConeAngle2FormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.PitchConeAngle2FormulaLatex);
 
-            view.ConeDistanceLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.ConeDistanceLatex);
+            view.ConeDistanceLabel.Image = CreateImageFromLatex(BevelLatexStrings.ConeDistanceLatex);
             view.ConeDistanceFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.ConeDistanceFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.ConeDistanceFormulaLatex);
 
-            view.FaceWidthLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.FaceWidthLatex);
-            view.FaceWidthFormulaLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.FaceWidthFormulaLatex);
+            view.FaceWidthLabel.Image = CreateImageFromLatex(BevelLatexStrings.FaceWidthLatex);
+            view.FaceWidthFormulaLabel.Image = CreateImageFromLatex(BevelLatexStrings.FaceWidthFormulaLatex);
 
-            view.Addendum1Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.Addendum1Latex);
+            view.Addendum1Label.Image = CreateImageFromLatex(BevelLatexStrings.Addendum1Latex);
             view.Addendum1FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
 
-            view.Addendum2Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.Addendum2Latex);
+            view.Addendum2Label.Image = CreateImageFromLatex(BevelLatexStrings.Addendum2Latex);
             view.Addendum2FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
 
-            view.DedendumLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumLatex);
+            view.DedendumLabel.Image = CreateImageFromLatex(BevelLatexStrings.DedendumLatex);
             view.DedendumFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
 
-            view.DedendumAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumAngleLatex);
+            view.DedendumAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.DedendumAngleLatex);
             view.DedendumAngleFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumAngleFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.DedendumAngleFormulaLatex);
 
-            view.AddendumAngle1Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle1Latex);
+            view.AddendumAngle1Label.Image = CreateImageFromLatex(BevelLatexStrings.AddendumAngle1Latex);
             view.AddendumAngle1FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle1FormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.AddendumAngle1FormulaLatex);
 
-            view.AddendumAngle2Label.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle2Latex);
+            view.AddendumAngle2Label.Image = CreateImageFromLatex(BevelLatexStrings.AddendumAngle2Latex);
             view.AddendumAngle2FormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumAngle2FormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.AddendumAngle2FormulaLatex);
 
-            view.OuterConeAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.OuterConeAngleLatex);
+            view.OuterConeAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.OuterConeAngleLatex);
             view.OuterConeAngleFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.OuterConeAngleFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.OuterConeAngleFormulaLatex);
 
-            view.RootConeAngleLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.RootConeAngleLatex);
+            view.RootConeAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.RootConeAngleLatex);
             view.RootConeAngleFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.RootConeAngleFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.RootConeAngleFormulaLatex);
 
-            view.OutsideDiameterLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.OutsideDiameterLatex);
+            view.OutsideDiameterLabel.Image = CreateImageFromLatex(BevelLatexStrings.OutsideDiameterLatex);
             view.OutsideDiameterFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.OutsideDiameterFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.OutsideDiameterFormulaLatex);
 
-            view.PitchApexToCrownLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchApexToCrownLatex);
+            view.PitchApexToCrownLabel.Image = CreateImageFromLatex(BevelLatexStrings.PitchApexToCrownLatex);
             view.PitchApexToCrownFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.PitchApexToCrownFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.PitchApexToCrownFormulaLatex);
 
-            view.AxialFaceWidthLabel.Image = LatexUtils.CreateImageFromLatex(BevelLatexStrings.AxialFaceWidthLatex);
+            view.AxialFaceWidthLabel.Image = CreateImageFromLatex(BevelLatexStrings.AxialFaceWidthLatex);
             view.AxialFaceWidthFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.AxialFaceWidthFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.AxialFaceWidthFormulaLatex);
 
             view.InnerOutsideDiameterLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.InnerOutsideDiameterLatex);
+                CreateImageFromLatex(BevelLatexStrings.InnerOutsideDiameterLatex);
             view.InnerOutsideDiameterFormulaLabel.Image =
-                LatexUtils.CreateImageFromLatex(BevelLatexStrings.InnerOutsideDiameterFormulaLatex);
+                CreateImageFromLatex(BevelLatexStrings.InnerOutsideDiameterFormulaLatex);
         }
 
         private void BindData()
@@ -238,7 +239,7 @@ namespace Bolsover.Bevel.Presenters
         private void ViewOnCancelEvent(object sender, EventArgs e)
         {
             var view = (BevelGearView) _view;
-            view.ParentForm.Dispose();
+            view.ParentForm?.Dispose();
         }
 
 
@@ -246,7 +247,7 @@ namespace Bolsover.Bevel.Presenters
         {
             _pinion.GearType = (string) ((ComboBox) sender).SelectedItem;
             _gear.GearType = (string) ((ComboBox) sender).SelectedItem;
-            string s = (string) ((ComboBox) sender).SelectedItem;
+            var s = (string) ((ComboBox) sender).SelectedItem;
             var view = (BevelGearView) _view;
             switch (s)
             {
@@ -254,11 +255,11 @@ namespace Bolsover.Bevel.Presenters
 
                 {
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.StandardAddendumHaFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.StandardAddendumHaFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.StandardDedendumHfFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.StandardDedendumHfFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.StandardAddendumHa2FormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.StandardAddendumHa2FormulaLatex);
                     view.SpiralAngleNumericUpDown.Value = decimal.Zero;
                     view.SpiralAngleNumericUpDown.Enabled = false;
                     view.PinionHandComboBox.Enabled = false;
@@ -273,11 +274,11 @@ namespace Bolsover.Bevel.Presenters
 
                 {
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
                     view.SpiralAngleNumericUpDown.Value = decimal.Zero;
                     view.SpiralAngleNumericUpDown.Enabled = false;
                     view.PinionHandComboBox.Enabled = false;
@@ -296,11 +297,11 @@ namespace Bolsover.Bevel.Presenters
 
                     // zerol gears use same addendum/dedendum formulae as straight gleason gears
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonStraightFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.DedendumHfGleasonStraightFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonStraightFormulaLatex);
                     view.PinionHandComboBox.Enabled = true;
                     view.PinionHandComboBox.Visible = true;
                     view.GearHandComboBox.Enabled = true;
@@ -317,11 +318,11 @@ namespace Bolsover.Bevel.Presenters
                     // throw new System.NotImplementedException();
                     // spiral gears use different addendum/dedendum formulae 
                     view.Addendum1FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonSpiralFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.AddendumHa1GleasonSpiralFormulaLatex);
                     view.DedendumFormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.DedendumGleasonSpiralFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.DedendumGleasonSpiralFormulaLatex);
                     view.Addendum2FormulaLabel.Image =
-                        LatexUtils.CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonSpiralFormulaLatex);
+                        CreateImageFromLatex(BevelLatexStrings.AddendumHa2GleasonSpiralFormulaLatex);
                     view.PinionHandComboBox.Enabled = true;
                     view.PinionHandComboBox.Visible = true;
                     view.GearHandComboBox.Enabled = true;
@@ -376,15 +377,15 @@ namespace Bolsover.Bevel.Presenters
             _gear.ShaftAngle = (double) ((NumericUpDown) sender).Value;
         }
 
-        private void ViewOnBuildGearEvent(object sender, EventArgs e)
+        private static void ViewOnBuildGearEvent(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
         private void ViewOnBuildPinionEvent(object sender, EventArgs e)
         {
-            var saveFile = "BevelPleaseSaveAs.AD_PRT";
-            var template = "BevelGearTemplate.AD_PRT";
+            const string saveFile = "BevelPleaseSaveAs.AD_PRT";
+            const string template = "BevelGearTemplate.AD_PRT";
 
 
             BuildBevelGear(saveFile, template);
@@ -398,8 +399,6 @@ namespace Bolsover.Bevel.Presenters
 
         private void BuildBevelGear(string saveFile, string template)
         {
-            // GearBuilder gearBuilder = new GearBuilder();
-
             var userTempDirectory = Path.GetTempPath();
             var tempFile = userTempDirectory + "\\" + saveFile;
             var tempFileInfo = new FileInfo(tempFile);
@@ -416,10 +415,10 @@ namespace Bolsover.Bevel.Presenters
                 filePath += "\\Bevel\\Images\\" + template;
             }
 
-            File.Copy(filePath, tempFile, true);
+            if (filePath != null) File.Copy(filePath, tempFile, true);
 
 
-            IADDesignSession session = InitAlibreBevelFile(tempFile, true);
+            var session = InitAlibreBevelFile(tempFile);
 
             var sketches = session.Sketches;
             var sketch = sketches.Item("Sketch<1>");
@@ -432,20 +431,17 @@ namespace Bolsover.Bevel.Presenters
             session.Parameters.Item("Dedendum").Value = _pinion.Dedendum / 10;
             session.Parameters.Item("WholeDepth").Value = (_pinion.Addendum + _pinion.Dedendum) / 10;
             session.Parameters.Item("ConeAngle").Value = _pinion.PitchConeAngle * (Math.PI / 180.0);
-            //session.Parameters.Item("ToothCount").Value = _pinion.numberOfTeeth;
             sketch.EndChange();
 
             session.Parameters.CloseParameterTransaction();
             ((IADPartSession) session).RegenerateAll();
-
-            //   AlibreBuilder.CreateInstance(gearToothPoints, session);
         }
 
-        protected virtual bool IsFileLocked(FileInfo file)
+        private bool IsFileLocked(FileInfo file)
         {
             try
             {
-                using FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+                using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
                 stream.Close();
             }
             catch (IOException)
@@ -461,113 +457,113 @@ namespace Bolsover.Bevel.Presenters
             return false;
         }
 
-        private IADDesignSession InitAlibreBevelFile(string filePath, bool openEditor)
+        private static IADDesignSession InitAlibreBevelFile(string filePath)
         {
-            IADRoot root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
-            IADDesignSession session = (IADDesignSession) root.OpenFileEx(filePath, true);
+            var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
+            var session = (IADDesignSession) root.OpenFileEx(filePath, true);
             return session;
         }
 
         private void GleasonCalculations()
         {
-            _pinion.PitchDiameter = BevelGearCalculator.CalculateGleasonPinionPitchDiameter(_pinion);
-            _pinion.PitchConeAngle = BevelGearCalculator.CalculateGleasonPinionPitchConeAngle(_pinion, _gear);
-            _pinion.ConeDistance = BevelGearCalculator.CalculateConeDistance(_pinion, _gear);
-            _pinion.Addendum = BevelGearCalculator.CalculateGleasonPinionAddendum(_pinion, _gear);
-            _pinion.Dedendum = BevelGearCalculator.CalculateGleasonPinionDedendum(_pinion, _gear);
-            _pinion.DedendumAngle = BevelGearCalculator.CalculateGleasonPinionDedendumAngle(_pinion, _gear);
-            _pinion.AddendumAngle = BevelGearCalculator.CalculateGleasonPinionAddendumAngle(_pinion, _gear);
-            _pinion.OuterConeAngle = BevelGearCalculator.CalculateGleasonPinionOuterConeAngle(_pinion, _gear);
-            _pinion.RootConeAngle = BevelGearCalculator.CalculateGleasonPinionRootConeAngle(_pinion, _gear);
-            _pinion.OutsideDiameter = BevelGearCalculator.CalculateGleasonPinionOutsideDiameter(_pinion, _gear);
-            _pinion.PitchApexToCrown = BevelGearCalculator.CalculateGleasonPinionPitchApexToCrown(_pinion, _gear);
-            _pinion.AxialFaceWidth = BevelGearCalculator.CalculateGleasonPinionAxialFaceWidth(_pinion, _gear);
-            _pinion.InnerOutsideDiameter = BevelGearCalculator.CalculateGleasonPinionInnerOutsideDiameter(_pinion, _gear);
-            _pinion.RadialPressureAngle = BevelGearCalculator.CalculatePinionRadialPressureAngle(_pinion, _gear);
+            _pinion.PitchDiameter = CalculateGleasonPinionPitchDiameter(_pinion);
+            _pinion.PitchConeAngle = CalculateGleasonPinionPitchConeAngle(_pinion, _gear);
+            _pinion.ConeDistance = CalculateConeDistance(_pinion, _gear);
+            _pinion.Addendum = CalculateGleasonPinionAddendum(_pinion, _gear);
+            _pinion.Dedendum = CalculateGleasonPinionDedendum(_pinion, _gear);
+            _pinion.DedendumAngle = CalculateGleasonPinionDedendumAngle(_pinion, _gear);
+            _pinion.AddendumAngle = CalculateGleasonPinionAddendumAngle(_pinion, _gear);
+            _pinion.OuterConeAngle = CalculateGleasonPinionOuterConeAngle(_pinion, _gear);
+            _pinion.RootConeAngle = CalculateGleasonPinionRootConeAngle(_pinion, _gear);
+            _pinion.OutsideDiameter = CalculateGleasonPinionOutsideDiameter(_pinion, _gear);
+            _pinion.PitchApexToCrown = CalculateGleasonPinionPitchApexToCrown(_pinion, _gear);
+            _pinion.AxialFaceWidth = CalculateGleasonPinionAxialFaceWidth(_pinion, _gear);
+            _pinion.InnerOutsideDiameter = CalculateGleasonPinionInnerOutsideDiameter(_pinion, _gear);
+            _pinion.RadialPressureAngle = CalculatePinionRadialPressureAngle(_pinion, _gear);
             _pinion.StringValue = "Pinion\r\n" + _pinion;
-            _gear.PitchDiameter = BevelGearCalculator.CalculateGleasonGearPitchDiameter(_gear);
-            _gear.PitchConeAngle = BevelGearCalculator.CalculateGleasonGearPitchConeAngle(_pinion, _gear);
-            _gear.ConeDistance = BevelGearCalculator.CalculateConeDistance(_pinion, _gear);
-            _gear.Addendum = BevelGearCalculator.CalculateGleasonGearAddendum(_pinion, _gear);
-            _gear.Dedendum = BevelGearCalculator.CalculateGleasonGearDedendum(_pinion, _gear);
-            _gear.DedendumAngle = BevelGearCalculator.CalculateGleasonGearDedendumAngle(_pinion, _gear);
-            _gear.AddendumAngle = BevelGearCalculator.CalculateGleasonGearAddendumAngle(_pinion, _gear);
-            _gear.OuterConeAngle = BevelGearCalculator.CalculateGleasonGearOuterConeAngle(_pinion, _gear);
-            _gear.RootConeAngle = BevelGearCalculator.CalculateGleasonGearRootConeAngle(_pinion, _gear);
-            _gear.OutsideDiameter = BevelGearCalculator.CalculateGleasonGearOutsideDiameter(_pinion, _gear);
-            _gear.PitchApexToCrown = BevelGearCalculator.CalculateGleasonGearPitchApexToCrown(_pinion, _gear);
-            _gear.AxialFaceWidth = BevelGearCalculator.CalculateGleasonGearAxialFaceWidth(_pinion, _gear);
-            _gear.InnerOutsideDiameter = BevelGearCalculator.CalculateGleasonGearInnerOutsideDiameter(_pinion, _gear);
-            _gear.RadialPressureAngle = BevelGearCalculator.CalculateGearRadialPressureAngle(_pinion, _gear);
+            _gear.PitchDiameter = CalculateGleasonGearPitchDiameter(_gear);
+            _gear.PitchConeAngle = CalculateGleasonGearPitchConeAngle(_pinion, _gear);
+            _gear.ConeDistance = CalculateConeDistance(_pinion, _gear);
+            _gear.Addendum = CalculateGleasonGearAddendum(_pinion, _gear);
+            _gear.Dedendum = CalculateGleasonGearDedendum(_pinion, _gear);
+            _gear.DedendumAngle = CalculateGleasonGearDedendumAngle(_pinion, _gear);
+            _gear.AddendumAngle = CalculateGleasonGearAddendumAngle(_pinion, _gear);
+            _gear.OuterConeAngle = CalculateGleasonGearOuterConeAngle(_pinion, _gear);
+            _gear.RootConeAngle = CalculateGleasonGearRootConeAngle(_pinion, _gear);
+            _gear.OutsideDiameter = CalculateGleasonGearOutsideDiameter(_pinion, _gear);
+            _gear.PitchApexToCrown = CalculateGleasonGearPitchApexToCrown(_pinion, _gear);
+            _gear.AxialFaceWidth = CalculateGleasonGearAxialFaceWidth(_pinion, _gear);
+            _gear.InnerOutsideDiameter = CalculateGleasonGearInnerOutsideDiameter(_pinion, _gear);
+            _gear.RadialPressureAngle = CalculateGearRadialPressureAngle(_pinion, _gear);
             _gear.StringValue = "Gear\r\n" + _gear;
         }
 
         private void GleasonSpiralCalculations()
         {
-            _pinion.PitchDiameter = BevelGearCalculator.CalculateGleasonPinionPitchDiameter(_pinion);
-            _pinion.PitchConeAngle = BevelGearCalculator.CalculateGleasonPinionPitchConeAngle(_pinion, _gear);
-            _pinion.ConeDistance = BevelGearCalculator.CalculateConeDistance(_pinion, _gear);
-            _pinion.Addendum = BevelGearCalculator.CalculateGleasonSpiralPinionAddendum(_pinion, _gear);
-            _pinion.Dedendum = BevelGearCalculator.CalculateGleasonSpiralPinionDedendum(_pinion, _gear);
-            _pinion.DedendumAngle = BevelGearCalculator.CalculateGleasonSpiralPinionDedendumAngle(_pinion, _gear);
-            _pinion.AddendumAngle = BevelGearCalculator.CalculateGleasonSpiralPinionAddendumAngle(_pinion, _gear);
-            _pinion.OuterConeAngle = BevelGearCalculator.CalculateGleasonSpiralPinionOuterConeAngle(_pinion, _gear);
-            _pinion.RootConeAngle = BevelGearCalculator.CalculateGleasonSpiralPinionRootConeAngle(_pinion, _gear);
-            _pinion.OutsideDiameter = BevelGearCalculator.CalculateGleasonSpiralPinionOutsideDiameter(_pinion, _gear);
-            _pinion.PitchApexToCrown = BevelGearCalculator.CalculateGleasonSpiralPinionPitchApexToCrown(_pinion, _gear);
-            _pinion.AxialFaceWidth = BevelGearCalculator.CalculateGleasonSpiralPinionAxialFaceWidth(_pinion, _gear);
+            _pinion.PitchDiameter = CalculateGleasonPinionPitchDiameter(_pinion);
+            _pinion.PitchConeAngle = CalculateGleasonPinionPitchConeAngle(_pinion, _gear);
+            _pinion.ConeDistance = CalculateConeDistance(_pinion, _gear);
+            _pinion.Addendum = CalculateGleasonSpiralPinionAddendum(_pinion, _gear);
+            _pinion.Dedendum = CalculateGleasonSpiralPinionDedendum(_pinion, _gear);
+            _pinion.DedendumAngle = CalculateGleasonSpiralPinionDedendumAngle(_pinion, _gear);
+            _pinion.AddendumAngle = CalculateGleasonSpiralPinionAddendumAngle(_pinion, _gear);
+            _pinion.OuterConeAngle = CalculateGleasonSpiralPinionOuterConeAngle(_pinion, _gear);
+            _pinion.RootConeAngle = CalculateGleasonSpiralPinionRootConeAngle(_pinion, _gear);
+            _pinion.OutsideDiameter = CalculateGleasonSpiralPinionOutsideDiameter(_pinion, _gear);
+            _pinion.PitchApexToCrown = CalculateGleasonSpiralPinionPitchApexToCrown(_pinion, _gear);
+            _pinion.AxialFaceWidth = CalculateGleasonSpiralPinionAxialFaceWidth(_pinion, _gear);
             _pinion.InnerOutsideDiameter =
-                BevelGearCalculator.CalculateGleasonSpiralPinionInnerOutsideDiameter(_pinion, _gear);
-            _pinion.RadialPressureAngle = BevelGearCalculator.CalculatePinionRadialPressureAngle(_pinion, _gear);
+                CalculateGleasonSpiralPinionInnerOutsideDiameter(_pinion, _gear);
+            _pinion.RadialPressureAngle = CalculatePinionRadialPressureAngle(_pinion, _gear);
             _pinion.StringValue = "Pinion\r\n" + _pinion;
-            _gear.PitchDiameter = BevelGearCalculator.CalculateGleasonGearPitchDiameter(_gear);
-            _gear.PitchConeAngle = BevelGearCalculator.CalculateGleasonGearPitchConeAngle(_pinion, _gear);
-            _gear.ConeDistance = BevelGearCalculator.CalculateConeDistance(_pinion, _gear);
-            _gear.Addendum = BevelGearCalculator.CalculateGleasonSpiralGearAddendum(_pinion, _gear);
-            _gear.Dedendum = BevelGearCalculator.CalculateGleasonSpiralGearDedendum(_pinion, _gear);
-            _gear.DedendumAngle = BevelGearCalculator.CalculateGleasonSpiralGearDedendumAngle(_pinion, _gear);
-            _gear.AddendumAngle = BevelGearCalculator.CalculateGleasonSpiralGearAddendumAngle(_pinion, _gear);
-            _gear.OuterConeAngle = BevelGearCalculator.CalculateGleasonSpiralGearOuterConeAngle(_pinion, _gear);
-            _gear.RootConeAngle = BevelGearCalculator.CalculateGleasonSpiralGearRootConeAngle(_pinion, _gear);
-            _gear.OutsideDiameter = BevelGearCalculator.CalculateGleasonSpiralGearOutsideDiameter(_pinion, _gear);
-            _gear.PitchApexToCrown = BevelGearCalculator.CalculateGleasonSpiralGearPitchApexToCrown(_pinion, _gear);
-            _gear.AxialFaceWidth = BevelGearCalculator.CalculateGleasonSpiralGearAxialFaceWidth(_pinion, _gear);
-            _gear.InnerOutsideDiameter = BevelGearCalculator.CalculateGleasonSpiralGearInnerOutsideDiameter(_pinion, _gear);
-            _gear.RadialPressureAngle = BevelGearCalculator.CalculateGearRadialPressureAngle(_pinion, _gear);
+            _gear.PitchDiameter = CalculateGleasonGearPitchDiameter(_gear);
+            _gear.PitchConeAngle = CalculateGleasonGearPitchConeAngle(_pinion, _gear);
+            _gear.ConeDistance = CalculateConeDistance(_pinion, _gear);
+            _gear.Addendum = CalculateGleasonSpiralGearAddendum(_pinion, _gear);
+            _gear.Dedendum = CalculateGleasonSpiralGearDedendum(_pinion, _gear);
+            _gear.DedendumAngle = CalculateGleasonSpiralGearDedendumAngle(_pinion, _gear);
+            _gear.AddendumAngle = CalculateGleasonSpiralGearAddendumAngle(_pinion, _gear);
+            _gear.OuterConeAngle = CalculateGleasonSpiralGearOuterConeAngle(_pinion, _gear);
+            _gear.RootConeAngle = CalculateGleasonSpiralGearRootConeAngle(_pinion, _gear);
+            _gear.OutsideDiameter = CalculateGleasonSpiralGearOutsideDiameter(_pinion, _gear);
+            _gear.PitchApexToCrown = CalculateGleasonSpiralGearPitchApexToCrown(_pinion, _gear);
+            _gear.AxialFaceWidth = CalculateGleasonSpiralGearAxialFaceWidth(_pinion, _gear);
+            _gear.InnerOutsideDiameter = CalculateGleasonSpiralGearInnerOutsideDiameter(_pinion, _gear);
+            _gear.RadialPressureAngle = CalculateGearRadialPressureAngle(_pinion, _gear);
             _gear.StringValue = "Gear\r\n" + _gear;
         }
 
         private void StandardCalculations()
         {
-            _pinion.PitchDiameter = BevelGearCalculator.CalculateStandardPinionPitchDiameter(_pinion);
-            _pinion.PitchConeAngle = BevelGearCalculator.CalculateStandardPinionPitchConeAngle(_pinion, _gear);
-            _pinion.ConeDistance = BevelGearCalculator.CalculateConeDistance(_pinion, _gear);
-            _pinion.Addendum = BevelGearCalculator.CalculateStandardPinionAddendum(_pinion, _gear);
-            _pinion.Dedendum = BevelGearCalculator.CalculateStandardPinionDedendum(_pinion, _gear);
-            _pinion.DedendumAngle = BevelGearCalculator.CalculateStandardPinionDedendumAngle(_pinion, _gear);
-            _pinion.AddendumAngle = BevelGearCalculator.CalculateStandardPinionAddendumAngle(_pinion, _gear);
-            _pinion.OuterConeAngle = BevelGearCalculator.CalculateStandardPinionOuterConeAngle(_pinion, _gear);
-            _pinion.RootConeAngle = BevelGearCalculator.CalculateStandardPinionRootConeAngle(_pinion, _gear);
-            _pinion.OutsideDiameter = BevelGearCalculator.CalculateStandardPinionOutsideDiameter(_pinion, _gear);
-            _pinion.PitchApexToCrown = BevelGearCalculator.CalculateStandardPinionPitchApexToCrown(_pinion, _gear);
-            _pinion.AxialFaceWidth = BevelGearCalculator.CalculateStandardPinionAxialFaceWidth(_pinion, _gear);
-            _pinion.InnerOutsideDiameter = BevelGearCalculator.CalculateStandardPinionInnerOutsideDiameter(_pinion, _gear);
-            _pinion.RadialPressureAngle = BevelGearCalculator.CalculateGearRadialPressureAngle(_pinion, _gear);
+            _pinion.PitchDiameter = CalculateStandardPinionPitchDiameter(_pinion);
+            _pinion.PitchConeAngle = CalculateStandardPinionPitchConeAngle(_pinion, _gear);
+            _pinion.ConeDistance = CalculateConeDistance(_pinion, _gear);
+            _pinion.Addendum = CalculateStandardPinionAddendum(_pinion);
+            _pinion.Dedendum = CalculateStandardPinionDedendum(_pinion);
+            _pinion.DedendumAngle = CalculateStandardPinionDedendumAngle(_pinion, _gear);
+            _pinion.AddendumAngle = CalculateStandardPinionAddendumAngle(_pinion, _gear);
+            _pinion.OuterConeAngle = CalculateStandardPinionOuterConeAngle(_pinion, _gear);
+            _pinion.RootConeAngle = CalculateStandardPinionRootConeAngle(_pinion, _gear);
+            _pinion.OutsideDiameter = CalculateStandardPinionOutsideDiameter(_pinion, _gear);
+            _pinion.PitchApexToCrown = CalculateStandardPinionPitchApexToCrown(_pinion, _gear);
+            _pinion.AxialFaceWidth = CalculateStandardPinionAxialFaceWidth(_pinion, _gear);
+            _pinion.InnerOutsideDiameter = CalculateStandardPinionInnerOutsideDiameter(_pinion, _gear);
+            _pinion.RadialPressureAngle = CalculateGearRadialPressureAngle(_pinion, _gear);
             _pinion.StringValue = "Pinion\r\n" + _pinion;
-            _gear.PitchDiameter = BevelGearCalculator.CalculateStandardGearPitchDiameter(_gear);
-            _gear.PitchConeAngle = BevelGearCalculator.CalculateStandardGearPitchConeAngle(_pinion, _gear);
-            _gear.ConeDistance = BevelGearCalculator.CalculateConeDistance(_pinion, _gear);
-            _gear.Addendum = BevelGearCalculator.CalculateStandardGearAddendum(_pinion, _gear);
-            _gear.Dedendum = BevelGearCalculator.CalculateStandardGearDedendum(_pinion, _gear);
-            _gear.DedendumAngle = BevelGearCalculator.CalculateStandardGearDedendumAngle(_pinion, _gear);
-            _gear.AddendumAngle = BevelGearCalculator.CalculateStandardGearAddendumAngle(_pinion, _gear);
-            _gear.OuterConeAngle = BevelGearCalculator.CalculateStandardGearOuterConeAngle(_pinion, _gear);
-            _gear.RootConeAngle = BevelGearCalculator.CalculateStandardGearRootConeAngle(_pinion, _gear);
-            _gear.OutsideDiameter = BevelGearCalculator.CalculateStandardGearOutsideDiameter(_pinion, _gear);
-            _gear.PitchApexToCrown = BevelGearCalculator.CalculateStandardGearPitchApexToCrown(_pinion, _gear);
-            _gear.AxialFaceWidth = BevelGearCalculator.CalculateStandardGearAxialFaceWidth(_pinion, _gear);
-            _gear.InnerOutsideDiameter = BevelGearCalculator.CalculateStandardGearInnerOutsideDiameter(_pinion, _gear);
-            _gear.RadialPressureAngle = BevelGearCalculator.CalculateGearRadialPressureAngle(_pinion, _gear);
+            _gear.PitchDiameter = CalculateStandardGearPitchDiameter(_gear);
+            _gear.PitchConeAngle = CalculateStandardGearPitchConeAngle(_pinion, _gear);
+            _gear.ConeDistance = CalculateConeDistance(_pinion, _gear);
+            _gear.Addendum = CalculateStandardGearAddendum(_gear);
+            _gear.Dedendum = CalculateStandardGearDedendum(_gear);
+            _gear.DedendumAngle = CalculateStandardGearDedendumAngle(_pinion, _gear);
+            _gear.AddendumAngle = CalculateStandardGearAddendumAngle(_pinion, _gear);
+            _gear.OuterConeAngle = CalculateStandardGearOuterConeAngle(_pinion, _gear);
+            _gear.RootConeAngle = CalculateStandardGearRootConeAngle(_pinion, _gear);
+            _gear.OutsideDiameter = CalculateStandardGearOutsideDiameter(_pinion, _gear);
+            _gear.PitchApexToCrown = CalculateStandardGearPitchApexToCrown(_pinion, _gear);
+            _gear.AxialFaceWidth = CalculateStandardGearAxialFaceWidth(_pinion, _gear);
+            _gear.InnerOutsideDiameter = CalculateStandardGearInnerOutsideDiameter(_pinion, _gear);
+            _gear.RadialPressureAngle = CalculateGearRadialPressureAngle(_pinion, _gear);
             _gear.StringValue = "Gear\r\n" + _gear;
         }
     }

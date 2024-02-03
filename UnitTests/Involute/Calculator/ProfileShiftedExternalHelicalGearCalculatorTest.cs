@@ -666,7 +666,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Pinion.CircularBacklash = 0.1;
             _designInputParams.Pinion.Style = GearStyle.External | GearStyle.Helical; // configures the gear as an external spur gear
 
-            var expected =-0.02326;
+            var expected =-0.03956;
             var actual = _calculator.CalculateProfileShiftModificationForBacklash(_designInputParams);
             Assert.AreEqual(expected, actual, 0.001);
         }

@@ -40,8 +40,8 @@ namespace UnitTests
         {
             var expectedResultx = 0.70711;
             var expectedResulty = 0.70711;
-            Assert.AreEqual(expectedResultx, trochoid.PolarToCartesian(1, Radians(45)).X, 0.0001);
-            Assert.AreEqual(expectedResulty, trochoid.PolarToCartesian(1, Radians(45)).Y, 0.0001);
+            Assert.AreEqual(expectedResultx, Trochoid.PolarToCartesian(1, Radians(45)).X, 0.0001);
+            Assert.AreEqual(expectedResulty, Trochoid.PolarToCartesian(1, Radians(45)).Y, 0.0001);
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace UnitTests
         {
             var expectedResult = 0.5075583;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarRinv(1, Radians(10)), 0.0001);
+            Assert.AreEqual(expectedResult, Trochoid.PolarRinv(1, Radians(10)), 0.0001);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace UnitTests
         {
             var expectedResult = 0.001740;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarEtaInv(Radians(10)), 0.0001);
+            Assert.AreEqual(expectedResult, Trochoid.PolarEtaInv(Radians(10)), 0.0001);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace UnitTests
         {
             var expectedResult = 1.0;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarRtro(2, 0, 0), 0.0001);
+            Assert.AreEqual(expectedResult, Trochoid.PolarRtro(2, 0, 0), 0.0001);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace UnitTests
         {
             var expectedResult = 3;
 
-            Assert.AreEqual(expectedResult, trochoid.PolarEtaTro(1, 1, 1), 0.0001);
+            Assert.AreEqual(expectedResult, Trochoid.PolarEtaTro(1, 1, 1), 0.0001);
         }
     }
 }

@@ -5,6 +5,7 @@ using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
 using Bolsover.Involute.View;
 using static Bolsover.Involute.Images.GearLatexStrings;
+using static Bolsover.Involute.Model.GearStyle;
 using static Bolsover.Utils.LatexUtils;
 
 namespace Bolsover.Involute.Presenter
@@ -137,7 +138,7 @@ namespace Bolsover.Involute.Presenter
             _view.assignedTotalNormalProfileShiftTextBox.Text = sumx.ToString("F4");
 
             // Difference coefficient of profile shift is only used for internal gears
-            if (Model.Gear.Style.HasFlag(GearStyle.Internal))
+            if (Model.Gear.Style.HasFlag(Internal))
             {
                 var xDiff = _gearCalculator.CalculateDifferenceCoefficientOfProfileShift(Model);
                 _view.totalNormalProfileShiftTextBox.Text = (xDiff).ToString("F4");
@@ -193,27 +194,27 @@ namespace Bolsover.Involute.Presenter
                 {
                     if (radioButton.Checked)
                     {
-                        Model.Gear.Style &= ~GearStyle.Internal;
-                        Model.Gear.Style |= GearStyle.External;
+                        Model.Gear.Style &= ~Internal;
+                        Model.Gear.Style |= External;
                     }
                     else
                     {
-                        Model.Gear.Style &= ~GearStyle.External;
-                        Model.Gear.Style |= GearStyle.Internal;
+                        Model.Gear.Style &= ~External;
+                        Model.Gear.Style |= Internal;
                     }
                 }
                 else if (sender.Equals(_view.intRadioButton))
                 {
                     if (radioButton.Checked)
                     {
-                        Model.Gear.Style &= ~GearStyle.External;
-                        Model.Gear.Style |= GearStyle.Internal;
+                        Model.Gear.Style &= ~External;
+                        Model.Gear.Style |= Internal;
                         MessageBox.Show("Internal gears must be large enough to fit the pinion inside!");
                     }
                     else
                     {
-                        Model.Gear.Style &= ~GearStyle.Internal;
-                        Model.Gear.Style |= GearStyle.External;
+                        Model.Gear.Style &= ~Internal;
+                        Model.Gear.Style |= External;
                     }
                 }
             }
@@ -232,22 +233,22 @@ namespace Bolsover.Involute.Presenter
 
             if (sender is NumericUpDown numericUpDown)
             {
-                double newValue = (double) numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.HelixAngle = newValue;
                 Model.Pinion.HelixAngle = newValue;
                 if (newValue > 0)
                 {
-                    Model.Gear.Style &= ~GearStyle.Spur;
-                    Model.Pinion.Style &= ~GearStyle.Spur;
-                    Model.Gear.Style |= GearStyle.Helical;
-                    Model.Pinion.Style |= GearStyle.Helical;
+                    Model.Gear.Style &= ~Spur;
+                    Model.Pinion.Style &= ~Spur;
+                    Model.Gear.Style |= Helical;
+                    Model.Pinion.Style |= Helical;
                 }
                 else
                 {
-                    Model.Gear.Style &= ~GearStyle.Helical;
-                    Model.Pinion.Style &= ~GearStyle.Helical;
-                    Model.Gear.Style |= GearStyle.Spur;
-                    Model.Pinion.Style |= GearStyle.Spur;
+                    Model.Gear.Style &= ~Helical;
+                    Model.Pinion.Style &= ~Helical;
+                    Model.Gear.Style |= Spur;
+                    Model.Pinion.Style |= Spur;
                 }
             }
 
@@ -378,7 +379,7 @@ namespace Bolsover.Involute.Presenter
             _view.noteLabel.Text = Model.Auto
                 ? "Centre distance is calculated automatically"
                 : "Centre distance and profile shifts are entered manually";
-
+            if(Model.Auto) _view.normalBacklashNumericUpDown.Value = 0.0M;
             Recalculate();
         }
 
@@ -430,11 +431,11 @@ namespace Bolsover.Involute.Presenter
             }
 
             // this is a gear
-            if (Model.Gear.Style.HasFlag(GearStyle.External) && (Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
+            if (Model.Gear.Style.HasFlag(External) && (Model.Gear.Style.HasFlag(Spur) || Model.Gear.Style.HasFlag(Helical)))
             {
                 _toothPointsBuilder = _toothPointsBuilder is ExternalSpurHelicalToothBuilder ? _toothPointsBuilder : new ExternalSpurHelicalToothBuilder();
             }
-            else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && (Model.Gear.Style.HasFlag(GearStyle.Spur) || Model.Gear.Style.HasFlag(GearStyle.Helical)))
+            else if (Model.Gear.Style.HasFlag(Internal) && (Model.Gear.Style.HasFlag(Spur) || Model.Gear.Style.HasFlag(Helical)))
             {
                 _toothPointsBuilder = _toothPointsBuilder is InternalSpurHelicalToothBuilder ? _toothPointsBuilder : new InternalSpurHelicalToothBuilder();
             }
@@ -452,7 +453,7 @@ namespace Bolsover.Involute.Presenter
 
         private (string SaveFile, string Template) GetGearDetails()
         {
-            var isHelical = Model.Gear.Style.HasFlag(GearStyle.Helical);
+            var isHelical = Model.Gear.Style.HasFlag(Helical);
 
             var saveFile = isHelical
                 ? "HelicalWheelPleaseSaveAs.AD_PRT"
@@ -467,7 +468,7 @@ namespace Bolsover.Involute.Presenter
 
         private (string SaveFile, string Template) GetPinionDetails()
         {
-            var isHelical = Model.Pinion.Style.HasFlag(GearStyle.Helical);
+            var isHelical = Model.Pinion.Style.HasFlag(Helical);
 
             var saveFile = isHelical
                 ? "HelicalPinionPleaseSaveAs.AD_PRT"
@@ -482,17 +483,17 @@ namespace Bolsover.Involute.Presenter
 
         private void Calculate()
         {
-            if (Model.Gear.Style.HasFlag(GearStyle.External) && Model.Gear.Style.HasFlag(GearStyle.Spur))
+            if (Model.Gear.Style.HasFlag(External) && Model.Gear.Style.HasFlag(Spur))
                 CalculatePositiveShiftedExternalSpurGear();
-            else if (Model.Gear.Style.HasFlag(GearStyle.External) && Model.Gear.Style.HasFlag(GearStyle.Helical))
+            else if (Model.Gear.Style.HasFlag(External) && Model.Gear.Style.HasFlag(Helical))
                 CalculatePositiveShiftedExternalHelicalGear();
-            else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && Model.Gear.Style.HasFlag(GearStyle.Spur))
+            else if (Model.Gear.Style.HasFlag(Internal) && Model.Gear.Style.HasFlag(Spur))
                 CalculatePositiveShiftedIntExtSpurGear();
-            else if (Model.Gear.Style.HasFlag(GearStyle.Internal) && Model.Gear.Style.HasFlag(GearStyle.Helical))
+            else if (Model.Gear.Style.HasFlag(Internal) && Model.Gear.Style.HasFlag(Helical))
                 CalculatePositiveShiftedIntExtHelicalGear();
-            else if (Model.Gear.Style.HasFlag(GearStyle.Rack) && Model.Gear.Style.HasFlag(GearStyle.Spur))
+            else if (Model.Gear.Style.HasFlag(Rack) && Model.Gear.Style.HasFlag(Spur))
                 CalculateStraightRackGear();
-            else if (Model.Gear.Style.HasFlag(GearStyle.Rack) && Model.Gear.Style.HasFlag(GearStyle.Helical))
+            else if (Model.Gear.Style.HasFlag(Rack) && Model.Gear.Style.HasFlag(Helical))
                 CalculateHelicalRackGear();
             else
                 throw new ArgumentException("Gear style not recognised");
@@ -500,12 +501,12 @@ namespace Bolsover.Involute.Presenter
 
         #region GearStyles
 
-        private void CalculateHelicalRackGear()
+        private static void CalculateHelicalRackGear()
         {
             throw new NotImplementedException();
         }
 
-        private void CalculateStraightRackGear()
+        private static void CalculateStraightRackGear()
         {
             throw new NotImplementedException();
         }

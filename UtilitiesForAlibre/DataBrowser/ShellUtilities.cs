@@ -17,28 +17,9 @@ namespace Bolsover.DataBrowser
     /// </remarks>
     public class SysImageListHelper
     {
-        protected ObjectListView ListView;
+        private ObjectListView _listView;
         protected TreeView TreeView;
 
-        private SysImageListHelper()
-        {
-        }
-
-
-        /// <summary>
-        ///     Create a SysImageListHelper that will fetch images for the given tree control
-        /// </summary>
-        /// <param name="treeView">The tree view that will use the images</param>
-        public SysImageListHelper(TreeView treeView)
-        {
-            if (treeView.ImageList == null)
-            {
-                treeView.ImageList = new ImageList();
-                treeView.ImageList.ImageSize = new Size(16, 16);
-            }
-
-            this.TreeView = treeView;
-        }
 
         /// <summary>
         ///     Create a SysImageListHelper that will fetch images for the given listview control.
@@ -66,73 +47,36 @@ namespace Bolsover.DataBrowser
                 listView.LargeImageList.ImageSize = new Size(32, 32);
             }
 
-            //if (listView.SmallImageList.Images.Count != listView.LargeImageList.Images.Count)
-            //    throw new ArgumentException("Small and large image lists must have the same number of items.");
-
-            this.ListView = listView;
+            _listView = listView;
         }
 
-        protected ImageList.ImageCollection SmallImageCollection
+        private ImageList.ImageCollection SmallImageCollection
         {
             get
             {
-                if (ListView != null)
-                {
-                    return ListView.SmallImageList.Images;
-                }
-
-                if (TreeView != null)
-                {
-                    return TreeView.ImageList.Images;
-                }
-
-                return null;
+                return _listView != null ? _listView.SmallImageList.Images : TreeView?.ImageList.Images;
             }
         }
 
         protected ImageList.ImageCollection LargeImageCollection
         {
-            get
-            {
-                if (ListView != null)
-                {
-                    return ListView.LargeImageList.Images;
-                }
-
-                return null;
-            }
+            get => _listView?.LargeImageList.Images;
         }
 
-        protected ImageList SmallImageList
+        private ImageList SmallImageList
         {
             get
             {
-                if (ListView != null)
+                if (_listView != null)
                 {
-                    return ListView.SmallImageList;
+                    return _listView.SmallImageList;
                 }
 
-                if (TreeView != null)
-                {
-                    return TreeView.ImageList;
-                }
-
-                return null;
+                return TreeView?.ImageList;
             }
         }
 
-        protected ImageList LargeImageList
-        {
-            get
-            {
-                if (ListView != null)
-                {
-                    return ListView.LargeImageList;
-                }
-
-                return null;
-            }
-        }
+        private ImageList LargeImageList => _listView?.LargeImageList;
 
         /// <summary>
         ///     Return the index of the image that has the Shell Icon for the given file/directory.
@@ -263,24 +207,12 @@ namespace Bolsover.DataBrowser
             if (useFileType)
             {
                 flags |= ShgfiUsefileattributes;
-                if (Directory.Exists(path))
-                {
-                    fileAttributes = FileAttributeDirectory;
-                }
-                else
-                {
-                    fileAttributes = FileAttributeNormal;
-                }
+                fileAttributes = Directory.Exists(path) ? FileAttributeDirectory : FileAttributeNormal;
             }
 
             var shfi = new Shfileinfo();
             var result = SHGetFileInfo(path, fileAttributes, out shfi, Marshal.SizeOf(shfi), flags);
-            if (result.ToInt32() == 0)
-            {
-                return null;
-            }
-
-            return Icon.FromHandle(shfi.hIcon);
+            return result.ToInt32() == 0 ? null : Icon.FromHandle(shfi.hIcon);
         }
 
         /// <summary>
@@ -295,7 +227,7 @@ namespace Bolsover.DataBrowser
         public static int GetSysImageIndex(string path)
         {
             var shfi = new Shfileinfo();
-            var flags = ShgfiIcon | ShgfiSysiconindex;
+            const int flags = ShgfiIcon | ShgfiSysiconindex;
             var result = SHGetFileInfo(path, 0, out shfi, Marshal.SizeOf(shfi), flags);
             if (result.ToInt32() == 0)
             {

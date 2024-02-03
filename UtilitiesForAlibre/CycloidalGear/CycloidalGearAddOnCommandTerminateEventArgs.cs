@@ -6,7 +6,7 @@ namespace Bolsover.CycloidalGear
     {
         public CycloidalGearAddOnCommandTerminateEventArgs(CycloidalGearAddOnCommand cycloidalGearAddOnCommand)
         {
-            this.CycloidalGearAddOnCommand = cycloidalGearAddOnCommand;
+            CycloidalGearAddOnCommand = cycloidalGearAddOnCommand;
         }
 
         public CycloidalGearAddOnCommand CycloidalGearAddOnCommand { get; }

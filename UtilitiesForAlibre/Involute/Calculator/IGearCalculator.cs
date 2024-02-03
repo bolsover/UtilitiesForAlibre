@@ -213,7 +213,7 @@ namespace Bolsover.Involute.Calculator
         /// <summary>
         /// Angle by which involute has to be rotated to form opposing tooth flank
         /// </summary>
-        /// <param name="g"></param>
+        /// <param name="pairDesignInputParams"></param>
         /// <returns></returns>
         (double, double) CalculateKappa(IGearPairDesignInputParams pairDesignInputParams);
         

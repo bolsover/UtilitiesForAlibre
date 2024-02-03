@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 using Bolsover.Involute.Images;
@@ -9,16 +8,22 @@ namespace UnitTests
 {
     public class LatexImageForm : Form
     {
-        private IContainer components = null;
-        private FieldInfo[] props;
-        private int index = 0;
-        private GearLatexStrings instance = new();
+        // private IContainer components = null;
+        private readonly FieldInfo[] _props;
+        private int _index = 0;
+        private readonly GearLatexStrings _instance = new();
+        private Button _nextbutton;
+        private Button _previousbutton;
+
+
+        private Label _latexLabel;
+        private FieldInfo _info;
 
         public LatexImageForm()
         {
             InitializeComponent();
-            props = typeof(GearLatexStrings).GetFields();
-            latexLabel.Text = "Click next to check Latex formulae";
+            _props = typeof(GearLatexStrings).GetFields();
+            _latexLabel.Text = "Click next to check Latex formulae";
         }
 
 
@@ -28,89 +33,76 @@ namespace UnitTests
         /// </summary>
         private void InitializeComponent()
         {
-            this.latexLabel = new System.Windows.Forms.Label();
-            this.nextbutton = new System.Windows.Forms.Button();
-            this.previousbutton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            _latexLabel = new Label();
+            _nextbutton = new Button();
+            _previousbutton = new Button();
+            SuspendLayout();
             // 
             // latexLabel
             // 
-            this.latexLabel.Location = new System.Drawing.Point(86, 80);
-            this.latexLabel.Name = "latexLabel";
-            this.latexLabel.Size = new System.Drawing.Size(268, 138);
-            this.latexLabel.TabIndex = 0;
+            _latexLabel.Location = new System.Drawing.Point(86, 80);
+            _latexLabel.Name = "_latexLabel";
+            _latexLabel.Size = new System.Drawing.Size(268, 138);
+            _latexLabel.TabIndex = 0;
             // 
             // nextbutton
             // 
-            this.nextbutton.Location = new System.Drawing.Point(124, 259);
-            this.nextbutton.Name = "nextbutton";
-            this.nextbutton.Size = new System.Drawing.Size(75, 23);
-            this.nextbutton.TabIndex = 2;
-            this.nextbutton.Text = "Next";
-            this.nextbutton.UseVisualStyleBackColor = true;
-            this.nextbutton.Click += new System.EventHandler(this.nextbutton_Click);
+            _nextbutton.Location = new System.Drawing.Point(124, 259);
+            _nextbutton.Name = "_nextbutton";
+            _nextbutton.Size = new System.Drawing.Size(75, 23);
+            _nextbutton.TabIndex = 2;
+            _nextbutton.Text = "Next";
+            _nextbutton.UseVisualStyleBackColor = true;
+            _nextbutton.Click += new System.EventHandler(this.NextbuttonClick);
             // 
             // previousbutton
             // 
-            this.previousbutton.Location = new System.Drawing.Point(50, 259);
-            this.previousbutton.Name = "previousbutton";
-            this.previousbutton.Size = new System.Drawing.Size(75, 23);
-            this.previousbutton.TabIndex = 1;
-            this.previousbutton.Text = "Previous";
-            this.previousbutton.UseVisualStyleBackColor = true;
-            this.previousbutton.Click += new System.EventHandler(this.previousButton_Click);
+            _previousbutton.Location = new System.Drawing.Point(50, 259);
+            _previousbutton.Name = "_previousbutton";
+            _previousbutton.Size = new System.Drawing.Size(75, 23);
+            _previousbutton.TabIndex = 1;
+            _previousbutton.Text = "Previous";
+            _previousbutton.UseVisualStyleBackColor = true;
+            _previousbutton.Click += new System.EventHandler(this.previousButton_Click);
             // 
             // LatexImageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.nextbutton);
-            this.Controls.Add(this.previousbutton);
-            this.Controls.Add(this.latexLabel);
-            this.Name = "LatexImageForm";
-            this.Text = "GearsForm";
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(800, 450);
+            Controls.Add(this._nextbutton);
+            Controls.Add(this._previousbutton);
+            Controls.Add(this._latexLabel);
+            Name = "LatexImageForm";
+            Text = "GearsForm";
+            ResumeLayout(false);
         }
 
 
-        private System.Windows.Forms.Button nextbutton;
-        private System.Windows.Forms.Button previousbutton;
+        
 
-
-        public System.Windows.Forms.Label latexLabel;
-        private FieldInfo info;
-
-        private void nextbutton_Click(object sender, EventArgs e)
+        private void NextbuttonClick(object sender, EventArgs e)
         {
-            if (index < props.Length - 1)
-            {
-                info = props[index++];
-                var value = info.Name;
-                var property = instance.GetType().GetField(value).GetValue(instance);
+            if (_index >= _props.Length - 1) return;
+            _info = _props[_index++];
+            var value = _info.Name;
+            var property = _instance.GetType().GetField(value).GetValue(_instance);
 
-                if (property != null)
-                {
-                    latexLabel.Text = value;
-                    latexLabel.Image = LatexUtils.CreateImageFromLatex(property.ToString());
-                }
-            }
+            if (property == null) return;
+            _latexLabel.Text = value;
+            _latexLabel.Image = LatexUtils.CreateImageFromLatex(property.ToString());
         }
 
         private void previousButton_Click(object sender, EventArgs e)
         {
-            if (index > 0)
-            {
-                info = props[index--];
-                var value = info.Name;
-                var property = instance.GetType().GetField(value).GetValue(instance);
+            if (_index <= 0) return;
+            _info = _props[_index--];
+            var value = _info.Name;
+            var property = _instance.GetType().GetField(value).GetValue(_instance);
 
-                if (property != null)
-                {
-                    latexLabel.Text = value;
-                    latexLabel.Image = LatexUtils.CreateImageFromLatex(property.ToString());
-                }
-            }
+            if (property == null) return;
+            _latexLabel.Text = value;
+            _latexLabel.Image = LatexUtils.CreateImageFromLatex(property.ToString());
         }
     }
 }

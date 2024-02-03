@@ -1,53 +1,55 @@
 ﻿
 using System.Collections.Generic;
-using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
+using static Bolsover.Involute.Calculator.ToothPointCalculator;
 
 
 namespace Bolsover.Involute.Builder
 {
     public class ExternalSpurHelicalToothBuilder : IToothPointsBuilder
     {
-        private Tooth tooth;
+        private Tooth _tooth;
 
         public Tooth Build(IGearDesignOutputParams gearDesignOutputParams)
         {
-            tooth = new();
-            tooth.RhsInvolute = BuildRhsToothInvolute(gearDesignOutputParams);
-            tooth.LhsInvolute = BuildLhsToothInvolute(gearDesignOutputParams);
-            tooth.Points[0].Point = BuildPoint0(gearDesignOutputParams);
-            tooth.Points[1].Point = BuildPoint1(gearDesignOutputParams);
-            tooth.Points[2].Point = BuildPoint2(gearDesignOutputParams);
-            tooth.Points[3].Point = BuildPoint3(gearDesignOutputParams);
-            tooth.Points[4].Point = BuildPoint4(gearDesignOutputParams);
-            tooth.Points[5].Point = BuildPoint5(gearDesignOutputParams);
-            tooth.Points[6].Point = BuildPoint6(gearDesignOutputParams);
-            tooth.Points[7].Point = BuildPoint7(gearDesignOutputParams);
-            tooth.Points[8].Point = BuildPoint8(gearDesignOutputParams);
-            tooth.Points[9].Point = BuildPoint9(gearDesignOutputParams);
-            tooth.Points[10].Point = BuildPoint10(gearDesignOutputParams);
-            tooth.Points[11].Point = BuildPoint11(gearDesignOutputParams);
-            tooth.Points[12].Point = BuildPoint12(gearDesignOutputParams);
-            tooth.Points[13].Point = BuildPoint13(gearDesignOutputParams);
-            tooth.Points[14].Point = BuildPoint14(gearDesignOutputParams);
-            tooth.Points[15].Point = BuildPoint15(gearDesignOutputParams);
-            tooth.Points[16].Point = BuildPoint16(gearDesignOutputParams);
-            tooth.Points[17].Point = BuildPoint17(gearDesignOutputParams);
+            _tooth = new()
+                {
+                    RhsInvolute = BuildRhsToothInvolute(gearDesignOutputParams),
+                    LhsInvolute = BuildLhsToothInvolute(gearDesignOutputParams)
+                };
+            _tooth.Points[0].Point = BuildPoint0(gearDesignOutputParams);
+            _tooth.Points[1].Point = BuildPoint1(gearDesignOutputParams);
+            _tooth.Points[2].Point = BuildPoint2(gearDesignOutputParams);
+            _tooth.Points[3].Point = BuildPoint3(gearDesignOutputParams);
+            _tooth.Points[4].Point = BuildPoint4(gearDesignOutputParams);
+            _tooth.Points[5].Point = BuildPoint5(gearDesignOutputParams);
+            _tooth.Points[6].Point = BuildPoint6(gearDesignOutputParams);
+            _tooth.Points[7].Point = BuildPoint7(gearDesignOutputParams);
+            _tooth.Points[8].Point = BuildPoint8(gearDesignOutputParams);
+            _tooth.Points[9].Point = BuildPoint9(gearDesignOutputParams);
+            _tooth.Points[10].Point = BuildPoint10(gearDesignOutputParams);
+            _tooth.Points[11].Point = BuildPoint11(gearDesignOutputParams);
+            _tooth.Points[12].Point = BuildPoint12(gearDesignOutputParams);
+            _tooth.Points[13].Point = BuildPoint13(gearDesignOutputParams);
+            _tooth.Points[14].Point = BuildPoint14(gearDesignOutputParams);
+            _tooth.Points[15].Point = BuildPoint15(gearDesignOutputParams);
+            _tooth.Points[16].Point = BuildPoint16(gearDesignOutputParams);
+            _tooth.Points[17].Point = BuildPoint17(gearDesignOutputParams);
 
 
-            return tooth;
+            return _tooth;
         }
 
 
-        private List<GearPoint> BuildRhsToothInvolute(IGearDesignOutputParams gearDesignOutputParams)
+        private static List<GearPoint> BuildRhsToothInvolute(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.RhsInvolute(gearDesignOutputParams);
+            return RhsInvolute(gearDesignOutputParams);
         }
 
 
-        private List<GearPoint> BuildLhsToothInvolute(IGearDesignOutputParams gearDesignOutputParams)
+        private static List<GearPoint> BuildLhsToothInvolute(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsInvolute(gearDesignOutputParams);
+            return LhsInvolute(gearDesignOutputParams);
             
          
         }
@@ -57,7 +59,7 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint0(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint0(IGearDesignOutputParams gearDesignOutputParams)
         {
             return new GearPoint(0, 0);
         }
@@ -67,9 +69,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint1(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint1(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.RhsMidRoot(gearDesignOutputParams);
+            return RhsMidRoot(gearDesignOutputParams);
         }
 
        
@@ -80,9 +82,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint2(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint2(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.RhsStartRootRelief(gearDesignOutputParams);
+            return RhsStartRootRelief(gearDesignOutputParams);
         }
 
         
@@ -92,10 +94,10 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint3(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint3(IGearDesignOutputParams gearDesignOutputParams)
         {
 
-            return ToothPointCalculator.RhsRootFilletCentre(gearDesignOutputParams);
+            return RhsRootFilletCentre(gearDesignOutputParams);
         }
 
         /// <summary>
@@ -103,9 +105,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint4(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint4(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.GearPointRhsEndRootRelief(gearDesignOutputParams);
+            return GearPointRhsEndRootRelief(gearDesignOutputParams);
 
         }
 
@@ -115,9 +117,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint5(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint5(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.RhsStartInvolute(gearDesignOutputParams);
+            return RhsStartInvolute(gearDesignOutputParams);
         }
 
         /// <summary>
@@ -125,9 +127,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint6(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint6(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.RhsStartOfTipRelief(gearDesignOutputParams);
+            return RhsStartOfTipRelief(gearDesignOutputParams);
         }
 
         /// <summary>
@@ -135,9 +137,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint7(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint7(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.RhsCentreOfTipRelief(gearDesignOutputParams);
+            return RhsCentreOfTipRelief(gearDesignOutputParams);
         }
 
        
@@ -147,9 +149,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint8(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint8(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.RhsEndTipRelief(gearDesignOutputParams);
+            return RhsEndTipRelief(gearDesignOutputParams);
         }
 
         
@@ -159,9 +161,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint9(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint9(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.CentrePointOutsideDiameter(gearDesignOutputParams);
+            return CentrePointOutsideDiameter(gearDesignOutputParams);
         }
 
         
@@ -171,9 +173,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint10(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint10(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsEndTipRelief(gearDesignOutputParams);
+            return LhsEndTipRelief(gearDesignOutputParams);
         }
 
         
@@ -183,9 +185,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint11(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint11(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsCentreTipRelief(gearDesignOutputParams);
+            return LhsCentreTipRelief(gearDesignOutputParams);
         }
 
       
@@ -195,9 +197,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint12(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint12(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsStartOfTipRelief(gearDesignOutputParams);
+            return LhsStartOfTipRelief(gearDesignOutputParams);
         }
 
         /// <summary>
@@ -205,9 +207,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint13(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint13(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsStartInvolute(gearDesignOutputParams);
+            return LhsStartInvolute(gearDesignOutputParams);
         }
 
         /// <summary>
@@ -215,9 +217,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint14(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint14(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsEndRootRelief(gearDesignOutputParams);
+            return LhsEndRootRelief(gearDesignOutputParams);
         }
 
         
@@ -227,9 +229,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint15(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint15(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsCentreRootRelief(gearDesignOutputParams);
+            return LhsCentreRootRelief(gearDesignOutputParams);
         }
 
         
@@ -239,9 +241,9 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint16(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint16(IGearDesignOutputParams gearDesignOutputParams)
         {
-            return ToothPointCalculator.LhsStartRootRelief(gearDesignOutputParams);
+            return LhsStartRootRelief(gearDesignOutputParams);
         }
 
      
@@ -251,10 +253,10 @@ namespace Bolsover.Involute.Builder
         /// </summary>
         /// <param name="gearDesignOutputParams"></param>
         /// <returns></returns>
-        private GearPoint BuildPoint17(IGearDesignOutputParams gearDesignOutputParams)
+        private static GearPoint BuildPoint17(IGearDesignOutputParams gearDesignOutputParams)
         {
             
-            return ToothPointCalculator.LhsMidRoot(gearDesignOutputParams);
+            return LhsMidRoot(gearDesignOutputParams);
       
         }
     }

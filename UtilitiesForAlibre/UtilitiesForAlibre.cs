@@ -28,7 +28,7 @@ namespace Bolsover
         private int[] _menuIdsHelp;
         private int[] _menuIdsGear;
 
-        private IADRoot _alibreRoot;
+        private readonly IADRoot _alibreRoot;
         private IntPtr _parentWinHandle;
 
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
@@ -41,9 +41,12 @@ namespace Bolsover
         #region Menus
 
         /// <summary>
-        /// Returns the menu ID of the add-on's root menu item
+        /// Returns the menu ID of the add-on root menu item
         /// </summary>
-        public int RootMenuItem => MenuIdRoot;
+        public int RootMenuItem
+        {
+            get => MenuIdRoot;
+        }
 
         /// <summary>
         /// Builds the menu tree
@@ -231,7 +234,7 @@ namespace Bolsover
         }
 
         /// <summary>
-        /// Returns the icon name (with extension) for a menu item; the icon will be searched under the folder where the add-on's .adc file is present
+        /// Returns the icon name (with extension) for a menu item; the icon will be searched under the folder where the add-on .adc file is present
         /// </summary>
         /// <param name="menuId"></param>
         /// <returns></returns>
@@ -280,7 +283,7 @@ namespace Bolsover
                 SubmenuIdUtilsAdvancedGear => DoAdvancedGear(),
                 SubmenuIdUtilsPlaneFinder => DoPlaneFinder(session),
                 SubmenuIdUtilsDataViewer => DoAlibreDataViewer(session),
-                SubmenuIdHelpAbout => DoHelpAbout(session),
+                SubmenuIdHelpAbout => DoHelpAbout(),
                 _ => null
             };
         }
@@ -302,19 +305,23 @@ namespace Bolsover
         private IAlibreAddOnCommand DoAlibreDataViewer(IADSession session)
         {
             AlibreDataViewerAddOnCommand alibreDataViewerAddOnCommand;
-            if (!_dataViewerAddOnCommands.ContainsKey(session.Identifier))
-            {
-                alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session);
-                alibreDataViewerAddOnCommand.AlibreDataViewer.Visible = true;
-                alibreDataViewerAddOnCommand.Terminate += AlibreDataViewerAddOnCommandOnTerminate;
-                _dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
-            }
-            else
+            if (_dataViewerAddOnCommands.ContainsKey(session.Identifier))
             {
                 if (!_dataViewerAddOnCommands.TryGetValue(session.Identifier, out alibreDataViewerAddOnCommand)) return null;
                 alibreDataViewerAddOnCommand.UserRequestedClose();
                 _dataViewerAddOnCommands.Remove(session.Identifier);
                 return null;
+            }
+            else
+            {
+                alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session)
+                    {
+                        AlibreDataViewer = {
+                            Visible = true
+                        }
+                    };
+                alibreDataViewerAddOnCommand.Terminate += AlibreDataViewerAddOnCommandOnTerminate;
+                _dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
             }
 
             return alibreDataViewerAddOnCommand;
@@ -342,7 +349,15 @@ namespace Bolsover
         private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
         {
             PlaneFinderAddOnCommand planeFinderAddOnCommand;
-            if (!_planeFinderAddOnCommands.ContainsKey(session.Identifier))
+            if (_planeFinderAddOnCommands.ContainsKey(session.Identifier))
+            {
+                if (!_planeFinderAddOnCommands.TryGetValue(session.Identifier, out planeFinderAddOnCommand))
+                    return null;
+                planeFinderAddOnCommand.UserRequestedClose();
+                _planeFinderAddOnCommands.Remove(session.Identifier);
+                return null;
+            }
+            else
             {
                 planeFinderAddOnCommand = new PlaneFinderAddOnCommand(session)
                 {
@@ -353,13 +368,6 @@ namespace Bolsover
                 };
                 planeFinderAddOnCommand.Terminate += PlaneFinderAddOnCommandOnTerminate;
                 _planeFinderAddOnCommands.Add(session.Identifier, planeFinderAddOnCommand);
-            }
-            else
-            {
-                if (!_planeFinderAddOnCommands.TryGetValue(session.Identifier, out planeFinderAddOnCommand)) return planeFinderAddOnCommand;
-                planeFinderAddOnCommand.UserRequestedClose();
-                _planeFinderAddOnCommands.Remove(session.Identifier);
-                return null;
             }
 
             return planeFinderAddOnCommand;
@@ -427,7 +435,7 @@ namespace Bolsover
 
         #region HelpAbout
 
-        private static IAlibreAddOnCommand DoHelpAbout(IADSession session)
+        private static IAlibreAddOnCommand DoHelpAbout()
         {
             var aboutForm = new AboutForm();
             aboutForm.Visible = true;

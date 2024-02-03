@@ -196,9 +196,6 @@
         <Reference Include="System.Windows.Forms"/>
         <Reference Include="System.Xml"/>
         <Reference Include="System.Xml.Linq"/>
-        <Reference Include="UtilitiesForAlibre">
-          <HintPath>bin\Debug\UtilitiesForAlibre.dll</HintPath>
-        </Reference>
         <Reference Include="WpfMath, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
             <HintPath>..\packages\WpfMath.1.1.0\lib\net462\WpfMath.dll</HintPath>
         </Reference>

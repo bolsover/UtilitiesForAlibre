@@ -175,7 +175,7 @@ namespace UnitTests
             gear.FaceWidth = 22;
 
             var expectedResult = 3.0;
-            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardPinionAddendum(pinion, gear), 0.00001);
+            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardPinionAddendum(pinion), 0.00001);
         }
 
         [Test]
@@ -196,7 +196,7 @@ namespace UnitTests
             gear.FaceWidth = 22;
 
             var expectedResult = 3.0;
-            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardGearAddendum(pinion, gear), 0.00001);
+            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardGearAddendum(gear), 0.00001);
         }
 
 
@@ -218,7 +218,7 @@ namespace UnitTests
             gear.FaceWidth = 22;
 
             var expectedResult = 3.75;
-            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardPinionDedendum(pinion, gear), 0.00001);
+            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardPinionDedendum(pinion), 0.00001);
         }
 
         [Test]
@@ -239,7 +239,7 @@ namespace UnitTests
             gear.FaceWidth = 22;
 
             var expectedResult = 3.75;
-            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardGearDedendum(pinion, gear), 0.00001);
+            Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardGearDedendum(gear), 0.00001);
         }
 
 

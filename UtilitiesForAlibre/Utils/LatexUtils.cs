@@ -23,6 +23,7 @@ namespace Bolsover.Utils
             }
             catch
             {
+                // ignored
             }
 
             return returnImage;
