@@ -51,6 +51,9 @@
         <StartupObject/>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="alibre">
+          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre.dll</HintPath>
+        </Reference>
         <Reference Include="alibre-api">
           <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-api.dll</HintPath>
         </Reference>
@@ -71,6 +74,9 @@
         </Reference>
         <Reference Include="AlibreX">
           <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\AlibreX.dll</HintPath>
+        </Reference>
+        <Reference Include="DevExpress.Data.v22.1">
+          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\DevExpress.Data.v22.1.dll</HintPath>
         </Reference>
         <Reference Include="generics_NET">
           <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\generics_NET.dll</HintPath>
@@ -316,6 +322,7 @@
           <DependentUpon>InvoluteGearForm.cs</DependentUpon>
         </Compile>
         <Compile Include="Program.cs" />
+        <Compile Include="Properties\Properties.cs" />
         <Compile Include="Properties\Settings.Designer.cs">
             <AutoGen>True</AutoGen>
             <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -330,6 +337,28 @@
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
+        <Compile Include="Shortcuts\Calculator\HtmlReport.cs" />
+        <Compile Include="Shortcuts\Calculator\ShortcutsCalculator.cs" />
+        <Compile Include="Shortcuts\Model\AlibreShortcut.cs" />
+        <Compile Include="Shortcuts\Model\KeyButtons.cs" />
+        <Compile Include="Shortcuts\Model\KeyCodes.cs" />
+        <Compile Include="Shortcuts\Model\KeyStrings.cs" />
+        <Compile Include="Shortcuts\Model\KeyText.cs" />
+        <Compile Include="Shortcuts\Model\SvgDictionary.cs" />
+        <Compile Include="Shortcuts\Presenter\KeyboardPresenter.cs" />
+        <Compile Include="Shortcuts\Presenter\Queries.cs" />
+        <Compile Include="Shortcuts\Utils\StringImageUtils.cs" />
+        <Compile Include="Shortcuts\View\ColorPreferences.cs" />
+        <Compile Include="Shortcuts\View\ColorPreferences.Designer.cs" />
+        <Compile Include="Shortcuts\View\ColorPreferencesForm.cs" />
+        <Compile Include="Shortcuts\View\ColorPreferencesForm.Designer.cs" />
+        <Compile Include="Shortcuts\View\KeyboardControl.cs" />
+        <Compile Include="Shortcuts\View\KeyboardControl.Designer.cs" />
+        <Compile Include="Shortcuts\View\KeyboardForm.cs" />
+        <Compile Include="Shortcuts\View\KeyboardForm.Designer.cs" />
+        <Compile Include="Shortcuts\View\KeyboardShortcutForm.cs" />
+        <Compile Include="Shortcuts\View\KeyboardShortcutForm.Designer.cs" />
+        <Compile Include="Shortcuts\View\ShortcutButton.cs" />
         <Compile Include="UtilitiesForAlibre.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Utils\ConversionUtils.cs" />
@@ -446,6 +475,11 @@
         <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </EmbeddedResource>
+        <EmbeddedResource Include="Shortcuts\View\ColorPreferences.resx" />
+        <EmbeddedResource Include="Shortcuts\View\ColorPreferencesForm.resx" />
+        <EmbeddedResource Include="Shortcuts\View\KeyboardControl.resx" />
+        <EmbeddedResource Include="Shortcuts\View\KeyboardForm.resx" />
+        <EmbeddedResource Include="Shortcuts\View\KeyboardShortcutForm.resx" />
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />

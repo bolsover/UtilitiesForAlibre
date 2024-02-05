@@ -1,7 +1,7 @@
 ﻿using System;
 using AlibreAddOn;
 using AlibreX;
-using Bolsover;
+
 
 
 namespace AlibreAddOnAssembly
@@ -10,14 +10,14 @@ namespace AlibreAddOnAssembly
     {
         private static IADRoot AlibreRoot { get; set; }
         private static IntPtr _parentWinHandle;
-        private static UtilitiesForAlibre _utilitiesForAlibre;
+        private static Bolsover.UtilitiesForAlibre _utilitiesForAlibre;
 
 
         public static void AddOnLoad(IntPtr hwnd, IAutomationHook pAutomationHook, IntPtr unused)
         {
             AlibreRoot = (IADRoot) pAutomationHook.Root;
             _parentWinHandle = hwnd;
-            _utilitiesForAlibre = new UtilitiesForAlibre(AlibreRoot, _parentWinHandle);
+            _utilitiesForAlibre = new Bolsover.UtilitiesForAlibre(AlibreRoot, _parentWinHandle);
         }
 
         public static IADRoot GetRoot()

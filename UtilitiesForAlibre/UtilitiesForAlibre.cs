@@ -7,6 +7,8 @@ using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
 using Bolsover.Involute.View;
 using Bolsover.PlaneFinder;
+using Bolsover.Shortcuts.View;
+using Shortcuts.Shortcuts.View;
 
 namespace Bolsover
 {
@@ -17,13 +19,17 @@ namespace Bolsover
         private const int SubmenuIdDataBrowser = 505;
         private const int MenuIdGear = 506;
         private const int MenuIdUtils = 601;
+        private const int SubMenuIdShortcuts = 605;
         private const int SubmenuIdUtilsCycloidalGear = 602;
         private const int SubmenuIdUtilsPlaneFinder = 603;
         private const int SubmenuIdUtilsDataViewer = 604;
         private const int SubmenuIdUtilsAdvancedGear = 609;
+        private const int SubmenuIdUtilsShortcuts = 610;
+        private const int SubmenuIdUtilsKeyboard = 611;
         private const int MenuIdHelp = 701;
         private const int SubmenuIdHelpAbout = 702;
         private int[] _menuIdsUtils;
+        private int[] _menuIdsShortcuts;
         private int[] _menuIdsRoot;
         private int[] _menuIdsHelp;
         private int[] _menuIdsGear;
@@ -53,11 +59,18 @@ namespace Bolsover
         /// </summary>
         private void BuildMenuTree()
         {
+            _menuIdsShortcuts = new []
+            {
+                SubmenuIdUtilsShortcuts,
+                SubmenuIdUtilsKeyboard
+            };
+            
             _menuIdsUtils = new []
             {
+                SubMenuIdShortcuts ,
                 SubmenuIdDataBrowser,
                 SubmenuIdUtilsPlaneFinder,
-                SubmenuIdUtilsDataViewer,
+                SubmenuIdUtilsDataViewer
             };
             _menuIdsRoot = new []
             {
@@ -90,6 +103,7 @@ namespace Bolsover
                 MenuIdUtils => true,
                 MenuIdHelp => true,
                 MenuIdGear => true,
+                SubMenuIdShortcuts => true,
                 _ => false
             };
         }
@@ -107,6 +121,7 @@ namespace Bolsover
                 MenuIdGear => _menuIdsGear,
                 MenuIdUtils => _menuIdsUtils,
                 MenuIdHelp => _menuIdsHelp,
+                SubMenuIdShortcuts => _menuIdsShortcuts,
                 _ => null
             };
         }
@@ -130,6 +145,9 @@ namespace Bolsover
                 SubmenuIdHelpAbout => "About",
                 SubmenuIdUtilsPlaneFinder => "Sketch Plane Finder Open/Close",
                 SubmenuIdUtilsDataViewer => "Property Viewer Open/Close",
+                SubMenuIdShortcuts => "Shortcuts",
+                SubmenuIdUtilsShortcuts => "Shortcuts Report",
+                SubmenuIdUtilsKeyboard=> "Keyboard layout",
                 _ => ""
             };
         }
@@ -172,6 +190,9 @@ namespace Bolsover
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case    SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case    SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
@@ -188,6 +209,9 @@ namespace Bolsover
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case    SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case    SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
@@ -203,6 +227,9 @@ namespace Bolsover
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case    SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case    SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
@@ -229,6 +256,9 @@ namespace Bolsover
                 SubmenuIdUtilsPlaneFinder => "Finds the Plane on which a selected Sketch is drawn",
                 SubmenuIdUtilsDataViewer => "Opens/Closes Property Viewer",
                 SubmenuIdHelpAbout => "About Utilities for Alibre",
+                SubmenuIdUtilsShortcuts => "Shortcuts Report",
+                SubmenuIdUtilsKeyboard=> "Shortcuts Keyboard",
+            SubMenuIdShortcuts => "Shortcuts",
                 _ => ""
             };
         }
@@ -284,8 +314,53 @@ namespace Bolsover
                 SubmenuIdUtilsPlaneFinder => DoPlaneFinder(session),
                 SubmenuIdUtilsDataViewer => DoAlibreDataViewer(session),
                 SubmenuIdHelpAbout => DoHelpAbout(),
+                SubmenuIdUtilsShortcuts =>  DoShortcuts(session),
+                SubmenuIdUtilsKeyboard=> DoKeyboard(session),
                 _ => null
             };
+        }
+
+        #endregion
+       
+        #region Shortcuts
+        private KeyboardForm keyboardForm;
+
+        private IAlibreAddOnCommand DoKeyboard(IADSession session)
+        {
+            if (keyboardForm == null)
+            {
+                keyboardForm = KeyboardForm.Instance();
+                keyboardForm.keyboardControl1.ProfileComboBox.SelectedIndex = 0;
+                keyboardForm.TopMost = true;
+            }
+            else
+            {
+                keyboardForm.Visible = true;
+                keyboardForm.TopMost = true;
+            }
+
+            return null;
+        }
+
+       
+
+        private KeyboardShortcutForm keyboardShortcutForm;
+
+        private IAlibreAddOnCommand DoShortcuts(IADSession session)
+        {
+            if (keyboardShortcutForm == null)
+            {
+                keyboardShortcutForm = KeyboardShortcutForm.Instance();
+                keyboardShortcutForm.comboBox1.SelectedIndex = 0;
+                keyboardShortcutForm.TopMost = true;
+            }
+            else
+            {
+                keyboardShortcutForm.Visible = true;
+                keyboardShortcutForm.TopMost = true;
+            }
+
+            return null;
         }
 
         #endregion
