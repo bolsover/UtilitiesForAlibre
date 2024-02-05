@@ -24,10 +24,6 @@ namespace Bolsover.DataBrowser
             RetrieveAlibreData();
         }
 
-        public AlibreFileSystem()
-        {
-        }
-
         #endregion
 
         #region Public Properties
@@ -40,7 +36,7 @@ namespace Bolsover.DataBrowser
 
         public FileSystemInfo Info { get; set; }
         public bool IsDirectory => AsDirectory != null;
-        public DirectoryInfo AsDirectory => Info as DirectoryInfo;
+        private DirectoryInfo AsDirectory => Info as DirectoryInfo;
         public FileInfo AsFile => Info as FileInfo;
         public string Name => Info.Name;
         public string FullName => Info.FullName;
@@ -101,12 +97,7 @@ namespace Bolsover.DataBrowser
                 return false;
             }
 
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return Equals(other.Info.FullName, Info.FullName);
+            return ReferenceEquals(this, other) || Equals(other.Info.FullName, Info.FullName);
         }
 
         /*
@@ -116,10 +107,8 @@ namespace Bolsover.DataBrowser
         {
             try
             {
-                using (var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
-                {
-                    stream.Close();
-                }
+                using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+                stream.Close();
             }
             catch (IOException)
             {
@@ -138,52 +127,23 @@ namespace Bolsover.DataBrowser
          * Retrieves data from the Alibre Session and populates the corresponding fields in the AlibreFileSystem rowObject
          */
         // [MethodImpl(MethodImplOptions.Synchronized)]
-        public void RetrieveAlibreData()
+        private void RetrieveAlibreData()
         {
-            if (!IsDirectory
-                && AsFile is {IsReadOnly: false}
-                && AsFile.Extension.ToUpper().StartsWith(".AD_PRT") |
-                AsFile.Extension.ToUpper().StartsWith(".AD_ASM") |
-                AsFile.Extension.ToUpper().StartsWith(".AD_SMP"))
+            if (IsDirectory
+                || AsFile is not { IsReadOnly: false }
+                || !(AsFile.Extension.ToUpper().StartsWith(".AD_PRT") |
+                     AsFile.Extension.ToUpper().StartsWith(".AD_ASM") |
+                     AsFile.Extension.ToUpper().StartsWith(".AD_SMP")))
             {
-                if (!IsFileLocked(AsFile))
-                {
-                    IADDesignSession session = AlibreConnector.RetrieveSessionForFile(this);
-                    if (session != null)
-                    {
-                        var designProperties = session.DesignProperties;
-                        ReadDesignProperties(designProperties);
-                        session.Close();
-                    }
-                }
-                else // else routine reads data from open sessions
-                {
-                    for (var i = 0; i < AlibreConnector.GetRoot().Sessions.Count; i++)
-                    {
-                        var currentSession = AlibreConnector.GetRoot().Sessions.Item(i);
-                        if (currentSession.FilePath.ToUpper().Replace("/", "\\").Equals(Info.FullName.ToUpper()))
-                        {
-                            var designProperties = ((IADDesignSession) currentSession).DesignProperties;
-                            ReadDesignProperties(designProperties);
-                        }
-                    }
-                }
-            }
-            else if (!IsDirectory
-                     && AsFile is {IsReadOnly: false}
-                     && AsFile.Extension.ToUpper().StartsWith(".AD_DRW"))
-            {
-                if (!IsFileLocked(AsFile))
-                {
-                    IADDrawingSession session = AlibreConnector.RetrieveDrawingSessionForFile(this);
-                    IADDrawingProperties designProperties;
-                    if (session != null)
-                    {
-                        designProperties = session.Properties;
-                        ReadDrawingProperties(designProperties);
-                        session.Close();
-                    }
-                }
+                if (IsDirectory
+                    || AsFile is not { IsReadOnly: false }
+                    || !AsFile.Extension.ToUpper().StartsWith(".AD_DRW")) return;
+                if (IsFileLocked(AsFile)) return;
+                var session = AlibreConnector.RetrieveDrawingSessionForFile(this);
+                if (session == null) return;
+                var designProperties = session.Properties;
+                ReadDrawingProperties(designProperties);
+                session.Close();
                 //@todo fix this - can read data from open drawings at present
                 // else
                 // {
@@ -198,6 +158,27 @@ namespace Bolsover.DataBrowser
                 //         }
                 //     }
                 // }
+            }
+            else
+            {
+                if (!IsFileLocked(AsFile))
+                {
+                    var session = AlibreConnector.RetrieveSessionForFile(this);
+                    if (session == null) return;
+                    var designProperties = session.DesignProperties;
+                    ReadDesignProperties(designProperties);
+                    session.Close();
+                }
+                else // else routine reads data from open sessions
+                {
+                    for (var i = 0; i < AlibreConnector.GetRoot().Sessions.Count; i++)
+                    {
+                        var currentSession = AlibreConnector.GetRoot().Sessions.Item(i);
+                        if (!currentSession.FilePath.ToUpper().Replace("/", "\\").Equals(Info.FullName.ToUpper())) continue;
+                        var designProperties = ((IADDesignSession)currentSession).DesignProperties;
+                        ReadDesignProperties(designProperties);
+                    }
+                }
             }
         }
 
@@ -219,76 +200,49 @@ namespace Bolsover.DataBrowser
             // rowObject.AlibreModelUnits = designProperties.ModelUnits;
             // rowObject.AlibreExtMaterial =
             //     (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MATERIAL);
-            AlibreComment =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_COMMENT);
-
-            AlibreCostCenter =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_COST_CENTER);
-            AlibreCreatedBy =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_CREATED_BY);
-
+            AlibreComment = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_COMMENT);
+            AlibreCostCenter = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_COST_CENTER);
+            AlibreCreatedBy = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_CREATED_BY);
             var s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_CREATED_DATE);
             if (s != null)
             {
                 AlibreCreatedDate = DateTime.Parse((string) s);
             }
-
-            AlibreCreatingApplication =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty
-                    .AD_CREATING_APPLICATION);
-            AlibreDocumentNumber =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_DOCUMENT_NUMBER);
-
+            AlibreCreatingApplication = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_CREATING_APPLICATION);
+            AlibreDocumentNumber = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_DOCUMENT_NUMBER);
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_ENG_APPROVAL_DATE);
             if (s != null)
             {
                 AlibreEngApprovalDate = DateTime.Parse((string) s);
             }
-
-            AlibreEngApprovedBy =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_ENG_APPROVED_BY);
-            AlibreEstimatedCost =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_ESTIMATED_COST);
-            AlibreKeywords =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_KEYWORDS);
-            AlibreLastAuthor =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_LAST_AUTHOR);
+            AlibreEngApprovedBy = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_ENG_APPROVED_BY);
+            AlibreEstimatedCost = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_ESTIMATED_COST);
+            AlibreKeywords = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_KEYWORDS);
+            AlibreLastAuthor = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_LAST_AUTHOR);
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_LAST_UPDATE_DATE);
             if (s != null)
             {
                 AlibreLastUpdateDate = DateTime.Parse((string) s);
             }
-
-            AlibreMfgApprovedBy =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MFG_APPROVED_BY);
+            AlibreMfgApprovedBy = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MFG_APPROVED_BY);
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MFG_APPROVED_DATE);
             if (s != null)
             {
                 AlibreMfgApprovedDate = DateTime.Parse((string) s);
             }
-
             s = designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MODIFIED);
             if (s != null)
             {
                 AlibreModified = DateTime.Parse((string) s);
             }
-
-            AlibreProduct =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_PRODUCT);
-            AlibreReceivedFrom =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_RECEIVED_FROM);
-            AlibreRevision =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_REVISION);
-            AlibreStockSize =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_STOCK_SIZE);
-            AlibreSupplier =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_SUPPLIER);
-            AlibreTitle =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_TITLE);
-            AlibreVendor =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_VENDOR);
-            AlibreWebLink =
-                (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_WEBLINK);
+            AlibreProduct = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_PRODUCT);
+            AlibreReceivedFrom = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_RECEIVED_FROM);
+            AlibreRevision = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_REVISION);
+            AlibreStockSize = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_STOCK_SIZE);
+            AlibreSupplier = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_SUPPLIER);
+            AlibreTitle = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_TITLE);
+            AlibreVendor = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_VENDOR);
+            AlibreWebLink = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_WEBLINK);
         }
 
         public override bool Equals(object obj)
@@ -353,20 +307,15 @@ namespace Bolsover.DataBrowser
         //     }
         // }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+       
         public IEnumerable GetFileSystemInfos()
         {
-            if (IsDirectory)
+            if (!IsDirectory) return Children;
+            foreach (var x in AsDirectory.GetFileSystemInfos())
             {
-                foreach (var x in AsDirectory.GetFileSystemInfos())
-                {
-                    var alibreFileSystem = new AlibreFileSystem(x);
+                var alibreFileSystem = new AlibreFileSystem(x);
 
-                    Children.Add(alibreFileSystem);
-                }
+                Children.Add(alibreFileSystem);
             }
 
             return Children;
@@ -382,20 +331,15 @@ namespace Bolsover.DataBrowser
         private void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            handler?.Invoke(this, e);
         }
 
 
         private void SetPropertyField<T>(string propertyName, ref T field, T newValue)
         {
-            if (!EqualityComparer<T>.Default.Equals(field, newValue))
-            {
-                field = newValue;
-                OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
-            }
+            if (EqualityComparer<T>.Default.Equals(field, newValue)) return;
+            field = newValue;
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
     }
 }

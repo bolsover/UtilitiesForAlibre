@@ -93,6 +93,10 @@ namespace Bolsover.Involute.Calculator
             const double epsilonBeta = 0d; // Axial Contact Ratio not relevant for spur gears
             gearOut.ContactRatioBeta = epsilonBeta; // Contact Ratio
             pinionOut.ContactRatioBeta = epsilonBeta; // Contact Ratio
+            
+            var epsilonGamma = CalculateContactRatioAlpha(_designInputParams); // Contact Ratio gamma ia always equal to alpha
+            gearOut.ContactRatioGamma = epsilonGamma; // Contact Ratio
+            pinionOut.ContactRatioGamma = epsilonGamma; // Contact Ratio
 
             var h = CalculateWholeDepth(_designInputParams); // Whole Depth of Pinion and Gear
             pinionOut.WholeDepth = h; // Whole Depth of Pinion

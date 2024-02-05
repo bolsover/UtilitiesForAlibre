@@ -31,7 +31,7 @@ namespace Bolsover.DataBrowser{
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-             this.treeListView = new BrightIdeasSoftware.TreeListView();
+            this.treeListView = new BrightIdeasSoftware.TreeListView();
             this.olvColumnName = new BrightIdeasSoftware.OLVColumn();
             this.olvColumnType = new BrightIdeasSoftware.OLVColumn();
             this.olvColumnModified = new BrightIdeasSoftware.OLVColumn();
@@ -67,7 +67,7 @@ namespace Bolsover.DataBrowser{
             this.buttonSaveState = new System.Windows.Forms.Button();
             this.buttonRestoreState = new System.Windows.Forms.Button();
             this.buttonPartNo = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize) (this.treeListView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListView)).BeginInit();
             this.SuspendLayout();
             // 
             // treeListView
@@ -102,25 +102,27 @@ namespace Bolsover.DataBrowser{
             this.treeListView.AllColumns.Add(this.olvColumnAlibreVendor);
             this.treeListView.AllColumns.Add(this.olvColumnAlibreWebLink);
             this.treeListView.AllowColumnReorder = true;
-            this.treeListView.AlternateRowBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (255)))), ((int) (((byte) (192)))));
-            this.treeListView.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeListView.AlternateRowBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.treeListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.treeListView.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
             this.treeListView.CellEditUseWholeCell = false;
             this.treeListView.CellVerticalAlignment = System.Drawing.StringAlignment.Near;
             this.treeListView.CheckBoxes = true;
             this.treeListView.CheckedAspectName = "IsChecked";
-            this.treeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {this.olvColumnName, this.olvColumnType, this.olvColumnModified, this.olvColumnAlibreDescription, this.olvColumnAlibrePartNo, this.olvColumnAlibreMaterial, this.olvColumnAlibreComment, this.olvColumnAlibreLastUpdateDate, this.olvColumnAlibreLastAuthor, this.olvColumnAlibreKeywords, this.olvColumnAlibreEstimatedCost, this.olvColumnAlibreEngApprovedBy, this.olvColumnAlibreEngApprovalDate, this.olvColumnAlibreDocumentNumber, this.olvColumnAlibreCreatingApplication, this.olvColumnAlibreCreatedDate, this.olvColumnAlibreCreatedBy, this.olvColumnAlibreCostCenter, this.olvColumnAlibreMfgApprovedBy, this.olvColumnAlibreMfgApprovedDate, this.olvColumnAlibreModified, this.olvColumnAlibreProduct, this.olvColumnAlibreReceivedFrom, this.olvColumnAlibreRevision, this.olvColumnAlibreStockSize, this.olvColumnAlibreSupplier, this.olvColumnAlibreTitle, this.olvColumnAlibreVendor, this.olvColumnAlibreWebLink});
+            this.treeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.olvColumnName, this.olvColumnType, this.olvColumnModified, this.olvColumnAlibreDescription, this.olvColumnAlibrePartNo, this.olvColumnAlibreMaterial, this.olvColumnAlibreComment, this.olvColumnAlibreLastUpdateDate, this.olvColumnAlibreLastAuthor, this.olvColumnAlibreKeywords, this.olvColumnAlibreEstimatedCost, this.olvColumnAlibreEngApprovedBy, this.olvColumnAlibreEngApprovalDate, this.olvColumnAlibreDocumentNumber, this.olvColumnAlibreCreatingApplication, this.olvColumnAlibreCreatedDate, this.olvColumnAlibreCreatedBy, this.olvColumnAlibreCostCenter, this.olvColumnAlibreMfgApprovedBy, this.olvColumnAlibreMfgApprovedDate, this.olvColumnAlibreModified, this.olvColumnAlibreProduct, this.olvColumnAlibreReceivedFrom, this.olvColumnAlibreRevision, this.olvColumnAlibreStockSize, this.olvColumnAlibreSupplier, this.olvColumnAlibreTitle, this.olvColumnAlibreVendor, this.olvColumnAlibreWebLink });
             this.treeListView.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeListView.ForeColor = System.Drawing.SystemColors.WindowText;
             this.treeListView.GridLines = true;
             this.treeListView.HideSelection = false;
             this.treeListView.HierarchicalCheckboxes = true;
             this.treeListView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.treeListView.Location = new System.Drawing.Point(12, 12);
+            this.treeListView.Location = new System.Drawing.Point(16, 15);
+            this.treeListView.Margin = new System.Windows.Forms.Padding(5);
             this.treeListView.Name = "treeListView";
+            this.treeListView.ShowCommandMenuOnRightClick = true;
             this.treeListView.ShowGroups = false;
             this.treeListView.ShowImagesOnSubItems = true;
-            this.treeListView.Size = new System.Drawing.Size(890, 477);
+            this.treeListView.Size = new System.Drawing.Size(1451, 773);
             this.treeListView.TabIndex = 0;
             this.treeListView.TintSortColumn = true;
             this.treeListView.UseCompatibleStateImageBehavior = false;
@@ -284,10 +286,11 @@ namespace Bolsover.DataBrowser{
             // 
             // checkBoxFilter
             // 
-            this.checkBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxFilter.Location = new System.Drawing.Point(748, 495);
+            this.checkBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxFilter.Location = new System.Drawing.Point(1263, 796);
+            this.checkBoxFilter.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxFilter.Name = "checkBoxFilter";
-            this.checkBoxFilter.Size = new System.Drawing.Size(154, 20);
+            this.checkBoxFilter.Size = new System.Drawing.Size(205, 35);
             this.checkBoxFilter.TabIndex = 4;
             this.checkBoxFilter.Text = "Filter For Alibre Designs";
             this.checkBoxFilter.UseVisualStyleBackColor = true;
@@ -295,11 +298,12 @@ namespace Bolsover.DataBrowser{
             // 
             // checkBoxCopy
             // 
-            this.checkBoxCopy.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCopy.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
-            this.checkBoxCopy.Location = new System.Drawing.Point(614, 494);
+            this.checkBoxCopy.Location = new System.Drawing.Point(1085, 795);
+            this.checkBoxCopy.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCopy.Name = "checkBoxCopy";
-            this.checkBoxCopy.Size = new System.Drawing.Size(128, 22);
+            this.checkBoxCopy.Size = new System.Drawing.Size(171, 35);
             this.checkBoxCopy.TabIndex = 5;
             this.checkBoxCopy.Text = "Copy to All Selected";
             this.checkBoxCopy.UseVisualStyleBackColor = true;
@@ -307,19 +311,21 @@ namespace Bolsover.DataBrowser{
             // 
             // progressLabel
             // 
-            this.progressLabel.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.progressLabel.Location = new System.Drawing.Point(12, 498);
+            this.progressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.progressLabel.Location = new System.Drawing.Point(16, 800);
+            this.progressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(286, 20);
+            this.progressLabel.Size = new System.Drawing.Size(381, 35);
             this.progressLabel.TabIndex = 6;
             this.progressLabel.Text = "Progress";
             // 
             // buttonSaveState
             // 
-            this.buttonSaveState.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSaveState.Location = new System.Drawing.Point(452, 493);
+            this.buttonSaveState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveState.Location = new System.Drawing.Point(869, 794);
+            this.buttonSaveState.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSaveState.Name = "buttonSaveState";
-            this.buttonSaveState.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveState.Size = new System.Drawing.Size(100, 35);
             this.buttonSaveState.TabIndex = 7;
             this.buttonSaveState.Text = "Save State";
             this.buttonSaveState.UseVisualStyleBackColor = true;
@@ -327,10 +333,11 @@ namespace Bolsover.DataBrowser{
             // 
             // buttonRestoreState
             // 
-            this.buttonRestoreState.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRestoreState.Location = new System.Drawing.Point(533, 493);
+            this.buttonRestoreState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRestoreState.Location = new System.Drawing.Point(977, 794);
+            this.buttonRestoreState.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRestoreState.Name = "buttonRestoreState";
-            this.buttonRestoreState.Size = new System.Drawing.Size(75, 23);
+            this.buttonRestoreState.Size = new System.Drawing.Size(100, 35);
             this.buttonRestoreState.TabIndex = 8;
             this.buttonRestoreState.Text = "Restore State";
             this.buttonRestoreState.UseVisualStyleBackColor = true;
@@ -338,10 +345,11 @@ namespace Bolsover.DataBrowser{
             // 
             // buttonPartNo
             // 
-            this.buttonPartNo.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPartNo.Location = new System.Drawing.Point(371, 493);
+            this.buttonPartNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPartNo.Location = new System.Drawing.Point(697, 794);
+            this.buttonPartNo.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPartNo.Name = "buttonPartNo";
-            this.buttonPartNo.Size = new System.Drawing.Size(75, 23);
+            this.buttonPartNo.Size = new System.Drawing.Size(164, 35);
             this.buttonPartNo.TabIndex = 9;
             this.buttonPartNo.Text = " Part No Config";
             this.buttonPartNo.UseVisualStyleBackColor = true;
@@ -349,9 +357,9 @@ namespace Bolsover.DataBrowser{
             // 
             // DataBrowserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 530);
+            this.ClientSize = new System.Drawing.Size(1487, 839);
             this.Controls.Add(this.buttonPartNo);
             this.Controls.Add(this.buttonRestoreState);
             this.Controls.Add(this.buttonSaveState);
@@ -359,10 +367,10 @@ namespace Bolsover.DataBrowser{
             this.Controls.Add(this.checkBoxCopy);
             this.Controls.Add(this.checkBoxFilter);
             this.Controls.Add(this.treeListView);
-            
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DataBrowserForm";
-            this.Text = "Data Browser";
-            ((System.ComponentModel.ISupportInitialize) (this.treeListView)).EndInit();
+            this.Text = "Data Browser for Alibre";
+            ((System.ComponentModel.ISupportInitialize)(this.treeListView)).EndInit();
             this.ResumeLayout(false);
         }
 

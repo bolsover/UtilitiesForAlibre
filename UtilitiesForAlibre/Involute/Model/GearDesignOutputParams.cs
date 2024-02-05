@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Bolsover.Involute.Model
 {
-    public class GearDesignOutputParams : IGearDesignOutputParams, INotifyPropertyChanged
+    public sealed class GearDesignOutputParams : IGearDesignOutputParams
     {
         private IGearDesignInputParams _gearDesignInputParams;
         private double _radialWorkingPressureAngle;
@@ -41,6 +41,7 @@ namespace Bolsover.Involute.Model
         private double _involuteFunction;
         private double _contactRatioAlpha;
         private double _contactRatioBeta;
+        private double _contactRatioGamma;
         private double _phi;
         private double _theta;
         private double _kappa;
@@ -207,7 +208,9 @@ namespace Bolsover.Involute.Model
 
         public double ContactRatioGamma
         {
-            get => _contactRatioAlpha + _contactRatioBeta;
+            get => _contactRatioGamma;
+            set => SetField(ref _contactRatioGamma, value);
+           
         }
 
         public double Phi
@@ -338,19 +341,22 @@ namespace Bolsover.Involute.Model
         }
 
       
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event GearChangedEventHandler GearChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnGearChanged([CallerMemberName] string propertyName = null, object value = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            GearChanged?.Invoke(this, new GearChangeEventArgs(propertyName, value));
         }
+        
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        private bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
-            OnPropertyChanged(propertyName);
+            OnGearChanged(propertyName, value);
             return true;
         }
     }
+
+    public delegate void GearChangedEventHandler(object sender, GearChangeEventArgs args);
 }

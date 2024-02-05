@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 namespace Bolsover.Involute.Model
 {
     
-    public class GearDesignInputParams : IGearDesignInputParams, INotifyPropertyChanged
+    public sealed class GearDesignInputParams : IGearDesignInputParams
     {
         private double _height;
         private double _module;
@@ -40,6 +40,8 @@ namespace Bolsover.Involute.Model
             HeightOfPitchLine = 0.0;
             Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
         }
+
+        
 
         public double Height
         {
@@ -117,18 +119,19 @@ namespace Bolsover.Involute.Model
 
         public IGearPairDesignInputParams GearPairDesign { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event  GearChangedEventHandler GearChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnGearChanged([CallerMemberName] string propertyName = null, object value = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            GearChanged?.Invoke(this, new GearChangeEventArgs(propertyName, value));
         }
+        
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        private bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
-            OnPropertyChanged(propertyName);
+            OnGearChanged(propertyName, value);
             return true;
         }
     }

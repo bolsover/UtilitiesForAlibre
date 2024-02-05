@@ -51,7 +51,7 @@ namespace Bolsover.Involute.View
             this.ClientSize = new System.Drawing.Size(1634, 953);
             this.Controls.Add(this.gearView);
             this.Name = "InvoluteGearForm";
-            this.Text = "Advanced Spur/Helical Gears";
+            this.Text = "Involute Spur & Helical Gears";
             this.ResumeLayout(false);
             this.PerformLayout();
         }

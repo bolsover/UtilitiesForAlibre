@@ -389,7 +389,7 @@ namespace Bolsover.Involute.View
             this.adjustmentsLabel.Name = "adjustmentsLabel";
             this.adjustmentsLabel.Size = new System.Drawing.Size(736, 37);
             this.adjustmentsLabel.TabIndex = 31;
-            this.adjustmentsLabel.Text = "Profile and Centre Distance Adjustments";
+            this.adjustmentsLabel.Text = "Backlash, Profile and Centre Distance Adjustments";
             this.adjustmentsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // operatingCentreDistanceLabel
@@ -489,7 +489,7 @@ namespace Bolsover.Involute.View
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(736, 37);
             this.label3.TabIndex = 48;
-            this.label3.Text = "Backlash and Relief";
+            this.label3.Text = "Root and Tip Relief";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // itemLabel
@@ -685,6 +685,7 @@ namespace Bolsover.Involute.View
             this.backlashLabel.Size = new System.Drawing.Size(215, 37);
             this.backlashLabel.TabIndex = 28;
             this.backlashLabel.Text = "Circular Backlash";
+            this.toolTip.SetToolTip(this.backlashLabel, "Backlash set here will be appied to BOTH gears irrespective of any profile shift." + ".");
             // 
             // circularBacklashSymbolLabel
             // 
@@ -718,6 +719,7 @@ namespace Bolsover.Involute.View
             this.profileShiftLabel.Size = new System.Drawing.Size(215, 37);
             this.profileShiftLabel.TabIndex = 34;
             this.profileShiftLabel.Text = "Profile Shift";
+            this.toolTip.SetToolTip(this.profileShiftLabel, "Profile shifts set here should sum to the calculated total required. ");
             // 
             // profileShiftSymbolLabel
             // 
@@ -737,7 +739,7 @@ namespace Bolsover.Involute.View
             this.pinionProfileShiftNumericUpDown.Location = new System.Drawing.Point(450, 522);
             this.pinionProfileShiftNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.pinionProfileShiftNumericUpDown.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
-            this.pinionProfileShiftNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, -2147483648 });
+            this.pinionProfileShiftNumericUpDown.Minimum = new decimal(new int[] { 5, 0, 0, -2147418112 });
             this.pinionProfileShiftNumericUpDown.Name = "pinionProfileShiftNumericUpDown";
             this.pinionProfileShiftNumericUpDown.Size = new System.Drawing.Size(140, 22);
             this.pinionProfileShiftNumericUpDown.TabIndex = 60;
@@ -751,7 +753,7 @@ namespace Bolsover.Involute.View
             this.gearProfileShiftNumericUpDown.Location = new System.Drawing.Point(598, 522);
             this.gearProfileShiftNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.gearProfileShiftNumericUpDown.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
-            this.gearProfileShiftNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, -2147483648 });
+            this.gearProfileShiftNumericUpDown.Minimum = new decimal(new int[] { 5, 0, 0, -2147418112 });
             this.gearProfileShiftNumericUpDown.Name = "gearProfileShiftNumericUpDown";
             this.gearProfileShiftNumericUpDown.Size = new System.Drawing.Size(142, 22);
             this.gearProfileShiftNumericUpDown.TabIndex = 61;
@@ -791,6 +793,7 @@ namespace Bolsover.Involute.View
             // 
             // noteLabel
             // 
+            this.noteLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tableLayoutPanel1.SetColumnSpan(this.noteLabel, 4);
             this.noteLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noteLabel.Location = new System.Drawing.Point(4, 629);
@@ -844,7 +847,7 @@ namespace Bolsover.Involute.View
             // 
             // dataTextBox
             // 
-            this.dataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dataTextBox.Font = new System.Drawing.Font("Cascadia Code", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataTextBox.Location = new System.Drawing.Point(758, 0);
             this.dataTextBox.Margin = new System.Windows.Forms.Padding(5);

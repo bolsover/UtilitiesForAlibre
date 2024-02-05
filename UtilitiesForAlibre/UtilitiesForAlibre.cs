@@ -126,7 +126,7 @@ namespace Bolsover
                 MenuIdGear => "Gears",
                 SubmenuIdDataBrowser => "Data Browser",
                 SubmenuIdUtilsCycloidalGear => "Cycloidal Gears Open/Close",
-                SubmenuIdUtilsAdvancedGear => "Spur & Helical Gears",
+                SubmenuIdUtilsAdvancedGear => "Involute Spur & Helical Gears",
                 SubmenuIdHelpAbout => "About",
                 SubmenuIdUtilsPlaneFinder => "Sketch Plane Finder Open/Close",
                 SubmenuIdUtilsDataViewer => "Property Viewer Open/Close",

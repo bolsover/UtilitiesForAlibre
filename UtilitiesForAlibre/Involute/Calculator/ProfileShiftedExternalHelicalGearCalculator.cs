@@ -103,6 +103,10 @@ namespace Bolsover.Involute.Calculator
             var epsilonBeta = CalculateContactRatioBeta(_designInputParams); // Contact Ratio
             gearOut.ContactRatioBeta = epsilonBeta; // Contact Ratio
             pinionOut.ContactRatioBeta = epsilonBeta; // Contact Ratio
+            
+            var epsilonGamma = CalculateContactRatioGamma(_designInputParams); // Contact Ratio
+            gearOut.ContactRatioGamma = epsilonGamma; // Contact Ratio
+            pinionOut.ContactRatioGamma = epsilonGamma; // Contact Ratio
 
             var mt = CalculateRadialModule(_designInputParams); // Radial Module
             gearOut.RadialModule = mt; // Radial Module
@@ -147,6 +151,13 @@ namespace Bolsover.Involute.Calculator
             var dp = CalculatePitchDiameter(_designInputParams); // Pitch Diameter of Pinion and Gear
             pinionOut.PitchCircleDiameter = dp.Item1; // Pitch Diameter of Pinion
             gearOut.PitchCircleDiameter = dp.Item2; // Pitch Diameter of Gear
+        }
+
+        private double CalculateContactRatioGamma(IGearPairDesignInputParams designInputParams)
+        {
+            var epsilonAlpha = CalculateContactRatioAlpha(designInputParams);
+            var epsilonBeta = CalculateContactRatioBeta(designInputParams);
+            return epsilonAlpha + epsilonBeta;
         }
 
         /// <summary>

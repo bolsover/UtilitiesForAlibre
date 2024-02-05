@@ -52,7 +52,7 @@ namespace Bolsover.DataBrowser
             InitPartNoConfig();
             FormClosing += (sender, args) =>
             {
-                ((DataBrowserForm) sender).Visible = false;
+                ((DataBrowserForm)sender).Visible = false;
                 args.Cancel = true;
             };
         }
@@ -67,18 +67,20 @@ namespace Bolsover.DataBrowser
             // 1. CanExpandGetter - Can a particular model be expanded?
             // 2. ChildrenGetter - Once the CanExpandGetter returns true, ChildrenGetter should return the list of children
             treeListView.CanExpandGetter = rowObject =>
-                ((AlibreFileSystem) rowObject).IsDirectory | ((AlibreFileSystem) rowObject).HasChildren();
+                ((AlibreFileSystem)rowObject).IsDirectory | ((AlibreFileSystem)rowObject).HasChildren();
             treeListView.ChildrenGetter = rowObject =>
             {
                 try
                 {
-                    return ((AlibreFileSystem) rowObject)
-                        .HasChildren() ? // return existing children if this branch has already been indexed.
-                            ((AlibreFileSystem) rowObject).Children : ((AlibreFileSystem) rowObject).GetFileSystemInfos();
+                    return ((AlibreFileSystem)rowObject)
+                        .HasChildren()
+                            ? // return existing children if this branch has already been indexed.
+                            ((AlibreFileSystem)rowObject).Children
+                            : ((AlibreFileSystem)rowObject).GetFileSystemInfos();
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    BeginInvoke((MethodInvoker) delegate { treeListView.Collapse(rowObject); });
+                    BeginInvoke((MethodInvoker)delegate { treeListView.Collapse(rowObject); });
                     return new ArrayList();
                 }
             };
@@ -173,7 +175,6 @@ namespace Bolsover.DataBrowser
                 var mc = new MaterialPicker(value.ToString());
                 mc.ItemHasBeenSelected += McOnItemHasBeenSelected;
                 return mc;
-
             });
         }
 
@@ -193,22 +194,14 @@ namespace Bolsover.DataBrowser
             olvColumnAlibreMaterial.AspectPutter = (editingRow, value) =>
             {
                 if (value.GetType() != typeof(MaterialNode)) return;
-                Console.WriteLine(value);
-                var designSession = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem) editingRow);
+            
+                var designSession = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)editingRow);
                 var designProperties = designSession.DesignProperties;
-                designProperties.Material = ((MaterialNode) value).Guid;
-                ((AlibreFileSystem) editingRow).AlibreMaterialGuid = ((MaterialNode) value).Guid;
+                designProperties.Material = ((MaterialNode)value).Guid;
+                ((AlibreFileSystem)editingRow).AlibreMaterialGuid = ((MaterialNode)value).Guid;
 
-                try
-                {
-                    designSession.Close(true);
-                    ((AlibreFileSystem) editingRow).AlibreMaterial = ((MaterialNode) value).NodeName;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
+                designSession.Close(true);
+                ((AlibreFileSystem)editingRow).AlibreMaterial = ((MaterialNode)value).NodeName;
             };
         }
 
@@ -220,43 +213,29 @@ namespace Bolsover.DataBrowser
          */
         private void ConfigureAspectPutters()
         {
-            ConfigreAlibreDescriptionAspectPutter();
-            ConfigreAlibrePartNoAspectPutter();
+            ConfigureAlibreDescriptionAspectPutter();
+            ConfigureAlibrePartNoAspectPutter();
             ConfigureAlibreModifiedAspectPutter();
             ConfigureAlibreMaterialAspectPutter();
             ConfigureColumnAspectPutter(olvColumnAlibreComment, ADExtendedDesignProperty.AD_COMMENT, typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreCreatedDate, ADExtendedDesignProperty.AD_CREATED_DATE,
-                typeof(DateTime));
+            ConfigureColumnAspectPutter(olvColumnAlibreCreatedDate, ADExtendedDesignProperty.AD_CREATED_DATE, typeof(DateTime));
             // ConfigureColumnAspectPutter(olvColumnAlibreMaterial, ADExtendedDesignProperty.AD_MATERIAL, typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreCostCenter, ADExtendedDesignProperty.AD_COST_CENTER,
-                typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreCreatedBy, ADExtendedDesignProperty.AD_CREATED_BY,
-                typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreCreatingApplication,
-                ADExtendedDesignProperty.AD_CREATING_APPLICATION, typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreDocumentNumber, ADExtendedDesignProperty.AD_DOCUMENT_NUMBER,
-                typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreEngApprovalDate, ADExtendedDesignProperty.AD_ENG_APPROVAL_DATE,
-                typeof(DateTime));
-            ConfigureColumnAspectPutter(olvColumnAlibreEngApprovedBy, ADExtendedDesignProperty.AD_ENG_APPROVED_BY,
-                typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreEstimatedCost, ADExtendedDesignProperty.AD_ESTIMATED_COST,
-                typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreCostCenter, ADExtendedDesignProperty.AD_COST_CENTER, typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreCreatedBy, ADExtendedDesignProperty.AD_CREATED_BY, typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreCreatingApplication, ADExtendedDesignProperty.AD_CREATING_APPLICATION, typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreDocumentNumber, ADExtendedDesignProperty.AD_DOCUMENT_NUMBER, typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreEngApprovalDate, ADExtendedDesignProperty.AD_ENG_APPROVAL_DATE, typeof(DateTime));
+            ConfigureColumnAspectPutter(olvColumnAlibreEngApprovedBy, ADExtendedDesignProperty.AD_ENG_APPROVED_BY, typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreEstimatedCost, ADExtendedDesignProperty.AD_ESTIMATED_COST, typeof(string));
             ConfigureColumnAspectPutter(olvColumnAlibreKeywords, ADExtendedDesignProperty.AD_KEYWORDS, typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreLastAuthor, ADExtendedDesignProperty.AD_LAST_AUTHOR,
-                typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreLastUpdateDate, ADExtendedDesignProperty.AD_LAST_UPDATE_DATE,
-                typeof(DateTime));
-            ConfigureColumnAspectPutter(olvColumnAlibreMfgApprovedBy, ADExtendedDesignProperty.AD_MFG_APPROVED_BY,
-                typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreMfgApprovedDate, ADExtendedDesignProperty.AD_MFG_APPROVED_DATE,
-                typeof(DateTime));
+            ConfigureColumnAspectPutter(olvColumnAlibreLastAuthor, ADExtendedDesignProperty.AD_LAST_AUTHOR, typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreLastUpdateDate, ADExtendedDesignProperty.AD_LAST_UPDATE_DATE, typeof(DateTime));
+            ConfigureColumnAspectPutter(olvColumnAlibreMfgApprovedBy, ADExtendedDesignProperty.AD_MFG_APPROVED_BY, typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreMfgApprovedDate, ADExtendedDesignProperty.AD_MFG_APPROVED_DATE, typeof(DateTime));
             ConfigureColumnAspectPutter(olvColumnAlibreProduct, ADExtendedDesignProperty.AD_PRODUCT, typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreReceivedFrom, ADExtendedDesignProperty.AD_RECEIVED_FROM,
-                typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreReceivedFrom, ADExtendedDesignProperty.AD_RECEIVED_FROM, typeof(string));
             ConfigureColumnAspectPutter(olvColumnAlibreRevision, ADExtendedDesignProperty.AD_REVISION, typeof(string));
-            ConfigureColumnAspectPutter(olvColumnAlibreStockSize, ADExtendedDesignProperty.AD_STOCK_SIZE,
-                typeof(string));
+            ConfigureColumnAspectPutter(olvColumnAlibreStockSize, ADExtendedDesignProperty.AD_STOCK_SIZE, typeof(string));
             ConfigureColumnAspectPutter(olvColumnAlibreSupplier, ADExtendedDesignProperty.AD_SUPPLIER, typeof(string));
             ConfigureColumnAspectPutter(olvColumnAlibreTitle, ADExtendedDesignProperty.AD_TITLE, typeof(string));
             ConfigureColumnAspectPutter(olvColumnAlibreVendor, ADExtendedDesignProperty.AD_VENDOR, typeof(string));
@@ -275,85 +254,65 @@ namespace Bolsover.DataBrowser
         {
             column.AspectPutter = (rowObject, value) =>
             {
-                var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem) rowObject);
+                var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)rowObject);
                 var designProperties = session.DesignProperties;
                 switch (extendedDesignProperty)
                 {
-                    case ADExtendedDesignProperty.AD_WEBLINK:
-                        ((AlibreFileSystem) rowObject).AlibreWebLink = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_WEBLINK: ((AlibreFileSystem)rowObject).AlibreWebLink = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_VENDOR:
-                        ((AlibreFileSystem) rowObject).AlibreVendor = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_VENDOR: ((AlibreFileSystem)rowObject).AlibreVendor = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_MFG_APPROVED_DATE:
-                        ((AlibreFileSystem) rowObject).AlibreMfgApprovedDate = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_MFG_APPROVED_DATE: ((AlibreFileSystem)rowObject).AlibreMfgApprovedDate = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_COMMENT:
-                        ((AlibreFileSystem) rowObject).AlibreComment = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_COMMENT: ((AlibreFileSystem)rowObject).AlibreComment = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_CREATED_DATE:
-                        ((AlibreFileSystem) rowObject).AlibreCreatedDate = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_CREATED_DATE: ((AlibreFileSystem)rowObject).AlibreCreatedDate = Cast(value, type);
                         break;
-
-                    case ADExtendedDesignProperty.AD_MATERIAL:
-                        ((AlibreFileSystem) rowObject).AlibreExtMaterial = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_MATERIAL: ((AlibreFileSystem)rowObject).AlibreExtMaterial = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_COST_CENTER:
-                        ((AlibreFileSystem) rowObject).AlibreCostCenter = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_COST_CENTER: ((AlibreFileSystem)rowObject).AlibreCostCenter = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_CREATED_BY:
-                        ((AlibreFileSystem) rowObject).AlibreCreatedBy = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_CREATED_BY: ((AlibreFileSystem)rowObject).AlibreCreatedBy = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_CREATING_APPLICATION:
-                        ((AlibreFileSystem) rowObject).AlibreCreatingApplication = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_CREATING_APPLICATION: ((AlibreFileSystem)rowObject).AlibreCreatingApplication = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_DOCUMENT_NUMBER:
-                        ((AlibreFileSystem) rowObject).AlibreDocumentNumber = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_DOCUMENT_NUMBER: ((AlibreFileSystem)rowObject).AlibreDocumentNumber = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_ENG_APPROVAL_DATE:
-                        ((AlibreFileSystem) rowObject).AlibreEngApprovalDate = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_ENG_APPROVAL_DATE: ((AlibreFileSystem)rowObject).AlibreEngApprovalDate = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_ENG_APPROVED_BY:
-                        ((AlibreFileSystem) rowObject).AlibreEngApprovedBy = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_ENG_APPROVED_BY: ((AlibreFileSystem)rowObject).AlibreEngApprovedBy = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_ESTIMATED_COST:
-                        ((AlibreFileSystem) rowObject).AlibreEstimatedCost = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_ESTIMATED_COST: ((AlibreFileSystem)rowObject).AlibreEstimatedCost = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_KEYWORDS:
-                        ((AlibreFileSystem) rowObject).AlibreKeywords = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_KEYWORDS: ((AlibreFileSystem)rowObject).AlibreKeywords = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_LAST_AUTHOR:
-                        ((AlibreFileSystem) rowObject).AlibreLastAuthor = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_LAST_AUTHOR: ((AlibreFileSystem)rowObject).AlibreLastAuthor = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_MFG_APPROVED_BY:
-                        ((AlibreFileSystem) rowObject).AlibreMfgApprovedBy = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_MFG_APPROVED_BY: ((AlibreFileSystem)rowObject).AlibreMfgApprovedBy = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_PRODUCT:
-                        ((AlibreFileSystem) rowObject).AlibreProduct = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_PRODUCT: ((AlibreFileSystem)rowObject).AlibreProduct = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_RECEIVED_FROM:
-                        ((AlibreFileSystem) rowObject).AlibreReceivedFrom = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_RECEIVED_FROM: ((AlibreFileSystem)rowObject).AlibreReceivedFrom = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_REVISION:
-                        ((AlibreFileSystem) rowObject).AlibreRevision = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_REVISION: ((AlibreFileSystem)rowObject).AlibreRevision = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_STOCK_SIZE:
-                        ((AlibreFileSystem) rowObject).AlibreStockSize = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_STOCK_SIZE: ((AlibreFileSystem)rowObject).AlibreStockSize = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_SUPPLIER:
-                        ((AlibreFileSystem) rowObject).AlibreSupplier = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_SUPPLIER: ((AlibreFileSystem)rowObject).AlibreSupplier = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_TITLE:
-                        ((AlibreFileSystem) rowObject).AlibreTitle = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_TITLE: ((AlibreFileSystem)rowObject).AlibreTitle = Cast(value, type);
                         break;
-                    case ADExtendedDesignProperty.AD_LAST_UPDATE_DATE:
-                        ((AlibreFileSystem) rowObject).AlibreLastUpdateDate = Cast(value, type);
+                    case ADExtendedDesignProperty.AD_LAST_UPDATE_DATE: ((AlibreFileSystem)rowObject).AlibreLastUpdateDate = Cast(value, type);
                         break;
+                    case ADExtendedDesignProperty.AD_MODIFIED:((AlibreFileSystem)rowObject).AlibreModified = Cast(value, type);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(extendedDesignProperty), extendedDesignProperty, null);
                 }
 
                 if (type == typeof(DateTime))
                 {
-                    value = ((DateTime) value).Date.ToShortDateString();
+                    value = ((DateTime)value).Date.ToShortDateString();
                     designProperties.ExtendedDesignProperty(extendedDesignProperty, value);
                 }
                 else
@@ -374,21 +333,13 @@ namespace Bolsover.DataBrowser
         {
             olvColumnAlibreModified.AspectPutter = (rowObject, value) =>
             {
-                ((AlibreFileSystem) rowObject).AlibreModified = (DateTime) value;
-                var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem) rowObject);
+                ((AlibreFileSystem)rowObject).AlibreModified = (DateTime)value;
+                var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)rowObject);
 
                 var designProperties = session.DesignProperties;
                 designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MODIFIED,
-                    ((DateTime) value).Date.ToShortDateString());
-                try
-                {
-                    session.Close(true);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
+                    ((DateTime)value).Date.ToShortDateString());
+                session.Close(true);
             };
         }
 
@@ -396,42 +347,26 @@ namespace Bolsover.DataBrowser
         /*
          * Configures the AspectPutter for the Part No column
          */
-        private void ConfigreAlibrePartNoAspectPutter()
+        private void ConfigureAlibrePartNoAspectPutter()
         {
             olvColumnAlibrePartNo.AspectPutter = (rowObject, value) =>
             {
-                ((AlibreFileSystem) rowObject).AlibrePartNo = (string) value;
-                if (((AlibreFileSystem) rowObject).Info.Extension.ToUpper().StartsWith(".AD_D"))
+                ((AlibreFileSystem)rowObject).AlibrePartNo = (string)value;
+                if (((AlibreFileSystem)rowObject).Info.Extension.ToUpper().StartsWith(".AD_D"))
                 {
-                    var session = AlibreConnector.RetrieveDrawingSessionForFile((AlibreFileSystem) rowObject);
+                    var session = AlibreConnector.RetrieveDrawingSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.Properties;
-                    designProperties.Number = (string) value;
+                    designProperties.Number = (string)value;
 
-                    try
-                    {
-                        session.Close(true);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                    session.Close(true);
                 }
                 else
                 {
-                    var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem) rowObject);
+                    var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.DesignProperties;
-                    designProperties.Number = (string) value;
+                    designProperties.Number = (string)value;
 
-                    try
-                    {
-                        session.Close(true);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                    session.Close(true);
                 }
             };
         }
@@ -440,42 +375,26 @@ namespace Bolsover.DataBrowser
         /*
          * Configures the AspectPutter for the Description column
          */
-        private void ConfigreAlibreDescriptionAspectPutter()
+        private void ConfigureAlibreDescriptionAspectPutter()
         {
             olvColumnAlibreDescription.AspectPutter = (rowObject, value) =>
             {
-                ((AlibreFileSystem) rowObject).AlibreDescription = (string) value;
-                if (((AlibreFileSystem) rowObject).Info.Extension.ToUpper().StartsWith(".AD_D"))
+                ((AlibreFileSystem)rowObject).AlibreDescription = (string)value;
+                if (((AlibreFileSystem)rowObject).Info.Extension.ToUpper().StartsWith(".AD_D"))
                 {
-                    var session = AlibreConnector.RetrieveDrawingSessionForFile((AlibreFileSystem) rowObject);
+                    var session = AlibreConnector.RetrieveDrawingSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.Properties;
-                    designProperties.Description = (string) value;
+                    designProperties.Description = (string)value;
 
-                    try
-                    {
-                        session.Close(true);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                    session.Close(true);
                 }
                 else
                 {
-                    var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem) rowObject);
+                    var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.DesignProperties;
-                    designProperties.Description = (string) value;
+                    designProperties.Description = (string)value;
 
-                    try
-                    {
-                        session.Close(true);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                    session.Close(true);
                 }
             };
         }
@@ -491,42 +410,36 @@ namespace Bolsover.DataBrowser
         private void ConfigureAspectGetters()
         {
             var helper = new SysImageListHelper(treeListView);
-            olvColumnName.ImageGetter = rowObject => helper.GetImageIndex(((AlibreFileSystem) rowObject).FullName);
-            olvColumnType.AspectGetter =
-                rowObject => ShellUtilities.GetFileType(((AlibreFileSystem) rowObject).FullName);
-            olvColumnModified.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).Info.LastWriteTime;
-            olvColumnAlibreDescription.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreDescription;
-            olvColumnAlibrePartNo.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibrePartNo;
-            olvColumnAlibreMaterial.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreMaterial;
+            olvColumnName.ImageGetter = rowObject => helper.GetImageIndex(((AlibreFileSystem)rowObject).FullName);
+            olvColumnType.AspectGetter = rowObject => ShellUtilities.GetFileType(((AlibreFileSystem)rowObject).FullName);
+            olvColumnModified.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).Info.LastWriteTime;
+            olvColumnAlibreDescription.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreDescription;
+            olvColumnAlibrePartNo.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibrePartNo;
+            olvColumnAlibreMaterial.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreMaterial;
             //  olvColumnAlibreExtMaterial.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreExtMaterial;
-            olvColumnAlibreComment.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreComment;
-            olvColumnAlibreCostCenter.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreCostCenter;
-            olvColumnAlibreCreatedBy.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreCreatedBy;
-            olvColumnAlibreCreatedDate.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreCreatedDate;
-            olvColumnAlibreCreatingApplication.AspectGetter =
-                rowObject => ((AlibreFileSystem) rowObject).AlibreCreatingApplication;
-            olvColumnAlibreDocumentNumber.AspectGetter =
-                rowObject => ((AlibreFileSystem) rowObject).AlibreDocumentNumber;
-            olvColumnAlibreEngApprovalDate.AspectGetter =
-                rowObject => ((AlibreFileSystem) rowObject).AlibreEngApprovalDate;
-            olvColumnAlibreEngApprovedBy.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreEngApprovedBy;
-            olvColumnAlibreEstimatedCost.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreEstimatedCost;
-            olvColumnAlibreKeywords.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreKeywords;
-            olvColumnAlibreLastAuthor.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreLastAuthor;
-            olvColumnAlibreLastUpdateDate.AspectGetter =
-                rowObject => ((AlibreFileSystem) rowObject).AlibreLastUpdateDate;
-            olvColumnAlibreMfgApprovedBy.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreMfgApprovedBy;
-            olvColumnAlibreMfgApprovedDate.AspectGetter =
-                rowObject => ((AlibreFileSystem) rowObject).AlibreMfgApprovedDate;
-            olvColumnAlibreModified.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreModified;
-            olvColumnAlibreProduct.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreProduct;
-            olvColumnAlibreReceivedFrom.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreReceivedFrom;
-            olvColumnAlibreRevision.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreRevision;
-            olvColumnAlibreStockSize.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreStockSize;
+            olvColumnAlibreComment.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreComment;
+            olvColumnAlibreCostCenter.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreCostCenter;
+            olvColumnAlibreCreatedBy.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreCreatedBy;
+            olvColumnAlibreCreatedDate.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreCreatedDate;
+            olvColumnAlibreCreatingApplication.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreCreatingApplication;
+            olvColumnAlibreDocumentNumber.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreDocumentNumber;
+            olvColumnAlibreEngApprovalDate.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreEngApprovalDate;
+            olvColumnAlibreEngApprovedBy.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreEngApprovedBy;
+            olvColumnAlibreEstimatedCost.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreEstimatedCost;
+            olvColumnAlibreKeywords.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreKeywords;
+            olvColumnAlibreLastAuthor.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreLastAuthor;
+            olvColumnAlibreLastUpdateDate.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreLastUpdateDate;
+            olvColumnAlibreMfgApprovedBy.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreMfgApprovedBy;
+            olvColumnAlibreMfgApprovedDate.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreMfgApprovedDate;
+            olvColumnAlibreModified.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreModified;
+            olvColumnAlibreProduct.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreProduct;
+            olvColumnAlibreReceivedFrom.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreReceivedFrom;
+            olvColumnAlibreRevision.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreRevision;
+            olvColumnAlibreStockSize.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreStockSize;
             olvColumnAlibreSupplier.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreSupplier;
-            olvColumnAlibreTitle.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreTitle;
-            olvColumnAlibreVendor.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreVendor;
-            olvColumnAlibreWebLink.AspectGetter = rowObject => ((AlibreFileSystem) rowObject).AlibreWebLink;
+            olvColumnAlibreTitle.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreTitle;
+            olvColumnAlibreVendor.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreVendor;
+            olvColumnAlibreWebLink.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreWebLink;
         }
 
         #endregion
@@ -542,10 +455,8 @@ namespace Bolsover.DataBrowser
         {
             if (checkBoxFilter.Checked)
             {
-                treeListView.ModelFilter = new ModelFilter(rowObject =>
-                {
-                    return ((AlibreFileSystem) rowObject).IsDirectory || ((AlibreFileSystem) rowObject).Info.Extension.StartsWith(".AD_");
-                });
+                treeListView.ModelFilter = new ModelFilter(rowObject => ((AlibreFileSystem)rowObject).IsDirectory ||
+                                                                        ((AlibreFileSystem)rowObject).Info.Extension.StartsWith(".AD_"));
             }
             else
             {
@@ -560,7 +471,7 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void checkBoxCopy_CheckedChanged(object sender, EventArgs e)
         {
-            _isCopyToAllSelected = ((CheckBox) sender).Checked;
+            _isCopyToAllSelected = ((CheckBox)sender).Checked;
         }
 
         /// <summary>
@@ -572,6 +483,7 @@ namespace Bolsover.DataBrowser
         private void buttonSaveState_Click(object sender, EventArgs e)
         {
             _treeListViewViewState = treeListView.SaveState();
+            
             var directorypath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                 "\\UtilitiesForAlibre";
             var filepath = directorypath + "\\table.settings";
@@ -627,11 +539,9 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void PartNoConfigMouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                _partNoConfig.Left = e.X + _partNoConfig.Left - _mouseDownLocation.X;
-                _partNoConfig.Top = e.Y + _partNoConfig.Top - _mouseDownLocation.Y;
-            }
+            if (e.Button != MouseButtons.Left) return;
+            _partNoConfig.Left = e.X + _partNoConfig.Left - _mouseDownLocation.X;
+            _partNoConfig.Top = e.Y + _partNoConfig.Top - _mouseDownLocation.Y;
         }
 
         /// <summary>
@@ -643,18 +553,10 @@ namespace Bolsover.DataBrowser
         /// </summary>
         /// <param name="sender"></param>
         /// /// <param name="selectedItemEventArgs"></param>
-       private void McOnItemHasBeenSelected(object sender, MaterialPicker.SelectedItemEventArgs selectedItemEventArgs)
+        private void McOnItemHasBeenSelected(object sender, MaterialPicker.SelectedItemEventArgs selectedItemEventArgs)
         {
-            try
-            {
-                var materialNode = selectedItemEventArgs.SelectedChoice;
-                olvColumnAlibreMaterial.AspectPutter.Invoke(_editingRow, materialNode);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-                throw;
-            }
+            var materialNode = selectedItemEventArgs.SelectedChoice;
+            olvColumnAlibreMaterial.AspectPutter.Invoke(_editingRow, materialNode);
         }
 
         /// <summary>
@@ -664,10 +566,8 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void HandleCellEditFinished(object sender, CellEditEventArgs e)
         {
-            if (_isCopyToAllSelected)
-            {
-                CopyToSelected(sender, e);
-            }
+            if (!_isCopyToAllSelected) return;
+            CopyToSelected(sender, e);
         }
 
 
@@ -684,7 +584,7 @@ namespace Bolsover.DataBrowser
         /// <param name="e"></param>
         private void HandleCellEditStarting(object sender, CellEditEventArgs e)
         {
-            var rowObject = (AlibreFileSystem) e.RowObject;
+            var rowObject = (AlibreFileSystem)e.RowObject;
             _editingRow = rowObject;
 
             // directory items are not editable
@@ -702,7 +602,6 @@ namespace Bolsover.DataBrowser
             }
 
             // prevent edits to anything other than sheet metal, part and assembly and drawing types
-            var extension = rowObject.Info.Extension.ToUpper();
             if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
                   rowObject.Info.Extension.ToUpper().StartsWith(".AD_ASM") |
                   rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP") |
@@ -781,11 +680,11 @@ namespace Bolsover.DataBrowser
         {
             foreach (var checkedObject in checkedObjects)
             {
-                var rowObject = (AlibreFileSystem) checkedObject;
+                var rowObject = (AlibreFileSystem)checkedObject;
                 if (e.Column == olvColumnAlibreMaterial && rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
                     rowObject.Info.Extension.ToUpper().StartsWith(".AD_SMP"))
                 {
-                    var afs = (AlibreFileSystem) e.RowObject;
+                    var afs = (AlibreFileSystem)e.RowObject;
                     var materialNode = new MaterialNode(afs.AlibreMaterial);
                     materialNode.Guid = afs.AlibreMaterialGuid;
                     progressLabel.Text = "Copy to " + rowObject.Name;
@@ -839,8 +738,7 @@ namespace Bolsover.DataBrowser
          */
         private void RestoreState()
         {
-            var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
-                                "\\UtilitiesForAlibre";
+            var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\UtilitiesForAlibre";
             var directoryInfo = new DirectoryInfo(directoryPath);
             if (!directoryInfo.Exists)
             {

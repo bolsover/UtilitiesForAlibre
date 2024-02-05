@@ -56,7 +56,7 @@
 
         double ContactRatioBeta { get; set; }
 
-        double ContactRatioGamma { get; }
+        double ContactRatioGamma { get; set; }
         
         double Phi { get; set; }
         

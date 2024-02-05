@@ -4,19 +4,12 @@ using System.Runtime.CompilerServices;
 
 namespace Bolsover.Involute.Model
 {
-    public class GearPairDesignOutputParams : IGearPairDesignOutputParams, INotifyPropertyChanged
+    public sealed class GearPairDesignOutputParams : IGearPairDesignOutputParams, INotifyPropertyChanged
     {
         private IGearPairDesignInputParams _gearPairDesignInputParams;
-        private IGearDesignOutputParams _pinionDesignOutput;
-        private IGearDesignOutputParams _gearDesignOutput;
+        private IGearDesignOutputParams _pinionDesignOutput = new GearDesignOutputParams();
+        private IGearDesignOutputParams _gearDesignOutput = new GearDesignOutputParams();
 
-        
-
-        public GearPairDesignOutputParams()
-        {
-            _pinionDesignOutput = new GearDesignOutputParams();
-            _gearDesignOutput = new GearDesignOutputParams();
-        }
 
         public IGearPairDesignInputParams GearPairDesignInputParams
         {
@@ -44,12 +37,12 @@ namespace Bolsover.Involute.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        private bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;

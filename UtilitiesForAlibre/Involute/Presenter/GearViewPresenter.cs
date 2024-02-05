@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Bolsover.Involute.Builder;
 using Bolsover.Involute.Calculator;
@@ -124,6 +125,31 @@ namespace Bolsover.Involute.Presenter
             _view.EditGearStyleEvent += ViewOnEditGearStyleEvent;
             _view.EditRootFilletFactorEvent += ViewOnEditRootFilletFactorEvent;
             _view.EditAddendumFilletFactorEvent += ViewOnEditAddendumFilletFactorEvent;
+            ((GearDesignOutputParams)_gearPairDesignOutputParams.GearDesignOutput).GearChanged += GearDesignOutputOnGearChanged;
+            ((GearDesignOutputParams)_gearPairDesignOutputParams.PinionDesignOutput).GearChanged += GearDesignOutputOnGearChanged;
+            Model.Gear.GearChanged += GearDesignInputParamsOnGearChanged;
+            Model.Pinion.GearChanged += GearDesignInputParamsOnGearChanged;
+        }
+
+        private void GearDesignInputParamsOnGearChanged(object sender, GearChangeEventArgs args)
+        {
+            _view.noteLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            _view.noteLabel.Text = "";
+        }
+
+        private void GearDesignOutputOnGearChanged(object sender, GearChangeEventArgs e)
+        {
+             Console.Out.WriteLine(e.Property);
+             if (e.Value is not double d) return;
+             if (!double.IsNaN(d) && !double.IsInfinity(d))
+             {
+                 // _view.noteLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+                 // _view.noteLabel.Text = "";
+                 return;
+             }
+             _view.noteLabel.Text = "Invalid gear parameters detected! Please check the gear parameters. " + e.Property + " " + e.Value;
+             _view.noteLabel.ForeColor = System.Drawing.Color.Red;
+            
         }
 
         private void Recalculate()

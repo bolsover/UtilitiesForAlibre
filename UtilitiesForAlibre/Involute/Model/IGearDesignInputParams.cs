@@ -24,6 +24,6 @@ namespace Bolsover.Involute.Model
 
         void SetDefaults();
 
-        event PropertyChangedEventHandler PropertyChanged;
+        event  GearChangedEventHandler GearChanged;
     }
 }
