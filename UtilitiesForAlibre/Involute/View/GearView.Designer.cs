@@ -88,8 +88,12 @@ namespace Bolsover.Involute.View
             this.assignedTotalProfileShiftSymbol = new System.Windows.Forms.Label();
             this.assignedTotalNormalProfileShiftTextBox = new System.Windows.Forms.TextBox();
             this.xModTextBox = new System.Windows.Forms.TextBox();
-            this.dataTextBox = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = new BrightIdeasSoftware.OLVColumn();
+            this.olvColumn2 = new BrightIdeasSoftware.OLVColumn();
+            this.olvColumn3 = new BrightIdeasSoftware.OLVColumn();
+            this.olvColumn4 = new BrightIdeasSoftware.OLVColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.moduleNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pressureAngleNumericUpDown)).BeginInit();
@@ -104,6 +108,7 @@ namespace Bolsover.Involute.View
             ((System.ComponentModel.ISupportInitialize)(this.normalBacklashNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pinionProfileShiftNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gearProfileShiftNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -195,7 +200,7 @@ namespace Bolsover.Involute.View
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 918);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 942);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // normalModuleSymbolLabel
@@ -704,7 +709,7 @@ namespace Bolsover.Involute.View
             this.normalBacklashNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             this.normalBacklashNumericUpDown.Location = new System.Drawing.Point(450, 485);
             this.normalBacklashNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.normalBacklashNumericUpDown.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            this.normalBacklashNumericUpDown.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             this.normalBacklashNumericUpDown.Name = "normalBacklashNumericUpDown";
             this.normalBacklashNumericUpDown.Size = new System.Drawing.Size(140, 22);
             this.normalBacklashNumericUpDown.TabIndex = 55;
@@ -845,28 +850,61 @@ namespace Bolsover.Involute.View
             this.xModTextBox.Size = new System.Drawing.Size(144, 22);
             this.xModTextBox.TabIndex = 75;
             // 
-            // dataTextBox
+            // objectListView1
             // 
-            this.dataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataTextBox.Font = new System.Drawing.Font("Cascadia Code", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataTextBox.Location = new System.Drawing.Point(758, 0);
-            this.dataTextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.dataTextBox.Multiline = true;
-            this.dataTextBox.Name = "dataTextBox";
-            this.dataTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.dataTextBox.Size = new System.Drawing.Size(874, 918);
-            this.dataTextBox.TabIndex = 65;
+            this.objectListView1.AllColumns.Add(this.olvColumn1);
+            this.objectListView1.AllColumns.Add(this.olvColumn2);
+            this.objectListView1.AllColumns.Add(this.olvColumn3);
+            this.objectListView1.AllColumns.Add(this.olvColumn4);
+            this.objectListView1.AlternateRowBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.objectListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.objectListView1.CellEditUseWholeCell = false;
+            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.olvColumn1, this.olvColumn2, this.olvColumn3, this.olvColumn4 });
+            this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.objectListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.objectListView1.HideSelection = false;
+            this.objectListView1.Location = new System.Drawing.Point(769, 0);
+            this.objectListView1.Name = "objectListView1";
+            this.objectListView1.ShowGroups = false;
+            this.objectListView1.ShowHeaderInAllViews = false;
+            this.objectListView1.ShowItemToolTips = true;
+            this.objectListView1.Size = new System.Drawing.Size(863, 939);
+            this.objectListView1.SortGroupItemsByPrimaryColumn = false;
+            this.objectListView1.TabIndex = 66;
+            this.objectListView1.UseAlternatingBackColors = true;
+            this.objectListView1.UseCompatibleStateImageBehavior = false;
+            this.objectListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.Text = "Item";
+            this.olvColumn1.Width = 252;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.Text = "Metric";
+            this.olvColumn2.Width = 167;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.Text = "Imperial";
+            this.olvColumn3.Width = 207;
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.Text = "Note";
+            this.olvColumn4.Width = 178;
             // 
             // GearView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.objectListView1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.dataTextBox);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GearView";
-            this.Size = new System.Drawing.Size(1636, 918);
+            this.Size = new System.Drawing.Size(1636, 942);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.moduleNumericUpDown)).EndInit();
@@ -882,9 +920,17 @@ namespace Bolsover.Involute.View
             ((System.ComponentModel.ISupportInitialize)(this.normalBacklashNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pinionProfileShiftNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gearProfileShiftNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
         }
+
+
+        public BrightIdeasSoftware.OLVColumn olvColumn1;
+        public BrightIdeasSoftware.OLVColumn olvColumn2;
+        public BrightIdeasSoftware.OLVColumn olvColumn3;
+        public BrightIdeasSoftware.OLVColumn olvColumn4;
+
+        public BrightIdeasSoftware.ObjectListView objectListView1;
 
         private System.Windows.Forms.ToolTip toolTip;
 
@@ -900,7 +946,6 @@ namespace Bolsover.Involute.View
         private System.Windows.Forms.Label totalProfileShiftLabel;
         public System.Windows.Forms.RadioButton extRadioButton;
         private System.Windows.Forms.GroupBox extIntGroupBox;
-        public System.Windows.Forms.TextBox dataTextBox;
         public System.Windows.Forms.Label alibreSettingLabel;
         public System.Windows.Forms.NumericUpDown pinionTeethNumericUpDown;
         public System.Windows.Forms.NumericUpDown pinionProfileShiftNumericUpDown;

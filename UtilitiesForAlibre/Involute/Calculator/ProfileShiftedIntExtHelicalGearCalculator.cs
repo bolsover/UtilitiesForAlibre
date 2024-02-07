@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using Bolsover.Involute.Model;
 using static Bolsover.Utils.ConversionUtils;
@@ -179,112 +180,10 @@ namespace Bolsover.Involute.Calculator
 
         private void SetupEventListeners()
         {
-            _designInputParams.PropertyChanged += (_, _) => Calculate();
+            _designInputParams.GearChanged += (_, _) => Calculate();
         }
 
-        /// <summary>
-        /// Generates a custom string containing the gear design parameters.
-        /// </summary>
-        /// <param name="pairDesignInputParams"></param>
-        /// <param name="pairDesignOutputParams"></param>
-        /// <returns>string containing the gear design parameters</returns>
-        public string CalculateGearString(IGearPairDesignInputParams pairDesignInputParams,
-            IGearPairDesignOutputParams pairDesignOutputParams)
-        {
-            var pinionIn = pairDesignInputParams.Pinion;
-            var pinionOut = pairDesignOutputParams.PinionDesignOutput;
-            var gearIn = pairDesignInputParams.Gear;
-            var gearOut = pairDesignOutputParams.GearDesignOutput;
-            var sb = new StringBuilder();
-            sb.AppendLine();
-            sb.AppendLine("Pinion");
-            sb.AppendLine("Gear Type: " + pinionIn.Style.ToString());
-            sb.AppendLine("Item:  ".PadRight(41) + "Metric".PadRight(21) + "Imperial");
-            sb.AppendLine("Module:  ".PadRight(41) + pinionIn.Module.ToString("0.000").PadRight(21) +
-                          (25.4 / pinionIn.Module).ToString("0.0000 in DP") + ", " +
-                          (Math.PI / (25.4 / pinionIn.Module)).ToString("0.0000 in CP"));
-            sb.AppendLine("Radial Module:  ".PadRight(41) + pinionOut.RadialModule.ToString("0.000").PadRight(21) +
-                          (25.4 / pinionOut.RadialModule).ToString("0.0000 in DP") + ", " +
-                          (Math.PI / (25.4 / pinionOut.RadialModule)).ToString("0.0000 in CP"));
-            AppendLineWithDefaultFormat(sb, "Teeth: ", pinionIn.Teeth);
-            AppendLineWithDegFormat(sb, "Pressure Angle: ", pinionIn.PressureAngle);
-            AppendLineWithDegFormat(sb, "Helix Angle beta: ", pinionIn.HelixAngle);
-            AppendLineWithDefaultFormat(sb, "Coefficient of Profile Shift: ", pinionIn.CoefficientOfProfileShift);
-            AppendLineWithMmInFormat(sb, "Pitch Diameter: ", pinionOut.PitchCircleDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Working Pitch Diameter: ", pinionOut.WorkingPitchDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Base Diameter: ", pinionOut.BaseCircleDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Outside Diameter: ", pinionOut.OutsideDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Root Diameter: ", pinionOut.RootCircleDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Addendum: ", pinionOut.Addendum, 25.4);
-            AppendLineWithMmInFormat(sb, "Dedendum: ", pinionOut.Dedendum, 25.4);
-            AppendLineWithMmInFormat(sb, "Whole Depth: ", pinionOut.WholeDepth, 25.4);
-            AppendLineWithDegFormat(sb, "Phi: ", pinionOut.Phi);
-            AppendLineWithDegFormat(sb, "Theta: ", pinionOut.Theta);
-            AppendLineWithDegFormat(sb, "Kappa: ", pinionOut.Kappa);
-
-            sb.AppendLine();
-            sb.AppendLine("Gear");
-            sb.AppendLine("Gear Type: " + gearIn.Style.ToString());
-            sb.AppendLine("Item:  ".PadRight(41) + "Metric".PadRight(21) + "Imperial");
-            sb.AppendLine("Module:  ".PadRight(41) + gearIn.Module.ToString("0.000").PadRight(21) +
-                          (25.4 / gearIn.Module).ToString("0.0000 in DP") + ", " +
-                          (Math.PI / (25.4 / gearIn.Module)).ToString("0.0000 in CP"));
-            sb.AppendLine("Radial Module:  ".PadRight(41) + gearOut.RadialModule.ToString("0.000").PadRight(21) +
-                          (25.4 / gearOut.RadialModule).ToString("0.0000 in DP") + ", " +
-                          (Math.PI / (25.4 / gearOut.RadialModule)).ToString("0.0000 in CP"));
-            AppendLineWithDefaultFormat(sb, "Teeth: ", gearIn.Teeth);
-            AppendLineWithDegFormat(sb, "Pressure Angle: ", gearIn.PressureAngle);
-            AppendLineWithDegFormat(sb, "Helix Angle beta: ", gearIn.HelixAngle);
-            AppendLineWithDefaultFormat(sb, "Coefficient of Profile Shift: ", gearIn.CoefficientOfProfileShift);
-            AppendLineWithMmInFormat(sb, "Pitch Diameter: ", gearOut.PitchCircleDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Working Pitch Diameter: ", gearOut.WorkingPitchDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Base Diameter: ", gearOut.BaseCircleDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Outside Diameter: ", gearOut.OutsideDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Root Diameter: ", gearOut.RootCircleDiameter, 25.4);
-            AppendLineWithMmInFormat(sb, "Addendum:", gearOut.Addendum, 25.4);
-            AppendLineWithMmInFormat(sb, "Dedendum: ", gearOut.Dedendum, 25.4);
-            AppendLineWithMmInFormat(sb, "Whole Depth: ", gearOut.WholeDepth, 25.4);
-            AppendLineWithDegFormat(sb, "Phi: ", gearOut.Phi);
-            AppendLineWithDegFormat(sb, "Theta: ", gearOut.Theta);
-            AppendLineWithDegFormat(sb, "Kappa: ", gearOut.Kappa);
-
-            sb.AppendLine();
-            sb.AppendLine("Gear Pair");
-            AppendLineWithMmInFormat(sb, "Working Centre Distance: ", pairDesignInputParams.WorkingCentreDistance, 25.4);
-            AppendLineWithMmInFormat(sb, "Standard Centre Distance: ", gearOut.CentreDistance, 25.4);
-            AppendLineWithDefaultFormat(sb, "Centre Distance Increment Factor: ", gearOut.CentreDistanceIncrementFactor);
-            AppendLineWithDefaultFormat(sb, "Diff Coefficient Of Profile Shift: ",
-                gearOut.DifferenceCoefficientOfProfileShift);
-            AppendLineWithDefaultFormat(sb, "Circular Backlash Required: ", gearIn.CircularBacklash);
-            AppendLineWithDefaultFormat(sb, "Backlash Adjustment Factor: ", gearOut.BacklashAdjustmentFactorXMod);
-            AppendLineWithDefaultFormat(sb, "Involute Function: ", gearOut.InvoluteFunction);
-            AppendLineWithDefaultFormat(sb, "Radial Involute Function: ", gearOut.RadialInvoluteFunction);
-            AppendLineWithDefaultFormat(sb, "Radial Working Involute Function: ", gearOut.RadialWorkingInvoluteFunction);
-            AppendLineWithDegFormat(sb, "Radial Pressure Angle: ", gearOut.RadialPressureAngle);
-            AppendLineWithDegFormat(sb, "Radial Working Pressure Angle: ", gearOut.RadialWorkingPressureAngle);
-            AppendLineWithDefaultFormat(sb, "Axial Pitch: ", gearOut.AxialPitch);
-            AppendLineWithDefaultFormat(sb, "ContactRatio alpha: ", gearOut.ContactRatioAlpha);
-            AppendLineWithDefaultFormat(sb, "ContactRatio beta: ", gearOut.ContactRatioBeta);
-            AppendLineWithDefaultFormat(sb, "ContactRatio gamma: ", gearOut.ContactRatioGamma);
-
-
-            return sb.ToString();
-        }
-
-        private static void AppendLineWithDefaultFormat(StringBuilder sb, string label, double value)
-        {
-            sb.AppendLine($"{label,-40} {value,-20:0.0000} {value:0.0000}");
-        }
-
-        private static void AppendLineWithDegFormat(StringBuilder sb, string label, double value)
-        {
-            sb.AppendLine($"{label,-40} {value,-20:0.0000°} {value:0.0000°}");
-        }
-
-        private static void AppendLineWithMmInFormat(StringBuilder sb, string label, double value, double coefficient = 1)
-        {
-            sb.AppendLine($"{label,-40} {value,-20:0.0000 mm} {value / coefficient:0.0000 in}");
-        }
+   
 
 
         /// <summary>
@@ -738,6 +637,77 @@ namespace Bolsover.Involute.Calculator
             var outerRingDiameter1 = Math.Ceiling(df.Item1) + m;
             var outerRingDiameter2 = Math.Ceiling(df.Item2) + m;
             return (outerRingDiameter1, outerRingDiameter2);
+        }
+
+        public IEnumerable<GearData> BuildGearData(IGearPairDesignInputParams pairDesignInputParams, IGearPairDesignOutputParams pairDesignOutputParams)
+        {
+            Calculate();
+            var pinionIn = pairDesignInputParams.Pinion;
+            var pinionOut = pairDesignOutputParams.PinionDesignOutput;
+            var gearIn = pairDesignInputParams.Gear;
+            var gearOut = pairDesignOutputParams.GearDesignOutput;
+            var gearData = new List<GearData>();
+            gearData.Add(new GearData("Pinion: " + pinionIn.Style, null, null, null, false));
+            gearData.Add(new GearData("Module", pinionIn.Module.ToString("0.000"), (25.4 / pinionIn.Module).ToString("0.0000 in DP"), (Math.PI / (25.4 / pinionIn.Module)).ToString("0.0000 in CP"), IsError(pinionIn.Module)));
+            gearData.Add(new GearData("Radial Module", pinionOut.RadialModule.ToString("0.000"), (25.4 / pinionOut.RadialModule).ToString("0.0000 in DP"), (Math.PI / (25.4 / pinionOut.RadialModule)).ToString("0.0000 in CP"), IsError(pinionOut.RadialModule)));
+            gearData.Add(new GearData("Teeth: ", pinionIn.Teeth.ToString("0"), null, null, false));
+            gearData.Add(new GearData("Pressure Angle: ", pinionIn.PressureAngle.ToString("0.000°"), pinionIn.PressureAngle.ToString("0.000°"), null, IsError(pinionIn.PressureAngle)));
+            gearData.Add(new GearData("Coefficient of Profile Shift: ", pinionIn.CoefficientOfProfileShift.ToString("0.0000"), pinionIn.CoefficientOfProfileShift.ToString("0.0000"), null,IsError(pinionIn.CoefficientOfProfileShift)));
+            gearData.Add(new GearData("Pitch Diameter: ", pinionOut.PitchCircleDiameter.ToString("0.000 mm"), (pinionOut.PitchCircleDiameter / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.PitchCircleDiameter)));
+            gearData.Add(new GearData("Working Pitch Diameter: ", pinionOut.WorkingPitchDiameter.ToString("0.000 mm"), (pinionOut.WorkingPitchDiameter / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.WorkingPitchDiameter)));
+            gearData.Add(new GearData("Base Diameter: ", pinionOut.BaseCircleDiameter.ToString("0.000 mm"), (pinionOut.BaseCircleDiameter / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.BaseCircleDiameter)));
+            gearData.Add(new GearData("Outside Diameter: ", pinionOut.OutsideDiameter.ToString("0.000 mm"), (pinionOut.OutsideDiameter / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.OutsideDiameter)));
+            gearData.Add(new GearData("Root Diameter: ", pinionOut.RootCircleDiameter.ToString("0.000 mm"), (pinionOut.RootCircleDiameter / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.RootCircleDiameter)));
+            gearData.Add(new GearData("Addendum: ", pinionOut.Addendum.ToString("0.000 mm"), (pinionOut.Addendum / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.Addendum)));
+            gearData.Add(new GearData("Dedendum: ", pinionOut.Dedendum.ToString("0.000 mm"), (pinionOut.Dedendum / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.Dedendum)));
+            gearData.Add(new GearData("Whole Depth: ", pinionOut.WholeDepth.ToString("0.000 mm"), (pinionOut.WholeDepth / 25.4).ToString("0.0000 in"), null,IsError(pinionOut.WholeDepth)));
+            gearData.Add(new GearData("Phi: ", pinionOut.Phi.ToString("0.000°"), pinionOut.Phi.ToString("0.000°"), null,IsError(pinionOut.Theta)));
+            gearData.Add(new GearData("Theta: ", pinionOut.Theta.ToString("0.000°"), pinionOut.Theta.ToString("0.000°"), null,IsError(pinionOut.Theta)));
+            gearData.Add(new GearData("Kappa: ", pinionOut.Kappa.ToString("0.000"), pinionOut.Kappa.ToString("0.000"), null,IsError(pinionOut.Kappa)));
+            gearData.Add(new GearData(" ", null, null, null, false));
+            gearData.Add(new GearData("Gear: " + gearIn.Style, null, null, null, false));
+            gearData.Add(new GearData("Module", gearIn.Module.ToString("0.000"), (25.4 / gearIn.Module).ToString("0.0000 in DP"), (Math.PI / (25.4 / gearIn.Module)).ToString("0.0000 in CP"),false));
+            gearData.Add(new GearData("Radial Module", gearOut.RadialModule.ToString("0.000"), (25.4 / gearOut.RadialModule).ToString("0.0000 in DP"), (Math.PI / (25.4 / gearOut.RadialModule)).ToString("0.0000 in CP"),IsError(gearOut.RadialModule)));
+
+            gearData.Add(new GearData("Teeth: ", gearIn.Teeth.ToString("0"), null, null, false));
+            gearData.Add(new GearData("Pressure Angle: ", gearIn.PressureAngle.ToString("0.000°"), gearIn.PressureAngle.ToString("0.000°"), null,IsError(gearIn.PressureAngle)));
+            gearData.Add(new GearData("Coefficient of Profile Shift: ", gearIn.CoefficientOfProfileShift.ToString("0.0000"), gearIn.CoefficientOfProfileShift.ToString("0.0000"), null,IsError(gearIn.CoefficientOfProfileShift)));
+            gearData.Add(new GearData("Pitch Diameter: ", gearOut.PitchCircleDiameter.ToString("0.000 mm"), (gearOut.PitchCircleDiameter / 25.4).ToString("0.0000 in"), null,IsError(gearOut.PitchCircleDiameter)));
+            gearData.Add(new GearData("Working Pitch Diameter: ", gearOut.WorkingPitchDiameter.ToString("0.000 mm"), (gearOut.WorkingPitchDiameter / 25.4).ToString("0.0000 in"), null,IsError(gearOut.WorkingPitchDiameter)));
+            gearData.Add(new GearData("Base Diameter: ", gearOut.BaseCircleDiameter.ToString("0.000 mm"), (gearOut.BaseCircleDiameter / 25.4).ToString("0.0000 in"), null,IsError(gearOut.BaseCircleDiameter)));
+            gearData.Add(new GearData("Outside Diameter: ", gearOut.OutsideDiameter.ToString("0.000 mm"), (gearOut.OutsideDiameter / 25.4).ToString("0.0000 in"), null,IsError(gearOut.OutsideDiameter)));
+            gearData.Add(new GearData("Root Diameter: ", gearOut.RootCircleDiameter.ToString("0.000 mm"), (gearOut.RootCircleDiameter / 25.4).ToString("0.0000 in"), null,IsError(gearOut.RootCircleDiameter)));
+            gearData.Add(new GearData("Addendum: ", gearOut.Addendum.ToString("0.000 mm"), (gearOut.Addendum / 25.4).ToString("0.0000 in"), null,IsError(gearOut.Addendum)));
+            gearData.Add(new GearData("Dedendum: ", gearOut.Dedendum.ToString("0.000 mm"), (gearOut.Dedendum / 25.4).ToString("0.0000 in"), null,IsError(gearOut.Dedendum)));
+            gearData.Add(new GearData("Whole Depth: ", gearOut.WholeDepth.ToString("0.000 mm"), (gearOut.WholeDepth / 25.4).ToString("0.0000 in"), null,IsError(gearOut.WholeDepth)));
+            gearData.Add(new GearData("Phi: ", gearOut.Phi.ToString("0.000°"), gearOut.Phi.ToString("0.000°"), null,IsError(gearOut.Phi)));
+            gearData.Add(new GearData("Theta: ", gearOut.Theta.ToString("0.000°"), gearOut.Theta.ToString("0.000°"), null,IsError(gearOut.Theta)));
+            gearData.Add(new GearData("Kappa: ", gearOut.Kappa.ToString("0.000"), gearOut.Kappa.ToString("0.000"), null,IsError(gearOut.Kappa)));
+            gearData.Add(new GearData(" ", null, null, null, false));
+            gearData.Add(new GearData("Gear Pair", null, null, null, false));
+            gearData.Add(new GearData("Working Centre Distance: ", pairDesignInputParams.WorkingCentreDistance.ToString("0.000 mm"), (pairDesignInputParams.WorkingCentreDistance / 25.4).ToString("0.0000 in"), null,IsError(pairDesignInputParams.WorkingCentreDistance)));
+            gearData.Add(new GearData("Standard Centre Distance: ", gearOut.CentreDistance.ToString("0.000 mm"), (gearOut.CentreDistance / 25.4).ToString("0.0000 in"), null,IsError(gearOut.CentreDistance)));
+            gearData.Add(new GearData("Centre Distance Increment Factor: ", gearOut.CentreDistanceIncrementFactor.ToString("0.0000"), gearOut.CentreDistanceIncrementFactor.ToString("0.0000"), null,IsError(gearOut.CentreDistanceIncrementFactor)));
+            gearData.Add(new GearData("Diff Coefficient Of Profile Shift: ", gearOut.DifferenceCoefficientOfProfileShift.ToString("0.0000"), gearOut.DifferenceCoefficientOfProfileShift.ToString("0.0000"), null,IsError(gearOut.DifferenceCoefficientOfProfileShift)));
+            gearData.Add(new GearData("Circular Backlash Required: ", gearIn.CircularBacklash.ToString("0.0000"), gearIn.CircularBacklash.ToString("0.0000"), null,IsError(gearIn.CircularBacklash)));
+            gearData.Add(new GearData("Backlash Adjustment Factor: ", gearOut.BacklashAdjustmentFactorXMod.ToString("0.0000"), gearOut.BacklashAdjustmentFactorXMod.ToString("0.0000"), null,IsError(gearOut.BacklashAdjustmentFactorXMod)));
+            gearData.Add(new GearData("Radial Involute Function: ", gearOut.RadialInvoluteFunction.ToString("0.0000"), gearOut.RadialInvoluteFunction.ToString("0.0000"), null,IsError(gearOut.RadialInvoluteFunction)));
+            gearData.Add(new GearData("Radial Working Involute Function: ", gearOut.RadialWorkingInvoluteFunction.ToString("0.0000"), gearOut.RadialWorkingInvoluteFunction.ToString("0.0000"), null,IsError(gearOut.RadialWorkingInvoluteFunction)));
+            gearData.Add(new GearData("Radial Pressure Angle: ", gearOut.RadialPressureAngle.ToString("0.000°"), gearOut.RadialPressureAngle.ToString("0.000°"), null,IsError(gearOut.RadialPressureAngle)));
+            gearData.Add(new GearData("Radial Working Pressure Angle: ", gearOut.RadialWorkingPressureAngle.ToString("0.000°"), gearOut.RadialWorkingPressureAngle.ToString("0.000°"), null,IsError(gearOut.RadialWorkingPressureAngle)));
+            gearData.Add(new GearData("Axial Pitch: ", gearOut.AxialPitch.ToString("0.000 mm"), (gearOut.AxialPitch / 25.4).ToString("0.0000 in"), null,IsError(gearOut.AxialPitch)));
+            gearData.Add(new GearData("Working Pressure Angle: ", gearOut.WorkingPressureAngle.ToString("0.000°"), gearOut.WorkingPressureAngle.ToString("0.000°"), null,IsError(gearOut.WorkingPressureAngle)));
+            gearData.Add(new GearData("Working Involute Function: ", gearOut.WorkingInvoluteFunction.ToString("0.0000"), gearOut.WorkingInvoluteFunction.ToString("0.0000"), null,IsError(gearOut.WorkingInvoluteFunction)));
+            gearData.Add(new GearData("ContactRatio alpha: ", gearOut.ContactRatioAlpha.ToString("0.0000"), gearOut.ContactRatioAlpha.ToString("0.0000"), null,IsError(gearOut.ContactRatioAlpha)));
+            gearData.Add(new GearData("ContactRatio beta: ", gearOut.ContactRatioBeta.ToString("0.0000"), gearOut.ContactRatioBeta.ToString("0.0000"), null,IsError(gearOut.ContactRatioBeta)));
+            gearData.Add(new GearData("ContactRatio gamma: ", gearOut.ContactRatioGamma.ToString("0.0000"), gearOut.ContactRatioGamma.ToString("0.0000"), null,IsError(gearOut.ContactRatioGamma)));
+            return gearData;
+        }
+        
+        private static bool IsError(double d)
+        {
+            return !(!double.IsNaN(d) && !double.IsInfinity(d));
+
         }
 
         public (string, string) CalculateFileName(IGearPairDesignInputParams pairDesignInputParams)

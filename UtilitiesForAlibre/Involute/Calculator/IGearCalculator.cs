@@ -1,4 +1,5 @@
-﻿using Bolsover.Involute.Model;
+﻿using System.Collections.Generic;
+using Bolsover.Involute.Model;
 
 namespace Bolsover.Involute.Calculator
 {
@@ -17,13 +18,13 @@ namespace Bolsover.Involute.Calculator
         /// <returns></returns>
         double CalculateProfileShiftModificationForBacklash(IGearPairDesignInputParams pairDesignInputParams);
 
-        /// <summary>
-        /// Generates a string representation of the gear pair design input and output parameters.
-        /// </summary>
-        /// <param name="pairDesignInputParams"></param>
-        /// <param name="pairDesignOutputParams"></param>
-        /// <returns></returns>
-        string CalculateGearString(IGearPairDesignInputParams pairDesignInputParams, IGearPairDesignOutputParams pairDesignOutputParams);
+        // /// <summary>
+        // /// Generates a string representation of the gear pair design input and output parameters.
+        // /// </summary>
+        // /// <param name="pairDesignInputParams"></param>
+        // /// <param name="pairDesignOutputParams"></param>
+        // /// <returns></returns>
+        // string CalculateGearString(IGearPairDesignInputParams pairDesignInputParams, IGearPairDesignOutputParams pairDesignOutputParams);
         
         /// <summary>
         /// Calculates the sum coefficient of profile shift x1+x2.
@@ -240,6 +241,8 @@ namespace Bolsover.Involute.Calculator
         /// </summary>
         /// <param name="designInputParams"></param>
         /// <returns>A tuple with outer ring diameters for pinion (item1) and gear (item2)</returns>
-        (double, double) CalculateOuterRingDiameter(IGearPairDesignInputParams designInputParams); 
+        (double, double) CalculateOuterRingDiameter(IGearPairDesignInputParams designInputParams);
+
+        IEnumerable<GearData> BuildGearData(IGearPairDesignInputParams pairDesignInputParams, IGearPairDesignOutputParams pairDesignOutputParams);
     }
 }

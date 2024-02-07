@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Bolsover.Involute.Builder;
 using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
 using Bolsover.Involute.View;
+using BrightIdeasSoftware;
 using static Bolsover.Involute.Images.GearLatexStrings;
 using static Bolsover.Involute.Model.GearStyle;
 using static Bolsover.Utils.LatexUtils;
@@ -41,7 +45,9 @@ namespace Bolsover.Involute.Presenter
             SetupLabelLatexImages();
             SetupEventListeners();
             SetupViewDefaults();
+            SetupObjectListView();
             Recalculate();
+           
         }
 
         private void SetupViewDefaults()
@@ -129,35 +135,58 @@ namespace Bolsover.Involute.Presenter
             ((GearDesignOutputParams)_gearPairDesignOutputParams.PinionDesignOutput).GearChanged += GearDesignOutputOnGearChanged;
             Model.Gear.GearChanged += GearDesignInputParamsOnGearChanged;
             Model.Pinion.GearChanged += GearDesignInputParamsOnGearChanged;
+            Model.GearChanged += GearDesignInputParamsOnGearChanged;
+            _view.objectListView1.FormatRow += delegate (object sender1, FormatRowEventArgs e) {
+                var data = (GearData)e.Model;
+                if (data.IsError) e.Item.BackColor = Color.Red;
+                
+            };
+        }
+
+        private void SetupObjectListView()
+        {
+            _view.olvColumn1.AspectGetter = rowObject => ((GearData)rowObject).Item;
+            _view.olvColumn2.AspectGetter = rowObject => ((GearData)rowObject).MetricValue;
+            _view.olvColumn3.AspectGetter = rowObject => ((GearData)rowObject).ImperialValue;
+            _view.olvColumn4.AspectGetter = rowObject => ((GearData)rowObject).Note;
+            
         }
 
         private void GearDesignInputParamsOnGearChanged(object sender, GearChangeEventArgs args)
         {
-            _view.noteLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            _view.noteLabel.Text = "";
+            var geardata = _gearCalculator.BuildGearData(Model, _gearPairDesignOutputParams);
+            var gearDatas = geardata.ToList();
+            _view.objectListView1.SetObjects(gearDatas);
+            bool flag = gearDatas.Any(gearData => gearData.IsError);
+            if (flag)
+            {
+                // _view.buildGearButton.Enabled = false;
+                // _view.buildPinionButton.Enabled = false;
+                _view.noteLabel.Text = "Please correct the errors before building the gear";
+                _view.noteLabel.ForeColor = Color.Red;
+            }
+            else
+            {
+                // _view.buildGearButton.Enabled = true;
+                // _view.buildPinionButton.Enabled = true;
+                _view.noteLabel.Text = "All values are within acceptable limits";
+                _view.noteLabel.ForeColor = Color.Black;
+            }
         }
+       
+        
 
         private void GearDesignOutputOnGearChanged(object sender, GearChangeEventArgs e)
         {
-             Console.Out.WriteLine(e.Property);
-             if (e.Value is not double d) return;
-             if (!double.IsNaN(d) && !double.IsInfinity(d))
-             {
-                 // _view.noteLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-                 // _view.noteLabel.Text = "";
-                 return;
-             }
-             _view.noteLabel.Text = "Invalid gear parameters detected! Please check the gear parameters. " + e.Property + " " + e.Value;
-             _view.noteLabel.ForeColor = System.Drawing.Color.Red;
-            
+         
         }
 
         private void Recalculate()
         {
             Calculate();
 
-            var xMod = _gearCalculator.CalculateProfileShiftModificationForBacklash(Model);
-            _view.dataTextBox.Text = _gearCalculator.CalculateGearString(Model, _gearPairDesignOutputParams);
+            
+            //_view.dataTextBox.Text = _gearCalculator.CalculateGearString(Model, _gearPairDesignOutputParams);
             _view.xModTextBox.Text = _gearCalculator.CalculateProfileShiftModificationForBacklash(Model).ToString("F4");
             var sumx = _gearPairDesignOutputParams.GearPairDesignInputParams.Gear.CoefficientOfProfileShift +
                       _gearPairDesignOutputParams.GearPairDesignInputParams.Pinion.CoefficientOfProfileShift;

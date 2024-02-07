@@ -59,34 +59,34 @@ namespace Bolsover
         /// </summary>
         private void BuildMenuTree()
         {
-            _menuIdsShortcuts = new []
+            _menuIdsShortcuts = new[]
             {
                 SubmenuIdUtilsShortcuts,
                 SubmenuIdUtilsKeyboard
             };
-            
-            _menuIdsUtils = new []
+
+            _menuIdsUtils = new[]
             {
-                SubMenuIdShortcuts ,
+                SubMenuIdShortcuts,
                 SubmenuIdDataBrowser,
                 SubmenuIdUtilsPlaneFinder,
                 SubmenuIdUtilsDataViewer
             };
-            _menuIdsRoot = new []
+            _menuIdsRoot = new[]
             {
                 MenuIdUtils,
                 MenuIdGear,
                 MenuIdHelp
             };
-            _menuIdsHelp = new []
+            _menuIdsHelp = new[]
             {
                 SubmenuIdHelpAbout
             };
 
-            _menuIdsGear = new []
+            _menuIdsGear = new[]
             {
                 SubmenuIdUtilsCycloidalGear,
-               SubmenuIdUtilsAdvancedGear
+                SubmenuIdUtilsAdvancedGear
             };
         }
 
@@ -147,7 +147,7 @@ namespace Bolsover
                 SubmenuIdUtilsDataViewer => "Property Viewer Open/Close",
                 SubMenuIdShortcuts => "Shortcuts",
                 SubmenuIdUtilsShortcuts => "Shortcuts Report",
-                SubmenuIdUtilsKeyboard=> "Keyboard layout",
+                SubmenuIdUtilsKeyboard => "Keyboard layout",
                 _ => ""
             };
         }
@@ -186,12 +186,12 @@ namespace Bolsover
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                         case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case    SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case    SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -209,8 +209,8 @@ namespace Bolsover
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case    SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case    SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -227,8 +227,8 @@ namespace Bolsover
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case    SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case    SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -257,8 +257,8 @@ namespace Bolsover
                 SubmenuIdUtilsDataViewer => "Opens/Closes Property Viewer",
                 SubmenuIdHelpAbout => "About Utilities for Alibre",
                 SubmenuIdUtilsShortcuts => "Shortcuts Report",
-                SubmenuIdUtilsKeyboard=> "Shortcuts Keyboard",
-            SubMenuIdShortcuts => "Shortcuts",
+                SubmenuIdUtilsKeyboard => "Shortcuts Keyboard",
+                SubMenuIdShortcuts => "Shortcuts",
                 _ => ""
             };
         }
@@ -314,50 +314,50 @@ namespace Bolsover
                 SubmenuIdUtilsPlaneFinder => DoPlaneFinder(session),
                 SubmenuIdUtilsDataViewer => DoAlibreDataViewer(session),
                 SubmenuIdHelpAbout => DoHelpAbout(),
-                SubmenuIdUtilsShortcuts =>  DoShortcuts(session),
-                SubmenuIdUtilsKeyboard=> DoKeyboard(session),
+                SubmenuIdUtilsShortcuts => DoShortcuts(),
+                SubmenuIdUtilsKeyboard => DoKeyboard(),
                 _ => null
             };
         }
 
         #endregion
-       
-        #region Shortcuts
-        private KeyboardForm keyboardForm;
 
-        private IAlibreAddOnCommand DoKeyboard(IADSession session)
+        #region Shortcuts
+
+        private KeyboardForm _keyboardForm;
+
+        private IAlibreAddOnCommand DoKeyboard()
         {
-            if (keyboardForm == null)
+            if (_keyboardForm == null)
             {
-                keyboardForm = KeyboardForm.Instance();
-                keyboardForm.keyboardControl1.ProfileComboBox.SelectedIndex = 0;
-                keyboardForm.TopMost = true;
+                _keyboardForm = KeyboardForm.Instance();
+                _keyboardForm.keyboardControl1.ProfileComboBox.SelectedIndex = 0;
+                _keyboardForm.TopMost = true;
             }
             else
             {
-                keyboardForm.Visible = true;
-                keyboardForm.TopMost = true;
+                _keyboardForm.Visible = true;
+                _keyboardForm.TopMost = true;
             }
 
             return null;
         }
 
-       
 
-        private KeyboardShortcutForm keyboardShortcutForm;
+        private KeyboardShortcutForm _keyboardShortcutForm;
 
-        private IAlibreAddOnCommand DoShortcuts(IADSession session)
+        private IAlibreAddOnCommand DoShortcuts()
         {
-            if (keyboardShortcutForm == null)
+            if (_keyboardShortcutForm == null)
             {
-                keyboardShortcutForm = KeyboardShortcutForm.Instance();
-                keyboardShortcutForm.comboBox1.SelectedIndex = 0;
-                keyboardShortcutForm.TopMost = true;
+                _keyboardShortcutForm = KeyboardShortcutForm.Instance();
+                _keyboardShortcutForm.comboBox1.SelectedIndex = 0;
+                _keyboardShortcutForm.TopMost = true;
             }
             else
             {
-                keyboardShortcutForm.Visible = true;
-                keyboardShortcutForm.TopMost = true;
+                _keyboardShortcutForm.Visible = true;
+                _keyboardShortcutForm.TopMost = true;
             }
 
             return null;
@@ -390,11 +390,12 @@ namespace Bolsover
             else
             {
                 alibreDataViewerAddOnCommand = new AlibreDataViewerAddOnCommand(session)
+                {
+                    AlibreDataViewer =
                     {
-                        AlibreDataViewer = {
-                            Visible = true
-                        }
-                    };
+                        Visible = true
+                    }
+                };
                 alibreDataViewerAddOnCommand.Terminate += AlibreDataViewerAddOnCommandOnTerminate;
                 _dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
             }
@@ -537,7 +538,6 @@ namespace Bolsover
         #endregion
 
         #region Bevel
-
 
         /// <summary>
         /// </summary>

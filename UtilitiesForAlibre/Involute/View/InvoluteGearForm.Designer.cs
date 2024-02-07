@@ -32,6 +32,7 @@ namespace Bolsover.Involute.View
         private void InitializeComponent()
         {
             this.gearView = new Bolsover.Involute.View.GearView();
+            this.olvColumn1 = new BrightIdeasSoftware.OLVColumn();
             this.SuspendLayout();
             // 
             // gearView
@@ -55,6 +56,8 @@ namespace Bolsover.Involute.View
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
 
         private Bolsover.Involute.View.GearView gearView;
 

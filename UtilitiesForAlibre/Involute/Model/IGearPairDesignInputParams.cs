@@ -9,6 +9,6 @@ namespace Bolsover.Involute.Model
         bool Auto { get; set; }
         double WorkingCentreDistance { get; set; } //working centre distance of gear pair - include allowance for profile shifted gears
 
-        event PropertyChangedEventHandler PropertyChanged;
+        event GearChangedEventHandler GearChanged;
     }
 }

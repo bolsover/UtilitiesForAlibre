@@ -461,36 +461,36 @@ namespace UnitTests.Involute.Calculator
           
         }
         
-        [Test]
-        public void ToGearString()
-        {
-            _designInputParams.WorkingCentreDistance = 13.1683;
-
-            _designInputParams.Gear.Module = 3.0;
-            _designInputParams.Gear.PressureAngle = 20.0;
-            _designInputParams.Gear.HelixAngle = 0.0;
-            _designInputParams.Gear.Teeth = 24.0;
-            _designInputParams.Gear.CoefficientOfProfileShift = 0.5;
-            _designInputParams.Gear.AddendumFilletFactor = 0.25;
-            _designInputParams.Gear.RootFilletFactor = 0.38;
-            _designInputParams.Gear.CircularBacklash = 0.0;
-            _designInputParams.Gear.Style = GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
-
-            _designInputParams.Pinion.Module = 3.0;
-            _designInputParams.Pinion.PressureAngle = 20.0;
-            _designInputParams.Pinion.HelixAngle = 0.0;
-            _designInputParams.Pinion.Teeth = 16.0;
-            _designInputParams.Pinion.CoefficientOfProfileShift = 0.0;
-            _designInputParams.Pinion.AddendumFilletFactor = 0.25;
-            _designInputParams.Pinion.RootFilletFactor = 0.38;
-            _designInputParams.Pinion.CircularBacklash = 0.0;
-            _designInputParams.Pinion.Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
-
-          _calculator.Calculate();
-          io.WriteLine(_calculator.CalculateGearString(_designInputParams, _designPairOutputParams));
-
-
-        }
+        // [Test]
+        // public void ToGearString()
+        // {
+        //     _designInputParams.WorkingCentreDistance = 13.1683;
+        //
+        //     _designInputParams.Gear.Module = 3.0;
+        //     _designInputParams.Gear.PressureAngle = 20.0;
+        //     _designInputParams.Gear.HelixAngle = 0.0;
+        //     _designInputParams.Gear.Teeth = 24.0;
+        //     _designInputParams.Gear.CoefficientOfProfileShift = 0.5;
+        //     _designInputParams.Gear.AddendumFilletFactor = 0.25;
+        //     _designInputParams.Gear.RootFilletFactor = 0.38;
+        //     _designInputParams.Gear.CircularBacklash = 0.0;
+        //     _designInputParams.Gear.Style = GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+        //
+        //     _designInputParams.Pinion.Module = 3.0;
+        //     _designInputParams.Pinion.PressureAngle = 20.0;
+        //     _designInputParams.Pinion.HelixAngle = 0.0;
+        //     _designInputParams.Pinion.Teeth = 16.0;
+        //     _designInputParams.Pinion.CoefficientOfProfileShift = 0.0;
+        //     _designInputParams.Pinion.AddendumFilletFactor = 0.25;
+        //     _designInputParams.Pinion.RootFilletFactor = 0.38;
+        //     _designInputParams.Pinion.CircularBacklash = 0.0;
+        //     _designInputParams.Pinion.Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
+        //
+        //   _calculator.Calculate();
+        //   io.WriteLine(_calculator.CalculateGearString(_designInputParams, _designPairOutputParams));
+        //
+        //
+        // }
         
         // zero backlash specified
         [Test]

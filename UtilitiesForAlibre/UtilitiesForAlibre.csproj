@@ -295,6 +295,7 @@
         <Compile Include="Involute\Calculator\ToothPointCalculator.cs" />
         <Compile Include="Involute\Images\GearLatexStrings.cs" />
         <Compile Include="Involute\Model\GearChangeEventArgs.cs" />
+        <Compile Include="Involute\Model\GearData.cs" />
         <Compile Include="Involute\Model\GearDesignOutputParams.cs" />
         <Compile Include="Involute\Model\GearPairDesignOutputParams.cs" />
         <Compile Include="Involute\Model\GearPoint.cs" />

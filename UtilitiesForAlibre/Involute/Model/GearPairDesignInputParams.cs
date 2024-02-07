@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Bolsover.Involute.Model
 {
-    public class GearPairDesignInputParams : IGearPairDesignInputParams, INotifyPropertyChanged
+    public sealed class GearPairDesignInputParams : IGearPairDesignInputParams
     {
         private IGearDesignInputParams _pinion;
         private IGearDesignInputParams _gearDesign;
@@ -44,18 +44,21 @@ namespace Bolsover.Involute.Model
             set =>  SetField(ref _workingCentreDistance, value);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public event  GearChangedEventHandler GearChanged;
+
+        private void OnGearChanged([CallerMemberName] string propertyName = null, object value = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            GearChanged?.Invoke(this, new GearChangeEventArgs(propertyName, value));
         }
+        
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        private bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
-            OnPropertyChanged(propertyName);
+            OnGearChanged(propertyName, value);
             return true;
         }
     }

@@ -121,5 +121,10 @@ namespace Bolsover.Involute.View
         {
             EditAddendumFilletFactorEvent?.Invoke(sender, e);
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
