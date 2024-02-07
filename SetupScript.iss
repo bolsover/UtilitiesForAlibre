@@ -35,16 +35,26 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 ; Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\AboutForm.resx"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Copyright and License.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\nexus.ico"; DestDir: "{app}"; Flags: ignoreversion
+
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\ObjectListView.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.dll.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\ObjectListView.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\ObjectListView.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.adc"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\MathML.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\WpfMath.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\XamlMath.Shared.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\PinionTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\WheelTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\HelicalPinionTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\HelicalWheelTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
+
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Bevel\Images\BevelGearTemplate.AD_PRT"; DestDir: "{app}\Bevel\Images\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Bevel\Images\Symbols.png"; DestDir: "{app}\Bevel\Images\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Bevel\Views\BevelGearForm.resx"; DestDir: "{app}\Bevel\Views\"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\DataBrowser\DataBrowser.resx"; DestDir: "{app}\DataBrowser\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Icons\*.*";  DestDir: "{app}\Icons\"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
