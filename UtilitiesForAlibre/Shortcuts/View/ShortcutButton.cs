@@ -1,17 +1,12 @@
-
-
-
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Bolsover.Shortcuts.Model;
 
 namespace Bolsover.Shortcuts.View
 {
-    public class ShortcutButton : System.Windows.Forms.Button
+    public class ShortcutButton : Button
     {
         private AlibreShortcut _alibreShortcut;
         
@@ -36,13 +31,7 @@ namespace Bolsover.Shortcuts.View
         
         public event PropertyChangedEventHandler PropertyChanged;
         
-        // private void BackgroundImageChanged(object sender, EventArgs e)
-        // {
-        //     var rc = new Rectangle(this.ClientSize.Width - backgroundImage.Width,
-        //         this.ClientSize.Height - backgroundImage.Height, 
-        //         backgroundImage.Width, backgroundImage.Height);
-        //     e.Graphics.DrawImage(backgroundImage, rc);
-        // }
+        
     }
     
    

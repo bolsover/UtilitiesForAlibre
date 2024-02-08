@@ -39,10 +39,7 @@ namespace Shortcuts.Shortcuts.View
 
         public static KeyboardShortcutForm Instance()
         {
-            if (_instance == null)
-            {
-                _instance = new KeyboardShortcutForm();
-            }
+            _instance ??= new KeyboardShortcutForm();
 
             _instance.Visible = true;
 
@@ -64,27 +61,25 @@ namespace Shortcuts.Shortcuts.View
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            var saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "HTML page|*.html";
             saveFileDialog1.Title = "Save as HTML Page";
             saveFileDialog1.ShowDialog();
 
             // If the file name is not an empty string open it for saving.
-            if (saveFileDialog1.FileName != "")
+            if (saveFileDialog1.FileName == "") return;
+            // Saves the Image via a FileStream created by the OpenFile method.
+            System.IO.FileStream fs =
+                (System.IO.FileStream) saveFileDialog1.OpenFile();
+
+            var documentStream = webBrowser1.DocumentStream;
+            if (documentStream != null)
             {
-                // Saves the Image via a FileStream created by the OpenFile method.
-                System.IO.FileStream fs =
-                    (System.IO.FileStream) saveFileDialog1.OpenFile();
-
-                System.IO.Stream documentStream = webBrowser1.DocumentStream;
-                if (documentStream != null)
-                {
-                    documentStream.CopyTo(fs);
-                    documentStream.Close();
-                }
-
-                fs.Close();
+                documentStream.CopyTo(fs);
+                documentStream.Close();
             }
+
+            fs.Close();
         }
     }
 }

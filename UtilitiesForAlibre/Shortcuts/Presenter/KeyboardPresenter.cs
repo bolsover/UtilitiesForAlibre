@@ -92,7 +92,7 @@ namespace Bolsover.Shortcuts.Presenter
                 // Try to get the KeyCodes object from the dictionary using the key from the shortcut list
                 // If the key is not found in the dictionary, skip the current iteration
                 // This is done because the Alibre user profile can contain 'broken' shortcuts that do not have a corresponding key code
-                if (!dictionary.TryGetValue(v.NonModifierCode, out KeyCodes kc))
+                if (!dictionary.TryGetValue(v.NonModifierCode, out var kc))
                 {
                     continue;
                 }
@@ -127,11 +127,11 @@ namespace Bolsover.Shortcuts.Presenter
         /// <param name="image2"></param>
         private void SetButtonImages(Button button, Image image1, Image image2)
         {
-            int width = button.Width - button.Margin.Left - button.Margin.Right;
-            int height = Math.Max(image1.Height, image2.Height);
+            var width = button.Width - button.Margin.Left - button.Margin.Right;
+            var height = Math.Max(image1.Height, image2.Height);
 
-            Bitmap bitmap = new Bitmap(width, height);
-            using (Graphics g = Graphics.FromImage(bitmap))
+            var bitmap = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(bitmap))
             {
                 // Draw image1 at bottom-left
                 g.DrawImage(image1, 0, height - image1.Height);
@@ -243,7 +243,7 @@ namespace Bolsover.Shortcuts.Presenter
         {
             foreach (var key in KeyButtons.ButtonDictionary(_view))
             {
-                key.Value.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+                key.Value.TextAlign = ContentAlignment.TopLeft;
             }
         }
 
@@ -304,7 +304,7 @@ namespace Bolsover.Shortcuts.Presenter
             KeyButtons.GetButton(_view, "WindowKey").Enabled = false;
         }
 
-        private void DoDataBinding(Control key, string keyTextName)
+        private static void DoDataBinding(Control key, string keyTextName)
         {
             key.DataBindings.Add(new Binding("Text", new KeyText(), keyTextName, true, DataSourceUpdateMode.OnPropertyChanged));
         }
@@ -331,17 +331,7 @@ namespace Bolsover.Shortcuts.Presenter
             }
         }
 
-        /// <summary>
-        /// Sets the location of the text overlay on the key images to the bottom right.
-        /// </summary>
-        private void SetupKeyImageLocation()
-        {
-            foreach (KeyValuePair<string, ShortcutButton> key in KeyButtons.ButtonDictionary(_view))
-            {
-                key.Value.ImageAlign = ContentAlignment.BottomRight;
-            }
-        }
-
+       
         /// <summary>
         /// Sets up the images for the keys on the keyboard.
         /// Sets the image alignment to bottom right.

@@ -14,7 +14,7 @@ namespace Bolsover.Shortcuts.Model
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("KeyCode: " + KeyCode);
             sb.Append(" KeyName: " + KeyName);
             sb.Append(" Code: " + Code);
@@ -147,7 +147,7 @@ namespace Bolsover.Shortcuts.Model
             const int ctrl = 131072;
             const int shift = 65536;
 
-            ArrayList keycodes = new ArrayList();
+            var keycodes = new ArrayList();
             if (keycode >= meta)
             {
                 keycodes.Add(91); // Keycode for Windows/Command key

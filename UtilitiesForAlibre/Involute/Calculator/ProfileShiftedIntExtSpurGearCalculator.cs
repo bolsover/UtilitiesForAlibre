@@ -452,7 +452,6 @@ namespace Bolsover.Involute.Calculator
             var da = CalculateOutsideDiameter(pairDesignInputParams);
             var ax = pairDesignInputParams.WorkingCentreDistance; // Working centre distance
             var alphaW = Radians(CalculateWorkingPressureAngle(pairDesignInputParams)); // Working Pressure Angle in radians
-
             var num1 = Math.Sqrt(Math.Pow(da.Item1 / 2, 2) - Math.Pow(db.Item1 / 2, 2));
             var num2 = Math.Sqrt(Math.Pow(da.Item2 / 2, 2) - Math.Pow(db.Item2 / 2, 2));
             var num3 = ax * Math.Sin(alphaW);

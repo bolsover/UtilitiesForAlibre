@@ -4,7 +4,7 @@ using Bolsover.Shortcuts.Model;
 
 namespace Bolsover.Shortcuts.Presenter
 {
-    public class Queries
+    public static class Queries
     {
         
         public static List<AlibreShortcut> RetrieveShortcutsByModifierType(IEnumerable<AlibreShortcut> shortcuts, ShortcutModifierType shortcutModifierType)

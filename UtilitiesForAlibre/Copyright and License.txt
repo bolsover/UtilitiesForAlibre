@@ -1,5 +1,5 @@
 ﻿
-Copyright (c) 2023.  David Bolsover
+Copyright (c) 2024.  David Bolsover
 Redistributions of source code must retain the above copyright notice, this
 list of conditions and the following disclaimer.
 
