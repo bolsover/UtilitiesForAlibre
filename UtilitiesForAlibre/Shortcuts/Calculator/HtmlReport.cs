@@ -79,6 +79,22 @@ namespace Bolsover.Shortcuts.Calculator
                 sb.Append(BuildTableFooter());
             }
 
+            if (j < shortcuts.Count)
+            {
+                sb.Append(BuildTableHeader());
+                sb.Append(BuildTableTitles(titles));
+                for (int i = j; i < shortcuts.Count; i++)
+                {
+                    var alibreShortcut = shortcuts[i];
+                    sb.Append(BuildRow(alibreShortcut));
+                }
+
+                sb.Append(BuildTableFooter());
+            }
+            {
+                
+            }
+
             return sb.ToString();
         }
 

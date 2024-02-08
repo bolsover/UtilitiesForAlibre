@@ -24,10 +24,7 @@ namespace Bolsover.Shortcuts.View
         
         public static KeyboardForm Instance()
         {
-            if (_instance == null)
-            {
-                _instance = new KeyboardForm();
-            }
+            _instance ??= new KeyboardForm();
 
             _instance.Visible = true;
 
