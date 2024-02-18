@@ -31,6 +31,12 @@ namespace Bolsover.Bevel.Models
         private string _hand;
         private string _stringValue;
         private string _gearType;
+        private double _equivalentPitchDiameter;
+        private double _equivalentBaseDiameter;
+        private double _equivalentRootDiameter;
+        private double _equivalentAddendumDiameter;
+        private double _backConeDistance;
+        private double _backConeAngle;
 
         public override string ToString()
         {
@@ -56,7 +62,7 @@ namespace Bolsover.Bevel.Models
             stringBuilder.AppendLine("Dedendum Angle ".PadRight(25) + _dedendumAngle);
             stringBuilder.AppendLine("Addendum Angle ".PadRight(25) + _addendumAngle);
             stringBuilder.AppendLine("Outer Cone Angle ".PadRight(25) + _outerConeAngle);
-            stringBuilder.AppendLine("Hand ".PadRight(25) + _hand);
+          
             return stringBuilder.ToString();
         }
 
@@ -77,6 +83,66 @@ namespace Bolsover.Bevel.Models
             set
             {
                 _stringValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double EquivalentPitchDiameter
+        {
+            get => _equivalentPitchDiameter;
+            set
+            {
+                _equivalentPitchDiameter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double EquivalentBaseDiameter
+        {
+            get => _equivalentBaseDiameter;
+            set
+            {
+                _equivalentBaseDiameter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double EquivalentRootDiameter
+        {
+            get => _equivalentRootDiameter;
+            set
+            {
+                _equivalentRootDiameter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double EquivalentAddendumDiameter
+        {
+            get => _equivalentAddendumDiameter;
+            set
+            {
+                _equivalentAddendumDiameter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double BackConeDistance
+        {
+            get => _backConeDistance;
+            set
+            {
+                _backConeDistance = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double BackConeAngle
+        {
+            get => _backConeAngle;
+            set
+            {
+                _backConeAngle = value;
                 OnPropertyChanged();
             }
         }

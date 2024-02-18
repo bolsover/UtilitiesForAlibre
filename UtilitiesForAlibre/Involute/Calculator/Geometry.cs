@@ -103,6 +103,21 @@ namespace Bolsover.Involute.Calculator
             
             return resultList;
         }
+        
+        public static List<GearPoint> PointsOutsideCircle(List<GearPoint> involutePoints, GearPoint centre, double radius)
+        {
+            var resultList = new List<GearPoint>();
+            GearPoint priorGearPoint = null;
+            foreach (var point in involutePoints)
+            {
+                if (!IsInsideCircle(centre, radius, point))
+                {
+                    resultList.Add(point);
+                }
+                priorGearPoint = point;
+            }
+            return resultList;
+        }
 
         /// <summary>
         /// Trims the given List<GearPoint> of involute points to remove any points above the intersection with the tip relief arc.

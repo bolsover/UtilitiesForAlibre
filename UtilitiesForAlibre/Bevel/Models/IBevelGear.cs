@@ -26,6 +26,12 @@ namespace Bolsover.Bevel.Models
         double OuterConeAngle { get; set; }
         string Hand { get; set; }
         string StringValue { get; set; }
+        double EquivalentPitchDiameter { get; set; }
+        double EquivalentBaseDiameter { get; set; }
+        double EquivalentRootDiameter { get; set; }
+        double EquivalentAddendumDiameter { get; set; }
+        double BackConeDistance { get; set; }
+        double BackConeAngle { get; set; }
 
         string GearType { get; set; }
 

@@ -13,7 +13,7 @@ namespace Bolsover.Shortcuts.View
             InitializeComponent();
             Icon = Globals.Icon;
           
-          Text = "Keyboard Shortcuts Version: " + Assembly.GetExecutingAssembly().GetName().Version;
+          Text = "Keyboard Shortcuts";
           
             FormClosing += (sender, args) =>
             {

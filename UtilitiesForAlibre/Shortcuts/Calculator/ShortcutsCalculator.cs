@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
@@ -36,11 +37,8 @@ namespace Bolsover.Shortcuts.Calculator
                 var second = mappingPair.toWrappedObject().second;
                 var child = first.ToString();
 
-                if (second is Profile)
-                {
-                    Profile p = (Profile) second;
-                    DumpUserProfile(p, child, userShortcutList);
-                }
+                if (second is not Profile profile) continue;
+                DumpUserProfile(profile, child, userShortcutList);
             }
 
             return userShortcutList;
@@ -48,34 +46,18 @@ namespace Bolsover.Shortcuts.Calculator
 
         public Dictionary<string, AlibreShortcut> ShortcutsDictionary(List<AlibreShortcut> shortcuts)
         {
-            Dictionary<string, AlibreShortcut> standardShorcuts = new();
-            foreach (AlibreShortcut sc in shortcuts)
-            {
-                standardShorcuts.Add(sc.Profile + "." + sc.Command, sc);
-            }
-
-            return standardShorcuts;
+            return shortcuts.ToDictionary(sc => sc.Profile + "." + sc.Command);
         }
 
         public List<AlibreShortcut> RetrieveUserShortcutsByProfile(string profile)
         {
-            List<AlibreShortcut> shortcuts = RetrieveUserShortcuts();
-            //  XElement xml = ProfileToXml(RetrieveUserProfile());
-            List<AlibreShortcut> profileShortcuts = new List<AlibreShortcut>();
-            foreach (var sc in shortcuts)
-            {
-                if (((AlibreShortcut) sc).Profile == profile)
-                {
-                    profileShortcuts.Add(sc);
-                }
-            }
-
-            return profileShortcuts;
+            var shortcuts = RetrieveUserShortcuts();
+            return shortcuts.Where(sc => sc.Profile == profile).ToList();
         }
 
         public XElement ProfileToXml(Profile profile)
         {
-            XElement xml = new XElement("Profile");
+            var xml = new XElement("Profile");
             foreach (var pairXmlWrapper in profile.Mapping.Pairs)
             {
                 var wrappedObjects = pairXmlWrapper.toWrappedObject();
@@ -85,16 +67,15 @@ namespace Bolsover.Shortcuts.Calculator
                 child = child.Replace(" ", "_");
                 child = child.Replace("\u00d8", "?");
 
-                if (second is Profile)
+                if (second is Profile profile1)
                 {
-                    Profile p = (Profile) second;
-                    XElement childXml = new XElement(child);
-                    childXml.Add(ProfileToXml(p));
+                    var childXml = new XElement(child);
+                    childXml.Add(ProfileToXml(profile1));
                     xml.Add(childXml);
                 }
                 else
                 {
-                    XElement childXml = new XElement(child);
+                    var childXml = new XElement(child);
                     childXml.Add(second.ToString());
                     xml.Add(childXml);
                 }
@@ -137,16 +118,7 @@ namespace Bolsover.Shortcuts.Calculator
                     break;
             }
 
-            var withoutNullOrEmptyHint = new List<AlibreShortcut>();
-            foreach (AlibreShortcut sc in standardShortcuts)
-            {
-                if (!string.IsNullOrEmpty(sc.Hint))
-                {
-                    withoutNullOrEmptyHint.Add(sc);
-                }
-            }
-
-            return withoutNullOrEmptyHint;
+            return standardShortcuts.Where(sc => !string.IsNullOrEmpty(sc.Hint)).ToList();
         }
 
         public List<AlibreShortcut> RetrieveStandardShortcuts()
@@ -168,27 +140,23 @@ namespace Bolsover.Shortcuts.Calculator
 
         private void DumpStandardProfile(Profile profile, string profileName, List<AlibreShortcut> shortcuts)
         {
-            LinearMap mapping = profile.Mapping;
+            var mapping = profile.Mapping;
             var kc = new KeysConverter();
-            AlibreShortcut alibreShortcut;
-            foreach (var mappingPair in mapping.Pairs)
-            {
-                var wrappedObjects = mappingPair.toWrappedObject();
-                var first = wrappedObjects.first;
-                var second = wrappedObjects.second;
-                var keyChar = kc.ConvertToString(second);
-                var hint = LString.getLocalizedString(first.ToString(), LStringToken.ToolbarHint);
-                alibreShortcut = new AlibreShortcut(profileName, (string) first, hint, (int) second, keyChar);
-                alibreShortcut.SvgImage = _adResourceManager.GetSvgImage((string) first);
-                shortcuts.Add(alibreShortcut);
-            }
+            shortcuts.AddRange(from mappingPair in mapping.Pairs
+                select mappingPair.toWrappedObject()
+                into wrappedObjects
+                let first = wrappedObjects.first
+                let second = wrappedObjects.second
+                let keyChar = kc.ConvertToString(second)
+                let hint = LString.getLocalizedString(first.ToString(), LStringToken.ToolbarHint)
+                select new AlibreShortcut(profileName, (string)first, hint, (int)second, keyChar)
+                    { SvgImage = _adResourceManager.GetSvgImage((string)first) });
         }
 
         private void DumpUserProfile(Profile profile, string parent, List<AlibreShortcut> shortcuts)
         {
-            LinearMap mapping = profile.Mapping;
+            var mapping = profile.Mapping;
             var kc = new KeysConverter();
-            AlibreShortcut alibreShortcut;
             foreach (var mappingPair in mapping.Pairs)
             {
                 var wrappedObjects = mappingPair.toWrappedObject();
@@ -198,11 +166,13 @@ namespace Bolsover.Shortcuts.Calculator
                 var keyChar = kc.ConvertToString(second);
                 if (child.ToUpper().Contains("SHORTCUTS") && !second.ToString().ToUpper().Contains("PROFILE"))
                 {
-                    var toRemove = ", SHORTCUTS";
+                    const string toRemove = ", SHORTCUTS";
                     var profilep = parent.Remove(parent.IndexOf(toRemove, StringComparison.Ordinal), toRemove.Length);
                     var hint = LString.getLocalizedString(first.ToString(), LStringToken.ToolbarHint);
-                    alibreShortcut = new AlibreShortcut(profilep, (string) first, hint, (int) second, keyChar);
-                    alibreShortcut.SvgImage = _adResourceManager.GetSvgImage((string) first);
+                    var alibreShortcut = new AlibreShortcut(profilep, (string)first, hint, (int)second, keyChar)
+                    {
+                        SvgImage = _adResourceManager.GetSvgImage((string)first)
+                    };
                     if (!string.IsNullOrEmpty(alibreShortcut.Hint))
                     {
                         shortcuts.Add(alibreShortcut);
@@ -211,7 +181,7 @@ namespace Bolsover.Shortcuts.Calculator
 
                 if (mappingPair.toWrappedObject().second is Profile)
                 {
-                    var p = (Profile) mappingPair.toWrappedObject().second;
+                    var p = (Profile)mappingPair.toWrappedObject().second;
                     DumpUserProfile(p, child, shortcuts);
                 }
             }
@@ -219,9 +189,11 @@ namespace Bolsover.Shortcuts.Calculator
 
         private object ReadObjectFromFile(FileStream fileStream)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Context = new StreamingContext(StreamingContextStates.All);
-            SurrogateSelector surrogateSelector = new SurrogateSelector();
+            var formatter = new BinaryFormatter
+            {
+                Context = new StreamingContext(StreamingContextStates.All)
+            };
+            var surrogateSelector = new SurrogateSelector();
             surrogateSelector.AddSurrogate(typeof(Profile), new StreamingContext(StreamingContextStates.All), new ProfileSerializationSurrogate());
             formatter.SurrogateSelector = surrogateSelector;
             var obj = formatter.Deserialize(fileStream);
@@ -255,7 +227,7 @@ namespace Bolsover.Shortcuts.Calculator
         private Profile ReadProfileFromFile(string profilePath)
         {
             using var fileStream = new FileStream(profilePath, FileMode.Open, FileAccess.Read);
-            return (Profile) ReadObjectFromFile(fileStream);
+            return (Profile)ReadObjectFromFile(fileStream);
         }
 
         private Profile PartStandardShortcuts()

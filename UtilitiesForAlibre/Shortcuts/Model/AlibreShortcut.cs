@@ -45,8 +45,8 @@ namespace Bolsover.Shortcuts.Model
         public Image SvgToIcon()
         {
             if (SvgImage == null) return null;
-            SvgBitmap source = SvgBitmap.Create(SvgImage);
-            Image img = source.Render(null, Properties.Settings.Default.AlibreIcon);
+            var source = SvgBitmap.Create(SvgImage);
+            var img = source.Render(null, Properties.Settings.Default.AlibreIcon);
            return img;
         }
 

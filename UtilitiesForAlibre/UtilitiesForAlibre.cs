@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AlibreAddOn;
 using AlibreX;
 using Bolsover.AlibreDataViewer;
+using Bolsover.Bevel.Views;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
 using Bolsover.Involute.View;
@@ -20,12 +21,13 @@ namespace Bolsover
         private const int MenuIdGear = 506;
         private const int MenuIdUtils = 601;
         private const int SubMenuIdShortcuts = 605;
-        private const int SubmenuIdUtilsCycloidalGear = 602;
+        private const int SubmenuIdGearCycloidal = 602;
+        private const int SubmenuIdGearBevel = 606;
         private const int SubmenuIdUtilsPlaneFinder = 603;
         private const int SubmenuIdUtilsDataViewer = 604;
-        private const int SubmenuIdUtilsAdvancedGear = 609;
-        private const int SubmenuIdUtilsShortcuts = 610;
-        private const int SubmenuIdUtilsKeyboard = 611;
+        private const int SubmenuIdGearInvolute = 609;
+        private const int SubmenuIdShortcutsReport = 610;
+        private const int SubmenuIdShortcutsKeyboard = 611;
         private const int MenuIdHelp = 701;
         private const int SubmenuIdHelpAbout = 702;
         private int[] _menuIdsUtils;
@@ -61,8 +63,8 @@ namespace Bolsover
         {
             _menuIdsShortcuts = new[]
             {
-                SubmenuIdUtilsShortcuts,
-                SubmenuIdUtilsKeyboard
+                SubmenuIdShortcutsReport,
+                SubmenuIdShortcutsKeyboard
             };
 
             _menuIdsUtils = new[]
@@ -85,8 +87,9 @@ namespace Bolsover
 
             _menuIdsGear = new[]
             {
-                SubmenuIdUtilsCycloidalGear,
-                SubmenuIdUtilsAdvancedGear
+                SubmenuIdGearCycloidal,
+                SubmenuIdGearInvolute,
+                SubmenuIdGearBevel
             };
         }
 
@@ -140,14 +143,15 @@ namespace Bolsover
                 MenuIdHelp => "Help",
                 MenuIdGear => "Gears",
                 SubmenuIdDataBrowser => "Data Browser",
-                SubmenuIdUtilsCycloidalGear => "Cycloidal Gears Open/Close",
-                SubmenuIdUtilsAdvancedGear => "Involute Spur & Helical Gears",
+                SubmenuIdGearCycloidal => "Cycloidal Gears Open/Close",
+                SubmenuIdGearInvolute => "Involute Spur & Helical Gears",
+                SubmenuIdGearBevel => "Bevel Gears",
                 SubmenuIdHelpAbout => "About",
                 SubmenuIdUtilsPlaneFinder => "Sketch Plane Finder Open/Close",
                 SubmenuIdUtilsDataViewer => "Property Viewer Open/Close",
                 SubMenuIdShortcuts => "Shortcuts",
-                SubmenuIdUtilsShortcuts => "Shortcuts Report",
-                SubmenuIdUtilsKeyboard => "Keyboard layout",
+                SubmenuIdShortcutsReport => "Shortcuts Report",
+                SubmenuIdShortcutsKeyboard => "Keyboard layout",
                 _ => ""
             };
         }
@@ -185,13 +189,14 @@ namespace Bolsover
                         case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearCycloidal: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearInvolute: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearBevel: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdShortcutsReport: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -204,13 +209,14 @@ namespace Bolsover
                         case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
-                        case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearCycloidal: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearInvolute: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearBevel: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_GRAYED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdShortcutsReport: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
@@ -222,20 +228,21 @@ namespace Bolsover
                         case MenuIdUtils: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case MenuIdGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdDataBrowser: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsCycloidalGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsAdvancedGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdGearCycloidal: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdGearBevel: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdGearInvolute: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsPlaneFinder: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdUtilsDataViewer: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdHelpAbout: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
-                        case SubmenuIdUtilsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdShortcutsReport: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
             }
 
-            return ADDONMenuStates.ADDON_MENU_ENABLED;
+            return ADDONMenuStates.ADDON_MENU_GRAYED;
         }
 
         /// <summary>
@@ -251,13 +258,14 @@ namespace Bolsover
                 MenuIdUtils => "Utilities",
                 MenuIdGear => "Gears",
                 SubmenuIdDataBrowser => "Opens the custom Data Browser",
-                SubmenuIdUtilsCycloidalGear => "Opens/Closes Cycloidal Gear Generator",
-                SubmenuIdUtilsAdvancedGear => "Opens Spur and Helical Gear Generator",
+                SubmenuIdGearCycloidal => "Opens/Closes Cycloidal Gear Generator",
+                SubmenuIdGearBevel => "Opens the Bevel Gear Generator",
+                SubmenuIdGearInvolute => "Opens Spur and Helical Gear Generator",
                 SubmenuIdUtilsPlaneFinder => "Finds the Plane on which a selected Sketch is drawn",
                 SubmenuIdUtilsDataViewer => "Opens/Closes Property Viewer",
                 SubmenuIdHelpAbout => "About Utilities for Alibre",
-                SubmenuIdUtilsShortcuts => "Shortcuts Report",
-                SubmenuIdUtilsKeyboard => "Shortcuts Keyboard",
+                SubmenuIdShortcutsReport => "Shortcuts Report",
+                SubmenuIdShortcutsKeyboard => "Shortcuts Keyboard",
                 SubMenuIdShortcuts => "Shortcuts",
                 _ => ""
             };
@@ -309,13 +317,14 @@ namespace Bolsover
             return menuId switch
             {
                 SubmenuIdDataBrowser => DoDataBrowser(),
-                SubmenuIdUtilsCycloidalGear => DoCycloidalGear(session),
-                SubmenuIdUtilsAdvancedGear => DoAdvancedGear(),
+                SubmenuIdGearCycloidal => DoCycloidalGear(session),
+                SubmenuIdGearInvolute => DoAdvancedGear(),
+                SubmenuIdGearBevel => DoBevel(),
                 SubmenuIdUtilsPlaneFinder => DoPlaneFinder(session),
                 SubmenuIdUtilsDataViewer => DoAlibreDataViewer(session),
                 SubmenuIdHelpAbout => DoHelpAbout(),
-                SubmenuIdUtilsShortcuts => DoShortcuts(),
-                SubmenuIdUtilsKeyboard => DoKeyboard(),
+                SubmenuIdShortcutsReport => DoShortcuts(),
+                SubmenuIdShortcutsKeyboard => DoKeyboard(),
                 _ => null
             };
         }
@@ -538,6 +547,17 @@ namespace Bolsover
         #endregion
 
         #region Bevel
+        
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
+        private static IAlibreAddOnCommand DoBevel()
+        {
+            var form = new BevelGearForm();
+            form.Show();
+
+            return null;
+        }
 
         /// <summary>
         /// </summary>

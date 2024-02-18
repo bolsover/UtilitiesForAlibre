@@ -243,11 +243,12 @@
             <DependentUpon>AlibreDataViewer.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs"/>
-        <Compile Include="Bevel\Models\BevelGear.cs"/>
-        <Compile Include="Bevel\Models\IBevelGear.cs"/>
-        <Compile Include="Bevel\Models\BevelLatexStrings.cs"/>
-        <Compile Include="Bevel\Presenters\BevelGearCalculator.cs"/>
-        <Compile Include="Bevel\Presenters\BevelGearPresenter.cs"/>
+        <Compile Include="Bevel\Builder\BevelGearBuilder.cs" />
+        <Compile Include="Bevel\Calculator\BevelGearCalculator.cs" />
+        <Compile Include="Bevel\Models\BevelGear.cs" />
+        <Compile Include="Bevel\Models\IBevelGear.cs" />
+        <Compile Include="Bevel\Models\BevelLatexStrings.cs" />
+        <Compile Include="Bevel\Presenters\BevelGearPresenter.cs" />
         <Compile Include="Bevel\Views\BevelGearForm.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -266,34 +267,34 @@
         <Compile Include="Bevel\Views\BevelHelp.Designer.cs">
             <DependentUpon>BevelHelp.cs</DependentUpon>
         </Compile>
-        <Compile Include="Bevel\Views\IBevelGearView.cs"/>
+        <Compile Include="Bevel\Views\IBevelGearView.cs" />
         <Compile Include="CycloidalGear\CycliodalGearParametersForm.cs">
             <SubType>UserControl</SubType>
         </Compile>
         <Compile Include="CycloidalGear\CycliodalGearParametersForm.Designer.cs">
             <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
         </Compile>
-        <Compile Include="CycloidalGear\CycloidalGearAddOnCommand.cs"/>
-        <Compile Include="CycloidalGear\CycloidalGearAddOnCommandTerminateEventArgs.cs"/>
-        <Compile Include="CycloidalGear\CycloidalGearBuilder.cs"/>
-        <Compile Include="CycloidalGear\CycloidalGearProperties.cs"/>
-        <Compile Include="DataBrowser\AlibreConnector.cs"/>
-        <Compile Include="DataBrowser\AlibreData.cs"/>
-        <Compile Include="DataBrowser\AlibreFileSystem.cs"/>
+        <Compile Include="CycloidalGear\CycloidalGearAddOnCommand.cs" />
+        <Compile Include="CycloidalGear\CycloidalGearAddOnCommandTerminateEventArgs.cs" />
+        <Compile Include="CycloidalGear\CycloidalGearBuilder.cs" />
+        <Compile Include="CycloidalGear\CycloidalGearProperties.cs" />
+        <Compile Include="DataBrowser\AlibreConnector.cs" />
+        <Compile Include="DataBrowser\AlibreData.cs" />
+        <Compile Include="DataBrowser\AlibreFileSystem.cs" />
         <Compile Include="DataBrowser\DataBrowser.cs">
             <SubType>Form</SubType>
         </Compile>
-        <Compile Include="DataBrowser\DataBrowser.Designer.cs"/>
-        <Compile Include="DataBrowser\Materials\MaterialNode.cs"/>
+        <Compile Include="DataBrowser\DataBrowser.Designer.cs" />
+        <Compile Include="DataBrowser\Materials\MaterialNode.cs" />
         <Compile Include="DataBrowser\Materials\MaterialPicker.cs">
             <SubType>UserControl</SubType>
         </Compile>
-        <Compile Include="DataBrowser\Materials\MaterialPicker.Designer.cs"/>
+        <Compile Include="DataBrowser\Materials\MaterialPicker.Designer.cs" />
         <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.cs">
             <SubType>UserControl</SubType>
         </Compile>
-        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs"/>
-        <Compile Include="DataBrowser\ShellUtilities.cs"/>
+        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
+        <Compile Include="DataBrowser\ShellUtilities.cs" />
         <Compile Include="Globals.cs" />
         <Compile Include="Involute\Builder\AlibreToothBuilder.cs" />
         <Compile Include="Involute\Builder\ExternalHelicalGearBuilder.cs" />

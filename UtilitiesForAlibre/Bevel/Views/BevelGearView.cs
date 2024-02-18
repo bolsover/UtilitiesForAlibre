@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
 using Bolsover.Bevel.Models;
+using Bolsover.Bevel.Presenters;
 
 
 namespace Bolsover.Bevel.Views
 {
     public partial class BevelGearView : UserControl, IBevelGearView
     {
+        
+        private BevelGearPresenter _bevelGearPresenter;
         public BevelGearView()
         {
             InitializeComponent();
-            GearTypeComboBox.SelectedIndex = 0;
-            PinionHandComboBox.SelectedIndex = 0;
-            GearHandComboBox.SelectedIndex = 0;
+            _bevelGearPresenter = new BevelGearPresenter(this);
+          
         }
 
         IBevelGear IBevelGearView.Pinion { get; set; }

@@ -31,9 +31,9 @@ namespace Bolsover.Bevel.Views
         /// </summary>
         private void InitializeComponent()
         {
-            
-            
-           
+
+
+            _bevelGearView = new BevelGearView();
             this.SuspendLayout();
             // 
             // bevelGearUserControl1
@@ -56,7 +56,7 @@ namespace Bolsover.Bevel.Views
             this.ResumeLayout(false);
         }
 
-       
+        private Bolsover.Bevel.Views.BevelGearView _bevelGearView;
        
 
         #endregion
