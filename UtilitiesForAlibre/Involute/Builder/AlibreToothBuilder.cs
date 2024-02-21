@@ -103,6 +103,15 @@ namespace Bolsover.Involute.Builder
                 start.X * scale, start.Y * scale, end.X * scale,
                 end.Y * scale);
         }
+        
+        protected static IADSketchCircularArc AddScaledCircularArcBy3Points(IADSketch sketch, GearPoint centre,
+            GearPoint start,
+            GearPoint end, double scale)
+        {
+            return sketch.Figures.AddCircularArcBy3Points(centre.X * scale, centre.Y * scale,
+                start.X * scale, start.Y * scale, end.X * scale,
+                end.Y * scale);
+        }
 
         protected static IADSketchPoint AddScaledPoint(IADSketch sketch, GearPoint point, double scale)
         {

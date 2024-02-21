@@ -33,7 +33,7 @@ namespace Bolsover.Bevel.Models
         double BackConeDistance { get; set; }
         double BackConeAngle { get; set; }
 
-        string GearType { get; set; }
+        BevelGearType GearType { get; set; }
 
         event EventHandler Updated;
     }

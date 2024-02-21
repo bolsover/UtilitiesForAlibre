@@ -189,5 +189,18 @@ namespace Bolsover.Bevel.Views
         {
             EditFaceWidthEvent?.Invoke(sender, e);
         }
+
+       
+        private void gleasonRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            EditGearTypeEvent?.Invoke(sender, e);
+        }
+
+        private void standardRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            EditGearTypeEvent?.Invoke(sender, e);
+        }
+
+        
     }
 }

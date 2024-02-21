@@ -9,6 +9,7 @@ namespace Bolsover.Bevel.Views
         public BevelGearForm()
         {
             InitializeComponent();
+            Icon = Globals.Icon;
            
         }
     }

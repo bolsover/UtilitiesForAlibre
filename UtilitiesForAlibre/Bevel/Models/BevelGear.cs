@@ -30,7 +30,7 @@ namespace Bolsover.Bevel.Models
         private double _outerConeAngle;
         private string _hand;
         private string _stringValue;
-        private string _gearType;
+        private BevelGearType _gearType;
         private double _equivalentPitchDiameter;
         private double _equivalentBaseDiameter;
         private double _equivalentRootDiameter;
@@ -62,7 +62,13 @@ namespace Bolsover.Bevel.Models
             stringBuilder.AppendLine("Dedendum Angle ".PadRight(25) + _dedendumAngle);
             stringBuilder.AppendLine("Addendum Angle ".PadRight(25) + _addendumAngle);
             stringBuilder.AppendLine("Outer Cone Angle ".PadRight(25) + _outerConeAngle);
-          
+            stringBuilder.AppendLine("Back Cone Angle ".PadRight(25) + _backConeAngle);
+            stringBuilder.AppendLine("Equivalent Pitch Diameter ".PadRight(25) + _equivalentPitchDiameter);
+            stringBuilder.AppendLine("Equivalent Base Diameter ".PadRight(25) + _equivalentBaseDiameter);
+            stringBuilder.AppendLine("Equivalent Root Diameter ".PadRight(25) + _equivalentRootDiameter);
+            stringBuilder.AppendLine("Equivalent Addendum Diameter ".PadRight(25) + _equivalentAddendumDiameter);
+            
+            
             return stringBuilder.ToString();
         }
 
@@ -147,7 +153,7 @@ namespace Bolsover.Bevel.Models
             }
         }
 
-        public string GearType
+        public BevelGearType GearType
         {
             get => _gearType;
             set

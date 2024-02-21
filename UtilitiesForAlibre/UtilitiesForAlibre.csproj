@@ -246,6 +246,8 @@
         <Compile Include="Bevel\Builder\BevelGearBuilder.cs" />
         <Compile Include="Bevel\Calculator\BevelGearCalculator.cs" />
         <Compile Include="Bevel\Models\BevelGear.cs" />
+        <Compile Include="Bevel\Models\BevelGearData.cs" />
+        <Compile Include="Bevel\Models\BevelGearType.cs" />
         <Compile Include="Bevel\Models\IBevelGear.cs" />
         <Compile Include="Bevel\Models\BevelLatexStrings.cs" />
         <Compile Include="Bevel\Presenters\BevelGearPresenter.cs" />
