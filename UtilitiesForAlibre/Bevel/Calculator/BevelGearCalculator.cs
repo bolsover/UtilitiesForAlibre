@@ -108,11 +108,28 @@ namespace Bolsover.Bevel.Calculator
 
         public static (double, double) CalculateAddendumAngle(IBevelGear pinion, IBevelGear gear)
         {
+            return gear.GearType switch
+            {
+                BevelGearType.Standard => CalculateStandardAddendumAngle(pinion, gear),
+                BevelGearType.Gleason => CalculateGleasonAddendumAngle(pinion, gear),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+        
+        private static (double, double) CalculateStandardAddendumAngle(IBevelGear pinion, IBevelGear gear)
+        {
             var ha = CalculateAddendum(pinion, gear);
             var cd = CalculatePitchConeDistance(pinion, gear);
             var aa1 = Degrees(Math.Atan(ha.Item1 / cd.Item1));
             var aa2 = Degrees(Math.Atan(ha.Item2 / cd.Item2));
             return (aa1, aa2);
+        }
+        
+        private static (double, double) CalculateGleasonAddendumAngle(IBevelGear pinion, IBevelGear gear)
+        {
+            var ha = CalculateDedendumAngle(pinion, gear);
+           
+            return (ha.Item2, ha.Item1);
         }
 
 
