@@ -210,7 +210,7 @@ namespace Bolsover.Involute.Calculator
         /// <param name="baseRadius"></param>
         /// <param name="distanceToInvolute"></param>
         /// <returns>A point in the involute at a distance from the gear centre</returns>
-        private static GearPoint PointOnInvolute(double baseRadius, double distanceToInvolute)
+        public static GearPoint PointOnInvolute(double baseRadius, double distanceToInvolute)
         {
             var alpha = Math.Acos(baseRadius / distanceToInvolute);
             var invAlpha = Math.Tan(alpha) - alpha; // involute function

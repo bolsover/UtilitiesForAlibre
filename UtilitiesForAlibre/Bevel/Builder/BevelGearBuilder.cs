@@ -38,14 +38,9 @@ namespace Bolsover.Bevel.Builder
             UpdateParameters(bevelGear, session);
             var sketch2 = session.Sketches.Item("Sketch<2>");
             UpdateSketch2(bevelGear, sketch2);
-           
-            session.Parameters.CloseParameterTransaction();
-            // var point5 = session.DesignPoints.Item("Point<5>");
-            // var halfTooth = 180 / (bevelGear.NumberOfTeeth / Math.Cos(Radians(bevelGear.PitchConeAngle)));
-            // var point = new GearPoint(point5.Geometry.X, point5.Geometry.Y);
-            // point.Rotate(halfTooth);
-            // var point6 = session.DesignPoints.CreatePoint(point5.Geometry.X, point.X, point.Y, "ToothCentre");
 
+            session.Parameters.CloseParameterTransaction();
+             
             session.StopChanges();
             ((IADPartSession)session).RegenerateAll();
         }
@@ -72,8 +67,6 @@ namespace Bolsover.Bevel.Builder
             var eqBaseDia = bevelGear.EquivalentBaseDiameter;
             var eqRootDia = bevelGear.EquivalentRootDiameter;
             var invOuterDia = eqAddDia + bevelGear.Module * 0.5; // ensure outer cut is slightly larger than addendum
-
-
             AddScaledCircle(sketch, new GearPoint(0, 0), eqPitchDia, 0.1,
                 true);
             AddScaledCircle(sketch, new GearPoint(0, 0), eqBaseDia, 0.1,
@@ -82,47 +75,43 @@ namespace Bolsover.Bevel.Builder
                 true);
             AddScaledCircle(sketch, new GearPoint(0, 0), eqRootDia, 0.1,
                 true);
-
-
-            var rhsInvolute = Geometry.InvolutePoints(eqBaseDia / 2, invOuterDia / 2, 200);
-            var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
-            rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
-            lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
             var phi = CalculatePhi(bevelGear);
             var quarterTooth = 90 / (bevelGear.NumberOfTeeth / Math.Cos(Radians(bevelGear.PitchConeAngle)));
-            rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
-            lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
+
             if (eqBaseDia > eqRootDia)
             {
+                var rhsInvolute = Geometry.InvolutePoints(eqBaseDia / 2, invOuterDia / 2, 50);
+                var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
+                rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
+                lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
+                rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
+                lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
                 AddScaledBsplineByInterpolation(sketch, rhsInvolute, 0.1);
                 AddScaledBsplineByInterpolation(sketch, lhsInvolute, 0.1);
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[lhsInvolute.Count - 1],
                     rhsInvolute[rhsInvolute.Count - 1], 0.1);
-               
-                var radius = (Geometry.DistanceBetweenPoints(rhsInvolute[0], lhsInvolute[0]))/2;
-                var y =  (eqRootDia/2) + radius;
+
+                var radius = (Geometry.DistanceBetweenPoints(rhsInvolute[0], lhsInvolute[0])) / 2;
+                var y = (eqRootDia / 2) + radius;
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, y), rhsInvolute[0], lhsInvolute[0], 0.1);
-              
             }
             else
             {
+                var rhsInvolute = Geometry.InvolutePoints(eqBaseDia / 2, invOuterDia / 2, 50);
                 rhsInvolute = Geometry.PointsOutsideCircle(rhsInvolute, new GearPoint(0, 0), bevelGear.EquivalentRootDiameter / 2);
-                lhsInvolute = Geometry.PointsOutsideCircle(lhsInvolute, new GearPoint(0, 0), bevelGear.EquivalentRootDiameter / 2);
-                var la = lhsInvolute[0].X - lhsInvolute[1].X;
-                var ra = rhsInvolute[1].X - rhsInvolute[0].X;
-                var intersectionL = Intersection(lhsInvolute[0], eqRootDia / 2);
-                var intersectionR = Intersection(rhsInvolute[0], eqRootDia / 2);
-                intersectionL.X += la;
-                intersectionR.X -= ra;
-                rhsInvolute.Insert(0, intersectionR);
-                lhsInvolute.Insert(0, intersectionL);
-              
+                var rootPoint = ToothPointCalculator.PointOnInvolute(bevelGear.EquivalentBaseDiameter / 2, bevelGear.EquivalentRootDiameter / 2);
+                rhsInvolute.Insert(0, rootPoint);
+                var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
+                rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
+                lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
+                rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
+                lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
                 AddScaledBsplineByInterpolation(sketch, rhsInvolute, 0.1);
                 AddScaledBsplineByInterpolation(sketch, lhsInvolute, 0.1);
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[lhsInvolute.Count - 1],
                     rhsInvolute[rhsInvolute.Count - 1], 0.1);
-                AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), intersectionL,
-                    intersectionR, 0.1);
+               AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[0],
+                    rhsInvolute[0], 0.1);
             }
 
             sketch.EndChange();
