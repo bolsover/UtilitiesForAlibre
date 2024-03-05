@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using AlibreX;
@@ -23,9 +22,7 @@ namespace Bolsover.Bevel.Builder
                 MessageBox.Show("Temporary file " + saveFile + "is currently open. \nPlease save-as or discard.", "Oops");
                 return;
             }
-
             var filePath = Globals.InstallPath;
-
             if (filePath != null)
             {
                 filePath += "\\Bevel\\Images\\" + template;
@@ -38,9 +35,7 @@ namespace Bolsover.Bevel.Builder
             UpdateParameters(bevelGear, session);
             var sketch2 = session.Sketches.Item("Sketch<2>");
             UpdateSketch2(bevelGear, sketch2);
-
             session.Parameters.CloseParameterTransaction();
-
             session.StopChanges();
             ((IADPartSession)session).RegenerateAll();
         }
@@ -101,11 +96,8 @@ namespace Bolsover.Bevel.Builder
                 AddScaledBsplineByInterpolation(sketch, lhsInvolute, 0.1);
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[lhsInvolute.Count - 1],
                     rhsInvolute[rhsInvolute.Count - 1], 0.1);
-
-
-                var leftFilletPoints = CalculateCircleAndTangentPoints(sketch, bevelGear, lhsInvolute[0], true);
-                var rightFilletPoints = CalculateCircleAndTangentPoints(sketch, bevelGear, rhsInvolute[0], false);
-
+                var leftFilletPoints = CalculateCircleAndTangentPoints(bevelGear, lhsInvolute[0], true);
+                var rightFilletPoints = CalculateCircleAndTangentPoints(bevelGear, rhsInvolute[0], false);
                 var arc1 =
                     AddScaledCircularArcByCenterStartEnd(sketch, leftFilletPoints.Item1, leftFilletPoints.Item2, leftFilletPoints.Item3, 0.1);
                 AddScaledLine(sketch, lhsInvolute[0], SketchPointToGearPoint(arc1.End), 0.1);
@@ -160,7 +152,7 @@ namespace Bolsover.Bevel.Builder
         }
 
 
-        private static (GearPoint, GearPoint, GearPoint) CalculateCircleAndTangentPoints(IADSketch sketch, IBevelGear bevelGear,
+        private static (GearPoint, GearPoint, GearPoint) CalculateCircleAndTangentPoints(IBevelGear bevelGear,
             GearPoint involuteStart, bool isLeft)
         {
             var gearCentre = new GearPoint(0, 0);
@@ -177,14 +169,8 @@ namespace Bolsover.Bevel.Builder
 
             var circleCenter = new GearPoint(gearCentre.X + distanceToRadius * Math.Cos(angleToFilletCentre),
                 gearCentre.Y + distanceToRadius * Math.Sin(angleToFilletCentre));
-            AddScaledPoint(sketch, circleCenter, 0.1);
             var intersectPointS = Intersection(circleCenter, bevelGear.EquivalentRootDiameter / 2);
-
-            AddScaledPoint(sketch, intersectPointS, 0.1);
-
             var intersectPointE = Intersection(involuteStart, distanceToRadius);
-            AddScaledPoint(sketch, intersectPointE, 0.1);
-
             return (circleCenter, intersectPointS, intersectPointE);
         }
 

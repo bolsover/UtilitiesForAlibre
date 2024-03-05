@@ -1,16 +1,14 @@
 # UtilitiesForAlibre
 
-A C# project to serve as a starting point for an Alibre Add-On.
+A C# project to generate an Alibre Add-On.
 
-Note that the project has only been tested against Alibre V24 and that there is no warranty for the application.
+Note that the project has only been tested against Alibre V27 and that there is no warranty for the application.
 Your attention is drawn to the included Copyright and License text.
 
 The project distribution does NOT include the required AlibreX.dll, AlibreAddOn.dll or  ObjectListView.2.9.1 dll.
 You will need to add these files to the project before it can be compiled.
 
 The project is generally written using the Jetbrains Rider IDE but it should work equally well with Visual Studio 2022.
-
-# Alibre Add-On
 
 # Known Issues
 DataBrowser. A previous, stand alone version of the data browser could obtain IADSession connections to Alibre, interrogate the Part, Sheet Metal, Assembly and Drawing properties and report these in the application window.
@@ -21,23 +19,16 @@ This fix works for Part, Sheet Metal and Assembly designs but NOT for Drawings. 
 
 DataBrowser can not edit any Alibre file already open elsewhere (assumed to be Alibre). This is intentional and probably can't be fixed anyway. The user is warned if an attempt to edit an open file is made.
 
-
 # Compile code.
-As noted above, AlibreX.dll, AlibreAddOn.dll and  ObjectListView.dll (version 2.9.1) are not included with this code. If you don't have Alibre V24 - well not much I can do about that. ObjectListView can be downloaded here : http://objectlistview.sourceforge.net/cs/index.html
+As noted above, AlibreX.dll, AlibreAddOn.dll and  ObjectListView.dll (version 2.9.1) are not included with this code. If you don't have Alibre V27 - well not much I can do about that. ObjectListView can be downloaded here : http://objectlistview.sourceforge.net/cs/index.html
 
 # Installation with Alibre
-Installing the AddOn is a simple matter of copying the output of the compiled code to a new folder in the Alibre Addons folder. This folder is normally C:\Program Files\Alibre Design\Program\Addons\UtilitiesForAlibre
-The files required to be copied are:
-AlibreAddOn.dll
-AlibreX.dll
-nexus.ico
-ObjectListView.dll
-ObjectListView.pdb
-ObjectListView.xml
-UtilitiesForAlibre.adc
-UtilitiesForAlibre.dll
-UtilitiesForAlibre.pdb
+Installation with alibre is a simple matter of extracting the UtilitiesForAlbreSetup.exe from the release .zip and executing this on your PC.
+The installer will create a new folder in your Program Files directory and copy the required files to this location.
+The installer will also create a new entry in the Windows Start Menu for the Add-on uninstaller.
 
+# Additional Documentation
+http://bolsover.com/utilitiesforalibre/utilities-for-alibre.html
 
 
 DB

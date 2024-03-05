@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UtilitiesForAlibre"
-#define MyAppVersion "1.6.0.0"
+#define MyAppVersion "1.7.0.0"
 #define MyAppPublisher "David Bolsover"
 
 [Setup]
@@ -43,6 +43,7 @@ Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.adc"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\MathML.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\MathNet.Numerics.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\WpfMath.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\XamlMath.Shared.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\UtilitiesForAlibre.pdb"; DestDir: "{app}"; Flags: ignoreversion
