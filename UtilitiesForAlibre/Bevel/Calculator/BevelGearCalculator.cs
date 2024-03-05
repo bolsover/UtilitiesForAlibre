@@ -6,11 +6,107 @@ namespace Bolsover.Bevel.Calculator
 {
     public static class BevelGearCalculator
     {
+        /// <summary>
+        /// Calculation used by Gleason gears to calculate the circular thickness of the pinion/gear pair
+        /// </summary>
+        /// <param name="pinion"></param>
+        /// <param name="gear"></param>
+        /// <returns></returns>
+        public static (double, double) CalculateCircularThickness(IBevelGear pinion, IBevelGear gear)
+        {
+            if (pinion.GearType == BevelGearType.Standard)
+                return (0, 0);
+            switch (pinion.NumberOfTeeth)
+            {
+                case < 13:
+                    throw new ArgumentOutOfRangeException("Number of teeth must be over 13");
+                case > 24:
+                    return (0, 0);
+            }
+
+            var ratio = pinion.NumberOfTeeth / gear.NumberOfTeeth;
+            var k = KFactorDictionary.GetKFactor((int)pinion.NumberOfTeeth, ratio);
+            var pd = 25.4 / pinion.Module;
+            var p = Math.PI / pd;
+            var ha = CalculateAddendum(pinion, gear);
+            var hf = CalculateDedendum(pinion, gear);
+            var t2 = (p / 2) - ((ha.Item1 - hf.Item1) / 25.4) * (Math.Tan(Radians(pinion.PressureAngle)) - (k / pd));
+            var t1 = p - t2;
+            return (t1 * 25.4, t2 * 25.4);
+        }
+
+        public static (double, double) CalculateCircularThicknessDegrees(IBevelGear pinion, IBevelGear gear)
+        {
+            var ct = CalculateCircularThickness(pinion, gear);
+            var d = CalculateTredgoldEquivalentPitchDiameter(pinion, gear);
+            var r1 = CalculateAngularDimension(d.Item1 / 2, ct.Item1);
+            var r2 = CalculateAngularDimension(d.Item2 / 2, ct.Item2);
+            return (r1, r2);
+        }
+
+        public static (double, double) CalculateInterToothDegrees(IBevelGear pinion, IBevelGear gear)
+        {
+            var z = CalculateTredgoldEquivalentToothCount(pinion, gear);
+            var s1 = 360 / z.Item1;
+            var s2 = 360 / z.Item2;
+            var ct = CalculateCircularThicknessDegrees(pinion, gear);
+            return (s1 - ct.Item1, s2 - ct.Item2);
+        }
+
+
+        public static (double, double) CalculateKFactor(IBevelGear pinion, IBevelGear gear)
+        {
+            if (pinion.GearType == BevelGearType.Standard)
+                return (0, 0);
+            var ratio = pinion.NumberOfTeeth / gear.NumberOfTeeth;
+            var k = KFactorDictionary.GetKFactor((int)pinion.NumberOfTeeth, ratio);
+            if (k < 0)
+            {
+                k = 0;
+            }
+
+            return (k, k);
+        }
+
+        private static double CalculateAngularDimension(double radius, double circumferentialDimension)
+        {
+            var angleInDegrees = Degrees(Math.Atan(circumferentialDimension / radius));
+            return angleInDegrees;
+        }
+
+
+       public static (double, double) CalculateWholeDepth(IBevelGear pinion, IBevelGear gear)
+        {
+            var ha = CalculateAddendum(pinion, gear);
+            var hf = CalculateDedendum(pinion, gear);
+            var h1 = hf.Item1 + ha.Item1;
+            var h2 = hf.Item2 + ha.Item2;
+            return (h1, h2);
+        }
+
         public static (double, double) CalculatePitchDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d1 = pinion.NumberOfTeeth * pinion.Module;
             var d2 = gear.NumberOfTeeth * pinion.Module;
             return (d1, d2);
+        }
+
+        public static (double, double) CalculateBaseDiameter(IBevelGear pinion, IBevelGear gear)
+        {
+            var d = CalculatePitchDiameter(pinion, gear);
+            var alpha = pinion.PressureAngle; // Pressure Angle
+            var db1 = d.Item1 * Math.Cos(Radians(alpha)); // Base Diameter of Pinion
+            var db2 = d.Item2 * Math.Cos(Radians(alpha)); // Base Diameter of Pinion
+            return (db1, db2);
+        }
+
+        public static (double, double) CalculateRootDiameter(IBevelGear pinion, IBevelGear gear)
+        {
+            var d = CalculatePitchDiameter(pinion, gear);
+            var hf = CalculateDedendum(pinion, gear);
+            var rd1 = d.Item1 - (2 * hf.Item1);
+            var rd2 = d.Item2 - (2 * hf.Item2);
+            return (rd1, rd2);
         }
 
 
@@ -115,7 +211,7 @@ namespace Bolsover.Bevel.Calculator
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-        
+
         private static (double, double) CalculateStandardAddendumAngle(IBevelGear pinion, IBevelGear gear)
         {
             var ha = CalculateAddendum(pinion, gear);
@@ -124,11 +220,11 @@ namespace Bolsover.Bevel.Calculator
             var aa2 = Degrees(Math.Atan(ha.Item2 / cd.Item2));
             return (aa1, aa2);
         }
-        
+
         private static (double, double) CalculateGleasonAddendumAngle(IBevelGear pinion, IBevelGear gear)
         {
             var ha = CalculateDedendumAngle(pinion, gear);
-           
+
             return (ha.Item2, ha.Item1);
         }
 

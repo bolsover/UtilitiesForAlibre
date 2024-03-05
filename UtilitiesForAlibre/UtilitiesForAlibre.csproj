@@ -94,6 +94,9 @@
         <Reference Include="MathML, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
             <HintPath>..\packages\MathML.0.4.0\lib\netstandard1.6\MathML.dll</HintPath>
         </Reference>
+        <Reference Include="MathNet.Numerics, Version=4.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\MathNet.Numerics.4.9.0\lib\net461\MathNet.Numerics.dll</HintPath>
+        </Reference>
         <Reference Include="Microsoft.CSharp"/>
         <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
             <HintPath>..\packages\Microsoft.CodeCoverage.17.3.1\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
@@ -200,6 +203,7 @@
         <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
             <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
         </Reference>
+        <Reference Include="System.Runtime.Serialization" />
         <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
             <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
         </Reference>
@@ -245,6 +249,8 @@
         <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs"/>
         <Compile Include="Bevel\Builder\BevelGearBuilder.cs" />
         <Compile Include="Bevel\Calculator\BevelGearCalculator.cs" />
+        <Compile Include="Bevel\Calculator\KfactorCalculator.cs" />
+        <Compile Include="Bevel\Calculator\KFactorDictionary.cs" />
         <Compile Include="Bevel\Models\BevelGear.cs" />
         <Compile Include="Bevel\Models\BevelGearData.cs" />
         <Compile Include="Bevel\Models\BevelGearType.cs" />

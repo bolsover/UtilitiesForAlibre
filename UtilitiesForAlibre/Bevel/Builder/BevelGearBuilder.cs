@@ -40,7 +40,7 @@ namespace Bolsover.Bevel.Builder
             UpdateSketch2(bevelGear, sketch2);
 
             session.Parameters.CloseParameterTransaction();
-             
+
             session.StopChanges();
             ((IADPartSession)session).RegenerateAll();
         }
@@ -77,45 +77,117 @@ namespace Bolsover.Bevel.Builder
                 true);
             var phi = CalculatePhi(bevelGear);
             var quarterTooth = 90 / (bevelGear.NumberOfTeeth / Math.Cos(Radians(bevelGear.PitchConeAngle)));
-
+            var rhsInvolute = Geometry.InvolutePoints(eqBaseDia / 2, invOuterDia / 2, 50);
             if (eqBaseDia > eqRootDia)
             {
-                var rhsInvolute = Geometry.InvolutePoints(eqBaseDia / 2, invOuterDia / 2, 50);
                 var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
                 rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
                 lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
-                rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
-                lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
+                if (bevelGear.GearType == BevelGearType.Standard)
+                {
+                    rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
+                    lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
+                }
+                else
+                {
+                    var a = AngleForGleason(bevelGear);
+                    var x = Radians(bevelGear.InterToothDegrees / 2);
+                    var j = x - a;
+                    rhsInvolute = GearPoint.Rotated(rhsInvolute, j);
+                    lhsInvolute = GearPoint.Rotated(lhsInvolute, -j);
+                }
+
                 AddScaledBsplineByInterpolation(sketch, rhsInvolute, 0.1);
                 AddScaledBsplineByInterpolation(sketch, lhsInvolute, 0.1);
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[lhsInvolute.Count - 1],
                     rhsInvolute[rhsInvolute.Count - 1], 0.1);
 
-                var radius = (Geometry.DistanceBetweenPoints(rhsInvolute[0], lhsInvolute[0])) / 2;
-                var y = (eqRootDia / 2) + radius;
-                AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, y), rhsInvolute[0], lhsInvolute[0], 0.1);
+
+                var leftFilletPoints = CalculateCircleAndTangentPoints(sketch, bevelGear, lhsInvolute[0], true);
+                var rightFilletPoints = CalculateCircleAndTangentPoints(sketch, bevelGear, rhsInvolute[0], false);
+
+                var arc1 =
+                    AddScaledCircularArcByCenterStartEnd(sketch, leftFilletPoints.Item1, leftFilletPoints.Item2, leftFilletPoints.Item3, 0.1);
+                AddScaledLine(sketch, lhsInvolute[0], SketchPointToGearPoint(arc1.End), 0.1);
+                var arc2 = AddScaledCircularArcByCenterStartEnd(sketch, rightFilletPoints.Item1, rightFilletPoints.Item3,
+                    rightFilletPoints.Item2, 0.1);
+                AddScaledLine(sketch, rhsInvolute[0], SketchPointToGearPoint(arc2.Start), 0.1);
+                AddScaledLine(sketch, SketchPointToGearPoint(arc1.Start), SketchPointToGearPoint(arc2.End), 0.1);
             }
             else
             {
-                var rhsInvolute = Geometry.InvolutePoints(eqBaseDia / 2, invOuterDia / 2, 50);
                 rhsInvolute = Geometry.PointsOutsideCircle(rhsInvolute, new GearPoint(0, 0), bevelGear.EquivalentRootDiameter / 2);
                 var rootPoint = ToothPointCalculator.PointOnInvolute(bevelGear.EquivalentBaseDiameter / 2, bevelGear.EquivalentRootDiameter / 2);
                 rhsInvolute.Insert(0, rootPoint);
                 var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
                 rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
                 lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
-                rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
-                lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
+                if (bevelGear.GearType == BevelGearType.Standard)
+                {
+                    rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
+                    lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
+                }
+                else
+                {
+                    var a = AngleForGleason(bevelGear);
+                    var x = Radians(bevelGear.InterToothDegrees / 2);
+                    var j = x - a;
+                    rhsInvolute = GearPoint.Rotated(rhsInvolute, j);
+                    lhsInvolute = GearPoint.Rotated(lhsInvolute, -j);
+                }
+
                 AddScaledBsplineByInterpolation(sketch, rhsInvolute, 0.1);
                 AddScaledBsplineByInterpolation(sketch, lhsInvolute, 0.1);
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[lhsInvolute.Count - 1],
                     rhsInvolute[rhsInvolute.Count - 1], 0.1);
-               AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[0],
+                AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[0],
                     rhsInvolute[0], 0.1);
             }
 
             sketch.EndChange();
         }
+
+        private static double AngleForGleason(IBevelGear bevelGear)
+        {
+            GearPoint involutePitchPoint = Geometry.PointOnInvolute(bevelGear.EquivalentBaseDiameter / 2, bevelGear.EquivalentPitchDiameter / 2);
+            double angle = Geometry.AngleToPointOnCircle(new GearPoint(0, 0), involutePitchPoint);
+            return angle;
+        }
+
+        private static GearPoint SketchPointToGearPoint(IADSketchPoint point)
+        {
+            return new GearPoint(point.X * 10, point.Y * 10);
+        }
+
+
+        private static (GearPoint, GearPoint, GearPoint) CalculateCircleAndTangentPoints(IADSketch sketch, IBevelGear bevelGear,
+            GearPoint involuteStart, bool isLeft)
+        {
+            var gearCentre = new GearPoint(0, 0);
+            var baseToRoot = bevelGear.EquivalentBaseDiameter / 2 - bevelGear.EquivalentRootDiameter / 2;
+            var filletRadius = baseToRoot * 0.5;
+            var distanceToRadius = bevelGear.EquivalentRootDiameter / 2 + filletRadius;
+            var adjAngleRadToFilletCentre = Math.Asin(filletRadius / (distanceToRadius));
+            var angleRadToInvolute = Geometry.AngleToPointOnCircle(gearCentre, involuteStart);
+            var angleToFilletCentre = angleRadToInvolute + adjAngleRadToFilletCentre;
+            if (!isLeft)
+            {
+                angleToFilletCentre = angleRadToInvolute - adjAngleRadToFilletCentre;
+            }
+
+            var circleCenter = new GearPoint(gearCentre.X + distanceToRadius * Math.Cos(angleToFilletCentre),
+                gearCentre.Y + distanceToRadius * Math.Sin(angleToFilletCentre));
+            AddScaledPoint(sketch, circleCenter, 0.1);
+            var intersectPointS = Intersection(circleCenter, bevelGear.EquivalentRootDiameter / 2);
+
+            AddScaledPoint(sketch, intersectPointS, 0.1);
+
+            var intersectPointE = Intersection(involuteStart, distanceToRadius);
+            AddScaledPoint(sketch, intersectPointE, 0.1);
+
+            return (circleCenter, intersectPointS, intersectPointE);
+        }
+
 
         private static GearPoint Intersection(GearPoint lineEnd, double baseRadius)
         {
@@ -128,8 +200,8 @@ namespace Bolsover.Bevel.Builder
         private static double CalculatePhi(IBevelGear bevelGear)
         {
             var alpha = bevelGear.PressureAngle; // Pressure Angle degrees
-            var d = bevelGear.PitchDiameter; // Pitch Diameters
-            var db = d * Math.Cos(Radians(alpha)); // Base Diameter of Pinion
+            var d = bevelGear.EquivalentPitchDiameter; // Pitch Diameters
+            var db = bevelGear.EquivalentBaseDiameter; // Base Diameter of Pinion
 
             var phi = Math.Sqrt(Math.Pow(d, 2) - Math.Pow(db, 2)) / db * 180 / Math.PI - alpha;
 

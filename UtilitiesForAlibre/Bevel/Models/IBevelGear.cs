@@ -12,12 +12,14 @@ namespace Bolsover.Bevel.Models
         double NumberOfTeeth { get; set; }
         double PitchConeAngle { get; set; }
         double PitchDiameter { get; set; }
+        double BaseDiameter { get; set; }
+        double RootDiameter { get; set; }
+         double OutsideDiameter { get; set; }
         double InnerOutsideDiameter { get; set; }
         double AxialFaceWidth { get; set; }
         double PitchApexToCrown { get; set; }
         double FaceWidth { get; set; }
         double ConeDistance { get; set; }
-        double OutsideDiameter { get; set; }
         double RootConeAngle { get; set; }
         double Addendum { get; set; }
         double Dedendum { get; set; }
@@ -32,6 +34,10 @@ namespace Bolsover.Bevel.Models
         double EquivalentAddendumDiameter { get; set; }
         double BackConeDistance { get; set; }
         double BackConeAngle { get; set; }
+        
+        double KFactor { get; set; }
+        double CircularThicknessDegrees { get; set; }
+        double InterToothDegrees { get; set; }
 
         BevelGearType GearType { get; set; }
 

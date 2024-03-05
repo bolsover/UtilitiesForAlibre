@@ -262,12 +262,12 @@ namespace Bolsover.Involute.Calculator
             var ex = gearDesignOutputParams.RootCircleDiameter / 2 * Math.Tan(AngleToRootFilletCentre(gearDesignOutputParams)) +
                      gearDesignOutputParams.RootCircleDiameter / 2 / Math.Cos(AngleToRootFilletCentre(gearDesignOutputParams));
             var rootFilletEnd = new GearPoint(ex, 0);
-            var tipReliefStart = ToothPointCalculator.RhsStartOfTipRelief(gearDesignOutputParams);
+            var tipReliefStart = RhsStartOfTipRelief(gearDesignOutputParams);
 
             rhSinvolute = Geometry.TrimmedInvolutePoints(rhSinvolute, tipReliefStart, rootFilletEnd);
             var centre = new GearPoint(0, 0);
             var angleToAdjustedRightRootFilletEnd = Geometry.AngleToPointOnCircle(centre, rhSinvolute[0]);
-            var angleToFilletCentre = Math.Asin(gearDesignOutputParams.RootFilletDiameter / (gearDesignOutputParams.RootCircleDiameter + gearDesignOutputParams.RootFilletDiameter));
+            var angleToFilletCentre = AngleToRootFilletCentre(gearDesignOutputParams);
             var rootFilletStartX = gearDesignOutputParams.RootCircleDiameter / 2 * Math.Cos(angleToFilletCentre);
             var rootFilletStartY = -gearDesignOutputParams.RootCircleDiameter / 2 * Math.Sin(angleToFilletCentre);
 
@@ -280,12 +280,12 @@ namespace Bolsover.Involute.Calculator
             var ex = gearDesignOutputParams.RootCircleDiameter / 2 * Math.Tan(AngleToRootFilletCentre(gearDesignOutputParams)) +
                      gearDesignOutputParams.RootCircleDiameter / 2 / Math.Cos(AngleToRootFilletCentre(gearDesignOutputParams));
             var rootFilletEnd = new GearPoint(ex, 0);
-            var tipReliefStart = ToothPointCalculator.RhsStartOfTipRelief(gearDesignOutputParams);
+            var tipReliefStart = RhsStartOfTipRelief(gearDesignOutputParams);
 
             rhSinvolute = Geometry.TrimmedInvolutePoints(rhSinvolute, tipReliefStart, rootFilletEnd);
             var centre = new GearPoint(0, 0);
             var angleToAdjustedRightRootFilletEnd = Geometry.AngleToPointOnCircle(centre, rhSinvolute[0]);
-            var angleToFilletCentre = Math.Asin(gearDesignOutputParams.RootFilletDiameter / ((gearDesignOutputParams.RootCircleDiameter) + gearDesignOutputParams.RootFilletDiameter));
+            var angleToFilletCentre = AngleToRootFilletCentre(gearDesignOutputParams);
             var rootFilletStartX = gearDesignOutputParams.RootCircleDiameter / 2 * Math.Cos(angleToFilletCentre);
             var rootFilletStartY = -gearDesignOutputParams.RootCircleDiameter / 2 * Math.Sin(angleToFilletCentre);
             var kappaRadians = Radians(gearDesignOutputParams.Kappa);

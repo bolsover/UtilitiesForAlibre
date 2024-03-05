@@ -166,7 +166,15 @@ namespace Bolsover.Bevel.Presenters
 
         private void ViewOnEditPinionNumberOfTeethEvent(object sender, EventArgs e)
         {
-            _pinion.NumberOfTeeth = (double)((NumericUpDown)sender).Value;
+            var value = (double)((NumericUpDown)sender).Value;
+            // ensure minimum number of teeth for Gleason gears is 13
+            if (_pinion.GearType == BevelGearType.Gleason && value < 13)
+            {
+                value = 13;
+                ((BevelGearView)_view).NumberOfTeethPinionNumericUpDown.Value = 13;
+            }
+            
+            _pinion.NumberOfTeeth = value;
         }
 
         private void ViewOnEditSpiralAngleEvent(object sender, EventArgs e)
@@ -230,6 +238,11 @@ namespace Bolsover.Bevel.Presenters
                 "", ""));
             data.Add(new BevelGearData("Pitch Diameter", _pinion.PitchDiameter.ToString("0.000 mm"), (_pinion.PitchDiameter / 25.4).ToString("0.000 in"),
                 "", _gear.PitchDiameter.ToString("0.000 mm"), (_gear.PitchDiameter / 25.4).ToString("0.000 in"), ""));
+            data.Add(new BevelGearData("Base Diameter", _pinion.BaseDiameter.ToString("0.000 mm"), (_pinion.BaseDiameter / 25.4).ToString("0.000 in"),
+                "", _gear.BaseDiameter.ToString("0.000 mm"), (_gear.BaseDiameter / 25.4).ToString("0.000 in"), ""));
+            data.Add(new BevelGearData("Root Diameter", _pinion.RootDiameter.ToString("0.000 mm"), (_pinion.RootDiameter / 25.4).ToString("0.000 in"),
+                "", _gear.RootDiameter.ToString("0.000 mm"), (_gear.RootDiameter / 25.4).ToString("0.000 in"), ""));
+
             data.Add(new BevelGearData("Cone Distance", _pinion.ConeDistance.ToString("0.000 mm"), (_pinion.ConeDistance / 25.4).ToString("0.000 in"),
                 "", _gear.ConeDistance.ToString("0.000 mm"), (_gear.ConeDistance / 25.4).ToString("0.000 in"), ""));
             data.Add(new BevelGearData("Addendum", _pinion.Addendum.ToString("0.000 mm"), (_pinion.Addendum / 25.4).ToString("0.000 in"), "",
@@ -250,7 +263,16 @@ namespace Bolsover.Bevel.Presenters
                 (_gear.EquivalentRootDiameter / 25.4).ToString("0.000 in"), ""));
             data.Add(new BevelGearData("Back Cone Angle", _pinion.BackConeAngle.ToString("0.000°"), "", "", _gear.BackConeAngle.ToString("0.000°"),
                 "", ""));
-
+            if (_pinion.GearType == BevelGearType.Gleason)
+            {
+                data.Add(new BevelGearData("KFactor", _pinion.KFactor.ToString("0.000"), "", "", _gear.KFactor.ToString("0.000"),
+                    "", ""));
+                data.Add(new BevelGearData("Circular Thickness°", _pinion.CircularThicknessDegrees.ToString("0.000°"), "", "", _gear.CircularThicknessDegrees.ToString("0.000°"),
+                    "", ""));
+                data.Add(new BevelGearData("Inter Tooth°", _pinion.InterToothDegrees.ToString("0.000°"), "", "", _gear.InterToothDegrees.ToString("0.000°"),
+                    "", ""));
+            }
+         
             return data;
         }
 
@@ -258,6 +280,8 @@ namespace Bolsover.Bevel.Presenters
         private void StandardCalculations()
         {
             _pinion.PitchDiameter = CalculatePitchDiameter(_pinion, _gear).Item1;
+            _pinion.BaseDiameter = CalculateBaseDiameter(_pinion, _gear).Item1;
+            _pinion.RootDiameter = CalculateRootDiameter(_pinion, _gear).Item1;
             _pinion.PitchConeAngle = CalculatePitchConeAngle(_pinion, _gear).Item1;
             _pinion.ConeDistance = CalculatePitchConeDistance(_pinion, _gear).Item1;
             _pinion.Addendum = CalculateAddendum(_pinion, _gear).Item1;
@@ -276,8 +300,13 @@ namespace Bolsover.Bevel.Presenters
             _pinion.EquivalentAddendumDiameter = CalculateTredgoldEquivalentAddendumDiameter(_pinion, _gear).Item1;
             _pinion.EquivalentRootDiameter = CalculateTredgoldEquivalentRootDiameter(_pinion, _gear).Item1;
             _pinion.BackConeAngle = CalculateBackConeAngle(_pinion, _gear).Item1;
+            _pinion.KFactor = CalculateKFactor(_pinion, _gear).Item1;
+            _pinion.CircularThicknessDegrees = CalculateCircularThicknessDegrees(_pinion, _gear).Item1;
+            _pinion.InterToothDegrees = CalculateInterToothDegrees(_pinion, _gear).Item1;
             _pinion.StringValue = "Pinion\r\n" + _pinion;
             _gear.PitchDiameter = CalculatePitchDiameter(_pinion, _gear).Item2;
+            _gear.BaseDiameter = CalculateBaseDiameter(_pinion, _gear).Item2;
+            _gear.RootDiameter = CalculateRootDiameter(_pinion, _gear).Item2;
             _gear.PitchConeAngle = CalculatePitchConeAngle(_pinion, _gear).Item2;
             _gear.ConeDistance = CalculatePitchConeDistance(_pinion, _gear).Item2;
             _gear.Addendum = CalculateAddendum(_pinion, _gear).Item2;
@@ -296,6 +325,9 @@ namespace Bolsover.Bevel.Presenters
             _gear.EquivalentAddendumDiameter = CalculateTredgoldEquivalentAddendumDiameter(_pinion, _gear).Item2;
             _gear.EquivalentRootDiameter = CalculateTredgoldEquivalentRootDiameter(_pinion, _gear).Item2;
             _gear.BackConeAngle = CalculateBackConeAngle(_pinion, _gear).Item2;
+            _gear.KFactor = CalculateKFactor(_pinion, _gear).Item2;
+            _gear.CircularThicknessDegrees = CalculateCircularThicknessDegrees(_pinion, _gear).Item2;
+            _gear.InterToothDegrees = CalculateInterToothDegrees(_pinion, _gear).Item2;
             _gear.StringValue = "Gear\r\n" + _gear;
         }
     }

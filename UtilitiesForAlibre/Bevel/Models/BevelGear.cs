@@ -16,6 +16,8 @@ namespace Bolsover.Bevel.Models
         private double _numberOfTeeth;
         private double _pitchConeAngle;
         private double _pitchDiameter;
+        private double _baseDiameter;
+        private double _rootDiameter;
         private double _innerOutsideDiameter;
         private double _axialFaceWidth;
         private double _pitchApexToCrown;
@@ -37,6 +39,9 @@ namespace Bolsover.Bevel.Models
         private double _equivalentAddendumDiameter;
         private double _backConeDistance;
         private double _backConeAngle;
+        private double _kFactor;
+        private double _circularThicknessDegrees;
+        private double _interToothDegrees;
 
         public override string ToString()
         {
@@ -153,6 +158,33 @@ namespace Bolsover.Bevel.Models
             }
         }
 
+        public double KFactor  {
+            get => _kFactor;
+            set
+            {
+                _kFactor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double CircularThicknessDegrees { 
+            get => _circularThicknessDegrees;
+            set
+            {
+                _circularThicknessDegrees = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double InterToothDegrees { 
+            get => _interToothDegrees;
+            set
+            {
+                _interToothDegrees = value;
+                OnPropertyChanged();
+            }
+        }
+
         public BevelGearType GearType
         {
             get => _gearType;
@@ -200,6 +232,23 @@ namespace Bolsover.Bevel.Models
             set
             {
                 _pitchDiameter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double BaseDiameter {
+            get => _baseDiameter;
+            set
+            {
+                _baseDiameter = value;
+                OnPropertyChanged();
+            }
+        }
+        public double RootDiameter{
+            get => _rootDiameter;
+            set
+            {
+                _rootDiameter = value;
                 OnPropertyChanged();
             }
         }

@@ -257,7 +257,7 @@ namespace Bolsover.Bevel.Views
             this.NumberOfTeethGearNumericUpDown.Location = new System.Drawing.Point(4, 7);
             this.NumberOfTeethGearNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.NumberOfTeethGearNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            this.NumberOfTeethGearNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
+            this.NumberOfTeethGearNumericUpDown.Minimum = new decimal(new int[] { 13, 0, 0, 0 });
             this.NumberOfTeethGearNumericUpDown.Name = "NumberOfTeethGearNumericUpDown";
             this.NumberOfTeethGearNumericUpDown.Size = new System.Drawing.Size(72, 22);
             this.NumberOfTeethGearNumericUpDown.TabIndex = 104;
@@ -285,7 +285,7 @@ namespace Bolsover.Bevel.Views
             this.NumberOfTeethPinionNumericUpDown.Location = new System.Drawing.Point(4, 7);
             this.NumberOfTeethPinionNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.NumberOfTeethPinionNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            this.NumberOfTeethPinionNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
+            this.NumberOfTeethPinionNumericUpDown.Minimum = new decimal(new int[] { 13, 0, 0, 0 });
             this.NumberOfTeethPinionNumericUpDown.Name = "NumberOfTeethPinionNumericUpDown";
             this.NumberOfTeethPinionNumericUpDown.Size = new System.Drawing.Size(70, 22);
             this.NumberOfTeethPinionNumericUpDown.TabIndex = 103;
@@ -663,9 +663,9 @@ namespace Bolsover.Bevel.Views
 private System.Windows.Forms.TabPage TabPage1;
 private System.Windows.Forms.TableLayoutPanel TableLayoutPanel1;
 private System.Windows.Forms.TableLayoutPanel TableLayoutPanel4;
-private System.Windows.Forms.NumericUpDown NumberOfTeethGearNumericUpDown;
+public System.Windows.Forms.NumericUpDown NumberOfTeethGearNumericUpDown;
 private System.Windows.Forms.TableLayoutPanel TableLayoutPanel3;
-private System.Windows.Forms.NumericUpDown NumberOfTeethPinionNumericUpDown;
+public System.Windows.Forms.NumericUpDown NumberOfTeethPinionNumericUpDown;
 private System.Windows.Forms.Label Label9;
 public System.Windows.Forms.Label PressureAngleLabel;
 private System.Windows.Forms.Label Label11;

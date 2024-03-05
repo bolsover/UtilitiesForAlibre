@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Windows.Forms;
 using AlibreAddOn;
 using AlibreX;
-
+using Bolsover;
 
 
 namespace AlibreAddOnAssembly
@@ -17,6 +18,12 @@ namespace AlibreAddOnAssembly
         {
             AlibreRoot = (IADRoot) pAutomationHook.Root;
             _parentWinHandle = hwnd;
+            // var version = AlibreRoot.Version.Replace("PRODUCTVERSION ", "");
+            // var versionarr = version.Split(',');
+            // var majorVersion = int.Parse(versionarr[0]);
+            // if (majorVersion < 27)
+            //     MessageBox.Show(Globals.AppName + "requires a newer version of Alibre Design", "Error");
+
             _utilitiesForAlibre = new Bolsover.UtilitiesForAlibre(AlibreRoot, _parentWinHandle);
         }
 
