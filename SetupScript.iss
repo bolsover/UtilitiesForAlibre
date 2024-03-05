@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UtilitiesForAlibre"
-#define MyAppVersion "1.7.0.0"
+#define MyAppVersion "1.8.0.0"
 #define MyAppPublisher "David Bolsover"
 
 [Setup]

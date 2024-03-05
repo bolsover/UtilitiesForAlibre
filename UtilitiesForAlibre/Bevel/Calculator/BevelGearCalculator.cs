@@ -20,12 +20,19 @@ namespace Bolsover.Bevel.Calculator
             {
                 case < 13:
                     throw new ArgumentOutOfRangeException("Number of teeth must be over 13");
-                case > 24:
-                    return (0, 0);
+               
             }
 
             var ratio = pinion.NumberOfTeeth / gear.NumberOfTeeth;
-            var k = KFactorDictionary.GetKFactor((int)pinion.NumberOfTeeth, ratio);
+            double k;
+            if (pinion.NumberOfTeeth > 24)
+            {
+                k = 0;
+            }
+            else
+            {
+                k = KFactorDictionary.GetKFactor((int)pinion.NumberOfTeeth, ratio);
+            }
             var pd = 25.4 / pinion.Module;
             var p = Math.PI / pd;
             var ha = CalculateAddendum(pinion, gear);
@@ -56,7 +63,7 @@ namespace Bolsover.Bevel.Calculator
 
         public static (double, double) CalculateKFactor(IBevelGear pinion, IBevelGear gear)
         {
-            if (pinion.GearType == BevelGearType.Standard)
+            if (pinion.GearType == BevelGearType.Standard || pinion.NumberOfTeeth < 13 || pinion.NumberOfTeeth > 24)
                 return (0, 0);
             var ratio = pinion.NumberOfTeeth / gear.NumberOfTeeth;
             var k = KFactorDictionary.GetKFactor((int)pinion.NumberOfTeeth, ratio);
