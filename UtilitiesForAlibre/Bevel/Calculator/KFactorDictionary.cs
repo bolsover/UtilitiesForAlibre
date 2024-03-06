@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Bolsover.Bevel.Calculator
 {
-    public class KFactorDictionary
+    public static class KFactorDictionary
     {
         private static Dictionary<int, KFactor> KFactors = new()
         {
@@ -23,12 +23,16 @@ namespace Bolsover.Bevel.Calculator
         
         public static double GetKFactor(int teeth, double ratio)
         {
+            if (teeth > 24)
+            {
+                return 0;
+            }
             var kFactor = KFactors[teeth];
             var p = kFactor.KCoefficients;
-            double Polynomial(double x) => p[0] + p[1] * x + p[2] * Math.Pow(x, 2);
-
             var y = Polynomial(ratio);
             return y;
+
+            double Polynomial(double x) => p[0] + p[1] * x + p[2] * Math.Pow(x, 2);
         }
 
     }
