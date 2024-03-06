@@ -36,7 +36,6 @@ namespace Bolsover.Bevel.Calculator
             var pd = 25.4 / pinion.Module;
             var p = Math.PI / pd;
             var ha = CalculateAddendum(pinion, gear);
-            var hf = CalculateDedendum(pinion, gear);
             var t2 = (p / 2) - ((ha.Item1 - ha.Item2) / 25.4) * (Math.Tan(Radians(pinion.PressureAngle)) - (k / pd));
             var t1 = p - t2;
             return (t1 * 25.4, t2 * 25.4);
