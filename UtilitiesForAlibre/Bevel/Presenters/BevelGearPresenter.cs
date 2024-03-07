@@ -8,7 +8,6 @@ using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Views;
 using static Bolsover.Bevel.Calculator.BevelGearCalculator;
 using static Bolsover.Utils.LatexUtils;
-using BrightIdeasSoftware;
 
 namespace Bolsover.Bevel.Presenters
 {
@@ -17,6 +16,7 @@ namespace Bolsover.Bevel.Presenters
         private readonly IBevelGearView _view;
         private IBevelGear _pinion;
         private IBevelGear _gear;
+        private bool _doOnce = false;
 
 
         public BevelGearPresenter(IBevelGearView view)
@@ -24,9 +24,11 @@ namespace Bolsover.Bevel.Presenters
             _view = view;
             InitGearDefaults();
             SetupEvents();
-            SetupObjectListView(); 
+            SetupObjectListView();
             GearsOnUpdated(null, null);
             SetupLabelLatexImages();
+            // ((BevelGearView)_view).documentationLink.Links.Add(0,2,"http://www.bolsover.com/UtilitiesForAlibre");
+            // ((BevelGearView)_view).documentationLink.LinkClicked += DocumentationLinkOnLinkClicked;
         }
 
         private void SetupEvents()
@@ -76,6 +78,11 @@ namespace Bolsover.Bevel.Presenters
             StandardCalculations();
             var data = BuildBevelGearData();
             ((BevelGearView)_view).objectListView1.SetObjects(data);
+            if (!_doOnce)
+            {
+                ((BevelGearView)_view).objectListView1.AutoResizeColumns();
+                _doOnce = true;
+            }
             UpdateNotesLabel(_gear.GearType);
         }
 
@@ -138,7 +145,7 @@ namespace Bolsover.Bevel.Presenters
             _gear.GearType = RadioButtonToGearType((RadioButton)sender);
             _pinion.GearType = RadioButtonToGearType((RadioButton)sender);
         }
-        
+
         private void UpdateNotesLabel(BevelGearType gearType)
         {
             var view = (BevelGearView)_view;
@@ -173,7 +180,7 @@ namespace Bolsover.Bevel.Presenters
                 value = 13;
                 ((BevelGearView)_view).NumberOfTeethPinionNumericUpDown.Value = 13;
             }
-            
+
             _pinion.NumberOfTeeth = value;
         }
 
@@ -230,13 +237,15 @@ namespace Bolsover.Bevel.Presenters
                 (25.4 / _gear.Module).ToString("0.0000 in DP"), (Math.PI / (25.4 / _gear.Module)).ToString("0.0000 in CP")));
             data.Add(new BevelGearData("Teeth", _pinion.NumberOfTeeth.ToString("0"), "", "", _gear.NumberOfTeeth.ToString("0"), "", ""));
             data.Add(new BevelGearData("Shaft Angle", _pinion.ShaftAngle.ToString("0.000°"), "", "", _gear.ShaftAngle.ToString("0.000°"), "", ""));
-            data.Add(new BevelGearData("Face Width", _pinion.FaceWidth.ToString("0.000 mm"), (_pinion.FaceWidth / 25.4).ToString("0.000 in"), "", _gear.FaceWidth.ToString("0.000 mm"), (_gear.FaceWidth / 25.4).ToString("0.000 in"),
+            data.Add(new BevelGearData("Face Width", _pinion.FaceWidth.ToString("0.000 mm"), (_pinion.FaceWidth / 25.4).ToString("0.000 in"), "",
+                _gear.FaceWidth.ToString("0.000 mm"), (_gear.FaceWidth / 25.4).ToString("0.000 in"),
                 ""));
             data.Add(new BevelGearData("Pressure Angle", _pinion.PressureAngle.ToString("0.000°"), "", "", _gear.PressureAngle.ToString("0.000°"), "",
                 ""));
             data.Add(new BevelGearData("Pitch Cone Angle", _pinion.PitchConeAngle.ToString("0.000°"), "", "", _gear.PitchConeAngle.ToString("0.000°"),
                 "", ""));
-            data.Add(new BevelGearData("Pitch Diameter", _pinion.PitchDiameter.ToString("0.000 mm"), (_pinion.PitchDiameter / 25.4).ToString("0.000 in"),
+            data.Add(new BevelGearData("Pitch Diameter", _pinion.PitchDiameter.ToString("0.000 mm"),
+                (_pinion.PitchDiameter / 25.4).ToString("0.000 in"),
                 "", _gear.PitchDiameter.ToString("0.000 mm"), (_gear.PitchDiameter / 25.4).ToString("0.000 in"), ""));
             data.Add(new BevelGearData("Base Diameter", _pinion.BaseDiameter.ToString("0.000 mm"), (_pinion.BaseDiameter / 25.4).ToString("0.000 in"),
                 "", _gear.BaseDiameter.ToString("0.000 mm"), (_gear.BaseDiameter / 25.4).ToString("0.000 in"), ""));
@@ -267,12 +276,14 @@ namespace Bolsover.Bevel.Presenters
             {
                 data.Add(new BevelGearData("KFactor", _pinion.KFactor.ToString("0.000"), "", "", _gear.KFactor.ToString("0.000"),
                     "", ""));
-                data.Add(new BevelGearData("Circular Thickness°", _pinion.CircularThicknessDegrees.ToString("0.000°"), "", "", _gear.CircularThicknessDegrees.ToString("0.000°"),
+                data.Add(new BevelGearData("Circular Thickness°", _pinion.CircularThicknessDegrees.ToString("0.000°"), "", "",
+                    _gear.CircularThicknessDegrees.ToString("0.000°"),
                     "", ""));
-                data.Add(new BevelGearData("Inter Tooth°", _pinion.InterToothDegrees.ToString("0.000°"), "", "", _gear.InterToothDegrees.ToString("0.000°"),
+                data.Add(new BevelGearData("Inter Tooth°", _pinion.InterToothDegrees.ToString("0.000°"), "", "",
+                    _gear.InterToothDegrees.ToString("0.000°"),
                     "", ""));
             }
-         
+
             return data;
         }
 

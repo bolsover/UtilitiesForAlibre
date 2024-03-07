@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Presenters;
@@ -201,6 +202,5 @@ namespace Bolsover.Bevel.Views
             EditGearTypeEvent?.Invoke(sender, e);
         }
 
-        
     }
 }

@@ -1,5 +1,5 @@
 <AlibreDesignAddOn specificationVersion="2" friendlyName="Utilities for Alibre">
-<Author name="David Bolsover" link="https://github.com/bolsover/UtilitiesForAlibre"/>
+<Author name="David Bolsover" link="http://bolsover.com/utilitiesforalibre/utilities-for-alibre.html"/>
    <Copyright>Copyright (c) 2024. David Bolsover</Copyright>
    <DLL type="Managed" loadedWhen="Startup" location="UtilitiesForAlibre.dll"/>
    <Icon location="nexus.ico"/> 

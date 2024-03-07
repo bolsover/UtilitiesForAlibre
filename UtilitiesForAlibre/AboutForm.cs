@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -21,6 +22,12 @@ namespace Bolsover
         private void closeButton_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var sInfo = new ProcessStartInfo("http://bolsover.com/utilitiesforalibre/utilities-for-alibre.html");
+            Process.Start(sInfo);
         }
     }
 }
