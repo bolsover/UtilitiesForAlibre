@@ -13,13 +13,13 @@
 /dataSources.local.xml
 
 #writerside output
-/docs/*.zip
-/docs/*.pdf
-/docs/*.html
-/docs/*.docx
-/docs/*.doc
-/docs/*.txt
-/docs/*.rtf
+docs/*.zip
+docs/*.pdf
+docs/*.html
+docs/*.docx
+docs/*.doc
+docs/*.txt
+docs/*.rtf
 
 
 
