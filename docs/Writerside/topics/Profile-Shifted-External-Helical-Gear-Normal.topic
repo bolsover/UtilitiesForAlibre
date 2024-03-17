@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Profile Shifted External Helical Gear - Normal" id="Profile-Shifted-External-Helical-Gear-Normal">
+
+    <link-summary>Example and formulae for the calculation of profile shifted helical gears.</link-summary>
+    <img src="InternalHelical.png" alt="Standard Helical gear" height="255"/>
+    <note>
+        <p>You can download an Excel spreadsheet that applies the formulae shown here <a
+                href="http://www.bolsover.com/involute/excel/ProfileShiftedHelicalGear.xlsx">ProfileShiftedHelicalGear.xlsx</a></p>
+    </note>
+    <p>Profile Shifted Helical gears feature profile adjustment to allow for variations in design such as a
+        non-standard centre distance. The table below provides an example of a helical gear pair and the calculations used to derive the design
+        values.</p>
+    <p>The following parameters are required as inputs:</p>
+    <list type="decimal">
+        <li>Module</li>
+        <li>Pressure Angle. Usually one of 14.5°, 20° or 25°.</li>
+        <li>Helix Angle</li>
+        <li>Number of Teeth, Pinion and Gear</li>
+        <li>Working Centre Distance.</li>
+        <li>Coefficient of Profile Shift, Pinion and Gear. Note that the Sum Coefficient of Profile Shift is a
+            calculated value; it is the distribution of this value between Pinion and Gear that is required as a user
+            input.
+        </li>
+        <li>Height. This is the height or width of the gear. It is only relevant to calculation of the Axial Contact Ratio.</li>
+    </list>
+
+
+    <table style="both">
+            <tr>
+                <td>No.</td>
+                <td>Item</td>
+                <td>Symbol</td>
+                <td>Formula</td>
+                <td>Pinion</td>
+                <td>Gear</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Normal Module</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m_n"/>
+                </td>
+                <td>Design Parameter</td>
+                <td colspan="2">3</td>
+
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Normal Pressure Angle</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_n"/>
+                </td>
+                <td>Design Parameter</td>
+                <td colspan="2">20°</td>
+
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Helix Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="beta"/>
+                </td>
+                <td>Design Parameter</td>
+                <td colspan="2">30°</td>
+
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Number of Teeth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="z1,z2"/>
+                </td>
+                <td>Design Parameter</td>
+                <td>12(L)</td>
+                <td>60(R)</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Working Centre Distance</td>
+                <td>
+                    <include from="Snippets.topic" element-id="a_x"/>
+                </td>
+                <td>Design Parameter</td>
+                <td colspan="2">125</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Normal Coefficient of Profile Shift</td>
+                <td>
+                    <include from="Snippets.topic" element-id="xn1,xn2"/>
+                </td>
+                <td>Design Parameter Note #1</td>
+                <td >0.09809</td>
+                <td>0.0000</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Sum Coefficient of Profile Shift</td>
+                <td>
+                    <include from="Snippets.topic" element-id="xn1+xn2"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="SumCoefficientOfProfileShiftHelicalFormula"/></td>
+                <td colspan="2">0.09809</td>
+
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Radial Module</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m_t"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="RadialModuleFormula"/></td>
+                <td colspan="2">22.79588°</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Standard Centre Distance</td>
+                <td>
+                    <include from="Snippets.topic" element-id="a"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="HelicalCentreDistanceFormula"/></td>
+                <td colspan="2">124.7077</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Radial Pressure Angle</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_t"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="RadialPressureAngleFormula"/></td>
+                <td colspan="2">22.79588°</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Radial Involute Function</td>
+                <td>
+                    <include from="Snippets.topic" element-id="RadialInvoluteFunction"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="RadialInvoluteFunctionFormula"/></td>
+                <td colspan="2">0.022414</td>
+            </tr>
+
+            <tr>
+                <td>12</td>
+                <td>Radial Working Pressure Angle</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_wt"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="WorkingPressureAngleHelicalFormula"/></td>
+                <td colspan="2">23.1126</td>
+
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Radial Working Involute Function </td>
+                <td>
+                    <include from="Snippets.topic" element-id="RadialWorkingInvoluteFunction"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="RadialWorkingInvoluteFormula"/></td>
+                <td colspan="2">0.23405</td>
+
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Centre Distance Increment Factor</td>
+                <td>
+                    <include from="Snippets.topic" element-id="y"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="CentreDistanceIncrementFactorForPositiveShiftHelicalFormula"/></td>
+                <td colspan="2">0.09744</td>
+
+            </tr>
+
+            <tr>
+                <td>15</td>
+                <td>Pitch Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="PitchDiameterHelicalFormula"/></td>
+                <td>41.569</td>
+                <td>207.846</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>Base Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_b"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="BaseDiameterHelicalFormula"/></td>
+                <td>38.322</td>
+                <td>191.611</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>Working Pitch Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_wt"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="WorkingPitchDiameterForPositiveShiftHelicalFormula"/></td>
+                <td>41.667</td>
+                <td>208.333</td>
+            </tr>
+            <tr>
+                <td rowspan="2">18</td>
+                <td rowspan="2">Addendum</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_a1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="Addendum1ForPositiveShiftHelicalFormula"/>
+                </td>
+                <td>3.292</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="h_a2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="Addendum2ForPositiveShiftHelicalFormula"/>
+                </td>
+                <td>-</td>
+                <td>2.998</td>
+            </tr>
+            <tr>
+                <td rowspan="2">19</td>
+                <td rowspan="2">Deddendum</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_f1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="Dedendum1ForPositiveShiftHelicalFormula"/>
+                </td>
+                <td>3.456</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="h_f2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="Dedendum2ForPositiveShiftHelicalFormula"/>
+                </td>
+                <td>-</td>
+                <td>3.750</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>Whole Depth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="WholeDepthForPositiveShiftHelicalFormula"/></td>
+                <td colspan="2">6.748</td>
+
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>Outside Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_a"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="OutsideDiameterForPositiveShiftSpurFormula"/></td>
+                <td>48.154</td>
+                <td>213.842</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>Root Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_f"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="RootDiameterForPositiveShiftSpurFormula"/></td>
+                <td>34.658</td>
+                <td>200.346</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>Radial Contact Ratio</td>
+                <td>
+                    <include from="Snippets.topic" element-id="epsilon_alpha"/>
+                </td>
+                <td>Note #2</td>
+                <td colspan="2">1.294</td>
+
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>Height of Gear</td>
+                <td>
+                    <include from="Snippets.topic" element-id="b"/>
+                </td>
+                <td>Design parameter</td>
+                <td colspan="2">20</td>
+
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>Axial Contact Ratio</td>
+                <td>
+                    <include from="Snippets.topic" element-id="epsilon_beta"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="contact_ratio_helical_gear_pair_beta"/></td>
+                <td colspan="2">1.061</td>
+
+            </tr>
+
+            <tr>
+                <td>25</td>
+                <td>Total Contact Ratio</td>
+                <td>
+                    <include from="Snippets.topic" element-id="epsilon_gamma"/>
+                </td>
+                <td> <include from="Snippets.topic" element-id="epsilon_gamma_formula"/></td>
+                <td colspan="2">2.355</td>
+
+            </tr>
+        </table>
+        <deflist>
+            <def id="cr1" title="#1">The values for
+                <i><include from="Snippets.topic" element-id="xn1,xn2"/></i>
+            are manually assigned and normally sum to equal the Sum Coefficient of Profile Shift (Item 7).
+            </def>
+
+            <def id="cr2" title="#2">
+                <include from="Snippets.topic" element-id="contact_ratio_helical_gear_pair_alpha"/>
+            </def>
+
+        </deflist>
+
+
+</topic>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Standard System Straight Bevel Gears" id="Standard-System-Straight-Bevel-Gears">
+    <link-summary>Example and formulae for the calculation of Standard Bevel gears.</link-summary>
+    <img alt="Bevel Gear" border-effect="rounded" width="200" src="BevelGears.png" thumbnail="true"/>
+
+    <table style="both">
+        <tr>
+            <td>No</td>
+            <td>Item</td>
+            <td>Symbol</td>
+            <td>Formula</td>
+            <td>Pinion</td>
+            <td>Gear</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Shaft Angle</td>
+            <td>
+                <include from="Greek.topic" element-id="Sigma"/>
+            </td>
+            <td>-</td>
+            <td colspan="2">90°</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Module</td>
+            <td>
+                <include from="Snippets.topic" element-id="m"/>
+            </td>
+            <td>-</td>
+            <td colspan="2">3</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Pressure Angle</td>
+            <td>
+                <include from="Greek.topic" element-id="alpha"/>
+            </td>
+            <td>-</td>
+            <td colspan="2">20°</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Number of Teeth</td>
+            <td>
+                <include from="Snippets.topic" element-id="z1,z2"/>
+            </td>
+            <td>-</td>
+            <td >20</td>
+            <td >40</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Pitch Diameter</td>
+            <td>
+                <include from="Snippets.topic" element-id="d"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="zm"/></td>
+            <td >60</td>
+            <td >120</td>
+        </tr>
+        <tr>
+            <td rowspan="2">6</td>
+            <td rowspan="2">Pitch Cone Angle</td>
+            <td>
+                <include from="Snippets.topic" element-id="delta_1"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="PitchConeAngleForBevelGear1"/>
+            </td>
+            <td>26.56505°</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>
+                <include from="Snippets.topic" element-id="delta_2"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="PitchConeAngleForBevelGear2"/>
+            </td>
+            <td>-</td>
+            <td>63.43495°</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Cone Distance</td>
+            <td>
+                <include from="Snippets.topic" element-id="R_e"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="ConeDistanceForBevelGear"/></td>
+            <td colspan="2">67.08204</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Face Width</td>
+            <td>
+                <include from="Snippets.topic" element-id="b"/>
+            </td>
+            <td> Assigned Value: Should be less than <i><include from="Snippets.topic" element-id="R_eDiv3"/></i> or <i><include from="Snippets.topic" element-id="tenm"/></i></td>
+            <td colspan="2">22</td>
+        </tr>
+        <tr>
+            <td >9</td>
+            <td >Addendum</td>
+            <td>
+                <include from="Snippets.topic" element-id="h_a"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="AddendumFormula"/>
+            </td>
+            <td colspan="2">3.00</td>
+
+        </tr>
+
+        <tr>
+            <td>10</td>
+            <td>Dedendum</td>
+            <td>
+                <include from="Snippets.topic" element-id="h_f"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="DedendumFormula"/></td>
+            <td colspan="2">3.75</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Dedendum Angle</td>
+            <td>
+                <include from="Snippets.topic" element-id="theta_f"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="DedendumAngleBevelGear"/></td>
+            <td colspan="2">3.19960</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td >Addendum angle</td>
+            <td>
+                <include from="Snippets.topic" element-id="theta_a"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="AddendumAngleBevelGear"/>
+            </td>
+            <td colspan="2">2.56064</td>
+        </tr>
+
+        <tr>
+            <td>13</td>
+            <td>Outer Cone Angle</td>
+            <td>
+                <include from="Snippets.topic" element-id="delta_a"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="OuterConeAngleForBevelGear"/></td>
+            <td >29.12569°</td>
+            <td >65.99559°</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>Root Cone Angle</td>
+            <td>
+                <include from="Snippets.topic" element-id="delta_f"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="RootConeAngleForBevelGear"/></td>
+            <td >23.36545°</td>
+            <td >60.23535°</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>Outside Diameter</td>
+            <td>
+                <include from="Snippets.topic" element-id="d_a"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="OutsideDiameterForBevelGear"/></td>
+            <td >65.3666</td>
+            <td >122.6833</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>Pitch Apex to Crown</td>
+            <td>
+                <include from="Snippets.topic" element-id="X"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="PitchApexToCrownForBevelGear"/></td>
+            <td >58.6584</td>
+            <td >27.3167</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>Axial Face Width</td>
+            <td>
+                <include from="Snippets.topic" element-id="X_b"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="AxialFaceWidthForBevelGear"/></td>
+            <td >19.2374</td>
+            <td >8.9587</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>Inner Outside Diameter</td>
+            <td>
+                <include from="Snippets.topic" element-id="d_i"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="InnerOutsideDiameterForBevelGear"/></td>
+            <td >43.9292</td>
+            <td >82.4485</td>
+        </tr>
+        <tr>
+            <td rowspan="2">19</td>
+            <td rowspan="2">Back Cone Angle</td>
+            <td>
+                <include from="Snippets.topic" element-id="nu_1"/>
+            </td>
+            <td> <include from="Snippets.topic" element-id="BackConeAngleForBevelGear1"/></td>
+            <td >64.43495</td>
+            <td >-</td>
+        </tr>
+        <tr>
+            <td>
+                <include from="Snippets.topic" element-id="nu_2"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="BackConeAngleForBevelGear2"/>
+            </td>
+            <td>-</td>
+            <td>226.56505°</td>
+        </tr>
+    </table>
+
+</topic>

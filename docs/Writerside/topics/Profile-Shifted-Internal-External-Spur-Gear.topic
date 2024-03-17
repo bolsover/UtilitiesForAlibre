@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Profile Shifted Internal &amp; External Spur Gear" id="Profile-Shifted-Internal-External-Spur-Gear">
+
+
+    <link-summary>Example and formulae for the calculation of profile shifted internal and external spur gear pair.</link-summary>
+    <img src="InternalExternalSpur.png" alt="Internal External Spur gear" height="200" thumbnail="true"/>
+
+    <table style="both">
+            <tr>
+                <td>No.</td>
+                <td>Item</td>
+                <td>Symbol</td>
+                <td>Formula</td>
+                <td>Pinion Ext</td>
+                <td>Gear Int</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Module</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m"/>
+                </td>
+                <td>Design Parameter</td>
+                <td colspan="2">3</td>
+
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Pressure Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="alpha"/>
+                </td>
+                <td>Design Parameter</td>
+                <td colspan="2">20°</td>
+
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Number of Teeth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="z1,z2"/>
+                </td>
+                <td>Design Parameter</td>
+                <td>16</td>
+                <td>24</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Working Centre Distance</td>
+                <td>
+                    <include from="Snippets.topic" element-id="a_x"/>
+                </td>
+                <td>Design Parameter</td>
+                <td colspan="2">13.1683</td>
+
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Coefficient of Profile Shift</td>
+                <td>
+                    <include from="Snippets.topic" element-id="x1,x2"/>
+                </td>
+                <td>Design Parameter Note #1</td>
+                <td>0.0</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Difference Coefficient of Profile Shift</td>
+                <td>
+                    <include from="Snippets.topic" element-id="x2-x1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="DifferenceCoefficientOfProfileShiftFormula"/>
+                </td>
+                <td colspan="2">0.5</td>
+
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Centre Distance (Standard)
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="a"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="CentreDistanceIntExtFormula"/>
+                </td>
+                <td colspan="2">12.000</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Involute Function
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="InvoluteFunction"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="InvoluteFunctionFormula"/>
+                </td>
+                <td colspan="2">0.014904</td>
+            </tr>
+
+            <tr>
+                <td>9</td>
+                <td>Working Involute Function</td>
+                <td>
+                    <include from="Snippets.topic" element-id="WorkingInvoluteFunction"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="WorkingInvoluteForPositiveShiftSpurFormula"/>
+                </td>
+                <td colspan="2">0.034317</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Working Pressure Angle</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_w"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="WorkingPressureAngleIntExtSpurFormula"/>
+                </td>
+                <td colspan="2">31.0937°</td>
+            </tr>
+
+            <tr>
+                <td>11</td>
+                <td>Centre Distance Increment Factor</td>
+                <td>
+                    <include from="Snippets.topic" element-id="y"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic"
+                             element-id="CentreDistanceIncrementFactorForProfileShiftIntExtSpurFormula"/>
+                </td>
+                <td colspan="2">0.38943</td>
+            </tr>
+
+            <tr>
+                <td>12</td>
+                <td>Pitch Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="zm"/>
+                </td>
+                <td>48.000</td>
+                <td>72.000</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Base Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_b"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="BaseDiameterFormula"/>
+                </td>
+                <td>45.105</td>
+                <td>67.658</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Working Pitch Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_w"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic"
+                             element-id="WorkingPitchDiameterForPositiveShiftSpurFormula"/>
+                </td>
+                <td>52.673</td>
+                <td>79.010</td>
+            </tr>
+            <tr>
+                <td rowspan="2">15</td>
+                <td rowspan="2">Addendum</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_a1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="Addendum1ForPositiveShiftIntExtSpurFormula"/>
+                </td>
+                <td>3.000</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="h_a2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="Addendum2ForPositiveShiftIntExtSpurFormula"/>
+
+                </td>
+                <td>-</td>
+                <td>1.500</td>
+            </tr>
+
+            <tr>
+                <td>17</td>
+                <td>Whole Depth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="WholeDepthForPositiveShiftIntExtSpurFormula"/>
+                </td>
+                <td colspan="2">6.370</td>
+
+            </tr>
+            <tr>
+                <td rowspan="2">15</td>
+                <td rowspan="2">Outside Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_a1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="OutsideDiameter1ForPositiveShiftIntExtSpurFormula"/>
+                </td>
+                <td>54.000</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="d_a2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="OutsideDiameter2ForPositiveShiftIntExtSpurFormula"/>
+                </td>
+                <td>-</td>
+                <td>69.000</td>
+            </tr>
+            <tr>
+                <td rowspan="2">15</td>
+                <td rowspan="2">Root Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_f1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="RootDiameter1ForPositiveShiftIntExtSpurFormula"/>
+                </td>
+                <td>40.500</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="d_f2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="RootDiameter1ForPositiveShiftIntExtSpurFormula"/>
+                </td>
+                <td>-</td>
+                <td>82.500</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>Total Contact Ratio</td>
+                <td>
+                    <include from="Snippets.topic" element-id="epsilon_gamma"/>
+                </td>
+                <td>
+                    Note #2
+                </td>
+                <td>1.6795</td>
+
+            </tr>
+        </table>
+        <deflist>
+            <def id="cr1" title="#1">The values for <i>
+                <include from="Snippets.topic" element-id="x1,x2"/>
+            </i> are manually assigned and normally sum to equal the Difference Coefficient of Profile Shift (Item 6).
+            </def>
+
+            <def id="cr2" title="#2">
+                <include from="Snippets.topic" element-id="contact_ratio_int_ext_spur_gear_pair"/>
+            </def>
+        </deflist>
+
+
+
+</topic>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Utilities For Alibre" id="Utilities-For-Alibre">
+
+    <p>A simple collection of utilities for Alibre including:</p>
+    <list type="decimal" start="1">
+        <li><a href="Shortcuts-Keyboard.topic">Shortcuts - A visual aid in the form of a keyboard.</a></li>
+        <li><a href="Shortcuts-Report.topic">Shortcuts - A simple report detailing assigned shortcuts.</a></li>
+        <li><a href="Data-Browser.topic">Data Browser - A custom tool for browsing and optionally setting Alibre design
+            properties.</a></li>
+        <li><a href="Sketch-Plane-Finder.topic">Sketch Plane Finder - Simple tool to show you on which plane a sketch
+            has been made.</a></li>
+        <li><a href="Property-Viewer.topic">Property Viewer - Explore what id going on inside your designs!</a></li>
+        <li><a href="Cycloidal-Gears.topic">Cycloidal Gears - Generate sketches of cycloidal gears and pinions - ideal
+            for clockmakers.</a></li>
+        <li><a href="Involute-Gears.topic">Involute Spur and Helical Gears - Generate models of Spur and Helical
+            gears.</a></li>
+        <li><a href="Bevel-Gears.topic">Bevel Gears - Generate models of Gleason and Standard straight bevel gears.</a>
+        </li>
+    </list>
+    <p>The latest release is always available from the GitHub repository: <a
+            href="https://github.com/bolsover/UtilitiesForAlibre/releases"></a>
+        The releases page also provides links to the source code.</p>
+    <warning title="Disclaimer"><p>This software is licensed free of charge, there is no warranty for the
+        application, to the extent permitted by applicable law. Except when otherwise
+        stated in writing the copyright holders and/or other parties provide the
+        application "as is" without warranty of any kind, either expressed or
+        implied, including, but not limited to, the implied warranties of
+        merchantability and fitness for a particular purpose. The entire risk as to
+        the quality and performance of the application is with you. Should the
+        application prove defective, you assume the cost of all necessary servicing,
+        repair or correction.</p>
+
+        <p>In no event unless required by applicable law or agreed to in writing will
+            any copyright holder, be liable to you for damages, including any general,
+            special, incidental or consequential damages arising out of the use or
+            inability to use the application (including but not limited to loss of data
+            or data being rendered inaccurate or losses sustained by you or third parties
+            or a failure of the application to operate with any other software), even if
+            such holder or other party has been advised of the possibility of such
+            damages.</p>
+        <p>All content and branding related to Alibre, Alibre Design, and Alibre Script, including any third-party
+            contributions, are governed by their respective licensing agreements and are the intellectual property of
+            Alibre, LLC.</p></warning>
+
+</topic>

@@ -40,6 +40,8 @@ namespace Bolsover.Bevel.Calculator
             var t1 = p - t2;
             return (t1 * 25.4, t2 * 25.4);
         }
+        
+      
 
         public static (double, double) CalculateCircularThicknessDegrees(IBevelGear pinion, IBevelGear gear)
         {

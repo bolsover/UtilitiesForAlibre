@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Greek" id="Greek" is-library="true">
+
+    <snippet id="alpha">
+        <code-block lang="tex">
+            \begin{equation} \alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekalpha">
+        <code-block lang="tex">
+            \begin{equation} \alpha\lambda\phi\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Alpha">
+        <code-block lang="tex">
+            \begin{equation} A \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="beta">
+        <code-block lang="tex">
+            \begin{equation} \beta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekbeta">
+        <code-block lang="tex">
+            \begin{equation} \beta\eta\tau\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Beta">
+        <code-block lang="tex">
+            \begin{equation} B \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="gamma">
+        <code-block lang="tex">
+            \begin{equation} \gamma \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekgamma">
+        <code-block lang="tex">
+            \begin{equation} \gamma\alpha\mu\mu\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Gamma">
+        <code-block lang="tex">
+            \begin{equation} \Gamma \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="delta">
+        <code-block lang="tex">
+            \begin{equation} \delta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekdelta">
+        <code-block lang="tex">
+            \begin{equation} \delta\epsilon\lambda\tau\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Delta">
+        <code-block lang="tex">
+            \begin{equation} \Delta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Epsilon">
+        <code-block lang="tex">
+            \begin{equation} E \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="epsilon">
+        <code-block lang="tex">
+            \begin{equation} \epsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekepsilon">
+        <code-block lang="tex">
+            \begin{equation} \epsilon\psi\iota\lambda\omicron\upsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="varepsilon">
+        <code-block lang="tex">
+            \begin{equation} \varepsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="zeta">
+        <code-block lang="tex">
+            \begin{equation} \zeta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekzeta">
+        <code-block lang="tex">
+            \begin{equation} \zeta\eta\tau\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Zeta">
+        <code-block lang="tex">
+            \begin{equation} Z \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="eta">
+        <code-block lang="tex">
+            \begin{equation} \eta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greeketa">
+        <code-block lang="tex">
+            \begin{equation} \eta\tau\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Eta">
+        <code-block lang="tex">
+            \begin{equation} H \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="theta">
+        <code-block lang="tex">
+            \begin{equation} \theta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greektheta">
+        <code-block lang="tex">
+            \begin{equation} \theta\eta\tau\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="vartheta">
+        <code-block lang="tex">
+            \begin{equation} \vartheta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Theta">
+        <code-block lang="tex">
+            \begin{equation} \Theta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="iota">
+        <code-block lang="tex">
+            \begin{equation} \iota \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekiota">
+        <code-block lang="tex">
+            \begin{equation} \iota\omega\tau\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Iota">
+        <code-block lang="tex">
+            \begin{equation} I \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="kappa">
+        <code-block lang="tex">
+            \begin{equation} \kappa \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekkappa">
+        <code-block lang="tex">
+            \begin{equation} \kappa\alpha\pi\pi\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="varkappa">
+        <code-block lang="tex">
+            \begin{equation} \varkappa \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Kappa">
+        <code-block lang="tex">
+            \begin{equation} K \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="lambda">
+        <code-block lang="tex">
+            \begin{equation} \lambda \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greeklambda">
+        <code-block lang="tex">
+            \begin{equation} \lambda\alpha\mu\beta\delta\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Lambda">
+        <code-block lang="tex">
+            \begin{equation} \Lambda \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="mu">
+        <code-block lang="tex">
+            \begin{equation} \mu \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekmu">
+        <code-block lang="tex">
+            \begin{equation} \mu\upsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Mu">
+        <code-block lang="tex">
+            \begin{equation} M \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="nu">
+        <code-block lang="tex">
+            \begin{equation} \nu \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greeknu">
+        <code-block lang="tex">
+            \begin{equation} \nu\upsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Nu">
+        <code-block lang="tex">
+            \begin{equation} N \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="xi">
+        <code-block lang="tex">
+            \begin{equation} \xi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekxi">
+        <code-block lang="tex">
+            \begin{equation} \xi\iota \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Xi">
+        <code-block lang="tex">
+            \begin{equation} \Xi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="omicron">
+        <code-block lang="tex">
+            \begin{equation} \omicron \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekomicron">
+        <code-block lang="tex">
+            \begin{equation} \omicron\:\mu\iota\kappa\rho\omicron\nu \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Omicron">
+        <code-block lang="tex">
+            \begin{equation} O \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="pi">
+        <code-block lang="tex">
+            \begin{equation} \pi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekpi">
+        <code-block lang="tex">
+            \begin{equation} \pi\iota \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="varpi">
+        <code-block lang="tex">
+            \begin{equation} \varpi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Pi">
+        <code-block lang="tex">
+            \begin{equation} \Pi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="rho">
+        <code-block lang="tex">
+            \begin{equation} \rho \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekrho">
+        <code-block lang="tex">
+            \begin{equation} \rho\omega \end{equation}
+        </code-block>
+    </snippet>
+
+
+    <snippet id="varrho">
+        <code-block lang="tex">
+            \begin{equation} \varrho \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Rho">
+        <code-block lang="tex">
+            \begin{equation} P \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="sigma">
+        <code-block lang="tex">
+            \begin{equation} \sigma \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greeksigma">
+        <code-block lang="tex">
+            \begin{equation} \sigma\iota\gamma\mu\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="varsigma">
+        <code-block lang="tex">
+            \begin{equation} \varsigma \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Sigma">
+        <code-block lang="tex">
+            \begin{equation} \Sigma \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="tau">
+        <code-block lang="tex">
+            \begin{equation} \tau \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greektau">
+        <code-block lang="tex">
+            \begin{equation} \tau\alpha\upsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Tau">
+        <code-block lang="tex">
+            \begin{equation} T \end{equation}
+        </code-block>
+    </snippet>
+
+
+    <snippet id="upsilon">
+        <code-block lang="tex">
+            \begin{equation} \upsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekupsilon">
+        <code-block lang="tex">
+            \begin{equation} \upsilon\:\phi\iota\lambda\omicron\upsilon \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Upsilon">
+        <code-block lang="tex">
+            \begin{equation} Y \end{equation}
+        </code-block>
+    </snippet>
+
+
+    <snippet id="phi">
+        <code-block lang="tex">
+            \begin{equation} \phi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekphi">
+        <code-block lang="tex">
+            \begin{equation} \phi\iota \end{equation}
+        </code-block>
+    </snippet>
+
+
+    <snippet id="varphi">
+        <code-block lang="tex">
+            \begin{equation} \varphi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Phi">
+        <code-block lang="tex">
+            \begin{equation} \Phi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Chi">
+        <code-block lang="tex">
+            \begin{equation} X \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="chi">
+        <code-block lang="tex">
+            \begin{equation} \chi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekchi">
+        <code-block lang="tex">
+            \begin{equation} \chi\iota \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="psi">
+        <code-block lang="tex">
+            \begin{equation} \psi \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekpsi">
+        <code-block lang="tex">
+            \begin{equation} \psi\iota \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Psi">
+        <code-block lang="tex">
+            \begin{equation} \Psi \end{equation}
+        </code-block>
+    </snippet>
+
+
+    <snippet id="Omega">
+        <code-block lang="tex">
+            \begin{equation} \Omega \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="omega">
+        <code-block lang="tex">
+            \begin{equation} \omega \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="greekomega">
+        <code-block lang="tex">
+            \begin{equation} \omega\:\mu\epsilon\gamma\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+</topic>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Standard Spur Gears" id="Standard-External-Spur-Gears" help-id="Standard-Spur-Gears">
+
+    <link-summary>Example and formulae for the calculation of standard spur gears.</link-summary>
+    <img alt="Standard Spur Gear" border-effect="rounded" width="200" src="SpurGear.png" thumbnail="true"/>
+    <table style="both">
+        <tr>
+            <td>No</td>
+            <td>Item</td>
+            <td>Symbol</td>
+            <td>Formula</td>
+            <td>Pinion</td>
+            <td>Gear</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Module</td>
+            <td>
+                <include from="Snippets.topic" element-id="m"/>
+            </td>
+            <td>-</td>
+            <td colspan="2">2.5</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Pressure Angle</td>
+            <td>
+                <include from="Greek.topic" element-id="alpha"/>
+            </td>
+            <td>-</td>
+            <td colspan="2">20°</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Number of Teeth</td>
+            <td>
+                <include from="Snippets.topic" element-id="z1,z2"/>
+            </td>
+            <td>-</td>
+            <td>18</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Centre Distance</td>
+            <td>
+                <include from="Snippets.topic" element-id="a"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="CentreDistanceFormula"/>
+            </td>
+            <td colspan="2">53.700</td>
+
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Pitch Diameter</td>
+            <td>
+                <include from="Snippets.topic" element-id="d"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="zm"/>
+            </td>
+            <td>45.000</td>
+            <td>62.500</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Base Diameter</td>
+            <td>
+                <include from="Snippets.topic" element-id="d_b"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="BaseDiameterFormula"/>
+            </td>
+            <td>42.286</td>
+            <td>58.731</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Addendum</td>
+            <td>
+                <include from="Snippets.topic" element-id="h_a"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="AddendumFormula"/>
+            </td>
+            <td colspan="2">2.500</td>
+
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Dedendum</td>
+            <td>
+                <include from="Snippets.topic" element-id="h_f"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="DedendumFormula"/>
+            </td>
+            <td colspan="2">3.125</td>
+
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Outside Diameter</td>
+            <td>
+                <include from="Snippets.topic" element-id="d_a"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="OutsideDiameterFormula"/>
+            </td>
+            <td>50.000</td>
+            <td>67.500</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Root Diameter</td>
+            <td>
+                <include from="Snippets.topic" element-id="d_f"/>
+            </td>
+            <td>
+                <include from="Snippets.topic" element-id="RootDiameterFormula"/>
+            </td>
+            <td>38.750</td>
+            <td>56.250</td>
+
+        </tr>
+    </table>
+</topic>

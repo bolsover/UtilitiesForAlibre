@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Backlash" id="Backlash"> 
+    <p>Backlash is the amount by which a tooth space exceeds the thickness of an engaging tooth. It is measured along the pitch circle and is equal to the difference between the tooth space and the tooth thickness. Backlash is required to prevent binding of the teeth and to allow for manufacturing tolerances. </p>
+    <p>Backlash is usually measured in the direction of the pitch circle. However, it can also be measured in the direction of the line of action. </p>
+    <p>In general, there are two ways to generate backlash:</p>
+    
+    <list type="decimal">
+        <li>Increase gear centre distance</li>
+        <li>Reduce tooth thickness</li>
+    </list>
+    <p>Control of backlash by reduction of tooth thickness is most frequently used.</p>
+
+    <link-summary>Equations for the calculation of Backlash</link-summary>
+
+       
+        <p>Linear Backlash is the distance the gear can move without engaging the teeth of the mating gear. </p>
+        <include from="Snippets.topic" element-id="backlash-linear"/>
+        <p> </p>
+            <include from="Snippets.topic" element-id="backlash-linear-text"/>
+        <p>The angular backlash can be calculated by dividing the circumferential clearance required by the operating pitch diameter:</p>
+        <include from="Snippets.topic" element-id="backlash-angular"/>
+        <p> </p>
+        <include from="Snippets.topic" element-id="backlash-angular-text"/>
+        <p>Modification of the total profile shift required to achive a specified circular backlash can be calculated as follows:
+        </p>
+        <include from="Snippets.topic" element-id="backlash-profile"/>
+        <note>This table provides the relationships between various types of backlash</note>
+
+    <table style="both">
+            <tr>
+                <td>Gear Type</td>
+                <td>Normal - Circular</td>
+                <td>Circular - Centre</td>
+            </tr>
+            <tr>
+                <td>Spur</td>
+                <td> <include from="Snippets.topic" element-id="backlash-normal-to-circular-spur"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="backlash-centre-to-circular-spur"/></td>
+            </tr>
+            <tr>
+                <td>Helical</td>
+                <td> <include from="Snippets.topic" element-id="backlash-normal-to-circular-helical"/>
+                </td>
+                <td><include from="Snippets.topic" element-id="backlash-centre-to-circular-helical"/></td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>Gear Type</td>
+                <td>Angular - Circular</td>
+              
+            </tr>
+            <tr>
+                <td>All</td>
+                <td> <include from="Snippets.topic" element-id="backlash-angular-to-circular-all"/>
+                </td>
+            </tr>
+           
+        </table>
+
+</topic>

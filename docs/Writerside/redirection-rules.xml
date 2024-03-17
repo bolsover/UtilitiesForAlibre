@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="462e0e34">
+        <description>Created after removal of "Profile Shifted Helical Gear - Radial" from Help Instance</description>
+        <accepts>Profile-Shifted-External-Helical-Gear-Radial.html</accepts>
+    </rule>
+    <rule id="1e03f7e1">
+        <description>Created after removal of "Helical Gear and Rack (Normal) " from Help Instance</description>
+        <accepts>Helical-Gear-and-Rack-Normal.html</accepts>
+    </rule>
+    <rule id="258e0a35">
+        <description>Created after removal of "Profile Shifted Spur Gear and Rack" from Help Instance</description>
+        <accepts>Profile-Shifted-Spur-Gear-and-Rack.html</accepts>
+    </rule>
+</rules>

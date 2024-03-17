@@ -517,7 +517,7 @@ namespace Bolsover.Involute.Calculator
         {
             var beta = Radians(pairDesignInputParams.Gear.HelixAngle);
             var mT = CalculateRadialModule(pairDesignInputParams);
-            var pX = mT / Math.Cos(beta) * Math.PI / Math.Tan(beta);
+            var pX = mT  * Math.PI / Math.Tan(beta);
 
             return (pX, pX);
         }
@@ -532,7 +532,7 @@ namespace Bolsover.Involute.Calculator
         {
             var beta = Radians(pairDesignInputParams.Gear.HelixAngle);
             var mT = CalculateRadialModule(pairDesignInputParams);
-            var pX = mT / Math.Cos(beta) * Math.PI / Math.Tan(beta);
+            var pX = mT * Math.PI / Math.Tan(beta);
             var z1 = pairDesignInputParams.Pinion.Teeth;
             var z2 = pairDesignInputParams.Gear.Teeth;
             var lX1 = pX * z1;

@@ -8,6 +8,7 @@ using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
 using Bolsover.Involute.View;
 using Bolsover.PlaneFinder;
+using Bolsover.RackPinion.View;
 using Bolsover.Shortcuts.View;
 using Shortcuts.Shortcuts.View;
 
@@ -25,6 +26,7 @@ namespace Bolsover
         private const int SubmenuIdGearBevel = 606;
         private const int SubmenuIdUtilsPlaneFinder = 603;
         private const int SubmenuIdUtilsDataViewer = 604;
+        private const int SubmenuIdGearRackSpur = 607;
         private const int SubmenuIdGearInvolute = 609;
         private const int SubmenuIdShortcutsReport = 610;
         private const int SubmenuIdShortcutsKeyboard = 611;
@@ -89,7 +91,8 @@ namespace Bolsover
             {
                 SubmenuIdGearCycloidal,
                 SubmenuIdGearInvolute,
-                SubmenuIdGearBevel
+                SubmenuIdGearBevel,
+                SubmenuIdGearRackSpur
             };
         }
 
@@ -152,6 +155,7 @@ namespace Bolsover
                 SubMenuIdShortcuts => "Shortcuts",
                 SubmenuIdShortcutsReport => "Shortcuts Report",
                 SubmenuIdShortcutsKeyboard => "Keyboard layout",
+                SubmenuIdGearRackSpur => "Rack and Pinion",
                 _ => ""
             };
         }
@@ -198,6 +202,7 @@ namespace Bolsover
                         case SubmenuIdShortcutsReport: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdGearRackSpur: return ADDONMenuStates.ADDON_MENU_GRAYED;
                     }
 
                     break;
@@ -218,6 +223,7 @@ namespace Bolsover
                         case SubmenuIdShortcutsReport: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdGearRackSpur: return ADDONMenuStates.ADDON_MENU_GRAYED;
                     }
 
                     break;
@@ -237,6 +243,7 @@ namespace Bolsover
                         case SubmenuIdShortcutsReport: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdGearRackSpur: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
@@ -267,6 +274,7 @@ namespace Bolsover
                 SubmenuIdShortcutsReport => "Shortcuts Report",
                 SubmenuIdShortcutsKeyboard => "Shortcuts Keyboard",
                 SubMenuIdShortcuts => "Shortcuts",
+                SubmenuIdGearRackSpur => "Rack & Pinion",
                 _ => ""
             };
         }
@@ -325,6 +333,7 @@ namespace Bolsover
                 SubmenuIdHelpAbout => DoHelpAbout(),
                 SubmenuIdShortcutsReport => DoShortcuts(),
                 SubmenuIdShortcutsKeyboard => DoKeyboard(),
+                SubmenuIdGearRackSpur => DoRackSpur(),
                 _ => null
             };
         }
@@ -569,6 +578,19 @@ namespace Bolsover
 
             return null;
         }
+
+        #endregion
+        
+        #region RackSpur
+        
+        private  IAlibreAddOnCommand DoRackSpur()
+        {
+            var form = new RackPinionForm();
+            form.Show();
+            return null;
+        }
+
+     
 
         #endregion
 

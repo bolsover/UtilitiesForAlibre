@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Profile Shift Distribution" id="Profile-Shift-Distribution">
+
+
+        <p>The calculated profile shift of a gear pair can be distributed in any way between a gears.
+            There are however a few considerations to take into account. For example, a spur gear having 17 or fewer teeth is prone to undercutting at
+            the base of the tooth; this can be mitigated if a positive profile shift is applied to the gear. Equally, there are other considerations
+            such as gear strength and sliding velocity.</p>
+        <p>There are some empirical equations that can be applied to improve the design:</p>
+        <p>For reduced sliding velocity</p>
+        <include from="Snippets.topic" element-id="profile-shift-distribution-reduced-sliding-velocity"/>
+        <p>For equal root stress</p>
+        <include from="Snippets.topic" element-id="profile-shift-distribution-equal-root-stress"/>
+        <p>For equal contact pressure</p>
+        <include from="Snippets.topic" element-id="profile-shift-distribution-equal-contact-pressure"/>
+
+
+</topic>

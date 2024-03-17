@@ -75,6 +75,9 @@
           <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-executive.dll</HintPath>
           <Private>False</Private>
         </Reference>
+        <Reference Include="alibre-server">
+          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-server.dll</HintPath>
+        </Reference>
         <Reference Include="AlibreAddOn">
           <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\AlibreAddOn.dll</HintPath>
           <Private>False</Private>
@@ -224,6 +227,9 @@
         <Reference Include="System.Windows.Forms"/>
         <Reference Include="System.Xml"/>
         <Reference Include="System.Xml.Linq"/>
+        <Reference Include="UtilitiesForAlibre">
+          <HintPath>bin\Debug\UtilitiesForAlibre.dll</HintPath>
+        </Reference>
         <Reference Include="WpfMath, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
             <HintPath>..\packages\WpfMath.1.1.0\lib\net462\WpfMath.dll</HintPath>
         </Reference>
@@ -365,6 +371,22 @@
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
+        <Compile Include="RackPinion\Model\RackPinionDesignOutputParams.cs" />
+        <Compile Include="RackPinion\Model\RackPinionGearData.cs" />
+        <Compile Include="RackPinion\Model\RackPinionLatexStrings.cs" />
+        <Compile Include="RackPinion\Presenter\RackPinionPresenter.cs" />
+        <Compile Include="RackPinion\View\RackPinionForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="RackPinion\View\RackPinionForm.Designer.cs">
+          <DependentUpon>RackPinionForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="RackPinion\View\RackPinionView.cs">
+          <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Include="RackPinion\View\RackPinionView.Designer.cs">
+          <DependentUpon>RackPinionView.cs</DependentUpon>
+        </Compile>
         <Compile Include="Shortcuts\Calculator\HtmlReport.cs" />
         <Compile Include="Shortcuts\Calculator\ShortcutsCalculator.cs" />
         <Compile Include="Shortcuts\Model\AlibreShortcut.cs" />
@@ -406,6 +428,9 @@
         </Content>
         <Content Include="Gear\HelicalPinionTemplate.AD_PRT">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Gear\HelicalRackTemplate.AD_PRT">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="Gear\HelicalWheelTemplate.AD_PRT">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -503,6 +528,12 @@
         <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </EmbeddedResource>
+        <EmbeddedResource Include="RackPinion\View\RackPinionView.resx">
+          <DependentUpon>RackPinionView.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="RackPinion\View\RackPinionForm.resx">
+          <DependentUpon>RackPinionForm.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="Shortcuts\View\ColorPreferences.resx" />
         <EmbeddedResource Include="Shortcuts\View\ColorPreferencesForm.resx" />
         <EmbeddedResource Include="Shortcuts\View\KeyboardControl.resx" />
@@ -516,6 +547,9 @@
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="RackPinion\Calculator\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

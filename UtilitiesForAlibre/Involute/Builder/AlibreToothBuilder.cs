@@ -27,10 +27,10 @@ namespace Bolsover.Involute.Builder
                 InternalSpurGearBuilder.Build(session, tooth, gear);
             else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
                 InternalHelicalGearBuilder.Build(session, tooth, gear);
-            // else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
-            //     CalculateStraightRackGear(Model);
-            // else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
-            //     CalculateHelicalRackGear(Model);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
+                ExternalSpurGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
+                ExternalHelicalGearBuilder.Build(session, tooth, gear);
             else
                 throw new ArgumentException("Gear style not recognised");
         }

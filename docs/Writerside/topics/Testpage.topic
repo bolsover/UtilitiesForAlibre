@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Testpage" id="Testpage">
+
+    <p>Start typing here...</p>
+
+    <code-block lang="d2">
+        direction: right
+        utils: Utilities{shape:hexagon}
+        utils.keyboard: Keyboard
+
+        gears: Gears
+        cycloidal: Cycloidal
+        involute: Involute
+        externalInvolute: External Involute
+        straightExternalInvolute: Straight
+        helicalExternalInvolute: Helical
+        straightInternalInvolute:  Straight
+        helicalInternalInvolute:  Helical
+        straightRackPinion:  Straight
+        helicalRackPinion:  Helical
+        internalInvolute:  Internal Involute
+        bevelInvolute: Bevel Gears
+        standardBevel: Standard Bevel
+        gleasonBevel: Gleason Bevel
+        rackPinion:  Rack &amp; Pinion
+        gears -> cycloidal
+        gears -> involute
+        involute -> externalInvolute
+        externalInvolute -> straightExternalInvolute
+        externalInvolute -> helicalExternalInvolute
+        involute -> internalInvolute
+        internalInvolute -> straightInternalInvolute
+        internalInvolute -> helicalInternalInvolute
+        involute -> rackPinion
+        rackPinion -> straightRackPinion
+        rackPinion -> helicalRackPinion
+        involute -> bevelInvolute
+        bevelInvolute -> standardBevel
+        bevelInvolute -> gleasonBevel
+    </code-block>
+</topic>

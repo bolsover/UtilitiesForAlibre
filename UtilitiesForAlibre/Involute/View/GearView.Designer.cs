@@ -289,7 +289,7 @@ namespace Bolsover.Involute.View
             this.gearLabel.Size = new System.Drawing.Size(142, 37);
             this.gearLabel.TabIndex = 23;
             this.gearLabel.Text = "Gear";
-            this.gearLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.gearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cancelButton
             // 
@@ -344,13 +344,15 @@ namespace Bolsover.Involute.View
             // 
             // pionLabel
             // 
+            this.pionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pionLabel.Location = new System.Drawing.Point(450, 0);
             this.pionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pionLabel.Name = "pionLabel";
-            this.pionLabel.Size = new System.Drawing.Size(125, 28);
+            this.pionLabel.Size = new System.Drawing.Size(140, 37);
             this.pionLabel.TabIndex = 26;
             this.pionLabel.Text = "Pinion";
+            this.pionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TypeLabel
             // 
@@ -499,23 +501,27 @@ namespace Bolsover.Involute.View
             // 
             // itemLabel
             // 
+            this.itemLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemLabel.Location = new System.Drawing.Point(4, 0);
             this.itemLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.itemLabel.Name = "itemLabel";
-            this.itemLabel.Size = new System.Drawing.Size(133, 28);
+            this.itemLabel.Size = new System.Drawing.Size(215, 37);
             this.itemLabel.TabIndex = 49;
             this.itemLabel.Text = "Item";
+            this.itemLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(227, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 28);
+            this.label5.Size = new System.Drawing.Size(215, 37);
             this.label5.TabIndex = 50;
             this.label5.Text = "Symbol";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // standardSettingLabel
             // 

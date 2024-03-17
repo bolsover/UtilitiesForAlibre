@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       id="Snippets" title="Snippets" is-library="true">
+
+    <title id="snippets">
+        Snippets
+    </title>
+
+    <snippet id="m">
+        <code-block lang="tex">
+            \begin{equation} m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="tenm">
+        <code-block lang="tex">
+            \begin{equation} 10m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="b">
+        <code-block lang="tex">
+            \begin{equation} b \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="m_n">
+        <code-block lang="tex">
+            \begin{equation} m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="m_t">
+        <code-block lang="tex">
+            \begin{equation} m_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RadialModuleFormula">
+        <code-block lang="tex">
+            \begin{equation} \frac{ m_{n}}{cos\beta} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="m_x">
+        <code-block lang="tex">
+            \begin{equation} m_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="epsilon_alpha">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\alpha} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="epsilon_beta">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\beta} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="epsilon_gamma">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\gamma} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="epsilon_gamma_formula">
+        <code-block lang="tex">
+            \begin{equation}  \epsilon_{\alpha} + \epsilon_{\beta} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="contact_ratio_spur_gear_pair">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\gamma}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} +
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} -
+            a_{x} \cdot sin \alpha_{w}}{\pi \cdot m \cdot cos\alpha}
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="contact_ratio_int_ext_spur_gear_pair">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\gamma}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} -
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} +
+            a_{x} \cdot sin \alpha_{w}}{\pi \cdot m \cdot cos\alpha}
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="contact_ratio_int_ext_helical_gear_pair_alpha">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\alpha}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} -
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} +
+            a_{x} \cdot sin \alpha_{wt}}{\pi \cdot m_{t} \cdot cos\alpha_{t}}
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="contact_ratio_helical_gear_pair_alpha">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\alpha}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} +
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} -
+            a_{x} \cdot sin \alpha_{wt}}{\pi \cdot m_{t} \cdot cos\alpha_{t}}
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="contact_ratio_helical_gear_pair_beta">
+        <code-block lang="tex">
+            \begin{equation} \epsilon_{\beta}\: = \:
+            \frac{b\:sin\beta}{\pi\:m_{n}}
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="v">
+        <code-block lang="tex">
+            \begin{equation} v \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RPM">
+        <code-block lang="tex">
+            \begin{equation} n \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="x">
+        <code-block lang="tex">
+            \begin{equation} x \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="x_mod">
+        <code-block lang="tex">
+            \begin{equation} x_{mod} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="x_sum">
+        <code-block lang="tex">
+            \begin{equation} x_{sum} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="x_dif">
+        <code-block lang="tex">
+            \begin{equation} x_{dif} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="y">
+        <code-block lang="tex">
+            \begin{equation} y \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CoefficientOfCentreDistanceIncreaseFormula">
+        <code-block lang="tex">
+            \begin{equation} \frac{a_{x}}{m} - \frac{z_{1}+z_{2}}{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CoefficientOfCentreDistanceIncreaseHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} \frac{a_{x}}{m_{n}} - \frac{z_{1}+z_{2}}{2cos\beta} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="p">
+        <code-block lang="tex">
+            \begin{equation} p \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="p_t">
+        <code-block lang="tex">
+            \begin{equation} p_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="p_n">
+        <code-block lang="tex">
+            \begin{equation} p_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="p_x">
+        <code-block lang="tex">
+            \begin{equation} p_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h">
+        <code-block lang="tex">
+            \begin{equation} h \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} \left[2.25 + y -\left(x_{1} + x_{2}\right)\right]m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} 2.25m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} \left[2.25 + y -\left(x_{n1} + x_{n2}\right)\right]m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftRadialFormula">
+        <code-block lang="tex">
+            \begin{equation} \left[2.25 + y -\left(x_{t1} + x_{t2}\right)\right]m_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WholeDepthForProfileShiftedSpurRackFormula">
+        <code-block lang="tex">
+            \begin{equation} 2.25m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WholeDepthForProfileShiftedHelicalRackFormula">
+        <code-block lang="tex">
+            \begin{equation} 2.25m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h_a">
+        <code-block lang="tex">
+            \begin{equation} h_{a} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h_a1">
+        <code-block lang="tex">
+            \begin{equation} h_{a1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h_a2">
+        <code-block lang="tex">
+            \begin{equation} h_{a2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_a1">
+        <code-block lang="tex">
+            \begin{equation} d_{a1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_a2">
+        <code-block lang="tex">
+            \begin{equation} d_{a2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_f1">
+        <code-block lang="tex">
+            \begin{equation} d_{f1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_f2">
+        <code-block lang="tex">
+            \begin{equation} d_{f2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1+y-x_{2}\right)m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1+x_{1}\right)m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1-x_{2}\right)m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="OutsideDiameter1ForPositiveShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} d_{a1}+2h_{a1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="OutsideDiameter2ForPositiveShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation}  d_{a2}-2h_{a2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RootDiameter1ForPositiveShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} d_{a1}-2h \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RootDiameter2ForPositiveShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation}  d_{a2}+2h \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Dedendum1ForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} h-h_{a1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Dedendum2ForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} h-h_{a2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1+y-x_{n2}\right)m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftRadialFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1+y-x_{n2}\right)m_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1+y-x_{1}\right)m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1+y-x_{n1}\right)m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftRadialFormula">
+        <code-block lang="tex">
+            \begin{equation} \left(1+y-x_{n1}\right)m_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h_f">
+        <code-block lang="tex">
+            \begin{equation} h_{f} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h_f1">
+        <code-block lang="tex">
+            \begin{equation} h_{f1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h_f2">
+        <code-block lang="tex">
+            \begin{equation} h_{f2} \end{equation}
+        </code-block>
+    </snippet>
+
+
+
+    <snippet id="alpha_n">
+        <code-block lang="tex">
+            \begin{equation} \alpha_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="alpha_w">
+        <code-block lang="tex">
+            \begin{equation} \alpha_{w} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleFormula">
+        <code-block lang="tex">
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{1}+z_{2}\right)cos\:\alpha}{2y+z_{1}+z_{2}}\right]
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{2}-z_{1}\right)cos\:\alpha}{2y+z_{2}-z_{1}}\right]
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleIntExtHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{2}-z_{1}\right)cos\:\alpha_{t}}{2y+z_{2}-z_{1}}\right]
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{1}+z_{2}\right)cos\:\alpha_{t}}{\left(z_{1}+z_{2} \right) +
+            2y\: cos\: \beta}\right]
+
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleRadialFormula">
+        <code-block lang="tex">
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{1}+z_{2}\right)cos\:\alpha_{t}}{\left(z_{1}+z_{2} \right) +
+            2y}\right]
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="alpha_t">
+        <code-block lang="tex">
+            \begin{equation} \alpha_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="alpha_wt">
+        <code-block lang="tex">
+            \begin{equation} \alpha_{wt} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RadialPressureAngleFormula">
+        <code-block lang="tex">
+            \begin{equation} tan^{-1} \left(\frac{tan\:\alpha_{n}}{cos\:\beta}\right) \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="NormalPressureAngleSymbol">
+        <code-block lang="tex">
+            \begin{equation} \alpha_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="alpha_x">
+        <code-block lang="tex">
+            \begin{equation} \alpha_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="delta_1">
+        <code-block lang="tex">
+            \begin{equation} \delta_{1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="delta_2">
+        <code-block lang="tex">
+            \begin{equation} \delta_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="delta_a">
+        <code-block lang="tex">
+            \begin{equation} \delta_{a} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="delta_f">
+        <code-block lang="tex">
+            \begin{equation} \delta_{f} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="theta_a">
+        <code-block lang="tex">
+            \begin{equation} \theta_{a} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="theta_a1">
+        <code-block lang="tex">
+            \begin{equation} \theta_{a1} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="theta_a2">
+        <code-block lang="tex">
+            \begin{equation} \theta_{a2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="theta_f">
+        <code-block lang="tex">
+            \begin{equation} \theta_{f} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="theta_f1">
+        <code-block lang="tex">
+            \begin{equation} \theta_{f1} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="theta_f2">
+        <code-block lang="tex">
+            \begin{equation} \theta_{f2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="InvoluteFunction">
+        <code-block lang="tex">
+            \begin{equation} inv\:\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="InvoluteFunctionFormula">
+        <code-block lang="tex">
+            \begin{equation} tan\alpha - \alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RadialInvoluteFunctionFormula">
+        <code-block lang="tex">
+            \begin{equation} tan\alpha_{t} - \alpha_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RadialInvoluteFunction">
+        <code-block lang="tex">
+            \begin{equation} inv\:\alpha_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingInvoluteFunction">
+        <code-block lang="tex">
+            \begin{equation} inv\:\alpha_{w} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RadialWorkingInvoluteFunction">
+        <code-block lang="tex">
+            \begin{equation} inv\:\alpha_{wt} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RadialWorkingInvoluteFormula">
+        <code-block lang="tex">
+            \begin{equation} 2tan\:\alpha_{n}\left(\frac{x_{n1}+x_{n2}}{z_{1}+z_{2}}\right)+inv\:a_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RadialWorkingInvoluteRadialFormula">
+        <code-block lang="tex">
+            \begin{equation} 2tan\:\alpha_{t}\left(\frac{x_{t1}+x_{t2}}{z_{1}+z_{2}}\right)+inv\:a_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+
+
+    <snippet id="z1,z2">
+        <code-block lang="tex">
+            \begin{equation} z_{1},z_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="x1,x2">
+        <code-block lang="tex">
+            \begin{equation} x_{1},x_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="x_n">
+        <code-block lang="tex">
+            \begin{equation} x_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="xn1,xn2">
+        <code-block lang="tex">
+            \begin{equation} x_{n1},x_{n2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="xt1,xt2">
+        <code-block lang="tex">
+            \begin{equation} x_{t1},x_{t2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="x1+x2">
+        <code-block lang="tex">
+            \begin{equation} x_{1}+x_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="x2-x1">
+        <code-block lang="tex">
+            \begin{equation} x_{2}-x_{1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="xn1+xn2">
+        <code-block lang="tex">
+            \begin{equation} x_{n1}+x_{n2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="xt1+xt2">
+        <code-block lang="tex">
+            \begin{equation} x_{t1}+x_{t2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="DifferenceCoefficientOfProfileShiftFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{ \left(z_{2}-z_{1}\right)\left(inv\:\alpha_{w} - inv\:\alpha\right)
+            }{2tan\:\alpha}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="DifferenceCoefficientOfProfileShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{ \left(z_{2}-z_{1}\right)\left(inv\:\alpha_{wt} - inv\:\alpha_{t}\right)
+            }{2tan\:\alpha_{t}}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="SumCoefficientOfProfileShiftFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{ \left(z_{1}+z_{2}\right)\left(inv\:\alpha_{w} - inv\:\alpha\right)
+            }{2tan\:\alpha}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="SumCoefficientOfProfileShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{ \left(z_{1}+z_{2}\right)\left(inv\:\alpha_{wt} - inv\:\alpha_{t}\right)
+            }{2tan\:\alpha_{n}}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="a">
+        <code-block lang="tex">
+            \begin{equation}a\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="H">
+        <code-block lang="tex">
+            \begin{equation}H\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="a_x">
+        <code-block lang="tex">
+            \begin{equation}a_{x}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForProfileShiftedSpurRackFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{zm}{2}+H+xm\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForProfileShiftedHelicalRackFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{zm_{n}}{2cos\:\beta}+H+x_{n}m_{n}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForProfileShiftedHelicalRackFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{zm_{n}}{2cos\:\beta}+H+xm\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPitchDiameterForProfileShiftedSpurRackFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{d_{b}}{cos\:\alpha_{w}}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="AddendumForProfileShiftedSpurRackFormula">
+        <code-block lang="tex">
+            \begin{equation}m\left(1+x\right)\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="AddendumForProfileShiftedHelicalRackFormula">
+        <code-block lang="tex">
+            \begin{equation}m_{n}\left(1+x_{n}\right)\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CentreDistanceFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{\left( z_{1} + z_{2} \right) m}{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CentreDistanceIntExtFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{\left( z_{2} - z_{1} \right)}{2} m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CentreDistanceIntExtHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{\left( z_{2} - z_{1} \right)}{2cos\beta} m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="HelicalCentreDistanceFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{\left( z_{1} + z_{2} \right) }{2 cos\beta} m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="zm">
+        <code-block lang="tex">
+            \begin{equation} zm \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="PitchDiameterHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} \frac{zm_{n}}{cos\:\beta} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="PitchDiameterRadialFormula">
+        <code-block lang="tex">
+            \begin{equation} zm_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d">
+        <code-block lang="tex">
+            \begin{equation} d \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="z">
+        <code-block lang="tex">
+            \begin{equation} z \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="z_v">
+        <code-block lang="tex">
+            \begin{equation} z_{v} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="z_w">
+        <code-block lang="tex">
+            \begin{equation} z_{w} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="u">
+        <code-block lang="tex">
+            \begin{equation} u \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="i">
+        <code-block lang="tex">
+            \begin{equation} i \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_b">
+        <code-block lang="tex">
+            \begin{equation} d_{b} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="BaseDiameterFormula">
+        <code-block lang="tex">
+            \begin{equation} d\:cos\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="BaseDiameterHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation}d\:cos\alpha_{t} \end{equation}
+        </code-block>
+    </snippet>
+
+
+    <snippet id="ModuleEquation">
+        <code-block lang="tex">
+            \begin{equation}m = p/\pi\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="BaseDiameterEquation">
+        <code-block lang="tex">
+            \begin{equation}d_{b} = d\:cos\alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="AddendumFormula">
+        <code-block lang="tex">
+            \begin{equation} 1.00m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="DedendumFormula">
+        <code-block lang="tex">
+            \begin{equation} 1.25m \end{equation}
+        </code-block>
+    </snippet>
+
+
+
+    <snippet id="Dedendum1ForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} h-h_{a1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="Dedendum2ForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} h-h_{a2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_a">
+        <code-block lang="tex">
+            \begin{equation} d_{a} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_i">
+        <code-block lang="tex">
+            \begin{equation} d_{i} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="X">
+        <code-block lang="tex">
+            \begin{equation} X \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="X_b">
+        <code-block lang="tex">
+            \begin{equation} X_{b} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="OutsideDiameterFormula">
+        <code-block lang="tex">
+            \begin{equation} d + 2m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="OutsideDiameterForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} d + 2h_{a} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_f">
+        <code-block lang="tex">
+            \begin{equation} d_{f} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RootDiameterFormula">
+        <code-block lang="tex">
+            \begin{equation} d - 2.5m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="RootDiameterForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation} d_{a} - 2h \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="h_w">
+        <code-block lang="tex">
+            \begin{equation}h_{w}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="s">
+        <code-block lang="tex">
+            \begin{equation}s\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="s_b">
+        <code-block lang="tex">
+            \begin{equation}s_{b}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="c">
+        <code-block lang="tex">
+            \begin{equation}c\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="j_t">
+        <code-block lang="tex">
+            \begin{equation}j_{t}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="j">
+        <code-block lang="tex">
+            \begin{equation}j\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="j_theta">
+        <code-block lang="tex">
+            \begin{equation}j_{\theta}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="j_n">
+        <code-block lang="tex">
+            \begin{equation}j_{n}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="profile-shift-distribution-reduced-sliding-velocity">
+        <code-block lang="tex">
+            \begin{equation} x_{1} \: \approx \: \frac{x_{1} + x_{2}}{i+1} + \frac{i-1}{i+1 + 0.4z_{2}}   \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="profile-shift-distribution-equal-root-stress">
+        <code-block lang="tex">
+            \begin{equation} x_{1} \: \approx \: \frac{x_{1} + x_{2}}{i+1} + \frac{1}{2}\left(\frac{i-1}{i+1}\right)   \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="profile-shift-distribution-equal-contact-pressure">
+        <code-block lang="tex">
+            \begin{equation} x_{1} \: \approx \: \frac{x_{1} + x_{2}}{i+1} \cdot \frac{z_{1} +12}{z_{1} +2} + \frac{8}{z_{1} +2}  \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-linear-text">
+        <code-block lang="tex">
+            \begin{align}
+            \begin{array}{ll}
+            \text{Where:} \\
+            j =\texttt{Linear Backlash}  \\
+            s_{s} =\texttt{Gear Tooth Space}  \\
+            s_{1} =\texttt{Pinion Tooth Width}
+            \end{array}
+            \end{align}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-angular">
+        <code-block lang="tex">
+            \begin{equation}j_{\theta} \: = \: \frac{c}{d} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-angular-text">
+        <code-block lang="tex">
+            \begin{align}
+            \begin{array}{ll}
+            \text{Where:} \\
+            j_{\theta} =\texttt{Angular Backlash}  \\
+            c =\texttt{Clearence required}  \\
+            d =\texttt{Operating pitch diameter}
+            \end{array}
+            \end{align}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-profile">
+        <code-block lang="tex">
+            \begin{equation}x_{mod} \: = \: - \frac{j_{t}}{2 \cdot m \cdot tan \alpha} \cdot \frac{cos \alpha_{w}}{cos \alpha} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-linear">
+        <code-block lang="tex">
+            \begin{equation}j \: = \: s_{s} - s_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-angular-to-circular-all">
+        <code-block lang="tex">
+            \begin{equation}j_{\theta}\: = \: j_{t} \cdot \frac{360}{\pi d} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-normal-to-circular-spur">
+        <code-block lang="tex">
+            \begin{equation}j_{n}\: = \: j_{t}\cdot cos \alpha \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-centre-to-circular-spur">
+        <code-block lang="tex">
+            \begin{equation}j_{r}\: = \: \frac{j_{t}}{2 \cdot tan \alpha} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-normal-to-circular-helical">
+        <code-block lang="tex">
+            \begin{equation}j_{nn}\: = \: j_{tt} \cdot cos \alpha_{n} \cdot cos \beta \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="backlash-centre-to-circular-helical">
+        <code-block lang="tex">
+            \begin{equation}j_{r}\: = \: \frac{j_{tt}}{2 \cdot tan \alpha_{t}} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_w">
+        <code-block lang="tex">
+            \begin{equation}d_{w}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_wt">
+        <code-block lang="tex">
+            \begin{equation}d_{wt}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPitchDiameterForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{d_{b}}{cos\alpha_{w}} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingPitchDiameterForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation}\frac{d_{b}}{cos\alpha_{wt}} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="r">
+        <code-block lang="tex">
+            \begin{equation}r\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="r_w">
+        <code-block lang="tex">
+            \begin{equation}r_{w}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="r_a">
+        <code-block lang="tex">
+            \begin{equation}r_{a}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="r_b">
+        <code-block lang="tex">
+            \begin{equation}r_{b}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="r_f">
+        <code-block lang="tex">
+            \begin{equation}r_{f}\end{equation}
+        </code-block>
+    </snippet>
+
+
+    <snippet id="WorkingInvoluteForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation}tan\alpha_{w} - \alpha_{w}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForProfileShiftIntExtSpurFormula">
+        <code-block lang="tex">
+            \begin{equation}\left(\frac{a_{x}}{m}\right)-\frac{\left(z_{2}-z_{1}\right)}{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForProfileShiftIntExtHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation}\left(\frac{a_{x}}{m_{n}}\right)-\frac{\left(z_{2}-z_{1}\right)}{2cos \beta} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation}\left(\frac{a_{x}}{m}\right)-\frac{\left(z_{1}+z_{2}\right)}{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation} \frac{a_{x}}{m_{n}} -\frac{\left(z_{1}+z_{2}\right)}{2cos\beta}
+            \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForPositiveShiftSpurFormula">
+        <code-block lang="tex">
+            \begin{equation}\left(\frac{z_{1}+z_{2}}{2}+y\right)m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForPositiveShiftHelicalFormula">
+        <code-block lang="tex">
+            \begin{equation}\left(\frac{z_{1}+z_{2}}{2cos\:\beta}+y\right)m_{n} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForPositiveShiftRadialFormula">
+        <code-block lang="tex">
+            \begin{equation}\left(\frac{z_{1}+z_{2}}{2}+y\right)m_{t} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="PitchConeAngleForBevelGear1">
+        <code-block lang="tex">
+            \begin{equation} tan^{-1}  \left(\frac{sin\Sigma}{\frac{z_{1}}{z_{2}} + cos\Sigma}\right) \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="PitchConeAngleForBevelGear2">
+        <code-block lang="tex">
+            \begin{equation} \Sigma - \delta_{1} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="sigma_a">
+        <code-block lang="tex">
+            \begin{equation} \sigma_{a} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="OuterConeAngleForBevelGear">
+        <code-block lang="tex">
+            \begin{equation} \delta + \theta_{a} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="RootConeAngleForBevelGear">
+        <code-block lang="tex">
+            \begin{equation} \delta - \theta_{f} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="OutsideDiameterForBevelGear">
+        <code-block lang="tex">
+            \begin{equation}d\: + \: 2h_{a}\cdot cos\delta \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="PitchApexToCrownForBevelGear">
+        <code-block lang="tex">
+            \begin{equation}R_{e} cos\delta - h_{a} sin\delta\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="AxialFaceWidthForBevelGear">
+        <code-block lang="tex">
+            \begin{equation}\frac{b cos\delta_{a}}{cos \theta_{a}}\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="InnerOutsideDiameterForBevelGear">
+        <code-block lang="tex">
+            \begin{equation}d_{a} - \frac{2b sin\delta_{a}}{cos \theta_{a}}\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="nu_1">
+        <code-block lang="tex">
+            \begin{equation} \nu_{1} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="nu_2">
+        <code-block lang="tex">
+            \begin{equation} \nu_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="t_1">
+        <code-block lang="tex">
+            \begin{equation} t_{1} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="t_2">
+        <code-block lang="tex">
+            \begin{equation} t_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="BackConeAngleForBevelGear1">
+        <code-block lang="tex">
+            \begin{equation}90 - \delta_{1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="BackConeAngleForBevelGear2">
+        <code-block lang="tex">
+            \begin{equation} 90 - \delta_{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="R_e">
+        <code-block lang="tex">
+            \begin{equation}R_{e} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="R_eDiv3">
+        <code-block lang="tex">
+            \begin{equation}\frac{R_{e}}{3} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="ConeDistanceForBevelGear">
+        <code-block lang="tex">
+            \begin{equation}\frac{d_{2}}{2 sin\:\delta_{2}}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="GleasonAddendum1BevelGear">
+        <code-block lang="tex">
+            \begin{equation}2.000m - h_{a2}\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="GleasonAddendum2BevelGear">
+        <code-block lang="tex">
+            \begin{equation}0.540m+\frac{0.460m}{\left(\frac{z_{2}cos\delta_{1}}{z_{1}cos\delta_{2}}\right)}\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="GleasonDedendumBevelGear">
+        <code-block lang="tex">
+            \begin{equation}2.188m -h_{a}\end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="DedendumAngleBevelGear">
+        <code-block lang="tex">
+            \begin{equation}tan^{-1}\left(\frac{h_{f}}{R_{e}}\right)\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="AddendumAngleBevelGear">
+        <code-block lang="tex">
+            \begin{equation}tan^{-1}\left(\frac{h_{a}}{R_{e}}\right)\end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="GleasonCircularThicknessBevelGear1">
+        <code-block lang="tex">
+            \begin{equation} t_{1} = p - t_{2} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="GleasonCircularThicknessBevelGear2">
+        <code-block lang="tex">
+            \begin{equation} t_{2} = \frac{p}{2} -\left(ha_{1}-ha_{2}\right)\cdot tan\alpha-\frac{K}{Pd}  \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="linebreakexample">
+        <code-block lang="tex">
+
+            \begin{align}
+            \begin{array}{ll}
+            \text{let}\,\mathbb{X}=\texttt{line 1}  \\
+            \text{let}\,\mathbb{Y}=\texttt{line 2}
+            \end{array}
+            \end{align}
+
+        </code-block>
+    </snippet>
+
+</topic>

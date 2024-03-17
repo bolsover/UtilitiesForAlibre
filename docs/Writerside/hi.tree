@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="hi" name="Utilities For Alibre"
+                 start-page="Utilities-For-Alibre.topic">
+
+
+    <toc-element topic="Utilities-For-Alibre.topic">
+        <toc-element topic="Installation.topic"/>
+        <toc-element topic="Shortcuts-Keyboard.topic"/>
+        <toc-element topic="Shortcuts-Report.topic"/>
+        <toc-element topic="Data-Browser.topic"/>
+        <toc-element topic="Property-Viewer.topic"/>
+        <toc-element topic="Sketch-Plane-Finder.topic"/>
+        <toc-element topic="Bevel-Gears.topic"/>
+        <toc-element topic="Cycloidal-Gears.topic">
+        </toc-element>
+        <toc-element topic="Involute-Gears.topic">
+            <toc-element topic="Formulae.topic">
+                <toc-element topic="Symbols.topic"/>
+                <toc-element topic="Standard-External-Spur-Gears.topic"/>
+                <toc-element topic="Profile-Shifted-External-Spur-Gears.topic"/>
+                <toc-element topic="Profile-Shifted-Internal-External-Spur-Gear.topic"/>
+                <toc-element topic="Profile-Shifted-External-Helical-Gear-Normal.topic"/>
+                <toc-element topic="Profile-Shifted-Internal-External-Helical-Gear.topic"/>
+                <toc-element topic="Gleason-System-Straight-Bevel-Gears.topic"/>
+                <toc-element topic="Standard-System-Straight-Bevel-Gears.topic"/>
+                <toc-element topic="Profile-Shift-Distribution.topic"/>
+                <toc-element topic="Backlash.topic"/>
+                <toc-element topic="Contact-Ratio.topic"/>
+                <toc-element topic="Testpage.topic"/>
+            </toc-element>
+        </toc-element>
+    </toc-element>
+</instance-profile>

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -184,9 +182,7 @@ namespace Bolsover.Involute.Presenter
         private void Recalculate()
         {
             Calculate();
-
-            
-            //_view.dataTextBox.Text = _gearCalculator.CalculateGearString(Model, _gearPairDesignOutputParams);
+ 
             _view.xModTextBox.Text = _gearCalculator.CalculateProfileShiftModificationForBacklash(Model).ToString("F4");
             var sumx = _gearPairDesignOutputParams.GearPairDesignInputParams.Gear.CoefficientOfProfileShift +
                       _gearPairDesignOutputParams.GearPairDesignInputParams.Pinion.CoefficientOfProfileShift;

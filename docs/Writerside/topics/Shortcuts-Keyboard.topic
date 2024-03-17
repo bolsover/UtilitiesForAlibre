@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Shortcuts - Keyboard" id="Shortcuts-Keyboard">
+
+    <p>A visual representation of where the shortcuts are. Use the drop-down to select the editor profile of interest and the modifier keys Alt, Ctrl and Shift to show different key combinations. </p>
+    <p>If you don't like the default key colours, these can be changed using the modal dialog shown when you select the repurposed Pause/Break key.</p>
+    <img src="ShortcutsKeyboard.png" alt="Shortcuts Keyboard" thumbnail="true" width="300"/>
+</topic>

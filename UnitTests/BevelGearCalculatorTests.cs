@@ -797,24 +797,26 @@ namespace UnitTests
         {
             BevelGear pinion = new BevelGear();
             pinion.ShaftAngle = 90;
-            pinion.Module = 3;
+            pinion.Module = 5.08;
             pinion.PressureAngle = 20;
-            pinion.NumberOfTeeth = 40;
+            pinion.NumberOfTeeth = 16;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Gleason;
 
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
-            gear.Module = 3;
+            gear.Module = 5.08;
             gear.PressureAngle = 20;
-            gear.NumberOfTeeth = 40;
+            gear.NumberOfTeeth = 49;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Gleason;
 
-            var expectedResult1 = 4.49847807;
-            var expectedResult2 = 4.926299;
+            var expectedResult1 = 9.46765;
+            var expectedResult2 = 6.49163;
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculateCircularThickness(pinion, gear).Item1, 0.0001);
             Assert.AreEqual(expectedResult2, BevelGearCalculator.CalculateCircularThickness(pinion, gear).Item2, 0.0001);
         }
+        
+        
     }
 }
