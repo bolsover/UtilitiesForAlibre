@@ -12,6 +12,16 @@
 /dataSources/
 /dataSources.local.xml
 
+#writerside output
+/docs/*.zip
+/docs/*.pdf
+/docs/*.html
+/docs/*.docx
+/docs/*.doc
+/docs/*.txt
+/docs/*.rtf
+
+
 
 # User-specific files
 *.suo
