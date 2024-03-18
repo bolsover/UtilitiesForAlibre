@@ -101,7 +101,7 @@ namespace Bolsover.RackPinion.View
             this.tableLayoutPanel1.Controls.Add(this.teethSymbol, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.widthSymbol, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.cancelButton, 0, 6);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
@@ -113,7 +113,7 @@ namespace Bolsover.RackPinion.View
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(795, 591);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(795, 710);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // objectListView1
@@ -127,7 +127,7 @@ namespace Bolsover.RackPinion.View
             this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.olvColumn1, this.olvColumn2, this.olvColumn3, this.olvColumn4 });
             this.tableLayoutPanel1.SetColumnSpan(this.objectListView1, 4);
             this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.objectListView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.objectListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.objectListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.objectListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.objectListView1.HideSelection = false;
@@ -137,7 +137,7 @@ namespace Bolsover.RackPinion.View
             this.objectListView1.ShowGroups = false;
             this.objectListView1.ShowHeaderInAllViews = false;
             this.objectListView1.ShowItemToolTips = true;
-            this.objectListView1.Size = new System.Drawing.Size(775, 312);
+            this.objectListView1.Size = new System.Drawing.Size(775, 431);
             this.objectListView1.SortGroupItemsByPrimaryColumn = false;
             this.objectListView1.TabIndex = 67;
             this.objectListView1.UseAlternatingBackColors = true;
@@ -148,13 +148,13 @@ namespace Bolsover.RackPinion.View
             // 
             this.olvColumn1.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvColumn1.Text = "Item";
-            this.olvColumn1.Width = 123;
+            this.olvColumn1.Width = 274;
             // 
             // olvColumn2
             // 
             this.olvColumn2.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvColumn2.Text = "Metric";
-            this.olvColumn2.Width = 152;
+            this.olvColumn2.Width = 129;
             // 
             // olvColumn3
             // 
@@ -166,7 +166,7 @@ namespace Bolsover.RackPinion.View
             // 
             this.olvColumn4.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvColumn4.Text = "Notes";
-            this.olvColumn4.Width = 138;
+            this.olvColumn4.Width = 185;
             // 
             // label1
             // 
@@ -259,7 +259,9 @@ namespace Bolsover.RackPinion.View
             // moduleNumericUpDown
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.moduleNumericUpDown, 2);
+            this.moduleNumericUpDown.DecimalPlaces = 3;
             this.moduleNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moduleNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             this.moduleNumericUpDown.Location = new System.Drawing.Point(479, 40);
             this.moduleNumericUpDown.Name = "moduleNumericUpDown";
             this.moduleNumericUpDown.Size = new System.Drawing.Size(313, 22);
@@ -270,8 +272,11 @@ namespace Bolsover.RackPinion.View
             // pressureAngleNumericUpDown
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.pressureAngleNumericUpDown, 2);
+            this.pressureAngleNumericUpDown.DecimalPlaces = 3;
             this.pressureAngleNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pressureAngleNumericUpDown.Location = new System.Drawing.Point(479, 77);
+            this.pressureAngleNumericUpDown.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
+            this.pressureAngleNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.pressureAngleNumericUpDown.Name = "pressureAngleNumericUpDown";
             this.pressureAngleNumericUpDown.Size = new System.Drawing.Size(313, 22);
             this.pressureAngleNumericUpDown.TabIndex = 9;
@@ -281,8 +286,10 @@ namespace Bolsover.RackPinion.View
             // helixAngleNumericUpDown
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.helixAngleNumericUpDown, 2);
+            this.helixAngleNumericUpDown.DecimalPlaces = 3;
             this.helixAngleNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.helixAngleNumericUpDown.Location = new System.Drawing.Point(479, 114);
+            this.helixAngleNumericUpDown.Maximum = new decimal(new int[] { 45, 0, 0, 0 });
             this.helixAngleNumericUpDown.Name = "helixAngleNumericUpDown";
             this.helixAngleNumericUpDown.Size = new System.Drawing.Size(313, 22);
             this.helixAngleNumericUpDown.TabIndex = 10;
@@ -292,6 +299,8 @@ namespace Bolsover.RackPinion.View
             // 
             this.pinionTeethNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pinionTeethNumericUpDown.Location = new System.Drawing.Point(479, 151);
+            this.pinionTeethNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            this.pinionTeethNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.pinionTeethNumericUpDown.Name = "pinionTeethNumericUpDown";
             this.pinionTeethNumericUpDown.Size = new System.Drawing.Size(153, 22);
             this.pinionTeethNumericUpDown.TabIndex = 11;
@@ -302,6 +311,8 @@ namespace Bolsover.RackPinion.View
             // 
             this.gearTeethNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gearTeethNumericUpDown.Location = new System.Drawing.Point(638, 151);
+            this.gearTeethNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            this.gearTeethNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.gearTeethNumericUpDown.Name = "gearTeethNumericUpDown";
             this.gearTeethNumericUpDown.Size = new System.Drawing.Size(154, 22);
             this.gearTeethNumericUpDown.TabIndex = 12;
@@ -322,11 +333,14 @@ namespace Bolsover.RackPinion.View
             // widthNnumericUpDown
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.widthNnumericUpDown, 2);
+            this.widthNnumericUpDown.DecimalPlaces = 3;
             this.widthNnumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.widthNnumericUpDown.Location = new System.Drawing.Point(479, 188);
+            this.widthNnumericUpDown.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             this.widthNnumericUpDown.Name = "widthNnumericUpDown";
             this.widthNnumericUpDown.Size = new System.Drawing.Size(313, 22);
             this.widthNnumericUpDown.TabIndex = 16;
+            this.widthNnumericUpDown.Value = new decimal(new int[] { 20, 0, 0, 0 });
             this.widthNnumericUpDown.ValueChanged += new System.EventHandler(this.widthNumericUpDown_ValueChanged);
             // 
             // pinionButton
@@ -342,9 +356,10 @@ namespace Bolsover.RackPinion.View
             // 
             // rackButton
             // 
+            this.rackButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rackButton.Location = new System.Drawing.Point(638, 225);
             this.rackButton.Name = "rackButton";
-            this.rackButton.Size = new System.Drawing.Size(149, 23);
+            this.rackButton.Size = new System.Drawing.Size(154, 31);
             this.rackButton.TabIndex = 13;
             this.rackButton.Text = "Build Rack";
             this.rackButton.UseVisualStyleBackColor = true;
@@ -404,6 +419,7 @@ namespace Bolsover.RackPinion.View
             this.cancelButton.TabIndex = 73;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click_1);
             // 
             // RackPinionView
             // 
@@ -411,7 +427,7 @@ namespace Bolsover.RackPinion.View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "RackPinionView";
-            this.Size = new System.Drawing.Size(795, 594);
+            this.Size = new System.Drawing.Size(795, 710);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moduleNumericUpDown)).EndInit();
@@ -437,7 +453,7 @@ namespace Bolsover.RackPinion.View
         public BrightIdeasSoftware.OLVColumn olvColumn3;
         public BrightIdeasSoftware.OLVColumn olvColumn4;
 
-        private System.Windows.Forms.NumericUpDown widthNnumericUpDown;
+        public System.Windows.Forms.NumericUpDown widthNnumericUpDown;
 
         private System.Windows.Forms.Label label9;
 

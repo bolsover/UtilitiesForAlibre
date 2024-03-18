@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UtilitiesForAlibre"
-#define MyAppVersion "2.0.0.0"
+#define MyAppVersion "2.1.0.0"
 #define MyAppPublisher "David Bolsover"
 
 [Setup]
@@ -50,7 +50,7 @@ Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\WheelTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\HelicalPinionTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\HelicalWheelTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
-
+Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Gear\HelicalRackTemplate.AD_PRT"; DestDir: "{app}\Gear\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Bevel\Images\BevelGearTemplate.AD_PRT"; DestDir: "{app}\Bevel\Images\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Bevel\Images\Symbols.png"; DestDir: "{app}\Bevel\Images\"; Flags: ignoreversion
 Source: "D:\Repository\Jetbrains\Bolsover\UtilitiesForAlibre\UtilitiesForAlibre\bin\Release\Bevel\Views\BevelGearForm.resx"; DestDir: "{app}\Bevel\Views\"; Flags: ignoreversion

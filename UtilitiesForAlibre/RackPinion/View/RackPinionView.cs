@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Windows.Forms;
 using Bolsover.RackPinion.Presenter;
 
@@ -11,18 +10,17 @@ namespace Bolsover.RackPinion.View
         public event EventHandler BuildRackEvent;
         public event EventHandler BuildPinionEvent;
         public event EventHandler CancelEvent;
-                public event EventHandler EditModuleEvent;
-                public event EventHandler EditPressureAngleEvent;
-                public event EventHandler EditPinionNumberOfTeethEvent;
-                public event EventHandler EditGearNumberOfTeethEvent;
-                public event EventHandler EditHelixAngleEvent;
-                public event EventHandler EditGearHeightEvent;
-                
+        public event EventHandler EditModuleEvent;
+        public event EventHandler EditPressureAngleEvent;
+        public event EventHandler EditPinionNumberOfTeethEvent;
+        public event EventHandler EditGearNumberOfTeethEvent;
+        public event EventHandler EditHelixAngleEvent;
+        public event EventHandler EditGearHeightEvent;
+
         public RackPinionView()
-        { 
+        {
             InitializeComponent();
             _presenter = new RackPinionPresenter(this);
-            
         }
 
 
@@ -67,7 +65,8 @@ namespace Bolsover.RackPinion.View
             EditGearHeightEvent?.Invoke(sender, e);
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+       
+        private void cancelButton_Click_1(object sender, EventArgs e)
         {
             CancelEvent?.Invoke(sender, e);
         }

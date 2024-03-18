@@ -6,15 +6,27 @@
        title="Testpage" id="Testpage">
 
     <p>Start typing here...</p>
+    <p><i>italic</i></p>
+    <p><b>bold</b></p>
+    <p><s>strikethrough</s></p>
+
 
     <code-block lang="d2">
         direction: right
-        utils: Utilities{shape:hexagon}
-        utils.keyboard: Keyboard
+        utils: Utilities
+        utils.shortcuts: Shortcuts
+        utils.shortcuts.keyboard: Keyboard
+        utils.shortcuts.report: Report
+        utils.databrowser: Data Browser
+        utils.planefinder: Sketch Plane Finder
+        utils.propertyviewer: Property Viewer
 
-        gears: Gears
-        cycloidal: Cycloidal
-        involute: Involute
+
+        utils.gears: Gears
+        utils.cycloidal: Cycloidal
+        utils.involute: Involute
+        utils.gears -> utils.cycloidal
+        utils.gears -> utils.involute
         externalInvolute: External Involute
         straightExternalInvolute: Straight
         helicalExternalInvolute: Helical
@@ -27,8 +39,7 @@
         standardBevel: Standard Bevel
         gleasonBevel: Gleason Bevel
         rackPinion:  Rack &amp; Pinion
-        gears -> cycloidal
-        gears -> involute
+
         involute -> externalInvolute
         externalInvolute -> straightExternalInvolute
         externalInvolute -> helicalExternalInvolute

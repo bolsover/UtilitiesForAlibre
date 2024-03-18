@@ -33,16 +33,22 @@ namespace Bolsover.RackPinion.View
         {
             this.rackPinionControl1 = new Bolsover.RackPinion.View.RackPinionView();
             this.SuspendLayout();
+            // 
+            // rackPinionControl1
+            // 
             this.rackPinionControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rackPinionControl1.Location = new System.Drawing.Point(0, 0);
             this.rackPinionControl1.Margin = new System.Windows.Forms.Padding(10);
             this.rackPinionControl1.Name = "rackPinionControl1";
             this.rackPinionControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.rackPinionControl1.Size = new System.Drawing.Size(1040, 785);
+            this.rackPinionControl1.Size = new System.Drawing.Size(688, 915);
             this.rackPinionControl1.TabIndex = 0;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8, 16);
+            // 
+            // RackPinionForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1040, 785);
+            this.ClientSize = new System.Drawing.Size(688, 915);
             this.Controls.Add(this.rackPinionControl1);
             this.Name = "RackPinionForm";
             this.Text = "Rack and Pinion";

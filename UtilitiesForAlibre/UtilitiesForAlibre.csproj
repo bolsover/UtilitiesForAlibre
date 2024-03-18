@@ -371,6 +371,7 @@
             <DependentUpon>PlaneFinder.cs</DependentUpon>
         </Compile>
         <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
+        <Compile Include="RackPinion\Model\RackParams.cs" />
         <Compile Include="RackPinion\Model\RackPinionDesignOutputParams.cs" />
         <Compile Include="RackPinion\Model\RackPinionGearData.cs" />
         <Compile Include="RackPinion\Model\RackPinionLatexStrings.cs" />

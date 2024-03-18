@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using AlibreX;
 using Bolsover.Involute.Builder;
@@ -17,6 +18,7 @@ namespace Bolsover.RackPinion.Presenter
     {
         private RackPinionView _view;
         public GearPairDesignInputParams Model;
+        public RackParams RackModel = new RackParams();
         private RackPinionDesignOutputParams _gearPairDesignOutputParams;
         private IToothPointsBuilder _toothPointsBuilder;
         private AlibreToothBuilder _alibreToothBuilder;
@@ -36,19 +38,25 @@ namespace Bolsover.RackPinion.Presenter
                 GearPairDesignInputParams = Model
             };
             _toothPointsBuilder = new ExternalSpurHelicalToothBuilder(); // setup default builder for pinion
+
             InitGearPair();
             SetupDefaults();
             ClearLabelText();
             SetupLabelLatexImages();
             SetupEventListeners();
-
             SetupObjectListView();
             Recalculate();
+
+            GearDesignInputParamsOnGearChanged();
         }
 
         private void Recalculate()
         {
+            Model.WorkingCentreDistance = _gearCalculator?.CalculateCentreDistance(Model) ?? 20;
+
             Calculate();
+            GearDesignInputParamsOnGearChanged();
+            if (_gearCalculator != null) Model.WorkingCentreDistance = _gearCalculator.CalculateCentreDistance(Model);
         }
 
         private void Calculate()
@@ -119,6 +127,18 @@ namespace Bolsover.RackPinion.Presenter
             _view.EditGearNumberOfTeethEvent += ViewOnEditGearNumberOfTeethEvent;
             _view.EditHelixAngleEvent += ViewOnEditHelixAngleEvent;
             _view.EditGearHeightEvent += ViewOnEditGearHeightEvent;
+
+            // Model.Gear.GearChanged += GearDesignInputParamsOnGearChanged;
+            // Model.Pinion.GearChanged += GearDesignInputParamsOnGearChanged;
+           //      RackModel.RackChanged += RackModelOnRackChanged;
+        }
+
+        private void GearDesignInputParamsOnGearChanged()
+        {
+            var geardata = _gearCalculator.BuildGearData(Model, _gearPairDesignOutputParams);
+            var gearDatas = geardata.ToList();
+            _view.objectListView1.SetObjects(gearDatas);
+           
         }
 
         private void ViewOnEditGearHeightEvent(object sender, EventArgs e)
@@ -128,6 +148,7 @@ namespace Bolsover.RackPinion.Presenter
                 var newValue = (double)numericUpDown.Value;
                 Model.Gear.Height = newValue;
                 Model.Pinion.Height = newValue;
+                RackModel.Height = newValue;
             }
 
             Recalculate();
@@ -140,6 +161,10 @@ namespace Bolsover.RackPinion.Presenter
                 var newValue = (double)numericUpDown.Value;
                 Model.Gear.HelixAngle = newValue;
                 Model.Pinion.HelixAngle = newValue;
+                RackModel.HelixAngle = newValue;
+                var gearStyle = newValue == 0 ? Model.Gear.Style &= ~Helical : Model.Gear.Style |= Helical;
+                gearStyle = newValue != 0 ? Model.Gear.Style &= ~Spur : Model.Gear.Style |= Spur;
+                Model.Pinion.Style = gearStyle;
             }
 
             Recalculate();
@@ -150,6 +175,7 @@ namespace Bolsover.RackPinion.Presenter
             if (sender is NumericUpDown numericUpDown)
             {
                 var newValue = (double)numericUpDown.Value;
+                RackModel.Teeth = newValue;
                 Model.Gear.Teeth = newValue;
             }
 
@@ -161,7 +187,7 @@ namespace Bolsover.RackPinion.Presenter
             if (sender is NumericUpDown numericUpDown)
             {
                 var newValue = (double)numericUpDown.Value;
-
+                Model.Gear.Teeth = newValue;
                 Model.Pinion.Teeth = newValue;
             }
 
@@ -175,6 +201,7 @@ namespace Bolsover.RackPinion.Presenter
                 var newValue = (double)numericUpDown.Value;
                 Model.Gear.PressureAngle = newValue;
                 Model.Pinion.PressureAngle = newValue;
+                RackModel.PressureAngle = newValue;
             }
 
             Recalculate();
@@ -187,13 +214,14 @@ namespace Bolsover.RackPinion.Presenter
                 var newValue = (double)numericUpDown.Value;
                 Model.Gear.Module = newValue;
                 Model.Pinion.Module = newValue;
+                RackModel.Module = newValue;
             }
+
+            Recalculate();
         }
 
-        private void ViewOnCancelEvent(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        private void ViewOnCancelEvent(object sender, EventArgs e) => _view.FindForm()!.Close();
+
 
         private void ViewOnBuildRack(object sender, EventArgs e)
         {
@@ -201,18 +229,18 @@ namespace Bolsover.RackPinion.Presenter
             var filePath = GetAlibreFilePath(fileData.SaveFile, fileData.Template);
             var session = InitAlibreFile(filePath);
             session.Parameters.OpenParameterTransaction();
-            session.Parameters.Item("Alpha").Value = Radians(Model.Gear.PressureAngle);
-            session.Parameters.Item("Beta").Value = Radians(Model.Gear.HelixAngle);
-            session.Parameters.Item("Module").Value = Model.Gear.Module * 0.1;
-            session.Parameters.Item("RackTeeth").Value = Model.Gear.Teeth;
-            session.Parameters.Item("Width").Value = Model.Gear.Height * 0.1;
+            session.Parameters.Item("Alpha").Value = Radians(RackModel.PressureAngle);
+            session.Parameters.Item("Beta").Value = Radians(RackModel.HelixAngle);
+            session.Parameters.Item("Module").Value = RackModel.Module * 0.1;
+            session.Parameters.Item("RackTeeth").Value = RackModel.Teeth;
+            session.Parameters.Item("Width").Value = RackModel.Height * 0.1;
             session.Parameters.CloseParameterTransaction();
             ((IADPartSession)session).RegenerateAll();
         }
 
         private void ViewOnBuildPinionEvent(object sender, EventArgs e)
         {
-            //   Recalculate();
+            Recalculate();
             var gearDetails = GetPinionDetails();
             SetupBuilderForGearType(false);
             var tooth = _toothPointsBuilder.Build(_gearPairDesignOutputParams.PinionDesignOutput);
@@ -328,6 +356,11 @@ namespace Bolsover.RackPinion.Presenter
             _gearPairDesignOutputParams.GearDesignOutput = new GearDesignOutputParams();
             _gearPairDesignOutputParams.PinionDesignOutput.GearDesignInputParams = pinion;
             _gearPairDesignOutputParams.GearDesignOutput.GearDesignInputParams = gear;
+            RackModel.PressureAngle = gear.PressureAngle;
+            RackModel.Module = gear.Module;
+            RackModel.Teeth = gear.Teeth;
+            RackModel.Height = gear.Height;
+            RackModel.HelixAngle = gear.HelixAngle;
         }
 
         private void SetupDefaults()
@@ -337,6 +370,7 @@ namespace Bolsover.RackPinion.Presenter
             _view.moduleNumericUpDown.Value = (decimal)Model.Gear.Module;
             _view.pressureAngleNumericUpDown.Value = (decimal)Model.Gear.PressureAngle;
             _view.helixAngleNumericUpDown.Value = (decimal)Model.Gear.HelixAngle;
+            _view.widthNnumericUpDown.Value = (decimal)Model.Gear.Height;
         }
     }
 }

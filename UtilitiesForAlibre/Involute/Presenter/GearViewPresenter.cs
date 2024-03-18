@@ -158,15 +158,11 @@ namespace Bolsover.Involute.Presenter
             bool flag = gearDatas.Any(gearData => gearData.IsError);
             if (flag)
             {
-                // _view.buildGearButton.Enabled = false;
-                // _view.buildPinionButton.Enabled = false;
                 _view.noteLabel.Text = "Please correct the errors before building the gear";
                 _view.noteLabel.ForeColor = Color.Red;
             }
             else
             {
-                // _view.buildGearButton.Enabled = true;
-                // _view.buildPinionButton.Enabled = true;
                 _view.noteLabel.Text = "All values are within acceptable limits";
                 _view.noteLabel.ForeColor = Color.Black;
             }
