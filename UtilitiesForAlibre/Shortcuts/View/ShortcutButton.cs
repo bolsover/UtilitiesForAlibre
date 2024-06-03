@@ -10,7 +10,8 @@ namespace Bolsover.Shortcuts.View
     {
         private AlibreShortcut _alibreShortcut;
         
-        public AlibreShortcut AlibreShortcut  {
+        public AlibreShortcut AlibreShortcut
+        {
             get => _alibreShortcut;
             set => SetField(ref _alibreShortcut, value);
         }
@@ -30,10 +31,5 @@ namespace Bolsover.Shortcuts.View
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
-        
-        
     }
-    
-   
-    
 }

@@ -1,26 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Diagnostics;
-using System.Reflection;
 using com.alibre.automation;
 
 namespace Bolsover.DataBrowser
 {
     public class AlibreData
-
+    
     {
-        private string _classType;
-        private ArrayList _children = new();
-        private string _propertyName;
-        private object _propertyValue;
-        private object _value;
-        private object _parent;
-
         public AlibreData(object parent)
         {
-            this._parent = parent;
+            Parent = parent;
         }
-
+        
+        
+        public string ClassType { get; set; }
+        
+        public ArrayList Children { get; set; } = new();
+        
+        public string PropertyName { get; set; }
+        
+        public object PropertyValue { get; set; }
+        
+        public object Parent { get; set; }
+        
+        public object Value { get; set; }
+        
         public IEnumerable GetChildData(object parent)
         {
             try
@@ -31,11 +36,11 @@ namespace Bolsover.DataBrowser
                     while (((EnumVariant) parent).HasMoreElements())
                     {
                         var o = ((EnumVariant) parent).NextElement();
-
+                        
                         CreateChild(parent, ref i, o);
                     }
                 }
-
+                
                 else if (parent is ArrayList)
                 {
                     var i = 0;
@@ -65,7 +70,7 @@ namespace Bolsover.DataBrowser
                         child.PropertyValue = IsPrimitiveType(GetPropertyValue(parent, info.Name))
                             ? GetPropertyValue(parent, info.Name)
                             : "";
-                        _children.Add(child);
+                        Children.Add(child);
                     }
                 }
             }
@@ -73,10 +78,10 @@ namespace Bolsover.DataBrowser
             {
                 Debug.WriteLine(parent);
             }
-
-            return _children;
+            
+            return Children;
         }
-
+        
         private void CreateChild(object parent, ref int i, object o)
         {
             var child = new AlibreData(parent);
@@ -84,9 +89,9 @@ namespace Bolsover.DataBrowser
             child.ClassType = o.GetType().Name;
             child.Value = o;
             child.PropertyValue = IsPrimitiveType(o) ? o : "";
-            _children.Add(child);
+            Children.Add(child);
         }
-
+        
         public static bool IsPrimitiveType(object o)
         {
             if (o is bool | o is byte | o is sbyte | o is char | o is decimal
@@ -96,11 +101,11 @@ namespace Bolsover.DataBrowser
             {
                 return true;
             }
-
+            
             return false;
         }
-
-
+        
+        
         public object GetPropertyValue(object obj, string propName)
         {
             object o = null;
@@ -112,50 +117,13 @@ namespace Bolsover.DataBrowser
             {
                 o = "Exception thrown getting " + propName + " " + ex.Message;
             }
-
+            
             return o;
         }
-
-
-        public string ClassType
-        {
-            get => _classType;
-            set => _classType = value;
-        }
-
-        public ArrayList Children
-        {
-            get => _children;
-            set => _children = value;
-        }
-
-        public string PropertyName
-        {
-            get => _propertyName;
-            set => _propertyName = value;
-        }
-
-        public object PropertyValue
-        {
-            get => _propertyValue;
-            set => _propertyValue = value;
-        }
-
-        public object Parent
-        {
-            get => _parent;
-            set => _parent = value;
-        }
-
-        public object Value
-        {
-            get => _value;
-            set => this._value = value;
-        }
-
+        
         public bool HasChildren()
         {
-            return _children.Count > 0;
+            return Children.Count > 0;
         }
     }
 }

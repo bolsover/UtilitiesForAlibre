@@ -4,21 +4,21 @@ namespace Bolsover.Shortcuts.Model
 {
     public class SvgDictionary
     {
-        public static Dictionary<string, string> SvgDictionaryData { get; private set;  }
-
-        public static SvgDictionary Instance { get; } = new ();
-        
-        private  SvgDictionary()
+        private SvgDictionary()
         {
             SvgDictionaryData = new Dictionary<string, string>();
             Initialise();
         }
-
+        
+        public static Dictionary<string, string> SvgDictionaryData { get; private set; }
+        
+        public static SvgDictionary Instance { get; } = new();
+        
         private void Add(string key, string value)
         {
             SvgDictionaryData.Add(key, value);
         }
-
+        
         private void Initialise()
         {
             Add("PART_CONFIGURATION_COMMAND", "Common_Configuration.svg");
@@ -454,7 +454,7 @@ namespace Bolsover.Shortcuts.Model
             Add("CMD_FILTER_ASSEMBLY", "Selection_Filter_Assembly.svg");
             Add("CMD_FILTER_PART", "Selection_Filter_Parts.svg");
             Add("CMD_FILTER_SURFACES", "Selection_Filter_Surface_Faces_Edges.svg");
-          //  Add("CMD_FILTER_SURFACE", "Selection_Filter_Surface.svg");
+            //  Add("CMD_FILTER_SURFACE", "Selection_Filter_Surface.svg");
             Add("CMD_FILTER_SURFACE_EDGE", "Selection_Filter_Surface_Edges.svg");
             Add("CMD_FILTER_SOLID_NONE", "Selection_Filter_Arrow.svg");
             Add("CMD_FILTER_SURFACE_NONE", "Selection_Filter_Arrow.svg");

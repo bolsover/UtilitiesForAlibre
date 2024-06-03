@@ -16,20 +16,20 @@ namespace Bolsover.RackPinion.Presenter
 {
     public class RackPinionPresenter
     {
-        private RackPinionView _view;
-        public GearPairDesignInputParams Model;
-        public RackParams RackModel = new RackParams();
-        private RackPinionDesignOutputParams _gearPairDesignOutputParams;
-        private IToothPointsBuilder _toothPointsBuilder;
         private AlibreToothBuilder _alibreToothBuilder;
         private IGearCalculator _gearCalculator;
-
+        private RackPinionDesignOutputParams _gearPairDesignOutputParams;
+        private IToothPointsBuilder _toothPointsBuilder;
+        private readonly RackPinionView _view;
+        public GearPairDesignInputParams Model;
+        public RackParams RackModel = new();
+        
         public RackPinionPresenter(RackPinionView view)
         {
             _view = view;
             Initialise();
         }
-
+        
         private void Initialise()
         {
             Model = new GearPairDesignInputParams();
@@ -38,7 +38,7 @@ namespace Bolsover.RackPinion.Presenter
                 GearPairDesignInputParams = Model
             };
             _toothPointsBuilder = new ExternalSpurHelicalToothBuilder(); // setup default builder for pinion
-
+            
             InitGearPair();
             SetupDefaults();
             ClearLabelText();
@@ -46,19 +46,19 @@ namespace Bolsover.RackPinion.Presenter
             SetupEventListeners();
             SetupObjectListView();
             Recalculate();
-
+            
             GearDesignInputParamsOnGearChanged();
         }
-
+        
         private void Recalculate()
         {
             Model.WorkingCentreDistance = _gearCalculator?.CalculateCentreDistance(Model) ?? 20;
-
+            
             Calculate();
             GearDesignInputParamsOnGearChanged();
             if (_gearCalculator != null) Model.WorkingCentreDistance = _gearCalculator.CalculateCentreDistance(Model);
         }
-
+        
         private void Calculate()
         {
             if (Model.Gear.Style.HasFlag(Rack) && Model.Gear.Style.HasFlag(Spur))
@@ -68,28 +68,28 @@ namespace Bolsover.RackPinion.Presenter
             else
                 throw new ArgumentException("Gear style not recognised");
         }
-
+        
         private void CalculateHelicalRackGear()
         {
             if (_gearCalculator is not ProfileShiftedExternalHelicalGearCalculator)
             {
                 _gearCalculator = new ProfileShiftedExternalHelicalGearCalculator(Model, _gearPairDesignOutputParams);
             }
-
+            
             _gearCalculator.Calculate();
         }
-
+        
         private void CalculateStraightRackGear()
         {
             if (_gearCalculator is not ProfileShiftedExternalSpurGearCalculator)
             {
                 _gearCalculator = new ProfileShiftedExternalSpurGearCalculator(Model, _gearPairDesignOutputParams);
             }
-
+            
             _gearCalculator.Calculate();
         }
-
-
+        
+        
         private void SetupLabelLatexImages()
         {
             _view.moduleSymbol.Image = CreateImageFromLatex(RackPinionLatexStrings.ModuleLatex);
@@ -98,7 +98,7 @@ namespace Bolsover.RackPinion.Presenter
             _view.teethSymbol.Image = CreateImageFromLatex(RackPinionLatexStrings.TeethLatex);
             _view.widthSymbol.Image = CreateImageFromLatex(RackPinionLatexStrings.WidthLatex);
         }
-
+        
         private void ClearLabelText()
         {
             _view.moduleSymbol.Text = "";
@@ -107,15 +107,15 @@ namespace Bolsover.RackPinion.Presenter
             _view.teethSymbol.Text = "";
             _view.widthSymbol.Text = "";
         }
-
+        
         private void SetupObjectListView()
         {
-            _view.olvColumn1.AspectGetter = rowObject => ((GearData)rowObject).Item;
-            _view.olvColumn2.AspectGetter = rowObject => ((GearData)rowObject).MetricValue;
-            _view.olvColumn3.AspectGetter = rowObject => ((GearData)rowObject).ImperialValue;
-            _view.olvColumn4.AspectGetter = rowObject => ((GearData)rowObject).Note;
+            _view.olvColumn1.AspectGetter = rowObject => ((GearData) rowObject).Item;
+            _view.olvColumn2.AspectGetter = rowObject => ((GearData) rowObject).MetricValue;
+            _view.olvColumn3.AspectGetter = rowObject => ((GearData) rowObject).ImperialValue;
+            _view.olvColumn4.AspectGetter = rowObject => ((GearData) rowObject).Note;
         }
-
+        
         private void SetupEventListeners()
         {
             _view.BuildRackEvent += ViewOnBuildRack;
@@ -127,35 +127,33 @@ namespace Bolsover.RackPinion.Presenter
             _view.EditGearNumberOfTeethEvent += ViewOnEditGearNumberOfTeethEvent;
             _view.EditHelixAngleEvent += ViewOnEditHelixAngleEvent;
             _view.EditGearHeightEvent += ViewOnEditGearHeightEvent;
-
         }
-
+        
         private void GearDesignInputParamsOnGearChanged()
         {
             var geardata = _gearCalculator.BuildGearData(Model, _gearPairDesignOutputParams);
             var gearDatas = geardata.ToList();
             _view.objectListView1.SetObjects(gearDatas);
-           
         }
-
+        
         private void ViewOnEditGearHeightEvent(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.Height = newValue;
                 Model.Pinion.Height = newValue;
                 RackModel.Height = newValue;
             }
-
+            
             Recalculate();
         }
-
+        
         private void ViewOnEditHelixAngleEvent(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.HelixAngle = newValue;
                 Model.Pinion.HelixAngle = newValue;
                 RackModel.HelixAngle = newValue;
@@ -163,63 +161,66 @@ namespace Bolsover.RackPinion.Presenter
                 gearStyle = newValue != 0 ? Model.Gear.Style &= ~Spur : Model.Gear.Style |= Spur;
                 Model.Pinion.Style = gearStyle;
             }
-
+            
             Recalculate();
         }
-
+        
         private void ViewOnEditGearNumberOfTeethEvent(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 RackModel.Teeth = newValue;
                 Model.Gear.Teeth = newValue;
             }
-
+            
             Recalculate();
         }
-
+        
         private void ViewOnEditPinionNumberOfTeethEvent(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.Teeth = newValue;
                 Model.Pinion.Teeth = newValue;
             }
-
+            
             Recalculate();
         }
-
+        
         private void ViewOnEditPressureAngleEvent(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.PressureAngle = newValue;
                 Model.Pinion.PressureAngle = newValue;
                 RackModel.PressureAngle = newValue;
             }
-
+            
             Recalculate();
         }
-
+        
         private void ViewOnEditModuleEvent(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.Module = newValue;
                 Model.Pinion.Module = newValue;
                 RackModel.Module = newValue;
             }
-
+            
             Recalculate();
         }
-
-        private void ViewOnCancelEvent(object sender, EventArgs e) => _view.FindForm()!.Close();
-
-
+        
+        private void ViewOnCancelEvent(object sender, EventArgs e)
+        {
+            _view.FindForm()!.Close();
+        }
+        
+        
         private void ViewOnBuildRack(object sender, EventArgs e)
         {
             var fileData = GetRackDetails();
@@ -232,9 +233,9 @@ namespace Bolsover.RackPinion.Presenter
             session.Parameters.Item("RackTeeth").Value = RackModel.Teeth;
             session.Parameters.Item("Width").Value = RackModel.Height * 0.1;
             session.Parameters.CloseParameterTransaction();
-            ((IADPartSession)session).RegenerateAll();
+            ((IADPartSession) session).RegenerateAll();
         }
-
+        
         private void ViewOnBuildPinionEvent(object sender, EventArgs e)
         {
             Recalculate();
@@ -242,9 +243,10 @@ namespace Bolsover.RackPinion.Presenter
             SetupBuilderForGearType(false);
             var tooth = _toothPointsBuilder.Build(_gearPairDesignOutputParams.PinionDesignOutput);
             _alibreToothBuilder ??= new AlibreToothBuilder();
-            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template, _gearPairDesignOutputParams.PinionDesignOutput);
+            _alibreToothBuilder.Build(tooth, gearDetails.SaveFile, gearDetails.Template,
+                _gearPairDesignOutputParams.PinionDesignOutput);
         }
-
+        
         private void SetupBuilderForGearType(bool isGear)
         {
             if (!isGear) // this is a pinion
@@ -254,7 +256,7 @@ namespace Bolsover.RackPinion.Presenter
                     : new ExternalSpurHelicalToothBuilder();
                 return;
             }
-
+            
             // this is a gear
             if (Model.Gear.Style.HasFlag(External) && (Model.Gear.Style.HasFlag(Spur) || Model.Gear.Style.HasFlag(Helical)))
             {
@@ -262,34 +264,35 @@ namespace Bolsover.RackPinion.Presenter
                     ? _toothPointsBuilder
                     : new ExternalSpurHelicalToothBuilder();
             }
-            else if (Model.Gear.Style.HasFlag(Internal) && (Model.Gear.Style.HasFlag(Spur) || Model.Gear.Style.HasFlag(Helical)))
+            else if (Model.Gear.Style.HasFlag(Internal) &&
+                     (Model.Gear.Style.HasFlag(Spur) || Model.Gear.Style.HasFlag(Helical)))
             {
                 _toothPointsBuilder = _toothPointsBuilder is InternalSpurHelicalToothBuilder
                     ? _toothPointsBuilder
                     : new InternalSpurHelicalToothBuilder();
             }
         }
-
+        
         private (string SaveFile, string Template) GetPinionDetails()
         {
             var isHelical = Model.Pinion.Style.HasFlag(Helical);
-
+            
             var saveFile = isHelical
                 ? "HelicalPinionPleaseSaveAs.AD_PRT"
                 : "PinionPleaseSaveAs.AD_PRT";
-
+            
             var template = isHelical
                 ? "HelicalPinionTemplate.AD_PRT"
                 : "PinionTemplate.AD_PRT";
-
+            
             return (saveFile, template);
         }
-
+        
         private (string SaveFile, string Template) GetRackDetails()
         {
             return ("RackPleaseSaveAs.AD_PRT", "HelicalRackTemplate.AD_PRT");
         }
-
+        
         private static string GetAlibreFilePath(string SaveFile, string Template)
         {
             var filePath = Globals.InstallPath;
@@ -300,24 +303,24 @@ namespace Bolsover.RackPinion.Presenter
                 MessageBox.Show($"Temporary file {SaveFile} is currently open. \nPlease save-as or discard.", "Oops");
                 return null;
             }
-
+            
             if (filePath != null)
             {
                 filePath += "\\Gear\\" + Template;
             }
-
+            
             File.Copy(filePath, tempFile, true);
             return tempFile;
         }
-
+        
         private static IADDesignSession InitAlibreFile(string filePath)
         {
             var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
-            var session = (IADDesignSession)root.OpenFileEx(filePath, true);
+            var session = (IADDesignSession) root.OpenFileEx(filePath, true);
             return session;
         }
-
-
+        
+        
         private static bool IsFileLocked(FileInfo file)
         {
             try
@@ -333,11 +336,11 @@ namespace Bolsover.RackPinion.Presenter
                 //or does not exist (has already been processed)
                 return true;
             }
-
+            
             //file is not locked
             return false;
         }
-
+        
         private void InitGearPair()
         {
             var gear = new GearDesignInputParams();
@@ -359,15 +362,15 @@ namespace Bolsover.RackPinion.Presenter
             RackModel.Height = gear.Height;
             RackModel.HelixAngle = gear.HelixAngle;
         }
-
+        
         private void SetupDefaults()
         {
-            _view.gearTeethNumericUpDown.Value = (decimal)Model.Gear.Teeth;
-            _view.pinionTeethNumericUpDown.Value = (decimal)Model.Pinion.Teeth;
-            _view.moduleNumericUpDown.Value = (decimal)Model.Gear.Module;
-            _view.pressureAngleNumericUpDown.Value = (decimal)Model.Gear.PressureAngle;
-            _view.helixAngleNumericUpDown.Value = (decimal)Model.Gear.HelixAngle;
-            _view.widthNnumericUpDown.Value = (decimal)Model.Gear.Height;
+            _view.gearTeethNumericUpDown.Value = (decimal) Model.Gear.Teeth;
+            _view.pinionTeethNumericUpDown.Value = (decimal) Model.Pinion.Teeth;
+            _view.moduleNumericUpDown.Value = (decimal) Model.Gear.Module;
+            _view.pressureAngleNumericUpDown.Value = (decimal) Model.Gear.PressureAngle;
+            _view.helixAngleNumericUpDown.Value = (decimal) Model.Gear.HelixAngle;
+            _view.widthNnumericUpDown.Value = (decimal) Model.Gear.Height;
         }
     }
 }

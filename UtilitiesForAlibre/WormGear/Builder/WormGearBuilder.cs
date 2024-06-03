@@ -4,23 +4,19 @@ namespace Bolsover.WormGear.Builder
 {
     public class WormGearBuilder
     {
+        private WormGearPairDesignOutputParams _params;
         
         public WormGearBuilder(WormGearPairDesignOutputParams parameters)
         {
             _params = parameters;
         }
         
-        private WormGearPairDesignOutputParams _params;
-        
         public void BuildGear()
         {
-            
         }
         
         public void BuildWorm()
         {
-            
         }
-        
     }
 }

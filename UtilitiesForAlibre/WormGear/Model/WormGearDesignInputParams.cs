@@ -1,8 +1,9 @@
-﻿using Bolsover.Involute.Model;
+﻿using System;
+using Bolsover.Involute.Model;
 
 namespace Bolsover.WormGear.Model
 {
-    public class WormGearDesignInputParams : IGearDesignInputParams 
+    public class WormGearDesignInputParams : IGearDesignInputParams
     
     {
         public double Height { get; set; }
@@ -18,11 +19,12 @@ namespace Bolsover.WormGear.Model
         public double HeightOfPitchLine { get; set; }
         public GearStyle Style { get; set; }
         public IGearPairDesignInputParams GearPairDesign { get; set; }
+        
         public void SetDefaults()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-
+        
         public event GearChangedEventHandler GearChanged;
     }
 }

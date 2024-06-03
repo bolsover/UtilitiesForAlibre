@@ -24,7 +24,7 @@ namespace Bolsover.Shortcuts.View
         }
 
         #region Component Designer generated code
-
+        
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -62,9 +62,9 @@ namespace Bolsover.Shortcuts.View
             this.hintTextUpDown = new System.Windows.Forms.NumericUpDown();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.textSizeUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.iconScaleUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.hintTextUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textSizeUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconScaleUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hintTextUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -355,49 +355,28 @@ namespace Bolsover.Shortcuts.View
             // 
             // textSizeUpDown
             // 
-            this.textSizeUpDown.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textSizeUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textSizeUpDown.Location = new System.Drawing.Point(207, 449);
-            this.textSizeUpDown.Maximum = new decimal(new int[]
-            {
-                15, 0, 0, 0
-            });
-            this.textSizeUpDown.Minimum = new decimal(new int[]
-            {
-                4, 0, 0, 0
-            });
+            this.textSizeUpDown.Maximum = new decimal(new int[] { 15, 0, 0, 0 });
+            this.textSizeUpDown.Minimum = new decimal(new int[] { 4, 0, 0, 0 });
             this.textSizeUpDown.Name = "textSizeUpDown";
             this.textSizeUpDown.Size = new System.Drawing.Size(373, 22);
             this.textSizeUpDown.TabIndex = 24;
-            this.textSizeUpDown.Value = new decimal(new int[]
-            {
-                9, 0, 0, 0
-            });
+            this.textSizeUpDown.Value = new decimal(new int[] { 9, 0, 0, 0 });
             this.textSizeUpDown.ValueChanged += new System.EventHandler(this.textSizeUpDown_ValueChanged);
             // 
             // iconScaleUpDown
             // 
-            this.iconScaleUpDown.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconScaleUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.iconScaleUpDown.DecimalPlaces = 1;
-            this.iconScaleUpDown.Increment = new decimal(new int[]
-            {
-                1, 0, 0, 65536
-            });
+            this.iconScaleUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             this.iconScaleUpDown.Location = new System.Drawing.Point(207, 489);
-            this.iconScaleUpDown.Maximum = new decimal(new int[]
-            {
-                15, 0, 0, 65536
-            });
-            this.iconScaleUpDown.Minimum = new decimal(new int[]
-            {
-                4, 0, 0, 65536
-            });
+            this.iconScaleUpDown.Maximum = new decimal(new int[] { 15, 0, 0, 65536 });
+            this.iconScaleUpDown.Minimum = new decimal(new int[] { 4, 0, 0, 65536 });
             this.iconScaleUpDown.Name = "iconScaleUpDown";
             this.iconScaleUpDown.Size = new System.Drawing.Size(373, 22);
             this.iconScaleUpDown.TabIndex = 25;
-            this.iconScaleUpDown.Value = new decimal(new int[]
-            {
-                6, 0, 0, 65536
-            });
+            this.iconScaleUpDown.Value = new decimal(new int[] { 10, 0, 0, 65536 });
             this.iconScaleUpDown.ValueChanged += new System.EventHandler(this.iconScaleUpDown_ValueChanged);
             // 
             // ResetDefaultsButton
@@ -431,23 +410,14 @@ namespace Bolsover.Shortcuts.View
             // 
             // hintTextUpDown
             // 
-            this.hintTextUpDown.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.hintTextUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.hintTextUpDown.Location = new System.Drawing.Point(207, 409);
-            this.hintTextUpDown.Maximum = new decimal(new int[]
-            {
-                30, 0, 0, 0
-            });
-            this.hintTextUpDown.Minimum = new decimal(new int[]
-            {
-                5, 0, 0, 0
-            });
+            this.hintTextUpDown.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
+            this.hintTextUpDown.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             this.hintTextUpDown.Name = "hintTextUpDown";
             this.hintTextUpDown.Size = new System.Drawing.Size(373, 22);
             this.hintTextUpDown.TabIndex = 27;
-            this.hintTextUpDown.Value = new decimal(new int[]
-            {
-                13, 0, 0, 0
-            });
+            this.hintTextUpDown.Value = new decimal(new int[] { 13, 0, 0, 0 });
             this.hintTextUpDown.ValueChanged += new System.EventHandler(this.hintTextUpDown_ValueChanged);
             // 
             // ColorPreferences
@@ -458,9 +428,9 @@ namespace Bolsover.Shortcuts.View
             this.Name = "ColorPreferences";
             this.Size = new System.Drawing.Size(583, 611);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize) (this.textSizeUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.iconScaleUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.hintTextUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textSizeUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconScaleUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hintTextUpDown)).EndInit();
             this.ResumeLayout(false);
         }
 

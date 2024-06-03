@@ -8,11 +8,11 @@
             Name = name;
             Point = point;
         }
-
+        
         public int Id { get; set; }
-
+        
         public GearPoint Point { get; set; }
-
+        
         public string Name { get; set; }
     }
 }

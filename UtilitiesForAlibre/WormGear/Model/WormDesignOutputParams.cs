@@ -1,4 +1,5 @@
-﻿using Bolsover.Involute.Model;
+﻿using System;
+using Bolsover.Involute.Model;
 
 namespace Bolsover.WormGear.Model
 {
@@ -26,11 +27,12 @@ namespace Bolsover.WormGear.Model
         public string GearString { get; set; }
         public double BacklashAdjustmentFactorXMod { get; set; }
         public double WorkingPitchDiameter { get; set; }
+        
         public void Reset()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-
+        
         public double SumCoefficientOfProfileShift { get; set; }
         public double DifferenceCoefficientOfProfileShift { get; set; }
         public double CentreDistanceIncrementFactor { get; set; }

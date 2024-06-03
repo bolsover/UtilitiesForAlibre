@@ -1,9 +1,8 @@
 ﻿using System;
 
-
 namespace Bolsover.FaceArea
 {
-    public class FaceAreaAddOnCommandTerminateEventArgs: EventArgs
+    public class FaceAreaAddOnCommandTerminateEventArgs : EventArgs
     {
         public FaceAreaAddOnCommandTerminateEventArgs(FaceAreaAddOnCommand faceAreaAddOnCommand)
         {

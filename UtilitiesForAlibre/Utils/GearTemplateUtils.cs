@@ -20,9 +20,5 @@ namespace Bolsover.Utils
             
             return (null, null);
         }
-        
-        
     }
-    
-    
 }

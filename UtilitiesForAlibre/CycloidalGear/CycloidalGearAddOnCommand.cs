@@ -9,38 +9,27 @@ namespace Bolsover.CycloidalGear
 {
     public class CycloidalGearAddOnCommand : IAlibreAddOnCommand
     {
-        public IADSession Session { get; }
-        private long PanelHandle { get; set; }
-        private int PanelPosition { get; set; }
-
         public CycliodalGearParametersForm CycliodalGearParametersForm;
-
+        
         public CycloidalGearAddOnCommand(IADSession session)
         {
             Session = session;
             PanelPosition = (int) ADDockStyle.AD_RIGHT;
             CycliodalGearParametersForm = new CycliodalGearParametersForm(session);
         }
-
-        /// <summary>
-        /// Actions to take when closing
-        /// </summary>
-        public void UserRequestedClose()
-        {
-            CycliodalGearParametersForm.Dispose();
-            CommandSite.RemoveDockedPanel(DockedPanelHandle);
-            DockedPanelHandle = (long) IntPtr.Zero;
-            CommandSite = null;
-        }
-
-
+        
+        public IADSession Session { get; }
+        private long PanelHandle { get; set; }
+        private int PanelPosition { get; }
+        
+        
         public virtual long DockedPanelHandle
         {
             get => PanelHandle;
             set
             {
                 Debug.WriteLine(value);
-                if (value == (long)IntPtr.Zero) return;
+                if (value == (long) IntPtr.Zero) return;
                 var control = Control.FromHandle((IntPtr) value);
                 if (control == null) return;
                 CycliodalGearParametersForm.Parent = control;
@@ -51,9 +40,9 @@ namespace Bolsover.CycloidalGear
                 PanelHandle = value;
             }
         }
-
+        
         /// <summary>
-        /// Called to find out if this add-on command is a two-way toggle command
+        ///     Called to find out if this add-on command is a two-way toggle command
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
@@ -61,9 +50,9 @@ namespace Bolsover.CycloidalGear
         {
             return false;
         }
-
+        
         /// <summary>
-        /// Returns True if add-on wants to show any UI controls in Alibre's left pane window
+        ///     Returns True if add-on wants to show any UI controls in Alibre's left pane window
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
@@ -71,9 +60,9 @@ namespace Bolsover.CycloidalGear
         {
             return false;
         }
-
+        
         /// <summary>
-        /// Called to get the add-on to show its UI inside its special tab page window
+        ///     Called to get the add-on to show its UI inside its special tab page window
         /// </summary>
         /// <param name="hWnd"></param>
         /// <exception cref="NotImplementedException"></exception>
@@ -81,9 +70,10 @@ namespace Bolsover.CycloidalGear
         {
             Debug.WriteLine("OnShowUI");
         }
-
+        
         /// <summary>
-        /// Called to get the add-on to render its GDI graphics into Alibre's graphics canvas;the origin and size of the view rectangle are passed in.
+        ///     Called to get the add-on to render its GDI graphics into Alibre's graphics canvas;the origin and size of the view
+        ///     rectangle are passed in.
         /// </summary>
         /// <param name="hDc"></param>
         /// <param name="clipRectX"></param>
@@ -96,10 +86,10 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnRender hDC: " + hDc + ", clipRectX: " + clipRectX + ", clipRectY: " + clipRectY
                             + ", clipRectWidth: " + clipRectWidth + ", clipRectHeight: " + clipRectHeight);
         }
-
-
+        
+        
         /// <summary>
-        /// Called when left mouse button is clicked
+        ///     Called when left mouse button is clicked
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
@@ -111,9 +101,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnClick X: " + screenX + " Y: " + screenY + " Button: " + buttons);
             return false;
         }
-
+        
         /// <summary>
-        /// Called when left mouse button is double-clicked
+        ///     Called when left mouse button is double-clicked
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
@@ -124,9 +114,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnDoubleClick X: " + screenX + " Y: " + screenY);
             return false;
         }
-
+        
         /// <summary>
-        /// Called when mouse button is depressed; TODO: Describe 'buttons' constants
+        ///     Called when mouse button is depressed; TODO: Describe 'buttons' constants
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
@@ -138,9 +128,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnMouseDown X: " + screenX + " Y: " + screenY + " Button: " + buttons);
             return false;
         }
-
+        
         /// <summary>
-        /// Called when mouse is moved; TODO: Describe 'buttons' constants
+        ///     Called when mouse is moved; TODO: Describe 'buttons' constants
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
@@ -152,9 +142,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnMouseMove X: " + screenX + " Y: " + screenY + " Button: " + buttons);
             return false;
         }
-
+        
         /// <summary>
-        /// Called when mouse button is released; TODO: Describe 'buttons' constants
+        ///     Called when mouse button is released; TODO: Describe 'buttons' constants
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
@@ -166,9 +156,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnMouseUp X: " + screenX + " Y: " + screenY + " Button: " + buttons);
             return false;
         }
-
+        
         /// <summary>
-        /// Called when use makes a selection change on the editor; actual selection can be obtained using seperate API
+        ///     Called when use makes a selection change on the editor; actual selection can be obtained using seperate API
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         public void OnSelectionChange()
@@ -187,33 +177,32 @@ namespace Bolsover.CycloidalGear
                 Debug.WriteLine(e);
             }
         }
-
-        public event EventHandler<CycloidalGearAddOnCommandTerminateEventArgs> Terminate;
-
+        
         /// <summary>
-        /// Called when Alibre terminates the add-on command; add-on should make sure to release all references to its CommandSite
+        ///     Called when Alibre terminates the add-on command; add-on should make sure to release all references to its
+        ///     CommandSite
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         public void OnTerminate()
         {
             Debug.WriteLine("OnTerminate");
             CycliodalGearParametersForm?.Dispose();
-
+            
             if (CommandSite != null)
             {
                 CommandSite.RemoveDockedPanel(DockedPanelHandle);
                 DockedPanelHandle = (long) IntPtr.Zero;
                 CommandSite = null;
             }
-
+            
             var args = new CycloidalGearAddOnCommandTerminateEventArgs(this);
             Terminate?.Invoke(this, args);
-
+            
             Debug.WriteLine("OnTerminate Done");
         }
-
+        
         /// <summary>
-        /// Called when Alibre has successfully initiated this command; gives it a chance to perform any initializations
+        ///     Called when Alibre has successfully initiated this command; gives it a chance to perform any initializations
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         public void OnComplete()
@@ -229,12 +218,12 @@ namespace Bolsover.CycloidalGear
                     MessageBoxIcon.Exclamation);
                 throw;
             }
-
+            
             Debug.WriteLine("OnComplete Done");
         }
-
+        
         /// <summary>
-        /// Called when user holds down the key, passing the keycode as the ASCII value of the key
+        ///     Called when user holds down the key, passing the keycode as the ASCII value of the key
         /// </summary>
         /// <param name="keycode"></param>
         /// <returns></returns>
@@ -244,9 +233,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnKeyDown:" + keycode);
             return false;
         }
-
+        
         /// <summary>
-        /// Called when user releases the key, passing the keycode as the ASCII value of the key
+        ///     Called when user releases the key, passing the keycode as the ASCII value of the key
         /// </summary>
         /// <param name="keycode"></param>
         /// <returns></returns>
@@ -256,9 +245,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnKeyUp:" + keycode);
             return false;
         }
-
+        
         /// <summary>
-        /// Called when escape key is pressed by the user
+        ///     Called when escape key is pressed by the user
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
@@ -267,9 +256,9 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnEscape");
             return false;
         }
-
+        
         /// <summary>
-        /// Called when mouse wheel is rotated by the user, delta is the magnitude of wheel movement
+        ///     Called when mouse wheel is rotated by the user, delta is the magnitude of wheel movement
         /// </summary>
         /// <param name="delta"></param>
         /// <returns></returns>
@@ -279,29 +268,43 @@ namespace Bolsover.CycloidalGear
             Debug.WriteLine("OnMouseWheel: " + delta);
             return false;
         }
-
+        
         /// <summary>
-        /// Called to get the add-on to render its DirectX graphics into Alibre's graphics canvas
+        ///     Called to get the add-on to render its DirectX graphics into Alibre's graphics canvas
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         public void On3DRender()
         {
             Debug.WriteLine("On3DRender");
         }
-
+        
         /// <summary>
-        /// Sets the command site object on the add-on command
+        ///     Sets the command site object on the add-on command
         /// </summary>
         public IADAddOnCommandSite CommandSite { get; set; }
-
+        
         /// <summary>
-        /// Specifies tab name. Needed only if this command returned True when the AddTab method was called
+        ///     Specifies tab name. Needed only if this command returned True when the AddTab method was called
         /// </summary>
         public string TabName { get; }
-
+        
         /// <summary>
-        /// Returns min and max bounding box points of geometry rendered by addon; used for computing front/back clipping planes
+        ///     Returns min and max bounding box points of geometry rendered by addon; used for computing front/back clipping
+        ///     planes
         /// </summary>
         public Array Extents { get; }
+        
+        /// <summary>
+        ///     Actions to take when closing
+        /// </summary>
+        public void UserRequestedClose()
+        {
+            CycliodalGearParametersForm.Dispose();
+            CommandSite.RemoveDockedPanel(DockedPanelHandle);
+            DockedPanelHandle = (long) IntPtr.Zero;
+            CommandSite = null;
+        }
+        
+        public event EventHandler<CycloidalGearAddOnCommandTerminateEventArgs> Terminate;
     }
 }

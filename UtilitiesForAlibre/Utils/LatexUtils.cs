@@ -11,7 +11,7 @@ namespace Bolsover.Utils
     public static class LatexUtils
     {
         private static readonly TexFormulaParser Parser = WpfTeXFormulaParser.Instance;
-
+        
         private static Image ByteArrayToImage(byte[] byteArrayIn)
         {
             Image returnImage = null;
@@ -25,14 +25,14 @@ namespace Bolsover.Utils
             {
                 // ignored
             }
-
+            
             return returnImage;
         }
-
-
+        
+        
         public static Image CreateImageFromLatex(string latex)
         {
-            TexFormula formula ;
+            TexFormula formula;
             try
             {
                 formula = Parser.Parse(latex);
@@ -42,7 +42,7 @@ namespace Bolsover.Utils
                 MessageBox.Show("Error parsing latex" + latex);
                 return null;
             }
-
+            
             var pngBytes = formula.RenderToPng(15.0, 0.0, 0.0, "Cambria");
             return ByteArrayToImage(pngBytes);
         }

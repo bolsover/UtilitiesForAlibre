@@ -17,8 +17,8 @@ namespace Bolsover.Shortcuts.Calculator
     public class ShortcutsCalculator
     {
         private readonly KeyboardShortcutsMediator _mediator = new();
-        private ADResourceManager _adResourceManager = ADResourceManager.Singleton;
-
+        private readonly ADResourceManager _adResourceManager = ADResourceManager.Singleton;
+        
         private List<AlibreShortcut> RetrieveUserShortcuts()
         {
             var userShortcutList = new List<AlibreShortcut>();
@@ -28,35 +28,36 @@ namespace Bolsover.Shortcuts.Calculator
                 // MessageBox.Show("No user profile found", "Error");
                 return userShortcutList;
             }
-
+            
             var mapping = userProfile.Mapping;
-
+            
             foreach (var mappingPair in mapping.Pairs)
             {
                 var first = mappingPair.toWrappedObject().first;
                 var second = mappingPair.toWrappedObject().second;
                 var child = first.ToString();
-
+                
                 if (second is not Profile profile) continue;
                 DumpUserProfile(profile, child, userShortcutList);
             }
-
+            
             return userShortcutList;
         }
-
+        
         public Dictionary<string, AlibreShortcut> ShortcutsDictionary(List<AlibreShortcut> shortcuts)
         {
             return shortcuts.ToDictionary(sc => sc.Profile + "." + sc.Command);
         }
-
+        
         public List<AlibreShortcut> RetrieveUserShortcutsByProfile(string profile)
         {
             var shortcuts = RetrieveUserShortcuts();
             return shortcuts.Where(sc => sc.Profile == profile).ToList();
         }
-
+        
         public XElement ProfileToXml(Profile profile)
         {
+            var kc = new KeysConverter();
             var xml = new XElement("Profile");
             foreach (var pairXmlWrapper in profile.Mapping.Pairs)
             {
@@ -66,24 +67,28 @@ namespace Bolsover.Shortcuts.Calculator
                 var child = first.ToString();
                 child = child.Replace(" ", "_");
                 child = child.Replace("\u00d8", "?");
-
-                if (second is Profile profile1)
+                child = child.Replace("~", "_");
+                
+                if (!child.StartsWith("0"))
                 {
-                    var childXml = new XElement(child);
-                    childXml.Add(ProfileToXml(profile1));
-                    xml.Add(childXml);
-                }
-                else
-                {
-                    var childXml = new XElement(child);
-                    childXml.Add(second.ToString());
-                    xml.Add(childXml);
+                    if (second is Profile profile1)
+                    {
+                        var childXml = new XElement(child);
+                        childXml.Add(ProfileToXml(profile1));
+                        xml.Add(childXml);
+                    }
+                    else
+                    {
+                        var childXml = new XElement(child);
+                        childXml.Add(second.ToString() + " : " + kc.ConvertToString(second));
+                        xml.Add(childXml);
+                    }
                 }
             }
-
+            
             return xml;
         }
-
+        
         public List<AlibreShortcut> RetrieveStandardShortcutsByProfile(string profile)
         {
             var standardShortcuts = new List<AlibreShortcut>();
@@ -102,7 +107,8 @@ namespace Bolsover.Shortcuts.Calculator
                     DumpStandardProfile(AssemblyStandardShortcuts(), "Design Assembly Browser", standardShortcuts);
                     break;
                 case "Design Assembly Exploded View Browser":
-                    DumpStandardProfile(AssemblyExplodedViewStandardShortcuts(), "Design Assembly Exploded View Browser", standardShortcuts);
+                    DumpStandardProfile(AssemblyExplodedViewStandardShortcuts(), "Design Assembly Exploded View Browser",
+                        standardShortcuts);
                     break;
                 case "Design Boolean Browser":
                     DumpStandardProfile(DesignBooleanStandardShortcuts(), "Design Boolean Browser", standardShortcuts);
@@ -117,27 +123,28 @@ namespace Bolsover.Shortcuts.Calculator
                     DumpStandardProfile(GlobalParamStandardShortcuts(), "GlobalParam Editor", standardShortcuts);
                     break;
             }
-
+            
             return standardShortcuts.Where(sc => !string.IsNullOrEmpty(sc.Hint)).ToList();
         }
-
+        
         public List<AlibreShortcut> RetrieveStandardShortcuts()
         {
             var standardShortcuts = new List<AlibreShortcut>();
-
+            
             DumpStandardProfile(PartStandardShortcuts(), "Design Part Browser", standardShortcuts);
             DumpStandardProfile(BomStandardShortcuts(), "BOM Editor", standardShortcuts);
             DumpStandardProfile(CommandCenterStandardShortcuts(), "Command Center Browser", standardShortcuts);
             DumpStandardProfile(AssemblyStandardShortcuts(), "Design Assembly Browser", standardShortcuts);
-            DumpStandardProfile(AssemblyExplodedViewStandardShortcuts(), "Design Assembly Exploded View Browser", standardShortcuts);
+            DumpStandardProfile(AssemblyExplodedViewStandardShortcuts(), "Design Assembly Exploded View Browser",
+                standardShortcuts);
             DumpStandardProfile(DesignBooleanStandardShortcuts(), "Design Boolean Browser", standardShortcuts);
             DumpStandardProfile(SheetMetalStandardShortcuts(), "Design Sheet Metal Browser", standardShortcuts);
             DumpStandardProfile(DrawingStandardShortcuts(), "Drawing Browser", standardShortcuts);
             DumpStandardProfile(GlobalParamStandardShortcuts(), "GlobalParam Editor", standardShortcuts);
-
+            
             return standardShortcuts;
         }
-
+        
         private void DumpStandardProfile(Profile profile, string profileName, List<AlibreShortcut> shortcuts)
         {
             var mapping = profile.Mapping;
@@ -149,10 +156,10 @@ namespace Bolsover.Shortcuts.Calculator
                 let second = wrappedObjects.second
                 let keyChar = kc.ConvertToString(second)
                 let hint = LString.getLocalizedString(first.ToString(), LStringToken.ToolbarHint)
-                select new AlibreShortcut(profileName, (string)first, hint, (int)second, keyChar)
-                    { SvgImage = _adResourceManager.GetSvgImage((string)first) });
+                select new AlibreShortcut(profileName, (string) first, hint, (int) second, keyChar)
+                    {SvgImage = _adResourceManager.GetSvgImage((string) first)});
         }
-
+        
         private void DumpUserProfile(Profile profile, string parent, List<AlibreShortcut> shortcuts)
         {
             var mapping = profile.Mapping;
@@ -169,24 +176,24 @@ namespace Bolsover.Shortcuts.Calculator
                     const string toRemove = ", SHORTCUTS";
                     var profilep = parent.Remove(parent.IndexOf(toRemove, StringComparison.Ordinal), toRemove.Length);
                     var hint = LString.getLocalizedString(first.ToString(), LStringToken.ToolbarHint);
-                    var alibreShortcut = new AlibreShortcut(profilep, (string)first, hint, (int)second, keyChar)
+                    var alibreShortcut = new AlibreShortcut(profilep, (string) first, hint, (int) second, keyChar)
                     {
-                        SvgImage = _adResourceManager.GetSvgImage((string)first)
+                        SvgImage = _adResourceManager.GetSvgImage((string) first)
                     };
                     if (!string.IsNullOrEmpty(alibreShortcut.Hint))
                     {
                         shortcuts.Add(alibreShortcut);
                     }
                 }
-
+                
                 if (mappingPair.toWrappedObject().second is Profile)
                 {
-                    var p = (Profile)mappingPair.toWrappedObject().second;
+                    var p = (Profile) mappingPair.toWrappedObject().second;
                     DumpUserProfile(p, child, shortcuts);
                 }
             }
         }
-
+        
         private object ReadObjectFromFile(FileStream fileStream)
         {
             var formatter = new BinaryFormatter
@@ -194,82 +201,84 @@ namespace Bolsover.Shortcuts.Calculator
                 Context = new StreamingContext(StreamingContextStates.All)
             };
             var surrogateSelector = new SurrogateSelector();
-            surrogateSelector.AddSurrogate(typeof(Profile), new StreamingContext(StreamingContextStates.All), new ProfileSerializationSurrogate());
+            surrogateSelector.AddSurrogate(typeof(Profile), new StreamingContext(StreamingContextStates.All),
+                new ProfileSerializationSurrogate());
             formatter.SurrogateSelector = surrogateSelector;
             var obj = formatter.Deserialize(fileStream);
-
+            
             return obj;
         }
-
+        
         private string RoamingProfilePath()
         {
             var productRoamingDirectory = ClientContext.ProductRoamingDirectory;
             var userProfileCurrentVersionFileName = ClientContext.Singleton.UserProfileCurrentVersionFileName;
-            var productRoamingProfilePath = Path.Combine(productRoamingDirectory.FullName + "\\default user", userProfileCurrentVersionFileName);
+            var productRoamingProfilePath = Path.Combine(productRoamingDirectory.FullName + "\\default user",
+                userProfileCurrentVersionFileName);
             return productRoamingProfilePath;
         }
-
-        private Profile RetrieveUserProfile()
+        
+        public Profile RetrieveUserProfile()
         {
             Profile profile = null;
-
+            
             var profilePath = RoamingProfilePath();
-
+            
             if (File.Exists(profilePath))
             {
                 profile = ReadProfileFromFile(profilePath);
             }
-
-
+            
+            
             return profile;
         }
-
-        private Profile ReadProfileFromFile(string profilePath)
+        
+        public Profile ReadProfileFromFile(string profilePath)
         {
             using var fileStream = new FileStream(profilePath, FileMode.Open, FileAccess.Read);
-            return (Profile)ReadObjectFromFile(fileStream);
+            return (Profile) ReadObjectFromFile(fileStream);
         }
-
+        
         private Profile PartStandardShortcuts()
         {
             return _mediator.PartStandardShortcuts;
         }
-
+        
         private Profile BomStandardShortcuts()
         {
             return _mediator.BOMStandardShortcuts;
         }
-
+        
         private Profile CommandCenterStandardShortcuts()
         {
             return _mediator.CommandCenterStandardShortcuts;
         }
-
+        
         private Profile AssemblyStandardShortcuts()
         {
             return _mediator.AssemblyStandardShortcuts;
         }
-
+        
         private Profile AssemblyExplodedViewStandardShortcuts()
         {
             return _mediator.AssemblyExplodedViewStandardShortcuts;
         }
-
+        
         private Profile DesignBooleanStandardShortcuts()
         {
             return _mediator.DesignBooleanStandardShortcuts;
         }
-
+        
         private Profile SheetMetalStandardShortcuts()
         {
             return _mediator.SheetMetalStandardShortcuts;
         }
-
+        
         private Profile DrawingStandardShortcuts()
         {
             return _mediator.DrawingStandardShortcuts;
         }
-
+        
         private Profile GlobalParamStandardShortcuts()
         {
             return _mediator.GlobalParamStandardShortcuts;

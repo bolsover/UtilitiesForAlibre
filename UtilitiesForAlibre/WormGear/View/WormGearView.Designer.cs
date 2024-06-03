@@ -24,7 +24,7 @@ namespace Bolsover.WormGear.View
         }
 
         #region Component Designer generated code
-
+        
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -53,16 +53,16 @@ namespace Bolsover.WormGear.View
             this.wormLengthUpDown = new System.Windows.Forms.NumericUpDown();
             this.gearWidthUpDown = new System.Windows.Forms.NumericUpDown();
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = new BrightIdeasSoftware.OLVColumn();
+            this.olvColumn2 = new BrightIdeasSoftware.OLVColumn();
+            this.olvColumn3 = new BrightIdeasSoftware.OLVColumn();
+            this.olvColumn4 = new BrightIdeasSoftware.OLVColumn();
             this.threadsTeethSymbolLabel = new System.Windows.Forms.Label();
             this.threadsUpDown = new System.Windows.Forms.NumericUpDown();
             this.teethUpDown = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.wormPdUpDown = new System.Windows.Forms.NumericUpDown();
-            this.olvColumn1 = new BrightIdeasSoftware.OLVColumn();
-            this.olvColumn2 = new BrightIdeasSoftware.OLVColumn();
-            this.olvColumn3 = new BrightIdeasSoftware.OLVColumn();
-            this.olvColumn4 = new BrightIdeasSoftware.OLVColumn();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.moduleUpDown)).BeginInit();
@@ -82,7 +82,7 @@ namespace Bolsover.WormGear.View
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(242, 74);
+            this.groupBox1.Size = new System.Drawing.Size(241, 74);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Module Type";
@@ -110,7 +110,7 @@ namespace Bolsover.WormGear.View
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Location = new System.Drawing.Point(3, 191);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(242, 37);
+            this.label8.Size = new System.Drawing.Size(241, 37);
             this.label8.TabIndex = 7;
             this.label8.Text = "Threads, Teeth";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,7 +120,7 @@ namespace Bolsover.WormGear.View
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(3, 154);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(242, 37);
+            this.label6.Size = new System.Drawing.Size(241, 37);
             this.label6.TabIndex = 5;
             this.label6.Text = "Pressure Angle";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,7 +130,7 @@ namespace Bolsover.WormGear.View
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Location = new System.Drawing.Point(3, 117);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(242, 37);
+            this.label5.Size = new System.Drawing.Size(241, 37);
             this.label5.TabIndex = 4;
             this.label5.Text = "Module";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -139,9 +139,9 @@ namespace Bolsover.WormGear.View
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(738, 0);
+            this.label4.Location = new System.Drawing.Point(736, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(190, 37);
+            this.label4.Size = new System.Drawing.Size(192, 37);
             this.label4.TabIndex = 3;
             this.label4.Text = "Worm Gear";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -150,7 +150,7 @@ namespace Bolsover.WormGear.View
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(531, 0);
+            this.label3.Location = new System.Drawing.Point(529, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(201, 37);
             this.label3.TabIndex = 2;
@@ -161,9 +161,9 @@ namespace Bolsover.WormGear.View
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(251, 0);
+            this.label2.Location = new System.Drawing.Point(250, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 37);
+            this.label2.Size = new System.Drawing.Size(273, 37);
             this.label2.TabIndex = 1;
             this.label2.Text = "Symbol";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -174,7 +174,7 @@ namespace Bolsover.WormGear.View
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(242, 37);
+            this.label1.Size = new System.Drawing.Size(241, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Item";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -185,7 +185,7 @@ namespace Bolsover.WormGear.View
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.91689F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.08311F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 207F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
@@ -230,9 +230,9 @@ namespace Bolsover.WormGear.View
             // alphaSymbolLabel
             // 
             this.alphaSymbolLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alphaSymbolLabel.Location = new System.Drawing.Point(251, 154);
+            this.alphaSymbolLabel.Location = new System.Drawing.Point(250, 154);
             this.alphaSymbolLabel.Name = "alphaSymbolLabel";
-            this.alphaSymbolLabel.Size = new System.Drawing.Size(274, 37);
+            this.alphaSymbolLabel.Size = new System.Drawing.Size(273, 37);
             this.alphaSymbolLabel.TabIndex = 10;
             this.alphaSymbolLabel.Text = "alpha symbol";
             this.alphaSymbolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -240,9 +240,9 @@ namespace Bolsover.WormGear.View
             // moduleSymbolLabel
             // 
             this.moduleSymbolLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.moduleSymbolLabel.Location = new System.Drawing.Point(251, 117);
+            this.moduleSymbolLabel.Location = new System.Drawing.Point(250, 117);
             this.moduleSymbolLabel.Name = "moduleSymbolLabel";
-            this.moduleSymbolLabel.Size = new System.Drawing.Size(274, 37);
+            this.moduleSymbolLabel.Size = new System.Drawing.Size(273, 37);
             this.moduleSymbolLabel.TabIndex = 9;
             this.moduleSymbolLabel.Text = "module symbol";
             this.moduleSymbolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -253,10 +253,10 @@ namespace Bolsover.WormGear.View
             this.moduleUpDown.DecimalPlaces = 3;
             this.moduleUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.moduleUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            this.moduleUpDown.Location = new System.Drawing.Point(531, 120);
+            this.moduleUpDown.Location = new System.Drawing.Point(529, 120);
             this.moduleUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             this.moduleUpDown.Name = "moduleUpDown";
-            this.moduleUpDown.Size = new System.Drawing.Size(397, 22);
+            this.moduleUpDown.Size = new System.Drawing.Size(399, 22);
             this.moduleUpDown.TabIndex = 12;
             this.moduleUpDown.Value = new decimal(new int[] { 3, 0, 0, 0 });
             this.moduleUpDown.ValueChanged += new System.EventHandler(this.moduleUpDown_ValueChanged);
@@ -267,11 +267,11 @@ namespace Bolsover.WormGear.View
             this.pressureAngleUpDown.DecimalPlaces = 3;
             this.pressureAngleUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pressureAngleUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            this.pressureAngleUpDown.Location = new System.Drawing.Point(531, 157);
+            this.pressureAngleUpDown.Location = new System.Drawing.Point(529, 157);
             this.pressureAngleUpDown.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
             this.pressureAngleUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.pressureAngleUpDown.Name = "pressureAngleUpDown";
-            this.pressureAngleUpDown.Size = new System.Drawing.Size(397, 22);
+            this.pressureAngleUpDown.Size = new System.Drawing.Size(399, 22);
             this.pressureAngleUpDown.TabIndex = 13;
             this.pressureAngleUpDown.Value = new decimal(new int[] { 20, 0, 0, 0 });
             this.pressureAngleUpDown.ValueChanged += new System.EventHandler(this.pressureAngleUpDown_ValueChanged);
@@ -281,7 +281,7 @@ namespace Bolsover.WormGear.View
             this.cancelButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cancelButton.Location = new System.Drawing.Point(3, 305);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(242, 31);
+            this.cancelButton.Size = new System.Drawing.Size(241, 31);
             this.cancelButton.TabIndex = 16;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -290,7 +290,7 @@ namespace Bolsover.WormGear.View
             // wormButton
             // 
             this.wormButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wormButton.Location = new System.Drawing.Point(531, 305);
+            this.wormButton.Location = new System.Drawing.Point(529, 305);
             this.wormButton.Name = "wormButton";
             this.wormButton.Size = new System.Drawing.Size(201, 31);
             this.wormButton.TabIndex = 17;
@@ -301,9 +301,9 @@ namespace Bolsover.WormGear.View
             // gearButton
             // 
             this.gearButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gearButton.Location = new System.Drawing.Point(738, 305);
+            this.gearButton.Location = new System.Drawing.Point(736, 305);
             this.gearButton.Name = "gearButton";
-            this.gearButton.Size = new System.Drawing.Size(190, 31);
+            this.gearButton.Size = new System.Drawing.Size(192, 31);
             this.gearButton.TabIndex = 18;
             this.gearButton.Text = "Build Gear";
             this.gearButton.UseVisualStyleBackColor = true;
@@ -314,7 +314,7 @@ namespace Bolsover.WormGear.View
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Location = new System.Drawing.Point(3, 265);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(242, 37);
+            this.label7.Size = new System.Drawing.Size(241, 37);
             this.label7.TabIndex = 19;
             this.label7.Text = "Worm Length, Gear Width";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -324,7 +324,7 @@ namespace Bolsover.WormGear.View
             this.wormLengthUpDown.DecimalPlaces = 3;
             this.wormLengthUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wormLengthUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            this.wormLengthUpDown.Location = new System.Drawing.Point(531, 268);
+            this.wormLengthUpDown.Location = new System.Drawing.Point(529, 268);
             this.wormLengthUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             this.wormLengthUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.wormLengthUpDown.Name = "wormLengthUpDown";
@@ -338,11 +338,11 @@ namespace Bolsover.WormGear.View
             this.gearWidthUpDown.DecimalPlaces = 3;
             this.gearWidthUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gearWidthUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            this.gearWidthUpDown.Location = new System.Drawing.Point(738, 268);
+            this.gearWidthUpDown.Location = new System.Drawing.Point(736, 268);
             this.gearWidthUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             this.gearWidthUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.gearWidthUpDown.Name = "gearWidthUpDown";
-            this.gearWidthUpDown.Size = new System.Drawing.Size(190, 22);
+            this.gearWidthUpDown.Size = new System.Drawing.Size(192, 22);
             this.gearWidthUpDown.TabIndex = 21;
             this.gearWidthUpDown.Value = new decimal(new int[] { 10, 0, 0, 0 });
             this.gearWidthUpDown.ValueChanged += new System.EventHandler(this.gearWidthUpDown_ValueChanged);
@@ -394,9 +394,9 @@ namespace Bolsover.WormGear.View
             // threadsTeethSymbolLabel
             // 
             this.threadsTeethSymbolLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.threadsTeethSymbolLabel.Location = new System.Drawing.Point(251, 191);
+            this.threadsTeethSymbolLabel.Location = new System.Drawing.Point(250, 191);
             this.threadsTeethSymbolLabel.Name = "threadsTeethSymbolLabel";
-            this.threadsTeethSymbolLabel.Size = new System.Drawing.Size(274, 37);
+            this.threadsTeethSymbolLabel.Size = new System.Drawing.Size(273, 37);
             this.threadsTeethSymbolLabel.TabIndex = 11;
             this.threadsTeethSymbolLabel.Text = "threads teeth symbol";
             this.threadsTeethSymbolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -404,7 +404,7 @@ namespace Bolsover.WormGear.View
             // threadsUpDown
             // 
             this.threadsUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.threadsUpDown.Location = new System.Drawing.Point(531, 194);
+            this.threadsUpDown.Location = new System.Drawing.Point(529, 194);
             this.threadsUpDown.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
             this.threadsUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.threadsUpDown.Name = "threadsUpDown";
@@ -416,11 +416,11 @@ namespace Bolsover.WormGear.View
             // teethUpDown
             // 
             this.teethUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.teethUpDown.Location = new System.Drawing.Point(738, 194);
+            this.teethUpDown.Location = new System.Drawing.Point(736, 194);
             this.teethUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             this.teethUpDown.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             this.teethUpDown.Name = "teethUpDown";
-            this.teethUpDown.Size = new System.Drawing.Size(190, 22);
+            this.teethUpDown.Size = new System.Drawing.Size(192, 22);
             this.teethUpDown.TabIndex = 15;
             this.teethUpDown.Value = new decimal(new int[] { 30, 0, 0, 0 });
             this.teethUpDown.ValueChanged += new System.EventHandler(this.teethUpDown_ValueChanged);
@@ -430,7 +430,7 @@ namespace Bolsover.WormGear.View
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Location = new System.Drawing.Point(3, 228);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(242, 37);
+            this.label9.Size = new System.Drawing.Size(241, 37);
             this.label9.TabIndex = 23;
             this.label9.Text = "Worm Pitch Dia";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -438,20 +438,25 @@ namespace Bolsover.WormGear.View
             // label10
             // 
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(251, 228);
+            this.label10.Location = new System.Drawing.Point(250, 228);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(274, 37);
+            this.label10.Size = new System.Drawing.Size(273, 37);
             this.label10.TabIndex = 24;
             this.label10.Text = "worm pitch dia symbol";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // wormPdUpDown
             // 
+            this.wormPdUpDown.DecimalPlaces = 3;
             this.wormPdUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wormPdUpDown.Location = new System.Drawing.Point(531, 231);
+            this.wormPdUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            this.wormPdUpDown.Location = new System.Drawing.Point(529, 231);
+            this.wormPdUpDown.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            this.wormPdUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.wormPdUpDown.Name = "wormPdUpDown";
             this.wormPdUpDown.Size = new System.Drawing.Size(201, 22);
             this.wormPdUpDown.TabIndex = 25;
+            this.wormPdUpDown.Value = new decimal(new int[] { 37, 0, 0, 0 });
             // 
             // WormGearView
             // 

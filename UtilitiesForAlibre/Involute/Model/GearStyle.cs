@@ -2,25 +2,20 @@
 
 namespace Bolsover.Involute.Model
 {
-    
     /// <summary>
-    /// This enum is essentially a collection of flags that can be combined to represent the style of a gear.
-    /// 
-    /// Usage:
-    /// Setting a gear style:
-    /// GearStyle Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
-    ///
-    /// Testing a gear style:
-    /// if (Style.HasFlag(GearStyle.External) && Style.HasFlag(GearStyle.Spur))...
-    ///
-    /// Resetting a gear style:
-    /// Style &= ~GearStyle.External; // removes the external flag from the style
-    /// Style |= GearStyle.Internal; // adds the internal flag to the style
-    /// 
+    ///     This enum is essentially a collection of flags that can be combined to represent the style of a gear.
+    ///     Usage:
+    ///     Setting a gear style:
+    ///     GearStyle Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
+    ///     Testing a gear style:
+    ///     if (Style.HasFlag(GearStyle.External) && Style.HasFlag(GearStyle.Spur))...
+    ///     Resetting a gear style:
+    ///     Style &= ~GearStyle.External; // removes the external flag from the style
+    ///     Style |= GearStyle.Internal; // adds the internal flag to the style
     /// </summary>
     [Flags]
     public enum GearStyle
-    {   
+    {
         Undefined = 0b_0000_0000, //0
         Spur = 0b_0000_0001, //1
         Helical = 0b_0000_0010, //2
@@ -45,7 +40,5 @@ namespace Bolsover.Involute.Model
         ExternalHelicalPinion = External | Helical | Pinion,
         InternalSpurGear = Internal | Spur | Gear,
         InternalHelicalGear = Internal | Helical | Gear
-        
-        
     }
 }

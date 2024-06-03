@@ -8,7 +8,13 @@ namespace Bolsover.Involute.Model
         {
             Init();
         }
-
+        
+        public Dictionary<int, ToothPoint> Points { get; set; }
+        
+        public List<GearPoint> LhsInvolute { get; set; }
+        
+        public List<GearPoint> RhsInvolute { get; set; }
+        
         private void Init()
         {
             Points = new Dictionary<int, ToothPoint>();
@@ -16,11 +22,12 @@ namespace Bolsover.Involute.Model
             {
                 Points.Add(i, new ToothPoint(i, GetDescription(i), new GearPoint(0, 0)));
             }
+            
             RhsInvolute = new List<GearPoint>();
             LhsInvolute = new List<GearPoint>();
         }
         
-       
+        
         private static string GetDescription(int index)
         {
             return index switch
@@ -50,11 +57,5 @@ namespace Bolsover.Involute.Model
                 _ => ""
             };
         }
-
-        public Dictionary<int, ToothPoint> Points { get; set; }
-
-        public List<GearPoint> LhsInvolute { get; set; }
-
-        public List<GearPoint> RhsInvolute { get; set; }
     }
 }

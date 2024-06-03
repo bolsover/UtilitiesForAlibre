@@ -1,5 +1,4 @@
-﻿using System;
-using Bolsover.Utils;
+﻿using Bolsover.Utils;
 using Bolsover.WormGear.Calculator;
 using NUnit.Framework;
 
@@ -7,12 +6,11 @@ namespace UnitTests.Worm
 {
     public class WormGearCalculatorTests
     {
-
         [Test]
         public void Calculate_ShouldCalculateGearDimensionsCorrectly()
         {
             // Arrange
-            WormGearCalculator calculator = new WormGearCalculator()
+            var calculator = new WormGearCalculator
             {
                 WormPitchDiameter = 23.719,
                 WormThreads = 2.0,
@@ -20,32 +18,32 @@ namespace UnitTests.Worm
                 PressureAngle = 20.0,
                 GearTeeth = 30.0
             };
-
-            double expectedPitch = 9.424777;
-            double expectedLeadAngle = 14.195846;
-            double expectedGearPitchDiameter = 90.0;
-            double expectedCentreDistance = 56.859499;
-            double expectedAddendum = 3.0;
-            double expectedDedendum = 3.75;
-            double expectedWholeDepth = 6.75;
-            double expectedWormOutsideDiameter = 29.719000;
-            double expectedGearOutsideDiameter = 99.0;
-            double expectedWormRootDiameter = 16.219000;
-            double expectedGearRootDiameter = 82.5;
-            double expectedThroatDiameter = 96.0;
-            double expectedThroatSurfaceRadius = 8.859500;
-            double expectedWormLength = 48.066367;
-            double expectedGearBlankWidth = 17.906088;
-            double expectedWormEstimatedPitchDiameter1 = 23.719467;
-
+            
+            var expectedPitch = 9.424777;
+            var expectedLeadAngle = 14.195846;
+            var expectedGearPitchDiameter = 90.0;
+            var expectedCentreDistance = 56.859499;
+            var expectedAddendum = 3.0;
+            var expectedDedendum = 3.75;
+            var expectedWholeDepth = 6.75;
+            var expectedWormOutsideDiameter = 29.719000;
+            var expectedGearOutsideDiameter = 99.0;
+            var expectedWormRootDiameter = 16.219000;
+            var expectedGearRootDiameter = 82.5;
+            var expectedThroatDiameter = 96.0;
+            var expectedThroatSurfaceRadius = 8.859500;
+            var expectedWormLength = 48.066367;
+            var expectedGearBlankWidth = 17.906088;
+            var expectedWormEstimatedPitchDiameter1 = 23.719467;
+            
             // Act
             calculator.Calculate();
-
+            
             // Assert
             Assert.AreEqual(expectedPitch, calculator.Pitch, 1e-6);
             Assert.AreEqual(expectedLeadAngle, ConversionUtils.Degrees(calculator.CalculatedLeadAngle), 1e-6);
             Assert.AreEqual(expectedGearPitchDiameter, calculator.GearPitchDiameter, 1e-6);
-            Assert.AreEqual(expectedCentreDistance , calculator.EstimatedCentreDistance, 1e-6);
+            Assert.AreEqual(expectedCentreDistance, calculator.EstimatedCentreDistance, 1e-6);
             Assert.AreEqual(expectedAddendum, calculator.Addendum, 1e-6);
             Assert.AreEqual(expectedDedendum, calculator.Dedendum, 1e-6);
             Assert.AreEqual(expectedWholeDepth, calculator.WholeDepth, 1e-6);

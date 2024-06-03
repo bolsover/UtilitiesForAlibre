@@ -1,22 +1,26 @@
-﻿using AlibreX;
+﻿using System.Threading.Tasks;
+using AlibreX;
 using Bolsover.Involute.Model;
 
 namespace Bolsover.Involute.Builder
 {
-    public abstract class InternalHelicalGearBuilder: AlibreToothBuilder
+    public abstract class InternalHelicalGearBuilder : AlibreToothBuilder
     {
-        public static void Build(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
+        private static BuildingGear f;
+        
+        public static bool BuildWork(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
         {
             var sketches = session.Sketches;
             var sketch = sketches.Item("Tooth");
             var figures = sketch.Figures;
             // open the sketch for changes
+            f.messageLabel.Text = "Updating sketch..";
             sketch.BeginChange();
             // the existing sketch has a placeholder - just delete
             figures.Item(0).Delete();
             // the default Alibre units are cm. Scale everything by 0.1 for correct mm dimensions
             const double scale = 0.1;
-
+            
             // add the points and curves to the sketch
             AddScaledPoint(sketch, tooth.Points[0].Point, scale);
             AddScaledPoint(sketch, tooth.Points[1].Point, scale);
@@ -47,23 +51,33 @@ namespace Bolsover.Involute.Builder
             {
                 AddScaledLine(sketch, tooth.Points[1].Point, tooth.Points[18].Point, scale);
                 AddScaledLine(sketch, tooth.Points[17].Point, tooth.Points[19].Point, scale);
-                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[16].Point, tooth.Points[17].Point, scale);
-                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[1].Point, tooth.Points[2].Point, scale);
+                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[16].Point,
+                    tooth.Points[17].Point, scale);
+                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[1].Point,
+                    tooth.Points[2].Point, scale);
             }
             else
             {
                 AddScaledLine(sketch, tooth.Points[20].Point, tooth.Points[18].Point, scale);
                 AddScaledLine(sketch, tooth.Points[21].Point, tooth.Points[19].Point, scale);
-                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[16].Point, tooth.Points[21].Point, scale);
-                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[20].Point, tooth.Points[2].Point, scale);
+                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[16].Point,
+                    tooth.Points[21].Point, scale);
+                AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[20].Point,
+                    tooth.Points[2].Point, scale);
             }
-            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[3].Point, tooth.Points[4].Point, tooth.Points[2].Point, scale);
-            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[15].Point, tooth.Points[16].Point, tooth.Points[14].Point, scale);
-            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[18].Point, tooth.Points[19].Point, scale);
-            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[8].Point, tooth.Points[10].Point, scale);
+            
+            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[3].Point, tooth.Points[4].Point, tooth.Points[2].Point,
+                scale);
+            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[15].Point, tooth.Points[16].Point,
+                tooth.Points[14].Point, scale);
+            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[18].Point,
+                tooth.Points[19].Point, scale);
+            AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[8].Point,
+                tooth.Points[10].Point, scale);
             // complete the sketch changes
             sketch.EndChange();
             // open up an Alibre parameter transaction session
+            f.messageLabel.Text = "Updating parameters..";
             session.Parameters.OpenParameterTransaction();
             // set the number of teeth for the circular pattern
             session.Parameters.Item("C1").Value = gear.GearDesignInputParams.Teeth;
@@ -71,10 +85,22 @@ namespace Bolsover.Involute.Builder
             session.Parameters.Item("D3").Value = gear.HelixPitchLength * scale;
             // close the Alibre parameter transaction session
             session.Parameters.CloseParameterTransaction();
-            // complete the sketch changes
-            sketch.EndChange();
             // regenerate all Alibre features.
+            f.messageLabel.Text = "Regenerating..";
             ((IADPartSession) session).RegenerateAll();
+            
+            return true;
+        }
+        
+        public static async Task<bool> Build(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
+        {
+            f = new BuildingGear();
+            f.Show();
+            f.TopMost = true;
+            Task task = Task.Factory.StartNew(() => BuildWork(session, tooth, gear));
+            task.Wait();
+            f.Close();
+            return true;
         }
     }
 }

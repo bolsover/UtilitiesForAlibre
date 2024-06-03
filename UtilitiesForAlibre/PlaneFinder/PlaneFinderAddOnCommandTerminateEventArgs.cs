@@ -8,7 +8,7 @@ namespace Bolsover.PlaneFinder
         {
             PlaneFinderAddOnCommand = planeFinderAddOnCommand;
         }
-
+        
         public PlaneFinderAddOnCommand PlaneFinderAddOnCommand { get; }
     }
 }

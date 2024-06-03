@@ -5,23 +5,21 @@ using AlibreX;
 using Bolsover.Involute.Model;
 using Bolsover.WormGear.View;
 using static Bolsover.Utils.ConversionUtils;
-using static Bolsover.Utils.LatexUtils;
-using static Bolsover.Involute.Model.GearStyle;
 
 namespace Bolsover.WormGear.Presenter
 {
     public class WormGearPresenter
     {
-        private WormGearView _view;
-        public GearPairDesignInputParams Model;
         private GearPairDesignOutputParams _gearPairDesignOutputParams;
-
+        private readonly WormGearView _view;
+        public GearPairDesignInputParams Model;
+        
         public WormGearPresenter(WormGearView view)
         {
             _view = view;
             Initialise();
         }
-
+        
         private void Initialise()
         {
             Model = new GearPairDesignInputParams();
@@ -31,7 +29,7 @@ namespace Bolsover.WormGear.Presenter
             };
             SetupEventListeners();
         }
-
+        
         private void SetupEventListeners()
         {
             _view.CancelEvent += OnCancel;
@@ -45,62 +43,60 @@ namespace Bolsover.WormGear.Presenter
             _view.GearWidthEvent += OnGearWidth;
             _view.WormPdEvent += OnWormPd;
         }
-
+        
         private void OnWormPd(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Pinion.WormPitchDiameter = newValue;
-               
             }
         }
-
+        
         private void OnGearWidth(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Gear.Height = newValue;
-               
             }
         }
-
+        
         private void OnWormLength(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 
                 Model.Pinion.Height = newValue;
             }
         }
-
+        
         private void OnBuildGear(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
-
+        
         private void OnBuildWorm(object sender, EventArgs e)
         {
             var fileData = GetRackDetails();
             var filePath = GetAlibreFilePath(fileData.SaveFile, fileData.Template);
             var session = InitAlibreFile(filePath);
             session.Parameters.OpenParameterTransaction();
-            session.Parameters.Item("Alpha").Value = Radians(20);
-            session.Parameters.Item("Length").Value = 75 * 0.1;
-            session.Parameters.Item("Module").Value = 4;
-            session.Parameters.Item("PitchDiameter").Value = 37 *0.1;
-            session.Parameters.Item("Starts").Value = 3;
+            session.Parameters.Item("Alpha").Value = Radians(Model.Pinion.PressureAngle);
+            session.Parameters.Item("Length").Value = Model.Pinion.Height * 0.1;
+            session.Parameters.Item("Module").Value = Model.Pinion.Module;
+            session.Parameters.Item("PitchDiameter").Value = Model.Pinion.WormPitchDiameter * 0.1;
+            session.Parameters.Item("Starts").Value = Model.Pinion.Teeth;
             session.Parameters.CloseParameterTransaction();
-            ((IADPartSession)session).RegenerateAll();
+            ((IADPartSession) session).RegenerateAll();
         }
         
         private (string SaveFile, string Template) GetRackDetails()
         {
             return ("WormPleaseSaveAs.AD_PRT", "WormTemplate.AD_PRT");
         }
-
+        
         private static string GetAlibreFilePath(string SaveFile, string Template)
         {
             var filePath = Globals.InstallPath;
@@ -111,24 +107,24 @@ namespace Bolsover.WormGear.Presenter
                 MessageBox.Show($"Temporary file {SaveFile} is currently open. \nPlease save-as or discard.", "Oops");
                 return null;
             }
-
+            
             if (filePath != null)
             {
                 filePath += "\\Gear\\" + Template;
             }
-
+            
             File.Copy(filePath, tempFile, true);
             return tempFile;
         }
-
+        
         private static IADDesignSession InitAlibreFile(string filePath)
         {
             var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
-            var session = (IADDesignSession)root.OpenFileEx(filePath, true);
+            var session = (IADDesignSession) root.OpenFileEx(filePath, true);
             return session;
         }
-
-
+        
+        
         private static bool IsFileLocked(FileInfo file)
         {
             try
@@ -144,52 +140,54 @@ namespace Bolsover.WormGear.Presenter
                 //or does not exist (has already been processed)
                 return true;
             }
-
+            
             //file is not locked
             return false;
         }
-
+        
         private void OnEditGearTeeth(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 
                 Model.Gear.Teeth = newValue;
             }
         }
-
+        
         private void OnEditWormThreads(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 
                 Model.Pinion.Teeth = newValue;
             }
         }
-
+        
         private void OnEditPressureAngle(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Pinion.PressureAngle = newValue;
                 Model.Gear.PressureAngle = newValue;
             }
         }
-
+        
         private void OnEditModule(object sender, EventArgs e)
         {
             if (sender is NumericUpDown numericUpDown)
             {
-                var newValue = (double)numericUpDown.Value;
+                var newValue = (double) numericUpDown.Value;
                 Model.Pinion.Module = newValue;
                 Model.Gear.Module = newValue;
             }
         }
-
-        private void OnCancel(object sender, EventArgs e) => _view.FindForm()!.Close();
-
+        
+        private void OnCancel(object sender, EventArgs e)
+        {
+            _view.FindForm()!.Close();
+        }
     }
 }

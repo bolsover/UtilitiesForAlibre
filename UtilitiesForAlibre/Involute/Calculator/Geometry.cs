@@ -8,26 +8,22 @@ namespace Bolsover.Involute.Calculator
     public static class Geometry
     {
         /// <summary>
-        /// Calculates the coordinates (X,Y) of points on an involute curve given the radius of the involute base
-        /// circle, the radius of the tip circle of the gear and the number of steps required.
-        /// 
-        /// The base circle is given as reference pitch circle diameter as db = d cos(a).
-        /// Where:
-        /// db = Base circle diameter
-        /// d is the reference pitch circle diameter (tooth count * module size)
-        /// a = Gear pressure angle;
-        /// 
-        /// The tip circle is usually the reference pitch circle diameter of the gear given as dt = z * m + 2ha
-        /// Where:
-        /// dt = tip circle diameter
-        /// z = number of teeth
-        /// m = module size in mm
-        /// ha = addendum (usually 1m)
-        ///
-        /// Steps is the number of points to be returned for an involute curve extending from the base to the tip radii.
-        /// For 25 steps, the first step (0) will be on the base circle, the last step (24) will be on the tip circle.
-        /// Intervening points will be regularly spaced from the base circle.
-        ///  
+        ///     Calculates the coordinates (X,Y) of points on an involute curve given the radius of the involute base
+        ///     circle, the radius of the tip circle of the gear and the number of steps required.
+        ///     The base circle is given as reference pitch circle diameter as db = d cos(a).
+        ///     Where:
+        ///     db = Base circle diameter
+        ///     d is the reference pitch circle diameter (tooth count * module size)
+        ///     a = Gear pressure angle;
+        ///     The tip circle is usually the reference pitch circle diameter of the gear given as dt = z * m + 2ha
+        ///     Where:
+        ///     dt = tip circle diameter
+        ///     z = number of teeth
+        ///     m = module size in mm
+        ///     ha = addendum (usually 1m)
+        ///     Steps is the number of points to be returned for an involute curve extending from the base to the tip radii.
+        ///     For 25 steps, the first step (0) will be on the base circle, the last step (24) will be on the tip circle.
+        ///     Intervening points will be regularly spaced from the base circle.
         /// </summary>
         /// <param name="baseRadius"></param>
         /// <param name="addendumRadius"></param>
@@ -37,7 +33,7 @@ namespace Bolsover.Involute.Calculator
         {
             var points = new List<GearPoint>(steps);
             var stepSize = (addendumRadius - baseRadius) / steps;
-
+            
             for (var i = 0; i < steps + 1; i++)
             {
                 var step = baseRadius + i * stepSize; // dimension of current step
@@ -47,12 +43,13 @@ namespace Bolsover.Involute.Calculator
                 var y = step * Math.Sin(invAlpha); // Y coordinate
                 points.Add(new GearPoint(x, y));
             }
-
+            
             return points;
         }
-
+        
         /// <summary>
-        /// Trims the given list of points to remove any points below the intersection with the root fillet end point or above the tip relief radius start point.
+        ///     Trims the given list of points to remove any points below the intersection with the root fillet end point or above
+        ///     the tip relief radius start point.
         /// </summary>
         /// <param name="involutePoints"></param>
         /// <returns></returns>
@@ -61,13 +58,15 @@ namespace Bolsover.Involute.Calculator
         {
             var points = PointsToIntersectionWithTipReliefArc(involutePoints, tipReliefStart);
             var result = PointsFromIntersectionWithRootFillet(points, rootFilletEnd);
-
+            
             return result;
         }
-
+        
         /// <summary>
-        /// Trims the given List<GearPoint> of involute points to remove any points below the intersection with the root fillet.
-        /// A calculated (interpolated) point will be added to ensure the root fillet ends where the involute curve starts.
+        ///     Trims the given List
+        ///     <GearPoint>
+        ///         of involute points to remove any points below the intersection with the root fillet.
+        ///         A calculated (interpolated) point will be added to ensure the root fillet ends where the involute curve starts.
         /// </summary>
         /// <param name="involutePoints"></param>
         /// <param name="radius"></param>
@@ -92,12 +91,12 @@ namespace Bolsover.Involute.Calculator
                         resultList.Add(intersection);
                     }
                 }
-
+                
                 if (!IsInsideCircle(centre, radius, point))
                 {
                     resultList.Add(point);
                 }
-
+                
                 priorGearPoint = point;
             }
             
@@ -114,14 +113,18 @@ namespace Bolsover.Involute.Calculator
                 {
                     resultList.Add(point);
                 }
+                
                 priorGearPoint = point;
             }
+            
             return resultList;
         }
-
+        
         /// <summary>
-        /// Trims the given List<GearPoint> of involute points to remove any points above the intersection with the tip relief arc.
-        /// The final point in the returned list will be the tip relief start point .
+        ///     Trims the given List
+        ///     <GearPoint>
+        ///         of involute points to remove any points above the intersection with the tip relief arc.
+        ///         The final point in the returned list will be the tip relief start point .
         /// </summary>
         /// <param name="involutePoints"></param>
         /// <param name="radius"></param>
@@ -140,20 +143,20 @@ namespace Bolsover.Involute.Calculator
                 {
                     resultList.Add(tipReliefStart);
                 }
-
+                
                 if (IsInsideCircle(centre, radius, point))
                 {
                     resultList.Add(point);
                 }
-
+                
                 priorGearPoint = point;
             }
-
+            
             return resultList;
         }
-
+        
         /// <summary>
-        /// Returns the absolute distance between two points
+        ///     Returns the absolute distance between two points
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -167,19 +170,21 @@ namespace Bolsover.Involute.Calculator
             var result = Math.Sqrt(num1Squared + num2Squared);
             return result;
         }
-
-
+        
+        
         /// <summary>
-        /// Returns the angle to a Point(x,y) on a circle diameter.
+        ///     Returns the angle to a Point(x,y) on a circle diameter.
         /// </summary>
         /// <param name="circleCentre"></param>
         /// <param name="gearPointOnCircleDiameter"></param>
         /// <returns></returns>
-        public static double AngleToPointOnCircle(GearPoint circleCentre, GearPoint gearPointOnCircleDiameter) =>
-            Math.Atan2(gearPointOnCircleDiameter.Y - circleCentre.Y, gearPointOnCircleDiameter.X - circleCentre.X);
-
+        public static double AngleToPointOnCircle(GearPoint circleCentre, GearPoint gearPointOnCircleDiameter)
+        {
+            return Math.Atan2(gearPointOnCircleDiameter.Y - circleCentre.Y, gearPointOnCircleDiameter.X - circleCentre.X);
+        }
+        
         /// <summary>
-        /// Method to calculate if a specified checkPoint is within a circle 
+        ///     Method to calculate if a specified checkPoint is within a circle
         /// </summary>
         /// <param name="centreGearPoint"></param>
         /// <param name="circleRadius"></param>
@@ -187,10 +192,10 @@ namespace Bolsover.Involute.Calculator
         /// <returns>Return bool true if the checkPoint is within the specifies circle. Otherwise false</returns>
         private static bool IsInsideCircle(GearPoint centreGearPoint, double circleRadius, GearPoint checkGearPoint)
         {
-            return (Math.Sqrt(Math.Pow(centreGearPoint.X - checkGearPoint.X, 2) +
-                              Math.Pow(centreGearPoint.Y - checkGearPoint.Y, 2)) < circleRadius);
+            return Math.Sqrt(Math.Pow(centreGearPoint.X - checkGearPoint.X, 2) +
+                             Math.Pow(centreGearPoint.Y - checkGearPoint.Y, 2)) < circleRadius;
         }
-
+        
         /// <summary>
         // Method to calculate the absolute position where a line intersects a circle.
         // The position is available in the ref Point Intersection.
@@ -222,8 +227,6 @@ namespace Bolsover.Involute.Calculator
         //
         // x = (-b ± Sqrt(b^2 - 4ac))/(2a)
         // This gives two roots for the infinite line on which our line segment lies - we do a final check above to make sure that we choose the solution for our specific line segment.
-        ///
-        /// 
         /// </summary>
         /// <param name="centreGearPoint"></param>
         /// <param name="circleRadius"></param>
@@ -252,14 +255,14 @@ namespace Bolsover.Involute.Calculator
                 {
                     x = (-b - sqRtTerm) / (2 * a);
                 }
-
+                
                 //solve for the y-component
                 var y = m * x + d;
                 // Intersection Calculated
                 intersectionGearPoint = new GearPoint(x, y);
                 return 0;
             }
-
+            
             // Line segment does not intersect at one point.  It is either 
             // fully outside, fully inside, intersects at two points, is 
             // tangential to, or one or more points is exactly on the 
@@ -267,9 +270,9 @@ namespace Bolsover.Involute.Calculator
             intersectionGearPoint = new GearPoint(0, 0);
             return -1;
         }
-
+        
         /// <summary>
-        /// Method to calculate if a line between two points intersects a given circle
+        ///     Method to calculate if a line between two points intersects a given circle
         /// </summary>
         /// <param name="circlePos"></param>
         /// <param name="circleRad"></param>
@@ -279,13 +282,13 @@ namespace Bolsover.Involute.Calculator
         private static bool IsIntersecting(GearPoint circlePos, double circleRad, GearPoint lineStart,
             GearPoint lineEnd)
         {
-            return (IsInsideCircle(circlePos, circleRad, lineStart) ^
-                    IsInsideCircle(circlePos, circleRad, lineEnd));
+            return IsInsideCircle(circlePos, circleRad, lineStart) ^
+                   IsInsideCircle(circlePos, circleRad, lineEnd);
         }
-
-
+        
+        
         /// <summary>
-        /// Calculates a point in the involute at a distance from the gear centre (0,0)
+        ///     Calculates a point in the involute at a distance from the gear centre (0,0)
         /// </summary>
         /// <param name="baseRadius"></param>
         /// <param name="distanceToInvolute"></param>
@@ -298,10 +301,10 @@ namespace Bolsover.Involute.Calculator
             var y = distanceToInvolute * Math.Sin(invAlpha); // Y coordinate
             return new GearPoint(x, y);
         }
-
-
+        
+        
         /// <summary>
-        /// Calculates the distance form the gear centre (0,0) to the start of the tip release radius.
+        ///     Calculates the distance form the gear centre (0,0) to the start of the tip release radius.
         /// </summary>
         /// <param name="baseRadius"></param>
         /// <param name="addendumRadius"></param>
@@ -319,18 +322,18 @@ namespace Bolsover.Involute.Calculator
             var ocSquared = pcSquared + opSquared;
             return Math.Sqrt(ocSquared);
         }
-
-
+        
+        
         public static GearPoint MidPoint(GearPoint point1, GearPoint point2)
         {
-            double midX = (point1.X + point2.X) / 2;
-            double midY = (point1.Y + point2.Y) / 2;
+            var midX = (point1.X + point2.X) / 2;
+            var midY = (point1.Y + point2.Y) / 2;
             return new GearPoint(midX, midY);
         }
-  
-
+        
+        
         /// <summary>
-        /// returns the angle in degrees that lies opposite sidea
+        ///     returns the angle in degrees that lies opposite sidea
         /// </summary>
         /// <param name="sidea"></param>
         /// <param name="sideb"></param>
@@ -344,9 +347,9 @@ namespace Bolsover.Involute.Calculator
             var resultRadians = Math.Acos((bSquared + cSquared - aSquared) / (2 * sideb * sidec));
             return Degrees(resultRadians);
         }
-
+        
         /// <summary>
-        /// Calculates the X,Y coordinate of the point at which the tip relief radius starts.
+        ///     Calculates the X,Y coordinate of the point at which the tip relief radius starts.
         /// </summary>
         /// <param name="baseRadius"></param>
         /// <param name="addendumRadius"></param>
@@ -356,12 +359,12 @@ namespace Bolsover.Involute.Calculator
             double tipReliefRadius)
         {
             var distanceToInvolute = CentreToTipReliefRadiusStart(baseRadius, addendumRadius, tipReliefRadius);
-            GearPoint pointc = PointOnInvolute(baseRadius, distanceToInvolute);
+            var pointc = PointOnInvolute(baseRadius, distanceToInvolute);
             return pointc;
         }
-
+        
         /// <summary>
-        /// Calculates the angle from normal to the centre of the tip relief radius
+        ///     Calculates the angle from normal to the centre of the tip relief radius
         /// </summary>
         /// <param name="baseRadius"></param>
         /// <param name="addendumRadius"></param>
@@ -376,9 +379,9 @@ namespace Bolsover.Involute.Calculator
             var result = Radians(angle1 + angle2);
             return result;
         }
-
+        
         /// <summary>
-        /// Calculates the centre point of the tip relief radius for a gear at centre 0,0
+        ///     Calculates the centre point of the tip relief radius for a gear at centre 0,0
         /// </summary>
         /// <param name="baseRadius"></param>
         /// <param name="addendumRadius"></param>
@@ -391,9 +394,9 @@ namespace Bolsover.Involute.Calculator
             var y = (addendumRadius - tipReliefRadius) * Math.Sin(angleToTipRadiusCentre);
             return new GearPoint(x, y);
         }
-
+        
         /// <summary>
-        /// Calculates the location of the end point of the tip relief radius on the addendum curve.
+        ///     Calculates the location of the end point of the tip relief radius on the addendum curve.
         /// </summary>
         /// <param name="baseRadius"></param>
         /// <param name="addendumRadius"></param>
@@ -406,7 +409,7 @@ namespace Bolsover.Involute.Calculator
             var endPoint = GearPoint.PolarOffset(centrePoint, tipReliefRadius, centrePoint.Gradient);
             return endPoint;
         }
-
+        
         public static double AngleRadiansBetweenTwoPoints(GearPoint p1, GearPoint p2)
         {
             var num1 = p2.Y - p1.Y;

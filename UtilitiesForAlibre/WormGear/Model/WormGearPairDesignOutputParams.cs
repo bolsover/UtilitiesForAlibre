@@ -1,4 +1,5 @@
-﻿using Bolsover.Involute.Model;
+﻿using System;
+using Bolsover.Involute.Model;
 
 namespace Bolsover.WormGear.Model
 {
@@ -7,9 +8,10 @@ namespace Bolsover.WormGear.Model
         public IGearPairDesignInputParams GearPairDesignInputParams { get; set; }
         public IGearDesignOutputParams PinionDesignOutput { get; set; }
         public IGearDesignOutputParams GearDesignOutput { get; set; }
+        
         public void Reset()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

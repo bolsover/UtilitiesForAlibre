@@ -1,4 +1,3 @@
-using System;
 using System.Windows.Forms;
 
 namespace Bolsover.Shortcuts.View
@@ -9,7 +8,5 @@ namespace Bolsover.Shortcuts.View
         {
             InitializeComponent();
         }
-
-      
     }
 }
