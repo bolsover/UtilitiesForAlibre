@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UtilitiesForAlibre"
-#define MyAppVersion "3.0.0.0"
+#define MyAppVersion "3.1.0.0"
 #define MyAppPublisher "David Bolsover"
 
 [Setup]
@@ -25,8 +25,8 @@ SetupIconFile=D:\02_Repository\02_Bolsover\17_UtilitiesForAlibre\UtilitiesForAli
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-ArchitecturesAllowed=x64
-ArchitecturesInstallIn64BitMode=x64
+ArchitecturesAllowed=x64compatible
+ArchitecturesInstallIn64BitMode=x64compatible
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
