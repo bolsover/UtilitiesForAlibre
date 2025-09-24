@@ -13,7 +13,7 @@ namespace UnitTests.Involute.Model
             Assert.AreEqual(1, (int) GearStyle.Spur);
             Assert.AreEqual(2, (int) GearStyle.Helical);
             Assert.AreEqual(4, (int) GearStyle.Rack);
-            Assert.AreEqual(8, (int) GearStyle.Internal);
+            Assert.AreEqual(8, (int) GearStyle.Intern);
             Assert.AreEqual(16, (int) GearStyle.External);
             Assert.AreEqual(32, (int) GearStyle.Worm);
             Assert.AreEqual(64, (int) GearStyle.WormWheel);

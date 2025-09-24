@@ -45,7 +45,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -77,7 +77,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -108,7 +108,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -142,7 +142,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -176,7 +176,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -207,7 +207,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -238,7 +238,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -269,7 +269,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -300,7 +300,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -334,7 +334,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -368,7 +368,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -402,7 +402,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -436,7 +436,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -470,7 +470,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -533,7 +533,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -567,7 +567,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.1;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;
@@ -600,7 +600,7 @@ namespace UnitTests.Involute.Calculator
             _designInputParams.Gear.RootFilletFactor = 0.38;
             _designInputParams.Gear.CircularBacklash = 0.0;
             _designInputParams.Gear.Style =
-                GearStyle.Internal | GearStyle.Spur; // configures the gear as an external helical gear
+                GearStyle.Intern | GearStyle.Spur; // configures the gear as an external helical gear
             
             _designInputParams.Pinion.Module = 3.0;
             _designInputParams.Pinion.PressureAngle = 20.0;

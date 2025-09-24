@@ -79,7 +79,7 @@ namespace Bolsover.Involute.Builder
             return true;
         }
         
-        public static async Task<bool> Build(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
+        public static Task<bool> Build(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
         {
             f = new BuildingGear();
             f.Show();
@@ -88,7 +88,7 @@ namespace Bolsover.Involute.Builder
             task.Wait();
             
             f.Close();
-            return true;
+            return Task.FromResult(true);
         }
     }
 }

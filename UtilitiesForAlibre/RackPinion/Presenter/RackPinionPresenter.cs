@@ -264,7 +264,7 @@ namespace Bolsover.RackPinion.Presenter
                     ? _toothPointsBuilder
                     : new ExternalSpurHelicalToothBuilder();
             }
-            else if (Model.Gear.Style.HasFlag(Internal) &&
+            else if (Model.Gear.Style.HasFlag(Intern) &&
                      (Model.Gear.Style.HasFlag(Spur) || Model.Gear.Style.HasFlag(Helical)))
             {
                 _toothPointsBuilder = _toothPointsBuilder is InternalSpurHelicalToothBuilder

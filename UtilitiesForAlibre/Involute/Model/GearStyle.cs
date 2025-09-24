@@ -20,7 +20,7 @@ namespace Bolsover.Involute.Model
         Spur = 0b_0000_0001, //1
         Helical = 0b_0000_0010, //2
         Rack = 0b_0000_0100, //4
-        Internal = 0b_0000_1000, //8
+        Intern = 0b_0000_1000, //8
         External = 0b_0001_0000, //16
         Worm = 0b_0010_0000, //32
         WormWheel = 0b_0100_0000, //64
@@ -38,7 +38,7 @@ namespace Bolsover.Involute.Model
         ExternalSpurPinion = External | Spur | Pinion,
         ExternalHelicalGear = External | Helical | Gear,
         ExternalHelicalPinion = External | Helical | Pinion,
-        InternalSpurGear = Internal | Spur | Gear,
-        InternalHelicalGear = Internal | Helical | Gear
+        InternalSpurGear = Intern | Spur | Gear,
+        InternalHelicalGear = Intern | Helical | Gear
     }
 }

@@ -81,9 +81,9 @@ namespace UnitTests.Involute
             Assert.AreEqual(true, gearView.extRadioButton.Checked);
             gearView.intRadioButton.Checked = false;
             Assert.AreEqual(false, gearView.intRadioButton.Checked);
-            Assert.AreEqual(false, presenter.Model.Gear.Style.HasFlag(GearStyle.Internal));
+            Assert.AreEqual(false, presenter.Model.Gear.Style.HasFlag(GearStyle.Intern));
             gearView.intRadioButton.Checked = true;
-            Assert.AreEqual(true, presenter.Model.Gear.Style.HasFlag(GearStyle.Internal));
+            Assert.AreEqual(true, presenter.Model.Gear.Style.HasFlag(GearStyle.Intern));
             gearView.extRadioButton.Checked = true;
             Assert.AreEqual(true, presenter.Model.Gear.Style.HasFlag(GearStyle.External));
             gearView.extRadioButton.Checked = false;

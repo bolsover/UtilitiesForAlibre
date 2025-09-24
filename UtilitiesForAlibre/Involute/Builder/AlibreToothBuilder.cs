@@ -25,10 +25,10 @@ namespace Bolsover.Involute.Builder
             else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) &&
                      gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
                 _ = ExternalHelicalGearBuilder.Build(session, tooth, gear);
-            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) &&
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Intern) &&
                      gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
                 _ = InternalSpurGearBuilder.Build(session, tooth, gear);
-            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) &&
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Intern) &&
                      gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
                 _ = InternalHelicalGearBuilder.Build(session, tooth, gear);
             else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) &&

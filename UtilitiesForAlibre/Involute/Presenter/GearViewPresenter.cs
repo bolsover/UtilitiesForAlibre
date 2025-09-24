@@ -183,7 +183,7 @@ namespace Bolsover.Involute.Presenter
             _view.assignedTotalNormalProfileShiftTextBox.Text = sumx.ToString("F4");
             
             // Difference coefficient of profile shift is only used for internal gears
-            if (Model.Gear.Style.HasFlag(Internal))
+            if (Model.Gear.Style.HasFlag(Intern))
             {
                 var xDiff = _gearCalculator.CalculateDifferenceCoefficientOfProfileShift(Model);
                 _view.totalNormalProfileShiftTextBox.Text = xDiff.ToString("F4");
@@ -239,13 +239,13 @@ namespace Bolsover.Involute.Presenter
                 {
                     if (radioButton.Checked)
                     {
-                        Model.Gear.Style &= ~Internal;
+                        Model.Gear.Style &= ~Intern;
                         Model.Gear.Style |= External;
                     }
                     else
                     {
                         Model.Gear.Style &= ~External;
-                        Model.Gear.Style |= Internal;
+                        Model.Gear.Style |= Intern;
                     }
                 }
                 else if (sender.Equals(_view.intRadioButton))
@@ -253,12 +253,12 @@ namespace Bolsover.Involute.Presenter
                     if (radioButton.Checked)
                     {
                         Model.Gear.Style &= ~External;
-                        Model.Gear.Style |= Internal;
+                        Model.Gear.Style |= Intern;
                         MessageBox.Show("Internal gears must be large enough to fit the pinion inside!");
                     }
                     else
                     {
-                        Model.Gear.Style &= ~Internal;
+                        Model.Gear.Style &= ~Intern;
                         Model.Gear.Style |= External;
                     }
                 }
@@ -488,7 +488,7 @@ namespace Bolsover.Involute.Presenter
                     ? _toothPointsBuilder
                     : new ExternalSpurHelicalToothBuilder();
             }
-            else if (Model.Gear.Style.HasFlag(Internal) &&
+            else if (Model.Gear.Style.HasFlag(Intern) &&
                      (Model.Gear.Style.HasFlag(Spur) || Model.Gear.Style.HasFlag(Helical)))
             {
                 _toothPointsBuilder = _toothPointsBuilder is InternalSpurHelicalToothBuilder
@@ -544,9 +544,9 @@ namespace Bolsover.Involute.Presenter
                 CalculatePositiveShiftedExternalSpurGear();
             else if (Model.Gear.Style.HasFlag(External) && Model.Gear.Style.HasFlag(Helical))
                 CalculatePositiveShiftedExternalHelicalGear();
-            else if (Model.Gear.Style.HasFlag(Internal) && Model.Gear.Style.HasFlag(Spur))
+            else if (Model.Gear.Style.HasFlag(Intern) && Model.Gear.Style.HasFlag(Spur))
                 CalculatePositiveShiftedIntExtSpurGear();
-            else if (Model.Gear.Style.HasFlag(Internal) && Model.Gear.Style.HasFlag(Helical))
+            else if (Model.Gear.Style.HasFlag(Intern) && Model.Gear.Style.HasFlag(Helical))
                 CalculatePositiveShiftedIntExtHelicalGear();
             else if (Model.Gear.Style.HasFlag(Rack) && Model.Gear.Style.HasFlag(Spur))
                 CalculateStraightRackGear();
