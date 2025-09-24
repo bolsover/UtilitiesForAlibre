@@ -230,13 +230,13 @@
             </tr>
             <tr>
                 <td>18</td>
-                <td>Working Pitch Diameter</td>
+                <td>Radial Working Pitch Diameter</td>
                 <td>
                     <include from="Snippets.topic" element-id="d_w"/>
                 </td>
                 <td>
                     <include from="Snippets.topic"
-                             element-id="WorkingPitchDiameterForPositiveShiftSpurFormula"/>
+                             element-id="WorkingPitchDiameterForPositiveShiftHelicalFormula"/>
                 </td>
                 <td>56.000</td>
                 <td>84.000</td>

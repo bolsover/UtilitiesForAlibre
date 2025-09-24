@@ -28,20 +28,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="alibre">
-          <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre.dll</HintPath>
-        </Reference>
         <Reference Include="alibre-core">
-            <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-core.dll</HintPath>
+          <HintPath>..\..\..\07_AlibreDLLs\alibre-core.dll</HintPath>
         </Reference>
         <Reference Include="alibre-executive">
-            <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-executive.dll</HintPath>
+          <HintPath>..\..\..\07_AlibreDLLs\alibre-executive.dll</HintPath>
         </Reference>
         <Reference Include="generics_NET">
-            <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\generics_NET.dll</HintPath>
-        </Reference>
-        <Reference Include="SupportClass">
-            <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\SupportClass.dll</HintPath>
+          <HintPath>..\..\..\07_AlibreDLLs\generics_NET.dll</HintPath>
         </Reference>
         <Reference Include="System.Data.Linq"/>
         <Reference Include="System.Windows.Forms"/>

@@ -273,7 +273,7 @@ namespace Bolsover.Involute.View
             this.helixAngleNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             this.helixAngleNumericUpDown.Location = new System.Drawing.Point(450, 152);
             this.helixAngleNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.helixAngleNumericUpDown.Maximum = new decimal(new int[] { 45, 0, 0, 0 });
+            this.helixAngleNumericUpDown.Maximum = new decimal(new int[] { 70, 0, 0, 0 });
             this.helixAngleNumericUpDown.Name = "helixAngleNumericUpDown";
             this.helixAngleNumericUpDown.Size = new System.Drawing.Size(290, 22);
             this.helixAngleNumericUpDown.TabIndex = 19;

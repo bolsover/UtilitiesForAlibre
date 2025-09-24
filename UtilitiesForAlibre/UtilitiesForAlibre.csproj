@@ -1,628 +1,615 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
-    <PropertyGroup>
-        <GenerateResourceMSBuildArchitecture>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <GenerateResourceMSBuildArchitecture>
             CurrentArchitecture
         </GenerateResourceMSBuildArchitecture>
-        <GenerateResourceMSBuildRuntime>
+    <GenerateResourceMSBuildRuntime>
             CurrentRuntime
         </GenerateResourceMSBuildRuntime>
-        <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-        <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
-    </PropertyGroup>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{305297BD-DE8D-4F36-86A4-AA5E69538A69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bolsover</RootNamespace>
+    <AssemblyName>UtilitiesForAlibre</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <!-- <TargetFramework>net6.0-windows</TargetFramework>-->
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>9</LangVersion>
+    <Nullable>disable</Nullable>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="alibre">
+      <HintPath>..\..\..\07_AlibreDLLs\alibre.dll</HintPath>
+    </Reference>
+    <Reference Include="alibre-api">
+      <HintPath>..\..\..\07_AlibreDLLs\alibre-api.dll</HintPath>
+    </Reference>
+    <Reference Include="alibre-client">
+      <HintPath>..\..\..\07_AlibreDLLs\alibre-client.dll</HintPath>
+    </Reference>
+    <Reference Include="alibre-core">
+      <HintPath>..\..\..\07_AlibreDLLs\alibre-core.dll</HintPath>
+    </Reference>
+    <Reference Include="alibre-dom">
+      <HintPath>..\..\..\07_AlibreDLLs\alibre-dom.dll</HintPath>
+    </Reference>
+    <Reference Include="alibre-executive">
+      <HintPath>..\..\..\07_AlibreDLLs\alibre-executive.dll</HintPath>
+    </Reference>
+    <Reference Include="alibre-server">
+      <HintPath>..\..\..\07_AlibreDLLs\alibre-server.dll</HintPath>
+    </Reference>
+    <Reference Include="AlibreAddOn">
+      <HintPath>..\..\..\07_AlibreDLLs\AlibreAddOn.dll</HintPath>
+    </Reference>
+    <Reference Include="AlibreX">
+      <HintPath>..\..\..\07_AlibreDLLs\AlibreX.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v23.2">
+      <HintPath>..\..\..\07_AlibreDLLs\DevExpress.Data.v23.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Drawing.v23.2">
+      <HintPath>..\..\..\07_AlibreDLLs\DevExpress.Drawing.v23.2.dll</HintPath>
+    </Reference>
+    <Reference Include="generics_NET">
+      <HintPath>..\..\..\07_AlibreDLLs\generics_NET.dll</HintPath>
+    </Reference>
+    <Reference Include="MathML, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathML.0.4.0\lib\netstandard1.6\MathML.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.9.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeCoverage.17.3.1\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.0.1\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="ObjectListView">
+      <HintPath>..\..\..\..\05_ObjectListViewFull-2.9.1\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\EPP.PresentationCore.1.0.0\lib\PresentationCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SupportClass">
+      <HintPath>..\..\..\07_AlibreDLLs\SupportClass.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.1.0\lib\net463\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.Tracing.4.1.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Globalization.Calendars, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.0.1\lib\net46\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.1.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.0.1\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.0.1\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Expressions.4.1.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.1.0\lib\net46\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.1.0\lib\net462\System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.Extensions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Resources.Extensions.7.0.0\lib\net462\System.Resources.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.1.2\lib\net462\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.4.1.0\lib\net462\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.1.0\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WpfMath, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfMath.1.1.0\lib\net462\WpfMath.dll</HintPath>
+    </Reference>
+    <Reference Include="XamlMath.Shared, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XamlMath.Shared.1.1.0\lib\net462\XamlMath.Shared.dll</HintPath>
+    </Reference>
+    <Reference Update="System.Resources.Extensions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlibreAddOn.cs" />
+    <Compile Include="AlibreDataViewer\AlibreDataViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AlibreDataViewer\AlibreDataViewer.Designer.cs">
+      <DependentUpon>AlibreDataViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="Bevel\Builder\BevelGearBuilder.cs" />
+    <Compile Include="Bevel\Calculator\BevelGearCalculator.cs" />
+    <Compile Include="Bevel\Calculator\KFactorCalculator.cs" />
+    <Compile Include="Bevel\Calculator\KFactorDictionary.cs" />
+    <Compile Include="Bevel\Models\BevelGear.cs" />
+    <Compile Include="Bevel\Models\BevelGearData.cs" />
+    <Compile Include="Bevel\Models\IBevelGear.cs" />
+    <Compile Include="Bevel\Models\BevelLatexStrings.cs" />
+    <Compile Include="Bevel\Presenters\BevelGearPresenter.cs" />
+    <Compile Include="Bevel\Views\BevelGearForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bevel\Views\BevelGearForm.Designer.cs">
+      <DependentUpon>BevelGearForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bevel\Views\BevelGearView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bevel\Views\BevelGearView.Designer.cs">
+      <DependentUpon>BevelGearView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bevel\Views\BevelHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bevel\Views\BevelHelp.Designer.cs">
+      <DependentUpon>BevelHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bevel\Views\IBevelGearView.cs" />
+    <Compile Include="CycloidalGear\CycliodalGearParametersForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CycloidalGear\CycliodalGearParametersForm.Designer.cs">
+      <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CycloidalGear\CycloidalGearAddOnCommand.cs" />
+    <Compile Include="CycloidalGear\CycloidalGearAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="CycloidalGear\CycloidalGearBuilder.cs" />
+    <Compile Include="CycloidalGear\CycloidalGearProperties.cs" />
+    <Compile Include="DataBrowser\AlibreConnector.cs" />
+    <Compile Include="DataBrowser\AlibreData.cs" />
+    <Compile Include="DataBrowser\AlibreFileSystem.cs" />
+    <Compile Include="DataBrowser\DataBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataBrowser\DataBrowser.Designer.cs" />
+    <Compile Include="DataBrowser\Materials\MaterialNode.cs" />
+    <Compile Include="DataBrowser\Materials\MaterialPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataBrowser\Materials\MaterialPicker.Designer.cs" />
+    <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs" />
+    <Compile Include="DataBrowser\ShellUtilities.cs" />
+    <Compile Include="FaceArea\FaceArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FaceArea\FaceArea.Designer.cs">
+      <DependentUpon>FaceArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FaceArea\FaceAreaAddOnCommand.cs" />
+    <Compile Include="FaceArea\FaceAreaAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Involute\Builder\AlibreToothBuilder.cs" />
+    <Compile Include="Involute\Builder\ExternalHelicalGearBuilder.cs" />
+    <Compile Include="Involute\Builder\ExternalSpurHelicalToothBuilder.cs" />
+    <Compile Include="Involute\Builder\InternalHelicalGearBuilder.cs" />
+    <Compile Include="Involute\Builder\InternalSpurGearBuilder.cs" />
+    <Compile Include="Involute\Builder\InternalSpurHelicalToothBuilder.cs" />
+    <Compile Include="Involute\Builder\IToothPointsBuilder.cs" />
+    <Compile Include="Involute\Builder\ExternalSpurGearBuilder.cs" />
+    <Compile Include="Involute\Calculator\Geometry.cs" />
+    <Compile Include="Involute\Calculator\IGearCalculator.cs" />
+    <Compile Include="Involute\Calculator\InternalToothPointCalculator.cs" />
+    <Compile Include="Involute\Calculator\ProfileShiftedExternalSpurGearCalculator.cs" />
+    <Compile Include="Involute\Calculator\ProfileShiftedExternalHelicalGearCalculator.cs" />
+    <Compile Include="Involute\Calculator\ProfileShiftedIntExtHelicalGearCalculator.cs" />
+    <Compile Include="Involute\Calculator\ProfileShiftedIntExtSpurGearCalculator.cs" />
+    <Compile Include="Involute\Calculator\ToothPointCalculator.cs" />
+    <Compile Include="Involute\Images\GearLatexStrings.cs" />
+    <Compile Include="Involute\Model\GearChangeEventArgs.cs" />
+    <Compile Include="Involute\Model\GearData.cs" />
+    <Compile Include="Involute\Model\GearDesignOutputParams.cs" />
+    <Compile Include="Involute\Model\GearPairDesignOutputParams.cs" />
+    <Compile Include="Involute\Model\GearPoint.cs" />
+    <Compile Include="Involute\Model\GearStyle.cs" />
+    <Compile Include="Involute\Model\IGearDesignInputParams.cs" />
+    <Compile Include="Involute\Model\IGearDesignOutputParams.cs" />
+    <Compile Include="Involute\Model\IGearPairDesignInputParams.cs" />
+    <Compile Include="Involute\Model\GearDesignInputParams.cs" />
+    <Compile Include="Involute\Model\GearPairDesignInputParams.cs" />
+    <Compile Include="Involute\Model\IGearPairDesignOutputParams.cs" />
+    <Compile Include="Involute\Model\Tooth.cs" />
+    <Compile Include="Involute\Model\ToothPoint.cs" />
+    <Compile Include="Involute\Model\Trochoid.cs" />
+    <Compile Include="Involute\Presenter\GearViewPresenter.cs" />
+    <Compile Include="Involute\View\GearView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Involute\View\GearView.Designer.cs">
+      <DependentUpon>GearView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Involute\View\InvoluteGearForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Involute\View\InvoluteGearForm.Designer.cs">
+      <DependentUpon>InvoluteGearForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingGear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingGear.Designer.cs">
+      <DependentUpon>BuildingGear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\Properties.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PlaneFinder\PlaneFinderAddOnCommand.cs" />
+    <Compile Include="PlaneFinder\PlaneFinderAddOnCommandTerminateEventArgs.cs" />
+    <Compile Include="PlaneFinder\PlaneFinder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlaneFinder\PlaneFinder.Designer.cs">
+      <DependentUpon>PlaneFinder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs" />
+    <Compile Include="RackPinion\Model\RackParams.cs" />
+    <Compile Include="RackPinion\Model\RackPinionDesignOutputParams.cs" />
+    <Compile Include="RackPinion\Model\RackPinionGearData.cs" />
+    <Compile Include="RackPinion\Model\RackPinionLatexStrings.cs" />
+    <Compile Include="RackPinion\Presenter\RackPinionPresenter.cs" />
+    <Compile Include="RackPinion\View\RackPinionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RackPinion\View\RackPinionForm.Designer.cs">
+      <DependentUpon>RackPinionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RackPinion\View\RackPinionView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RackPinion\View\RackPinionView.Designer.cs">
+      <DependentUpon>RackPinionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shortcuts\Calculator\HtmlReport.cs" />
+    <Compile Include="Shortcuts\Calculator\ShortcutsCalculator.cs" />
+    <Compile Include="Shortcuts\Model\AlibreShortcut.cs" />
+    <Compile Include="Shortcuts\Model\KeyButtons.cs" />
+    <Compile Include="Shortcuts\Model\KeyCodes.cs" />
+    <Compile Include="Shortcuts\Model\KeyStrings.cs" />
+    <Compile Include="Shortcuts\Model\KeyText.cs" />
+    <Compile Include="Shortcuts\Model\SvgDictionary.cs" />
+    <Compile Include="Shortcuts\Presenter\KeyboardPresenter.cs" />
+    <Compile Include="Shortcuts\Presenter\Queries.cs" />
+    <Compile Include="Shortcuts\Utils\StringImageUtils.cs" />
+    <Compile Include="Shortcuts\View\ColorPreferences.cs" />
+    <Compile Include="Shortcuts\View\ColorPreferences.Designer.cs" />
+    <Compile Include="Shortcuts\View\ColorPreferencesForm.cs" />
+    <Compile Include="Shortcuts\View\ColorPreferencesForm.Designer.cs" />
+    <Compile Include="Shortcuts\View\KeyboardControl.cs" />
+    <Compile Include="Shortcuts\View\KeyboardControl.Designer.cs" />
+    <Compile Include="Shortcuts\View\KeyboardForm.cs" />
+    <Compile Include="Shortcuts\View\KeyboardForm.Designer.cs" />
+    <Compile Include="Shortcuts\View\KeyboardShortcutForm.cs" />
+    <Compile Include="Shortcuts\View\KeyboardShortcutForm.Designer.cs" />
+    <Compile Include="Shortcuts\View\ShortcutButton.cs" />
+    <Compile Include="UtilitiesForAlibre.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ConversionUtils.cs" />
+    <Compile Include="Utils\GearTemplateUtils.cs" />
+    <Compile Include="Utils\LatexUtils.cs" />
+    <Compile Include="WormGear\Builder\WormGearBuilder.cs" />
+    <Compile Include="WormGear\Calculator\WormGearCalculator.cs" />
+    <Compile Include="WormGear\Model\WormDesignInputParams.cs" />
+    <Compile Include="WormGear\Model\WormDesignOutputParams.cs" />
+    <Compile Include="WormGear\Model\WormGearDesignInputParams.cs" />
+    <Compile Include="WormGear\Model\WormGearDesignOutputParams.cs" />
+    <Compile Include="WormGear\Model\WormGearPairDesignInputParams.cs" />
+    <Compile Include="WormGear\Model\WormGearPairDesignOutputParams.cs" />
+    <Compile Include="WormGear\Presenter\WormGearPresenter.cs" />
+    <Compile Include="WormGear\View\WormGearForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WormGear\View\WormGearForm.Designer.cs">
+      <DependentUpon>WormGearForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WormGear\View\WormGearView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WormGear\View\WormGearView.Designer.cs">
+      <DependentUpon>WormGearView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bevel\Images\BevelMeshing.png" />
+    <Content Include="Bevel\Images\DimensionsAndAngles.png" />
+    <Content Include="Bevel\Images\Symbols.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Copyright and License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\BevelGearTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\BevelGearTemplate2.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\HelicalPinionTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\HelicalRackTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\HelicalWheelTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\PinionTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\WheelTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\WormGearTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\WormTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\add-circle.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\bulb.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\cog-double.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\CycloidalGear.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\design-pen.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\design-tool.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\design-tool2.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\fibonacci.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-code-add.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-code-question.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-code-star.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\file-settings.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\monitor-settings.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\search.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\userquestion.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="nexus.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UtilitiesForAlibre.adc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlibreDataViewer\AlibreDataViewer.resx">
+      <DependentUpon>AlibreDataViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bevel\Views\BevelGearForm.resx">
+      <DependentUpon>BevelGearForm.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bevel\Views\BevelGearView.resx">
+      <DependentUpon>BevelGearView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bevel\Views\BevelHelp.resx">
+      <DependentUpon>BevelHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CycloidalGear\CycliodalGearParametersForm.resx">
+      <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBrowser\DataBrowser.resx">
+      <DependentUpon>DataBrowser.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx" />
+    <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx" />
+    <EmbeddedResource Include="FaceArea\FaceArea.resx">
+      <DependentUpon>FaceArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Involute\View\GearView.resx">
+      <DependentUpon>GearView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Involute\View\InvoluteGearForm.resx">
+      <DependentUpon>InvoluteGearForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
+      <DependentUpon>PlaneFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingGear.resx">
+      <DependentUpon>BuildingGear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RackPinion\View\RackPinionView.resx">
+      <DependentUpon>RackPinionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RackPinion\View\RackPinionForm.resx">
+      <DependentUpon>RackPinionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shortcuts\View\ColorPreferences.resx" />
+    <EmbeddedResource Include="Shortcuts\View\ColorPreferencesForm.resx" />
+    <EmbeddedResource Include="Shortcuts\View\KeyboardControl.resx" />
+    <EmbeddedResource Include="Shortcuts\View\KeyboardForm.resx" />
+    <EmbeddedResource Include="Shortcuts\View\KeyboardShortcutForm.resx" />
+    <EmbeddedResource Include="WormGear\View\WormGearForm.resx">
+      <DependentUpon>WormGearForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WormGear\View\WormGearView.resx">
+      <DependentUpon>WormGearView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RackPinion\Calculator\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{305297BD-DE8D-4F36-86A4-AA5E69538A69}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Bolsover</RootNamespace>
-        <AssemblyName>UtilitiesForAlibre</AssemblyName>
-        <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
-        <!-- <TargetFramework>net6.0-windows</TargetFramework>-->
-        <FileAlignment>512</FileAlignment>
-        <LangVersion>9</LangVersion>
-        <Nullable>disable</Nullable>
-        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-        <NuGetPackageImportStamp>
-        </NuGetPackageImportStamp>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>x64</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>x64</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup>
-        <StartupObject/>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="alibre">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\alibre.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="alibre-api">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\alibre-api.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="alibre-client">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\alibre-client.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="alibre-core">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\alibre-core.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="alibre-dom">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\alibre-dom.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="alibre-executive">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\alibre-executive.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="alibre-server">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\alibre-server.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="AlibreAddOn">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\AlibreAddOn.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="AlibreX">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\AlibreX.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="DevExpress.Data.v23.2">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\DevExpress.Data.v23.2.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="DevExpress.Drawing.v23.2">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\DevExpress.Drawing.v23.2.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="generics_NET">
-          <HintPath>C:\Program Files\Alibre Design 28.0.0.28094\Program\generics_NET.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="MathML, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\MathML.0.4.0\lib\netstandard1.6\MathML.dll</HintPath>
-        </Reference>
-        <Reference Include="MathNet.Numerics, Version=4.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\MathNet.Numerics.4.9.0\lib\net461\MathNet.Numerics.dll</HintPath>
-        </Reference>
-        <Reference Include="Microsoft.CSharp"/>
-        <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\Microsoft.CodeCoverage.17.3.1\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.Win32.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\Microsoft.Win32.Primitives.4.0.1\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
-        </Reference>
-        <Reference Include="mscorlib"/>
-        <Reference Include="ObjectListView">
-            <HintPath>..\..\..\..\05_ObjectListViewFull-2.9.1\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
-        </Reference>
-        <Reference Include="PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-            <HintPath>..\packages\EPP.PresentationCore.1.0.0\lib\PresentationCore.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="SupportClass">
-            <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\SupportClass.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System"/>
-        <Reference Include="System.AppContext, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.AppContext.4.1.0\lib\net463\System.AppContext.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.ComponentModel.Composition"/>
-        <Reference Include="System.Configuration"/>
-        <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Diagnostics.Tracing, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Diagnostics.Tracing.4.1.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Drawing"/>
-        <Reference Include="System.Globalization.Calendars, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Globalization.Calendars.4.0.1\lib\net46\System.Globalization.Calendars.dll</HintPath>
-        </Reference>
-        <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
-        </Reference>
-        <Reference Include="System.IO.Compression, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.IO.Compression.4.1.0\lib\net46\System.IO.Compression.dll</HintPath>
-        </Reference>
-        <Reference Include="System.IO.Compression.FileSystem"/>
-        <Reference Include="System.IO.Compression.ZipFile, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.IO.Compression.ZipFile.4.0.1\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
-        </Reference>
-        <Reference Include="System.IO.FileSystem, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.IO.FileSystem.4.0.1\lib\net46\System.IO.FileSystem.dll</HintPath>
-        </Reference>
-        <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Linq.Expressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Linq.Expressions.4.1.0\lib\net463\System.Linq.Expressions.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Net.Sockets, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Net.Sockets.4.1.0\lib\net46\System.Net.Sockets.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Numerics"/>
-        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Reflection, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Reflection.4.1.0\lib\net462\System.Reflection.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Resources.Extensions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Resources.Extensions.7.0.0\lib\net462\System.Resources.Extensions.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System.Runtime.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Runtime.Extensions.4.1.2\lib\net462\System.Runtime.Extensions.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Runtime.InteropServices, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Runtime.InteropServices.4.1.0\lib\net462\System.Runtime.InteropServices.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Runtime.Serialization"/>
-        <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-            <HintPath>..\packages\System.Text.RegularExpressions.4.1.0\lib\net463\System.Text.RegularExpressions.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Web"/>
-        <Reference Include="System.Windows"/>
-        <Reference Include="System.Windows.Forms"/>
-        <Reference Include="System.Xml"/>
-        <Reference Include="System.Xml.Linq"/>
-        <Reference Include="WpfMath, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\WpfMath.1.1.0\lib\net462\WpfMath.dll</HintPath>
-        </Reference>
-        <Reference Include="XamlMath.Shared, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\XamlMath.Shared.1.1.0\lib\net462\XamlMath.Shared.dll</HintPath>
-        </Reference>
-        <Reference Update="System.Resources.Extensions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="AboutForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="AboutForm.Designer.cs">
-            <DependentUpon>AboutForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="AlibreAddOn.cs"/>
-        <Compile Include="AlibreDataViewer\AlibreDataViewer.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="AlibreDataViewer\AlibreDataViewer.Designer.cs">
-            <DependentUpon>AlibreDataViewer.cs</DependentUpon>
-        </Compile>
-        <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommandTerminateEventArgs.cs"/>
-        <Compile Include="Bevel\Builder\BevelGearBuilder.cs"/>
-        <Compile Include="Bevel\Calculator\BevelGearCalculator.cs"/>
-        <Compile Include="Bevel\Calculator\KFactorCalculator.cs"/>
-        <Compile Include="Bevel\Calculator\KFactorDictionary.cs"/>
-        <Compile Include="Bevel\Models\BevelGear.cs"/>
-        <Compile Include="Bevel\Models\BevelGearData.cs"/>
-        <Compile Include="Bevel\Models\IBevelGear.cs"/>
-        <Compile Include="Bevel\Models\BevelLatexStrings.cs"/>
-        <Compile Include="Bevel\Presenters\BevelGearPresenter.cs"/>
-        <Compile Include="Bevel\Views\BevelGearForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Bevel\Views\BevelGearForm.Designer.cs">
-            <DependentUpon>BevelGearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Bevel\Views\BevelGearView.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Bevel\Views\BevelGearView.Designer.cs">
-            <DependentUpon>BevelGearView.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Bevel\Views\BevelHelp.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Bevel\Views\BevelHelp.Designer.cs">
-            <DependentUpon>BevelHelp.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Bevel\Views\IBevelGearView.cs"/>
-        <Compile Include="CycloidalGear\CycliodalGearParametersForm.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="CycloidalGear\CycliodalGearParametersForm.Designer.cs">
-            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="CycloidalGear\CycloidalGearAddOnCommand.cs"/>
-        <Compile Include="CycloidalGear\CycloidalGearAddOnCommandTerminateEventArgs.cs"/>
-        <Compile Include="CycloidalGear\CycloidalGearBuilder.cs"/>
-        <Compile Include="CycloidalGear\CycloidalGearProperties.cs"/>
-        <Compile Include="DataBrowser\AlibreConnector.cs"/>
-        <Compile Include="DataBrowser\AlibreData.cs"/>
-        <Compile Include="DataBrowser\AlibreFileSystem.cs"/>
-        <Compile Include="DataBrowser\DataBrowser.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="DataBrowser\DataBrowser.Designer.cs"/>
-        <Compile Include="DataBrowser\Materials\MaterialNode.cs"/>
-        <Compile Include="DataBrowser\Materials\MaterialPicker.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="DataBrowser\Materials\MaterialPicker.Designer.cs"/>
-        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="DataBrowser\PartNoConfig\PartNoConfig.Designer.cs"/>
-        <Compile Include="DataBrowser\ShellUtilities.cs"/>
-        <Compile Include="FaceArea\FaceArea.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="FaceArea\FaceArea.Designer.cs">
-            <DependentUpon>FaceArea.cs</DependentUpon>
-        </Compile>
-        <Compile Include="FaceArea\FaceAreaAddOnCommand.cs"/>
-        <Compile Include="FaceArea\FaceAreaAddOnCommandTerminateEventArgs.cs"/>
-        <Compile Include="Globals.cs"/>
-        <Compile Include="Involute\Builder\AlibreToothBuilder.cs"/>
-        <Compile Include="Involute\Builder\ExternalHelicalGearBuilder.cs"/>
-        <Compile Include="Involute\Builder\ExternalSpurHelicalToothBuilder.cs"/>
-        <Compile Include="Involute\Builder\InternalHelicalGearBuilder.cs"/>
-        <Compile Include="Involute\Builder\InternalSpurGearBuilder.cs"/>
-        <Compile Include="Involute\Builder\InternalSpurHelicalToothBuilder.cs"/>
-        <Compile Include="Involute\Builder\IToothPointsBuilder.cs"/>
-        <Compile Include="Involute\Builder\ExternalSpurGearBuilder.cs"/>
-        <Compile Include="Involute\Calculator\Geometry.cs"/>
-        <Compile Include="Involute\Calculator\IGearCalculator.cs"/>
-        <Compile Include="Involute\Calculator\InternalToothPointCalculator.cs"/>
-        <Compile Include="Involute\Calculator\ProfileShiftedExternalSpurGearCalculator.cs"/>
-        <Compile Include="Involute\Calculator\ProfileShiftedExternalHelicalGearCalculator.cs"/>
-        <Compile Include="Involute\Calculator\ProfileShiftedIntExtHelicalGearCalculator.cs"/>
-        <Compile Include="Involute\Calculator\ProfileShiftedIntExtSpurGearCalculator.cs"/>
-        <Compile Include="Involute\Calculator\ToothPointCalculator.cs"/>
-        <Compile Include="Involute\Images\GearLatexStrings.cs"/>
-        <Compile Include="Involute\Model\GearChangeEventArgs.cs"/>
-        <Compile Include="Involute\Model\GearData.cs"/>
-        <Compile Include="Involute\Model\GearDesignOutputParams.cs"/>
-        <Compile Include="Involute\Model\GearPairDesignOutputParams.cs"/>
-        <Compile Include="Involute\Model\GearPoint.cs"/>
-        <Compile Include="Involute\Model\GearStyle.cs"/>
-        <Compile Include="Involute\Model\IGearDesignInputParams.cs"/>
-        <Compile Include="Involute\Model\IGearDesignOutputParams.cs"/>
-        <Compile Include="Involute\Model\IGearPairDesignInputParams.cs"/>
-        <Compile Include="Involute\Model\GearDesignInputParams.cs"/>
-        <Compile Include="Involute\Model\GearPairDesignInputParams.cs"/>
-        <Compile Include="Involute\Model\IGearPairDesignOutputParams.cs"/>
-        <Compile Include="Involute\Model\Tooth.cs"/>
-        <Compile Include="Involute\Model\ToothPoint.cs"/>
-        <Compile Include="Involute\Model\Trochoid.cs"/>
-        <Compile Include="Involute\Presenter\GearViewPresenter.cs"/>
-        <Compile Include="Involute\View\GearView.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="Involute\View\GearView.Designer.cs">
-            <DependentUpon>GearView.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Involute\View\InvoluteGearForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Involute\View\InvoluteGearForm.Designer.cs">
-            <DependentUpon>InvoluteGearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="BuildingGear.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="BuildingGear.Designer.cs">
-            <DependentUpon>BuildingGear.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Program.cs"/>
-        <Compile Include="Properties\Properties.cs"/>
-        <Compile Include="Properties\Settings.Designer.cs">
-            <AutoGen>True</AutoGen>
-            <DesignTimeSharedInput>True</DesignTimeSharedInput>
-            <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-        <Compile Include="PlaneFinder\PlaneFinderAddOnCommand.cs"/>
-        <Compile Include="PlaneFinder\PlaneFinderAddOnCommandTerminateEventArgs.cs"/>
-        <Compile Include="PlaneFinder\PlaneFinder.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="PlaneFinder\PlaneFinder.Designer.cs">
-            <DependentUpon>PlaneFinder.cs</DependentUpon>
-        </Compile>
-        <Compile Include="AlibreDataViewer\AlibreDataViewerAddOnCommand.cs"/>
-        <Compile Include="RackPinion\Model\RackParams.cs"/>
-        <Compile Include="RackPinion\Model\RackPinionDesignOutputParams.cs"/>
-        <Compile Include="RackPinion\Model\RackPinionGearData.cs"/>
-        <Compile Include="RackPinion\Model\RackPinionLatexStrings.cs"/>
-        <Compile Include="RackPinion\Presenter\RackPinionPresenter.cs"/>
-        <Compile Include="RackPinion\View\RackPinionForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="RackPinion\View\RackPinionForm.Designer.cs">
-            <DependentUpon>RackPinionForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="RackPinion\View\RackPinionView.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="RackPinion\View\RackPinionView.Designer.cs">
-            <DependentUpon>RackPinionView.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Shortcuts\Calculator\HtmlReport.cs"/>
-        <Compile Include="Shortcuts\Calculator\ShortcutsCalculator.cs"/>
-        <Compile Include="Shortcuts\Model\AlibreShortcut.cs"/>
-        <Compile Include="Shortcuts\Model\KeyButtons.cs"/>
-        <Compile Include="Shortcuts\Model\KeyCodes.cs"/>
-        <Compile Include="Shortcuts\Model\KeyStrings.cs"/>
-        <Compile Include="Shortcuts\Model\KeyText.cs"/>
-        <Compile Include="Shortcuts\Model\SvgDictionary.cs"/>
-        <Compile Include="Shortcuts\Presenter\KeyboardPresenter.cs"/>
-        <Compile Include="Shortcuts\Presenter\Queries.cs"/>
-        <Compile Include="Shortcuts\Utils\StringImageUtils.cs"/>
-        <Compile Include="Shortcuts\View\ColorPreferences.cs"/>
-        <Compile Include="Shortcuts\View\ColorPreferences.Designer.cs"/>
-        <Compile Include="Shortcuts\View\ColorPreferencesForm.cs"/>
-        <Compile Include="Shortcuts\View\ColorPreferencesForm.Designer.cs"/>
-        <Compile Include="Shortcuts\View\KeyboardControl.cs"/>
-        <Compile Include="Shortcuts\View\KeyboardControl.Designer.cs"/>
-        <Compile Include="Shortcuts\View\KeyboardForm.cs"/>
-        <Compile Include="Shortcuts\View\KeyboardForm.Designer.cs"/>
-        <Compile Include="Shortcuts\View\KeyboardShortcutForm.cs"/>
-        <Compile Include="Shortcuts\View\KeyboardShortcutForm.Designer.cs"/>
-        <Compile Include="Shortcuts\View\ShortcutButton.cs"/>
-        <Compile Include="UtilitiesForAlibre.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="Utils\ConversionUtils.cs"/>
-        <Compile Include="Utils\GearTemplateUtils.cs"/>
-        <Compile Include="Utils\LatexUtils.cs"/>
-        <Compile Include="WormGear\Builder\WormGearBuilder.cs"/>
-        <Compile Include="WormGear\Calculator\WormGearCalculator.cs"/>
-        <Compile Include="WormGear\Model\WormDesignInputParams.cs"/>
-        <Compile Include="WormGear\Model\WormDesignOutputParams.cs"/>
-        <Compile Include="WormGear\Model\WormGearDesignInputParams.cs"/>
-        <Compile Include="WormGear\Model\WormGearDesignOutputParams.cs"/>
-        <Compile Include="WormGear\Model\WormGearPairDesignInputParams.cs"/>
-        <Compile Include="WormGear\Model\WormGearPairDesignOutputParams.cs"/>
-        <Compile Include="WormGear\Presenter\WormGearPresenter.cs"/>
-        <Compile Include="WormGear\View\WormGearForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="WormGear\View\WormGearForm.Designer.cs">
-            <DependentUpon>WormGearForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="WormGear\View\WormGearView.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
-        <Compile Include="WormGear\View\WormGearView.Designer.cs">
-            <DependentUpon>WormGearView.cs</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="Bevel\Images\BevelMeshing.png"/>
-        <Content Include="Bevel\Images\DimensionsAndAngles.png"/>
-        <Content Include="Bevel\Images\Symbols.png">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Copyright and License.txt">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\BevelGearTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\BevelGearTemplate2.AD_PRT">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\HelicalPinionTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\HelicalRackTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\HelicalWheelTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\PinionTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\WheelTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\WormGearTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Gear\WormTemplate.AD_PRT">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\add-circle.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\bulb.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\cog-double.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\CycloidalGear.png">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\design-pen.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\design-tool.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\design-tool2.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\fibonacci.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-code-add.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-code-question.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-code-star.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\file-settings.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\monitor-settings.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\search.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="icons\userquestion.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="nexus.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="UtilitiesForAlibre.adc">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Include="AboutForm.resx">
-            <DependentUpon>AboutForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="AlibreDataViewer\AlibreDataViewer.resx">
-            <DependentUpon>AlibreDataViewer.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Bevel\Views\BevelGearForm.resx">
-            <DependentUpon>BevelGearForm.cs</DependentUpon>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Bevel\Views\BevelGearView.resx">
-            <DependentUpon>BevelGearView.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Bevel\Views\BevelHelp.resx">
-            <DependentUpon>BevelHelp.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="CycloidalGear\CycliodalGearParametersForm.resx">
-            <DependentUpon>CycliodalGearParametersForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="DataBrowser\DataBrowser.resx">
-            <DependentUpon>DataBrowser.cs</DependentUpon>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
-        <EmbeddedResource Include="DataBrowser\Materials\MaterialPicker.resx"/>
-        <EmbeddedResource Include="DataBrowser\PartNoConfig\PartNoConfig.resx"/>
-        <EmbeddedResource Include="FaceArea\FaceArea.resx">
-            <DependentUpon>FaceArea.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Involute\View\GearView.resx">
-            <DependentUpon>GearView.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Involute\View\InvoluteGearForm.resx">
-            <DependentUpon>InvoluteGearForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="PlaneFinder\PlaneFinder.resx">
-            <DependentUpon>PlaneFinder.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="BuildingGear.resx">
-            <DependentUpon>BuildingGear.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="RackPinion\View\RackPinionView.resx">
-            <DependentUpon>RackPinionView.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="RackPinion\View\RackPinionForm.resx">
-            <DependentUpon>RackPinionForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Shortcuts\View\ColorPreferences.resx"/>
-        <EmbeddedResource Include="Shortcuts\View\ColorPreferencesForm.resx"/>
-        <EmbeddedResource Include="Shortcuts\View\KeyboardControl.resx"/>
-        <EmbeddedResource Include="Shortcuts\View\KeyboardForm.resx"/>
-        <EmbeddedResource Include="Shortcuts\View\KeyboardShortcutForm.resx"/>
-        <EmbeddedResource Include="WormGear\View\WormGearForm.resx">
-            <DependentUpon>WormGearForm.cs</DependentUpon>
-        </EmbeddedResource>
-        <EmbeddedResource Include="WormGear\View\WormGearView.resx">
-            <DependentUpon>WormGearView.cs</DependentUpon>
-        </EmbeddedResource>
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="App.config"/>
-        <None Include="packages.config"/>
-        <None Include="Properties\Settings.settings">
-            <Generator>SettingsSingleFileGenerator</Generator>
-            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-        </None>
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="RackPinion\Calculator\"/>
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-        <PropertyGroup>
-            <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-        </PropertyGroup>
-        <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props'))"/>
-        <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets'))"/>
-        <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props'))"/>
-        <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets'))"/>
-    </Target>
-    <Import Project="..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')"/>
-    <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')"/>
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.3.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.3.1\build\net45\Microsoft.NET.Test.Sdk.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
                        Other similar extension points exist, see Microsoft.Common.targets.
                   <Target Name="BeforeBuild">
                   </Target>

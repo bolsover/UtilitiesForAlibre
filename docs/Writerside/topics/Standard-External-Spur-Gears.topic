@@ -53,7 +53,7 @@
             <td>
                 <include from="Snippets.topic" element-id="CentreDistanceFormula"/>
             </td>
-            <td colspan="2">53.700</td>
+            <td colspan="2">53.750</td>
 
         </tr>
         <tr>
@@ -72,10 +72,10 @@
             <td>6</td>
             <td>Base Diameter</td>
             <td>
-                <include from="Snippets.topic" element-id="d_b"/>
+                <include from="Snippets.topic" element-id="d_b" />
             </td>
             <td>
-                <include from="Snippets.topic" element-id="BaseDiameterFormula"/>
+                <include from="Snippets.topic" element-id="BaseDiameterFormula" />
             </td>
             <td>42.286</td>
             <td>58.731</td>

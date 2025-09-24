@@ -5,7 +5,7 @@
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
        title="Sketch Plane Finder" id="Sketch-Plane-Finder">
 
-    <p>Mostly does what id says - Click on a sketch in the design explorer and this tool will report the plane or face on which the sketch was drawn.
+    <p>Mostly does what it says - Click on a sketch in the design explorer and this tool will report the plane or face on which the sketch was drawn.
         Only 'Mostly', because Alibre does not always make it easy to find the originating plane or face!</p>
     <img src="SketchPlaneFinder.png" alt="Sketch Plane Finder" thumbnail="true" width="300"/>
 </topic>

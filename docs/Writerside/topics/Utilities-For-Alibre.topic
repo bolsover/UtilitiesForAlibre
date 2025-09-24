@@ -4,9 +4,15 @@
 <topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
        title="Utilities For Alibre" id="Utilities-For-Alibre">
-    <p>A simple collection of utilities for Alibre including:</p>
-<!--    <toc depth="2"> </toc>-->
 
+    <!--    <toc depth="2"> </toc>-->
+    <note title="Alibre V28">The Utilities for Alibre Version 3.0 has been compiled against Alibre V28. Some aspects
+        will not work with earlier versions of Alibre.
+    </note>
+    <note title="Alibre V27">The Utilities for Alibre Version 2.1 has been compiled against Alibre V27. Some aspects
+        will not work with earlier versions of Alibre.
+    </note>
+    <p>A simple collection of utilities for Alibre including:</p>
     <list type="decimal" start="1">
         <li><a href="Shortcuts-Keyboard.topic">Shortcuts - A visual aid in the form of a keyboard.</a></li>
         <li><a href="Shortcuts-Report.topic">Shortcuts - A simple report detailing assigned shortcuts.</a></li>
