@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Reflection;
 using System.Windows.Forms;
 using AlibreX;
 using Bolsover.DataBrowser;
@@ -8,10 +7,9 @@ namespace Bolsover.AlibreDataViewer
 {
     public partial class AlibreDataViewer : UserControl
     {
-        public object RootObject { get; set; }
         private IADSession _session;
-
-
+        
+        
         public AlibreDataViewer(IADSession session)
         {
             _session = session;
@@ -19,8 +17,10 @@ namespace Bolsover.AlibreDataViewer
             SetupColumns();
             SetupTree();
         }
-
-
+        
+        public object RootObject { get; set; }
+        
+        
         public void SetRootObject(object rootObject)
         {
             RootObject = rootObject;
@@ -37,14 +37,14 @@ namespace Bolsover.AlibreDataViewer
                     ? child.GetPropertyValue(rootObject, t.Name)
                     : "";
                 child.Value = child.GetPropertyValue(rootObject, t.Name);
-
+                
                 roots.Add(child);
             }
-
+            
             treeListView.SetObjects(roots);
         }
-
-
+        
+        
         private void SetupTree()
         {
             treeListView.CanExpandGetter = rowObject =>
@@ -52,7 +52,7 @@ namespace Bolsover.AlibreDataViewer
             treeListView.ChildrenGetter =
                 rowObject => ((AlibreData) rowObject).GetChildData(((AlibreData) rowObject).Value);
         }
-
+        
         private void SetupColumns()
         {
             olvColumnProperty.AspectGetter =

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Data Browser" id="Data-Browser">
+
+    <warning title="This tool can edit your part data - use with care and caution."></warning>
+    <p>So you want to browse your designs and update a few of the properties - this is the tool for you.</p>
+    <p>This tool allows you to browse your directories to find Alibre designs. By default it will show all files and most standard and extended design properties but there are is a filter that will limit the display to just Alibre designs and the colum data can also be filtered and sorted. </p>
+    <img src="DataBrowser.png" alt="Data Browser" thumbnail="true" width="300"></img>
+
+    <p>Filtering and Sorting - Right click column headers</p>
+    <img src="FilteringAndSorting.png" alt="Filtering and Sorting" thumbnail="true" width="300"/>
+
+    <p>Editing of an item is enabled by selecting the checkbox.
+    Having enabled edits a double click in the cell of interest is required to start the edit.
+    </p>
+    <img src="DataBrowserEditing.png" alt="Data Browser Editing" thumbnail="true" width="300"></img>
+
+    <p>Part numbering </p>
+    <list type="decimal">
+        <li>Select the part you want to enable for part numbering to by selecting the checkbox. Make sure to ONLY select parts you want numbering.</li>
+        <li>Open the Part No Config dialog (Button at bottom of window)</li>
+        <li>Enter the desired part numbering pattern. This can be in the form of a prefix + a sequence of digits + a suffix. Also enter the step value for the digits; the digits will be incremented by this value for each successive part.</li>
+        <li>Click Apply - Parts will be sequentially numbered.</li>
+    </list>
+    <img src="DataBrowserPartNumbering.png" alt="Part Numbering " thumbnail="true" width="300"></img>
+
+</topic>

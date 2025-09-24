@@ -266,7 +266,7 @@ namespace Bolsover.Bevel.Views
             this.NumberOfTeethPinionNumericUpDown.Location = new System.Drawing.Point(4, 7);
             this.NumberOfTeethPinionNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.NumberOfTeethPinionNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            this.NumberOfTeethPinionNumericUpDown.Minimum = new decimal(new int[] { 13, 0, 0, 0 });
+            this.NumberOfTeethPinionNumericUpDown.Minimum = new decimal(new int[] { 8, 0, 0, 0 });
             this.NumberOfTeethPinionNumericUpDown.Name = "NumberOfTeethPinionNumericUpDown";
             this.NumberOfTeethPinionNumericUpDown.Size = new System.Drawing.Size(71, 22);
             this.NumberOfTeethPinionNumericUpDown.TabIndex = 103;

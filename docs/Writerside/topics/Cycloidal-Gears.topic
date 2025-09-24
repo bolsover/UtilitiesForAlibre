@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Cycloidal Gears" id="Cycloidal-Gears">
+
+    <p>A simple addon to generate Cycloidal Gears and Pinions. Just a few clicks and you will have a sketch of the required gear and pinion - ideal for clockmakers.</p>
+    <img src="CycloidalGears.png" alt="Cycloidal Gears" thumbnail="true" width="300"/>
+    <p>Gears generated using this tool are generally per BS 978-2.</p>
+
+</topic>

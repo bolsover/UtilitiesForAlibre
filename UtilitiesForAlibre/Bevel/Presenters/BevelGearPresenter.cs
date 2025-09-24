@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
-using AlibreX;
 using Bolsover.Bevel.Builder;
 using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Views;
+using Bolsover.Involute.Model;
 using static Bolsover.Bevel.Calculator.BevelGearCalculator;
 using static Bolsover.Utils.LatexUtils;
+using static Bolsover.Utils.ConversionUtils;
 
 namespace Bolsover.Bevel.Presenters
 {
     public sealed class BevelGearPresenter
     {
+        private const string threeZero = "0.000";
+        
+        private const double mmToIn = 25.4;
         private readonly IBevelGearView _view;
-        private IBevelGear _pinion;
+        private bool _doOnce;
         private IBevelGear _gear;
-        private bool _doOnce = false;
-
-
+        private IBevelGear _pinion;
+        
+        
         public BevelGearPresenter(IBevelGearView view)
         {
             _view = view;
@@ -30,7 +33,7 @@ namespace Bolsover.Bevel.Presenters
             // ((BevelGearView)_view).documentationLink.Links.Add(0,2,"http://www.bolsover.com/UtilitiesForAlibre");
             // ((BevelGearView)_view).documentationLink.LinkClicked += DocumentationLinkOnLinkClicked;
         }
-
+        
         private void SetupEvents()
         {
             _view.EditModuleEvent += ViewOnEditModuleEvent;
@@ -46,7 +49,7 @@ namespace Bolsover.Bevel.Presenters
             _pinion.Updated += GearsOnUpdated;
             _gear.Updated += GearsOnUpdated;
         }
-
+        
         private void InitGearDefaults()
         {
             _pinion = new BevelGear
@@ -58,7 +61,7 @@ namespace Bolsover.Bevel.Presenters
                 FaceWidth = 22.0d,
                 NumberOfTeeth = 20.0d,
                 Hand = "L",
-                GearType = BevelGearType.Standard
+                GearType = GearStyle.BevelStandard
             };
             _gear = new BevelGear
             {
@@ -69,38 +72,39 @@ namespace Bolsover.Bevel.Presenters
                 FaceWidth = 22.0d,
                 NumberOfTeeth = 40.0d,
                 Hand = "R",
-                GearType = BevelGearType.Standard
+                GearType = GearStyle.BevelStandard
             };
         }
-
+        
         private void GearsOnUpdated(object sender, EventArgs e)
         {
             StandardCalculations();
             var data = BuildBevelGearData();
-            ((BevelGearView)_view).objectListView1.SetObjects(data);
+            ((BevelGearView) _view).objectListView1.SetObjects(data);
             if (!_doOnce)
             {
-                ((BevelGearView)_view).objectListView1.AutoResizeColumns();
+                ((BevelGearView) _view).objectListView1.AutoResizeColumns();
                 _doOnce = true;
             }
+            
             UpdateNotesLabel(_gear.GearType);
         }
-
+        
         private void SetupObjectListView()
         {
-            ((BevelGearView)_view).olvColumn1.AspectGetter = rowObject => ((BevelGearData)rowObject).Item;
-            ((BevelGearView)_view).olvColumn2.AspectGetter = rowObject => ((BevelGearData)rowObject).PinionMetricValue;
-            ((BevelGearView)_view).olvColumn3.AspectGetter = rowObject => ((BevelGearData)rowObject).PinionImperialValue;
-            ((BevelGearView)_view).olvColumn4.AspectGetter = rowObject => ((BevelGearData)rowObject).PinionNotes;
-            ((BevelGearView)_view).olvColumn5.AspectGetter = rowObject => ((BevelGearData)rowObject).GearMetricValue;
-            ((BevelGearView)_view).olvColumn6.AspectGetter = rowObject => ((BevelGearData)rowObject).GearImperialValue;
-            ((BevelGearView)_view).olvColumn7.AspectGetter = rowObject => ((BevelGearData)rowObject).GearNotes;
+            ((BevelGearView) _view).olvColumn1.AspectGetter = rowObject => ((BevelGearData) rowObject).Item;
+            ((BevelGearView) _view).olvColumn2.AspectGetter = rowObject => ((BevelGearData) rowObject).PinionMetricValue;
+            ((BevelGearView) _view).olvColumn3.AspectGetter = rowObject => ((BevelGearData) rowObject).PinionImperialValue;
+            ((BevelGearView) _view).olvColumn4.AspectGetter = rowObject => ((BevelGearData) rowObject).PinionNotes;
+            ((BevelGearView) _view).olvColumn5.AspectGetter = rowObject => ((BevelGearData) rowObject).GearMetricValue;
+            ((BevelGearView) _view).olvColumn6.AspectGetter = rowObject => ((BevelGearData) rowObject).GearImperialValue;
+            ((BevelGearView) _view).olvColumn7.AspectGetter = rowObject => ((BevelGearData) rowObject).GearNotes;
         }
-
-
+        
+        
         private void SetupLabelLatexImages()
         {
-            var view = (BevelGearView)_view;
+            var view = (BevelGearView) _view;
             view.ShaftAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.ShaftAngleLatex);
             view.ModuleLabel.Image = CreateImageFromLatex(BevelLatexStrings.ModuleLatex);
             view.PressureAngleLabel.Image = CreateImageFromLatex(BevelLatexStrings.PressureAngleLatex);
@@ -110,184 +114,194 @@ namespace Bolsover.Bevel.Presenters
             view.FaceWidthLabel.Image = CreateImageFromLatex(BevelLatexStrings.FaceWidthLatex);
             view.FaceWidthFormulaLabel.Image = CreateImageFromLatex(BevelLatexStrings.FaceWidthFormulaLatex);
         }
-
-
+        
+        
         private void ViewOnCancelEvent(object sender, EventArgs e)
         {
-            var view = (BevelGearView)_view;
+            var view = (BevelGearView) _view;
             view.ParentForm?.Dispose();
         }
-
-
+        
+        
         private void ViewOnEditFaceWidthEvent(object sender, EventArgs e)
         {
-            _pinion.FaceWidth = (double)((NumericUpDown)sender).Value;
-            _gear.FaceWidth = (double)((NumericUpDown)sender).Value;
+            _pinion.FaceWidth = (double) ((NumericUpDown) sender).Value;
+            _gear.FaceWidth = (double) ((NumericUpDown) sender).Value;
         }
-
+        
         private void ViewOnEditGearHandEvent(object sender, EventArgs e)
         {
-            _gear.Hand = (string)((ComboBox)sender).SelectedItem;
+            _gear.Hand = (string) ((ComboBox) sender).SelectedItem;
         }
-
+        
         private void ViewOnEditGearNumberOfTeethEvent(object sender, EventArgs e)
         {
-            _gear.NumberOfTeeth = (double)((NumericUpDown)sender).Value;
+            _gear.NumberOfTeeth = (double) ((NumericUpDown) sender).Value;
         }
-
+        
         private void ViewOnEditPinionHandEvent(object sender, EventArgs e)
         {
-            _pinion.Hand = (string)((ComboBox)sender).SelectedItem;
+            _pinion.Hand = (string) ((ComboBox) sender).SelectedItem;
         }
-
+        
         private void ViewOnEditGearTypeEvent(object sender, EventArgs e)
         {
-            _gear.GearType = RadioButtonToGearType((RadioButton)sender);
-            _pinion.GearType = RadioButtonToGearType((RadioButton)sender);
+            _gear.GearType = RadioButtonToGearType((RadioButton) sender);
+            _pinion.GearType = RadioButtonToGearType((RadioButton) sender);
         }
-
-        private void UpdateNotesLabel(BevelGearType gearType)
+        
+        private void UpdateNotesLabel(GearStyle gearType)
         {
-            var view = (BevelGearView)_view;
+            var view = (BevelGearView) _view;
             view.NotesLabel.Text = gearType switch
             {
-                BevelGearType.Standard => "For Standard gears, the addendum (ha) is 1.000m and the dedendum (hf) 1.25m",
-                BevelGearType.Gleason =>
+                GearStyle.BevelStandard => "For Standard gears, the addendum (ha) is 1.000m and the dedendum (hf) 1.25m",
+                GearStyle.BevelGleason =>
                     "For Gleason gears, the addendum (ha) and dedendum (hf) are calculated using the formulae shown above.",
                 _ => ""
             };
         }
-
-        private static BevelGearType RadioButtonToGearType(RadioButton sender)
+        
+        private static GearStyle RadioButtonToGearType(RadioButton sender)
         {
             switch (sender.Name)
             {
                 case "standardRadioButton":
-                    return BevelGearType.Standard;
+                    return GearStyle.BevelStandard;
                 case "gleasonRadioButton":
-                    return BevelGearType.Gleason;
+                    return GearStyle.BevelGleason;
                 default:
-                    return BevelGearType.Standard;
+                    return GearStyle.BevelStandard;
             }
         }
-
+        
         private void ViewOnEditPinionNumberOfTeethEvent(object sender, EventArgs e)
         {
-            var value = (double)((NumericUpDown)sender).Value;
+            var value = (double) ((NumericUpDown) sender).Value;
             // ensure minimum number of teeth for Gleason gears is 13
-            if (_pinion.GearType == BevelGearType.Gleason && value < 13)
+            if (_pinion.GearType == GearStyle.BevelGleason && value < 13)
             {
                 value = 13;
-                ((BevelGearView)_view).NumberOfTeethPinionNumericUpDown.Value = 13;
+                ((BevelGearView) _view).NumberOfTeethPinionNumericUpDown.Value = 13;
             }
-
+            
             _pinion.NumberOfTeeth = value;
         }
-
+        
         private void ViewOnEditSpiralAngleEvent(object sender, EventArgs e)
         {
-            _pinion.SpiralAngle = (double)((NumericUpDown)sender).Value;
-            _gear.SpiralAngle = (double)((NumericUpDown)sender).Value;
+            _pinion.SpiralAngle = (double) ((NumericUpDown) sender).Value;
+            _gear.SpiralAngle = (double) ((NumericUpDown) sender).Value;
         }
-
+        
         private void ViewOnEditPressureAngleEvent(object sender, EventArgs e)
         {
-            _pinion.PressureAngle = (double)((NumericUpDown)sender).Value;
-            _gear.PressureAngle = (double)((NumericUpDown)sender).Value;
+            _pinion.PressureAngle = (double) ((NumericUpDown) sender).Value;
+            _gear.PressureAngle = (double) ((NumericUpDown) sender).Value;
         }
-
+        
         private void ViewOnEditShaftAngleEvent(object sender, EventArgs e)
         {
-            _pinion.ShaftAngle = (double)((NumericUpDown)sender).Value;
-            _gear.ShaftAngle = (double)((NumericUpDown)sender).Value;
+            _pinion.ShaftAngle = (double) ((NumericUpDown) sender).Value;
+            _gear.ShaftAngle = (double) ((NumericUpDown) sender).Value;
         }
-
+        
         private void ViewOnBuildGearEvent(object sender, EventArgs e)
         {
             const string saveFile = "BevelPleaseSaveAs.AD_PRT";
             const string template = "BevelGearTemplate.AD_PRT";
-
+            
             BuildBevelGear(saveFile, template, _gear);
         }
-
+        
         private void ViewOnBuildPinionEvent(object sender, EventArgs e)
         {
             const string saveFile = "BevelPleaseSaveAs.AD_PRT";
             const string template = "BevelGearTemplate.AD_PRT";
             BuildBevelGear(saveFile, template, _pinion);
         }
-
+        
         private void ViewOnEditModuleEvent(object sender, EventArgs e)
         {
-            _pinion.Module = (double)((NumericUpDown)sender).Value;
-            _gear.Module = (double)((NumericUpDown)sender).Value;
+            _pinion.Module = (double) ((NumericUpDown) sender).Value;
+            _gear.Module = (double) ((NumericUpDown) sender).Value;
         }
-
+        
         private void BuildBevelGear(string saveFile, string template, IBevelGear bevelGear)
         {
-            BevelGearBuilder.Build(saveFile, template, bevelGear);
+            _ = BevelGearBuilder.Build(saveFile, template, bevelGear);
         }
-
+        
+        
         private List<BevelGearData> BuildBevelGearData()
         {
             var data = new List<BevelGearData>();
             data.Add(new BevelGearData("Type", _pinion.GearType.ToString(), "", "", _gear.GearType.ToString(), "", ""));
-            data.Add(new BevelGearData("Module", _pinion.Module.ToString("0.000"), (25.4 / _pinion.Module).ToString("0.0000 in DP"),
-                (Math.PI / (25.4 / _pinion.Module)).ToString("0.0000 in CP"), _gear.Module.ToString("0.000"),
-                (25.4 / _gear.Module).ToString("0.0000 in DP"), (Math.PI / (25.4 / _gear.Module)).ToString("0.0000 in CP")));
-            data.Add(new BevelGearData("Teeth", _pinion.NumberOfTeeth.ToString("0"), "", "", _gear.NumberOfTeeth.ToString("0"), "", ""));
-            data.Add(new BevelGearData("Shaft Angle", _pinion.ShaftAngle.ToString("0.000°"), "", "", _gear.ShaftAngle.ToString("0.000°"), "", ""));
-            data.Add(new BevelGearData("Face Width", _pinion.FaceWidth.ToString("0.000 mm"), (_pinion.FaceWidth / 25.4).ToString("0.000 in"), "",
-                _gear.FaceWidth.ToString("0.000 mm"), (_gear.FaceWidth / 25.4).ToString("0.000 in"),
+            data.Add(new BevelGearData("Module", ToFormat(_pinion.Module, threeZero),
+                ToFormat(mmToIn / _pinion.Module, "0.0000 in DP"),
+                ToFormat(Math.PI / (mmToIn / _pinion.Module), "0.0000 in CP"), ToFormat(_gear.Module, threeZero),
+                (mmToIn / _gear.Module).ToString("0.0000 in DP"),
+                ToFormat(Math.PI / (mmToIn / _gear.Module), "0.0000 in CP")));
+            data.Add(new BevelGearData("Teeth", _pinion.NumberOfTeeth.ToString("0"), "", "",
+                _gear.NumberOfTeeth.ToString("0"), "", ""));
+            data.Add(new BevelGearData("Shaft Angle", ToDegreeFormat(_pinion.ShaftAngle), "", "",
+                ToDegreeFormat(_gear.ShaftAngle), "", ""));
+            data.Add(new BevelGearData("Face Width", ToMmFormat(_pinion.FaceWidth), ToInchFormat(_pinion.FaceWidth), "",
+                ToMmFormat(_gear.FaceWidth), ToInchFormat(_gear.FaceWidth),
                 ""));
-            data.Add(new BevelGearData("Pressure Angle", _pinion.PressureAngle.ToString("0.000°"), "", "", _gear.PressureAngle.ToString("0.000°"), "",
+            data.Add(new BevelGearData("Pressure Angle", ToDegreeFormat(_pinion.PressureAngle), "", "",
+                ToDegreeFormat(_gear.PressureAngle), "",
                 ""));
-            data.Add(new BevelGearData("Pitch Cone Angle", _pinion.PitchConeAngle.ToString("0.000°"), "", "", _gear.PitchConeAngle.ToString("0.000°"),
+            data.Add(new BevelGearData("Pitch Cone Angle", ToDegreeFormat(_pinion.PitchConeAngle), "", "",
+                ToDegreeFormat(_gear.PitchConeAngle),
                 "", ""));
-            data.Add(new BevelGearData("Pitch Diameter", _pinion.PitchDiameter.ToString("0.000 mm"),
-                (_pinion.PitchDiameter / 25.4).ToString("0.000 in"),
-                "", _gear.PitchDiameter.ToString("0.000 mm"), (_gear.PitchDiameter / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Base Diameter", _pinion.BaseDiameter.ToString("0.000 mm"), (_pinion.BaseDiameter / 25.4).ToString("0.000 in"),
-                "", _gear.BaseDiameter.ToString("0.000 mm"), (_gear.BaseDiameter / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Root Diameter", _pinion.RootDiameter.ToString("0.000 mm"), (_pinion.RootDiameter / 25.4).ToString("0.000 in"),
-                "", _gear.RootDiameter.ToString("0.000 mm"), (_gear.RootDiameter / 25.4).ToString("0.000 in"), ""));
-
-            data.Add(new BevelGearData("Cone Distance", _pinion.ConeDistance.ToString("0.000 mm"), (_pinion.ConeDistance / 25.4).ToString("0.000 in"),
-                "", _gear.ConeDistance.ToString("0.000 mm"), (_gear.ConeDistance / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Addendum", _pinion.Addendum.ToString("0.000 mm"), (_pinion.Addendum / 25.4).ToString("0.000 in"), "",
-                _gear.Addendum.ToString("0.000 mm"), (_gear.Addendum / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Dedendum", _pinion.Dedendum.ToString("0.000 mm"), (_pinion.Dedendum / 25.4).ToString("0.000 in"), "",
-                _gear.Dedendum.ToString("0.000 mm"), (_gear.Dedendum / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Equivalent Pitch Diameter", _pinion.EquivalentPitchDiameter.ToString("0.000 mm"),
-                (_pinion.EquivalentPitchDiameter / 25.4).ToString("0.000 in"), "", _gear.EquivalentPitchDiameter.ToString("0.000 mm"),
-                (_gear.EquivalentPitchDiameter / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Equivalent Base Diameter", _pinion.EquivalentBaseDiameter.ToString("0.000 mm"),
-                (_pinion.EquivalentBaseDiameter / 25.4).ToString("0.000 in"), "", _gear.EquivalentBaseDiameter.ToString("0.000 mm"),
-                (_gear.EquivalentBaseDiameter / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Equivalent Addendum Diameter", _pinion.EquivalentAddendumDiameter.ToString("0.000 mm"),
-                (25.4 / _pinion.EquivalentAddendumDiameter / 25.4).ToString("0.000 in"), "", _gear.EquivalentAddendumDiameter.ToString("0.000 mm"),
-                (_gear.EquivalentAddendumDiameter / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Equivalent Root Diameter", _pinion.EquivalentRootDiameter.ToString("0.000 mm"),
-                (_pinion.EquivalentRootDiameter / 25.4).ToString("0.000 in"), "", _gear.EquivalentRootDiameter.ToString("0.000 mm"),
-                (_gear.EquivalentRootDiameter / 25.4).ToString("0.000 in"), ""));
-            data.Add(new BevelGearData("Back Cone Angle", _pinion.BackConeAngle.ToString("0.000°"), "", "", _gear.BackConeAngle.ToString("0.000°"),
+            data.Add(new BevelGearData("Pitch Diameter", ToMmFormat(_pinion.PitchDiameter),
+                ToInchFormat(_pinion.PitchDiameter),
+                "", ToMmFormat(_gear.PitchDiameter), ToInchFormat(_gear.PitchDiameter), ""));
+            data.Add(new BevelGearData("Base Diameter", ToMmFormat(_pinion.BaseDiameter), ToInchFormat(_pinion.BaseDiameter),
+                "", ToMmFormat(_gear.BaseDiameter), ToInchFormat(_gear.BaseDiameter), ""));
+            data.Add(new BevelGearData("Root Diameter", ToMmFormat(_pinion.RootDiameter),
+                ToInchFormat(_pinion.RootDiameter),
+                "", ToMmFormat(_gear.RootDiameter), ToInchFormat(_gear.RootDiameter), ""));
+            
+            data.Add(new BevelGearData("Cone Distance", ToMmFormat(_pinion.ConeDistance), ToInchFormat(_pinion.ConeDistance),
+                "", ToMmFormat(_gear.ConeDistance), ToInchFormat(_gear.ConeDistance), ""));
+            data.Add(new BevelGearData("Addendum", ToMmFormat(_pinion.Addendum), ToInchFormat(_pinion.Addendum), "",
+                ToMmFormat(_gear.Addendum), ToInchFormat(_gear.Addendum), ""));
+            data.Add(new BevelGearData("Dedendum", ToMmFormat(_pinion.Dedendum), ToInchFormat(_pinion.Dedendum), "",
+                ToMmFormat(_gear.Dedendum), ToInchFormat(_gear.Dedendum), ""));
+            data.Add(new BevelGearData("Equivalent Pitch Diameter", ToMmFormat(_pinion.EquivalentPitchDiameter),
+                ToInchFormat(_pinion.EquivalentPitchDiameter), "", ToMmFormat(_gear.EquivalentPitchDiameter),
+                ToInchFormat(_gear.EquivalentPitchDiameter), ""));
+            data.Add(new BevelGearData("Equivalent Base Diameter", ToMmFormat(_pinion.EquivalentBaseDiameter),
+                ToInchFormat(_pinion.EquivalentBaseDiameter), "", ToMmFormat(_gear.EquivalentBaseDiameter),
+                ToInchFormat(_gear.EquivalentBaseDiameter), ""));
+            data.Add(new BevelGearData("Equivalent Addendum Diameter", ToMmFormat(_pinion.EquivalentAddendumDiameter),
+                ToInchFormat(_pinion.EquivalentAddendumDiameter), "", ToMmFormat(_gear.EquivalentAddendumDiameter),
+                ToInchFormat(_gear.EquivalentAddendumDiameter), ""));
+            data.Add(new BevelGearData("Equivalent Root Diameter", ToMmFormat(_pinion.EquivalentRootDiameter),
+                ToInchFormat(_pinion.EquivalentRootDiameter), "", ToMmFormat(_gear.EquivalentRootDiameter),
+                ToInchFormat(_gear.EquivalentRootDiameter), ""));
+            data.Add(new BevelGearData("Back Cone Angle", ToDegreeFormat(_pinion.BackConeAngle), "", "",
+                ToDegreeFormat(_gear.BackConeAngle),
                 "", ""));
-            if (_pinion.GearType == BevelGearType.Gleason)
+            if (_pinion.GearType == GearStyle.BevelGleason)
             {
-                data.Add(new BevelGearData("KFactor", _pinion.KFactor.ToString("0.000"), "", "", _gear.KFactor.ToString("0.000"),
+                data.Add(new BevelGearData("KFactor", _pinion.KFactor.ToString(threeZero), "", "",
+                    _gear.KFactor.ToString(threeZero),
                     "", ""));
-                data.Add(new BevelGearData("Circular Thickness°", _pinion.CircularThicknessDegrees.ToString("0.000°"), "", "",
-                    _gear.CircularThicknessDegrees.ToString("0.000°"),
+                data.Add(new BevelGearData("Circular Thickness°", ToDegreeFormat(_pinion.CircularThicknessDegrees), "", "",
+                    ToDegreeFormat(_gear.CircularThicknessDegrees),
                     "", ""));
-                data.Add(new BevelGearData("Inter Tooth°", _pinion.InterToothDegrees.ToString("0.000°"), "", "",
-                    _gear.InterToothDegrees.ToString("0.000°"),
+                data.Add(new BevelGearData("Inter Tooth°", ToDegreeFormat(_pinion.InterToothDegrees), "", "",
+                    ToDegreeFormat(_gear.InterToothDegrees),
                     "", ""));
             }
-
+            
             return data;
         }
-
-
+        
+        
         private void StandardCalculations()
         {
             _pinion.PitchDiameter = CalculatePitchDiameter(_pinion, _gear).Item1;

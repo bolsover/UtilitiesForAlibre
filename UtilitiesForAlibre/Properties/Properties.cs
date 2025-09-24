@@ -1,202 +1,131 @@
+using System.Configuration;
+using System.Diagnostics;
+using System.Drawing;
+
 namespace UtilitiesForAlibre.Properties
 {
     public abstract class Properties
     {
-        internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+        internal sealed class Settings : ApplicationSettingsBase
         {
-            private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-            public static Settings Default
+            public static Settings Default { get; } = (Settings) Synchronized(new Settings());
+            
+            
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("Red")]
+            public Color CtrlAltShiftColor
             {
-                get
-                {
-                    return defaultInstance;
-                }
+                get => (Color) this["CtrlAltShiftColor"];
+                set => this["CtrlAltShiftColor"] = value;
             }
             
-          
-
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Red")]
-            public global::System.Drawing.Color CtrlAltShiftColor
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("Gold")]
+            public Color CtrlShiftColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["CtrlAltShiftColor"]));
-                }
-                set
-                {
-                    this["CtrlAltShiftColor"] = value;
-                }
+                get => (Color) this["CtrlShiftColor"];
+                set => this["CtrlShiftColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Gold")]
-            public global::System.Drawing.Color CtrlShiftColor
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("Orange")]
+            public Color CtrlAltColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["CtrlShiftColor"]));
-                }
-                set
-                {
-                    this["CtrlShiftColor"] = value;
-                }
+                get => (Color) this["CtrlAltColor"];
+                set => this["CtrlAltColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Orange")]
-            public global::System.Drawing.Color CtrlAltColor
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("Chartreuse")]
+            public Color AltShiftColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["CtrlAltColor"]));
-                }
-                set
-                {
-                    this["CtrlAltColor"] = value;
-                }
+                get => (Color) this["AltShiftColor"];
+                set => this["AltShiftColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Chartreuse")]
-            public global::System.Drawing.Color AltShiftColor
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("CornflowerBlue")]
+            public Color CtrlColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["AltShiftColor"]));
-                }
-                set
-                {
-                    this["AltShiftColor"] = value;
-                }
+                get => (Color) this["CtrlColor"];
+                set => this["CtrlColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("CornflowerBlue")]
-            public global::System.Drawing.Color CtrlColor
+            [UserScopedSetting]
+           
+            [DefaultSettingValue("MediumOrchid")]
+            public Color AltColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["CtrlColor"]));
-                }
-                set
-                {
-                    this["CtrlColor"] = value;
-                }
-            } 
+                get => (Color) this["AltColor"];
+                set => this["AltColor"] = value;
+            }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("MediumOrchid")]
-            public global::System.Drawing.Color AltColor
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("Violet")]
+            public Color ShiftColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["AltColor"]));
-                }
-                set
-                {
-                    this["AltColor"] = value;
-                }
+                get => (Color) this["ShiftColor"];
+                set => this["ShiftColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Violet")]
-            public global::System.Drawing.Color ShiftColor
+            [UserScopedSetting]
+           
+            [DefaultSettingValue("Bisque")]
+            public Color NoModifierColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["ShiftColor"]));
-                }
-                set
-                {
-                    this["ShiftColor"] = value;
-                }
+                get => (Color) this["NoModifierColor"];
+                set => this["NoModifierColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Bisque")]
-            public global::System.Drawing.Color NoModifierColor
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("Bisque")]
+            public Color ModifierKeyColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["NoModifierColor"]));
-                }
-                set
-                {
-                    this["NoModifierColor"] = value;
-                }
+                get => (Color) this["ModifierKeyColor"];
+                set => this["ModifierKeyColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Bisque")]
-            public global::System.Drawing.Color ModifierKeyColor
+            [UserScopedSetting]
+           
+            [DefaultSettingValue("Black")]
+            public Color TextColor
             {
-                get
-                {
-                    return ((global::System.Drawing.Color)(this["ModifierKeyColor"]));
-                }
-                set
-                {
-                    this["ModifierKeyColor"] = value;
-                }
+                get => (Color) this["TextColor"];
+                set => this["TextColor"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("Black")]
-            public global::System.Drawing.Color TextColor {
-                get {
-                    return ((global::System.Drawing.Color)(this["TextColor"]));
-                }
-                set {
-                    this["TextColor"] = value;
-                }
-            }
-        
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("9")]
-            public short KeyTextSize {
-                get {
-                    return ((short)(this["KeyTextSize"]));
-                }
-                set {
-                    this["KeyTextSize"] = value;
-                }
+            [UserScopedSetting]
+           
+            [DefaultSettingValue("9")]
+            public short KeyTextSize
+            {
+                get => (short) this["KeyTextSize"];
+                set => this["KeyTextSize"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("0.6")]
-            public double AlibreIcon {
-                get {
-                    return ((double)(this["AlibreIcon"]));
-                }
-                set {
-                    this["AlibreIcon"] = value;
-                }
+            [UserScopedSetting]
+           
+            [DefaultSettingValue("1.0")]
+            public double AlibreIcon
+            {
+                get => (double) this["AlibreIcon"];
+                set => this["AlibreIcon"] = value;
             }
             
-            [global::System.Configuration.UserScopedSettingAttribute()]
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.Configuration.DefaultSettingValueAttribute("13")]
-            public short HintTextSize {
-                get {
-                    return ((short)(this["HintTextSize"]));
-                }
-                set {
-                    this["HintTextSize"] = value;
-                }
+            [UserScopedSetting]
+            
+            [DefaultSettingValue("13")]
+            public short HintTextSize
+            {
+                get => (short) this["HintTextSize"];
+                set => this["HintTextSize"] = value;
             }
         }
     }

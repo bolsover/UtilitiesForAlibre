@@ -7,8 +7,8 @@ namespace Bolsover.Bevel.Views
     {
         IBevelGear Pinion { get; set; }
         IBevelGear Gear { get; set; }
-
-
+        
+        
         event EventHandler BuildPinionEvent;
         event EventHandler BuildGearEvent;
         event EventHandler CancelEvent;

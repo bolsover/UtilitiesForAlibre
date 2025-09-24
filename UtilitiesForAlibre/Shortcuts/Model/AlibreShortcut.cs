@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
-using System.Drawing.Imaging;
-using UtilitiesForAlibre.Properties;
 using DevExpress.Utils.Svg;
+using UtilitiesForAlibre.Properties;
 
 namespace Bolsover.Shortcuts.Model
 {
@@ -17,7 +16,7 @@ namespace Bolsover.Shortcuts.Model
             KeyChar = keyChar;
             CalcNonModifierCodeAndType();
         }
-
+        
         // Properties of the Shortcut class
         public string Profile { get; set; }
         public string Command { get; set; }
@@ -31,28 +30,28 @@ namespace Bolsover.Shortcuts.Model
             get => Command + "\r\n" + Hint + "\r\n" + KeyChar;
         }
         
-         public SvgImage SvgImage { get; set; }
-
+        public SvgImage SvgImage { get; set; }
+        
         public ShortcutModifierType ShortcutModifierType { get; set; }
         
         public int NonModifierCode { get; set; }
-
+        
         public override string ToString()
         {
             return $"{KeyChar} - {Hint}";
         }
-
+        
         public Image SvgToIcon()
         {
             if (SvgImage == null) return null;
             var source = SvgBitmap.Create(SvgImage);
             var img = source.Render(null, Properties.Settings.Default.AlibreIcon);
-           return img;
+            return img;
         }
-
+        
         /// <summary>
-        /// This method is used to calculate non-modifier code from the given code.
-        /// It also sets the shortcutModifierType based on the given code.
+        ///     This method is used to calculate non-modifier code from the given code.
+        ///     It also sets the shortcutModifierType based on the given code.
         /// </summary>
         /// <param name="code">The code to get the non-modifier code from.</param>
         /// <param name="shortcutModifierType">The shortcut modifier type to be set.</param>
@@ -64,20 +63,20 @@ namespace Bolsover.Shortcuts.Model
             const int ctrl = 131072;
             const int shift = 65536;
             
-            int code = Keycode;
-
-            bool isMeta = SubtractIfGreater(ref code, meta);
-            bool isAlt = SubtractIfGreater(ref code, alt);
-            bool isCtrl = SubtractIfGreater(ref code, ctrl);
-            bool isShift = SubtractIfGreater(ref code, shift);
-
+            var code = Keycode;
+            
+            var isMeta = SubtractIfGreater(ref code, meta);
+            var isAlt = SubtractIfGreater(ref code, alt);
+            var isCtrl = SubtractIfGreater(ref code, ctrl);
+            var isShift = SubtractIfGreater(ref code, shift);
+            
             ShortcutModifierType = DetermineShortcutModifierType(isMeta, isCtrl, isAlt, isShift);
             NonModifierCode = code;
-          }
+        }
         
         
         /// <summary>
-        /// This method is used to subtract a value from the code if the code is greater than or equal to the value.
+        ///     This method is used to subtract a value from the code if the code is greater than or equal to the value.
         /// </summary>
         /// <param name="code">The code to subtract from.</param>
         /// <param name="value">The value to subtract.</param>
@@ -89,11 +88,12 @@ namespace Bolsover.Shortcuts.Model
                 code -= value;
                 return true;
             }
+            
             return false;
         }
         
         /// <summary>
-        /// This method is used to determine the shortcut modifier type based on the given boolean flags.
+        ///     This method is used to determine the shortcut modifier type based on the given boolean flags.
         /// </summary>
         /// <param name="isMeta">Flag indicating if the meta key was pressed.</param>
         /// <param name="isCtrl">Flag indicating if the control key was pressed.</param>
@@ -110,10 +110,11 @@ namespace Bolsover.Shortcuts.Model
             if (isCtrl) return ShortcutModifierType.Ctrl;
             if (isAlt) return ShortcutModifierType.Alt;
             if (isShift) return ShortcutModifierType.Shift;
-
+            
             return ShortcutModifierType.None;
         }
     }
+    
     public enum ShortcutType
     {
         Custom,
@@ -132,6 +133,5 @@ namespace Bolsover.Shortcuts.Model
         AltShift,
         CtrlAltShift,
         Meta
-     
     }
 }

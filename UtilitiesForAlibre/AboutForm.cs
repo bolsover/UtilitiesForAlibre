@@ -18,12 +18,12 @@ namespace Bolsover
                 ? ""
                 : ((AssemblyCopyrightAttribute) customAttributes[0]).Copyright;
         }
-
+        
         private void closeButton_Click(object sender, EventArgs e)
         {
             Dispose();
         }
-
+        
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var sInfo = new ProcessStartInfo("http://bolsover.com/utilitiesforalibre/utilities-for-alibre.html");

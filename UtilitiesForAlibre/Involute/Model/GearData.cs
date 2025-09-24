@@ -2,51 +2,23 @@
 {
     public class GearData
     {
-        private string _item;
-        private string _metricValue;
-        
-        private string _imperialValue;
-        private string _note;
-        private bool _isError;
-        
         public GearData(string item, string metricValue, string imperialValue, string note, bool isError)
         {
-            _item = item;
-            _metricValue = metricValue;
-            _imperialValue = imperialValue;
-            _note = note;
-            _isError = isError;
-        }
-
-        public string Item
-        {
-            get => _item;
-            set => _item = value;
+            Item = item;
+            MetricValue = metricValue;
+            ImperialValue = imperialValue;
+            Note = note;
+            IsError = isError;
         }
         
-        public string MetricValue
-        {
-            get => _metricValue;
-            set => _metricValue = value;
-        }
+        public string Item { get; set; }
         
-        public string ImperialValue
-        {
-            get => _imperialValue;
-            set => _imperialValue = value;
-        }
+        public string MetricValue { get; set; }
         
-        public string Note
-        {
-            get => _note;
-            set => _note = value;
-        }
+        public string ImperialValue { get; set; }
         
-        public bool IsError
-        {
-            get => _isError;
-            set => _isError = value;
-        }
+        public string Note { get; set; }
         
+        public bool IsError { get; set; }
     }
 }

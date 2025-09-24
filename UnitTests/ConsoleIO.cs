@@ -8,7 +8,7 @@ namespace UnitTests
         {
             Console.WriteLine(s);
         }
-
+        
         public string ReadLine()
         {
             return Console.ReadLine()!;

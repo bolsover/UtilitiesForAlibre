@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Steps In Worm Gear Design" id="Steps-In-Worm-Gear-Design">
+
+    <p> Worm gears are generally used to connect skew shafts usually at 90°. Worm gears are offer high velocity ratios
+        and higher load capacity than point contact crossed helical gears.
+    </p>
+    <p> The axial pitch of the worm and the circular pitch of the gear must be same for a mating worm and gear.
+        The module of the worm and gear must be equal for correct mating of worm and gear.
+    </p>
+    <p> Assuming there is a 5:1 speed ratio between worm and gear,  we have to find out:</p>
+        <list type="bullet">
+            <li>Module <i><include from="Snippets.topic" element-id="m_x"></include></i></li>
+            <li> Number of Threads of Worm <i><include from="Snippets.topic" element-id="z_1"></include></i></li>
+            <li>Number of Teeth of Gear <i><include from="Snippets.topic" element-id="z_2"></include></i></li>
+            <li>Pitch circle diameter of Worm <i><include from="Snippets.topic" element-id="d_1"></include></i></li>
+            <li>Pitch circle diameter of Gear <i><include from="Snippets.topic" element-id="d_2"></include></i></li>
+            <li>Centre to centre distance <i><include from="Snippets.topic" element-id="a_x"></include></i></li>
+        </list>
+
+
+
+
+    <p> Selection of an appropriate module is beyond the scope of this guide but a larger module will have the capacity
+        to transmit more power. The following module sizes are specified by AGMA (American Gear Manufacturers Association).
+    </p>
+    <table>
+        <tr>
+            <td>Module m (in MM)</td>
+            <td>Pitch P (in MM)</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>6.238</td>
+        </tr>
+        <tr>
+            <td>2.5</td>
+            <td>7.854</td>
+        </tr>
+        <tr>
+            <td>3.15</td>
+            <td>9.896</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>12.566</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>15.708</td>
+        </tr>
+        <tr>
+            <td>6.3</td>
+            <td>19.792</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>25.133</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>31.416</td>
+        </tr>
+        <tr>
+            <td>12.5</td>
+            <td>39.27</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>50.625</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>62.832</td>
+        </tr>
+    </table>
+
+    <p> Say, we are going ahead with the Module as 2 and the Pitch as 6.238.
+
+    </p>
+    <p> Use the following gear design equation:
+
+    </p>
+    <p> N1/N2 = T2/T1
+
+    </p>
+    <p> And, we will get:
+    </p>
+    <p> T2 = 5 * T1……………….Eqn.1
+
+    </p>
+    <p> Now use the following AGMA empirical formula:
+    </p>
+    <p> T1 + T2 > 40………………Eqn.2
+
+    </p>
+    <p> By using the two equations (Eqn.1 &amp; Eqn.2), we will get the approximate values of
+    </p>
+    <p> T1 = 7 and T2 = 35
+
+    </p>
+    <p> Calculate the pitch circle diameter of the worm (D1) by using the below AGMA empirical formula:
+    </p>
+    <p> D1 = 2.4 P + 1.1 = 16.0712 mm
+
+    </p>
+    <p> The following AGMA empirical formula to be used for calculating the pitch circle diameter of the gear (D2):
+        D2 = T2*P/3.14 = 69.53185 mm
+    </p>
+    <p>
+        Now, we can calculate the centre to centre distance (C) by the following equation:
+        C = (D1 + D2)/2 = 42.80152 mm
+    </p>
+    <p>
+        The below empirical formula is the cross check for the correctness of the whole design calculation:
+        (C^0.875)/2 &lt;= D1 &gt;= (C^0.875)/1.07
+    </p>
+    <p>
+        Observe that our D1 value is falling in the range.
+    </p>
+
+    <p>Worm and WormGear Design Equations and Calculator</p>
+
+
+    <p>Gears Engineering and Design</p>
+
+    <p>Equations for American Standard Fine Pitch Worms and Wormgears Per. ANSI B6.9</p>
+    <p>This standard is intended as a design procedure for fine-pitch worms and wormgears having axes at right angles.
+        It covers cylindrical worms with helical threads, and wormgears hobbed for fully conjugate tooth surfaces. It
+        does not cover helical gears used as wormgears.
+    </p>
+    <p>
+        Hobs: The hob for producing the gear is a duplicate of the mating worm with regard to tooth profile, number of
+        threads, and lead. The hob differs from the worm principally in that the outside diameter of the hob is larger
+        to allow for resharpening and to provide bottom clearance in the wormgear.
+    </p>
+    <p>
+        Pitches: Eight standard axial pitches have been established to provide adequate coverage of the pitch range
+        normally required: 0.030, 0.040, 0.050, 0.065, 0.080, 0.100, 0.130, and 0.160 inch.
+    </p>
+    <p>
+        Axial pitch is used as a basis for this design standard because: 1) Axial pitch establishes lead which is a
+        basic dimension in the production and inspection of worms; 2) the axial pitch of the worm is equal to the
+        circular pitch of the gear in the central plane; and 3) only one set of change gears or one master lead cam is
+        required for a given lead, regardless of lead angle, on commonly-used worm-producing equipment.
+    </p>
+    <p>
+        Lead Angles: Fifteen standard lead angles have been established to provide adequate coverage: 0.5, 1, 1.5, 2, 3,
+        4, 5, 7, 9, 11, 14, 17, 21, 25, and 30 degrees.
+    </p>
+    <p>
+        This series of lead angles has been standardized to: 1) Minimize tooling; 2) permit obtaining geometric
+        similarity between worms of different axial pitch by keeping the same lead angle; and 3) take into account the
+        production distribution found in fine-pitch worm gearing applications.
+    </p>
+    <p>
+        For example, most fine-pitch worms have either one or two threads. This requires smaller increments at the low
+        end of the lead angle series. For the less frequently used thread numbers, proportionately greater increments at
+        the high end of the lead angle series are sufficient.
+    </p>
+    <p>
+        Pressure Angle of Worm: A pressure angle of 20 degrees has been selected as standard for cutters and grinding
+        wheels used to produce worms within the scope of this Standard because it avoids objectionable undercutting
+        regardless of lead angle.
+    </p>
+    <p>1) Axial pitch establisheslead which is a basic dimension in the production and inspection of worms;
+        2) The axialpitch of the worm is equal to the circular pitch of the gear in the central plane; and
+        3) Only one set of change gears or one master lead cam is required for a given lead, regardless oflead angle, on
+        commonly-used worm-producing equipment.</p>
+
+    <p>Worm Dimensions Equations (All dimensions are in inches unless otherwise specified).</p>
+
+
+    <p>Lead l = nP<sub>x</sub></p>
+
+    <p>Pitch Diameter d = 1 / ( π tan λ )</p>
+
+    <p>Outside Diameter d<sub>o</sub> = d + 2a</p>
+
+    <p>F<sub>W</sub> = [ D<sub>o</sub><sup>2</sup> - D<sup>2</sup> ] <sup>1/2</sup></p>
+
+    <p>Wormgear Dimensions Equations</p>
+
+    <p>Pitch Diameter
+        D = NP / π = N Π<sub>ε</sub> / π</p>
+
+    <p>Outside Diameter
+        D <sub>o</sub> = 2C - d / (2a)</p>
+
+    <p>Face Width
+        F<sub>Gmin</sub> = 1.125 • [ ( d<sub>o</sub> + 2c)<sup>2</sup> - ( d<sub>o</sub> - 4a)<sup>2</sup>
+        ]<sup>1/2</sup></p>
+
+    <p>Dimensions Worm and Wormgear</p>
+
+    <p>Addendum
+        a = 0.3183P<sub>n</sub></p>
+
+    <p>Whole Depth
+        h<sub>t</sub> = 0.7003P<sub>n</sub> + 0.002</p>
+
+    <p>Working Depth Clearance
+        c = h<sub>t</sub> - h<sub>k</sub></p>
+
+    <p>Tooth Thichness
+        t<sub>n</sub> = 0.5P<sub>n</sub></p>
+
+    <p>Normal Pressure Angle (Approx.)
+        Φ<sub>n</sub> = 20°</p>
+
+    <p>Center Distance
+        C = 0.5 • (d + D)</p>
+
+    <!-- Content End --><p></p>
+    <p>
+        All dimensions in inches unless otherwise indicated.
+    </p>
+    <p>
+        a Current practice for fine-pitch worm gearing does not require the use of throated blanks. This results in the
+        much simpler blank shown in the diagram which is quite similar to that for a spur or helical gear. The slight
+        loss in contact resulting from the use of non-throated blanks has little effect on the load-carrying capacity of
+        fine-pitch worm gears. It is sometimes desirable to use topping hobs for producing wormgears in which the size
+        relation between the outside and pitch diameters must be closely controlled. In such cases the blank is made
+        slightly larger than Do by an amount (usually from 0.010 to 0.020) depending on the pitch. Topped wormgears will
+        appear to have a small throat which is the result of the hobbing operation. For all intents and purposes, the
+        throating is negligible and a blank so made is not to be considered as being a throated blank.
+    </p>
+    <p>
+        b This formula allows a sufficient length for fine-pitch worms.
+    </p>
+    <p>
+        c As stated in the text on page 2207, the actual pressure angle will be slightly greater due to the
+        manufacturing process.
+    </p>
+    <p>
+        Although the pressure angle of the cutter or grinding wheel used to produce the worm is 20 degrees, the normal
+        pressure angle produced in the worm will actually be slightly greater, and will vary with the worm diameter,
+        lead angle, and diameter of cutter or grinding wheel. A method for calculating the pressure angle change is
+        given under the heading Effect of Production Method on Worm Profile and Pressure Angle.
+    </p>
+    <p>
+        Pitch Diameter Range of Worms: The minimum recommended worm pitch diameter is 0.250 inch and the maximum is
+        2.000 inches.
+    </p>
+    <p>
+        Tooth Form of Worm and Wormgear: The shape of the worm thread in the normal plane is defined as that which is
+        produced by a symmetrical double-conical cutter or grinding wheel having straight elements and an included angle
+        of 40 degrees.
+    </p>
+    <p>
+        Because worms and wormgears are closely related to their method of manufacture, it is impossible to specify
+        clearly the tooth form of the wormgear without referring to the mating worm. For this reason, worm
+        specifications should include the method of manufacture and the diameter of cutter or grinding wheel used.
+        Similarly, for determining the shape of the generating tool, information about the method of producing the worm
+        threads must be given to the manufacturer if the tools are to be designed correctly.
+    </p>
+    <p>
+        The worm profile will be a curve that departs from a straight line by varying amounts, depending on the worm
+        diameter, lead angle, and the cutter or grinding wheel diameter. A method for calculating this deviation is
+        given in the Standard. The tooth form of the wormgear is understood to be made fully conjugate to the mating
+        worm thread.
+    </p>
+    <p>
+        Effect of Diameter of Cutting on Profile and Pressure Angle of Worms
+    </p>
+    <p>
+        FullHD_2.jpg - a few seconds ago
+        Effect of Production Method on Worm Profile and Pressure Angle
+        In worm gearing, tooth bearing is usually used as the means of judging tooth profile accuracy since direct
+        profile measurements on fine-pitch worms or wormgears is not practical. According to AGMA 370.01, Design Manual
+        for Fine-Pitch Gearing, a minimum of 50 percent initial area of contact is suitable for most fine-pitch worm
+        gearing, although in some cases, such as when the load fluctuates widely, a more restricted initial area of
+        contact may be desirable.
+    </p>
+    <p>
+        Except where single-pointed lathe tools, end mills, or cutters of special shape are used in the manufacture of
+        worms, the pressure angle and profile produced by the cutter are different from those of the cutter itself. The
+        amounts of these differences depend on several factors, namely, diameter and lead angle of the worm, thickness
+        and depth of the worm thread, and diameter of the cutter or grinding wheel. The accompanying diagram shows the
+        curvature and pressure angle effects produced in the worm by cutters and grinding wheels, and how the amount of
+        variation in worm profile and pressure angle is influenced by the diameter of the cutting tool used.
+    </p>
+    <p>
+        Materials for Worm Gearing</p>
+    <p>
+        Worm gearing, especially for power transmission, should have steel worms and phosphor bronze wormgears. This
+        combination is used extensively. The worms should be hardened and ground to obtain accuracy and a smooth finish.
+    </p>
+    <p>
+        The phosphor bronze wormgears should contain from 10 to 12 percent of tin. The S.A.E. phosphor gear bronze (No.
+        65) contains 88-90% copper, 10-12% tin, 0.50% lead, 0.50% zinc (but with a maximum total lead, zinc and nickel
+        content of 1.0 percent), phosphorous 0.10-0.30%, aluminum 0.005%. The S.A.E. nickel phosphor gear bronze (No. 65
+        + Ni) contains 87% copper, 11% tin, 2% nickel and 0.2% phosphorous.
+    </p>
+    <p>
+        Single-thread Worm Gears</p>
+    <p>
+        The ratio of the worm speed to the wormgear speed may range from 1.5 or even less up to 100 or more. Worm
+        gearing having high ratios are not very efficient as transmitters of power; nevertheless high as well as low
+        ratios often are required. Since the ratio equals the number of wormgear teeth divided by the number of threads
+        or “starts” on the worm, single-thread worms are used to obtain a high ratio. As a general rule, a ratio of 50
+        is about the maximum recommended for a single worm and wormgear combination, although ratios up to 100 or higher
+        are possible. When a high ratio is required, it may be preferable to use, in combination, two sets of worm
+        gearing of the multi-thread type in preference to one set of the single-thread type in order to obtain the same
+        total reduction and a higher combined efficiency.
+    </p>
+    <p>
+        Single-thread worms are comparatively inefficient because of the effect of the low lead angle; consequently,
+        single-thread worms are not used when the primary purpose is to transmit power as efficiently as possible but
+        they may be employed either when a large speed reduction with one set of gearing is necessary, or possibly as a
+        means of adjustment, especially if “mechanical advantage” or self-locking are important factors.
+    </p>
+    <p>
+        Multi-thread Worm Gears</p>
+    <p>
+        When worm gearing is designed primarily for transmitting power efficiently, the lead angle of the worm should be
+        as high as is consistent with other requirements and preferably between, say, 25 or 30 and 45 degrees. This
+        means that the worm must be multi-threaded. To obtain a given ratio, some number of wormgear teeth divided by
+        some number of worm threads must equal the ratio. Thus, if the ratio is 6, combinations such as the following
+        might be used:
+    </p>
+    <p>
+
+        The numerators represent numbers of wormgear teeth and the denominators, the number of worm threads or “starts.”
+        The number of wormgear teeth may not be an exact multiple of the number of threads on a multi-thread worm in
+        order to obtain a “hunting tooth” action.
+    </p>
+    <p>
+        Number of Threads or “Starts” on Worm: The number of threads on the worm ordinarily varies from one to six or
+        eight, depending upon the ratio of the gearing. As the ratio is increased, the number of worm threads is
+        reduced, as a general rule. In some cases, however, the higher of two ratios may also have a larger number of
+        threads. For example, a ratio of 6 1⁄5 would have 5 threads whereas a ratio of 6 5⁄6 would have 6 threads.
+        Whenever the ratio is fractional, the number of threads on the worm equals the denominator of the fractional
+        part of the ratio.
+    </p>
+    <p>
+        Worm-Gear Cutting</p>
+    <p>
+        The machines used for cutting worm-gears include ordinary milling machines, gear-hobbing machines of the type
+        adapted to cutting either spur, spiral, or worm gearing, and special machines designed expressly for cutting
+        worm-gears. The general methods employed are (1) cutting by using a straight hob and a radial feeding movement
+        between hob and gear blank; (2) cutting by feeding a fly cutter tangentially with relation to the worm gear
+        blank; and (3) cutting by feeding a tapering hob tangentially. The fly-cutter method is slow as compared with
+        hobbing but it has two decided advantages: First, a very simple and inexpensive cutter may be used instead of an
+        expensive hob. This is of great importance when the number of worm-gears is not large enough to warrant making a
+        hob. Second, with the fly-cutter method, it is possible to produce worm-gears having more accurate teeth than
+        are obtainable by the use of a straight hob. Taper hobs are especially adapted for cutting worm-gears that are
+        to mesh with worms having large helix angles; they are also preferable for worm-gears having large face widths
+        in proportion to the worm diameter. Worm-gear teeth are generated more accurately with a taper hob than with a
+        straight hob that is given a radial feeding movement.
+    </p>
+
+</topic>

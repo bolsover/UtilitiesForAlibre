@@ -16,52 +16,58 @@ namespace Bolsover.Involute.Builder
             var session = InitAlibreFile(tempFile);
             Calculate(session, tooth, gear);
         }
-
+        
         private static void Calculate(IADDesignSession session, Tooth tooth, IGearDesignOutputParams gear)
         {
-            if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
-                ExternalSpurGearBuilder.Build(session, tooth, gear);
-            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
-                ExternalHelicalGearBuilder.Build(session, tooth, gear);
-            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
-                InternalSpurGearBuilder.Build(session, tooth, gear);
-            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Internal) && gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
-                InternalHelicalGearBuilder.Build(session, tooth, gear);
-            // else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
-            //     CalculateStraightRackGear(Model);
-            // else if (Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) && Gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
-            //     CalculateHelicalRackGear(Model);
+            if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) &&
+                gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
+                _ = ExternalSpurGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.External) &&
+                     gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
+                _ = ExternalHelicalGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Intern) &&
+                     gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
+                _ = InternalSpurGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Intern) &&
+                     gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
+                _ = InternalHelicalGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) &&
+                     gear.GearDesignInputParams.Style.HasFlag(GearStyle.Spur))
+                _ = ExternalSpurGearBuilder.Build(session, tooth, gear);
+            else if (gear.GearDesignInputParams.Style.HasFlag(GearStyle.Rack) &&
+                     gear.GearDesignInputParams.Style.HasFlag(GearStyle.Helical))
+                _ = ExternalHelicalGearBuilder.Build(session, tooth, gear);
             else
                 throw new ArgumentException("Gear style not recognised");
         }
-
-        private static string GetAlibreFilePath(string SaveFile, string Template)
+        
+        private static string GetAlibreFilePath(string saveFile, string template)
         {
             var filePath = Globals.InstallPath;
-            var tempFile = Path.Combine(Path.GetTempPath(), SaveFile);
+            var tempFile = Path.Combine(Path.GetTempPath(), saveFile);
             var tempFileInfo = new FileInfo(tempFile);
             if (tempFileInfo.Exists && IsFileLocked(tempFileInfo))
             {
-                MessageBox.Show($"Temporary file {SaveFile} is currently open. \nPlease save-as or discard.", "Oops");
+                MessageBox.Show($"Temporary file {saveFile} is currently open. \nPlease save-as or discard.", @"Oops");
                 return null;
             }
-
+            
             if (filePath != null)
             {
-                filePath += "\\Gear\\" + Template;
+                filePath += "\\Gear\\" + template;
             }
-
-            File.Copy(filePath, tempFile, true);
+            
+            if (filePath != null) File.Copy(filePath, tempFile, true);
             return tempFile;
         }
-
+        
         private static IADDesignSession InitAlibreFile(string filePath)
         {
             var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
             var session = (IADDesignSession) root.OpenFileEx(filePath, true);
             return session;
         }
-
+        
         private static bool IsFileLocked(FileInfo file)
         {
             try
@@ -77,11 +83,11 @@ namespace Bolsover.Involute.Builder
                 //or does not exist (has already been processed)
                 return true;
             }
-
+            
             //file is not locked
             return false;
         }
-
+        
         protected static IADSketchCircle AddScaledCircle(IADSketch sketch, GearPoint centre, double diameter, double scale,
             bool isReference)
         {
@@ -89,12 +95,12 @@ namespace Bolsover.Involute.Builder
             circle.IsReference = isReference;
             return circle;
         }
-
+        
         protected static IADSketchLine AddScaledLine(IADSketch sketch, GearPoint start, GearPoint end, double scale)
         {
             return sketch.Figures.AddLine(start.X * scale, start.Y * scale, end.X * scale, end.Y * scale);
         }
-
+        
         protected static IADSketchCircularArc AddScaledCircularArcByCenterStartEnd(IADSketch sketch, GearPoint centre,
             GearPoint start,
             GearPoint end, double scale)
@@ -112,12 +118,12 @@ namespace Bolsover.Involute.Builder
                 start.X * scale, start.Y * scale, end.X * scale,
                 end.Y * scale);
         }
-
+        
         protected static IADSketchPoint AddScaledPoint(IADSketch sketch, GearPoint point, double scale)
         {
             return sketch.Figures.AddSketchPoint(point.X * scale, point.Y * scale);
         }
-
+        
         protected static IADSketchBspline AddScaledBsplineByInterpolation(IADSketch sketch, List<GearPoint> points,
             double scale)
         {
@@ -128,7 +134,7 @@ namespace Bolsover.Involute.Builder
                 interpolationPoints.SetValue(point.X * scale, j++);
                 interpolationPoints.SetValue(point.Y * scale, j++);
             }
-
+            
             return sketch.Figures.AddBsplineByInterpolation(ref interpolationPoints);
         }
     }

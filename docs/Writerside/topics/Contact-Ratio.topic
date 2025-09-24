@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Contact Ratio" id="Contact-Ratio">
+    <link-summary>Equations for the calculation of Contact Ratio</link-summary>
+
+    <note>In the formulae given below, the total contact ratio <i>
+        <include from="Snippets.topic" element-id="epsilon_gamma"/>
+    </i>
+        is given whereas for helical gear types the formula for radial contact ratio <i>
+            <include from="Snippets.topic" element-id="epsilon_alpha"/>
+        </i>
+        is given. For helical gear types it is necessary to add the axial contact ratio <i>
+            <include from="Snippets.topic" element-id="epsilon_beta"/>
+        </i> to obtain the total contact ratio.
+    </note>
+    <table style="both">
+        <tr>
+            <td colspan="2">Type of gear system</td>
+            <td>Formula</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Spur Gear Pair</td>
+            <td>Pinion 1</td>
+            <td rowspan="2">
+                <include from="Snippets.topic" element-id="contact_ratio_spur_gear_pair"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Gear 2</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Spur Gear Pair</td>
+            <td>Pinion 1</td>
+            <td rowspan="2">
+                <include from="Snippets.topic" element-id="contact_ratio_int_ext_spur_gear_pair"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Internal Gear 2</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Helical Gear Pair</td>
+            <td>Pinion 1</td>
+            <td rowspan="2">
+                <include from="Snippets.topic" element-id="contact_ratio_helical_gear_pair_alpha"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Gear 2</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Helical Gear Pair</td>
+            <td>Pinion 1</td>
+            <td rowspan="2">
+                <include from="Snippets.topic" element-id="contact_ratio_int_ext_helical_gear_pair_alpha"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Internal Gear 2</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Spur Gear and Rack</td>
+            <td>Gear 1</td>
+            <td rowspan="2">
+                <code-block lang="tex">
+                    \begin{equation} \frac{\sqrt{\left(\frac{d_{a1}}{2} \right)^{2} - \left(\frac{d_{b1}}{2}
+                    \right)^{2}}
+                    + \sqrt{\left(\frac{d_{a2}}{2} \right)^{2} - \left(\frac{d_{b2}}{2} \right)^{2}} - a_{x} \cdot
+                    sin\alpha_{w}}{\pi\cdot m\cdot
+                    cos\alpha} \end{equation}
+                </code-block>
+            </td>
+        </tr>
+        <tr>
+            <td>Rack 2</td>
+        </tr>
+    </table>
+</topic>

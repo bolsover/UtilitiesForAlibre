@@ -1,17 +1,17 @@
 ﻿using Bolsover.Bevel.Calculator;
-using MathNet.Numerics.LinearAlgebra;
 using NUnit.Framework;
 
 namespace UnitTests
 {
     public class KFactorTests
     {
-        private ConsoleIO io = new();
+        private readonly ConsoleIO io = new();
+        
         [Test]
         public void TestKFactor()
         {
-            var kfc = new Bolsover.Bevel.Calculator.KfactorCalculator();
-            Vector<double> result = kfc.Calculate();
+            var kfc = new KFactorCalculator();
+            var result = kfc.Calculate();
             io.WriteLine(result.ToString());
         }
         
@@ -19,19 +19,16 @@ namespace UnitTests
         [Test]
         public void TestKFactor2()
         {
-            var kfc = new Bolsover.Bevel.Calculator.KfactorCalculator();
-            double result = kfc.TestKFactor(0.14);
+            var kfc = new KFactorCalculator();
+            var result = kfc.TestKFactor(0.14);
             io.WriteLine(result.ToString());
         }
         
-       [ Test]
+        [Test]
         public void TestKFactor3()
         {
-         
-            double result = KFactorDictionary.GetKFactor(16, 0.3);
+            var result = KFactorDictionary.GetKFactor(16, 0.3);
             io.WriteLine(result.ToString());
         }
-        
-        
     }
 }

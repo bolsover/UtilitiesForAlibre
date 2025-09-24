@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       id="Snippets" title="Snippets" is-library="true">
+
+    <title id="snippets">
+        Snippets
+    </title>
+
+    <snippet id="m">
+        <math>
+            \begin{equation} m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="tenm">
+        <math>
+            \begin{equation} 10m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="b">
+        <math>
+            \begin{equation} b \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="m_n">
+        <math>
+            \begin{equation} m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="m_t">
+        <math>
+            \begin{equation} m_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RadialModuleFormula">
+        <math>
+            \begin{equation} \frac{ m_{n}}{cos\beta} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="m_x">
+        <math>
+            \begin{equation} m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="P">
+        <math>
+            \begin{equation} P \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="P_x">
+        <math>
+            \begin{equation} P_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="m2P">
+        <math>
+            \begin{equation} \pi m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule1">
+    <math>  \begin{equation} 2.4 P_{x} + 1.1 \end{equation} </math>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule2">
+        <math>  \begin{equation} 2a_{x} - d_{2} \end{equation} </math>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule3">
+        <math>  \begin{equation} L \frac{cot\gamma}{\pi} \end{equation} </math>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule4">
+        <math>  \begin{equation} \frac{2a_{x}}{ 1+ \left(\frac{z_{2}}{z_{1}} tan\gamma \right) } \end{equation} </math>
+    </snippet>
+
+    <snippet id="worm_pitch_diameter">
+        <math>
+            \begin{equation} Q m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_gear_pitch_diameter">
+        <math>
+            \begin{equation} z_{2} m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="epsilon_alpha">
+        <math>
+            \begin{equation} \epsilon_{\alpha} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="epsilon_beta">
+        <math>
+            \begin{equation} \epsilon_{\beta} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="epsilon_gamma">
+        <math>
+            \begin{equation} \epsilon_{\gamma} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="epsilon_gamma_formula">
+        <math>
+            \begin{equation}  \epsilon_{\alpha} + \epsilon_{\beta} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="contact_ratio_spur_gear_pair">
+        <math>
+            \begin{equation} \epsilon_{\gamma}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} +
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} -
+            a_{x} \cdot sin \alpha_{w}}{\pi \cdot m \cdot cos\alpha}
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="contact_ratio_int_ext_spur_gear_pair">
+        <math>
+            \begin{equation} \epsilon_{\gamma}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} -
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} +
+            a_{x} \cdot sin \alpha_{w}}{\pi \cdot m \cdot cos\alpha}
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="contact_ratio_int_ext_helical_gear_pair_alpha">
+        <math>
+            \begin{equation} \epsilon_{\alpha}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} -
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} +
+            a_{x} \cdot sin \alpha_{wt}}{\pi \cdot m_{t} \cdot cos\alpha_{t}}
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="contact_ratio_helical_gear_pair_alpha">
+        <math>
+            \begin{equation} \epsilon_{\alpha}\: = \:
+            \frac{\sqrt{\left(\frac{d_{a1}}{2}\right)^{2} - \left(\frac{d_{b1}}{2}\right)^{2}} +
+            \sqrt{\left(\frac{d_{a2}}{2}\right)^{2} - \left(\frac{d_{b2}}{2}\right)^{2}} -
+            a_{x} \cdot sin \alpha_{wt}}{\pi \cdot m_{t} \cdot cos\alpha_{t}}
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="contact_ratio_helical_gear_pair_beta">
+        <math>
+            \begin{equation} \epsilon_{\beta}\: = \:
+            \frac{b\:sin\beta}{\pi\:m_{n}}
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="v">
+        <math>
+            \begin{equation} v \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RPM">
+        <math>
+            \begin{equation} n \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="x">
+        <math>
+            \begin{equation} x \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="x_mod">
+        <math>
+            \begin{equation} x_{mod} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="x_sum">
+        <math>
+            \begin{equation} x_{sum} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="x_dif">
+        <math>
+            \begin{equation} x_{dif} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="y">
+        <math>
+            \begin{equation} y \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CoefficientOfCentreDistanceIncreaseFormula">
+        <math>
+            \begin{equation} \frac{a_{x}}{m} - \frac{z_{1}+z_{2}}{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CoefficientOfCentreDistanceIncreaseHelicalFormula">
+        <math>
+            \begin{equation} \frac{a_{x}}{m_{n}} - \frac{z_{1}+z_{2}}{2cos\beta} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="p">
+        <math>
+            \begin{equation} p \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="p_t">
+        <math>
+            \begin{equation} p_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="p_n">
+        <math>
+            \begin{equation} p_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="p_x">
+        <math>
+            \begin{equation} p_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h">
+        <math>
+            \begin{equation} h \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation} \left[2.25 + y -\left(x_{1} + x_{2}\right)\right]m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftIntExtSpurFormula">
+        <math>
+            \begin{equation} 2.25m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation} \left[2.25 + y -\left(x_{n1} + x_{n2}\right)\right]m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WholeDepthForPositiveShiftRadialFormula">
+        <math>
+            \begin{equation} \left[2.25 + y -\left(x_{t1} + x_{t2}\right)\right]m_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WholeDepthForProfileShiftedSpurRackFormula">
+        <math>
+            \begin{equation} 2.25m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WholeDepthForProfileShiftedHelicalRackFormula">
+        <math>
+            \begin{equation} 2.25m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h_a">
+        <math>
+            \begin{equation} h_{a} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h_a1">
+        <math>
+            \begin{equation} h_{a1} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="worm_h_a1">
+        <math>
+            \begin{equation} 1.00m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_h_f1">
+        <math>
+            \begin{equation} 1.25m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_h_a2">
+        <math>
+            \begin{equation} 1.00m_{x} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="worm_h_f2">
+        <math>
+            \begin{equation} 1.25m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_h">
+        <math>
+            \begin{equation} 2.25m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h_a2">
+        <math>
+            \begin{equation} h_{a2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_a1">
+        <math>
+            \begin{equation} d_{a1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_d_a1">
+        <math>
+            \begin{equation} d_{1} + 2h_{a1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_lead_angle">
+        <math>
+            \begin{equation} tan^{-1}\left(\frac{m_{x}z_{w}}{d_{1}}\right) \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_lead">
+        <math>
+            \begin{equation} z_{1}P_{x}  \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_centre_distance">
+        <math>
+            \begin{equation} \frac{d_{1}+d_{2}}{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_d_a2">
+        <math>
+            \begin{equation} d_{2} + 2h_{a2} + m_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_a2">
+        <math>
+            \begin{equation} d_{a2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_th">
+        <math>
+            \begin{equation} d_{th} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_gear_d_th">
+        <math>
+            \begin{equation} d_{2}+2h_{a2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="r_i">
+        <math>
+            \begin{equation} r_{i} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="worm_gear_r_i">
+        <math>
+            \begin{equation} \frac{d_{1}}{2} -h_{a1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="b_1">
+        <math>
+            \begin{equation} b_{1} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="b_e">
+        <math>
+            \begin{equation} b_{e} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="worm_gear_b_e">
+        <math>
+            \begin{equation} 2m_{x} \sqrt{\left(\frac{d_{1}}{m_{x}}+1\right)} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_b_1">
+        <math>
+            \begin{equation} \pi m_{x} \left(4.5 + 0.02z_{2}\right) \end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="d_f1">
+        <math>
+            \begin{equation} d_{f1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_d_f1">
+        <math>
+            \begin{equation} d_{a1}-2h \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_f2">
+        <math>
+            \begin{equation} d_{f2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="worm_gear_d_f2">
+        <math>
+            \begin{equation} d_{th}-2h \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation} \left(1+y-x_{2}\right)m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftIntExtSpurFormula">
+        <math>
+            \begin{equation} \left(1+x_{1}\right)m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftIntExtSpurFormula">
+        <math>
+            \begin{equation} \left(1-x_{2}\right)m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="OutsideDiameter1ForPositiveShiftIntExtSpurFormula">
+        <math>
+            \begin{equation} d_{a1}+2h_{a1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="OutsideDiameter2ForPositiveShiftIntExtSpurFormula">
+        <math>
+            \begin{equation}  d_{a2}-2h_{a2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RootDiameter1ForPositiveShiftIntExtSpurFormula">
+        <math>
+            \begin{equation} d_{a1}-2h \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RootDiameter2ForPositiveShiftIntExtSpurFormula">
+        <math>
+            \begin{equation}  d_{a2}+2h \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Dedendum1ForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation} h-h_{a1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Dedendum2ForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation} h-h_{a2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation} \left(1+y-x_{n2}\right)m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum1ForPositiveShiftRadialFormula">
+        <math>
+            \begin{equation} \left(1+y-x_{n2}\right)m_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation} \left(1+y-x_{1}\right)m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation} \left(1+y-x_{n1}\right)m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Addendum2ForPositiveShiftRadialFormula">
+        <math>
+            \begin{equation} \left(1+y-x_{n1}\right)m_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h_f">
+        <math>
+            \begin{equation} h_{f} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h_f1">
+        <math>
+            \begin{equation} h_{f1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h_f2">
+        <math>
+            \begin{equation} h_{f2} \end{equation}
+        </math>
+    </snippet>
+
+
+
+    <snippet id="alpha_n">
+        <math>
+            \begin{equation} \alpha_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="alpha_w">
+        <math>
+            \begin{equation} \alpha_{w} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleFormula">
+        <math>
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{1}+z_{2}\right)cos\:\alpha}{2y+z_{1}+z_{2}}\right]
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleIntExtSpurFormula">
+        <math>
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{2}-z_{1}\right)cos\:\alpha}{2y+z_{2}-z_{1}}\right]
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleIntExtHelicalFormula">
+        <math>
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{2}-z_{1}\right)cos\:\alpha_{t}}{2y+z_{2}-z_{1}}\right]
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleHelicalFormula">
+        <math>
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{1}+z_{2}\right)cos\:\alpha_{t}}{\left(z_{1}+z_{2} \right) +
+            2y\: cos\: \beta}\right]
+
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPressureAngleRadialFormula">
+        <math>
+            \begin{equation} cos^{-1}\left[\frac{\left(z_{1}+z_{2}\right)cos\:\alpha_{t}}{\left(z_{1}+z_{2} \right) +
+            2y}\right]
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="alpha_t">
+        <math>
+            \begin{equation} \alpha_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="alpha_wt">
+        <math>
+            \begin{equation} \alpha_{wt} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RadialPressureAngleFormula">
+        <math>
+            \begin{equation} tan^{-1} \left(\frac{tan\:\alpha_{n}}{cos\:\beta}\right) \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="NormalPressureAngleSymbol">
+        <math>
+            \begin{equation} \alpha_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="alpha_x">
+        <math>
+            \begin{equation} \alpha_{x} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="delta_1">
+        <math>
+            \begin{equation} \delta_{1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="delta_2">
+        <math>
+            \begin{equation} \delta_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="delta_a">
+        <math>
+            \begin{equation} \delta_{a} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="delta_f">
+        <math>
+            \begin{equation} \delta_{f} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="theta_a">
+        <math>
+            \begin{equation} \theta_{a} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="theta_a1">
+        <math>
+            \begin{equation} \theta_{a1} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="theta_a2">
+        <math>
+            \begin{equation} \theta_{a2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="theta_f">
+        <math>
+            \begin{equation} \theta_{f} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="theta_f1">
+        <math>
+            \begin{equation} \theta_{f1} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="theta_f2">
+        <math>
+            \begin{equation} \theta_{f2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="InvoluteFunction">
+        <math>
+            \begin{equation} inv\:\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="InvoluteFunctionFormula">
+        <math>
+            \begin{equation} tan\alpha - \alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RadialInvoluteFunctionFormula">
+        <math>
+            \begin{equation} tan\alpha_{t} - \alpha_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RadialInvoluteFunction">
+        <math>
+            \begin{equation} inv\:\alpha_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingInvoluteFunction">
+        <math>
+            \begin{equation} inv\:\alpha_{w} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RadialWorkingInvoluteFunction">
+        <math>
+            \begin{equation} inv\:\alpha_{wt} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RadialWorkingInvoluteFormula">
+        <math>
+            \begin{equation} 2tan\:\alpha_{n}\left(\frac{x_{n1}+x_{n2}}{z_{1}+z_{2}}\right)+inv\:a_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RadialWorkingInvoluteRadialFormula">
+        <math>
+            \begin{equation} 2tan\:\alpha_{t}\left(\frac{x_{t1}+x_{t2}}{z_{1}+z_{2}}\right)+inv\:a_{t} \end{equation}
+        </math>
+    </snippet>
+
+
+
+    <snippet id="z1,z2">
+        <math>
+            \begin{equation} z_{1},z_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="x1,x2">
+        <math>
+            \begin{equation} x_{1},x_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="x_n">
+        <math>
+            \begin{equation} x_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="xn1,xn2">
+        <math>
+            \begin{equation} x_{n1},x_{n2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="xt1,xt2">
+        <math>
+            \begin{equation} x_{t1},x_{t2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="x1+x2">
+        <math>
+            \begin{equation} \Sigma x \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="x2-x1">
+        <math>
+            \begin{equation} x_{2}-x_{1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="xn1+xn2">
+        <math>
+            \begin{equation} x_{n1}+x_{n2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="xt1+xt2">
+        <math>
+            \begin{equation} x_{t1}+x_{t2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="DifferenceCoefficientOfProfileShiftFormula">
+        <math>
+            \begin{equation}\frac{ \left(z_{2}-z_{1}\right)\left(inv\:\alpha_{w} - inv\:\alpha\right)
+            }{2tan\:\alpha}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="DifferenceCoefficientOfProfileShiftHelicalFormula">
+        <math>
+            \begin{equation}\frac{ \left(z_{2}-z_{1}\right)\left(inv\:\alpha_{wt} - inv\:\alpha_{t}\right)
+            }{2tan\:\alpha_{t}}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="SumCoefficientOfProfileShiftFormula">
+        <math>
+            \begin{equation}\frac{ \left(z_{1}+z_{2}\right)\left(inv\:\alpha_{w} - inv\:\alpha\right)
+            }{2tan\:\alpha}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="SumCoefficientOfProfileShiftHelicalFormula">
+        <math>
+            \begin{equation}\frac{ \left(z_{1}+z_{2}\right)\left(inv\:\alpha_{wt} - inv\:\alpha_{t}\right)
+            }{2tan\:\alpha_{n}}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="a">
+        <math>
+            \begin{equation}a\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="L">
+        <math>
+            \begin{equation}L\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="H">
+        <math>
+            \begin{equation}H\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="a_x">
+        <math>
+            \begin{equation}a_{x}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForProfileShiftedSpurRackFormula">
+        <math>
+            \begin{equation}\frac{zm}{2}+H+xm\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForProfileShiftedHelicalRackFormula">
+        <math>
+            \begin{equation}\frac{zm_{n}}{2cos\:\beta}+H+x_{n}m_{n}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForProfileShiftedHelicalRackFormula">
+        <math>
+            \begin{equation}\frac{zm_{n}}{2cos\:\beta}+H+xm\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPitchDiameterForProfileShiftedSpurRackFormula">
+        <math>
+            \begin{equation}\frac{d_{b}}{cos\:\alpha_{w}}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="AddendumForProfileShiftedSpurRackFormula">
+        <math>
+            \begin{equation}m\left(1+x\right)\end{equation}
+        </math>
+    </snippet>
+    <snippet id="AddendumForProfileShiftedHelicalRackFormula">
+        <math>
+            \begin{equation}m_{n}\left(1+x_{n}\right)\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CentreDistanceFormula">
+        <math>
+            \begin{equation}\frac{\left( z_{1} + z_{2} \right) m}{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CentreDistanceIntExtFormula">
+        <math>
+            \begin{equation}\frac{\left( z_{2} - z_{1} \right)}{2} m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CentreDistanceIntExtHelicalFormula">
+        <math>
+            \begin{equation}\frac{\left( z_{2} - z_{1} \right)}{2cos\beta} m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="HelicalCentreDistanceFormula">
+        <math>
+            \begin{equation}\frac{\left( z_{1} + z_{2} \right) }{2 cos\beta} m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="zm">
+        <math>
+            \begin{equation} zm \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="PitchDiameterHelicalFormula">
+        <math>
+            \begin{equation} \frac{zm_{n}}{cos\:\beta} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="PitchDiameterRadialFormula">
+        <math>
+            \begin{equation} zm_{t} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d">
+        <math>
+            \begin{equation} d \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_1">
+        <math>
+            \begin{equation} d_{1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_2">
+        <math>
+            \begin{equation} d_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="z">
+        <math>
+            \begin{equation} z \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="z_1">
+        <math>
+            \begin{equation} z_{1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="z_2">
+        <math>
+            \begin{equation} z_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="z_v">
+        <math>
+            \begin{equation} z_{v} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="z_w">
+        <math>
+            \begin{equation} z_{w} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="u">
+        <math>
+            \begin{equation} u \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="i">
+        <math>
+            \begin{equation} i \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_b">
+        <math>
+            \begin{equation} d_{b} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="BaseDiameterFormula">
+        <math>
+            \begin{equation} d\:cos\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="BaseDiameterHelicalFormula">
+        <math>
+            \begin{equation}d\:cos\alpha_{t} \end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="ModuleEquation">
+        <math>
+            \begin{equation}m = p/\pi\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="BaseDiameterEquation">
+        <math>
+            \begin{equation}d_{b} = d\:cos\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="AddendumFormula">
+        <math>
+            \begin{equation} 1.00m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="DedendumFormula">
+        <math>
+            \begin{equation} 1.25m \end{equation}
+        </math>
+    </snippet>
+
+
+
+    <snippet id="Dedendum1ForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation} h-h_{a1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Dedendum2ForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation} h-h_{a2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_a">
+        <math>
+            \begin{equation} d_{a} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_i">
+        <math>
+            \begin{equation} d_{i} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="X">
+        <math>
+            \begin{equation} X \end{equation}
+        </math>
+    </snippet>
+    <snippet id="X_b">
+        <math>
+            \begin{equation} X_{b} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="OutsideDiameterFormula">
+        <math>
+            \begin{equation} d + 2m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="OutsideDiameterForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation} d + 2h_{a} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_f">
+        <math>
+            \begin{equation} d_{f} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RootDiameterFormula">
+        <math>
+            \begin{equation} d - 2.5m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="RootDiameterForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation} d_{a} - 2h \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="h_w">
+        <math>
+            \begin{equation}h_{w}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="s">
+        <math>
+            \begin{equation}s\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="s_b">
+        <math>
+            \begin{equation}s_{b}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="c">
+        <math>
+            \begin{equation}c\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="j_t">
+        <math>
+            \begin{equation}j_{t}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="j">
+        <math>
+            \begin{equation}j\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="j_theta">
+        <math>
+            \begin{equation}j_{\theta}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="j_n">
+        <math>
+            \begin{equation}j_{n}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="profile-shift-distribution-reduced-sliding-velocity">
+        <math>
+            \begin{equation} x_{1} \: \approx \: \frac{x_{1} + x_{2}}{i+1} + \frac{i-1}{i+1 + 0.4z_{2}}   \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="profile-shift-distribution-equal-root-stress">
+        <math>
+            \begin{equation} x_{1} \: \approx \: \frac{x_{1} + x_{2}}{i+1} + \frac{1}{2}\left(\frac{i-1}{i+1}\right)   \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="profile-shift-distribution-equal-contact-pressure">
+        <math>
+            \begin{equation} x_{1} \: \approx \: \frac{x_{1} + x_{2}}{i+1} \cdot \frac{z_{1} +12}{z_{1} +2} + \frac{8}{z_{1} +2}  \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-linear-text">
+        <math>
+            \begin{align}
+            \begin{array}{ll}
+            \text{Where:} \\
+            j =\texttt{Linear Backlash}  \\
+            s_{s} =\texttt{Gear Tooth Space}  \\
+            s_{1} =\texttt{Pinion Tooth Width}
+            \end{array}
+            \end{align}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-angular">
+        <math>
+            \begin{equation}j_{\theta} \: = \: \frac{c}{d} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-angular-text">
+        <math>
+            \begin{align}
+            \begin{array}{ll}
+            \text{Where:} \\
+            j_{\theta} =\texttt{Angular Backlash}  \\
+            c =\texttt{Clearence required}  \\
+            d =\texttt{Operating pitch diameter}
+            \end{array}
+            \end{align}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-profile">
+        <math>
+            \begin{equation}x_{mod} \: = \: - \frac{j_{t}}{2 \cdot m \cdot tan \alpha} \cdot \frac{cos \alpha_{w}}{cos \alpha} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-linear">
+        <math>
+            \begin{equation}j \: = \: s_{s} - s_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-angular-to-circular-all">
+        <math>
+            \begin{equation}j_{\theta}\: = \: j_{t} \cdot \frac{360}{\pi d} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-normal-to-circular-spur">
+        <math>
+            \begin{equation}j_{n}\: = \: j_{t}\cdot cos \alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-centre-to-circular-spur">
+        <math>
+            \begin{equation}j_{r}\: = \: \frac{j_{t}}{2 \cdot tan \alpha} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-normal-to-circular-helical">
+        <math>
+            \begin{equation}j_{nn}\: = \: j_{tt} \cdot cos \alpha_{n} \cdot cos \beta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="backlash-centre-to-circular-helical">
+        <math>
+            \begin{equation}j_{r}\: = \: \frac{j_{tt}}{2 \cdot tan \alpha_{t}} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_w">
+        <math>
+            \begin{equation}d_{w}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="d_wt">
+        <math>
+            \begin{equation}d_{wt}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPitchDiameterForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation}\frac{d_{b}}{cos\alpha_{w}} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingPitchDiameterForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation}\frac{d_{b}}{cos\alpha_{wt}} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="r">
+        <math>
+            \begin{equation}r\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="r_w">
+        <math>
+            \begin{equation}r_{w}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="r_a">
+        <math>
+            \begin{equation}r_{a}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="r_b">
+        <math>
+            \begin{equation}r_{b}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="r_f">
+        <math>
+            \begin{equation}r_{f}\end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="WorkingInvoluteForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation}tan\alpha_{w} - \alpha_{w}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForProfileShiftIntExtSpurFormula">
+        <math>
+            \begin{equation}\left(\frac{a_{x}}{m}\right)-\frac{\left(z_{2}-z_{1}\right)}{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForProfileShiftIntExtHelicalFormula">
+        <math>
+            \begin{equation}\left(\frac{a_{x}}{m_{n}}\right)-\frac{\left(z_{2}-z_{1}\right)}{2cos \beta} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation}\left(\frac{a_{x}}{m}\right)-\frac{\left(z_{1}+z_{2}\right)}{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="CentreDistanceIncrementFactorForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation} \frac{a_{x}}{m_{n}} -\frac{\left(z_{1}+z_{2}\right)}{2cos\beta}
+            \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForPositiveShiftSpurFormula">
+        <math>
+            \begin{equation}\left(\frac{z_{1}+z_{2}}{2}+y\right)m \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForPositiveShiftHelicalFormula">
+        <math>
+            \begin{equation}\left(\frac{z_{1}+z_{2}}{2cos\:\beta}+y\right)m_{n} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="WorkingCentreDistanceForPositiveShiftRadialFormula">
+        <math>
+            \begin{equation}\left(\frac{z_{1}+z_{2}}{2}+y\right)m_{t} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="PitchConeAngleForBevelGear1">
+        <math>
+            \begin{equation} tan^{-1}  \left(\frac{sin\Sigma}{\frac{z_{1}}{z_{2}} + cos\Sigma}\right) \end{equation}
+        </math>
+    </snippet>
+    <snippet id="PitchConeAngleForBevelGear2">
+        <math>
+            \begin{equation} \Sigma - \delta_{1} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="sigma_a">
+        <math>
+            \begin{equation} \sigma_{a} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="OuterConeAngleForBevelGear">
+        <math>
+            \begin{equation} \delta + \theta_{a} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="RootConeAngleForBevelGear">
+        <math>
+            \begin{equation} \delta - \theta_{f} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="OutsideDiameterForBevelGear">
+        <math>
+            \begin{equation}d\: + \: 2h_{a}\cdot cos\delta \end{equation}
+        </math>
+    </snippet>
+    <snippet id="PitchApexToCrownForBevelGear">
+        <math>
+            \begin{equation}R_{e} cos\delta - h_{a} sin\delta\end{equation}
+        </math>
+    </snippet>
+    <snippet id="AxialFaceWidthForBevelGear">
+        <math>
+            \begin{equation}\frac{b cos\delta_{a}}{cos \theta_{a}}\end{equation}
+        </math>
+    </snippet>
+    <snippet id="InnerOutsideDiameterForBevelGear">
+        <math>
+            \begin{equation}d_{a} - \frac{2b sin\delta_{a}}{cos \theta_{a}}\end{equation}
+        </math>
+    </snippet>
+    <snippet id="nu_1">
+        <math>
+            \begin{equation} \nu_{1} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="nu_2">
+        <math>
+            \begin{equation} \nu_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="t_1">
+        <math>
+            \begin{equation} t_{1} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="t_2">
+        <math>
+            \begin{equation} t_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="BackConeAngleForBevelGear1">
+        <math>
+            \begin{equation}90 - \delta_{1} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="BackConeAngleForBevelGear2">
+        <math>
+            \begin{equation} 90 - \delta_{2} \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="R_e">
+        <math>
+            \begin{equation}R_{e} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="R_eDiv3">
+        <math>
+            \begin{equation}\frac{R_{e}}{3} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="ConeDistanceForBevelGear">
+        <math>
+            \begin{equation}\frac{d_{2}}{2 sin\:\delta_{2}}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="GleasonAddendum1BevelGear">
+        <math>
+            \begin{equation}2.000m - h_{a2}\end{equation}
+        </math>
+    </snippet>
+    <snippet id="GleasonAddendum2BevelGear">
+        <math>
+            \begin{equation}0.540m+\frac{0.460m}{\left(\frac{z_{2}cos\delta_{1}}{z_{1}cos\delta_{2}}\right)}\end{equation}
+        </math>
+    </snippet>
+    <snippet id="GleasonDedendumBevelGear">
+        <math>
+            \begin{equation}2.188m -h_{a}\end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="DedendumAngleBevelGear">
+        <math>
+            \begin{equation}tan^{-1}\left(\frac{h_{f}}{R_{e}}\right)\end{equation}
+        </math>
+    </snippet>
+    <snippet id="AddendumAngleBevelGear">
+        <math>
+            \begin{equation}tan^{-1}\left(\frac{h_{a}}{R_{e}}\right)\end{equation}
+        </math>
+    </snippet>
+    <snippet id="GleasonCircularThicknessBevelGear1">
+        <math>
+            \begin{equation} t_{1} = p - t_{2} \end{equation}
+        </math>
+    </snippet>
+    <snippet id="GleasonCircularThicknessBevelGear2">
+        <math>
+            \begin{equation} t_{2} = \frac{p}{2} -\left(ha_{1}-ha_{2}\right)\cdot tan\alpha-\frac{K}{Pd}  \end{equation}
+        </math>
+    </snippet>
+    <snippet id="linebreakexample">
+        <math>
+
+            \begin{align}
+            \begin{array}{ll}
+            \text{let}\,\mathbb{X}=\texttt{line 1}  \\
+            \text{let}\,\mathbb{Y}=\texttt{line 2}
+            \end{array}
+            \end{align}
+
+        </math>
+    </snippet>
+
+</topic>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Module" id="Module">
+
+    <p><b>Module</b></p>
+    <p>The term 'Module' relates to the size of gear teeth. For a standard spur gear, the 'Module' is the Pitch Diameter
+        divided by the number of Teet:.</p>
+    <snippet id="m_n">
+        <code-block lang="tex">
+            \begin{equation} m = \frac{d}{z} \end{equation}
+        </code-block>
+    </snippet>
+
+    <p><b>Normal Module</b></p>
+    <p>The Normal Module is measured orthogonal to the gear teeth. The image below shows a cross sectional view of a
+        30 tooth gear with a 30° helix angle cut at 30°.</p>
+
+    <img src="Normal.png" alt="Normal"></img>
+
+    <p><b>Axial Module</b></p>
+    <p>Axial module is the module measured along the axis of the gear. The image below shows a cross sectional view of a
+        30 tooth gear with a 30° helix angle cut at 90° to the gear axis.</p>
+
+    <img src="Axial.png" alt="Axial"></img>
+
+
+    <p><b>Radial Module</b></p>
+    <p>The radial module is measured perpendicular to the gear axis.The image below shows a cross sectional view of a
+        30 tooth gear with a 30° helix angle cut in line with the gear axis.</p>
+    <img src="Radial.png" alt="Radial"></img>
+
+</topic>

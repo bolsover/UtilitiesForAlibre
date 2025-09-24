@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Greek" id="Greek" is-library="true">
+
+    <snippet id="alpha">
+       <math>
+            \begin{equation} \alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekalpha">
+       <math>
+            \begin{equation} \alpha\lambda\phi\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Alpha">
+       <math>
+            \begin{equation} A \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="beta">
+       <math>
+            \begin{equation} \beta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekbeta">
+       <math>
+            \begin{equation} \beta\eta\tau\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Beta">
+       <math>
+            \begin{equation} B \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="gamma">
+       <math>
+            \begin{equation} \gamma \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekgamma">
+       <math>
+            \begin{equation} \gamma\alpha\mu\mu\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Gamma">
+       <math>
+            \begin{equation} \Gamma \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="delta">
+       <math>
+            \begin{equation} \delta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekdelta">
+       <math>
+            \begin{equation} \delta\epsilon\lambda\tau\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Delta">
+       <math>
+            \begin{equation} \Delta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Epsilon">
+       <math>
+            \begin{equation} E \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="epsilon">
+       <math>
+            \begin{equation} \epsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekepsilon">
+       <math>
+            \begin{equation} \epsilon\psi\iota\lambda\omicron\upsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="varepsilon">
+       <math>
+            \begin{equation} \varepsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="zeta">
+       <math>
+            \begin{equation} \zeta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekzeta">
+       <math>
+            \begin{equation} \zeta\eta\tau\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Zeta">
+       <math>
+            \begin{equation} Z \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="eta">
+       <math>
+            \begin{equation} \eta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greeketa">
+       <math>
+            \begin{equation} \eta\tau\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Eta">
+       <math>
+            \begin{equation} H \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="theta">
+       <math>
+            \begin{equation} \theta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greektheta">
+       <math>
+            \begin{equation} \theta\eta\tau\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="vartheta">
+       <math>
+            \begin{equation} \vartheta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Theta">
+       <math>
+            \begin{equation} \Theta \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="iota">
+       <math>
+            \begin{equation} \iota \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekiota">
+       <math>
+            \begin{equation} \iota\omega\tau\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Iota">
+       <math>
+            \begin{equation} I \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="kappa">
+       <math>
+            \begin{equation} \kappa \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekkappa">
+       <math>
+            \begin{equation} \kappa\alpha\pi\pi\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="varkappa">
+       <math>
+            \begin{equation} \varkappa \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Kappa">
+       <math>
+            \begin{equation} K \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="lambda">
+       <math>
+            \begin{equation} \lambda \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greeklambda">
+       <math>
+            \begin{equation} \lambda\alpha\mu\beta\delta\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Lambda">
+       <math>
+            \begin{equation} \Lambda \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="mu">
+       <math>
+            \begin{equation} \mu \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekmu">
+       <math>
+            \begin{equation} \mu\upsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Mu">
+       <math>
+            \begin{equation} M \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="nu">
+       <math>
+            \begin{equation} \nu \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greeknu">
+       <math>
+            \begin{equation} \nu\upsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Nu">
+       <math>
+            \begin{equation} N \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="xi">
+       <math>
+            \begin{equation} \xi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekxi">
+       <math>
+            \begin{equation} \xi\iota \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Xi">
+       <math>
+            \begin{equation} \Xi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="omicron">
+       <math>
+            \begin{equation} \omicron \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekomicron">
+       <math>
+            \begin{equation} \omicron\:\mu\iota\kappa\rho\omicron\nu \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Omicron">
+       <math>
+            \begin{equation} O \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="pi">
+       <math>
+            \begin{equation} \pi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekpi">
+       <math>
+            \begin{equation} \pi\iota \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="varpi">
+       <math>
+            \begin{equation} \varpi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Pi">
+       <math>
+            \begin{equation} \Pi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="rho">
+       <math>
+            \begin{equation} \rho \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekrho">
+       <math>
+            \begin{equation} \rho\omega \end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="varrho">
+       <math>
+            \begin{equation} \varrho \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Rho">
+       <math>
+            \begin{equation} P \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="sigma">
+       <math>
+            \begin{equation} \sigma \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greeksigma">
+       <math>
+            \begin{equation} \sigma\iota\gamma\mu\alpha \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="varsigma">
+       <math>
+            \begin{equation} \varsigma \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Sigma">
+       <math>
+            \begin{equation} \Sigma \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="tau">
+       <math>
+            \begin{equation} \tau \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greektau">
+       <math>
+            \begin{equation} \tau\alpha\upsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Tau">
+       <math>
+            \begin{equation} T \end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="upsilon">
+       <math>
+            \begin{equation} \upsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekupsilon">
+       <math>
+            \begin{equation} \upsilon\:\phi\iota\lambda\omicron\upsilon \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Upsilon">
+       <math>
+            \begin{equation} Y \end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="phi">
+       <math>
+            \begin{equation} \phi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekphi">
+       <math>
+            \begin{equation} \phi\iota \end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="varphi">
+       <math>
+            \begin{equation} \varphi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Phi">
+       <math>
+            \begin{equation} \Phi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Chi">
+       <math>
+            \begin{equation} X \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="chi">
+       <math>
+            \begin{equation} \chi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekchi">
+       <math>
+            \begin{equation} \chi\iota \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="psi">
+       <math>
+            \begin{equation} \psi \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekpsi">
+       <math>
+            \begin{equation} \psi\iota \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="Psi">
+       <math>
+            \begin{equation} \Psi \end{equation}
+        </math>
+    </snippet>
+
+
+    <snippet id="Omega">
+       <math>
+            \begin{equation} \Omega \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="omega">
+       <math>
+            \begin{equation} \omega \end{equation}
+        </math>
+    </snippet>
+
+    <snippet id="greekomega">
+       <math>
+            \begin{equation} \omega\:\mu\epsilon\gamma\alpha \end{equation}
+        </math>
+    </snippet>
+
+</topic>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Bevel Gears" id="Bevel-Gears">
+
+    <p>This tool can be used to develop models of straight tooth Standard and Gleason bevel gears.</p>
+    <img src="BevelGears.png" alt="Bevel Gears" width="300" thumbnail="true"/>
+    <warning title="Be Patient!">Please note that bevel gears can take some time to generate in Alibre and
+        especially when these have large tooth counts!
+    </warning>
+    <img src="BevelGearTool.png" alt="Bevel Gear Tool" width="300" thumbnail="true"/>
+    <p>Usage of the tool requires just 7 parameters be entered by the user:</p>
+    <list type="decimal">
+        <li><p>Gear Type: Standard or Gleason. The essential difference between these two types is in the dimensions of
+            the tooth Addendum (that part of the tooth above the pitch circle diameter) and the Dedendum (that part of
+            the tooth below the pitch circle diameter).</p>
+            <p>Details of the calculations used by the tool are provided:</p>
+            <p><a href="Standard-System-Straight-Bevel-Gears.topic"> Standard bevel gears</a></p>
+            <p><a href="Gleason-System-Straight-Bevel-Gears.topic">Gleason bevel gears</a></p>
+        </li>
+        <li>Shaft Angle: This is the included angle of shafts mounting the Pinion and Gear wheel. Whilst this control is
+            limited to 180°, there are other practical limits to what is acceptable here; in general terms, angles
+            between 60° and 120° should produce acceptable gears but also depending on the relative number of teeth.
+        </li>
+        <li>Module: This essentially determines the size of the gear teeth. For convenience, the Imperial equivalent of
+            the metric module size is provided in the details table.
+        </li>
+        <li>Pressure Angle: Commonly used pressure angles are 14.5°, 20° and 25°. Other angles can be defined here if
+            required.
+        </li>
+        <li>Number of Teeth: Set these controls to the desired number of teeth on the Pinion and Gear respectively. Note
+            that there is an interdependency between the Pinion and Gear dimensions so having set all parameters,
+            <b>BOTH</b> pinion and gear parts should be generated before making any further changes.
+        </li>
+        <li>Face width: This sets the width of the generated gear tooth. There are practical limits to the face width.
+            It certainly can not exceed the Cone Distance (Re) and is generally limited to Re/3 or 10 times the module
+            size.
+        </li>
+        <li><p>Build Pinion, Build Wheel buttons: These will take the parameters set and pass the details to Alibre.
+            The Bevel Gear template file has two sketches:</p>
+            <p>Sketch&lt;1&gt; Is used to develop the gear blank profile as a rotation of this sketch.</p>
+            <p>Sketch&lt;2&gt; Is used to develop the space between the gear teeth and thus the tooth profile. This sketch is developed on the
+                Back Cone Plane used by a Loft Cut feature from the sketch to the Pitch Apex sketch point. The location
+                and angle of the Back Cone Plane is calculated by the tool.</p>
+            <p>The tooth flanks are made up of an involute curve (a spline in Sketch&lt;2&gt;) and relief curves at the
+                tooth base if there is sufficient space between the tooth base circle and the root circle. </p>
+            <p>A simple circular feature pattern is used to pattern the loft cut to develop the required number of
+                teeth.</p>
+
+        </li>
+         </list>
+    <note>Assembly of Bevel Gears. It is useful to remember that the Pitch Cone Apex of the Pinion and Gear will be
+    coincident when the gears are assembled. The Pitch Apex points can be made visible by toggling references on.  </note>
+
+    <p>Details of the calculations used to generate the gear profiles can be found here..</p>
+    <list>
+        <li><a href="Gleason-System-Straight-Bevel-Gears.topic"></a></li>
+        <li><a href="Standard-System-Straight-Bevel-Gears.topic"></a></li>
+    </list>
+
+
+</topic>

@@ -1,0 +1,14 @@
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <variables>
+        <web-root>http://www.bolsover.con/UtilitiesForAlibre/</web-root>
+        <download-page>https://github.com/bolsover/UtilitiesForAlibre/releases</download-page>
+        <download-title>Get Utilities for Alibre</download-title>
+        <showDownloadButton>true</showDownloadButton>
+    </variables>
+    <footer>
+        <copyright>2024 David Bolsover</copyright>
+        <link href="mailto:david@bolsover.com">Contact</link>
+        <link href="https://www.alibre.com">Alibre</link>
+    </footer>
+</buildprofiles>

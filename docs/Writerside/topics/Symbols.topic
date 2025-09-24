@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       id="Symbols" title="Symbols" help-id="symbols">
+
+    <title id="symbols">
+        Symbols
+    </title>
+    <note>The section presents a brief summary of the most commonly encountered symbols.</note>
+    <chapter id="linear-and-circular-dimensions" collapsible="true" default-state="collapsed">
+        <title>Linear and Circular Dimensions</title>
+        <table style="both">
+            <tr>
+                <td sorted="asc">Item</td>
+                <td>Symbol</td>
+                <td>Notes</td>
+            </tr>
+            <tr>
+                <td>Height of Pitch Line</td>
+                <td>
+                    <include from="Snippets.topic" element-id="H"/>
+                </td>
+                <td>Height to reference line of a rack gear.</td>
+            </tr>
+            <tr>
+                <td>Centre Distance</td>
+                <td>
+                    <include from="Snippets.topic" element-id="a"/>
+                </td>
+                <td>Distance between centres of gear and pinion.</td>
+            </tr>
+            <tr>
+                <td>Centre Distance - Working </td>
+                <td>
+                    <include from="Snippets.topic" element-id="a_x"/>
+                </td>
+                <td>The distance between centres of gear and pinion may be adjusted for a variety of reasons e.g. clearance; this
+                    adjusted distance is the working centre distance.
+                </td>
+            </tr>
+            <tr>
+                <td>Pitch - Circular</td>
+                <td>
+                    <include from="Snippets.topic" element-id="p"/>
+                </td>
+                <td>The linear distance between corresponding points of adjacent teeth measured along the pitch circle
+                    arc.
+                </td>
+            </tr>
+            <tr>
+                <td>Pitch - Radial Circular </td>
+                <td>
+                    <include from="Snippets.topic" element-id="p_t"/>
+                </td>
+                <td>The radial distance between corresponding points of adjacent teeth measured along the pitch circle
+                    arc.
+                </td>
+            </tr>
+            <tr>
+                <td>Pitch - Circular Perpendicular to Tooth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="p_n"/>
+                </td>
+                <td>The linear distance between corresponding points of adjacent teeth measured perpendicular to the
+                    tooth face.
+                </td>
+            </tr>
+            <tr>
+                <td>Pitch - Axial </td>
+                <td>
+                    <include from="Snippets.topic" element-id="p_x"/>
+                </td>
+                <td>The linear distance between corresponding points of adjacent teeth measured along the pitch circle
+                    arc.
+                </td>
+            </tr>
+            <tr>
+                <td>Whole Depth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h"/>
+                </td>
+                <td>The total depth of a tooth equal to the addendum plus the dedendum.</td>
+
+            </tr>
+            <tr>
+                <td>
+                    Addendum
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_a"/>
+                </td>
+                <td>The distance between the pitch circle and the outside circle.</td>
+            </tr>
+            <tr>
+                <td>Dedendum</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_f"/>
+                </td>
+                <td>The radial distance from the pitch circle to the root of the tooth. The root is the bottom of the
+                    tooth space.
+                </td>
+            </tr>
+            <tr>
+                <td>Working Depth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_w"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Tooth Thickness</td>
+                <td>
+                    <include from="Snippets.topic" element-id="s"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Tooth Thickness - Base Circle Circular</td>
+                <td>
+                    <include from="Snippets.topic" element-id="s_b"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Top Clearance</td>
+                <td>
+                    <include from="Snippets.topic" element-id="c"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td> Backlash - Linear</td>
+                <td>
+                    <include from="Snippets.topic" element-id="j"/>
+                </td>
+                <td>Linear backlash measured along the pitch circle.</td>
+            </tr>
+            <tr>
+                <td> Backlash - Angular</td>
+                <td>
+                    <include from="Snippets.topic" element-id="j_theta"/>
+                </td>
+                <td>Angular backlash measured between opposing tooth faces the pitch circle.</td>
+            </tr>
+            <tr>
+                <td> Backlash - Circular</td>
+                <td>
+                    <include from="Snippets.topic" element-id="j_t"/>
+                </td>
+                <td>Measurement across backlash angle at the pitch circle.</td>
+            </tr>
+            <tr>
+                <td>Backlash - Normal </td>
+                <td>
+                    <include from="Snippets.topic" element-id="j_n"/>
+                </td>
+                <td>Normal backlash measured along the line of action.</td>
+            </tr>
+            <tr>
+                <td>Diameter - Pitch </td>
+                <td>
+                    <include from="Snippets.topic" element-id="d"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Diameter - Working Pitch </td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_w"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Diameter - Outside </td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_a"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Diameter - Base </td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_b"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Diameter - Root </td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_f"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Radius - Pitch </td>
+                <td>
+                    <include from="Snippets.topic" element-id="r"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Radius - Working Pitch </td>
+                <td>
+                    <include from="Snippets.topic" element-id="r_w"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Radius - Outside </td>
+                <td>
+                    <include from="Snippets.topic" element-id="r_a"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Radius - Base</td>
+                <td>
+                    <include from="Snippets.topic" element-id="r_b"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Radius - Root </td>
+                <td>
+                    <include from="Snippets.topic" element-id="r_f"/>
+                </td>
+                <td/>
+            </tr>
+        </table>
+    </chapter>
+
+    <chapter id="angular-dimensions" collapsible="true" default-state="collapsed">
+        <title>Angular Dimensions</title>
+        <table style="both">
+            <tr>
+                <td sorted="asc">Item</td>
+                <td>Symbol</td>
+                <td>Notes</td>
+            </tr>
+            <tr>
+                <td>Back Cone Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="nu"/>
+                </td>
+                <td>See -Bevel Gears</td>
+            </tr>
+            <tr>
+                <td>Pressure Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="alpha"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Pressure Angle - Working </td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_w"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Pressure Angle -  Radial</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_t"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Pressure Angle - Working Radial</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_wt"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Pressure Angle - Normal</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_n"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Pressure Angle -  Axial </td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_x"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Helix Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="beta"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Lead Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="gamma"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Shaft Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="Sigma"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Cone Angle</td>
+                <td>
+                    <include from="Greek.topic" element-id="delta"/>
+                </td>
+                <td>See -Bevel Gears</td>
+            </tr>
+            <tr>
+                <td>Cone Angle - Outside </td>
+                <td>
+                    <include from="Snippets.topic" element-id="delta_a"/>
+                </td>
+                <td>See -Bevel Gears</td>
+            </tr>
+            <tr>
+                <td>Cone Angle - Root </td>
+                <td>
+                    <include from="Snippets.topic" element-id="delta_f"/>
+                </td>
+                <td>See -Bevel Gears</td>
+            </tr>
+            <tr>
+                <td>Addendum Angle</td>
+                <td>
+                    <include from="Snippets.topic" element-id="theta_a"/>
+                </td>
+                <td>See -Bevel Gears</td>
+            </tr>
+            <tr>
+                <td>Dedendum Angle</td>
+                <td>
+                    <include from="Snippets.topic" element-id="theta_f"/>
+                </td>
+                <td>See -Bevel Gears</td>
+            </tr>
+            <tr>
+                <td>Involute Function</td>
+                <td>
+                    <include from="Snippets.topic" element-id="InvoluteFunction"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Involute Function - Working </td>
+                <td>
+                    <include from="Snippets.topic" element-id="WorkingInvoluteFunction"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Involute Function - Working Radial</td>
+                <td>
+                    <include from="Snippets.topic" element-id="RadialWorkingInvoluteFunction"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Phi - Phi</td>
+                <td>
+                    <include from="Greek.topic" element-id="phi"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Tau - Tau</td>
+                <td>
+                    <include from="Greek.topic" element-id="tau"/>
+                </td>
+                <td/>
+            </tr>
+        </table>
+    </chapter>
+
+    <chapter id="size-ratios-speed-dimensions" collapsible="true" default-state="collapsed">
+        <title>Size, Ratios &amp; Speed Dimensions</title>
+        <table style="both">
+            <tr>
+                <td sorted="asc">Item</td>
+                <td>Symbol</td>
+                <td>Notes</td>
+            </tr>
+            <tr>
+                <td>Teeth - Number</td>
+                <td>
+                    <include from="Snippets.topic" element-id="z"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Teeth - Equivalent Spur Gear Number</td>
+                <td>
+                    <include from="Snippets.topic" element-id="z_v"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Threads - Number of in Worm</td>
+                <td>
+                    <include from="Snippets.topic" element-id="z_w"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Number of Teeth Ratio</td>
+                <td>
+                    <include from="Snippets.topic" element-id="u"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Speed - Ratio</td>
+                <td>
+                    <include from="Snippets.topic" element-id="i"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Module</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Module - Radial</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m_t"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Module - Normal</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m_n"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Module - Axial</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m_x"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Contact Ratio</td>
+                <td>
+                    <include from="Greek.topic" element-id="epsilon"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Contact Ratio - Radial </td>
+                <td>
+                    <include from="Snippets.topic" element-id="epsilon_alpha"/>
+                </td>
+                <td>As applied to spur and helical gears</td>
+            </tr>
+            <tr>
+                <td>Contact Ratio - Axial </td>
+                <td>
+                    <include from="Snippets.topic" element-id="epsilon_beta"/>
+                </td>
+                <td>As applied to helical gears</td>
+            </tr>
+            <tr>
+                <td>Contact Ratio - Total </td>
+                <td>
+                    <include from="Snippets.topic" element-id="epsilon_gamma"/>
+                </td>
+                <td>The sum of <i><include from="Snippets.topic" element-id="epsilon_alpha"/> + <include from="Snippets.topic" element-id="epsilon_beta"/></i></td>
+            </tr>
+            <tr>
+                <td>Speed - Angular</td>
+                <td>
+                    <include from="Greek.topic" element-id="omega"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Linear or Tangential Speed</td>
+                <td>
+                    <include from="Snippets.topic" element-id="v"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Revolutions per Minute</td>
+                <td>
+                    <include from="Snippets.topic" element-id="RPM"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Coefficient of Profile Shift</td>
+                <td>
+                    <include from="Snippets.topic" element-id="x"/>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Coefficient of Profile Shift Difference</td>
+                <td>
+                    <include from="Snippets.topic" element-id="x_dif"/>
+                </td>
+                <td>Difference of profile shifts <i><include from="Snippets.topic" element-id="x2-x1"/></i></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Profile Shift Sum</td>
+                <td>
+                    <include from="Snippets.topic" element-id="x_sum"/>
+                </td>
+                <td>Sum of profile shifts <i><include from="Snippets.topic" element-id="x1+x2"/></i></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Profile Shift Modification</td>
+                <td>
+                    <include from="Snippets.topic" element-id="x_mod"/>
+                </td>
+                <td>Modification required to achieve specified backlash</td>
+            </tr>
+            <tr>
+                <td>Coefficient of Centre Distance Increase</td>
+                <td>
+                    <include from="Snippets.topic" element-id="y"/>
+                </td>
+                <td/>
+            </tr>
+        </table>
+    </chapter>
+
+    <chapter id="greek-alphabet" collapsible="true" default-state="collapsed">
+        <title>Greek Alphabet</title>
+        <table style="both">
+            <tr>
+                <td>English</td>
+                <td>Greek</td>
+                <td>Lower</td>
+                <td>Alt</td>
+                <td>Upper</td>
+            </tr>
+            <tr>
+                <td>Alpha </td>
+               <td><include from="Greek.topic" element-id="greekalpha"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="alpha"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Alpha"/></td>
+            </tr>
+            <tr>
+                <td>Beta</td>
+                <td><include from="Greek.topic" element-id="greekbeta"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="beta"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Beta"/></td>
+            </tr>
+            <tr>
+                <td>Gamma</td>
+                <td><include from="Greek.topic" element-id="greekgamma"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="gamma"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Gamma"/></td>
+            </tr>
+            <tr>
+                <td>Delta</td>
+                <td><include from="Greek.topic" element-id="greekdelta"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="delta"/>
+                </td>
+                <td/>
+                <td><include from="Greek.topic" element-id="Delta"/></td>
+            </tr>
+            <tr>
+                <td>Epsilon</td>
+                <td><include from="Greek.topic" element-id="greekepsilon"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="epsilon"/>
+                </td>
+                <td><include from="Greek.topic" element-id="varepsilon"/></td>
+                <td> <include from="Greek.topic" element-id="Epsilon"/></td>
+            </tr>
+            <tr>
+                <td>Zeta</td>
+                <td><include from="Greek.topic" element-id="greekzeta"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="zeta"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Zeta"/></td>
+            </tr>
+            <tr>
+                <td>Eta</td>
+                <td><include from="Greek.topic" element-id="greeketa"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="eta"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Eta"/></td>
+            </tr>
+            <tr>
+                <td>Theta</td>
+                <td><include from="Greek.topic" element-id="greektheta"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="theta"/>
+                </td>
+                <td>
+                    <include from="Greek.topic" element-id="vartheta"/>
+                </td>
+                <td> <include from="Greek.topic" element-id="Theta"/></td>
+            </tr>
+            <tr>
+                <td>Iota</td>
+                <td><include from="Greek.topic" element-id="greekiota"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="iota"/>
+                </td>
+                <td></td>
+                <td> <include from="Greek.topic" element-id="Iota"/></td>
+            </tr>
+            <tr>
+                <td>Kappa</td>
+                <td><include from="Greek.topic" element-id="greekkappa"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="kappa"/>
+                </td>
+                <td><include from="Greek.topic" element-id="varkappa"/></td>
+                <td> <include from="Greek.topic" element-id="Kappa"/></td>
+            </tr>
+            <tr>
+                <td>Lambda</td>
+                <td><include from="Greek.topic" element-id="greeklambda"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="lambda"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Lambda"/></td>
+            </tr>
+            <tr>
+                <td>Mu</td>
+                <td><include from="Greek.topic" element-id="greekmu"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="mu"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Mu"/></td>
+            </tr>
+            <tr>
+                <td>Nu</td>
+                <td><include from="Greek.topic" element-id="greeknu"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="nu"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Nu"/></td>
+            </tr>
+            <tr>
+                <td>Xi</td>
+                <td><include from="Greek.topic" element-id="greekxi"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="xi"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Xi"/></td>
+            </tr>
+            <tr>
+                <td>Omicron</td>
+                <td><include from="Greek.topic" element-id="greekomicron"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="omicron"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Omicron"/></td>
+            </tr>
+            <tr>
+                <td>Pi</td>
+                <td><include from="Greek.topic" element-id="greekpi"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="pi"/>
+                </td>
+                <td><include from="Greek.topic" element-id="varpi"/></td>
+                <td> <include from="Greek.topic" element-id="Pi"/></td>
+            </tr>
+            <tr>
+                <td>Rho</td>
+                <td><include from="Greek.topic" element-id="greekrho"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="rho"/>
+                </td>
+                <td> <include from="Greek.topic" element-id="varrho"/></td>
+                <td> <include from="Greek.topic" element-id="Rho"/></td>
+            </tr>
+            <tr>
+                <td>Sigma</td>
+                <td><include from="Greek.topic" element-id="greeksigma"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="sigma"/>
+                </td>
+                <td> <include from="Greek.topic" element-id="varsigma"/></td>
+                <td> <include from="Greek.topic" element-id="Sigma"/></td>
+            </tr>
+            <tr>
+                <td>Tau</td>
+                <td><include from="Greek.topic" element-id="greektau"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="tau"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Tau"/></td>
+            </tr>
+            <tr>
+                <td>Upsilon</td>
+                <td><include from="Greek.topic" element-id="greekupsilon"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="upsilon"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Upsilon"/></td>
+            </tr>
+            <tr>
+                <td>Phi</td>
+                <td><include from="Greek.topic" element-id="greekphi"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="phi"/>
+                </td>
+                <td><include from="Greek.topic" element-id="varphi"/></td>
+                <td> <include from="Greek.topic" element-id="Phi"/></td>
+            </tr>
+            <tr>
+                <td>Chi</td>
+                <td><include from="Greek.topic" element-id="greekchi"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="chi"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Chi"/></td>
+            </tr>
+            <tr>
+                <td>Psi</td>
+                <td><include from="Greek.topic" element-id="greekpsi"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="psi"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Psi"/></td>
+            </tr>
+            <tr>
+                <td>Omega</td>
+                <td><include from="Greek.topic" element-id="greekomega"/></td>
+                <td>
+                    <include from="Greek.topic" element-id="omega"/>
+                </td>
+                <td/>
+                <td> <include from="Greek.topic" element-id="Omega"/></td>
+            </tr>
+        </table>
+    </chapter>
+</topic>

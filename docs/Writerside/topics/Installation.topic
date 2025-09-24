@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+    SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Installation" id="Installation">
+
+
+    <note title="Download">The latest version of the utilities package is always available for download from the GitHub
+        repository. <a href="https://github.com/bolsover/UtilitiesForAlibre/releases"></a></note>
+
+    <p>Utilities for Alibre is distributed as .zip, .rar and .exe files. This .zip and .rar contain a copy of the
+        installation executable file.</p>
+    <p>Regrettably, the .zip, .rar and .exe are NOT digitally signed. This is an open source, self-funded project and as
+        such funds are not available for the purchase of code signing certificates.</p>
+    <p>To install the Add-on to your Alibre system, simply download and extract the appropriate .zip, .rar or .exe. Then
+        run the UtilitiesForAlibre.exe file.</p>
+
+    <p>Confirm that the app can make changes to your device by clicking 'Yes':</p>
+    <img src="uac.png" alt="User Account Control">User Account Control</img>
+
+    <p>Select Install:</p>
+    <img src="ReadyToInstall.png" alt="Ready to Install"/>
+
+    <p>Click Finish</p>
+    <img src="completing.png" alt="Complete setup"/>
+
+    <p>By default, the setup installs all required files to a new directory 'UtilitiesForAlibre' in the Program Files
+        directory.</p>
+    <img src="installdirectory.png" alt="Install Directory"/>
+
+    <p>In addition to the installed files, the installer also makes a required entry in the system registry:</p>
+    <img src="registry.png" alt="Registry"/>
+
+    <p>With installation complete, the Alibre Add-on manager should now have a new entry:</p>
+    <img src="addonmanager.png" alt="Add-on Manager"/>
+
+    <p>Uninstall. Like all good software, there is an included uninstaller. </p>
+    <img src="uninstall.png" alt="Uninstall"/>
+</topic>

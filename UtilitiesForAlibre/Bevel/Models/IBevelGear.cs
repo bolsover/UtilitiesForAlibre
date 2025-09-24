@@ -1,4 +1,5 @@
 ﻿using System;
+using Bolsover.Involute.Model;
 
 namespace Bolsover.Bevel.Models
 {
@@ -14,7 +15,7 @@ namespace Bolsover.Bevel.Models
         double PitchDiameter { get; set; }
         double BaseDiameter { get; set; }
         double RootDiameter { get; set; }
-         double OutsideDiameter { get; set; }
+        double OutsideDiameter { get; set; }
         double InnerOutsideDiameter { get; set; }
         double AxialFaceWidth { get; set; }
         double PitchApexToCrown { get; set; }
@@ -38,9 +39,17 @@ namespace Bolsover.Bevel.Models
         double KFactor { get; set; }
         double CircularThicknessDegrees { get; set; }
         double InterToothDegrees { get; set; }
-
-        BevelGearType GearType { get; set; }
-
+        
+        GearStyle GearType { get; set; }
+        
+        // double ToImperial(double mm);
+        // string ToMmFormat(double mm);
+        // string ToInFormat(double mm);
+        //
+        // string ToDegFormat(double angleDeg);
+        //
+        // string ToFormat(double d, string format);
+        
         event EventHandler Updated;
     }
 }

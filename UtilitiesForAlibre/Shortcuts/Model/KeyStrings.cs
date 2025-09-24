@@ -2,7 +2,6 @@ namespace Bolsover.Shortcuts.Model
 {
     public static class KeyStrings
     {
-  
         public const string AKey = @"A";
         public const string BKey = @"B";
         public const string CKey = @"C";
@@ -114,7 +113,5 @@ namespace Bolsover.Shortcuts.Model
         public const string LaunchMediaPlayerKey = @"?";
         public const string LaunchApplication1Key = @"?";
         public const string LaunchApplication2Key = @"?";
-
-        
     }
 }

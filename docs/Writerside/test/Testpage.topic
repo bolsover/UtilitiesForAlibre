@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Testpage" id="Testpage">
+
+    <p>Start typing here...</p>
+    <p><i>italic</i></p>
+    <p><b>bold</b></p>
+    <p><s>strikethrough</s>
+
+
+    </p>
+
+    <deflist>
+        <def title="Foo">Description of "Foo"</def>
+        <def title="Bar">Description of "Bar"</def>
+        <def title="Baz">Description of "Baz"</def>
+    </deflist>
+
+    <code-block lang="d2">
+        utils: Utilities
+        utils.shortcuts: Shortcuts
+        utils.shortcuts.keyboard: Keyboard
+        utils.shortcuts.report: Report
+        utils.databrowser: Data Browser
+        utils.planefinder: Sketch Plane Finder
+        utils.propertyviewer: Property Viewer
+
+
+        utils.gears: Gears
+        utils.cycloidal: Cycloidal
+        direction: right
+        utils.involute: Involute
+        utils.gears -> utils.cycloidal
+        utils.gears -> utils.involute
+        externalInvolute: External Involute
+        straightExternalInvolute: Straight
+        helicalExternalInvolute: Helical
+        straightInternalInvolute:  Straight
+        helicalInternalInvolute:  Helical
+        straightRackPinion:  Straight
+        helicalRackPinion:  Helical
+        internalInvolute:  Internal Involute
+        bevelInvolute: Bevel Gears
+        standardBevel: Standard Bevel
+        gleasonBevel: Gleason Bevel
+        rackPinion:  Rack &amp; Pinion
+
+        involute -> externalInvolute
+        externalInvolute -> straightExternalInvolute
+        externalInvolute -> helicalExternalInvolute
+        involute -> internalInvolute
+        internalInvolute -> straightInternalInvolute
+        internalInvolute -> helicalInternalInvolute
+        involute -> rackPinion
+        rackPinion -> straightRackPinion
+        rackPinion -> helicalRackPinion
+        involute -> bevelInvolute
+        bevelInvolute -> standardBevel
+        bevelInvolute -> gleasonBevel
+    </code-block>
+
+
+</topic>

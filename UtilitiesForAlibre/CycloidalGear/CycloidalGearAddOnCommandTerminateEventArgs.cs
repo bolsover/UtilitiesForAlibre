@@ -8,7 +8,7 @@ namespace Bolsover.CycloidalGear
         {
             CycloidalGearAddOnCommand = cycloidalGearAddOnCommand;
         }
-
+        
         public CycloidalGearAddOnCommand CycloidalGearAddOnCommand { get; }
     }
 }

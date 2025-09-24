@@ -14,39 +14,41 @@ namespace Bolsover.Shortcuts.Presenter
 {
     public class KeyboardPresenter
     {
+        private readonly ShortcutsCalculator _shortcutsCalculator = new();
         private readonly KeyboardControl _view;
-
+        private bool _isAltSelected;
+        
         // private readonly KeyText _keyText = new();
         private bool _isCtrlSelected;
-        private bool _isAltSelected;
         private bool _isShiftSelected;
         private string _profile;
-
-        private readonly ShortcutsCalculator _shortcutsCalculator = new();
         private List<AlibreShortcut> _shortcuts;
-
+        
         public KeyboardPresenter(KeyboardControl view)
         {
             _view = view;
-            SetupKeyImages("Arial Narrow", Properties.Settings.Default.KeyTextSize, Color.Empty, Properties.Settings.Default.TextColor);
+            SetupKeyImages("Arial Narrow", Properties.Settings.Default.KeyTextSize, Color.Empty,
+                Properties.Settings.Default.TextColor);
             SetupColorControl();
             ClearDefaultText();
             DoDataBindings();
             DisabledKeys();
             DefaultBackColors();
             TextOverlayLocation();
-            TextOverlayFont(new Font("Arial Narrow", Properties.Settings.Default.HintTextSize, FontStyle.Regular, GraphicsUnit.Pixel, 0));
+            TextOverlayFont(new Font("Arial Narrow", Properties.Settings.Default.HintTextSize, FontStyle.Regular,
+                GraphicsUnit.Pixel, 0));
             InitDropDown();
         }
-
+        
         private void SetupColorControl()
         {
             var button = KeyButtons.GetButton(_view, "PauseBreakKey");
-            button.Image = StringImageUtils.ConvertTextToPngImage("Add-on" +"\r\n"+"Prefs", "Arial Narrow", Properties.Settings.Default.KeyTextSize, Color.Empty, Properties.Settings.Default.TextColor);
+            button.Image = StringImageUtils.ConvertTextToPngImage("Add-on" + "\r\n" + "Prefs", "Arial Narrow",
+                Properties.Settings.Default.KeyTextSize, Color.Empty, Properties.Settings.Default.TextColor);
         }
-
+        
         /// <summary>
-        /// Clears any existing background colors and text from the keyboard buttons passed in the dictionary.
+        ///     Clears any existing background colors and text from the keyboard buttons passed in the dictionary.
         /// </summary>
         /// <param name="buttonDictionary"></param>
         private void ClearBackgroundColorsAndText(Dictionary<string, ShortcutButton> buttonDictionary)
@@ -58,7 +60,7 @@ namespace Bolsover.Shortcuts.Presenter
                 key.Value.AlibreShortcut = null;
             }
         }
-
+        
         public void ProfileComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _profile = _view.ProfileComboBox.SelectedItem.ToString();
@@ -68,22 +70,28 @@ namespace Bolsover.Shortcuts.Presenter
             {
                 _shortcuts = _shortcutsCalculator.RetrieveStandardShortcutsByProfile(_profile);
             }
+            
             ShowShortcutsByModifierType();
         }
-
+        
         /// <summary>
-        /// Applies the background color and text to the keyboard buttons based on the shortcut list passed in.
+        ///     Applies the background color and text to the keyboard buttons based on the shortcut list passed in.
         /// </summary>
-        /// <param name="shortCutList">A dictionary of key-value pairs where the key is the key code and the value is the Shortcut object.</param>
+        /// <param name="shortCutList">
+        ///     A dictionary of key-value pairs where the key is the key code and the value is the Shortcut
+        ///     object.
+        /// </param>
         /// <param name="backColor">The background color to be applied to the keyboard buttons.</param>
         private void ApplyShortcutsBasedOnKeys(List<AlibreShortcut> shortCutList, Color backColor)
         {
-            TextOverlayFont(new Font("Arial Narrow", Properties.Settings.Default.HintTextSize, FontStyle.Regular, GraphicsUnit.Pixel, 0));
-            SetupKeyImages("Arial Narrow", Properties.Settings.Default.KeyTextSize, Color.Empty, Properties.Settings.Default.TextColor);
+            TextOverlayFont(new Font("Arial Narrow", Properties.Settings.Default.HintTextSize, FontStyle.Regular,
+                GraphicsUnit.Pixel, 0));
+            SetupKeyImages("Arial Narrow", Properties.Settings.Default.KeyTextSize, Color.Empty,
+                Properties.Settings.Default.TextColor);
             SetupColorControl();
             // Get the dictionary of key codes by index
             var dictionary = KeyCodes.KeyCodesDictionaryByIndex();
-
+            
             _view.toolTip1.RemoveAll();
             _view.toolTip1.ToolTipIcon = ToolTipIcon.Info;
             // Iterate over each item in the shortcut list
@@ -96,7 +104,7 @@ namespace Bolsover.Shortcuts.Presenter
                 {
                     continue;
                 }
-
+                
                 // Get the button corresponding to the key name from the KeyButtons class
                 // If the button is not found, skip the current iteration
                 Button button = KeyButtons.GetButton(_view, kc.KeyName);
@@ -104,7 +112,7 @@ namespace Bolsover.Shortcuts.Presenter
                 {
                     continue;
                 }
-
+                
                 // Set the background color and text of the button
                 button.BackColor = backColor;
                 button.Text = v.Hint;
@@ -112,15 +120,15 @@ namespace Bolsover.Shortcuts.Presenter
                 {
                     SetButtonImages(button, v.SvgToIcon(), button.Image);
                 }
-
+                
                 _view.toolTip1.ToolTipTitle = _profile;
                 _view.toolTip1.SetToolTip(button, v.TooltipText);
             }
         }
-
+        
         /// <summary>
-        /// Combines image1 and image2 into a single image and sets it as the image of the button.
-        /// Sets the image alignment to bottom center. 
+        ///     Combines image1 and image2 into a single image and sets it as the image of the button.
+        ///     Sets the image alignment to bottom center.
         /// </summary>
         /// <param name="button"></param>
         /// <param name="image1"></param>
@@ -129,24 +137,24 @@ namespace Bolsover.Shortcuts.Presenter
         {
             var width = button.Width - button.Margin.Left - button.Margin.Right;
             var height = Math.Max(image1.Height, image2.Height);
-
+            
             var bitmap = new Bitmap(width, height);
             using (var g = Graphics.FromImage(bitmap))
             {
                 // Draw image1 at bottom-left
                 g.DrawImage(image1, 0, height - image1.Height);
-
+                
                 // Draw image2 at bottom-right
                 g.DrawImage(image2, width - image2.Width, height - image2.Height);
             }
-
+            
             button.Image = bitmap;
             button.ImageAlign = ContentAlignment.BottomCenter;
         }
-
+        
         /// <summary>
-        /// Clears any existing background color and text from the keyboard buttons.
-        /// Sets the background color and text based on the modifier keys selected.
+        ///     Clears any existing background color and text from the keyboard buttons.
+        ///     Sets the background color and text based on the modifier keys selected.
         /// </summary>
         private void ShowShortcutsByModifierType()
         {
@@ -156,7 +164,7 @@ namespace Bolsover.Shortcuts.Presenter
             var backColor = Properties.Settings.Default.NoModifierColor;
             var buttons = new List<ShortcutButton>();
             var modifierText = "No Modifier";
-
+            
             if (_isCtrlSelected && _isAltSelected && _isShiftSelected)
             {
                 scs = Queries.RetrieveShortcutsByModifierType(_shortcuts, ShortcutModifierType.CtrlAltShift);
@@ -206,15 +214,15 @@ namespace Bolsover.Shortcuts.Presenter
                 buttons = KeyButtons.ShiftButtons();
                 modifierText = "Shift+";
             }
-
+            
             ApplyShortcutsBasedOnKeys(scs, backColor);
             KeyButtons.ApplyBackgroundColor(buttons, backColor);
             _view.ModifierText.Text = modifierText;
         }
-
+        
         /// <summary>
-        /// Retrieves the list of workspace prefixes from the KeyboardShortcutsMediator and populates the drop down
-        /// The list depends on user license type (Atom or Pro)
+        ///     Retrieves the list of workspace prefixes from the KeyboardShortcutsMediator and populates the drop down
+        ///     The list depends on user license type (Atom or Pro)
         /// </summary>
         private void InitDropDown()
         {
@@ -223,9 +231,9 @@ namespace Bolsover.Shortcuts.Presenter
                 : KeyboardShortcutsMediator.ALL_WORKSPACE_PREFIXES;
             _view.ProfileComboBox.Items.AddRange(workspacePrefixes);
         }
-
+        
         /// <summary>
-        /// Sets the font of the text overlay on the key buttons.
+        ///     Sets the font of the text overlay on the key buttons.
         /// </summary>
         /// <param name="font"></param>
         private void TextOverlayFont(Font font)
@@ -235,9 +243,9 @@ namespace Bolsover.Shortcuts.Presenter
                 key.Value.Font = font;
             }
         }
-
+        
         /// <summary>
-        /// Sets the location of the text overlay on the key buttons to the top left.
+        ///     Sets the location of the text overlay on the key buttons to the top left.
         /// </summary>
         private void TextOverlayLocation()
         {
@@ -246,7 +254,7 @@ namespace Bolsover.Shortcuts.Presenter
                 key.Value.TextAlign = ContentAlignment.TopLeft;
             }
         }
-
+        
         public void ViewCtrl_Click(object sender, EventArgs e)
         {
             _isCtrlSelected = !_isCtrlSelected;
@@ -255,10 +263,10 @@ namespace Bolsover.Shortcuts.Presenter
                 _view.LeftCtrlKey.BackColor = Properties.Settings.Default.ModifierKeyColor;
                 _view.RightCtrlKey.BackColor = Properties.Settings.Default.ModifierKeyColor;
             }
-
+            
             ShowShortcutsByModifierType();
         }
-
+        
         public void ViewAlt_Click(object sender, EventArgs e)
         {
             _isAltSelected = !_isAltSelected;
@@ -267,10 +275,10 @@ namespace Bolsover.Shortcuts.Presenter
                 _view.LeftAltKey.BackColor = Properties.Settings.Default.ModifierKeyColor;
                 _view.AltGrKey.BackColor = Properties.Settings.Default.ModifierKeyColor;
             }
-
+            
             ShowShortcutsByModifierType();
         }
-
+        
         public void ViewShift_Click(object sender, EventArgs e)
         {
             _isShiftSelected = !_isShiftSelected;
@@ -279,15 +287,15 @@ namespace Bolsover.Shortcuts.Presenter
                 _view.LeftShiftKey.BackColor = Properties.Settings.Default.ModifierKeyColor;
                 _view.RightShiftKey.BackColor = Properties.Settings.Default.ModifierKeyColor;
             }
-
+            
             ShowShortcutsByModifierType();
         }
-
+        
         private void DefaultBackColors()
         {
             KeyButtons.ApplyBackgroundColor(KeyButtons.CtrlAltShiftButtons(), Properties.Settings.Default.ModifierKeyColor);
         }
-
+        
         private void DisabledKeys()
         {
             KeyButtons.GetButton(_view, "CapsLockKey").Enabled = false;
@@ -303,14 +311,15 @@ namespace Bolsover.Shortcuts.Presenter
             KeyButtons.GetButton(_view, "TabKey").Enabled = false;
             KeyButtons.GetButton(_view, "WindowKey").Enabled = false;
         }
-
+        
         private static void DoDataBinding(Control key, string keyTextName)
         {
-            key.DataBindings.Add(new Binding("Text", new KeyText(), keyTextName, true, DataSourceUpdateMode.OnPropertyChanged));
+            key.DataBindings.Add(new Binding("Text", new KeyText(), keyTextName, true,
+                DataSourceUpdateMode.OnPropertyChanged));
         }
-
+        
         /// <summary>
-        /// Binds the text property of the key buttons to the KeyText class.
+        ///     Binds the text property of the key buttons to the KeyText class.
         /// </summary>
         private void DoDataBindings()
         {
@@ -319,9 +328,9 @@ namespace Bolsover.Shortcuts.Presenter
                 DoDataBinding(key.Value, key.Key + "Text");
             }
         }
-
+        
         /// <summary>
-        /// Clears any default text from the keys.
+        ///     Clears any default text from the keys.
         /// </summary>
         private void ClearDefaultText()
         {
@@ -330,11 +339,11 @@ namespace Bolsover.Shortcuts.Presenter
                 key.Value.Text = "";
             }
         }
-
-       
+        
+        
         /// <summary>
-        /// Sets up the images for the keys on the keyboard.
-        /// Sets the image alignment to bottom right.
+        ///     Sets up the images for the keys on the keyboard.
+        ///     Sets the image alignment to bottom right.
         /// </summary>
         /// <param name="fontName">The name of the font to be used for the key images.</param>
         /// <param name="size">The size of the font to be used for the key images.</param>
@@ -344,19 +353,27 @@ namespace Bolsover.Shortcuts.Presenter
         {
             var keys = new List<string>
             {
-                "F1Key", "F2Key", "F3Key", "F4Key", "F5Key", "F6Key", "F7Key", "F8Key", "F9Key", "F10Key", "F11Key", "F12Key",
-                "AKey", "BKey", "CKey", "DKey", "EKey", "FKey", "GKey", "HKey", "IKey", "JKey", "KKey", "LKey", "MKey", "NKey",
+                "F1Key", "F2Key", "F3Key", "F4Key", "F5Key", "F6Key", "F7Key", "F8Key", "F9Key", "F10Key", "F11Key",
+                "F12Key",
+                "AKey", "BKey", "CKey", "DKey", "EKey", "FKey", "GKey", "HKey", "IKey", "JKey", "KKey", "LKey", "MKey",
+                "NKey",
                 "OKey", "PKey", "QKey", "RKey", "SKey", "TKey", "UKey", "VKey", "WKey", "XKey", "YKey", "ZKey",
                 "ZeroKey", "OneKey", "TwoKey", "ThreeKey", "FourKey", "FiveKey", "SixKey", "SevenKey", "EightKey", "NineKey",
-                "SpaceKey", "TabKey", "EnterKey", "BackspaceKey", "EscapeKey", "LeftShiftKey", "RightShiftKey", "LeftCtrlKey",
-                "RightCtrlKey", "LeftAltKey", "AltGrKey", "DeleteKey", "InsertKey", "HomeKey", "EndKey", "PageUpKey", "PageDownKey",
-                "UpKey", "DownKey", "LeftKey", "RightKey", "NumLockKey", "Num0Key", "Num1Key", "Num2Key", "Num3Key", "Num4Key",
-                "Num5Key", "Num6Key", "Num7Key", "Num8Key", "Num9Key", "NumPlusKey", "NumMinusKey", "NumMultiplyKey", "NumDivideKey",
-                "NumDecimalKey", "NumEnterKey", "PrintScreenKey", "PauseBreakKey", "ScrollLockKey", "CapsLockKey", "MinusKey",
-                "EqualKey", "BackslashKey", "LeftBracketKey", "RightBracketKey", "SemicolonKey", "CommaKey", "PeriodKey", "SlashKey",
+                "SpaceKey", "TabKey", "EnterKey", "BackspaceKey", "EscapeKey", "LeftShiftKey", "RightShiftKey",
+                "LeftCtrlKey",
+                "RightCtrlKey", "LeftAltKey", "AltGrKey", "DeleteKey", "InsertKey", "HomeKey", "EndKey", "PageUpKey",
+                "PageDownKey",
+                "UpKey", "DownKey", "LeftKey", "RightKey", "NumLockKey", "Num0Key", "Num1Key", "Num2Key", "Num3Key",
+                "Num4Key",
+                "Num5Key", "Num6Key", "Num7Key", "Num8Key", "Num9Key", "NumPlusKey", "NumMinusKey", "NumMultiplyKey",
+                "NumDivideKey",
+                "NumDecimalKey", "NumEnterKey", "PrintScreenKey", "PauseBreakKey", "ScrollLockKey", "CapsLockKey",
+                "MinusKey",
+                "EqualKey", "BackslashKey", "LeftBracketKey", "RightBracketKey", "SemicolonKey", "CommaKey", "PeriodKey",
+                "SlashKey",
                 "WindowKey", "FnKey", "HashKey", "ApostropheKey", "GraveKey"
             };
-
+            
             foreach (var key in keys)
             {
                 var button = KeyButtons.GetButton(_view, key);

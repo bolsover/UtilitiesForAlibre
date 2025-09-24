@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using AlibreX;
 using Bolsover.Bevel.Models;
@@ -11,8 +12,11 @@ using static Bolsover.Utils.ConversionUtils;
 namespace Bolsover.Bevel.Builder
 {
     public abstract class BevelGearBuilder : AlibreToothBuilder
+    
     {
-        public static void Build(string saveFile, string template, IBevelGear bevelGear)
+        private static BuildingGear f;
+        
+        private static bool BuildWork(string saveFile, string template, IBevelGear bevelGear)
         {
             var userTempDirectory = Path.GetTempPath();
             var tempFile = userTempDirectory + "\\" + saveFile;
@@ -20,27 +24,45 @@ namespace Bolsover.Bevel.Builder
             if (tempFileInfo.Exists && IsFileLocked(tempFileInfo))
             {
                 MessageBox.Show("Temporary file " + saveFile + "is currently open. \nPlease save-as or discard.", "Oops");
-                return;
+                return true;
             }
+            
             var filePath = Globals.InstallPath;
             if (filePath != null)
             {
-                filePath += "\\Bevel\\Images\\" + template;
+                filePath += "\\Gear\\" + template;
             }
-
+            
             if (filePath != null) File.Copy(filePath, tempFile, true);
             var session = InitAlibreBevelFile(tempFile);
             session.StartChanges();
             session.Parameters.OpenParameterTransaction();
+            f.messageLabel.Text = "Updating parameters..";
             UpdateParameters(bevelGear, session);
             var sketch2 = session.Sketches.Item("Sketch<2>");
+            f.messageLabel.Text = "Updating sketch..";
             UpdateSketch2(bevelGear, sketch2);
             session.Parameters.CloseParameterTransaction();
             session.StopChanges();
-            ((IADPartSession)session).RegenerateAll();
+            f.messageLabel.Text = "Regenerating..";
+            ((IADPartSession) session).RegenerateAll();
+            // session.StartChanges();
+            // f.messageLabel.Text = "Completing..";
+            // session.StopChanges();
+            return true;
         }
-
-
+        
+        public static async Task<bool> Build(string saveFile, string template, IBevelGear bevelGear)
+        {
+            f = new BuildingGear();
+            f.Show();
+            f.TopMost = true;
+            var finished = await Task.Run(() => BuildWork(saveFile, template, bevelGear));
+            f.Close();
+            return finished;
+        }
+        
+        
         private static void UpdateParameters(IBevelGear bevelGear, IADSession session)
         {
             session.Parameters.Item("PitchRadius").Value = bevelGear.PitchDiameter / 2 / 10;
@@ -49,10 +71,11 @@ namespace Bolsover.Bevel.Builder
             session.Parameters.Item("WholeDepth").Value = (bevelGear.Addendum + bevelGear.Dedendum) / 10;
             session.Parameters.Item("ConeAngle").Value = Radians(bevelGear.PitchConeAngle);
             session.Parameters.Item("BackConeAngle").Value =
-                Radians(bevelGear.BackConeAngle * 1.001); // small increase to ensure plane does not interfere with gear geometry
+                Radians(bevelGear.BackConeAngle *
+                        1.001); // small increase to ensure plane does not interfere with gear geometry
             session.Parameters.Item("ToothCount").Value = bevelGear.NumberOfTeeth;
         }
-
+        
         private static void UpdateSketch2(IBevelGear bevelGear, IADSketch sketch)
         {
             sketch.BeginChange();
@@ -78,7 +101,7 @@ namespace Bolsover.Bevel.Builder
                 var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
                 rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
                 lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
-                if (bevelGear.GearType == BevelGearType.Standard)
+                if (bevelGear.GearType == GearStyle.BevelStandard)
                 {
                     rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
                     lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
@@ -91,7 +114,7 @@ namespace Bolsover.Bevel.Builder
                     rhsInvolute = GearPoint.Rotated(rhsInvolute, j);
                     lhsInvolute = GearPoint.Rotated(lhsInvolute, -j);
                 }
-
+                
                 AddScaledBsplineByInterpolation(sketch, rhsInvolute, 0.1);
                 AddScaledBsplineByInterpolation(sketch, lhsInvolute, 0.1);
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[lhsInvolute.Count - 1],
@@ -99,7 +122,8 @@ namespace Bolsover.Bevel.Builder
                 var leftFilletPoints = CalculateCircleAndTangentPoints(bevelGear, lhsInvolute[0], true);
                 var rightFilletPoints = CalculateCircleAndTangentPoints(bevelGear, rhsInvolute[0], false);
                 var arc1 =
-                    AddScaledCircularArcByCenterStartEnd(sketch, leftFilletPoints.Item1, leftFilletPoints.Item2, leftFilletPoints.Item3, 0.1);
+                    AddScaledCircularArcByCenterStartEnd(sketch, leftFilletPoints.Item1, leftFilletPoints.Item2,
+                        leftFilletPoints.Item3, 0.1);
                 AddScaledLine(sketch, lhsInvolute[0], SketchPointToGearPoint(arc1.End), 0.1);
                 var arc2 = AddScaledCircularArcByCenterStartEnd(sketch, rightFilletPoints.Item1, rightFilletPoints.Item3,
                     rightFilletPoints.Item2, 0.1);
@@ -108,13 +132,15 @@ namespace Bolsover.Bevel.Builder
             }
             else
             {
-                rhsInvolute = Geometry.PointsOutsideCircle(rhsInvolute, new GearPoint(0, 0), bevelGear.EquivalentRootDiameter / 2);
-                var rootPoint = ToothPointCalculator.PointOnInvolute(bevelGear.EquivalentBaseDiameter / 2, bevelGear.EquivalentRootDiameter / 2);
+                rhsInvolute =
+                    Geometry.PointsOutsideCircle(rhsInvolute, new GearPoint(0, 0), bevelGear.EquivalentRootDiameter / 2);
+                var rootPoint = ToothPointCalculator.PointOnInvolute(bevelGear.EquivalentBaseDiameter / 2,
+                    bevelGear.EquivalentRootDiameter / 2);
                 rhsInvolute.Insert(0, rootPoint);
                 var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
                 rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
                 lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
-                if (bevelGear.GearType == BevelGearType.Standard)
+                if (bevelGear.GearType == GearStyle.BevelStandard)
                 {
                     rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
                     lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
@@ -127,7 +153,7 @@ namespace Bolsover.Bevel.Builder
                     rhsInvolute = GearPoint.Rotated(rhsInvolute, j);
                     lhsInvolute = GearPoint.Rotated(lhsInvolute, -j);
                 }
-
+                
                 AddScaledBsplineByInterpolation(sketch, rhsInvolute, 0.1);
                 AddScaledBsplineByInterpolation(sketch, lhsInvolute, 0.1);
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[lhsInvolute.Count - 1],
@@ -135,23 +161,24 @@ namespace Bolsover.Bevel.Builder
                 AddScaledCircularArcByCenterStartEnd(sketch, new GearPoint(0, 0), lhsInvolute[0],
                     rhsInvolute[0], 0.1);
             }
-
+            
             sketch.EndChange();
         }
-
+        
         private static double AngleForGleason(IBevelGear bevelGear)
         {
-            GearPoint involutePitchPoint = Geometry.PointOnInvolute(bevelGear.EquivalentBaseDiameter / 2, bevelGear.EquivalentPitchDiameter / 2);
-            double angle = Geometry.AngleToPointOnCircle(new GearPoint(0, 0), involutePitchPoint);
+            var involutePitchPoint =
+                Geometry.PointOnInvolute(bevelGear.EquivalentBaseDiameter / 2, bevelGear.EquivalentPitchDiameter / 2);
+            var angle = Geometry.AngleToPointOnCircle(new GearPoint(0, 0), involutePitchPoint);
             return angle;
         }
-
+        
         private static GearPoint SketchPointToGearPoint(IADSketchPoint point)
         {
             return new GearPoint(point.X * 10, point.Y * 10);
         }
-
-
+        
+        
         private static (GearPoint, GearPoint, GearPoint) CalculateCircleAndTangentPoints(IBevelGear bevelGear,
             GearPoint involuteStart, bool isLeft)
         {
@@ -159,22 +186,22 @@ namespace Bolsover.Bevel.Builder
             var baseToRoot = bevelGear.EquivalentBaseDiameter / 2 - bevelGear.EquivalentRootDiameter / 2;
             var filletRadius = baseToRoot * 0.5;
             var distanceToRadius = bevelGear.EquivalentRootDiameter / 2 + filletRadius;
-            var adjAngleRadToFilletCentre = Math.Asin(filletRadius / (distanceToRadius));
+            var adjAngleRadToFilletCentre = Math.Asin(filletRadius / distanceToRadius);
             var angleRadToInvolute = Geometry.AngleToPointOnCircle(gearCentre, involuteStart);
             var angleToFilletCentre = angleRadToInvolute + adjAngleRadToFilletCentre;
             if (!isLeft)
             {
                 angleToFilletCentre = angleRadToInvolute - adjAngleRadToFilletCentre;
             }
-
+            
             var circleCenter = new GearPoint(gearCentre.X + distanceToRadius * Math.Cos(angleToFilletCentre),
                 gearCentre.Y + distanceToRadius * Math.Sin(angleToFilletCentre));
             var intersectPointS = Intersection(circleCenter, bevelGear.EquivalentRootDiameter / 2);
             var intersectPointE = Intersection(involuteStart, distanceToRadius);
             return (circleCenter, intersectPointS, intersectPointE);
         }
-
-
+        
+        
         private static GearPoint Intersection(GearPoint lineEnd, double baseRadius)
         {
             var centre = new GearPoint(0, 0);
@@ -182,19 +209,19 @@ namespace Bolsover.Bevel.Builder
             Geometry.Intersect(centre, baseRadius, centre, lineEnd, ref intersection);
             return intersection;
         }
-
+        
         private static double CalculatePhi(IBevelGear bevelGear)
         {
             var alpha = bevelGear.PressureAngle; // Pressure Angle degrees
             var d = bevelGear.EquivalentPitchDiameter; // Pitch Diameters
             var db = bevelGear.EquivalentBaseDiameter; // Base Diameter of Pinion
-
+            
             var phi = Math.Sqrt(Math.Pow(d, 2) - Math.Pow(db, 2)) / db * 180 / Math.PI - alpha;
-
-
+            
+            
             return phi;
         }
-
+        
         private static bool IsFileLocked(FileInfo file)
         {
             try
@@ -210,15 +237,15 @@ namespace Bolsover.Bevel.Builder
                 //or does not exist (has already been processed)
                 return true;
             }
-
+            
             //file is not locked
             return false;
         }
-
+        
         private static IADDesignSession InitAlibreBevelFile(string filePath)
         {
             var root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
-            var session = (IADDesignSession)root.OpenFileEx(filePath, true);
+            var session = (IADDesignSession) root.OpenFileEx(filePath, true);
             return session;
         }
     }

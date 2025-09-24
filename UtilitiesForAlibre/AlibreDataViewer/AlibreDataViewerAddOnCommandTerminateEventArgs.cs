@@ -8,7 +8,7 @@ namespace Bolsover.AlibreDataViewer
         {
             AlibreDataViewerAddOnCommand = alibreDataViewerAddOnCommand;
         }
-
+        
         public AlibreDataViewerAddOnCommand AlibreDataViewerAddOnCommand { get; }
     }
 }

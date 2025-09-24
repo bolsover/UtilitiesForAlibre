@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Involute Gears" id="Involute-Gears">
+
+    <p>This tool generates spur and helical involute gears in both External and Internal Forms.
+    </p>
+    <warning title="Be Patient!">Please note that gears can take some time to generate in Alibre and
+        especially when these have large tooth counts!
+    </warning>
+    <img src="InvoluteGears.png" alt="Involute Gears" thumbnail="true" width="300"/>
+
+    <p>Error checking - a 'reasonable' amount of error checking has been incorporated into the app - it is certainly
+        possible for the user to make invalid selections that will not be detected before attempting to build a gear.
+    </p>
+    <img src="InvoluteGearErrors.png" alt="Involute Gear errors" thumbnail="true" width="300"/>
+
+    <p>Backlash, Profile and Centre Distance adjustments.</p>
+    <p>By default, these adjustments are set to 'Automatic' All the user needs to do is select valid module, pressure angle, helix angle and tooth counts.
+    If however more control is needed these adjustments can be set to manual and it is up to the user to enter valid values. </p>
+    <p>Typically, gear designers will want to specify the centre distance between a gear pair and it is quite acceptable for this to deviate somewhat from the 'standard'.
+    Having adjusted the centre distance, the gear profiles are then sifted to achieve proper meshing of the gears. It is something of a black art!</p>
+    <img src="InvoluteGears1.png" alt="Involute Gears" thumbnail="true" width="300"/>
+    <p>For more information on the formulae used by this tool see the following sections.</p>
+    <list>
+        <li><a href="Standard-External-Spur-Gears.topic"></a></li>
+        <li><a href="Profile-Shifted-External-Spur-Gears.topic"></a></li>
+        <li><a href="Profile-Shifted-Internal-External-Spur-Gear.topic"></a> </li>
+        <li><a href="Profile-Shifted-Internal-External-Helical-Gear.topic"></a></li>
+        <li><a href="Profile-Shift-Distribution.topic"></a></li>
+    </list>
+
+</topic>

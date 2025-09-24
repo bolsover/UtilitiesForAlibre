@@ -6,52 +6,572 @@ namespace Bolsover.Shortcuts.Model
 {
     public class KeyButtons
     {
+        private static KeyButtons _instance;
         private readonly KeyboardControl _view;
         private Dictionary<string, ShortcutButton> _buttonDictionary;
-        private static KeyButtons _instance;
-
+        
         private KeyButtons(KeyboardControl view)
         {
             _view = view;
             InitButtonDictionary();
         }
-
+        
+        private ShortcutButton PrintScreenKey
+        {
+            get => _view.PrintScreenKey;
+        }
+        
+        private ShortcutButton ScrollLockKey
+        {
+            get => _view.ScrollLockKey;
+        }
+        
+        private ShortcutButton PauseBreakKey
+        {
+            get => _view.PauseBreakKey;
+        }
+        
+        private ShortcutButton InsertKey
+        {
+            get => _view.InsertKey;
+        }
+        
+        private ShortcutButton HomeKey
+        {
+            get => _view.HomeKey;
+        }
+        
+        private ShortcutButton PageUpKey
+        {
+            get => _view.PageUpKey;
+        }
+        
+        private ShortcutButton DeleteKey
+        {
+            get => _view.DeleteKey;
+        }
+        
+        private ShortcutButton EndKey
+        {
+            get => _view.EndKey;
+        }
+        
+        private ShortcutButton PageDownKey
+        {
+            get => _view.PageDownKey;
+        }
+        
+        private ShortcutButton UpKey
+        {
+            get => _view.UpKey;
+        }
+        
+        private ShortcutButton LeftKey
+        {
+            get => _view.LeftKey;
+        }
+        
+        private ShortcutButton DownKey
+        {
+            get => _view.DownKey;
+        }
+        
+        private ShortcutButton RightKey
+        {
+            get => _view.RightKey;
+        }
+        
+        private ShortcutButton F1Key
+        {
+            get => _view.F1Key;
+        }
+        
+        private ShortcutButton F2Key
+        {
+            get => _view.F2Key;
+        }
+        
+        private ShortcutButton F3Key
+        {
+            get => _view.F3Key;
+        }
+        
+        private ShortcutButton F4Key
+        {
+            get => _view.F4Key;
+        }
+        
+        private ShortcutButton F5Key
+        {
+            get => _view.F5Key;
+        }
+        
+        private ShortcutButton F6Key
+        {
+            get => _view.F6Key;
+        }
+        
+        private ShortcutButton F7Key
+        {
+            get => _view.F7Key;
+        }
+        
+        private ShortcutButton F8Key
+        {
+            get => _view.F8Key;
+        }
+        
+        private ShortcutButton F9Key
+        {
+            get => _view.F9Key;
+        }
+        
+        private ShortcutButton F10Key
+        {
+            get => _view.F10Key;
+        }
+        
+        private ShortcutButton F11Key
+        {
+            get => _view.F11Key;
+        }
+        
+        private ShortcutButton F12Key
+        {
+            get => _view.F12Key;
+        }
+        
+        private ShortcutButton EscapeKey
+        {
+            get => _view.EscapeKey;
+        }
+        
+        private ShortcutButton HashKey
+        {
+            get => _view.HashKey;
+        }
+        
+        private ShortcutButton LeftCtrlKey
+        {
+            get => _view.LeftCtrlKey;
+        }
+        
+        private ShortcutButton QKey
+        {
+            get => _view.QKey;
+        }
+        
+        private ShortcutButton WKey
+        {
+            get => _view.WKey;
+        }
+        
+        private ShortcutButton EKey
+        {
+            get => _view.EKey;
+        }
+        
+        private ShortcutButton RKey
+        {
+            get => _view.RKey;
+        }
+        
+        private ShortcutButton TKey
+        {
+            get => _view.TKey;
+        }
+        
+        private ShortcutButton YKey
+        {
+            get => _view.YKey;
+        }
+        
+        private ShortcutButton RightBracketKey
+        {
+            get => _view.RightBracketKey;
+        }
+        
+        private ShortcutButton LeftBracketKey
+        {
+            get => _view.LeftBracketKey;
+        }
+        
+        private ShortcutButton PKey
+        {
+            get => _view.PKey;
+        }
+        
+        private ShortcutButton OKey
+        {
+            get => _view.OKey;
+        }
+        
+        private ShortcutButton IKey
+        {
+            get => _view.IKey;
+        }
+        
+        private ShortcutButton UKey
+        {
+            get => _view.UKey;
+        }
+        
+        private ShortcutButton TabKey
+        {
+            get => _view.TabKey;
+        }
+        
+        private ShortcutButton ApostropheKey
+        {
+            get => _view.ApostropheKey;
+        }
+        
+        private ShortcutButton SemicolonKey
+        {
+            get => _view.SemicolonKey;
+        }
+        
+        private ShortcutButton LKey
+        {
+            get => _view.LKey;
+        }
+        
+        private ShortcutButton KKey
+        {
+            get => _view.KKey;
+        }
+        
+        private ShortcutButton JKey
+        {
+            get => _view.JKey;
+        }
+        
+        private ShortcutButton HKey
+        {
+            get => _view.HKey;
+        }
+        
+        private ShortcutButton GKey
+        {
+            get => _view.GKey;
+        }
+        
+        private ShortcutButton FKey
+        {
+            get => _view.FKey;
+        }
+        
+        private ShortcutButton DKey
+        {
+            get => _view.DKey;
+        }
+        
+        private ShortcutButton SKey
+        {
+            get => _view.SKey;
+        }
+        
+        private ShortcutButton AKey
+        {
+            get => _view.AKey;
+        }
+        
+        private ShortcutButton SlashKey
+        {
+            get => _view.SlashKey;
+        }
+        
+        private ShortcutButton PeriodKey
+        {
+            get => _view.PeriodKey;
+        }
+        
+        private ShortcutButton CommaKey
+        {
+            get => _view.CommaKey;
+        }
+        
+        private ShortcutButton MKey
+        {
+            get => _view.MKey;
+        }
+        
+        private ShortcutButton NKey
+        {
+            get => _view.NKey;
+        }
+        
+        private ShortcutButton BKey
+        {
+            get => _view.BKey;
+        }
+        
+        private ShortcutButton VKey
+        {
+            get => _view.VKey;
+        }
+        
+        private ShortcutButton CKey
+        {
+            get => _view.CKey;
+        }
+        
+        private ShortcutButton XKey
+        {
+            get => _view.XKey;
+        }
+        
+        private ShortcutButton ZKey
+        {
+            get => _view.ZKey;
+        }
+        
+        private ShortcutButton CapsLockKey
+        {
+            get => _view.CapsLockKey;
+        }
+        
+        private ShortcutButton LeftShiftKey
+        {
+            get => _view.LeftShiftKey;
+        }
+        
+        private ShortcutButton BackslashKey
+        {
+            get => _view.BackslashKey;
+        }
+        
+        private ShortcutButton RightShiftKey
+        {
+            get => _view.RightShiftKey;
+        }
+        
+        private ShortcutButton BackspaceKey
+        {
+            get => _view.BackspaceKey;
+        }
+        
+        private ShortcutButton EnterKey
+        {
+            get => _view.EnterKey;
+        }
+        
+        private ShortcutButton GraveKey
+        {
+            get => _view.GraveKey;
+        }
+        
+        private ShortcutButton ZeroKey
+        {
+            get => _view.ZeroKey;
+        }
+        
+        private ShortcutButton NineKey
+        {
+            get => _view.NineKey;
+        }
+        
+        private ShortcutButton EightKey
+        {
+            get => _view.EightKey;
+        }
+        
+        private ShortcutButton SixKey
+        {
+            get => _view.SixKey;
+        }
+        
+        private ShortcutButton FiveKey
+        {
+            get => _view.FiveKey;
+        }
+        
+        private ShortcutButton FourKey
+        {
+            get => _view.FourKey;
+        }
+        
+        private ShortcutButton ThreeKey
+        {
+            get => _view.ThreeKey;
+        }
+        
+        private ShortcutButton TwoKey
+        {
+            get => _view.TwoKey;
+        }
+        
+        private ShortcutButton OneKey
+        {
+            get => _view.OneKey;
+        }
+        
+        private ShortcutButton SevenKey
+        {
+            get => _view.SevenKey;
+        }
+        
+        private ShortcutButton EqualKey
+        {
+            get => _view.EqualKey;
+        }
+        
+        private ShortcutButton MinusKey
+        {
+            get => _view.MinusKey;
+        }
+        
+        private ShortcutButton Num4Key
+        {
+            get => _view.Num4Key;
+        }
+        
+        private ShortcutButton Num5Key
+        {
+            get => _view.Num5Key;
+        }
+        
+        private ShortcutButton Num6Key
+        {
+            get => _view.Num6Key;
+        }
+        
+        private ShortcutButton Num9Key
+        {
+            get => _view.Num9Key;
+        }
+        
+        private ShortcutButton Num8Key
+        {
+            get => _view.Num8Key;
+        }
+        
+        private ShortcutButton Num7Key
+        {
+            get => _view.Num7Key;
+        }
+        
+        private ShortcutButton NumDecimalKey
+        {
+            get => _view.NumDecimalKey;
+        }
+        
+        private ShortcutButton Num0Key
+        {
+            get => _view.Num0Key;
+        }
+        
+        private ShortcutButton Num3Key
+        {
+            get => _view.Num3Key;
+        }
+        
+        private ShortcutButton Num2Key
+        {
+            get => _view.Num2Key;
+        }
+        
+        private ShortcutButton Num1Key
+        {
+            get => _view.Num1Key;
+        }
+        
+        private ShortcutButton NumMultiplyKey
+        {
+            get => _view.NumMultiplyKey;
+        }
+        
+        private ShortcutButton NumDivideKey
+        {
+            get => _view.NumDivideKey;
+        }
+        
+        private ShortcutButton NumMinusKey
+        {
+            get => _view.NumMinusKey;
+        }
+        
+        private ShortcutButton NumPlusKey
+        {
+            get => _view.NumPlusKey;
+        }
+        
+        private ShortcutButton NumEnterKey
+        {
+            get => _view.NumEnterKey;
+        }
+        
+        private ShortcutButton SpaceKey
+        {
+            get => _view.SpaceKey;
+        }
+        
+        private ShortcutButton WindowKey
+        {
+            get => _view.WindowKey;
+        }
+        
+        private ShortcutButton FnKey
+        {
+            get => _view.FnKey;
+        }
+        
+        private ShortcutButton LeftAltKey
+        {
+            get => _view.LeftAltKey;
+        }
+        
+        private ShortcutButton RightCtrlKey
+        {
+            get => _view.RightCtrlKey;
+        }
+        
+        private ShortcutButton AltGrKey
+        {
+            get => _view.AltGrKey;
+        }
+        
+        private ShortcutButton NumLockKey
+        {
+            get => _view.NumLockKey;
+        }
+        
         private static KeyButtons GetInstance(KeyboardControl view)
         {
             if (_instance == null)
             {
                 _instance = new KeyButtons(view);
             }
-
+            
             return _instance;
         }
-
+        
         public static ShortcutButton GetButton(KeyboardControl view, string key)
         {
             return GetInstance(view)._buttonDictionary[key];
         }
-
+        
         public static Dictionary<string, ShortcutButton> ButtonDictionary(KeyboardControl view)
-
+        
         {
             return GetInstance(view)._buttonDictionary;
         }
-
+        
         public static Dictionary<string, ShortcutButton> ButtonDictionaryExcModifiers(KeyboardControl view)
-
+        
         {
-            Dictionary<string, ShortcutButton> temp = new Dictionary<string, ShortcutButton>(GetInstance(view)._buttonDictionary);
-           
+            var temp = new Dictionary<string, ShortcutButton>(GetInstance(view)._buttonDictionary);
+            
             temp.Remove("LeftCtrlKey");
             temp.Remove("RightCtrlKey");
             temp.Remove("LeftShiftKey");
             temp.Remove("RightShiftKey");
             temp.Remove("LeftAltKey");
             temp.Remove("AltGrKey");
-
+            
             return temp;
         }
-
+        
         public static List<ShortcutButton> CtrlButtons()
         {
             var ctrlButtons = new List<ShortcutButton>
@@ -61,7 +581,7 @@ namespace Bolsover.Shortcuts.Model
             };
             return ctrlButtons;
         }
-
+        
         public static List<ShortcutButton> ShiftButtons()
         {
             var shiftButtons = new List<ShortcutButton>
@@ -71,7 +591,7 @@ namespace Bolsover.Shortcuts.Model
             };
             return shiftButtons;
         }
-
+        
         public static List<ShortcutButton> AltButtons()
         {
             var altButtons = new List<ShortcutButton>
@@ -81,7 +601,7 @@ namespace Bolsover.Shortcuts.Model
             };
             return altButtons;
         }
-
+        
         public static List<ShortcutButton> CtrlAltShiftButtons()
         {
             var modifierButtons = new List<ShortcutButton>();
@@ -90,7 +610,7 @@ namespace Bolsover.Shortcuts.Model
             modifierButtons.AddRange(AltButtons());
             return modifierButtons;
         }
-
+        
         public static List<ShortcutButton> CtrlAltButtons()
         {
             var modifierButtons = new List<ShortcutButton>();
@@ -98,7 +618,7 @@ namespace Bolsover.Shortcuts.Model
             modifierButtons.AddRange(AltButtons());
             return modifierButtons;
         }
-
+        
         public static List<ShortcutButton> CtrlShiftButtons()
         {
             var modifierButtons = new List<ShortcutButton>();
@@ -106,7 +626,7 @@ namespace Bolsover.Shortcuts.Model
             modifierButtons.AddRange(ShiftButtons());
             return modifierButtons;
         }
-
+        
         public static List<ShortcutButton> AltShiftButtons()
         {
             var modifierButtons = new List<ShortcutButton>();
@@ -114,15 +634,15 @@ namespace Bolsover.Shortcuts.Model
             modifierButtons.AddRange(AltButtons());
             return modifierButtons;
         }
-
+        
         public static void ApplyBackgroundColor(List<ShortcutButton> buttons, Color backColor)
         {
-            foreach (ShortcutButton button in buttons)
+            foreach (var button in buttons)
             {
                 button.BackColor = backColor;
             }
         }
-
+        
         private void InitButtonDictionary()
         {
             _buttonDictionary = new Dictionary<string, ShortcutButton>();
@@ -231,213 +751,5 @@ namespace Bolsover.Shortcuts.Model
             _buttonDictionary.Add("AltGrKey", AltGrKey);
             _buttonDictionary.Add("NumLockKey", NumLockKey);
         }
-
-        private ShortcutButton PrintScreenKey => _view.PrintScreenKey;
-
-        private ShortcutButton ScrollLockKey => _view.ScrollLockKey;
-
-        private ShortcutButton PauseBreakKey => _view.PauseBreakKey;
-
-        private ShortcutButton InsertKey => _view.InsertKey;
-
-        private ShortcutButton HomeKey => _view.HomeKey;
-
-        private ShortcutButton PageUpKey => _view.PageUpKey;
-
-        private ShortcutButton DeleteKey => _view.DeleteKey;
-
-        private ShortcutButton EndKey => _view.EndKey;
-
-        private ShortcutButton PageDownKey => _view.PageDownKey;
-
-        private ShortcutButton UpKey => _view.UpKey;
-
-        private ShortcutButton LeftKey => _view.LeftKey;
-
-        private ShortcutButton DownKey => _view.DownKey;
-
-        private ShortcutButton RightKey => _view.RightKey;
-
-        private ShortcutButton F1Key => _view.F1Key;
-
-        private ShortcutButton F2Key => _view.F2Key;
-
-        private ShortcutButton F3Key => _view.F3Key;
-
-        private ShortcutButton F4Key => _view.F4Key;
-
-        private ShortcutButton F5Key => _view.F5Key;
-
-        private ShortcutButton F6Key => _view.F6Key;
-
-        private ShortcutButton F7Key => _view.F7Key;
-
-        private ShortcutButton F8Key => _view.F8Key;
-
-        private ShortcutButton F9Key => _view.F9Key;
-
-        private ShortcutButton F10Key => _view.F10Key;
-
-        private ShortcutButton F11Key => _view.F11Key;
-
-        private ShortcutButton F12Key => _view.F12Key;
-
-        private ShortcutButton EscapeKey => _view.EscapeKey;
-
-        private ShortcutButton HashKey => _view.HashKey;
-
-        private ShortcutButton LeftCtrlKey => _view.LeftCtrlKey;
-
-        private ShortcutButton QKey => _view.QKey;
-
-        private ShortcutButton WKey => _view.WKey;
-
-        private ShortcutButton EKey => _view.EKey;
-
-        private ShortcutButton RKey => _view.RKey;
-
-        private ShortcutButton TKey => _view.TKey;
-
-        private ShortcutButton YKey => _view.YKey;
-
-        private ShortcutButton RightBracketKey => _view.RightBracketKey;
-
-        private ShortcutButton LeftBracketKey => _view.LeftBracketKey;
-
-        private ShortcutButton PKey => _view.PKey;
-
-        private ShortcutButton OKey => _view.OKey;
-
-        private ShortcutButton IKey => _view.IKey;
-
-        private ShortcutButton UKey => _view.UKey;
-
-        private ShortcutButton TabKey => _view.TabKey;
-
-        private ShortcutButton ApostropheKey => _view.ApostropheKey;
-
-        private ShortcutButton SemicolonKey => _view.SemicolonKey;
-
-        private ShortcutButton LKey => _view.LKey;
-
-        private ShortcutButton KKey => _view.KKey;
-
-        private ShortcutButton JKey => _view.JKey;
-
-        private ShortcutButton HKey => _view.HKey;
-
-        private ShortcutButton GKey => _view.GKey;
-
-        private ShortcutButton FKey => _view.FKey;
-
-        private ShortcutButton DKey => _view.DKey;
-
-        private ShortcutButton SKey => _view.SKey;
-
-        private ShortcutButton AKey => _view.AKey;
-
-        private ShortcutButton SlashKey => _view.SlashKey;
-
-        private ShortcutButton PeriodKey => _view.PeriodKey;
-
-        private ShortcutButton CommaKey => _view.CommaKey;
-
-        private ShortcutButton MKey => _view.MKey;
-
-        private ShortcutButton NKey => _view.NKey;
-
-        private ShortcutButton BKey => _view.BKey;
-
-        private ShortcutButton VKey => _view.VKey;
-
-        private ShortcutButton CKey => _view.CKey;
-
-        private ShortcutButton XKey => _view.XKey;
-
-        private ShortcutButton ZKey => _view.ZKey;
-
-        private ShortcutButton CapsLockKey => _view.CapsLockKey;
-
-        private ShortcutButton LeftShiftKey => _view.LeftShiftKey;
-
-        private ShortcutButton BackslashKey => _view.BackslashKey;
-
-        private ShortcutButton RightShiftKey => _view.RightShiftKey;
-
-        private ShortcutButton BackspaceKey => _view.BackspaceKey;
-
-        private ShortcutButton EnterKey => _view.EnterKey;
-
-        private ShortcutButton GraveKey => _view.GraveKey;
-
-        private ShortcutButton ZeroKey => _view.ZeroKey;
-
-        private ShortcutButton NineKey => _view.NineKey;
-
-        private ShortcutButton EightKey => _view.EightKey;
-
-        private ShortcutButton SixKey => _view.SixKey;
-
-        private ShortcutButton FiveKey => _view.FiveKey;
-
-        private ShortcutButton FourKey => _view.FourKey;
-
-        private ShortcutButton ThreeKey => _view.ThreeKey;
-
-        private ShortcutButton TwoKey => _view.TwoKey;
-
-        private ShortcutButton OneKey => _view.OneKey;
-
-        private ShortcutButton SevenKey => _view.SevenKey;
-
-        private ShortcutButton EqualKey => _view.EqualKey;
-
-        private ShortcutButton MinusKey => _view.MinusKey;
-
-        private ShortcutButton Num4Key => _view.Num4Key;
-
-        private ShortcutButton Num5Key => _view.Num5Key;
-
-        private ShortcutButton Num6Key => _view.Num6Key;
-
-        private ShortcutButton Num9Key => _view.Num9Key;
-
-        private ShortcutButton Num8Key => _view.Num8Key;
-
-        private ShortcutButton Num7Key => _view.Num7Key;
-
-        private ShortcutButton NumDecimalKey => _view.NumDecimalKey;
-
-        private ShortcutButton Num0Key => _view.Num0Key;
-
-        private ShortcutButton Num3Key => _view.Num3Key;
-
-        private ShortcutButton Num2Key => _view.Num2Key;
-
-        private ShortcutButton Num1Key => _view.Num1Key;
-
-        private ShortcutButton NumMultiplyKey => _view.NumMultiplyKey;
-
-        private ShortcutButton NumDivideKey => _view.NumDivideKey;
-
-        private ShortcutButton NumMinusKey => _view.NumMinusKey;
-
-        private ShortcutButton NumPlusKey => _view.NumPlusKey;
-
-        private ShortcutButton NumEnterKey => _view.NumEnterKey;
-
-        private ShortcutButton SpaceKey => _view.SpaceKey;
-
-        private ShortcutButton WindowKey => _view.WindowKey;
-
-        private ShortcutButton FnKey => _view.FnKey;
-
-        private ShortcutButton LeftAltKey => _view.LeftAltKey;
-
-        private ShortcutButton RightCtrlKey => _view.RightCtrlKey;
-
-        private ShortcutButton AltGrKey => _view.AltGrKey;
-
-        private ShortcutButton NumLockKey => _view.NumLockKey;
     }
 }

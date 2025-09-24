@@ -6,17 +6,17 @@ namespace Bolsover.CycloidalGear
 {
     public class CycloidalGearBuilder
     {
+        private const double ErrorLimit = 0.000001D;
         private readonly CycloidalGearProperties _gearProperties;
         private readonly IADDesignSession _session;
-        private const double ErrorLimit = 0.000001D;
-
+        
         public CycloidalGearBuilder(CycloidalGearProperties gearProperties, IADDesignSession session)
         {
             _gearProperties = gearProperties;
             _session = session;
             BuildGear();
         }
-
+        
         private void BuildGear()
         {
             var sketch = CreateSketch(_session);
@@ -26,20 +26,20 @@ namespace Bolsover.CycloidalGear
             {
                 DrawWheel(sketch);
             }
-
+            
             if (_gearProperties.DrawPinion)
             {
                 DrawPinion(sketch);
             }
-
+            
             sketch.EndChange();
         }
-
+        
         /// <summary>
-        /// From http://www.csparks.com/watchmaking/CycloidalGears/index.jhtml:
-        /// The nominal width of a tooth or a space when they are equally spaced is just pi/2, or about 1.57.
-        /// For pinions, we will reduce the width of the tooth a bit. For pinions with 6-10 leaves, the tooth
-        /// width at the pitch circle is 1.05. For pinions with 11 or more teeth the tooth width is 1.25.
+        ///     From http://www.csparks.com/watchmaking/CycloidalGears/index.jhtml:
+        ///     The nominal width of a tooth or a space when they are equally spaced is just pi/2, or about 1.57.
+        ///     For pinions, we will reduce the width of the tooth a bit. For pinions with 6-10 leaves, the tooth
+        ///     width at the pitch circle is 1.05. For pinions with 11 or more teeth the tooth width is 1.25.
         /// </summary>
         private void InitializePinionToothWidth()
         {
@@ -48,17 +48,17 @@ namespace Bolsover.CycloidalGear
                 _gearProperties.PinionHalfToothAngle =
                     1.05D * _gearProperties.Module / _gearProperties.PinionPitchDiameter;
             }
-
+            
             else
             {
                 _gearProperties.PinionHalfToothAngle =
                     1.25D * _gearProperties.Module / _gearProperties.PinionPitchDiameter;
             }
         }
-
+        
         /// <summary>
-        /// For details see the Profile - Leaves tables in
-        /// http://www.csparks.com/watchmaking/CycloidalGears/index.jhtml
+        ///     For details see the Profile - Leaves tables in
+        ///     http://www.csparks.com/watchmaking/CycloidalGears/index.jhtml
         /// </summary>
         private void InitialIzePinionAddendum()
         {
@@ -68,7 +68,7 @@ namespace Bolsover.CycloidalGear
                 _gearProperties.PinionAddendum = 0.855D * _gearProperties.Module;
                 _gearProperties.PinionAddendumRadius = 1.05D * _gearProperties.Module;
             }
-
+            
             else if (_gearProperties.PinionCount == 8 | _gearProperties.PinionCount == 9)
             {
                 // medium ogival
@@ -88,7 +88,7 @@ namespace Bolsover.CycloidalGear
                 _gearProperties.PinionAddendumRadius = 0.625D * _gearProperties.Module;
             }
         }
-
+        
         private void InitPinion()
         {
             _gearProperties.PinionPitchDiameter = _gearProperties.Module * _gearProperties.PinionCount;
@@ -101,13 +101,12 @@ namespace Bolsover.CycloidalGear
                 _gearProperties.PinionDedendum =
                     _gearProperties.Module * (_gearProperties.PracticalWheelAddendumFactor + 0.4);
             }
-
+            
             InitializePinionToothWidth();
             InitialIzePinionAddendum();
         }
-
-
-
+        
+        
         private void DrawWheel(IADSketch sketch)
         {
             const double wheelCentreX = 0.0D;
@@ -138,35 +137,34 @@ namespace Bolsover.CycloidalGear
                 var pointB = new Point(point2X, point2Y);
                 var pointC = new Point(point5X, point5Y);
                 var wheelCenter = new Point(0.0D, 0.0D);
-
+                
                 var radCenter =
                     ComputeAddedumRadiusCenter(_gearProperties.WheelAddendumRadius, pointA, pointB, wheelCenter);
                 sketch.Figures.AddCircularArcByCenterStartEnd(radCenter.X / 10, radCenter.Y / 10,
                     point1X / 10, point1Y / 10, point2X / 10, point2Y / 10);
-
+                
                 radCenter =
                     ComputeAddedumRadiusCenter(_gearProperties.WheelAddendumRadius, pointC, pointA, wheelCenter);
                 sketch.Figures.AddCircularArcByCenterStartEnd(radCenter.X / 10, radCenter.Y / 10,
                     point5X / 10, point5Y / 10, point1X / 10, point1Y / 10);
-
+                
                 sketch.Figures.AddLine(point2X / 10, point2Y / 10, point3X / 10, point3Y / 10);
                 sketch.Figures.AddLine(point4X / 10, point4Y / 10, point5X / 10, point5Y / 10);
-
+                
                 sketch.Figures.AddCircularArcByCenterStartEnd(wheelCentreX, wheelCentreY, point3X / 10,
                     point3Y / 10, point6X / 10, point6Y / 10);
             }
-
+            
             var wheelPitchDiameter =
                 sketch.Figures.AddCircle(wheelCentreX, wheelCentreY, _gearProperties.WheelPitchDiameter / 20);
             wheelPitchDiameter.IsReference = true;
-
+            
             if (_gearProperties.WheelCentreHole > 0)
             {
-             
-                    sketch.Figures.AddCircle(wheelCentreX, wheelCentreY, _gearProperties.WheelCentreHole / 20);
+                sketch.Figures.AddCircle(wheelCentreX, wheelCentreY, _gearProperties.WheelCentreHole / 20);
             }
         }
-
+        
         private void DrawPinion(IADSketch sketch)
         {
             InitPinion();
@@ -179,7 +177,7 @@ namespace Bolsover.CycloidalGear
             var pinionPitchRadius = _gearProperties.PinionPitchDiameter / 2;
             var toothAngle = 360.0 / _gearProperties.PinionCount;
             var halfToothAngle = _gearProperties.PinionHalfToothAngle;
-
+            
             for (var i = 0; i < _gearProperties.PinionCount; i++)
             {
                 var refAngleApex = toothAngle * i;
@@ -203,7 +201,7 @@ namespace Bolsover.CycloidalGear
                 var pointB = new Point(point2X, point2Y);
                 var pointC = new Point(point5X, point5Y);
                 var pinionCenter = new Point(pinionCentreX, pinionCentreY);
-
+                
                 var radCenter = ComputeAddedumRadiusCenter(_gearProperties.PinionAddendumRadius, pointA, pointB,
                     pinionCenter);
                 sketch.Figures.AddCircularArcByCenterStartEnd(radCenter.X / 10, radCenter.Y / 10,
@@ -217,15 +215,14 @@ namespace Bolsover.CycloidalGear
                 sketch.Figures.AddCircularArcByCenterStartEnd(pinionCenter.X / 10, pinionCenter.Y / 10, point3X / 10,
                     point3Y / 10, point6X / 10, point6Y / 10);
             }
-
+            
             if (_gearProperties.PinionCentreHole > 0)
             {
-                
                 sketch.Figures.AddCircle(pinionCentreX / 10, pinionCentreY / 10,
                     _gearProperties.PinionCentreHole / 20);
             }
         }
-
+        
         private Point ComputeAddedumRadiusCenter(double radius, Point a, Point b, Point center)
         {
             var q = Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
@@ -237,19 +234,19 @@ namespace Bolsover.CycloidalGear
             var centery1 = y3 + basey;
             var centerx2 = x3 - basex;
             var centery2 = y3 - basey;
-
+            
             var radiusCentre = new Point(centerx1, centery1);
-           
+            
             if (IsPointWithinWheel(center, radiusCentre, _gearProperties.WheelPitchDiameter))
             {
                 return radiusCentre;
             }
-
+            
             radiusCentre.X = centerx2;
             radiusCentre.Y = centery2;
             return radiusCentre;
         }
-
+        
         private static bool IsPointWithinWheel(Point wheelCentre, Point testPoint, double wheelRadius)
         {
             var dX = testPoint.X - wheelCentre.X;
@@ -257,7 +254,7 @@ namespace Bolsover.CycloidalGear
             var px = Math.Sqrt(dX * dX + dY * dY);
             return px <= wheelRadius;
         }
-
+        
         private double ComputeAddendumFactor()
         {
             var t0 = 1.0;
@@ -269,18 +266,18 @@ namespace Bolsover.CycloidalGear
                 var b = Math.Atan2(Math.Sin(t0), 1.0 + r2 - Math.Cos(t0));
                 t1 = Math.PI / _gearProperties.PinionCount + r2 * b;
             }
-
+            
             var k = 1.0 + r2;
             var d = Math.Sqrt(1.0 + k * k - 2.0 * k * Math.Cos(t1));
             var result = 0.25 * _gearProperties.PinionCount * (1.0 - k + d);
             return result;
         }
-
+        
         private void ComputeWheel()
         {
             _gearProperties.WheelAddFactor = ComputeAddendumFactor();
             _gearProperties.PracticalWheelAddendumFactor = _gearProperties.WheelAddFactor * 0.95;
-            _gearProperties.GearRatio = (double)_gearProperties.WheelCount / _gearProperties.PinionCount;
+            _gearProperties.GearRatio = (double) _gearProperties.WheelCount / _gearProperties.PinionCount;
             _gearProperties.WheelCircularPitch = _gearProperties.Module * Math.PI;
             _gearProperties.WheelDedendum = _gearProperties.Module * Math.PI / 2;
             _gearProperties.WheelPitchDiameter = _gearProperties.Module * _gearProperties.WheelCount;
@@ -288,18 +285,18 @@ namespace Bolsover.CycloidalGear
             _gearProperties.WheelAddendum = _gearProperties.Module * 0.95 * _gearProperties.WheelAddFactor;
             _gearProperties.WheelAddendumRadius = _gearProperties.Module * 1.4 * _gearProperties.WheelAddFactor;
         }
-
+        
         private IADSketch CreateSketch(IADDesignSession session)
         {
             var sketch = session.Sketches.AddSketch(null, _gearProperties.Plane, "Gear");
             return sketch;
         }
-
+        
         private class Point
         {
             public double X;
             public double Y;
-
+            
             public Point(double x, double y)
             {
                 X = x;

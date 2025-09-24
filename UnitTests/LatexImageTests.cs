@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
 using NUnit.Framework;
 
-
 namespace UnitTests
 {
     public class LatexImageTests

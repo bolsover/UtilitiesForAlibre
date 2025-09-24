@@ -6,15 +6,14 @@ namespace Bolsover.Shortcuts.Presenter
 {
     public static class Queries
     {
-        
-        public static List<AlibreShortcut> RetrieveShortcutsByModifierType(IEnumerable<AlibreShortcut> shortcuts, ShortcutModifierType shortcutModifierType)
+        public static List<AlibreShortcut> RetrieveShortcutsByModifierType(IEnumerable<AlibreShortcut> shortcuts,
+            ShortcutModifierType shortcutModifierType)
         {
             var shortcutQuery = from shortcut in shortcuts
-                where shortcut.ShortcutModifierType == shortcutModifierType && !string.IsNullOrEmpty(shortcut.Hint) && shortcut.NonModifierCode != 0 
+                where shortcut.ShortcutModifierType == shortcutModifierType && !string.IsNullOrEmpty(shortcut.Hint) &&
+                      shortcut.NonModifierCode != 0
                 select shortcut;
             return shortcutQuery.ToList();
         }
-        
-        
     }
 }

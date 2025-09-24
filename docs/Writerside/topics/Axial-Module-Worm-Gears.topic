@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Axial Module Worm Gears" id="Axial-Module-Worm-Gears">
+
+    <link-summary>Example and formulae for the calculation of axial module worm gears.</link-summary>
+    <p>The table below provides an example of a axial module worm gears and the calculations used to derive the design
+        values.</p>
+    <p>The following parameters are required as inputs:</p>
+    <list type="decimal">
+        <li>Module</li>
+        <li>Pressure Angle. Usually one of 14.5°, 20° or 25°.</li>
+        <li>Number of Worm Threads</li>
+        <li>Number of Gear Teeth</li>
+        <li>Pitch Diameter of Worm.</li>
+
+    </list>
+
+    <chapter title="Axial Module Worm Gears" id="axial-module-worm-gear"
+             collapsible="true" default-state="expanded">
+        <table style="both" >
+            <tr>
+                <td>No.</td>
+                <td>Item</td>
+                <td>Symbol</td>
+                <td>Formula</td>
+                <td>Worm</td>
+                <td>Gear</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Axial Module</td>
+                <td>
+                    <include from="Snippets.topic" element-id="m_x"/>
+                </td>
+                <td></td>
+                <td colspan="2">3</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Axial Pitch</td>
+                <td>
+                    <include from="Snippets.topic" element-id="P_x"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="m2P"/>
+                </td>
+                <td colspan="2">9.425</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Axial Pressure Angle</td>
+                <td>
+                    <include from="Snippets.topic" element-id="alpha_x"/>
+                </td>
+                <td></td>
+                <td colspan="2">20°</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Threads, Teeth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="z1,z2"/>
+                </td>
+                <td></td>
+                <td>2</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td rowspan="2">5</td>
+                <td rowspan="2"><p>Pitch Diameter</p>
+                    <p>*Note1</p></td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_pitch_dia_rule1"/>
+                </td>
+                <td>23.719</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="d_2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_gear_pitch_diameter"/>
+                </td>
+                <td>-</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><p>Lead Angle</p>
+                    <p>*Note 2</p></td>
+                <td>
+                    <include from="Greek.topic" element-id="gamma"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_lead_angle"/>
+                </td>
+                <td colspan="2">14.196°</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Lead</td>
+                <td>
+                    <include from="Snippets.topic" element-id="L"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_lead"/>
+                </td>
+                <td colspan="2">18.849</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><p>Centre Distance</p>
+                <p>*Note 3 </p></td>
+                <td>
+                    <include from="Snippets.topic" element-id="a_x"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_centre_distance"/>
+                </td>
+                <td colspan="2">56.859</td>
+            </tr>
+            <tr>
+                <td rowspan="2">9</td>
+                <td rowspan="2">Addendum</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_a1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_h_a1"/>
+                </td>
+                <td>3</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="h_a2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_h_a2"/>
+                </td>
+                <td>-</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td rowspan="2">10</td>
+                <td rowspan="2">Dedendum</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h_f1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_h_f1"/>
+                </td>
+                <td>3.75</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="h_f2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_h_f2"/>
+                </td>
+                <td>-</td>
+                <td>3.75</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Whole Depth</td>
+                <td>
+                    <include from="Snippets.topic" element-id="h"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_h"/>
+                </td>
+                <td>6.75</td>
+                <td>6.75</td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">12</td>
+                <td rowspan="2">Outside Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_a1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_d_a1"/>
+                </td>
+                <td>29.719</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="d_a2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_d_a2"/>
+                </td>
+                <td>-</td>
+                <td>99</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Throat Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_th"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_gear_d_th"/>
+                </td>
+                <td>-</td>
+                <td>96</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Throat Surface Radius</td>
+                <td>
+                    <include from="Snippets.topic" element-id="r_i"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_gear_r_i"/>
+                </td>
+                <td>-</td>
+                <td>8.860</td>
+            </tr>
+            <tr>
+                <td rowspan="2">15</td>
+                <td rowspan="2">Root Diameter</td>
+                <td>
+                    <include from="Snippets.topic" element-id="d_f1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_d_f1"/>
+                </td>
+                <td>16.219</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <include from="Snippets.topic" element-id="d_f2"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_gear_d_f2"/>
+                </td>
+                <td>-</td>
+                <td>82.5</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>Worm Length</td>
+                <td>
+                    <include from="Snippets.topic" element-id="b_1"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_b_1"/>
+                </td>
+                <td>-</td>
+                <td>48.066</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>Working Gear Blank Width</td>
+                <td>
+                    <include from="Snippets.topic" element-id="b_e"/>
+                </td>
+                <td>
+                    <include from="Snippets.topic" element-id="worm_gear_b_e"/>
+                </td>
+                <td>-</td>
+                <td>17.906</td>
+            </tr>
+
+        </table>
+        <note title="Note 1: Worm Pitch Diameter">
+            <p>There are a number of empirical methods of calculating the worm pitch
+                diameter.
+                The one used above is that given by AGMA (American Gear Manufacturers Association). Alternatives
+                include:</p>
+            <list>
+                <li>Rule 1: (AGMA)<i>
+                    <include from="Snippets.topic" element-id="worm_pitch_dia_rule1"/>
+                </i></li>
+                <li>Rule 2: <i>
+                    <include from="Snippets.topic" element-id="worm_pitch_dia_rule2"/>
+                </i></li>
+                <li>Rule 3: <i>
+                    <include from="Snippets.topic" element-id="worm_pitch_dia_rule3"/>
+                </i></li>
+                <li>Rule 4: <i>
+                    <include from="Snippets.topic" element-id="worm_pitch_dia_rule4"/>
+                </i></li>
+            </list>
+            <p>Given the parameter values provided in the above table all of these rules will return a value of 23.719.</p>
+            <p>It is however clear that providing alternate parameter values may return different results and the choice
+            of rule will depend on available source parameter data. For example if the centre distance is to be specified
+            then Rule 2 may be most appropriate. If however the lead angle is to be specified then Rule 3 may be used.
+                If both lead angle and centre distance are to be specified then use Rule 4.</p>
+        </note>
+        <note title="Note 2: Lead Angle">
+            <p>Whilst lead angle may be calculated as above, some standards establish fixed lead angles e.g. American
+                Standard Fine Pitch Worms and Wormgears Per. ANSI B6.9. Fifteen standard lead angles are proposed
+                to provide adequate coverage: 0.5, 1, 1.5, 2, 3, 4, 5, 7, 9, 11, 14, 17, 21, 25, and 30 degrees.</p>
+        </note>
+        <note title="Note 3: Centre Distance">
+            <p>Centre distance may be calculated as given in the above table or, may me specified as a parameter. In the
+            case of a specified centre distance, the worm pitch diameter may be adjusted to achieve correct mesh
+            without compromising the speed ratio. In this case, the correct worm pitch diameter can be calculated by
+            application of the formula given in Rule 2 of Note 1.</p>
+        </note>
+    </chapter>
+</topic>
